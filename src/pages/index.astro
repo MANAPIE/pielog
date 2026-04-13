@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+const sortedPosts = posts.sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<BaseLayout title="블로그 이름" description="기술과 디자인에 관한 이야기">
+	<section class="post-list">
+		{
+			sortedPosts.map((post) => (
+				<PostCard
+					title={post.data.title}
+					description={post.data.description}
+					date={post.data.date}
+					slug={post.id}
+				/>
+			))
+		}
+	</section>
+</BaseLayout>

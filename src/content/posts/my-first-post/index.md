@@ -1,0 +1,26 @@
+---
+title: "첫 번째 글"
+description: "블로그를 시작합니다"
+date: 2026-04-13
+tags: ["intro"]
+draft: false
+---
+
+## 블로그를 시작하며
+
+이 블로그는 Astro와 Vercel로 구축되었습니다.
+
+마크다운으로 글을 쓰고, GitHub에 push하면 자동으로 배포됩니다.
+
+### 코드 예시
+
+```js
+const greeting = 'Hello, Blog!';
+console.log(greeting);
+```
+
+### 이미지
+
+같은 폴더에 있는 이미지를 상대경로로 삽입할 수 있습니다.
+
+![커버 이미지](./cover.jpg)
