@@ -1,0 +1,48 @@
+---
+
+---
+
+<div class="aside-home">
+  <section class="aside-section">
+    <h3 class="aside-section-title">TOP READS</h3>
+    <p class="aside-placeholder">준비 중</p>
+  </section>
+
+  <section class="aside-section">
+    <h3 class="aside-section-title">RECENT POSTS</h3>
+    <p class="aside-placeholder">준비 중</p>
+  </section>
+
+  <section class="aside-section">
+    <h3 class="aside-section-title">TAG INDEX</h3>
+    <p class="aside-placeholder">준비 중</p>
+  </section>
+</div>
+
+<style lang="scss">
+  @use "../styles/_variables.scss" as *;
+
+  .aside-home {
+    padding: 5px 20px 0;
+  }
+
+  .aside-section {
+    padding-bottom: 20px;
+
+    & + .aside-section {
+      border-top: 1px solid $color-border;
+    }
+  }
+
+  .aside-section-title {
+    margin: 20px 0 10px;
+    font-weight: bold;
+    font-size: 9px;
+    letter-spacing: 50%;
+    color: $color-text-muted;
+  }
+
+  .aside-placeholder {
+    font-size: 12px;
+  }
+</style>

@@ -1,0 +1,36 @@
+/* ========================
+   Layout Dimensions
+   ======================== */
+$sidebar-width: 260px;
+$main-width: 820px;
+$aside-width-max: 360px;
+$aside-width-min: 260px;
+$layout-full: $sidebar-width + $main-width + $aside-width-max;
+$peek-width: 40px;
+
+/* ========================
+   Breakpoints
+   ======================== */
+$bp-full: 1440px;
+$bp-mid: 1340px;
+$bp-narrow: 900px;
+$bp-mobile: 600px;
+
+/* ========================
+   Colors
+   ======================== */
+$color-bg: #ffffff;
+$color-bg-half: #ffffff99;
+$color-bg-zero: #ffffff00;
+$color-text: #333333;
+$color-text-muted: #8A8278;
+$color-accent: #183075;
+$color-primary: #7a7269;
+$color-border: #D6D9E0;
+$color-tree: #E0D6D6;
+$color-code-bg: #f5f5f5;
+
+/* ========================
+   Spacing
+   ======================== */
+$mobile-header-height: 50px;

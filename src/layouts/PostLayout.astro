@@ -1,18 +1,26 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Giscus from "../components/Giscus.astro";
+import TableOfContents from "../components/TableOfContents.astro";
 
 interface Props {
     title: string;
     description: string;
     date: Date;
     ogImage?: string;
+    headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, date, ogImage } = Astro.props;
+const { title, description, date, ogImage, headings = [] } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} ogImage={ogImage}>
+<BaseLayout
+    title={title}
+    description={description}
+    ogImage={ogImage}
+    pageType="post"
+    sidebarOpacity={0.2}
+>
     <article>
         <header class="post-header">
             <h1>{title}</h1>
@@ -31,4 +39,5 @@ const { title, description, date, ogImage } = Astro.props;
         </div>
     </article>
     <Giscus />
+    <TableOfContents headings={headings} slot="aside" />
 </BaseLayout>

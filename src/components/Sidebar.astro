@@ -1,0 +1,131 @@
+---
+
+---
+
+<span class="sidebar-button"></span>
+<div class="sidebar-inner">
+  <div class="sidebar-logo">
+    <a href="/" class="site-title">
+      <span class="emblem"></span>
+      PIElog
+    </a>
+    <div class="site-subtitle">
+      // thoughts & experiments<span class="blink">_</span>
+    </div>
+  </div>
+
+  <div class="sidebar-categories">
+    <h3 class="sidebar-section-title">CATEGORIES</h3>
+    <ul class="category-tree">
+      <li>
+        <a href="/">Home</a>
+        <ul>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/rss.xml">RSS</a>
+          </li>
+        </ul>
+      </li>
+      <li>준비 중</li>
+    </ul>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../styles/_variables.scss" as *;
+
+  .sidebar-inner {
+    padding: 20px;
+  }
+
+  .sidebar-button {
+    position: absolute;
+    right: -5px;
+    top: 25px;
+    display: block;
+    width: 30px;
+    height: 28px;
+    background: url("/images/manapie-emblem-small.svg") transparent no-repeat;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebar-logo {
+    .site-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: $color-text;
+      text-decoration: none;
+
+      .emblem {
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 28px;
+        background: url("/images/manapie-emblem-small.svg") transparent
+          no-repeat;
+        margin: 0 3px 2px -2px;
+      }
+    }
+
+    .site-subtitle {
+      font-family: "Courier New", "Courier", monospace;
+      font-size: 10px;
+      color: $color-primary;
+      margin-top: 5px;
+
+      .blink {
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .sidebar-section-title {
+    margin: 20px 0;
+    font-weight: bold;
+    font-size: 9px;
+    letter-spacing: 30%;
+    color: $color-text-muted;
+  }
+
+  .category-tree {
+    font-size: 12px;
+
+    a {
+      color: $color-text;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    li {
+      list-style: none;
+      font-weight: bold;
+      line-height: 22px;
+
+      ul {
+        margin: 4px 0;
+      }
+
+      li {
+        font-weight: normal;
+        border-left: 3px solid $color-tree;
+        padding: 2px 0 2px 10px;
+        margin-left: 5px;
+      }
+    }
+  }
+</style>

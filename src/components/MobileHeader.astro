@@ -1,0 +1,77 @@
+---
+
+---
+
+<header class="mobile-header">
+  <button
+    class="mobile-header-btn"
+    id="sidebar-toggle"
+    aria-label="사이드바 열기"
+  >
+    <span class="emblem"></span>
+  </button>
+
+  <button
+    class="mobile-header-btn"
+    id="aside-toggle"
+    aria-label="부가 정보 열기"
+  >
+    <span class="more"></span>
+  </button>
+</header>
+<div class="mobile-header-dim"></div>
+
+<style lang="scss">
+  @use "../styles/_variables.scss" as *;
+
+  .mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc($mobile-header-height);
+    z-index: 80;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .mobile-header-dim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc($mobile-header-height);
+    z-index: 79;
+    padding-bottom: 30px;
+    background: linear-gradient($color-bg 10%, $color-bg-zero 100%);
+    backdrop-filter: blur(20px);
+    mask: linear-gradient($color-bg 30%, $color-bg-zero 95%);
+  }
+
+  .mobile-header-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .emblem {
+      display: block;
+      width: 30px;
+      height: 28px;
+      background: url("/images/manapie-emblem-small.svg") transparent no-repeat;
+    }
+
+    .more {
+      display: block;
+      width: 30px;
+      height: 30px;
+      background: url("/images/more.svg") no-repeat center;
+      mask-size: contain;
+      mix-blend-mode: difference;
+      margin: 3px 0 0 0;
+    }
+  }
+</style>

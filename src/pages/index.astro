@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
+import AsideHomepage from "../components/AsideHomepage.astro";
 
 const posts = await getCollection("posts", ({ data }) => !data.draft);
 const sortedPosts = posts.sort(
@@ -9,7 +10,11 @@ const sortedPosts = posts.sort(
 );
 ---
 
-<BaseLayout title="블로그 이름" description="기술과 디자인에 관한 이야기">
+<BaseLayout
+	title="PIElog"
+	description="MANAPIE's thoughts & experiments"
+	pageType="home"
+>
 	<section class="post-list">
 		{
 			sortedPosts.map((post) => (
@@ -22,4 +27,5 @@ const sortedPosts = posts.sort(
 			))
 		}
 	</section>
+	<AsideHomepage slot="aside" />
 </BaseLayout>

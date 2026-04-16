@@ -1,0 +1,142 @@
+---
+import Sidebar from "../components/Sidebar.astro";
+import MobileHeader from "../components/MobileHeader.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  pageType?: "home" | "post" | "about" | "search";
+  sidebarOpacity?: number;
+}
+
+const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
+---
+
+<MobileHeader />
+<div class="layout-wrapper" data-page-type={pageType}>
+  <aside
+    class="sidebar"
+    style={sidebarOpacity !== 1
+      ? `--sidebar-opacity: ${sidebarOpacity}`
+      : undefined}
+  >
+    <Sidebar />
+  </aside>
+  <main class="main-content">
+    <slot />
+  </main>
+  <aside class="aside-panel">
+    <slot name="aside" />
+  </aside>
+  <Footer />
+</div>
+<div class="layout-overlay" id="layout-overlay"></div>
+
+<script>
+  const sidebar = document.querySelector(".sidebar") as HTMLElement | null;
+  if (sidebar && sidebar.style.getPropertyValue("--sidebar-opacity")) {
+    sidebar.addEventListener("click", (e) => {
+      e.stopPropagation();
+      sidebar.classList.add("is-active");
+    });
+    document.addEventListener("click", (e) => {
+      if (!sidebar.contains(e.target as Node)) {
+        sidebar.classList.remove("is-active");
+      }
+    });
+  }
+
+  const sidebarToggle = document.getElementById("sidebar-toggle");
+  const asideToggle = document.getElementById("aside-toggle");
+  const asidePanel = document.querySelector(
+    ".aside-panel",
+  ) as HTMLElement | null;
+  const overlay = document.getElementById("layout-overlay");
+
+  function closeAll() {
+    sidebar?.classList.remove("is-open");
+    asidePanel?.classList.remove("is-open");
+    overlay?.classList.remove("is-visible");
+  }
+
+  sidebarToggle?.addEventListener("click", () => {
+    const isOpen = sidebar?.classList.contains("is-open");
+    closeAll();
+    if (!isOpen) {
+      sidebar?.classList.add("is-open");
+      overlay?.classList.add("is-visible");
+    }
+  });
+
+  asideToggle?.addEventListener("click", () => {
+    const isOpen = asidePanel?.classList.contains("is-open");
+    closeAll();
+    if (!isOpen) {
+      asidePanel?.classList.add("is-open");
+      overlay?.classList.add("is-visible");
+    }
+  });
+
+  overlay?.addEventListener("click", closeAll);
+
+  const SWIPE_THRESHOLD = 50;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isSwiping = false;
+
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      const touch = e.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      isSwiping = true;
+    },
+    { passive: true },
+  );
+
+  document.addEventListener(
+    "touchend",
+    (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+
+      if (Math.abs(dy) > Math.abs(dx)) return;
+      if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+
+      const sidebarOpen = sidebar?.classList.contains("is-open");
+      const asideOpen = asidePanel?.classList.contains("is-open");
+
+      if (dx > 0) {
+        if (asideOpen) {
+          closeAll();
+        } else if (!sidebarOpen) {
+          closeAll();
+          sidebar?.classList.add("is-open");
+          overlay?.classList.add("is-visible");
+        }
+      } else {
+        if (sidebarOpen) {
+          closeAll();
+        } else if (!asideOpen) {
+          closeAll();
+          asidePanel?.classList.add("is-open");
+          overlay?.classList.add("is-visible");
+        }
+      }
+    },
+    { passive: true },
+  );
+
+  let resizeTimer: ReturnType<typeof setTimeout>;
+  window.addEventListener("resize", () => {
+    document.body.classList.add("is-resizing");
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      document.body.classList.remove("is-resizing");
+    }, 150);
+  });
+</script>
