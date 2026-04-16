@@ -1,14 +1,7 @@
-/* ========================
-   Variables
-   ======================== */
-$color-bg: #ffffff;
-$color-text: #1a1a1a;
-$color-text-muted: #666666;
-$color-primary: #2563eb;
-$color-border: #e5e5e5;
-$color-code-bg: #f5f5f5;
-$content-width: 720px;
-$header-height: 60px;
+@use 'variables' as *;
+@use 'layout';
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
 /* ========================
    Reset & Base
@@ -28,8 +21,7 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        'Helvetica Neue', Arial, sans-serif;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     color: $color-text;
     background-color: $color-bg;
     line-height: 1.8;
@@ -51,67 +43,14 @@ img {
 }
 
 /* ========================
-   Layout
-   ======================== */
-main {
-    max-width: $content-width;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-}
-
-/* ========================
-   Site Header
-   ======================== */
-.site-header {
-    height: $header-height;
-    border-bottom: 1px solid $color-border;
-
-    nav {
-        max-width: $content-width;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .site-title {
-        font-size: 1.125rem;
-        font-weight: 700;
-        color: $color-text;
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 1.5rem;
-
-        a {
-            color: $color-text-muted;
-            font-size: 0.875rem;
-
-            &:hover {
-                color: $color-text;
-                text-decoration: none;
-            }
-        }
-    }
-}
-
-/* ========================
    Site Footer
    ======================== */
 .site-footer {
-    max-width: $content-width;
+    max-width: $main-width;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
-    border-top: 1px solid $color-border;
+    padding: 20px;
     color: $color-text-muted;
-    font-size: 0.8125rem;
+    font-size: 12px;
     text-align: center;
 }
 
@@ -176,6 +115,11 @@ main {
 }
 
 .post-content {
+    h2,
+    h3 {
+        scroll-margin-top: $mobile-header-height + 10px;
+    }
+
     h2 {
         font-size: 1.5rem;
         font-weight: 600;

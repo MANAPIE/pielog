@@ -1,0 +1,156 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+const tocItems = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+
+interface TocNode {
+  slug: string;
+  text: string;
+  children: TocNode[];
+}
+
+const tree: TocNode[] = [];
+for (const item of tocItems) {
+  if (item.depth === 2) {
+    tree.push({ slug: item.slug, text: item.text, children: [] });
+  } else if (item.depth === 3 && tree.length > 0) {
+    tree[tree.length - 1].children.push({
+      slug: item.slug,
+      text: item.text,
+      children: [],
+    });
+  }
+}
+---
+
+{
+  tree.length > 0 && (
+    <nav class="toc-tree">
+      <span class="toc-indicator" aria-hidden="true" />
+      <ul>
+        {tree.map((node) => (
+          <li>
+            <a href={`#${node.slug}`}>{node.text}</a>
+            {node.children.length > 0 && (
+              <ul>
+                {node.children.map((child) => (
+                  <li>
+                    <a href={`#${child.slug}`}>{child.text}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<script>
+  const headings = document.querySelectorAll(
+    ".post-content h2, .post-content h3",
+  );
+  const tocNav = document.querySelector(".toc-tree") as HTMLElement | null;
+  const tocItems = document.querySelectorAll(".toc-tree li");
+  const indicator = document.querySelector(
+    ".toc-indicator",
+  ) as HTMLElement | null;
+
+  function moveIndicator(li: Element) {
+    if (!indicator || !tocNav) return;
+    const link = li.querySelector("a");
+    if (!link) return;
+    const navRect = tocNav.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    const top =
+      linkRect.top -
+      navRect.top +
+      linkRect.height / 2 -
+      indicator.offsetHeight / 2;
+    indicator.style.top = `${top}px`;
+    indicator.style.opacity = "1";
+  }
+
+  function setActive() {
+    const scrollY = window.scrollY;
+    let current: Element | null = null;
+
+    headings.forEach((h) => {
+      if ((h as HTMLElement).offsetTop - 100 <= scrollY) {
+        current = h;
+      }
+    });
+
+    if (!current) return;
+
+    tocItems.forEach((l) => l.classList.remove("is-active"));
+    const activeLink = document.querySelector(
+      `.toc-tree a[href="#${(current as HTMLElement).id}"]`,
+    );
+    const activeLi = activeLink?.parentElement;
+    if (activeLi) {
+      activeLi.classList.add("is-active");
+      moveIndicator(activeLi);
+    }
+  }
+
+  if (headings.length > 0 && tocItems.length > 0) {
+    window.addEventListener("scroll", setActive, { passive: true });
+    setActive();
+  }
+</script>
+
+<style lang="scss">
+  @use "../styles/_variables.scss" as *;
+
+  .toc-tree {
+    position: relative;
+    font-size: 14px;
+    padding: 60px 20px 20px 20px;
+
+    .toc-indicator {
+      position: absolute;
+      left: 0;
+      top: 60px;
+      font-size: 8px;
+      line-height: 26px;
+      opacity: 0;
+      transition:
+        top 0.3s ease,
+        opacity 0.3s ease;
+      pointer-events: none;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px 0px 6px 10px;
+      border-color: transparent transparent transparent $color-accent;
+    }
+
+    a {
+      color: $color-text;
+      text-decoration: none;
+    }
+
+    li {
+      position: relative;
+      list-style: none;
+      font-weight: bold;
+      line-height: 26px;
+
+      ul {
+        margin: 4px 0;
+      }
+
+      li {
+        font-weight: normal;
+        border-left: 3px solid $color-tree;
+        padding: 2px 0 2px 10px;
+        margin-left: 5px;
+      }
+    }
+  }
+</style>
