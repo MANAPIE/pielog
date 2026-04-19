@@ -7,11 +7,19 @@ interface Props {
     title: string;
     description: string;
     date: Date;
+    tags?: string[];
     ogImage?: string;
     headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, date, ogImage, headings = [] } = Astro.props;
+const {
+    title,
+    description,
+    date,
+    tags = [],
+    ogImage,
+    headings = [],
+} = Astro.props;
 ---
 
 <BaseLayout
@@ -23,6 +31,17 @@ const { title, description, date, ogImage, headings = [] } = Astro.props;
 >
     <article>
         <header class="post-header">
+            {
+                tags.length > 0 && (
+                    <div class="post-tags">
+                        {tags.map((tag) => (
+                            <a href={`/tags/${tag}/`} class="post-tag">
+                                {tag}
+                            </a>
+                        ))}
+                    </div>
+                )
+            }
             <h1>{title}</h1>
             <time datetime={date.toISOString()}>
                 {
@@ -41,3 +60,30 @@ const { title, description, date, ogImage, headings = [] } = Astro.props;
     <Giscus />
     <TableOfContents headings={headings} slot="aside" />
 </BaseLayout>
+
+<style lang="scss">
+    @use "../styles/_variables.scss" as *;
+
+    .post-tags {
+        margin: 2px 0 10px;
+    }
+
+    .post-tag {
+        display: inline-block;
+        white-space: nowrap;
+        padding: 0 8px;
+        margin-right: 8px;
+        background: $color-tree;
+        border: 1px solid $color-border;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+        font-size: 11px;
+        color: $color-text;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+</style>

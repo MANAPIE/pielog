@@ -1,5 +1,10 @@
 ---
+import { getCollection } from "astro:content";
 
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+const allTags = [
+  ...new Set(posts.flatMap((post) => post.data.tags ?? [])),
+].sort();
 ---
 
 <div class="aside-home">
@@ -15,7 +20,19 @@
 
   <section class="aside-section">
     <h3 class="aside-section-title">TAG INDEX</h3>
-    <p class="aside-placeholder">준비 중</p>
+    {
+      allTags.length > 0 ? (
+        <div class="tag-list">
+          {allTags.map((tag, i) => (
+            <a href={`/tags/${tag}/`} class="tag-link">
+              {tag}
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="aside-placeholder">준비 중</p>
+      )
+    }
   </section>
 </div>
 
@@ -44,5 +61,23 @@
 
   .aside-placeholder {
     font-size: 12px;
+  }
+
+  .tag-list {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .tag-link {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0 8px;
+    margin-right: 8px;
+    background: $color-tree;
+    border: 1px solid $color-border;
+    border-radius: 3px;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    font-size: 11px;
   }
 </style>
