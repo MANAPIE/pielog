@@ -37,15 +37,17 @@ const { tag, posts } = Astro.props;
 	<section class="tag-page">
 		<h1 class="tag-page-title">
 			<span>{tag}</span>
+			POSTS
 		</h1>
 		<div class="post-list">
 			{
 				posts.map((post) => (
 					<PostCard
 						title={post.data.title}
-						description={post.data.description}
-						date={post.data.date}
 						slug={post.id}
+						thumbnail={post.data.thumbnail}
+						tags={post.data.tags}
+						summary={post.data.summary}
 					/>
 				))
 			}
@@ -59,8 +61,14 @@ const { tag, posts } = Astro.props;
 
 	.tag-page-title {
 		font-size: 17px;
+		margin: 7px 0 27px;
+		font-weight: bold;
+		font-size: 9px;
+		letter-spacing: 30%;
+		color: $color-text-muted;
 
 		span {
+			color: $color-primary;
 			display: inline-block;
 			white-space: nowrap;
 			padding: 0 8px;
@@ -68,9 +76,10 @@ const { tag, posts } = Astro.props;
 			background: $color-tree;
 			border: 1px solid $color-border;
 			border-radius: 3px;
-			font-family: "Courier New", monospace;
+			font-family: "Courier New", Courier, monospace;
 			font-weight: bold;
 			font-size: 11px;
+			letter-spacing: normal;
 		}
 	}
 </style>

@@ -65,10 +65,11 @@ const {
     @use "../styles/_variables.scss" as *;
 
     .post-tags {
-        margin: 2px 0 10px;
+        margin: 1px 0 10px;
     }
 
     .post-tag {
+        color: $color-primary;
         display: inline-block;
         white-space: nowrap;
         padding: 0 8px;
@@ -76,10 +77,9 @@ const {
         background: $color-tree;
         border: 1px solid $color-border;
         border-radius: 3px;
-        font-family: "Courier New", monospace;
+        font-family: "Courier New", Courier, monospace;
         font-weight: bold;
         font-size: 11px;
-        color: $color-text;
         text-decoration: none;
 
         &:hover {
