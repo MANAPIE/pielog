@@ -13,7 +13,11 @@ const allTags = [
 <div class="aside-home">
   <section class="aside-section">
     <h3 class="aside-section-title">TOP READS</h3>
-    <p class="aside-placeholder">준비 중</p>
+    <ul class="aside-section-list" id="top-reads">
+      <li class="recent-post-item">
+        <span class="recent-post-num" style="font-size:12px;">loading...</span>
+      </li>
+    </ul>
   </section>
 
   <section class="aside-section">
@@ -52,7 +56,56 @@ const allTags = [
       )
     }
   </section>
+
+  <section class="aside-section">
+    <h3 class="aside-section-title">VISITORS</h3>
+    <ul class="aside-section-list">
+      <li class="recent-post-item">
+        <span class="recent-post-num">TODAY <span id="visitors-today">-</span></span>
+      </li>
+      <li class="recent-post-item">
+        <span class="recent-post-num">TOTAL <span id="visitors-total">-</span></span>
+      </li>
+    </ul>
+  </section>
 </div>
+
+<script>
+  // Fetch visitor counts
+  fetch('/api/views')
+    .then((r) => r.json())
+    .then((data) => {
+      const todayEl = document.getElementById('visitors-today');
+      const totalEl = document.getElementById('visitors-total');
+      if (todayEl) todayEl.textContent = data.todayVisitors.toLocaleString();
+      if (totalEl) totalEl.textContent = data.totalVisitors.toLocaleString();
+    })
+    .catch(() => {});
+
+  // Fetch top reads
+  fetch('/api/top-reads')
+    .then((r) => r.json())
+    .then((posts) => {
+      const container = document.getElementById('top-reads');
+      if (!container) return;
+      if (posts.length === 0) {
+        container.innerHTML = '<li class="recent-post-item"><span class="recent-post-num" style="font-size:12px;">아직 데이터가 없습니다</span></li>';
+        return;
+      }
+      container.innerHTML = posts
+        .map(
+          (p: { slug: string; title: string; views: number }, i: number) =>
+            `<li class="recent-post-item">
+              <a href="/${p.slug}/" class="recent-post-link">
+                <span class="recent-post-num">#${i + 1}</span>
+                <span class="recent-post-title">${p.title}</span>
+              </a>
+            </li>`
+        )
+        .join('');
+    })
+    .catch(() => {});
+</script>
 
 <style lang="scss">
   @use "../styles/_variables.scss" as *;
@@ -87,11 +140,13 @@ const allTags = [
     margin: 0;
   }
 
-  .recent-post-item + .recent-post-item {
+  .recent-post-item + .recent-post-item,
+  :global(#top-reads .recent-post-item + .recent-post-item) {
     margin-top: 6px;
   }
 
-  .recent-post-link {
+  .recent-post-link,
+  :global(#top-reads .recent-post-link) {
     display: flex;
     align-items: baseline;
     gap: 8px;
@@ -99,12 +154,14 @@ const allTags = [
     color: inherit;
     text-decoration: none;
 
-    &:hover .recent-post-title {
+    &:hover .recent-post-title,
+    &:hover :global(.recent-post-title) {
       text-decoration: underline;
     }
   }
 
-  .recent-post-num {
+  .recent-post-num,
+  :global(#top-reads .recent-post-num) {
     font-family: "Courier New", Courier, monospace;
     font-size: 13px;
     color: $color-text-muted;
@@ -112,7 +169,8 @@ const allTags = [
     min-width: 2.5ch;
   }
 
-  .recent-post-title {
+  .recent-post-title,
+  :global(#top-reads .recent-post-title) {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

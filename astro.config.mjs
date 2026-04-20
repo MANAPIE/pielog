@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://blog.manapie.me',
-  output: 'static',
+  output: 'server',
   integrations: [react(), sitemap(), mdx()],
   adapter: vercel({
     webAnalytics: { enabled: true },

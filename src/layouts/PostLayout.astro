@@ -43,15 +43,18 @@ const {
                 )
             }
             <h1>{title}</h1>
-            <time datetime={date.toISOString()}>
-                {
-                    date.toLocaleDateString("ko-KR", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                    })
-                }
-            </time>
+            <div class="post-meta">
+                <time datetime={date.toISOString()}>
+                    {
+                        date.toLocaleDateString("ko-KR", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })
+                    }
+                </time>
+                <!-- <span class="post-views" id="post-views"></span> -->
+            </div>
         </header>
         <div class="post-content">
             <slot />
@@ -61,8 +64,29 @@ const {
     <TableOfContents headings={headings} slot="aside" />
 </BaseLayout>
 
+<!-- <script>
+    const slug = window.location.pathname.replace(/^\/|\/$/g, '');
+    fetch('/api/views', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+    })
+        .then((r) => r.json())
+        .then((data) => {
+            const el = document.getElementById('post-views');
+            if (el) el.textContent = `${data.views.toLocaleString()} views`;
+        })
+        .catch(() => {});
+</script> -->
+
 <style lang="scss">
     @use "../styles/_variables.scss" as *;
+
+    .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
     .post-tags {
         margin: 1px 0 10px;
