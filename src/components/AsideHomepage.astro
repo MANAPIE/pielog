@@ -2,6 +2,9 @@
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("posts", ({ data }) => !data.draft);
+const recentPosts = posts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 10);
 const allTags = [
   ...new Set(posts.flatMap((post) => post.data.tags ?? [])),
 ].sort();
@@ -15,7 +18,22 @@ const allTags = [
 
   <section class="aside-section">
     <h3 class="aside-section-title">RECENT POSTS</h3>
-    <p class="aside-placeholder">준비 중</p>
+    {
+      recentPosts.length > 0 ? (
+        <ul class="aside-section-list">
+          {recentPosts.map((post, i) => (
+            <li class="recent-post-item">
+              <a href={`/${post.id}/`} class="recent-post-link">
+                <span class="recent-post-num">#{i + 1}</span>
+                <span class="recent-post-title">{post.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="aside-placeholder">준비 중</p>
+      )
+    }
   </section>
 
   <section class="aside-section">
@@ -61,6 +79,43 @@ const allTags = [
 
   .aside-placeholder {
     font-size: 12px;
+  }
+
+  .aside-section-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .recent-post-item + .recent-post-item {
+    margin-top: 6px;
+  }
+
+  .recent-post-link {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 12px;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover .recent-post-title {
+      text-decoration: underline;
+    }
+  }
+
+  .recent-post-num {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    color: $color-text-muted;
+    flex-shrink: 0;
+    min-width: 2.5ch;
+  }
+
+  .recent-post-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .tag-list {
