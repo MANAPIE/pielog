@@ -1,5 +1,13 @@
 ---
+import { getCollection } from "astro:content";
 
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
+  post.data.tags?.forEach((tag) => {
+    acc[tag] = (acc[tag] ?? 0) + 1;
+  });
+  return acc;
+}, {});
 ---
 
 <span class="sidebar-button"></span>
@@ -21,111 +29,133 @@
         <a href="/">Home</a>
         <ul>
           <li>
-            <a href="/about">About</a>
+            <a href="/tags/intro">
+              Intro <span title="Post counts">{tagCounts["intro"] ?? 0}</span>
+            </a>
           </li>
           <li>
-            <a href="/rss.xml">RSS</a>
+            <a href="/about">About</a>
+            <li>
+              <a href="/rss.xml">RSS</a>
+            </li>
           </li>
         </ul>
+        <li>준비 중</li>
       </li>
-      <li>준비 중</li>
     </ul>
   </div>
-</div>
 
-<style lang="scss">
-  @use "../styles/_variables.scss" as *;
+  <style lang="scss">
+    @use "../styles/_variables.scss" as *;
 
-  .sidebar-inner {
-    padding: 20px;
-  }
+    .sidebar-inner {
+      padding: 20px;
+    }
 
-  .sidebar-button {
-    position: absolute;
-    right: -5px;
-    top: 25px;
-    display: block;
-    width: 30px;
-    height: 28px;
-    background: url("/images/manapie-emblem-small.svg") transparent no-repeat;
-    transition: opacity 0.3s ease;
-  }
+    .sidebar-button {
+      position: absolute;
+      right: -5px;
+      top: 25px;
+      display: block;
+      width: 30px;
+      height: 28px;
+      background: url("/images/manapie-emblem-small.svg") transparent no-repeat;
+      transition: opacity 0.3s ease;
+    }
 
-  .sidebar-logo {
-    .site-title {
-      font-size: 20px;
+    .sidebar-logo {
+      .site-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: $color-text;
+        text-decoration: none;
+
+        .emblem {
+          display: inline-block;
+          vertical-align: middle;
+          width: 30px;
+          height: 28px;
+          background: url("/images/manapie-emblem-small.svg") transparent
+            no-repeat;
+          margin: 0 3px 2px -2px;
+        }
+      }
+
+      .site-subtitle {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 10px;
+        color: $color-primary;
+        margin-top: 5px;
+
+        .blink {
+          animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+          0%,
+          100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0;
+          }
+        }
+      }
+    }
+
+    .sidebar-section-title {
+      margin: 20px 0;
       font-weight: bold;
-      color: $color-text;
-      text-decoration: none;
+      font-size: 9px;
+      letter-spacing: 30%;
+      color: $color-text-muted;
+    }
 
-      .emblem {
+    .category-tree {
+      font-size: 12px;
+
+      a {
+        color: $color-text;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      span {
+        position: relative;
+        top: -1px;
         display: inline-block;
-        vertical-align: middle;
-        width: 30px;
-        height: 28px;
-        background: url("/images/manapie-emblem-small.svg") transparent
-          no-repeat;
-        margin: 0 3px 2px -2px;
-      }
-    }
-
-    .site-subtitle {
-      font-family: "Courier New", "Courier", monospace;
-      font-size: 10px;
-      color: $color-primary;
-      margin-top: 5px;
-
-      .blink {
-        animation: blink 1s step-end infinite;
-      }
-
-      @keyframes blink {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
-        }
-      }
-    }
-  }
-
-  .sidebar-section-title {
-    margin: 20px 0;
-    font-weight: bold;
-    font-size: 9px;
-    letter-spacing: 30%;
-    color: $color-text-muted;
-  }
-
-  .category-tree {
-    font-size: 12px;
-
-    a {
-      color: $color-text;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    li {
-      list-style: none;
-      font-weight: bold;
-      line-height: 22px;
-
-      ul {
-        margin: 4px 0;
+        white-space: nowrap;
+        padding: 0 4px;
+        margin-left: 2px;
+        background: $color-tree;
+        border: 1px solid $color-border;
+        border-radius: 100%;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
+        font-size: 11px;
+        line-height: 16px;
+        min-width: 8px;
       }
 
       li {
-        font-weight: normal;
-        border-left: 3px solid $color-tree;
-        padding: 2px 0 2px 10px;
-        margin-left: 5px;
+        list-style: none;
+        font-weight: bold;
+        line-height: 22px;
+
+        ul {
+          margin: 4px 0;
+        }
+
+        li {
+          font-weight: normal;
+          border-left: 3px solid $color-tree;
+          padding: 2px 0 2px 10px;
+          margin-left: 5px;
+        }
       }
     }
-  }
-</style>
+  </style>
+</div>

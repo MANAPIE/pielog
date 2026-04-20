@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
@@ -15,14 +17,16 @@ const sortedPosts = posts.sort(
 	description="MANAPIE's thoughts & experiments"
 	pageType="home"
 >
+	<h3 class="section-title">POSTS</h3>
 	<section class="post-list">
 		{
 			sortedPosts.map((post) => (
 				<PostCard
 					title={post.data.title}
-					description={post.data.description}
-					date={post.data.date}
 					slug={post.id}
+					thumbnail={post.data.thumbnail}
+					tags={post.data.tags}
+					summary={post.data.summary}
 				/>
 			))
 		}

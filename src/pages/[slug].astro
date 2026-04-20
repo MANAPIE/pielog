@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { getCollection, render } from "astro:content";
 import PostLayout from "../layouts/PostLayout.astro";
 
@@ -18,6 +20,7 @@ const { Content, headings } = await render(post);
     title={post.data.title}
     description={post.data.description}
     date={post.data.date}
+    tags={post.data.tags}
     headings={headings}
 >
     <Content />

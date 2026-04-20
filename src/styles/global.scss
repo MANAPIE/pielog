@@ -57,41 +57,88 @@ img {
 /* ========================
    Post Card (글 목록)
    ======================== */
+.section-title {
+    margin: 9px 0 31px;
+    font-weight: bold;
+    font-size: 9px;
+    letter-spacing: 30%;
+    color: $color-text-muted;
+}
+
 .post-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    columns: 3;
+    column-gap: 26px;
+
+    @media (max-width: #{$bp-narrow - 1}) {
+        columns: 2;
+    }
+
+    @media (max-width: #{$bp-mobile - 1}) {
+        columns: 1;
+    }
 }
 
 .post-card {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+
     a {
-        color: inherit;
+        display: block;
+        background: $color-bg;
+        border: 1px solid $color-border;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        color: $color-text;
+        text-decoration: none;
+        transition: box-shadow 0.1s ease;
 
         &:hover {
-            text-decoration: none;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            color: $color-text;
+        }
+    }
+
+    .post-card-meta {
+        padding: 14px;
+    }
+
+    .post-card-tags {
+        font-size: 12px;
+        line-height: 1.8;
+        margin-bottom: 10px;
+
+        li {
+            color: $color-primary;
+            display: inline-block;
+            white-space: nowrap;
+            padding: 0 8px;
+            margin-right: 8px;
+            background: $color-tree;
+            border: 1px solid $color-border;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 11px;
         }
     }
 
     .post-card-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 0.25rem;
+        font-size: 16px;
+        font-weight: bold;
+        color: $color-text;
+        margin-bottom: 4px;
     }
 
-    .post-card-date {
-        font-size: 0.8125rem;
-        color: $color-text-muted;
-        margin-bottom: 0.5rem;
-    }
-
-    .post-card-description {
-        font-size: 0.9375rem;
-        color: $color-text-muted;
-        line-height: 1.6;
-    }
-
-    &:hover .post-card-title {
+    .post-card-summary {
+        font-size: 11px;
         color: $color-primary;
+        min-height: 160px;
+    }
+
+    .post-card-button {
+        font-size: 11px;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        margin-top: 10px;
     }
 }
 
@@ -115,6 +162,7 @@ img {
 }
 
 .post-content {
+
     h2,
     h3 {
         scroll-margin-top: $mobile-header-height + 10px;

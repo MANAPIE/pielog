@@ -7,11 +7,19 @@ interface Props {
     title: string;
     description: string;
     date: Date;
+    tags?: string[];
     ogImage?: string;
     headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, date, ogImage, headings = [] } = Astro.props;
+const {
+    title,
+    description,
+    date,
+    tags = [],
+    ogImage,
+    headings = [],
+} = Astro.props;
 ---
 
 <BaseLayout
@@ -23,16 +31,30 @@ const { title, description, date, ogImage, headings = [] } = Astro.props;
 >
     <article>
         <header class="post-header">
+            {
+                tags.length > 0 && (
+                    <div class="post-tags">
+                        {tags.map((tag) => (
+                            <a href={`/tags/${tag}/`} class="post-tag">
+                                {tag}
+                            </a>
+                        ))}
+                    </div>
+                )
+            }
             <h1>{title}</h1>
-            <time datetime={date.toISOString()}>
-                {
-                    date.toLocaleDateString("ko-KR", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                    })
-                }
-            </time>
+            <div class="post-meta">
+                <time datetime={date.toISOString()}>
+                    {
+                        date.toLocaleDateString("ko-KR", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })
+                    }
+                </time>
+                <!-- <span class="post-views" id="post-views"></span> -->
+            </div>
         </header>
         <div class="post-content">
             <slot />
@@ -41,3 +63,51 @@ const { title, description, date, ogImage, headings = [] } = Astro.props;
     <Giscus />
     <TableOfContents headings={headings} slot="aside" />
 </BaseLayout>
+
+<!-- <script>
+    const slug = window.location.pathname.replace(/^\/|\/$/g, '');
+    fetch('/api/views', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+    })
+        .then((r) => r.json())
+        .then((data) => {
+            const el = document.getElementById('post-views');
+            if (el) el.textContent = `${data.views.toLocaleString()} views`;
+        })
+        .catch(() => {});
+</script> -->
+
+<style lang="scss">
+    @use "../styles/_variables.scss" as *;
+
+    .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .post-tags {
+        margin: 1px 0 10px;
+    }
+
+    .post-tag {
+        color: $color-primary;
+        display: inline-block;
+        white-space: nowrap;
+        padding: 0 8px;
+        margin-right: 8px;
+        background: $color-tree;
+        border: 1px solid $color-border;
+        border-radius: 3px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
+        font-size: 11px;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+</style>

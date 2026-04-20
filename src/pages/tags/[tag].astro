@@ -1,0 +1,87 @@
+---
+export const prerender = true;
+
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import AsideHomepage from "../../components/AsideHomepage.astro";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("posts", ({ data }) => !data.draft);
+	const tagMap = new Map<string, typeof posts>();
+
+	posts.forEach((post) => {
+		post.data.tags?.forEach((tag) => {
+			if (!tagMap.has(tag)) tagMap.set(tag, []);
+			tagMap.get(tag)!.push(post);
+		});
+	});
+
+	return [...tagMap.entries()].map(([tag, tagPosts]) => ({
+		params: { tag },
+		props: {
+			tag,
+			posts: tagPosts.sort(
+				(a, b) => b.data.date.getTime() - a.data.date.getTime(),
+			),
+		},
+	}));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout
+	title={`#${tag} - PIElog`}
+	description={`Posts tagged "${tag}"`}
+	pageType="home"
+>
+	<section class="tag-page">
+		<h1 class="tag-page-title">
+			<span>{tag}</span>
+			POSTS
+		</h1>
+		<div class="post-list">
+			{
+				posts.map((post) => (
+					<PostCard
+						title={post.data.title}
+						slug={post.id}
+						thumbnail={post.data.thumbnail}
+						tags={post.data.tags}
+						summary={post.data.summary}
+					/>
+				))
+			}
+		</div>
+	</section>
+	<AsideHomepage slot="aside" />
+</BaseLayout>
+
+<style lang="scss">
+	@use "../../styles/_variables.scss" as *;
+
+	.tag-page-title {
+		font-size: 17px;
+		margin: 7px 0 27px;
+		font-weight: bold;
+		font-size: 9px;
+		letter-spacing: 30%;
+		color: $color-text-muted;
+
+		span {
+			color: $color-primary;
+			display: inline-block;
+			white-space: nowrap;
+			padding: 0 8px;
+			margin-right: 8px;
+			background: $color-tree;
+			border: 1px solid $color-border;
+			border-radius: 3px;
+			font-family: "Courier New", Courier, monospace;
+			font-weight: bold;
+			font-size: 11px;
+			letter-spacing: normal;
+		}
+	}
+</style>
