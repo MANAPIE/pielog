@@ -1,43 +1,79 @@
-# Astro Starter Kit: Minimal
+# PIElog
 
-```sh
-npm create astro@latest -- --template minimal
+MANAPIE's personal tech blog — thoughts & experiments.
+
+**[blog.manapie.me](https://blog.manapie.me)**
+
+## Tech Stack
+
+- **Framework** — [Astro](https://astro.build) (SSR, MDX)
+- **UI** — React, Sass
+- **Deploy** — [Vercel](https://vercel.com)
+- **Analytics** — Vercel Analytics, Upstash Redis (view counts & visitor tracking)
+- **Comments** — [Giscus](https://giscus.app) (GitHub Discussions)
+
+## Features
+
+- MDX posts with syntax highlighting (Shiki `github-dark`)
+- Interactive components in posts (e.g. CodePlayground)
+- Tag-based filtering
+- Table of Contents
+- View count & daily/total visitor tracking via Upstash Redis
+- RSS feed (`/rss.xml`)
+- Sitemap
+- SEO-friendly with Open Graph support
+
+## Project Structure
+
+```
+src/
+├── components/         # Astro & React components
+│   └── interactive/    # Client-side interactive components
+├── content/
+│   └── posts/          # MDX blog posts
+├── layouts/            # Page layouts
+├── lib/                # Utilities (Redis client, etc.)
+├── pages/
+│   ├── api/            # API routes (views, top-reads)
+│   ├── tags/           # Tag pages
+│   ├── [slug].astro    # Post detail page
+│   └── index.astro     # Homepage
+└── styles/             # Global styles
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Getting Started
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+# requires Node.js >= 22.12.0
+npm install
+npm run dev       # http://localhost:4321
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Environment Variables
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Variable | Description |
+|---|---|
+| `KV_REST_API_URL` | Upstash Redis REST URL |
+| `KV_REST_API_TOKEN` | Upstash Redis REST token |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Writing a Post
 
-## 🧞 Commands
+Create a new directory under `src/content/posts/` with an `index.mdx` file:
 
-All commands are run from the root of the project, from a terminal:
+```mdx
+---
+title: "Post Title"
+description: "Short description"
+summary: "Optional summary for post cards"
+date: 2026-04-20
+tags: ["tag1", "tag2"]
+thumbnail: ./cover.jpg
+draft: false
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Your content here.
+```
 
-## 👀 Want to learn more?
+## License
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+© MANAPIE. All rights reserved.
