@@ -27,20 +27,56 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
     <ul class="category-tree">
       <li>
         <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/tags/design">
+          Design
+          <span title="Post counts">{tagCounts["design"] ?? 0}</span>
+        </a>
+      </li>
+      <li>
+        <a href="/tags/develop">
+          Develop
+          <span title="Post counts">{tagCounts["develop"] ?? 0}</span>
+        </a>
         <ul>
           <li>
-            <a href="/tags/intro">
-              Intro <span title="Post counts">{tagCounts["intro"] ?? 0}</span>
+            <a href="/tags/frontend">
+              Frontend
+              <span title="Post counts">{tagCounts["frontend"] ?? 0}</span>
             </a>
           </li>
           <li>
-            <a href="/about">About</a>
-            <li>
-              <a href="/rss.xml">RSS</a>
-            </li>
+            <a href="/tags/backend">
+              Backend
+              <span title="Post counts">{tagCounts["backend"] ?? 0}</span>
+            </a>
+          </li>
+          <li>
+            <a href="/tags/infra">
+              Infra
+              <span title="Post counts">{tagCounts["infra"] ?? 0}</span>
+            </a>
+          </li>
+          <li>
+            <a href="/tags/devops">
+              Devops
+              <span title="Post counts">{tagCounts["devops"] ?? 0}</span>
+            </a>
+          </li>
+          <li>
+            <a href="/tags/ai">
+              AI
+              <span title="Post counts">{tagCounts["ai"] ?? 0}</span>
+            </a>
           </li>
         </ul>
-        <li>준비 중</li>
+      </li>
+      <li>
+        <a href="/about">About</a>
+      </li>
+      <li>
+        <a href="/rss.xml">RSS</a>
       </li>
     </ul>
   </div>
