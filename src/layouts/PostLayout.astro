@@ -65,20 +65,20 @@ const {
     <TableOfContents headings={headings} slot="aside" />
 </BaseLayout>
 
-<!-- <script>
-    const slug = window.location.pathname.replace(/^\/|\/$/g, '');
-    fetch('/api/views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+<script>
+    const slug = window.location.pathname.replace(/^\/|\/$/g, "");
+    fetch("/api/views", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ slug }),
     })
         .then((r) => r.json())
         .then((data) => {
-            const el = document.getElementById('post-views');
+            const el = document.getElementById("post-views");
             if (el) el.textContent = `${data.views.toLocaleString()} views`;
         })
         .catch(() => {});
-</script> -->
+</script>
 
 <style lang="scss">
     @use "../styles/_variables.scss" as *;
