@@ -61,10 +61,14 @@ const allTags = [
     <h3 class="aside-section-title">VISITORS</h3>
     <ul class="aside-section-list">
       <li class="recent-post-item">
-        <span class="recent-post-num">TODAY <span id="visitors-today">-</span></span>
+        <span class="recent-post-num"
+          >TODAY <span id="visitors-today">-</span></span
+        >
       </li>
       <li class="recent-post-item">
-        <span class="recent-post-num">TOTAL <span id="visitors-total">-</span></span>
+        <span class="recent-post-num"
+          >TOTAL <span id="visitors-total">-</span></span
+        >
       </li>
     </ul>
   </section>
@@ -72,24 +76,25 @@ const allTags = [
 
 <script>
   // Fetch visitor counts
-  fetch('/api/views')
+  fetch("/api/views")
     .then((r) => r.json())
     .then((data) => {
-      const todayEl = document.getElementById('visitors-today');
-      const totalEl = document.getElementById('visitors-total');
+      const todayEl = document.getElementById("visitors-today");
+      const totalEl = document.getElementById("visitors-total");
       if (todayEl) todayEl.textContent = data.todayVisitors.toLocaleString();
       if (totalEl) totalEl.textContent = data.totalVisitors.toLocaleString();
     })
     .catch(() => {});
 
   // Fetch top reads
-  fetch('/api/top-reads')
+  fetch("/api/top-reads")
     .then((r) => r.json())
     .then((posts) => {
-      const container = document.getElementById('top-reads');
+      const container = document.getElementById("top-reads");
       if (!container) return;
       if (posts.length === 0) {
-        container.innerHTML = '<li class="recent-post-item"><span class="recent-post-num" style="font-size:12px;">아직 데이터가 없습니다</span></li>';
+        container.innerHTML =
+          '<li class="recent-post-item"><span class="recent-post-num" style="font-size:12px;">아직 데이터가 없습니다</span></li>';
         return;
       }
       container.innerHTML = posts
@@ -100,9 +105,9 @@ const allTags = [
                 <span class="recent-post-num">#${i + 1}</span>
                 <span class="recent-post-title">${p.title}</span>
               </a>
-            </li>`
+            </li>`,
         )
-        .join('');
+        .join("");
     })
     .catch(() => {});
 </script>
@@ -187,6 +192,7 @@ const allTags = [
     white-space: nowrap;
     padding: 0 8px;
     margin-right: 8px;
+    margin-bottom: 8px;
     background: $color-tree;
     border: 1px solid $color-border;
     border-radius: 3px;
