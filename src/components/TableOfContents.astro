@@ -81,9 +81,15 @@ for (const item of tocItems) {
       const margin = 50;
       const panelRect = asidePanel.getBoundingClientRect();
       if (linkRect.top < panelRect.top + margin) {
-        asidePanel.scrollBy({ top: linkRect.top - panelRect.top - margin, behavior: "smooth" });
+        asidePanel.scrollBy({
+          top: linkRect.top - panelRect.top - margin,
+          behavior: "smooth",
+        });
       } else if (linkRect.bottom > panelRect.bottom - margin) {
-        asidePanel.scrollBy({ top: linkRect.bottom - panelRect.bottom + margin, behavior: "smooth" });
+        asidePanel.scrollBy({
+          top: linkRect.bottom - panelRect.bottom + margin,
+          behavior: "smooth",
+        });
       }
     }
   }
