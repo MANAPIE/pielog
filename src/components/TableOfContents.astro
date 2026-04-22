@@ -59,6 +59,9 @@ for (const item of tocItems) {
   const indicator = document.querySelector(
     ".toc-indicator",
   ) as HTMLElement | null;
+  const asidePanel = document.querySelector(
+    ".aside-panel",
+  ) as HTMLElement | null;
 
   function moveIndicator(li: Element) {
     if (!indicator || !tocNav) return;
@@ -73,6 +76,16 @@ for (const item of tocItems) {
       indicator.offsetHeight / 2;
     indicator.style.top = `${top}px`;
     indicator.style.opacity = "1";
+
+    if (asidePanel) {
+      const margin = 50;
+      const panelRect = asidePanel.getBoundingClientRect();
+      if (linkRect.top < panelRect.top + margin) {
+        asidePanel.scrollBy({ top: linkRect.top - panelRect.top - margin, behavior: "smooth" });
+      } else if (linkRect.bottom > panelRect.bottom - margin) {
+        asidePanel.scrollBy({ top: linkRect.bottom - panelRect.bottom + margin, behavior: "smooth" });
+      }
+    }
   }
 
   function setActive() {
