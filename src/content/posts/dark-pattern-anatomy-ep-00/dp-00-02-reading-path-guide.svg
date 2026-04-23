@@ -1,0 +1,92 @@
+<svg width="100%" viewBox="0 0 680 480" xmlns="http://www.w3.org/2000/svg">
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .th { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+  .ts { font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+  .gray-bg { fill: #F1EFE8; stroke: #D3D1C7; stroke-width: 0.5; }
+  .purple-bg { fill: #EEEDFE; stroke: #AFA9EC; stroke-width: 0.5; }
+  .purple-bg + text.th, g.purple text.th { fill: #3C3489; }
+  .red-bg { fill: #FCEBEB; stroke: #F09595; stroke-width: 0.5; }
+  .amber-bg { fill: #FAEEDA; stroke: #FAC775; stroke-width: 0.5; }
+  .teal-bg { fill: #E1F5EE; stroke: #5DCAA5; stroke-width: 0.5; }
+  .line { stroke: #B4B2A9; stroke-width: 0.5; }
+  marker path { stroke: #B4B2A9; }
+  @media (prefers-color-scheme: dark) {
+    .th { fill: #D3D1C7; }
+    .ts { fill: #B4B2A9; }
+    .gray-bg { fill: #2C2C2A; stroke: #444441; }
+    .purple-bg { fill: #26215C; stroke: #534AB7; }
+    .red-bg { fill: #501313; stroke: #A32D2D; }
+    .amber-bg { fill: #412402; stroke: #854F0B; }
+    .teal-bg { fill: #04342C; stroke: #0F6E56; }
+    .line { stroke: #5F5E5A; }
+    marker path { stroke: #5F5E5A; }
+  }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<rect class="gray-bg" x="240" y="30" width="200" height="44" rx="22"/>
+<text class="th" x="340" y="52" text-anchor="middle" dominant-baseline="central">목적이 뭔가요?</text>
+
+<line x1="260" y1="74" x2="100" y2="130" class="line" marker-end="url(#arrow)"/>
+<line x1="310" y1="74" x2="260" y2="130" class="line" marker-end="url(#arrow)"/>
+<line x1="370" y1="74" x2="420" y2="130" class="line" marker-end="url(#arrow)"/>
+<line x1="420" y1="74" x2="580" y2="130" class="line" marker-end="url(#arrow)"/>
+
+<rect class="purple-bg" x="30" y="130" width="140" height="56" rx="8"/>
+<text class="th" x="100" y="150" text-anchor="middle" dominant-baseline="central" fill="#3C3489">기초부터</text>
+<text class="ts" x="100" y="170" text-anchor="middle" dominant-baseline="central" fill="#534AB7">제대로 이해하기</text>
+<line x1="100" y1="186" x2="100" y2="230" class="line" marker-end="url(#arrow)"/>
+<rect class="purple-bg" x="30" y="230" width="140" height="44" rx="8"/>
+<text class="th" x="100" y="252" text-anchor="middle" dominant-baseline="central" fill="#3C3489">1편 → 순서대로</text>
+<line x1="100" y1="274" x2="100" y2="320" class="line" marker-end="url(#arrow)"/>
+<rect class="gray-bg" x="30" y="320" width="140" height="30" rx="6"/>
+<text class="ts" x="100" y="335" text-anchor="middle" dominant-baseline="central">1 → 2 → 3 → ... → 12</text>
+
+<rect class="red-bg" x="190" y="130" width="140" height="56" rx="8"/>
+<text class="th" x="260" y="150" text-anchor="middle" dominant-baseline="central" fill="#791F1F">빠른 점검</text>
+<text class="ts" x="260" y="170" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">제품 진단하기</text>
+<line x1="260" y1="186" x2="260" y2="230" class="line" marker-end="url(#arrow)"/>
+<rect class="red-bg" x="190" y="230" width="140" height="44" rx="8"/>
+<text class="th" x="260" y="252" text-anchor="middle" dominant-baseline="central" fill="#791F1F">5~9편 먼저</text>
+<line x1="260" y1="274" x2="260" y2="320" class="line" marker-end="url(#arrow)"/>
+<rect class="gray-bg" x="190" y="320" width="140" height="44" rx="6"/>
+<text class="ts" x="260" y="335" text-anchor="middle" dominant-baseline="central">해당 여정 편 →</text>
+<text class="ts" x="260" y="350" text-anchor="middle" dominant-baseline="central">체크리스트 적용</text>
+
+<rect class="teal-bg" x="350" y="130" width="140" height="56" rx="8"/>
+<text class="th" x="420" y="150" text-anchor="middle" dominant-baseline="central" fill="#085041">팀 도입</text>
+<text class="ts" x="420" y="170" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">리뷰 프로세스</text>
+<line x1="420" y1="186" x2="420" y2="230" class="line" marker-end="url(#arrow)"/>
+<rect class="teal-bg" x="350" y="230" width="140" height="44" rx="8"/>
+<text class="th" x="420" y="252" text-anchor="middle" dominant-baseline="central" fill="#085041">12편 먼저</text>
+<line x1="420" y1="274" x2="420" y2="320" class="line" marker-end="url(#arrow)"/>
+<rect class="gray-bg" x="350" y="320" width="140" height="44" rx="6"/>
+<text class="ts" x="420" y="335" text-anchor="middle" dominant-baseline="central">12편 → 필요한</text>
+<text class="ts" x="420" y="350" text-anchor="middle" dominant-baseline="central">맥락은 역순 보충</text>
+
+<rect class="amber-bg" x="510" y="130" width="140" height="56" rx="8"/>
+<text class="th" x="580" y="150" text-anchor="middle" dominant-baseline="central" fill="#633806">규제 대응</text>
+<text class="ts" x="580" y="170" text-anchor="middle" dominant-baseline="central" fill="#854F0B">컴플라이언스</text>
+<line x1="580" y1="186" x2="580" y2="230" class="line" marker-end="url(#arrow)"/>
+<rect class="amber-bg" x="510" y="230" width="140" height="44" rx="8"/>
+<text class="th" x="580" y="252" text-anchor="middle" dominant-baseline="central" fill="#633806">10~11편 먼저</text>
+<line x1="580" y1="274" x2="580" y2="320" class="line" marker-end="url(#arrow)"/>
+<rect class="gray-bg" x="510" y="320" width="140" height="44" rx="6"/>
+<text class="ts" x="580" y="335" text-anchor="middle" dominant-baseline="central">10~11편 → 해당</text>
+<text class="ts" x="580" y="350" text-anchor="middle" dominant-baseline="central">패턴 심층 분석</text>
+
+<line x1="100" y1="350" x2="100" y2="420" class="line"/>
+<line x1="260" y1="364" x2="260" y2="420" class="line"/>
+<line x1="420" y1="364" x2="420" y2="420" class="line"/>
+<line x1="580" y1="364" x2="580" y2="420" class="line"/>
+<line x1="100" y1="420" x2="580" y2="420" class="line"/>
+<line x1="340" y1="420" x2="340" y2="440" class="line" marker-end="url(#arrow)"/>
+
+<rect class="teal-bg" x="240" y="440" width="200" height="30" rx="6"/>
+<text class="ts" x="340" y="455" text-anchor="middle" dominant-baseline="central" fill="#085041">모든 경로 → 12편 체크리스트로 수렴</text>
+</svg>

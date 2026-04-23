@@ -1,0 +1,74 @@
+<svg width="100%" viewBox="0 0 680 620" xmlns="http://www.w3.org/2000/svg">
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .th { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+  .ts { font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+  .phase-bg { fill: #F1EFE8; stroke: #D3D1C7; stroke-width: 0.5; }
+  .purple { fill: #EEEDFE; stroke: #AFA9EC; stroke-width: 0.5; }
+  .purple .ts { fill: #3C3489; }
+  .red { fill: #FCEBEB; stroke: #F09595; stroke-width: 0.5; }
+  .red .ts { fill: #791F1F; }
+  .amber { fill: #FAEEDA; stroke: #FAC775; stroke-width: 0.5; }
+  .amber .ts { fill: #633806; }
+  .teal { fill: #E1F5EE; stroke: #5DCAA5; stroke-width: 0.5; }
+  .teal .ts { fill: #085041; }
+  .arr { stroke: #B4B2A9; stroke-width: 1; }
+  marker path { stroke: #B4B2A9; }
+  @media (prefers-color-scheme: dark) {
+    .th { fill: #D3D1C7; }
+    .ts { fill: #B4B2A9; }
+    .phase-bg { fill: #2C2C2A; stroke: #444441; }
+    .purple { fill: #26215C; stroke: #534AB7; }
+    .purple .ts { fill: #CECBF6; }
+    .red { fill: #501313; stroke: #A32D2D; }
+    .red .ts { fill: #F7C1C1; }
+    .amber { fill: #412402; stroke: #854F0B; }
+    .amber .ts { fill: #FAC775; }
+    .teal { fill: #04342C; stroke: #0F6E56; }
+    .teal .ts { fill: #9FE1CB; }
+    .arr { stroke: #5F5E5A; }
+    marker path { stroke: #5F5E5A; }
+  }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<rect class="phase-bg" x="40" y="30" width="600" height="76" rx="12"/>
+<text class="th" x="60" y="54" dominant-baseline="central">1장. Foundations</text>
+<g class="purple"><rect x="60" y="66" width="270" height="30" rx="6"/><text class="ts" x="195" y="81" text-anchor="middle" dominant-baseline="central">1편. 설득과 기만의 경계</text></g>
+<g class="purple"><rect x="350" y="66" width="270" height="30" rx="6"/><text class="ts" x="485" y="81" text-anchor="middle" dominant-baseline="central">2편. 인지 편향의 해부학</text></g>
+
+<line x1="340" y1="106" x2="340" y2="130" class="arr" marker-end="url(#arrow)"/>
+
+<rect class="phase-bg" x="40" y="130" width="600" height="76" rx="12"/>
+<text class="th" x="60" y="154" dominant-baseline="central">2장. Classification</text>
+<g class="purple"><rect x="60" y="166" width="270" height="30" rx="6"/><text class="ts" x="195" y="181" text-anchor="middle" dominant-baseline="central">3편<div class=""></div> Brignull 12유형</text></g>
+<g class="purple"><rect x="350" y="166" width="270" height="30" rx="6"/><text class="ts" x="485" y="181" text-anchor="middle" dominant-baseline="central">4편. Mathur · 공정위 6유형</text></g>
+
+<line x1="340" y1="206" x2="340" y2="230" class="arr" marker-end="url(#arrow)"/>
+
+<rect class="phase-bg" x="40" y="230" width="600" height="176" rx="12"/>
+<text class="th" x="60" y="254" dominant-baseline="central">3장. Deep dives</text>
+<g class="red"><rect x="60" y="266" width="185" height="30" rx="6"/><text class="ts" x="152" y="281" text-anchor="middle" dominant-baseline="central">5편. 가입 · 온보딩</text></g>
+<g class="red"><rect x="255" y="266" width="170" height="30" rx="6"/><text class="ts" x="340" y="281" text-anchor="middle" dominant-baseline="central">6편. 결제</text></g>
+<g class="red"><rect x="435" y="266" width="185" height="30" rx="6"/><text class="ts" x="527" y="281" text-anchor="middle" dominant-baseline="central">7편. 구독 · 해지</text></g>
+<g class="red"><rect x="60" y="310" width="270" height="30" rx="6"/><text class="ts" x="195" y="325" text-anchor="middle" dominant-baseline="central">8편. UI 조작</text></g>
+<g class="red"><rect x="350" y="310" width="270" height="30" rx="6"/><text class="ts" x="485" y="325" text-anchor="middle" dominant-baseline="central">9편. 언어 · 알림</text></g>
+<text class="ts" x="60" y="370" dominant-baseline="central">5~9편: 여정 단계별 패턴 카탈로그</text>
+
+<line x1="340" y1="406" x2="340" y2="430" class="arr" marker-end="url(#arrow)"/>
+
+<rect class="phase-bg" x="40" y="430" width="600" height="76" rx="12"/>
+<text class="th" x="60" y="454" dominant-baseline="central">4장. Regulation</text>
+<g class="amber"><rect x="60" y="466" width="270" height="30" rx="6"/><text class="ts" x="195" y="481" text-anchor="middle" dominant-baseline="central">10편. 국내 규제</text></g>
+<g class="amber"><rect x="350" y="466" width="270" height="30" rx="6"/><text class="ts" x="485" y="481" text-anchor="middle" dominant-baseline="central">11편. 해외 규제</text></g>
+
+<line x1="340" y1="506" x2="340" y2="530" class="arr" marker-end="url(#arrow)"/>
+
+<rect class="phase-bg" x="40" y="530" width="600" height="76" rx="12"/>
+<text class="th" x="60" y="554" dominant-baseline="central">5장. Practice</text>
+<g class="teal"><rect x="60" y="566" width="560" height="30" rx="6"/><text class="ts" x="340" y="581" text-anchor="middle" dominant-baseline="central">12편. Bright pattern 가이드</text></g>
+</svg>
