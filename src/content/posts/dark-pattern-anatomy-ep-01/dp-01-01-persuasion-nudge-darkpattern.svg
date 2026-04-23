@@ -1,0 +1,66 @@
+<svg width="100%" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .th { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+  .ts { font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+  @media (prefers-color-scheme: dark) {
+    .th { fill: #D3D1C7; } .ts { fill: #B4B2A9; }
+  }
+</style>
+
+<!-- Three header boxes -->
+<rect x="40" y="40" width="180" height="70" rx="12" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text class="th" x="130" y="66" text-anchor="middle" dominant-baseline="central" fill="#085041">설득</text>
+<text class="ts" x="130" y="86" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">Persuasion</text>
+
+<rect x="250" y="40" width="180" height="70" rx="12" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+<text class="th" x="340" y="66" text-anchor="middle" dominant-baseline="central" fill="#633806">넛지</text>
+<text class="ts" x="340" y="86" text-anchor="middle" dominant-baseline="central" fill="#854F0B">Nudge</text>
+
+<rect x="460" y="40" width="180" height="70" rx="12" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
+<text class="th" x="550" y="66" text-anchor="middle" dominant-baseline="central" fill="#791F1F">다크패턴</text>
+<text class="ts" x="550" y="86" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">Deceptive pattern</text>
+
+<!-- Spectrum bar -->
+<rect x="40" y="130" width="200" height="8" rx="4" fill="#5DCAA5" fill-opacity="0.6"/>
+<rect x="200" y="130" width="240" height="8" fill="#FAC775" fill-opacity="0.6"/>
+<rect x="400" y="130" width="240" height="8" rx="4" fill="#F09595" fill-opacity="0.6"/>
+
+<!-- Row 1: 투명성 -->
+<text class="th" x="40" y="176" dominant-baseline="central">투명성</text>
+<text class="ts" x="40" y="194" dominant-baseline="central">의도가 드러나 있는가?</text>
+<rect x="280" y="164" width="100" height="36" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text class="ts" x="330" y="182" text-anchor="middle" dominant-baseline="central" fill="#085041">명시적</text>
+<rect x="400" y="164" width="100" height="36" rx="6" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+<text class="ts" x="450" y="182" text-anchor="middle" dominant-baseline="central" fill="#633806">암묵적</text>
+<rect x="520" y="164" width="100" height="36" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
+<text class="ts" x="570" y="182" text-anchor="middle" dominant-baseline="central" fill="#791F1F">은폐</text>
+
+<!-- Row 2: 이익 귀속 -->
+<text class="th" x="40" y="232" dominant-baseline="central">이익 귀속</text>
+<text class="ts" x="40" y="250" dominant-baseline="central">누구에게 유리한가?</text>
+<rect x="280" y="220" width="100" height="36" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text class="ts" x="330" y="238" text-anchor="middle" dominant-baseline="central" fill="#085041">사용자</text>
+<rect x="400" y="220" width="100" height="36" rx="6" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+<text class="ts" x="450" y="238" text-anchor="middle" dominant-baseline="central" fill="#633806">양쪽</text>
+<rect x="520" y="220" width="100" height="36" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
+<text class="ts" x="570" y="238" text-anchor="middle" dominant-baseline="central" fill="#791F1F">사업자</text>
+
+<!-- Row 3: 동의 가능성 -->
+<text class="th" x="40" y="288" dominant-baseline="central">동의 가능성</text>
+<text class="ts" x="40" y="306" dominant-baseline="central">거부할 수 있는가?</text>
+<rect x="280" y="276" width="100" height="36" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text class="ts" x="330" y="294" text-anchor="middle" dominant-baseline="central" fill="#085041">자유로움</text>
+<rect x="400" y="276" width="100" height="36" rx="6" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+<text class="ts" x="450" y="294" text-anchor="middle" dominant-baseline="central" fill="#633806">가능하나 불편</text>
+<rect x="520" y="276" width="100" height="36" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
+<text class="ts" x="570" y="294" text-anchor="middle" dominant-baseline="central" fill="#791F1F">사실상 불가</text>
+
+<!-- Examples -->
+<text class="ts" x="130" y="350" text-anchor="middle" dominant-baseline="central">"지금 가입하면 20% 할인"</text>
+<text class="ts" x="340" y="350" text-anchor="middle" dominant-baseline="central">"절전 모드가 기본값"</text>
+<text class="ts" x="550" y="350" text-anchor="middle" dominant-baseline="central">"해지하려면 전화하세요"</text>
+<text class="ts" x="130" y="370" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">→ 정직한 제안</text>
+<text class="ts" x="340" y="370" text-anchor="middle" dominant-baseline="central" fill="#854F0B">→ 유도하되 선택 존중</text>
+<text class="ts" x="550" y="370" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">→ 기만적 설계</text>
+</svg>

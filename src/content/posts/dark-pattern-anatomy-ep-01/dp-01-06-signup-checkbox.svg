@@ -1,0 +1,122 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+
+  <rect width="800" height="460" fill="#F9F8F4" rx="16" />
+
+  <!-- Pair label -->
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례 2. 회원가입 시 동의 체크박스</text>
+
+  <!-- ═══════ LEFT: DARK ═══════ -->
+  <rect x="48" y="52" width="320" height="340" rx="12" fill="#F1EFE8" />
+
+  <!-- Tag -->
+  <rect x="64" y="68" width="50" height="20" rx="4" fill="#FCEBEB" />
+  <text x="89" y="81" text-anchor="middle" class="label" fill="#791F1F">DARK</text>
+
+  <!-- Screen -->
+  <rect x="64" y="96" width="288" height="220" rx="8" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.5" />
+
+  <!-- Title -->
+  <text x="84" y="122" class="title">회원가입</text>
+
+  <!-- Row 1: pre-checked, "필수" label -->
+  <rect x="84" y="134" width="14" height="14" rx="3" fill="#E24B4A" />
+  <text x="91" y="144" text-anchor="middle" font-size="9" font-weight="600" fill="#FFFFFF">✓</text>
+  <text x="106" y="144" font-size="11" fill="#2C2C2A">마케팅 목적의 개인정보 제3자 제공에</text>
+  <text x="106" y="157" font-size="11" fill="#2C2C2A">동의합니다</text>
+  <rect x="296" y="133" width="34" height="14" rx="3" fill="#FCEBEB" />
+  <text x="313" y="143" text-anchor="middle" font-size="9" font-weight="600" fill="#791F1F">필수</text>
+
+  <!-- Row 2: pre-checked -->
+  <rect x="84" y="168" width="14" height="14" rx="3" fill="#E24B4A" />
+  <text x="91" y="178" text-anchor="middle" font-size="9" font-weight="600" fill="#FFFFFF">✓</text>
+  <text x="106" y="178" font-size="11" fill="#2C2C2A">프로모션 및 이벤트 알림 수신에 동의합니다</text>
+
+
+  <!-- Row 3: warning text, pre-checked -->
+  <rect x="84" y="202" width="14" height="14" rx="3" fill="#E24B4A" />
+  <text x="91" y="212" text-anchor="middle" font-size="9" font-weight="600" fill="#FFFFFF">✓</text>
+  <text x="106" y="210" font-size="10" fill="#B4B2A9">위 내용을 확인하지 않으면 서비스 이용이</text>
+  <text x="106" y="222" font-size="10" fill="#B4B2A9">제한될 수 있습니다</text>
+
+  <!-- Annotation -->
+  <rect x="64" y="324" width="288" height="62" rx="6" fill="#FCEBEB" />
+  <text x="80" y="342" class="annot-bold" fill="#791F1F">Privacy Zuckering + Forced Action</text>
+  <text x="80" y="358" class="annot" fill="#791F1F">선택 동의를 필수처럼 표시, 사전 체크.</text>
+  <text x="80" y="374" class="annot" fill="#791F1F">경고 문구로 심리적 압박 유도.</text>
+
+  <!-- ═══════ RIGHT: BRIGHT ═══════ -->
+  <rect x="432" y="52" width="320" height="340" rx="12" fill="#F1EFE8" />
+
+  <!-- Tag -->
+  <rect x="448" y="68" width="60" height="20" rx="4" fill="#E1F5EE" />
+  <text x="478" y="81" text-anchor="middle" class="label" fill="#085041">BRIGHT</text>
+
+  <!-- Screen -->
+  <rect x="448" y="96" width="288" height="220" rx="8" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.5" />
+
+  <!-- Title -->
+  <text x="468" y="122" class="title">회원가입</text>
+
+  <!-- Row 1: unchecked, "선택" -->
+  <rect x="468" y="134" width="14" height="14" rx="3" fill="none" stroke="#B4B2A9" stroke-width="1" />
+  <text x="490" y="144" font-size="11" fill="#2C2C2A">마케팅 정보 수신에 동의합니다</text>
+  <rect x="678" y="131" width="34" height="14" rx="3" fill="#E1F5EE" />
+  <text x="695" y="141" text-anchor="middle" font-size="9" font-weight="600" fill="#085041">선택</text>
+
+  <!-- Row 2: unchecked -->
+  <rect x="468" y="168" width="14" height="14" rx="3" fill="none" stroke="#B4B2A9" stroke-width="1" />
+  <text x="490" y="178" font-size="11" fill="#2C2C2A">프로모션 알림을 받겠습니다</text>
+  <rect x="678" y="165" width="34" height="14" rx="3" fill="#E1F5EE" />
+  <text x="695" y="175" text-anchor="middle" font-size="9" font-weight="600" fill="#085041">선택</text>
+
+  <!-- Info text -->
+  <text x="468" y="208" font-size="10" fill="#888780">선택 항목은 가입 후 설정에서 언제든 변경할 수 있습니다.</text>
+
+  <!-- Annotation -->
+  <rect x="448" y="324" width="288" height="62" rx="6" fill="#E1F5EE" />
+  <text x="464" y="342" class="annot" fill="#085041">체크 해제 기본값, "선택" 명시.</text>
+  <text x="464" y="358" class="annot" fill="#085041">변경 가능성 안내로 사용자 통제권</text>
+  <text x="464" y="374" class="annot" fill="#085041">보장. 경고 문구 없음.</text>
+
+  <!-- VS divider -->
+  <line x1="400" y1="72" x2="400" y2="392" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 4" />
+  <circle cx="400" cy="232" r="16" fill="#F1EFE8" />
+  <text x="400" y="237" text-anchor="middle" font-size="11" font-weight="600" fill="#888780">VS</text>
+</svg>
