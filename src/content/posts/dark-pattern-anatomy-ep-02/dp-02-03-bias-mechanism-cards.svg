@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 774"
+  font-family="system-ui, -apple-system, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">
+  <title>6가지 인지 편향의 작동 메커니즘</title>
+  <desc>손실 회피, 기본값 효과, 사회적 증거, 매몰비용, 앵커링, 프레이밍 효과의 작동 원리를 시각화한 6개 카드</desc>
+
+  <defs>
+    <style>
+      .bg {
+        fill: #FAFAF7;
+      }
+
+      .card-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .visual-bg {
+        fill: #F1EFE8;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 500;
+        fill: #1F1E1C;
+      }
+
+      .subtitle {
+        font-size: 11px;
+        fill: #8B8A85;
+      }
+
+      .desc {
+        font-size: 12px;
+        fill: #5F5E5A;
+      }
+
+      .label {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .small {
+        font-size: 10px;
+        fill: #8B8A85;
+      }
+
+      .chip-bg {
+        fill: #EEEDFE;
+      }
+
+      .chip-text {
+        font-size: 10px;
+        fill: #3C3489;
+        font-weight: 500;
+      }
+
+      .icon-bg {
+        fill: #FCEBEB;
+      }
+
+      .icon-text {
+        font-size: 14px;
+        font-weight: 600;
+        fill: #791F1F;
+      }
+
+      .bar-gain {
+        fill: #5DCAA5;
+      }
+
+      .bar-loss {
+        fill: #E24B4A;
+      }
+
+      .red-emphasis {
+        fill: #A32D2D;
+        font-weight: 500;
+        font-size: 11px;
+      }
+
+      .red-solid {
+        fill: #E24B4A;
+      }
+    </style>
+  </defs>
+
+  <!-- ====== CARD 1: 손실 회피 ====== -->
+  <g transform="translate(20, 20)">
+    <rect class="card-bg" x="0" y="0" width="310" height="230" rx="8" />
+    <rect class="icon-bg" x="16" y="16" width="36" height="36" rx="8" />
+    <text class="icon-text" x="34" y="40" text-anchor="middle">1</text>
+    <text class="title" x="60" y="30">손실 회피</text>
+    <text class="subtitle" x="60" y="46">Loss aversion</text>
+
+    <rect class="visual-bg" x="16" y="62" width="278" height="68" rx="6" />
+    <text class="label" x="28" y="86">이득 +5만</text>
+    <rect class="bar-gain" x="92" y="77" width="60" height="10" rx="2" />
+    <text class="small" x="158" y="86">만족도</text>
+    <text class="label" x="28" y="114">손실 −5만</text>
+    <rect class="bar-loss" x="92" y="105" width="120" height="10" rx="2" />
+    <text class="small" x="218" y="114">고통 (2배)</text>
+
+    <text class="desc" x="16" y="152">같은 금액이라도 잃는 것이 얻는 것보다 약 2배</text>
+    <text class="desc" x="16" y="168">강하게 느껴진다. 다크패턴은 "잃는다"는</text>
+    <text class="desc" x="16" y="184">프레이밍으로 행동을 유도한다.</text>
+
+    <rect class="chip-bg" x="16" y="202" width="92" height="18" rx="4" />
+    <text class="chip-text" x="62" y="214" text-anchor="middle">Confirmshaming</text>
+    <rect class="chip-bg" x="114" y="202" width="58" height="18" rx="4" />
+    <text class="chip-text" x="143" y="214" text-anchor="middle">Scarcity</text>
+  </g>
+
+  <!-- ====== CARD 2: 기본값 효과 ====== -->
+  <g transform="translate(350, 20)">
+    <rect class="card-bg" x="0" y="0" width="310" height="230" rx="8" />
+    <rect class="icon-bg" x="16" y="16" width="36" height="36" rx="8" />
+    <text class="icon-text" x="34" y="40" text-anchor="middle">2</text>
+    <text class="title" x="60" y="30">기본값 효과</text>
+    <text class="subtitle" x="60" y="46">Default effect</text>
+
+    <rect class="visual-bg" x="16" y="62" width="278" height="68" rx="6" />
+    <rect class="red-solid" x="30" y="74" width="14" height="14" rx="2" />
+    <path d="M 33 81 L 36 84 L 41 78" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"
+      stroke-linejoin="round" />
+    <text class="label" x="52" y="85">마케팅 동의 (사전 체크)</text>
+    <text class="small" x="155" y="104" text-anchor="middle">↓ 변경하려면 인지적 노력 필요 ↓</text>
+    <text class="red-emphasis" x="85" y="122" text-anchor="middle">90% 그대로 둠</text>
+    <text class="label" x="215" y="122" text-anchor="middle">10% 해제</text>
+
+    <text class="desc" x="16" y="152">사전 설정된 옵션을 바꾸는 데는 인지적 노력이</text>
+    <text class="desc" x="16" y="168">필요하다. 대부분의 사용자는 기본값을 그대로</text>
+    <text class="desc" x="16" y="184">수용한다.</text>
+
+    <rect class="chip-bg" x="16" y="202" width="102" height="18" rx="4" />
+    <text class="chip-text" x="67" y="214" text-anchor="middle">Privacy zuckering</text>
+    <rect class="chip-bg" x="124" y="202" width="70" height="18" rx="4" />
+    <text class="chip-text" x="159" y="214" text-anchor="middle">Preselection</text>
+  </g>
+
+  <!-- ====== CARD 3: 사회적 증거 ====== -->
+  <g transform="translate(20, 262)">
+    <rect class="card-bg" x="0" y="0" width="310" height="230" rx="8" />
+    <rect class="icon-bg" x="16" y="16" width="36" height="36" rx="8" />
+    <text class="icon-text" x="34" y="40" text-anchor="middle">3</text>
+    <text class="title" x="60" y="30">사회적 증거</text>
+    <text class="subtitle" x="60" y="46">Social proof</text>
+
+    <rect class="visual-bg" x="16" y="62" width="278" height="68" rx="6" />
+    <text x="155" y="88" text-anchor="middle" font-size="16" font-weight="500" fill="#E24B4A">🔥 12명이 보고 있습니다</text>
+    <text class="small" x="155" y="104" text-anchor="middle">← 검증 불가능한 숫자</text>
+    <text class="label" x="155" y="122" text-anchor="middle" font-style="italic">"다른 사람도 사니까 괜찮겠지"</text>
+
+    <text class="desc" x="16" y="152">불확실할수록 타인의 행동에 의존한다. 다크패턴은</text>
+    <text class="desc" x="16" y="168">조작된 사회적 신호(가짜 카운터, 조작된 리뷰)를</text>
+    <text class="desc" x="16" y="184">활용한다.</text>
+
+    <rect class="chip-bg" x="16" y="202" width="80" height="18" rx="4" />
+    <text class="chip-text" x="56" y="214" text-anchor="middle">Fake urgency</text>
+    <rect class="chip-bg" x="102" y="202" width="82" height="18" rx="4" />
+    <text class="chip-text" x="143" y="214" text-anchor="middle">Fake activity</text>
+  </g>
+
+  <!-- ====== CARD 4: 매몰비용 오류 ====== -->
+  <g transform="translate(350, 262)">
+    <rect class="card-bg" x="0" y="0" width="310" height="230" rx="8" />
+    <rect class="icon-bg" x="16" y="16" width="36" height="36" rx="8" />
+    <text class="icon-text" x="34" y="40" text-anchor="middle">4</text>
+    <text class="title" x="60" y="30">매몰비용 오류</text>
+    <text class="subtitle" x="60" y="46">Sunk cost fallacy</text>
+
+    <rect class="visual-bg" x="16" y="62" width="278" height="68" rx="6" />
+    <text class="label" x="28" y="82">해지 프로세스 (5단계)</text>
+    <circle cx="42" cy="106" r="10" fill="#E24B4A" />
+    <text x="42" y="110" text-anchor="middle" font-size="10" font-weight="500" fill="white">1</text>
+    <circle cx="70" cy="106" r="10" fill="#E24B4A" />
+    <text x="70" y="110" text-anchor="middle" font-size="10" font-weight="500" fill="white">2</text>
+    <circle cx="98" cy="106" r="10" fill="#E24B4A" />
+    <text x="98" y="110" text-anchor="middle" font-size="10" font-weight="500" fill="white">3</text>
+    <circle cx="126" cy="106" r="10" fill="none" stroke="#D3D1C7" stroke-width="1" />
+    <text x="126" y="110" text-anchor="middle" font-size="10" fill="#8B8A85">4</text>
+    <circle cx="154" cy="106" r="10" fill="none" stroke="#D3D1C7" stroke-width="1" />
+    <text x="154" y="110" text-anchor="middle" font-size="10" fill="#8B8A85">5</text>
+    <text class="red-emphasis" x="178" y="110" font-style="italic">"여기까지 왔는데..."</text>
+
+    <text class="desc" x="16" y="152">이미 투자한 시간과 노력 때문에 계속 진행한다.</text>
+    <text class="desc" x="16" y="168">의도적으로 긴 해지 프로세스가 이를 이용한다.</text>
+
+    <rect class="chip-bg" x="16" y="202" width="72" height="18" rx="4" />
+    <text class="chip-text" x="52" y="214" text-anchor="middle">Roach motel</text>
+    <rect class="chip-bg" x="94" y="202" width="86" height="18" rx="4" />
+    <text class="chip-text" x="137" y="214" text-anchor="middle">Hard to cancel</text>
+  </g>
+
+  <!-- ====== CARD 5: 앵커링 ====== -->
+  <g transform="translate(20, 504)">
+    <rect class="card-bg" x="0" y="0" width="310" height="230" rx="8" />
+    <rect class="icon-bg" x="16" y="16" width="36" height="36" rx="8" />
+    <text class="icon-text" x="34" y="40" text-anchor="middle">5</text>
+    <text class="title" x="60" y="30">앵커링</text>
+    <text class="subtitle" x="60" y="46">Anchoring</text>
+
+    <rect class="visual-bg" x="16" y="62" width="278" height="86" rx="6" />
+    <text class="label" x="28" y="82">상품가</text>
+    <text x="282" y="82" text-anchor="end" font-size="12" font-weight="500" fill="#1F1E1C">9,900원</text>
+    <text class="small" x="28" y="98">+ 배송비</text>
+    <text x="282" y="98" text-anchor="end" font-size="10" fill="#8B8A85">3,000원</text>
+    <text class="small" x="28" y="112">+ 포장비</text>
+    <text x="282" y="112" text-anchor="end" font-size="10" fill="#8B8A85">1,500원</text>
+    <text class="small" x="28" y="126">+ 수수료</text>
+    <text x="282" y="126" text-anchor="end" font-size="10" fill="#8B8A85">1,300원</text>
+    <line x1="28" y1="132" x2="282" y2="132" stroke="#D3D1C7" stroke-width="0.5" />
+    <text class="red-emphasis" x="28" y="144">결제 금액</text>
+    <text x="282" y="144" text-anchor="end" font-size="12" font-weight="500" fill="#A32D2D">15,700원</text>
+
+    <text class="desc" x="16" y="168">처음 본 가격이 기준점이 된다. 단계별로 비용을</text>
+    <text class="desc" x="16" y="184">추가하면 최종 가격 저항이 줄어든다.</text>
+
+    <rect class="chip-bg" x="16" y="202" width="76" height="18" rx="4" />
+    <text class="chip-text" x="54" y="214" text-anchor="middle">Drip pricing</text>
+    <rect class="chip-bg" x="98" y="202" width="82" height="18" rx="4" />
+    <text class="chip-text" x="139" y="214" text-anchor="middle">Hidden costs</text>
+  </g>
+
+  <!-- ====== CARD 6: 프레이밍 효과 ====== -->
+  <g transform="translate(350, 504)">
+    <rect class="card-bg" x="0" y="0" width="310" height="230" rx="8" />
+    <rect class="icon-bg" x="16" y="16" width="36" height="36" rx="8" />
+    <text class="icon-text" x="34" y="40" text-anchor="middle">6</text>
+    <text class="title" x="60" y="30">프레이밍 효과</text>
+    <text class="subtitle" x="60" y="46">Framing effect</text>
+
+    <rect class="visual-bg" x="16" y="62" width="278" height="68" rx="6" />
+    <rect x="30" y="72" width="116" height="40" rx="6" fill="#E1F5EE" />
+    <text x="88" y="91" text-anchor="middle" font-size="16" font-weight="500" fill="#085041">95%</text>
+    <text x="88" y="105" text-anchor="middle" font-size="10" fill="#0F6E56">만족</text>
+    <rect x="164" y="72" width="116" height="40" rx="6" fill="#FCEBEB" />
+    <text x="222" y="91" text-anchor="middle" font-size="16" font-weight="500" fill="#791F1F">1/20</text>
+    <text x="222" y="105" text-anchor="middle" font-size="10" fill="#A32D2D">불만족</text>
+    <text class="small" x="155" y="124" text-anchor="middle">같은 사실, 다른 인상</text>
+
+    <text class="desc" x="16" y="152">같은 정보를 제시하는 방식만 바꿔도 선택이</text>
+    <text class="desc" x="16" y="168">달라진다. 시각적 위계와 카피 프레이밍이</text>
+    <text class="desc" x="16" y="184">여기에 해당.</text>
+
+    <rect class="chip-bg" x="16" y="202" width="92" height="18" rx="4" />
+    <text class="chip-text" x="62" y="214" text-anchor="middle">False hierarchy</text>
+    <rect class="chip-bg" x="114" y="202" width="86" height="18" rx="4" />
+    <text class="chip-text" x="157" y="214" text-anchor="middle">Trick questions</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="340" y="764" text-anchor="middle" font-size="11" fill="#8B8A85">▲ 6가지 인지 편향이 다크패턴으로 연결되는 방식</text>
+</svg>

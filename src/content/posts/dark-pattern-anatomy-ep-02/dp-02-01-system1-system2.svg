@@ -1,0 +1,85 @@
+<svg width="100%" viewBox="0 0 680 480" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .th {
+      font-size: 14px;
+      font-weight: 500;
+      fill: #2C2C2A;
+    }
+
+    .ts {
+      font-size: 12px;
+      font-weight: 400;
+      fill: #5F5E5A;
+    }
+
+    .line {
+      stroke: #B4B2A9;
+      stroke-width: 0.5;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .th {
+        fill: #D3D1C7;
+      }
+
+      .ts {
+        fill: #B4B2A9;
+      }
+
+      .line {
+        stroke: #5F5E5A;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#B4B2A9" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <rect x="270" y="30" width="140" height="44" rx="22" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <text class="th" x="340" y="52" text-anchor="middle" dominant-baseline="central">UI 자극</text>
+
+  <line x1="290" y1="74" x2="160" y2="120" class="line" marker-end="url(#arrow)" />
+  <line x1="390" y1="74" x2="520" y2="120" class="line" marker-end="url(#arrow)" />
+
+  <rect x="40" y="120" width="240" height="220" rx="16" fill="#FAECE7" stroke="#F0997B" stroke-width="0.5" />
+  <text class="th" x="160" y="150" text-anchor="middle" dominant-baseline="central" fill="#4A1B0C">시스템 1 — 빠른 사고</text>
+  <text class="ts" x="160" y="180" text-anchor="middle" dominant-baseline="central" fill="#712B13">자동적, 무의식적, 직관적</text>
+  <text class="ts" x="160" y="200" text-anchor="middle" dominant-baseline="central" fill="#712B13">노력이 거의 들지 않음</text>
+  <rect x="60" y="224" width="200" height="30" rx="6" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <text class="ts" x="160" y="239" text-anchor="middle" dominant-baseline="central">기본값을 그대로 수용</text>
+  <rect x="60" y="260" width="200" height="30" rx="6" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <text class="ts" x="160" y="275" text-anchor="middle" dominant-baseline="central">큰 버튼을 먼저 클릭</text>
+  <rect x="60" y="296" width="200" height="30" rx="6" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <text class="ts" x="160" y="311" text-anchor="middle" dominant-baseline="central">손실 프레이밍에 반응</text>
+
+  <rect x="400" y="120" width="240" height="220" rx="16" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5" />
+  <text class="th" x="520" y="150" text-anchor="middle" dominant-baseline="central" fill="#04342C">시스템 2 — 느린 사고</text>
+  <text class="ts" x="520" y="180" text-anchor="middle" dominant-baseline="central" fill="#085041">의식적, 분석적, 논리적</text>
+  <text class="ts" x="520" y="200" text-anchor="middle" dominant-baseline="central" fill="#085041">인지적 노력이 필요</text>
+  <rect x="420" y="224" width="200" height="30" rx="6" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <text class="ts" x="520" y="239" text-anchor="middle" dominant-baseline="central">약관을 읽고 판단</text>
+  <rect x="420" y="260" width="200" height="30" rx="6" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <text class="ts" x="520" y="275" text-anchor="middle" dominant-baseline="central">옵션을 비교 분석</text>
+  <rect x="420" y="296" width="200" height="30" rx="6" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <text class="ts" x="520" y="311" text-anchor="middle" dominant-baseline="central">기본값을 의심하고 변경</text>
+
+  <rect x="40" y="358" width="240" height="44" rx="8" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1" />
+  <text class="th" x="160" y="380" text-anchor="middle" dominant-baseline="central" fill="#791F1F">다크패턴의 타겟</text>
+
+  <rect x="400" y="358" width="240" height="44" rx="8" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5" />
+  <text class="th" x="520" y="380" text-anchor="middle" dominant-baseline="central" fill="#085041">다크패턴의 방어선</text>
+
+  <rect x="40" y="420" width="600" height="44" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <text class="ts" x="340" y="435" text-anchor="middle" dominant-baseline="central">다크패턴은 시스템 2가 개입하기 전에 시스템 1의 자동 반응으로
+    결정이 끝나도록 설계된다</text>
+  <text class="ts" x="340" y="450" text-anchor="middle" dominant-baseline="central">의사결정 피로, 시간 압박, 정보 과부하가 시스템 2를
+    무력화한다</text>
+</svg>
