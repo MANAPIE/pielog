@@ -1,0 +1,32 @@
+<svg width="100%" viewBox="0 25 680 440" xmlns="http://www.w3.org/2000/svg">
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .th { font-size: 14px; font-weight: 500; }
+  .ts { font-size: 12px; font-weight: 400; }
+</style>
+
+<circle cx="280" cy="190" r="130" fill="#EEEDFE" fill-opacity="0.5" stroke="#AFA9EC" stroke-width="0.5"/>
+<circle cx="400" cy="190" r="130" fill="#E1F5EE" fill-opacity="0.5" stroke="#5DCAA5" stroke-width="0.5"/>
+<circle cx="340" cy="300" r="130" fill="#FAEEDA" fill-opacity="0.5" stroke="#FAC775" stroke-width="0.5"/>
+
+<circle cx="340" cy="230" r="36" fill="#FCEBEB" fill-opacity="0.7" stroke="#E24B4A" stroke-width="1"/>
+
+<text class="th" x="210" y="140" text-anchor="middle" dominant-baseline="central" fill="#3C3489">기획</text>
+<text class="ts" x="210" y="158" text-anchor="middle" dominant-baseline="central" fill="#534AB7">플로우 설계</text>
+<text class="ts" x="210" y="174" text-anchor="middle" dominant-baseline="central" fill="#534AB7">정책 결정</text>
+
+<text class="th" x="470" y="140" text-anchor="middle" dominant-baseline="central" fill="#085041">디자인</text>
+<text class="ts" x="470" y="158" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">화면 구성</text>
+<text class="ts" x="470" y="174" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">시각 위계</text>
+
+<text class="th" x="340" y="374" text-anchor="middle" dominant-baseline="central" fill="#633806">개발</text>
+<text class="ts" x="340" y="392" text-anchor="middle" dominant-baseline="central" fill="#854F0B">로직 구현</text>
+<text class="ts" x="340" y="408" text-anchor="middle" dominant-baseline="central" fill="#854F0B">기본값 처리</text>
+
+<text class="th" x="340" y="224" text-anchor="middle" dominant-baseline="central" fill="#791F1F">다크패턴</text>
+<text class="ts" x="340" y="242" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">사각지대</text>
+
+<text class="ts" x="340" y="145" text-anchor="middle" dominant-baseline="central" fill="#444441">와이어프레임</text>
+<text class="ts" x="260" y="268" text-anchor="middle" dominant-baseline="central" fill="#444441">기획 스펙</text>
+<text class="ts" x="420" y="268" text-anchor="middle" dominant-baseline="central" fill="#444441">UI 컴포넌트</text>
+</svg>

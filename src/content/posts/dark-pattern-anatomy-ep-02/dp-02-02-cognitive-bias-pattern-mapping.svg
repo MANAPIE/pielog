@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 720"
+  font-family="system-ui, -apple-system, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">
+  <title>인지 편향과 다크패턴 매핑 매트릭스</title>
+  <desc>7가지 인지 편향과 그에 연결되는 다크패턴, 작동 메커니즘, UI 예시를 정리한 매핑 테이블</desc>
+
+  <defs>
+    <style>
+      .bg {
+        fill: #FAFAF7;
+      }
+
+      .th-text {
+        font-size: 13px;
+        font-weight: 500;
+        fill: #1F1E1C;
+      }
+
+      .bias-kr {
+        font-size: 13px;
+        font-weight: 500;
+        fill: #1F1E1C;
+      }
+
+      .bias-en {
+        font-size: 11px;
+        fill: #8B8A85;
+      }
+
+      .cell {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .chip-bg {
+        fill: #EEEDFE;
+      }
+
+      .chip-text {
+        font-size: 10px;
+        fill: #3C3489;
+        font-weight: 500;
+      }
+
+      .example {
+        font-size: 11px;
+        fill: #8B8A85;
+        font-style: italic;
+      }
+
+      .border-primary {
+        stroke: #5F5E5A;
+        stroke-width: 1.2;
+      }
+
+      .border-tertiary {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+    </style>
+  </defs>
+
+  <!-- Table area: x=20, width=640 -->
+  <!-- Column widths (sum = 640):
+       Col1: 130 (인지 편향)     x=20..150
+       Col2: 190 (작동 메커니즘) x=150..340
+       Col3: 150 (연결 다크패턴) x=340..490
+       Col4: 170 (UI 예시)       x=490..660
+  -->
+
+  <!-- Header -->
+  <g>
+    <text class="th-text" x="32" y="44">인지 편향</text>
+    <text class="th-text" x="162" y="44">작동 메커니즘</text>
+    <text class="th-text" x="352" y="44">연결되는 다크패턴</text>
+    <text class="th-text" x="502" y="44">UI 예시</text>
+    <line class="border-primary" x1="20" y1="56" x2="660" y2="56" />
+  </g>
+
+  <!-- ====== ROW 1: 손실 회피 (y=56, h=88) ====== -->
+  <g>
+    <text class="bias-kr" x="32" y="78">손실 회피</text>
+    <text class="bias-en" x="32" y="94">Loss aversion</text>
+
+    <text class="cell" x="162" y="78">같은 크기의 이득보다 손실을 약</text>
+    <text class="cell" x="162" y="94">2배 강하게 느낀다. "잃는다"는</text>
+    <text class="cell" x="162" y="110">프레이밍이 행동을 유도.</text>
+
+    <rect class="chip-bg" x="352" y="66" width="100" height="18" rx="4" />
+    <text class="chip-text" x="402" y="78" text-anchor="middle">Confirmshaming</text>
+    <rect class="chip-bg" x="352" y="88" width="60" height="18" rx="4" />
+    <text class="chip-text" x="382" y="100" text-anchor="middle">Scarcity</text>
+    <rect class="chip-bg" x="352" y="110" width="104" height="18" rx="4" />
+    <text class="chip-text" x="405" y="122" text-anchor="middle">Forced continuity</text>
+
+    <text class="example" x="502" y="78">"아니요, 혜택이 필요 없습니다" /</text>
+    <text class="example" x="502" y="94">"3명이 보고 있습니다" /</text>
+    <text class="example" x="502" y="110">"해지 시 혜택 사라짐"</text>
+
+    <line class="border-tertiary" x1="20" y1="144" x2="660" y2="144" />
+  </g>
+
+  <!-- ====== ROW 2: 기본값 효과 (y=144, h=88) ====== -->
+  <g>
+    <text class="bias-kr" x="32" y="166">기본값 효과</text>
+    <text class="bias-en" x="32" y="182">Default effect</text>
+
+    <text class="cell" x="162" y="166">사전 설정된 옵션을 바꾸지 않는</text>
+    <text class="cell" x="162" y="182">경향. 변경에 인지적 노력이</text>
+    <text class="cell" x="162" y="198">필요하기 때문.</text>
+
+    <rect class="chip-bg" x="352" y="154" width="108" height="18" rx="4" />
+    <text class="chip-text" x="406" y="166" text-anchor="middle">Privacy zuckering</text>
+    <rect class="chip-bg" x="352" y="176" width="80" height="18" rx="4" />
+    <text class="chip-text" x="393" y="188" text-anchor="middle">Preselection</text>
+    <rect class="chip-bg" x="352" y="198" width="107" height="18" rx="4" />
+    <text class="chip-text" x="405" y="210" text-anchor="middle">Sneak into basket</text>
+
+    <text class="example" x="502" y="166">사전 체크된 마케팅 동의 /</text>
+    <text class="example" x="502" y="182">장바구니에 자동 추가된 보험</text>
+
+    <line class="border-tertiary" x1="20" y1="232" x2="660" y2="232" />
+  </g>
+
+  <!-- ====== ROW 3: 사회적 증거 (y=232, h=88) ====== -->
+  <g>
+    <text class="bias-kr" x="32" y="254">사회적 증거</text>
+    <text class="bias-en" x="32" y="270">Social proof</text>
+
+    <text class="cell" x="162" y="254">타인 행동을 판단 근거로 사용.</text>
+    <text class="cell" x="162" y="270">불확실할수록 타인 행동에 의존.</text>
+
+    <rect class="chip-bg" x="352" y="242" width="86" height="18" rx="4" />
+    <text class="chip-text" x="395" y="254" text-anchor="middle">Fake urgency</text>
+    <rect class="chip-bg" x="352" y="264" width="82" height="18" rx="4" />
+    <text class="chip-text" x="393" y="276" text-anchor="middle">Fake activity</text>
+    <rect class="chip-bg" x="352" y="286" width="80" height="18" rx="4" />
+    <text class="chip-text" x="392" y="298" text-anchor="middle">Testimonials</text>
+
+    <text class="example" x="502" y="254">"방금 15명이 구매" /</text>
+    <text class="example" x="502" y="270">"4.9★ (검증 불가)" /</text>
+    <text class="example" x="502" y="286">조작된 실시간 카운터</text>
+
+    <line class="border-tertiary" x1="20" y1="320" x2="660" y2="320" />
+  </g>
+
+  <!-- ====== ROW 4: 매몰비용 (y=320, h=88) ====== -->
+  <g>
+    <text class="bias-kr" x="32" y="342">매몰비용</text>
+    <text class="bias-en" x="32" y="358">Sunk cost fallacy</text>
+
+    <text class="cell" x="162" y="342">이미 투자한 시간·돈·노력 때문에</text>
+    <text class="cell" x="162" y="358">손해임을 알면서도 계속 진행.</text>
+
+    <rect class="chip-bg" x="352" y="330" width="82" height="18" rx="4" />
+    <text class="chip-text" x="393" y="342" text-anchor="middle">Roach motel</text>
+    <rect class="chip-bg" x="352" y="352" width="94" height="18" rx="4" />
+    <text class="chip-text" x="399" y="364" text-anchor="middle">Hard to cancel</text>
+    <rect class="chip-bg" x="352" y="374" width="88" height="18" rx="4" />
+    <text class="chip-text" x="396" y="386" text-anchor="middle">Forced action</text>
+
+    <text class="example" x="502" y="342">해지 5단계 중 3단계에서</text>
+    <text class="example" x="502" y="358">"여기까지 왔는데</text>
+    <text class="example" x="502" y="374">계속하시겠어요?"</text>
+
+    <line class="border-tertiary" x1="20" y1="408" x2="660" y2="408" />
+  </g>
+
+  <!-- ====== ROW 5: 앵커링 (y=408, h=88) ====== -->
+  <g>
+    <text class="bias-kr" x="32" y="430">앵커링</text>
+    <text class="bias-en" x="32" y="446">Anchoring</text>
+
+    <text class="cell" x="162" y="430">처음 제시된 숫자가 기준점이</text>
+    <text class="cell" x="162" y="446">되어 이후 판단에 영향. 비교</text>
+    <text class="cell" x="162" y="462">대상을 조작.</text>
+
+    <rect class="chip-bg" x="352" y="418" width="76" height="18" rx="4" />
+    <text class="chip-text" x="390" y="430" text-anchor="middle">Drip pricing</text>
+    <rect class="chip-bg" x="352" y="440" width="84" height="18" rx="4" />
+    <text class="chip-text" x="394" y="452" text-anchor="middle">Hidden costs</text>
+    <rect class="chip-bg" x="352" y="462" width="96" height="18" rx="4" />
+    <text class="chip-text" x="400" y="474" text-anchor="middle">Bait and switch</text>
+
+    <text class="example" x="502" y="430">월 9,900원 표시 →</text>
+    <text class="example" x="502" y="446">결제 시 수수료·배송비 추가 →</text>
+    <text class="example" x="502" y="462">실제 18,700원</text>
+
+    <line class="border-tertiary" x1="20" y1="496" x2="660" y2="496" />
+  </g>
+
+  <!-- ====== ROW 6: 프레이밍 효과 (y=496, h=88) ====== -->
+  <g>
+    <text class="bias-kr" x="32" y="518">프레이밍 효과</text>
+    <text class="bias-en" x="32" y="534">Framing effect</text>
+
+    <text class="cell" x="162" y="518">같은 정보도 제시 방식에 따라</text>
+    <text class="cell" x="162" y="534">다르게 인식. 긍정/부정 프레임이</text>
+    <text class="cell" x="162" y="550">선택을 바꿈.</text>
+
+    <rect class="chip-bg" x="352" y="506" width="86" height="18" rx="4" />
+    <text class="chip-text" x="395" y="518" text-anchor="middle">Misdirection</text>
+    <rect class="chip-bg" x="352" y="528" width="98" height="18" rx="4" />
+    <text class="chip-text" x="401" y="540" text-anchor="middle">False hierarchy</text>
+    <rect class="chip-bg" x="352" y="550" width="96" height="18" rx="4" />
+    <text class="chip-text" x="401" y="562" text-anchor="middle">Trick questions</text>
+
+    <text class="example" x="502" y="518">"95% 만족" vs "20명</text>
+    <text class="example" x="502" y="534">중 1명 불만족" /</text>
+    <text class="example" x="502" y="550"> 이중부정 체크박스</text>
+
+    <line class="border-tertiary" x1="20" y1="584" x2="660" y2="584" />
+  </g>
+
+  <!-- ====== ROW 7: 완료 편향 (y=584, h=88) ====== -->
+  <g>
+    <text class="bias-kr" x="32" y="606">완료 편향</text>
+    <text class="bias-en" x="32" y="622">Completion bias</text>
+
+    <text class="cell" x="162" y="606">시작한 작업을 끝내려는 욕구.</text>
+    <text class="cell" x="162" y="622">진행 표시가 이를 강화.</text>
+
+    <rect class="chip-bg" x="352" y="594" width="86" height="18" rx="4" />
+    <text class="chip-text" x="396" y="606" text-anchor="middle">Forced action</text>
+    <rect class="chip-bg" x="352" y="616" width="62" height="18" rx="4" />
+    <text class="chip-text" x="383" y="628" text-anchor="middle">Nagging</text>
+
+    <text class="example" x="502" y="606">"프로필 80% 완성!</text>
+    <text class="example" x="502" y="622">연락처를 동기화하면 100%"</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="340" y="682" text-anchor="middle" font-size="11" fill="#8B8A85">▲ 인지 편향과 다크패턴의 연결 구조 ― 7가지 편향 × 작동 메커니즘 × UI
+    패턴</text>
+</svg>
