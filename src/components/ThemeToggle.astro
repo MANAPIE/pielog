@@ -1,0 +1,99 @@
+---
+
+---
+
+<button id="theme-toggle" class="theme-toggle" aria-label="테마 전환">
+  <span class="icon-light" aria-hidden="true">☾</span>
+  <span class="icon-dark" aria-hidden="true">☀</span>
+</button>
+
+<script>
+  function applyTheme(next: string) {
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+
+    const mdLink = document.getElementById(
+      "markdown-theme-css",
+    ) as HTMLLinkElement | null;
+    if (mdLink) {
+      mdLink.href = `https://cdn.jsdelivr.net/npm/github-markdown-css@5.9.0/github-markdown-${next}.css`;
+    }
+
+    syncGiscus();
+  }
+
+  function syncGiscus() {
+    const theme =
+      document.documentElement.getAttribute("data-theme") || "light";
+    const iframe = document.querySelector(
+      "iframe.giscus-frame",
+    ) as HTMLIFrameElement | null;
+    if (!iframe) return;
+    iframe.contentWindow?.postMessage(
+      { giscus: { setConfig: { theme } } },
+      "https://giscus.app",
+    );
+  }
+
+  // 클릭 처리 (capture: sidebar의 stopPropagation 우회)
+  document.addEventListener(
+    "click",
+    (e) => {
+      if ((e.target as Element)?.closest(".theme-toggle")) {
+        const next =
+          document.documentElement.getAttribute("data-theme") === "dark"
+            ? "light"
+            : "dark";
+        applyTheme(next);
+      }
+    },
+    { capture: true },
+  );
+
+  // Giscus 초기 테마 동기화 — iframe 준비 완료 시 한 번만 실행
+  let synced = false;
+  window.addEventListener("message", (e) => {
+    if (e.origin !== "https://giscus.app") return;
+    if (!synced && (e.data as { giscus?: unknown })?.giscus) {
+      synced = true;
+      syncGiscus();
+    }
+  });
+</script>
+
+<style lang="scss">
+  @use "../styles/_variables.scss" as *;
+
+  .theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    color: $color-text-muted;
+    font-size: 16px;
+    line-height: 1;
+    transition: color 0.2s ease;
+
+    .icon-light {
+      padding: 4px 4px;
+    }
+
+    &:hover {
+      color: $color-text;
+    }
+  }
+
+  /* 라이트 모드: 달(☾) 표시, 다크 모드: 해(☀) 표시 */
+  :global(:root) .icon-light {
+    display: none;
+  }
+  :global(:root) .icon-dark {
+    display: inline;
+  }
+  :global([data-theme="dark"]) .icon-light {
+    display: inline;
+  }
+  :global([data-theme="dark"]) .icon-dark {
+    display: none;
+  }
+</style>

@@ -17,18 +17,20 @@ $bp-narrow: 900px;
 $bp-mobile: 600px;
 
 /* ========================
-   Colors
+   Colors — SCSS aliases (CSS custom properties defined in global.scss)
    ======================== */
-$color-bg: #ffffff;
-$color-bg-half: #ffffff99;
-$color-bg-zero: #ffffff00;
-$color-text: #333333;
-$color-text-muted: #8A8278;
-$color-accent: #183075;
-$color-primary: #7a7269;
-$color-border: #D6D9E0;
-$color-tree: #E0D6D6;
-$color-code-bg: #f5f5f5;
+$color-bg:           var(--color-bg);
+$color-bg-half:      var(--color-bg-half);
+$color-bg-zero:      var(--color-bg-zero);
+$color-text:         var(--color-text);
+$color-text-muted:   var(--color-text-muted);
+$color-accent:       var(--color-accent);
+$color-primary:      var(--color-primary);
+$color-border:       var(--color-border);
+$color-tree:         var(--color-tree);
+$color-code-bg:      var(--color-code-bg);
+$color-shadow:       var(--color-shadow);
+$color-shadow-hover: var(--color-shadow-hover);
 
 /* ========================
    Spacing

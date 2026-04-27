@@ -103,7 +103,7 @@
     &:hover,
     &.is-open {
       left: 0;
-      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.08);
+      box-shadow: 4px 0 16px $color-shadow;
     }
   }
 
@@ -119,7 +119,7 @@
     &:hover,
     &.is-open {
       right: 0;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px $color-shadow;
     }
 
     &:empty {
@@ -172,7 +172,7 @@
 
     &.is-open {
       transform: translateX(0);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px $color-shadow;
       pointer-events: auto;
     }
   }
@@ -185,7 +185,7 @@
 
     &.is-open {
       transform: translateX(0);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px $color-shadow;
       pointer-events: auto;
     }
 
