@@ -4,7 +4,7 @@ interface Props {
 }
 
 const { headings } = Astro.props;
-const tocItems = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+const tocItems = headings.filter((h) => h.depth >= 2 && h.depth <= 4);
 
 interface TocNode {
   slug: string;
@@ -22,6 +22,15 @@ for (const item of tocItems) {
       text: item.text,
       children: [],
     });
+  } else if (item.depth === 4 && tree.length > 0) {
+    const lastH2 = tree[tree.length - 1];
+    if (lastH2.children.length > 0) {
+      lastH2.children[lastH2.children.length - 1].children.push({
+        slug: item.slug,
+        text: item.text,
+        children: [],
+      });
+    }
   }
 }
 ---
@@ -39,6 +48,15 @@ for (const item of tocItems) {
                 {node.children.map((child) => (
                   <li>
                     <a href={`#${child.slug}`}>{child.text}</a>
+                    {child.children.length > 0 && (
+                      <ul>
+                        {child.children.map((grandchild) => (
+                          <li>
+                            <a href={`#${grandchild.slug}`}>{grandchild.text}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -52,7 +70,7 @@ for (const item of tocItems) {
 
 <script>
   const headings = document.querySelectorAll(
-    ".post-content h2, .post-content h3",
+    ".post-content h2, .post-content h3, .post-content h4",
   );
   const tocNav = document.querySelector(".toc-tree") as HTMLElement | null;
   const tocItems = document.querySelectorAll(".toc-tree li");
