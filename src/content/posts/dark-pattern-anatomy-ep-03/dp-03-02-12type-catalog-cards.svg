@@ -1,0 +1,473 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 680 1480"
+  font-family="system-ui, -apple-system, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">
+  <title>Brignull의 12가지 다크패턴 원형 카탈로그</title>
+  <desc>진입·가입, 전환·결제, 유지·이탈, 인터랙션 전반 4단계로 분류한 12가지 다크패턴 카탈로그 카드</desc>
+
+  <defs>
+    <style>
+      .bg {
+        fill: #FAFAF7;
+      }
+
+      .card-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .visual-bg {
+        fill: #F1EFE8;
+      }
+
+      .t-primary {
+        fill: #1F1E1C;
+      }
+
+      .t-secondary {
+        fill: #5F5E5A;
+      }
+
+      .t-tertiary {
+        fill: #8B8A85;
+      }
+
+      .num-bg {
+        fill: #EEEDFE;
+      }
+
+      .num-text {
+        fill: #3C3489;
+        font-weight: 500;
+      }
+
+      .red-text {
+        fill: #A32D2D;
+      }
+
+      .red-solid {
+        fill: #E24B4A;
+      }
+
+      .teal-text {
+        fill: #0F6E56;
+      }
+
+      .section-line {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .sev-on {
+        fill: #E24B4A;
+      }
+
+      .sev-off {
+        fill: #D3D1C7;
+      }
+
+      .mock-border {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+        fill: none;
+      }
+
+      .checkbox-empty {
+        stroke: #B4B2A9;
+        stroke-width: 1;
+        fill: none;
+      }
+
+      .legend-text {
+        fill: #8B8A85;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .bg {
+          fill: #1A1A18;
+        }
+
+        .card-bg {
+          fill: #2C2C2A;
+          stroke: #444441;
+        }
+
+        .visual-bg {
+          fill: #222220;
+        }
+
+        .t-primary {
+          fill: #E8E7E2;
+        }
+
+        .t-secondary {
+          fill: #B4B2A9;
+        }
+
+        .t-tertiary {
+          fill: #888780;
+        }
+
+        .num-bg {
+          fill: #26215C;
+        }
+
+        .num-text {
+          fill: #CECBF6;
+        }
+
+        .red-text {
+          fill: #F09595;
+        }
+
+        .teal-text {
+          fill: #5DCAA5;
+        }
+
+        .section-line {
+          stroke: #444441;
+        }
+
+        .sev-off {
+          fill: #444441;
+        }
+
+        .mock-border {
+          stroke: #444441;
+        }
+
+        .checkbox-empty {
+          stroke: #5F5E5A;
+        }
+
+        .legend-text {
+          fill: #888780;
+        }
+      }
+    </style>
+
+    <!-- 심각도 5단계 점 패턴 (재사용) -->
+    <symbol id="sev-2" viewBox="0 0 48 8">
+      <rect class="sev-on" x="0" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="10" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-off" x="20" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-off" x="30" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-off" x="40" y="0" width="8" height="8" rx="2" />
+    </symbol>
+    <symbol id="sev-3" viewBox="0 0 48 8">
+      <rect class="sev-on" x="0" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="10" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="20" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-off" x="30" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-off" x="40" y="0" width="8" height="8" rx="2" />
+    </symbol>
+    <symbol id="sev-4" viewBox="0 0 48 8">
+      <rect class="sev-on" x="0" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="10" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="20" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="30" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-off" x="40" y="0" width="8" height="8" rx="2" />
+    </symbol>
+    <symbol id="sev-5" viewBox="0 0 48 8">
+      <rect class="sev-on" x="0" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="10" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="20" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="30" y="0" width="8" height="8" rx="2" />
+      <rect class="sev-on" x="40" y="0" width="8" height="8" rx="2" />
+    </symbol>
+  </defs>
+
+  <rect class="bg" x="0" y="-50" width="680" height="1500" />
+
+  <!-- =========================================================
+       FOOTER: 심각도 범례
+       ========================================================= -->
+  <g transform="translate(30, -15)">
+    <text class="legend-text" x="0" y="10" font-size="10">심각도:</text>
+
+    <!-- 낮음 (1점) -->
+    <use href="#sev-2" x="48" y="3" width="48" height="8" />
+    <text class="legend-text" x="100" y="10" font-size="10">낮음</text>
+
+    <!-- 높음 (5점) -->
+    <use href="#sev-5" x="138" y="3" width="48" height="8" />
+    <text class="legend-text" x="190" y="10" font-size="10">높음</text>
+
+    <text class="legend-text" x="620" y="10" text-anchor="end" font-size="10">규제 리스크 + 사용자 피해 기준</text>
+  </g>
+
+  <!-- =========================================================
+       SECTION 1: 진입 · 가입 단계
+       ========================================================= -->
+  <g>
+    <text class="t-secondary" x="30" y="34" font-size="13" font-weight="500">진입 · 가입 단계</text>
+    <line class="section-line" x1="30" y1="42" x2="650" y2="42" />
+  </g>
+
+  <!-- Card 01: Privacy zuckering -->
+  <g transform="translate(30, 54)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">01</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Privacy Zuckering</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">동의 조작</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">사용자가 의도한 것보다 더 많은 개인정보를</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">공유하도록 유도하는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="40" rx="6" />
+    <g transform="translate(0, -7)">
+      <rect class="red-solid" x="22" y="98" width="10" height="10" rx="2" />
+      <path d="M 24 103 L 26 105 L 30 100" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"
+        stroke-linejoin="round" />
+      <text class="t-secondary" x="38" y="107" font-size="11">마케팅 동의 (필수)</text>
+      <text class="t-tertiary" x="38" y="123" font-size="10">← 선택인데 필수처럼</text>
+    </g>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 회원가입, 앱 권한 요청, 쿠키 배너</text>
+    <use href="#sev-4" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- Card 02: Friend spam -->
+  <g transform="translate(345, 54)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">02</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Friend Spam</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">친구 스팸</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">사용자의 연락처 권한을 얻어 지인에게</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">초대/홍보 메시지를 발송하는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="40" rx="6" />
+    <text class="t-secondary" x="22" y="100" font-size="11">📋 "친구를 초대하면 1,000P!"</text>
+    <text class="t-tertiary" x="22" y="116" font-size="10">→ 연락처 전체에 자동 메시지 발송</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 소셜앱 가입, 리워드 프로그램</text>
+    <use href="#sev-3" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- Card 03: Forced continuity -->
+  <g transform="translate(30, 234)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">03</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Forced Continuity</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">강제 자동갱신</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">무료 체험이 끝나면 별도 고지 없이 유료</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">구독으로 자동 전환되는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="40" rx="6" />
+    <text class="t-secondary" x="22" y="100" font-size="11">🆓 "7일 무료 체험"</text>
+    <text class="red-text" x="22" y="116" font-size="10">→ 8일차: 월 14,900원 자동 결제</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: SaaS, OTT, 구독 서비스</text>
+    <use href="#sev-5" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- =========================================================
+       SECTION 2: 전환 · 결제 단계
+       ========================================================= -->
+  <g>
+    <text class="t-secondary" x="30" y="438" font-size="13" font-weight="500">전환 · 결제 단계</text>
+    <line class="section-line" x1="30" y1="446" x2="650" y2="446" />
+  </g>
+
+  <!-- Card 04: Hidden costs -->
+  <g transform="translate(30, 458)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">04</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Hidden Costs</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">숨겨진 비용</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">결제 마지막 단계에서 예상치 못한 추가 비용이</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">등장하는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="44" rx="6" />
+    <text class="t-secondary" x="22" y="98" font-size="11">상품: 29,000원</text>
+    <text class="t-tertiary" x="22" y="111" font-size="10">+ 배송 3,000 + 수수료 1,200</text>
+    <text class="red-text" x="22" y="124" font-size="11" font-weight="500">→ 33,200원</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 이커머스, 여행 예약, 배달앱</text>
+    <use href="#sev-4" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- Card 05: Sneak into basket -->
+  <g transform="translate(345, 458)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">05</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Sneak into Basket</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">몰래 장바구니 추가</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">사용자가 선택하지 않은 상품을 장바구니나</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">결제에 자동 추가하는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="40" rx="6" />
+    <rect class="red-solid" x="22" y="92" width="10" height="10" rx="2" />
+    <path d="M 24 97 L 26 99 L 30 94" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"
+      stroke-linejoin="round" />
+    <text class="t-secondary" x="38" y="101" font-size="11">파손 보험 (+2,900원)</text>
+    <text class="t-tertiary" x="22" y="118" font-size="10">← 사전 체크, 스크롤 밖에 위치</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 항공권, 이커머스, 보험 결제</text>
+    <use href="#sev-4" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- Card 06: Bait and switch -->
+  <g transform="translate(30, 638)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">06</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Bait and Switch</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">미끼 전환</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">광고한 상품/조건과 다른 것을 실제로 제공하는</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="40" rx="6" />
+    <text class="t-secondary" x="22" y="100" font-size="11">광고: "월 990원~"</text>
+    <text class="red-text" x="22" y="116" font-size="10">→ 실제: 해당 요금은 3년 약정 시에만</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 통신사 요금제, SaaS 가격표</text>
+    <use href="#sev-3" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- Card 07: Price comparison prevention -->
+  <g transform="translate(345, 638)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">07</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Price Comparison Prevention</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">가격 비교 방해</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">사용자가 가격을 비교하기 어렵도록 단위, 구성,</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">표시를 다르게 만드는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="40" rx="6" />
+    <text class="t-secondary" x="22" y="100" font-size="11">A: 100g당 3,200원</text>
+    <text class="t-secondary" x="22" y="115" font-size="11">B: 1팩(250g) 7,500원</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 구독 요금제, 대형마트, 보험 상품</text>
+    <use href="#sev-2" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- =========================================================
+       SECTION 3: 유지 · 이탈 단계
+       ========================================================= -->
+  <g>
+    <text class="t-secondary" x="30" y="842" font-size="13" font-weight="500">유지 · 이탈 단계</text>
+    <line class="section-line" x1="30" y1="850" x2="650" y2="850" />
+  </g>
+
+  <!-- Card 08: Roach motel -->
+  <g transform="translate(30, 862)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">08</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Roach Motel</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">바퀴벌레 모텔</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">가입/구독은 매우 쉽지만, 해지/탈퇴는</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">의도적으로 복잡하게 설계된 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="44" rx="6" />
+    <text class="teal-text" x="22" y="100" font-size="11">가입: 버튼 1번 → 완료</text>
+    <text class="red-text" x="22" y="115" font-size="10">해지: 설정 → 계정 → 구독관리 →</text>
+    <text class="red-text" x="45" y="125" font-size="10">사유 → 혜택안내 → 재확인 → 완료</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 구독 서비스, SNS, 이메일 수신 해지</text>
+    <use href="#sev-5" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- Card 09: Confirmshaming -->
+  <g transform="translate(345, 862)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">09</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Confirmshaming</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">수치심 유발 확인</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">거절 옵션의 카피를 부정적으로 작성해 사용자가</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">수락하도록 압박하는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="42" rx="6" />
+    <rect class="red-solid" x="80" y="90" width="146" height="20" rx="4" />
+    <text x="153" y="103" text-anchor="middle" font-size="11" fill="white">네, 할인 받을래요!</text>
+    <text class="t-tertiary" x="153" y="121" text-anchor="middle" font-size="10">아니요, 돈을 절약하고 싶지 않습니다</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 뉴스레터 팝업, 해지 화면, 다운그레이드</text>
+    <use href="#sev-3" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- =========================================================
+       SECTION 4: 인터랙션 전반
+       ========================================================= -->
+  <g>
+    <text class="t-secondary" x="30" y="1066" font-size="13" font-weight="500">인터랙션 전반</text>
+    <line class="section-line" x1="30" y1="1074" x2="650" y2="1074" />
+  </g>
+
+  <!-- Card 10: Misdirection -->
+  <g transform="translate(30, 1086)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">10</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Misdirection</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">주의 분산</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">사용자의 시선을 의도적으로 다른 곳으로 유도해</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">중요한 정보를 놓치게 만드는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="44" rx="6" />
+    <text class="t-secondary" x="22" y="103" font-size="16" font-weight="500">✨ 프리미엄 플랜</text>
+    <text class="t-tertiary" x="22" y="120" font-size="9">자동 갱신 · 위약금 30% · 해지 시 데이터 삭제</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 요금제 선택, 팝업, 알림 배너</text>
+    <use href="#sev-3" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- Card 11: Trick questions -->
+  <g transform="translate(345, 1086)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">11</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Trick Questions</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">교묘한 질문</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">이중 부정이나 혼란스러운 문장 구조로 사용자가</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">의도와 다른 선택을 하게 만드는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="40" rx="6" />
+    <rect class="checkbox-empty" x="22" y="93" width="10" height="10" rx="2" />
+    <text class="t-secondary" x="38" y="102" font-size="10">이메일 수신을 원하지 않는 경우가</text>
+    <text class="t-secondary" x="38" y="115" font-size="10">
+      <tspan font-weight="600">아니라면</tspan> 체크하지 마세요
+    </text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 동의 화면, 설문, 설정 페이지</text>
+    <use href="#sev-3" x="14" y="152" width="48" height="8" />
+  </g>
+
+  <!-- Card 12: Disguised ads -->
+  <g transform="translate(30, 1266)">
+    <rect class="card-bg" x="0" y="0" width="305" height="170" rx="8" />
+    <rect class="num-bg" x="14" y="14" width="28" height="28" rx="6" />
+    <text class="num-text" x="28" y="33" text-anchor="middle" font-size="12">12</text>
+    <text class="t-primary" x="50" y="26" font-size="13" font-weight="500">Disguised Ads</text>
+    <text class="t-tertiary" x="50" y="40" font-size="11">위장 광고</text>
+
+    <text class="t-secondary" x="14" y="62" font-size="11">광고를 일반 콘텐츠나 네비게이션으로 위장하여</text>
+    <text class="t-secondary" x="14" y="76" font-size="11">클릭을 유도하는 패턴.</text>
+
+    <rect class="visual-bg" x="14" y="84" width="277" height="44" rx="6" />
+    <rect class="mock-border" x="22" y="92" width="100" height="22" rx="4" />
+    <text class="t-secondary" x="32" y="106" font-size="11" font-weight="500">▶ 다운로드</text>
+    <text class="t-tertiary" x="106" y="106" font-size="9">ad</text>
+    <text class="t-tertiary" x="22" y="124" font-size="10">← 실제 다운로드 버튼은 아래에 작게</text>
+
+    <text class="t-tertiary" x="14" y="142" font-size="10">발견 지점: 파일 공유, 뉴스 사이트, 검색 결과</text>
+    <use href="#sev-2" x="14" y="152" width="48" height="8" />
+  </g>
+</svg>
