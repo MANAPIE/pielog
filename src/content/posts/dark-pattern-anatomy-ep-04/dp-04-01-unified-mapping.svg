@@ -1,0 +1,464 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 870"
+  font-family="system-ui, -apple-system, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">
+  <title>Brignull × Mathur × 공정위 통합 매핑표</title>
+  <desc>다크패턴 3대 분류 체계(Brignull 12유형, Mathur 7범주 15유형, 공정위 6유형)의 매핑 관계와 규제 상태를 정리한 매트릭스</desc>
+
+  <defs>
+    <style>
+      .bg {
+        fill: #FAFAF7;
+      }
+
+      .panel-bg {
+        fill: #F1EFE8;
+      }
+
+      .t-primary {
+        fill: #1F1E1C;
+      }
+
+      .t-secondary {
+        fill: #5F5E5A;
+      }
+
+      .t-tertiary {
+        fill: #8B8A85;
+      }
+
+      .header-line {
+        stroke: #5F5E5A;
+        stroke-width: 1.2;
+      }
+
+      .row-line {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      /* Chips */
+      .chip-purple-bg {
+        fill: #EEEDFE;
+      }
+
+      .chip-purple-tx {
+        fill: #3C3489;
+        font-weight: 500;
+      }
+
+      .chip-teal-bg {
+        fill: #E1F5EE;
+      }
+
+      .chip-teal-tx {
+        fill: #085041;
+        font-weight: 500;
+      }
+
+      .chip-amber-bg {
+        fill: #FAEEDA;
+      }
+
+      .chip-amber-tx {
+        fill: #633806;
+        font-weight: 500;
+      }
+
+      .chip-red-bg {
+        fill: #FCEBEB;
+      }
+
+      .chip-red-tx {
+        fill: #791F1F;
+        font-weight: 500;
+      }
+
+      /* Match status */
+      .match-full {
+        fill: #0F6E56;
+        font-weight: 500;
+      }
+
+      .match-partial {
+        fill: #854F0B;
+      }
+
+      .match-none {
+        fill: #8B8A85;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .bg {
+          fill: #1A1A18;
+        }
+
+        .panel-bg {
+          fill: #222220;
+        }
+
+        .t-primary {
+          fill: #E8E7E2;
+        }
+
+        .t-secondary {
+          fill: #B4B2A9;
+        }
+
+        .t-tertiary {
+          fill: #888780;
+        }
+
+        .header-line {
+          stroke: #B4B2A9;
+        }
+
+        .row-line {
+          stroke: #444441;
+        }
+
+        .chip-purple-bg {
+          fill: #26215C;
+        }
+
+        .chip-purple-tx {
+          fill: #CECBF6;
+        }
+
+        .chip-teal-bg {
+          fill: #04342C;
+        }
+
+        .chip-teal-tx {
+          fill: #9FE1CB;
+        }
+
+        .chip-amber-bg {
+          fill: #412402;
+        }
+
+        .chip-amber-tx {
+          fill: #FAC775;
+        }
+
+        .chip-red-bg {
+          fill: #501313;
+        }
+
+        .chip-red-tx {
+          fill: #F7C1C1;
+        }
+
+        .match-full {
+          fill: #5DCAA5;
+        }
+
+        .match-partial {
+          fill: #EF9F27;
+        }
+
+        .match-none {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="680" height="870" />
+
+  <!-- ============================================
+       TITLE & 분류 체계 범례
+       ============================================ -->
+  <text class="t-primary" x="22" y="18" font-size="13" font-weight="500">Brignull × Mathur × 공정위 통합 매핑</text>
+
+  <g transform="translate(20, 32)">
+    <!-- Brignull -->
+    <rect class="chip-purple-bg" x="0" y="0" width="62" height="16" rx="3" />
+    <text class="chip-purple-tx" x="31" y="11" text-anchor="middle" font-size="9">Brignull</text>
+    <text class="t-tertiary" x="68" y="11" font-size="10">12유형 (2010)</text>
+
+    <!-- Mathur -->
+    <rect class="chip-teal-bg" x="170" y="0" width="56" height="16" rx="3" />
+    <text class="chip-teal-tx" x="198" y="11" text-anchor="middle" font-size="9">Mathur</text>
+    <text class="t-tertiary" x="232" y="11" font-size="10">7범주 15유형 (2019)</text>
+
+    <!-- 공정위 -->
+    <rect class="chip-amber-bg" x="378" y="0" width="48" height="16" rx="3" />
+    <text class="chip-amber-tx" x="402" y="11" text-anchor="middle" font-size="9">공정위</text>
+    <text class="t-tertiary" x="432" y="11" font-size="10">6유형 (2025 시행)</text>
+  </g>
+
+  <!-- ============================================
+       TABLE
+       Cols (x positions, widths):
+         Col1 Brignull:      x=20,  w=128  (right=148)
+         Col2 Mathur:        x=148, w=148  (right=296)
+         Col3 공정위:        x=296, w=148  (right=444)
+         Col4 매핑관계:      x=444, w=110  (right=554)
+         Col5 규제상태:      x=554, w=110  (right=664)
+       Headers at y=82
+       Header line at y=92
+       Data rows from y=92, height=58 each
+       ============================================ -->
+
+  <!-- Headers -->
+  <g>
+    <text class="t-primary" x="28" y="82" font-size="12" font-weight="500">Brignull 유형</text>
+    <text class="t-primary" x="156" y="82" font-size="12" font-weight="500">Mathur 범주/유형</text>
+    <text class="t-primary" x="304" y="82" font-size="12" font-weight="500">공정위 유형</text>
+    <text class="t-primary" x="452" y="82" font-size="12" font-weight="500">매핑 관계</text>
+    <text class="t-primary" x="562" y="82" font-size="12" font-weight="500">규제 상태</text>
+    <line class="header-line" x1="20" y1="92" x2="664" y2="92" />
+  </g>
+
+  <!-- ============================================
+       Row 1: Hidden costs (y=92~152)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="116" font-size="11" font-weight="500">Hidden costs</text>
+
+    <rect class="chip-teal-bg" x="156" y="105" width="62" height="16" rx="3" />
+    <text class="chip-teal-tx" x="187" y="116" text-anchor="middle" font-size="9">Sneaking</text>
+    <text class="t-secondary" x="156" y="138" font-size="10">Hidden Costs</text>
+
+    <rect class="chip-amber-bg" x="304" y="105" width="100" height="16" rx="3" />
+    <text class="chip-amber-tx" x="354" y="116" text-anchor="middle" font-size="9">순차공개 가격책정</text>
+
+    <text class="match-full" x="452" y="116" font-size="10">3자 일치</text>
+
+    <rect class="chip-red-bg" x="562" y="105" width="44" height="14" rx="3" />
+    <text class="chip-red-tx" x="584" y="115" text-anchor="middle" font-size="8">법 금지</text>
+    <text class="t-tertiary" x="562" y="134" font-size="9">2025.8 단속 시작</text>
+
+    <line class="row-line" x1="20" y1="152" x2="664" y2="152" />
+  </g>
+
+  <!-- ============================================
+       Row 2: Sneak into basket (y=152~212)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="176" font-size="11" font-weight="500">Sneak into basket</text>
+
+    <rect class="chip-teal-bg" x="156" y="165" width="62" height="16" rx="3" />
+    <text class="chip-teal-tx" x="187" y="176" text-anchor="middle" font-size="9">Sneaking</text>
+    <text class="t-secondary" x="156" y="198" font-size="10">Sneak into Basket</text>
+
+    <rect class="chip-amber-bg" x="304" y="165" width="106" height="16" rx="3" />
+    <text class="chip-amber-tx" x="357" y="176" text-anchor="middle" font-size="9">특정옵션 사전선택</text>
+
+    <text class="match-full" x="452" y="176" font-size="10">3자 일치</text>
+
+    <rect class="chip-red-bg" x="562" y="165" width="44" height="14" rx="3" />
+    <text class="chip-red-tx" x="584" y="175" text-anchor="middle" font-size="8">법 금지</text>
+
+    <line class="row-line" x1="20" y1="212" x2="664" y2="212" />
+  </g>
+
+  <!-- ============================================
+       Row 3: Forced continuity (y=212~272)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="236" font-size="11" font-weight="500">Forced continuity</text>
+
+    <rect class="chip-teal-bg" x="156" y="225" width="62" height="16" rx="3" />
+    <text class="chip-teal-tx" x="187" y="236" text-anchor="middle" font-size="9">Sneaking</text>
+    <text class="t-secondary" x="156" y="258" font-size="10">Hidden Subscription</text>
+
+    <rect class="chip-amber-bg" x="304" y="225" width="80" height="16" rx="3" />
+    <text class="chip-amber-tx" x="344" y="236" text-anchor="middle" font-size="9">숨은 갱신</text>
+
+    <text class="match-full" x="452" y="236" font-size="10">3자 일치</text>
+
+    <rect class="chip-red-bg" x="562" y="225" width="44" height="14" rx="3" />
+    <text class="chip-red-tx" x="584" y="235" text-anchor="middle" font-size="8">법 금지</text>
+
+    <line class="row-line" x1="20" y1="272" x2="664" y2="272" />
+  </g>
+
+  <!-- ============================================
+       Row 4: Roach motel (y=272~332)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="296" font-size="11" font-weight="500">Roach motel</text>
+
+    <rect class="chip-teal-bg" x="156" y="285" width="74" height="16" rx="3" />
+    <text class="chip-teal-tx" x="193" y="296" text-anchor="middle" font-size="9">Obstruction</text>
+    <text class="t-secondary" x="156" y="318" font-size="10">Hard to Cancel</text>
+
+    <rect class="chip-amber-bg" x="304" y="285" width="92" height="16" rx="3" />
+    <text class="chip-amber-tx" x="350" y="296" text-anchor="middle" font-size="9">취소·탈퇴 방해</text>
+
+    <text class="match-full" x="452" y="296" font-size="10">3자 일치</text>
+
+    <rect class="chip-red-bg" x="562" y="285" width="44" height="14" rx="3" />
+    <text class="chip-red-tx" x="584" y="295" text-anchor="middle" font-size="8">법 금지</text>
+    <text class="t-tertiary" x="562" y="314" font-size="9">시정명령 최다</text>
+
+    <line class="row-line" x1="20" y1="332" x2="664" y2="332" />
+  </g>
+
+  <!-- ============================================
+       Row 5: Misdirection (y=332~392)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="356" font-size="11" font-weight="500">Misdirection</text>
+
+    <rect class="chip-teal-bg" x="156" y="345" width="78" height="16" rx="3" />
+    <text class="chip-teal-tx" x="195" y="356" text-anchor="middle" font-size="9">Misdirection</text>
+    <text class="t-secondary" x="156" y="378" font-size="10">Visual Interference</text>
+
+    <rect class="chip-amber-bg" x="304" y="345" width="98" height="16" rx="3" />
+    <text class="chip-amber-tx" x="353" y="356" text-anchor="middle" font-size="9">잘못된 계층구조</text>
+
+    <text class="match-full" x="452" y="356" font-size="10">3자 일치</text>
+
+    <rect class="chip-red-bg" x="562" y="345" width="44" height="14" rx="3" />
+    <text class="chip-red-tx" x="584" y="355" text-anchor="middle" font-size="8">법 금지</text>
+
+    <line class="row-line" x1="20" y1="392" x2="664" y2="392" />
+  </g>
+
+  <!-- ============================================
+       Row 6: Confirmshaming (y=392~452)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="416" font-size="11" font-weight="500">Confirmshaming</text>
+
+    <rect class="chip-teal-bg" x="156" y="405" width="78" height="16" rx="3" />
+    <text class="chip-teal-tx" x="195" y="416" text-anchor="middle" font-size="9">Misdirection</text>
+    <text class="t-secondary" x="156" y="438" font-size="10">Confirmshaming</text>
+
+    <text class="match-none" x="304" y="416" font-size="10">명시적 대응 없음</text>
+
+    <text class="match-partial" x="452" y="412" font-size="10">Brignull+Mathur</text>
+    <text class="match-partial" x="452" y="426" font-size="10">일치</text>
+
+    <text class="t-tertiary" x="562" y="416" font-size="9">가이드라인 수준</text>
+
+    <line class="row-line" x1="20" y1="452" x2="664" y2="452" />
+  </g>
+
+  <!-- ============================================
+       Row 7: Trick questions (y=452~512)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="476" font-size="11" font-weight="500">Trick questions</text>
+
+    <rect class="chip-teal-bg" x="156" y="465" width="78" height="16" rx="3" />
+    <text class="chip-teal-tx" x="195" y="476" text-anchor="middle" font-size="9">Misdirection</text>
+    <text class="t-secondary" x="156" y="498" font-size="10">Trick Questions</text>
+
+    <text class="match-none" x="304" y="476" font-size="10">명시적 대응 없음</text>
+
+    <text class="match-partial" x="452" y="472" font-size="10">Brignull+Mathur</text>
+    <text class="match-partial" x="452" y="486" font-size="10">일치</text>
+
+    <text class="t-tertiary" x="562" y="476" font-size="9">가이드라인 수준</text>
+
+    <line class="row-line" x1="20" y1="512" x2="664" y2="512" />
+  </g>
+
+  <!-- ============================================
+       Row 8: Privacy zuckering (y=512~572)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="536" font-size="11" font-weight="500">Privacy zuckering</text>
+
+    <rect class="chip-teal-bg" x="156" y="525" width="86" height="16" rx="3" />
+    <text class="chip-teal-tx" x="199" y="536" text-anchor="middle" font-size="9">Forced Action</text>
+    <text class="t-secondary" x="156" y="558" font-size="10">Forced Enrollment</text>
+
+    <rect class="chip-amber-bg" x="304" y="525" width="106" height="16" rx="3" />
+    <text class="chip-amber-tx" x="357" y="536" text-anchor="middle" font-size="9">특정옵션 사전선택</text>
+    <text class="t-tertiary" x="304" y="556" font-size="9">(부분)</text>
+
+    <text class="match-partial" x="452" y="536" font-size="10">부분 일치</text>
+
+    <rect class="chip-red-bg" x="562" y="525" width="44" height="14" rx="3" />
+    <text class="chip-red-tx" x="584" y="535" text-anchor="middle" font-size="8">법 금지</text>
+    <text class="t-tertiary" x="562" y="554" font-size="9">(사전선택 부분)</text>
+
+    <line class="row-line" x1="20" y1="572" x2="664" y2="572" />
+  </g>
+
+  <!-- ============================================
+       Row 9: Bait and switch (y=572~632)
+       ============================================ -->
+  <g>
+    <text class="t-primary" x="28" y="596" font-size="11" font-weight="500">Bait and switch</text>
+
+    <text class="match-none" x="156" y="596" font-size="10">직접 대응 없음</text>
+
+    <text class="match-none" x="304" y="596" font-size="10">명시적 대응 없음</text>
+
+    <text class="match-none" x="452" y="596" font-size="10">Brignull 단독</text>
+
+    <text class="t-tertiary" x="562" y="596" font-size="9">표시광고법 적용</text>
+
+    <line class="row-line" x1="20" y1="632" x2="664" y2="632" />
+  </g>
+
+  <!-- ============================================
+       Row 10: Mathur 단독 - Countdown Timer (y=632~692)
+       ============================================ -->
+  <g>
+    <text class="match-none" x="28" y="656" font-size="10">직접 대응 없음</text>
+
+    <rect class="chip-teal-bg" x="156" y="645" width="62" height="16" rx="3" />
+    <text class="chip-teal-tx" x="187" y="656" text-anchor="middle" font-size="9">Urgency</text>
+    <text class="t-secondary" x="156" y="678" font-size="10">Countdown Timer</text>
+
+    <text class="match-none" x="304" y="656" font-size="10">명시적 대응 없음</text>
+
+    <text class="match-none" x="452" y="656" font-size="10">Mathur 단독</text>
+
+    <text class="t-tertiary" x="562" y="656" font-size="9">가이드라인 수준</text>
+
+    <line class="row-line" x1="20" y1="692" x2="664" y2="692" />
+  </g>
+
+  <!-- ============================================
+       Row 11: Mathur 단독 - Activity Message (y=692~752)
+       ============================================ -->
+  <g>
+    <text class="match-none" x="28" y="716" font-size="10">직접 대응 없음</text>
+
+    <rect class="chip-teal-bg" x="156" y="705" width="80" height="16" rx="3" />
+    <text class="chip-teal-tx" x="196" y="716" text-anchor="middle" font-size="9">Social Proof</text>
+    <text class="t-secondary" x="156" y="738" font-size="10">Activity Message</text>
+
+    <text class="match-none" x="304" y="716" font-size="10">명시적 대응 없음</text>
+
+    <text class="match-none" x="452" y="716" font-size="10">Mathur 단독</text>
+
+    <text class="t-tertiary" x="562" y="716" font-size="9">가이드라인 수준</text>
+
+    <line class="row-line" x1="20" y1="752" x2="664" y2="752" />
+  </g>
+
+  <!-- ============================================
+       Row 12: 공정위 단독 - 반복 간섭 (y=752~792)
+       ============================================ -->
+  <g>
+    <text class="match-none" x="28" y="776" font-size="10">직접 대응 없음</text>
+
+    <text class="match-none" x="156" y="776" font-size="10">직접 대응 없음</text>
+
+    <rect class="chip-amber-bg" x="304" y="765" width="70" height="16" rx="3" />
+    <text class="chip-amber-tx" x="339" y="776" text-anchor="middle" font-size="9">반복 간섭</text>
+
+    <text class="match-none" x="452" y="776" font-size="10">공정위 단독</text>
+
+    <rect class="chip-red-bg" x="562" y="765" width="44" height="14" rx="3" />
+    <text class="chip-red-tx" x="584" y="775" text-anchor="middle" font-size="8">법 금지</text>
+  </g>
+
+  <!-- ============================================
+       FOOTER 읽는 법 패널 (y=808~862)
+       ============================================ -->
+  <rect class="panel-bg" x="20" y="808" width="644" height="50" rx="8" />
+  <text class="t-primary" x="32" y="828" font-size="11" font-weight="500">읽는 법:</text>
+  <text class="t-secondary" x="74" y="828" font-size="11">3자 일치 = 세 분류 모두 해당 유형 인식 → 규제 리스크 최고. Mathur/공정위 단독 =
+    Brignull에는 없으나</text>
+  <text class="t-secondary" x="74" y="844" font-size="11">실증·규제에서 독립적으로 발견됨. 빈 칸 = 해당 분류 체계에서 명시적으로 다루지 않음 (존재하지 않는다는
+    의미가
+    아님).</text>
+</svg>
