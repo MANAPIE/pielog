@@ -1,0 +1,158 @@
+<svg width="100%" viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .th {
+      font-size: 14px;
+      font-weight: 500;
+      fill: #2C2C2A;
+    }
+
+    .ts {
+      font-size: 12px;
+      font-weight: 400;
+      fill: #5F5E5A;
+    }
+
+    .tiny {
+      font-size: 10px;
+      fill: #3C3489;
+    }
+
+    .gray-bg {
+      fill: #F1EFE8;
+      stroke: #D3D1C7;
+      stroke-width: 0.5;
+    }
+
+    .purple-bg {
+      fill: #EEEDFE;
+      stroke: #AFA9EC;
+      stroke-width: 0.5;
+    }
+
+    .purple-bg-strong {
+      fill: #EEEDFE;
+      stroke: #AFA9EC;
+      stroke-width: 1;
+    }
+
+    .purple-th {
+      fill: #3C3489;
+    }
+
+    .purple-ts {
+      fill: #534AB7;
+    }
+
+    .line {
+      stroke: #B4B2A9;
+      stroke-width: 0.5;
+    }
+
+    marker path {
+      stroke: #B4B2A9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .th {
+        fill: #D3D1C7;
+      }
+
+      .ts {
+        fill: #B4B2A9;
+      }
+
+      .tiny {
+        fill: #CECBF6;
+      }
+
+      .gray-bg {
+        fill: #2C2C2A;
+        stroke: #444441;
+      }
+
+      .purple-bg {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-bg-strong {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-th {
+        fill: #CECBF6;
+      }
+
+      .purple-ts {
+        fill: #AFA9EC;
+      }
+
+      .line {
+        stroke: #5F5E5A;
+      }
+
+      marker path {
+        stroke: #5F5E5A;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <rect class="purple-bg-strong" x="250" y="230" width="180" height="56" rx="28" />
+  <text class="th purple-th" x="340" y="250" text-anchor="middle" dominant-baseline="central">Brignull</text>
+  <text class="ts purple-ts" x="340" y="268" text-anchor="middle" dominant-baseline="central">12 types (2010)</text>
+
+  <rect class="gray-bg" x="140" y="20" width="400" height="90" rx="12" />
+  <text class="th" x="340" y="40" text-anchor="middle" dominant-baseline="central">진입 · 가입 단계</text>
+  <rect class="purple-bg" x="156" y="54" width="120" height="44" rx="6" />
+  <text class="ts purple-th" x="216" y="68" text-anchor="middle" dominant-baseline="central">Privacy</text>
+  <text class="ts purple-th" x="216" y="84" text-anchor="middle" dominant-baseline="central">Zuckering</text>
+  <rect class="purple-bg" x="284" y="54" width="120" height="44" rx="6" />
+  <text class="ts purple-th" x="344" y="76" text-anchor="middle" dominant-baseline="central">Friend Spam</text>
+  <rect class="purple-bg" x="412" y="54" width="120" height="44" rx="6" />
+  <text class="ts purple-th" x="472" y="68" text-anchor="middle" dominant-baseline="central">Forced</text>
+  <text class="ts purple-th" x="472" y="84" text-anchor="middle" dominant-baseline="central">Continuity</text>
+  <line x1="340" y1="110" x2="340" y2="228" class="line" marker-end="url(#arrow)" />
+
+  <rect class="gray-bg" x="20" y="160" width="180" height="200" rx="12" />
+  <text class="th" x="110" y="182" text-anchor="middle" dominant-baseline="central">전환 · 결제</text>
+  <rect class="purple-bg" x="36" y="196" width="148" height="30" rx="6" />
+  <text class="ts purple-th" x="110" y="211" text-anchor="middle" dominant-baseline="central">Hidden Costs</text>
+  <rect class="purple-bg" x="36" y="232" width="148" height="30" rx="6" />
+  <text class="ts purple-th" x="110" y="247" text-anchor="middle" dominant-baseline="central">Sneak into Basket</text>
+  <rect class="purple-bg" x="36" y="268" width="148" height="30" rx="6" />
+  <text class="ts purple-th" x="110" y="283" text-anchor="middle" dominant-baseline="central">Bait and Switch</text>
+  <rect class="purple-bg" x="36" y="304" width="148" height="44" rx="6" />
+  <text class="ts purple-th" x="110" y="318" text-anchor="middle" dominant-baseline="central">Price Comparison</text>
+  <text class="ts purple-th" x="110" y="334" text-anchor="middle" dominant-baseline="central">Prevention</text>
+  <line x1="200" y1="258" x2="248" y2="258" class="line" marker-end="url(#arrow)" />
+
+  <rect class="gray-bg" x="480" y="197" width="180" height="115" rx="12" />
+  <text class="th" x="570" y="219" text-anchor="middle" dominant-baseline="central">유지 · 이탈</text>
+  <rect class="purple-bg" x="496" y="235" width="148" height="30" rx="6" />
+  <text class="ts purple-th" x="570" y="250" text-anchor="middle" dominant-baseline="central">Roach Motel</text>
+  <rect class="purple-bg" x="496" y="271" width="148" height="30" rx="6" />
+  <text class="ts purple-th" x="570" y="286" text-anchor="middle" dominant-baseline="central">Confirmshaming</text>
+  <line x1="432" y1="258" x2="478" y2="258" class="line" marker-end="url(#arrow)" />
+
+  <rect class="gray-bg" x="120" y="380" width="440" height="120" rx="12" />
+  <text class="th" x="340" y="402" text-anchor="middle" dominant-baseline="central">인터랙션 전반</text>
+  <rect class="purple-bg" x="136" y="420" width="130" height="30" rx="6" />
+  <text class="ts purple-th" x="201" y="435" text-anchor="middle" dominant-baseline="central">Misdirection</text>
+  <rect class="purple-bg" x="274" y="420" width="130" height="30" rx="6" />
+  <text class="ts purple-th" x="339" y="435" text-anchor="middle" dominant-baseline="central">Trick Questions</text>
+  <rect class="purple-bg" x="412" y="420" width="130" height="30" rx="6" />
+  <text class="ts purple-th" x="477" y="435" text-anchor="middle" dominant-baseline="central">Disguised Ads</text>
+  <text class="ts" x="340" y="470" text-anchor="middle" dominant-baseline="central">시각적 위계, 카피, 레이아웃을 통한 주의 조작</text>
+  <line x1="340" y1="288" x2="340" y2="378" class="line" marker-end="url(#arrow)" />
+</svg>

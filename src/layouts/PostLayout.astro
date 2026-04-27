@@ -2,7 +2,6 @@
 import BaseLayout from "./BaseLayout.astro";
 import Giscus from "../components/Giscus.astro";
 import TableOfContents from "../components/TableOfContents.astro";
-import "github-markdown-css/github-markdown-light.css";
 
 interface Props {
     title: string;
@@ -30,6 +29,16 @@ const {
     pageType="post"
     sidebarOpacity={0.2}
 >
+    <script is:inline>
+      (function () {
+        var theme = document.documentElement.getAttribute('data-theme') || 'light';
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.id = 'markdown-theme-css';
+        link.href = 'https://cdn.jsdelivr.net/npm/github-markdown-css@5.9.0/github-markdown-' + theme + '.css';
+        document.head.appendChild(link);
+      })();
+    </script>
     <article>
         <header class="post-header">
             {

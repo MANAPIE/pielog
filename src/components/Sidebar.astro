@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const posts = await getCollection("posts", ({ data }) => !data.draft);
 const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
@@ -81,6 +82,10 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
     </ul>
   </div>
 
+  <div class="sidebar-theme">
+    <ThemeToggle />
+  </div>
+
   <style lang="scss">
     @use "../styles/_variables.scss" as *;
 
@@ -99,6 +104,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
       transition: opacity 0.3s ease;
     }
 
+
     .sidebar-logo {
       .site-title {
         font-size: 20px;
@@ -115,11 +121,12 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
             no-repeat;
           margin: 0 3px 2px -2px;
         }
+
       }
 
       .site-subtitle {
         font-family: "Courier New", Courier, monospace;
-        font-size: 10px;
+        font-size: 11px;
         color: $color-primary;
         margin-top: 5px;
 
@@ -147,8 +154,14 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
       color: $color-text-muted;
     }
 
+    .sidebar-theme {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid $color-border;
+    }
+
     .category-tree {
-      font-size: 12px;
+      font-size: 14px;
 
       a {
         color: $color-text;
@@ -179,7 +192,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
       li {
         list-style: none;
         font-weight: bold;
-        line-height: 22px;
+        padding: 2px 0;
 
         ul {
           margin: 4px 0;
@@ -188,7 +201,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
         li {
           font-weight: normal;
           border-left: 3px solid $color-tree;
-          padding: 2px 0 2px 10px;
+          padding-left: 10px;
           margin-left: 5px;
         }
       }

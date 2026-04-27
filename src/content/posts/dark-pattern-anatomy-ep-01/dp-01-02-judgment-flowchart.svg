@@ -1,46 +1,41 @@
 <svg width="100%" viewBox="0 0 680 640" xmlns="http://www.w3.org/2000/svg">
   <style>
-    text {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
-    .th {
-      font-size: 14px;
-      font-weight: 500;
-      fill: #2C2C2A;
-    }
-
-    .ts {
-      font-size: 12px;
-      font-weight: 400;
-      fill: #5F5E5A;
-    }
-
-    .line {
-      stroke: #B4B2A9;
-      stroke-width: 0.5;
-    }
-
-    marker path {
-      stroke: #B4B2A9;
-    }
-
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    .th { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+    .ts { font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+    .gray-bg { fill: #F1EFE8; stroke: #D3D1C7; stroke-width: 0.5; }
+    .red-bg { fill: #FCEBEB; stroke: #F09595; stroke-width: 0.5; }
+    .red-th { fill: #791F1F; }
+    .red-ts { fill: #A32D2D; }
+    .teal-bg { fill: #E1F5EE; stroke: #5DCAA5; stroke-width: 0.5; }
+    .teal-th { fill: #085041; }
+    .teal-ts { fill: #0F6E56; }
+    .amber-bg { fill: #FAEEDA; stroke: #FAC775; stroke-width: 0.5; }
+    .amber-th { fill: #633806; }
+    .amber-ts { fill: #854F0B; }
+    .dot-teal { fill: #5DCAA5; }
+    .dot-amber { fill: #FAC775; }
+    .dot-red { fill: #F09595; }
+    .line { stroke: #B4B2A9; stroke-width: 0.5; }
+    marker path { stroke: #B4B2A9; }
     @media (prefers-color-scheme: dark) {
-      .th {
-        fill: #D3D1C7;
-      }
-
-      .ts {
-        fill: #B4B2A9;
-      }
-
-      .line {
-        stroke: #5F5E5A;
-      }
-
-      marker path {
-        stroke: #5F5E5A;
-      }
+      .th { fill: #D3D1C7; }
+      .ts { fill: #B4B2A9; }
+      .gray-bg { fill: #2C2C2A; stroke: #444441; }
+      .red-bg { fill: #501313; stroke: #A32D2D; }
+      .red-th { fill: #F7C1C1; }
+      .red-ts { fill: #E89898; }
+      .teal-bg { fill: #04342C; stroke: #0F6E56; }
+      .teal-th { fill: #9FE1CB; }
+      .teal-ts { fill: #5DCAA5; }
+      .amber-bg { fill: #412402; stroke: #854F0B; }
+      .amber-th { fill: #FAC775; }
+      .amber-ts { fill: #EF9F27; }
+      .dot-teal { fill: #0F6E56; }
+      .dot-amber { fill: #854F0B; }
+      .dot-red { fill: #A32D2D; }
+      .line { stroke: #5F5E5A; }
+      marker path { stroke: #5F5E5A; }
     }
   </style>
   <defs>
@@ -51,91 +46,91 @@
   </defs>
 
   <!-- Q1 -->
-  <rect x="180" y="30" width="320" height="44" rx="22" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <rect class="gray-bg" x="180" y="30" width="320" height="44" rx="22" />
   <text class="th" x="340" y="52" text-anchor="middle" dominant-baseline="central">이 UI의 의도가 사용자에게 공개되어 있는가?</text>
 
   <line x1="260" y1="74" x2="160" y2="110" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="195" y="88" text-anchor="middle" fill="#0F6E56">예</text>
+  <text class="ts teal-ts" x="195" y="88" text-anchor="middle">예</text>
   <line x1="420" y1="74" x2="520" y2="110" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="485" y="88" text-anchor="middle" fill="#A32D2D">아니오</text>
+  <text class="ts red-ts" x="485" y="88" text-anchor="middle">아니오</text>
 
   <!-- Q2 Yes branch -->
-  <rect x="40" y="110" width="240" height="44" rx="22" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <rect class="gray-bg" x="40" y="110" width="240" height="44" rx="22" />
   <text class="th" x="160" y="132" text-anchor="middle" dominant-baseline="central">사용자가 쉽게 거부할 수 있는가?</text>
 
   <!-- Q2 No branch -->
-  <rect x="420" y="110" width="220" height="56" rx="8" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5" />
-  <text class="th" x="530" y="130" text-anchor="middle" dominant-baseline="central" fill="#791F1F">Q2. 의도적 은폐인가?</text>
-  <text class="ts" x="530" y="148" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">숨기려는 설계가 있는가?</text>
+  <rect class="red-bg" x="420" y="110" width="220" height="56" rx="8" />
+  <text class="th red-th" x="530" y="130" text-anchor="middle" dominant-baseline="central">Q2. 의도적 은폐인가?</text>
+  <text class="ts red-ts" x="530" y="148" text-anchor="middle" dominant-baseline="central">숨기려는 설계가 있는가?</text>
 
   <line x1="80" y1="154" x2="80" y2="200" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="66" y="178" fill="#0F6E56">예</text>
+  <text class="ts teal-ts" x="66" y="178">예</text>
   <line x1="220" y1="154" x2="300" y2="200" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="272" y="178" fill="#A32D2D">아니오</text>
+  <text class="ts red-ts" x="272" y="178">아니오</text>
   <line x1="480" y1="166" x2="480" y2="200" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="466" y="186" fill="#0F6E56">예</text>
+  <text class="ts teal-ts" x="466" y="186">예</text>
   <line x1="580" y1="166" x2="580" y2="200" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="595" y="186" fill="#A32D2D">아니오</text>
+  <text class="ts red-ts" x="595" y="186">아니오</text>
 
   <!-- Results row 1 -->
-  <rect x="20" y="200" width="120" height="56" rx="8" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5" />
-  <text class="th" x="80" y="220" text-anchor="middle" dominant-baseline="central" fill="#085041">설득</text>
-  <text class="ts" x="80" y="238" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">문제 없음</text>
+  <rect class="teal-bg" x="20" y="200" width="120" height="56" rx="8" />
+  <text class="th teal-th" x="80" y="220" text-anchor="middle" dominant-baseline="central">설득</text>
+  <text class="ts teal-ts" x="80" y="238" text-anchor="middle" dominant-baseline="central">문제 없음</text>
 
-  <rect x="160" y="200" width="240" height="44" rx="22" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <rect class="gray-bg" x="160" y="200" width="240" height="44" rx="22" />
   <text class="th" x="280" y="222" text-anchor="middle" dominant-baseline="central">이 패턴이 누구에게 유리한가?</text>
 
-  <rect x="420" y="200" width="120" height="56" rx="8" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5" />
-  <text class="th" x="480" y="220" text-anchor="middle" dominant-baseline="central" fill="#791F1F">다크패턴</text>
-  <text class="ts" x="480" y="238" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">의도적 기만</text>
+  <rect class="red-bg" x="420" y="200" width="120" height="56" rx="8" />
+  <text class="th red-th" x="480" y="220" text-anchor="middle" dominant-baseline="central">다크패턴</text>
+  <text class="ts red-ts" x="480" y="238" text-anchor="middle" dominant-baseline="central">의도적 기만</text>
 
-  <rect x="560" y="200" width="100" height="56" rx="8" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5" />
-  <text class="th" x="610" y="220" text-anchor="middle" dominant-baseline="central" fill="#633806">개선 필요</text>
-  <text class="ts" x="610" y="238" text-anchor="middle" dominant-baseline="central" fill="#854F0B">UX 부채</text>
+  <rect class="amber-bg" x="560" y="200" width="100" height="56" rx="8" />
+  <text class="th amber-th" x="610" y="220" text-anchor="middle" dominant-baseline="central">개선 필요</text>
+  <text class="ts amber-ts" x="610" y="238" text-anchor="middle" dominant-baseline="central">UX 부채</text>
 
   <!-- Q3 branches -->
   <line x1="220" y1="244" x2="180" y2="290" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="155" y="276" fill="#0F6E56">사용자</text>
+  <text class="ts teal-ts" x="155" y="276">사용자</text>
   <line x1="280" y1="244" x2="320" y2="290" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="295" y="276" fill="#854F0B">양쪽</text>
+  <text class="ts amber-ts" x="295" y="276">양쪽</text>
   <line x1="340" y1="244" x2="460" y2="290" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="385" y="276" fill="#A32D2D">사업자만</text>
+  <text class="ts red-ts" x="385" y="276">사업자만</text>
 
   <!-- Results row 2 -->
-  <rect x="120" y="290" width="120" height="56" rx="8" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5" />
-  <text class="th" x="180" y="310" text-anchor="middle" dominant-baseline="central" fill="#085041">넛지</text>
-  <text class="ts" x="180" y="328" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">적절한 유도</text>
+  <rect class="teal-bg" x="120" y="290" width="120" height="56" rx="8" />
+  <text class="th teal-th" x="180" y="310" text-anchor="middle" dominant-baseline="central">넛지</text>
+  <text class="ts teal-ts" x="180" y="328" text-anchor="middle" dominant-baseline="central">적절한 유도</text>
 
-  <rect x="260" y="290" width="120" height="44" rx="22" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <rect class="gray-bg" x="260" y="290" width="120" height="44" rx="22" />
   <text class="th" x="320" y="312" text-anchor="middle" dominant-baseline="central">비례적인가?</text>
 
-  <rect x="400" y="290" width="120" height="56" rx="8" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5" />
-  <text class="th" x="460" y="310" text-anchor="middle" dominant-baseline="central" fill="#791F1F">다크패턴</text>
-  <text class="ts" x="460" y="328" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">이익 편향</text>
+  <rect class="red-bg" x="400" y="290" width="120" height="56" rx="8" />
+  <text class="th red-th" x="460" y="310" text-anchor="middle" dominant-baseline="central">다크패턴</text>
+  <text class="ts red-ts" x="460" y="328" text-anchor="middle" dominant-baseline="central">이익 편향</text>
 
   <!-- Q4 branches -->
   <line x1="290" y1="334" x2="240" y2="380" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="240" y="366" fill="#0F6E56">예</text>
+  <text class="ts teal-ts" x="240" y="366">예</text>
   <line x1="350" y1="334" x2="400" y2="380" class="line" marker-end="url(#arrow)" />
-  <text class="ts" x="388" y="366" fill="#A32D2D">아니오</text>
+  <text class="ts red-ts" x="388" y="366">아니오</text>
 
-  <rect x="180" y="380" width="120" height="56" rx="8" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5" />
-  <text class="th" x="240" y="400" text-anchor="middle" dominant-baseline="central" fill="#085041">넛지</text>
-  <text class="ts" x="240" y="418" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">수용 가능</text>
+  <rect class="teal-bg" x="180" y="380" width="120" height="56" rx="8" />
+  <text class="th teal-th" x="240" y="400" text-anchor="middle" dominant-baseline="central">넛지</text>
+  <text class="ts teal-ts" x="240" y="418" text-anchor="middle" dominant-baseline="central">수용 가능</text>
 
-  <rect x="340" y="380" width="120" height="56" rx="8" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5" />
-  <text class="th" x="400" y="400" text-anchor="middle" dominant-baseline="central" fill="#633806">회색지대</text>
-  <text class="ts" x="400" y="418" text-anchor="middle" dominant-baseline="central" fill="#854F0B">재검토 필요</text>
+  <rect class="amber-bg" x="340" y="380" width="120" height="56" rx="8" />
+  <text class="th amber-th" x="400" y="400" text-anchor="middle" dominant-baseline="central">회색지대</text>
+  <text class="ts amber-ts" x="400" y="418" text-anchor="middle" dominant-baseline="central">재검토 필요</text>
 
   <!-- Summary -->
-  <rect x="40" y="480" width="600" height="152" rx="12" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <rect class="gray-bg" x="40" y="480" width="600" height="152" rx="12" />
   <text class="th" x="60" y="506" dominant-baseline="central">판별 기준 요약</text>
-  <circle cx="70" cy="530" r="6" fill="#5DCAA5" />
+  <circle class="dot-teal" cx="70" cy="530" r="6" />
   <text class="ts" x="84" y="530" dominant-baseline="central">설득: 투명하고, 거부 쉽고, 사용자에게 유리</text>
-  <circle cx="70" cy="554" r="6" fill="#5DCAA5" />
+  <circle class="dot-teal" cx="70" cy="554" r="6" />
   <text class="ts" x="84" y="554" dominant-baseline="central">넛지: 유도하되, 사용자 이익을 존중하고, 비례적</text>
-  <circle cx="70" cy="578" r="6" fill="#FAC775" />
+  <circle class="dot-amber" cx="70" cy="578" r="6" />
   <text class="ts" x="84" y="578" dominant-baseline="central">회색지대: 양쪽 이익이 있으나 균형이 맞지 않음 — 재설계 권장</text>
-  <circle cx="70" cy="602" r="6" fill="#F09595" />
+  <circle class="dot-red" cx="70" cy="602" r="6" />
   <text class="ts" x="84" y="602" dominant-baseline="central">다크패턴: 은폐, 거부 어려움, 사업자 이익 편향 중 하나라도 해당</text>
 </svg>

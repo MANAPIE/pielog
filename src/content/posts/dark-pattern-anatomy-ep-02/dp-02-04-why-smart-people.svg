@@ -1,55 +1,51 @@
 <svg width="100%" viewBox="0 0 680 580" xmlns="http://www.w3.org/2000/svg">
   <style>
-    text {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
-    .th {
-      font-size: 14px;
-      font-weight: 500;
-      fill: #2C2C2A;
-    }
-
-    .ts {
-      font-size: 12px;
-      font-weight: 400;
-      fill: #5F5E5A;
-    }
-
-    .line {
-      stroke: #B4B2A9;
-      stroke-width: 0.5;
-    }
-
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    .th { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+    .ts { font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+    .gray-bg { fill: #F1EFE8; stroke: #D3D1C7; stroke-width: 0.5; }
+    .teal-bg { fill: #E1F5EE; stroke: #5DCAA5; stroke-width: 0.5; }
+    .teal-th { fill: #085041; }
+    .orange-bg { fill: #FAECE7; stroke: #F0997B; stroke-width: 0.5; }
+    .orange-th { fill: #4A1B0C; }
+    .orange-ts { fill: #712B13; }
+    .red-bg { fill: #FCEBEB; stroke: #F09595; stroke-width: 0.5; }
+    .red-bg-strong { fill: #FCEBEB; stroke: #E24B4A; stroke-width: 1; }
+    .red-th { fill: #791F1F; }
+    .red-ts { fill: #A32D2D; }
+    .line { stroke: #B4B2A9; stroke-width: 0.5; }
+    marker path { stroke: #B4B2A9; }
     @media (prefers-color-scheme: dark) {
-      .th {
-        fill: #D3D1C7;
-      }
-
-      .ts {
-        fill: #B4B2A9;
-      }
-
-      .line {
-        stroke: #5F5E5A;
-      }
+      .th { fill: #D3D1C7; }
+      .ts { fill: #B4B2A9; }
+      .gray-bg { fill: #2C2C2A; stroke: #444441; }
+      .teal-bg { fill: #04342C; stroke: #0F6E56; }
+      .teal-th { fill: #9FE1CB; }
+      .orange-bg { fill: #3A1A0E; stroke: #A03A1F; }
+      .orange-th { fill: #F8C9B5; }
+      .orange-ts { fill: #EFAA8E; }
+      .red-bg { fill: #501313; stroke: #A32D2D; }
+      .red-bg-strong { fill: #501313; stroke: #E24B4A; }
+      .red-th { fill: #F7C1C1; }
+      .red-ts { fill: #E89898; }
+      .line { stroke: #5F5E5A; }
+      marker path { stroke: #5F5E5A; }
     }
   </style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
       orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="#B4B2A9" stroke-width="1.5" stroke-linecap="round"
-        stroke-linejoin="round" />
+      <path d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     </marker>
   </defs>
 
-  <rect x="220" y="30" width="240" height="44" rx="22" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5" />
-  <text class="th" x="340" y="52" text-anchor="middle" dominant-baseline="central" fill="#085041">사용자의 정상 상태</text>
+  <rect class="teal-bg" x="220" y="30" width="240" height="44" rx="22" />
+  <text class="th teal-th" x="340" y="52" text-anchor="middle" dominant-baseline="central">사용자의 정상 상태</text>
   <text class="ts" x="340" y="92" text-anchor="middle" dominant-baseline="central">시스템 2가 작동 → 기본값 의심, 약관 확인, 비교
     분석</text>
   <line x1="340" y1="106" x2="340" y2="140" class="line" marker-end="url(#arrow)" />
 
-  <rect x="120" y="140" width="440" height="44" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" />
+  <rect class="gray-bg" x="120" y="140" width="440" height="44" rx="8" />
   <text class="th" x="340" y="162" text-anchor="middle" dominant-baseline="central">그런데 현실에서는 다음 조건이 겹친다</text>
 
   <line x1="340" y1="184" x2="120" y2="226" class="line" marker-end="url(#arrow)" />
@@ -57,25 +53,25 @@
   <line x1="340" y1="184" x2="400" y2="226" class="line" marker-end="url(#arrow)" />
   <line x1="340" y1="184" x2="560" y2="226" class="line" marker-end="url(#arrow)" />
 
-  <rect x="40" y="226" width="160" height="80" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="0.5" />
-  <text class="th" x="120" y="252" text-anchor="middle" dominant-baseline="central" fill="#4A1B0C">의사결정 피로</text>
-  <text class="ts" x="120" y="272" text-anchor="middle" dominant-baseline="central" fill="#712B13">하루 수백 건의</text>
-  <text class="ts" x="120" y="288" text-anchor="middle" dominant-baseline="central" fill="#712B13">온라인 선택</text>
+  <rect class="orange-bg" x="40" y="226" width="160" height="80" rx="8" />
+  <text class="th orange-th" x="120" y="252" text-anchor="middle" dominant-baseline="central">의사결정 피로</text>
+  <text class="ts orange-ts" x="120" y="272" text-anchor="middle" dominant-baseline="central">하루 수백 건의</text>
+  <text class="ts orange-ts" x="120" y="288" text-anchor="middle" dominant-baseline="central">온라인 선택</text>
 
-  <rect x="210" y="226" width="140" height="80" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="0.5" />
-  <text class="th" x="280" y="252" text-anchor="middle" dominant-baseline="central" fill="#4A1B0C">시간 압박</text>
-  <text class="ts" x="280" y="272" text-anchor="middle" dominant-baseline="central" fill="#712B13">"지금 아니면</text>
-  <text class="ts" x="280" y="288" text-anchor="middle" dominant-baseline="central" fill="#712B13">끝" 프레이밍</text>
+  <rect class="orange-bg" x="210" y="226" width="140" height="80" rx="8" />
+  <text class="th orange-th" x="280" y="252" text-anchor="middle" dominant-baseline="central">시간 압박</text>
+  <text class="ts orange-ts" x="280" y="272" text-anchor="middle" dominant-baseline="central">"지금 아니면</text>
+  <text class="ts orange-ts" x="280" y="288" text-anchor="middle" dominant-baseline="central">끝" 프레이밍</text>
 
-  <rect x="360" y="226" width="140" height="80" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="0.5" />
-  <text class="th" x="430" y="252" text-anchor="middle" dominant-baseline="central" fill="#4A1B0C">정보 과부하</text>
-  <text class="ts" x="430" y="272" text-anchor="middle" dominant-baseline="central" fill="#712B13">약관 30페이지,</text>
-  <text class="ts" x="430" y="288" text-anchor="middle" dominant-baseline="central" fill="#712B13">옵션 12개</text>
+  <rect class="orange-bg" x="360" y="226" width="140" height="80" rx="8" />
+  <text class="th orange-th" x="430" y="252" text-anchor="middle" dominant-baseline="central">정보 과부하</text>
+  <text class="ts orange-ts" x="430" y="272" text-anchor="middle" dominant-baseline="central">약관 30페이지,</text>
+  <text class="ts orange-ts" x="430" y="288" text-anchor="middle" dominant-baseline="central">옵션 12개</text>
 
-  <rect x="510" y="226" width="140" height="80" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="0.5" />
-  <text class="th" x="580" y="252" text-anchor="middle" dominant-baseline="central" fill="#4A1B0C">감정 유발</text>
-  <text class="ts" x="580" y="272" text-anchor="middle" dominant-baseline="central" fill="#712B13">"놓칠까 봐"</text>
-  <text class="ts" x="580" y="288" text-anchor="middle" dominant-baseline="central" fill="#712B13">FOMO 자극</text>
+  <rect class="orange-bg" x="510" y="226" width="140" height="80" rx="8" />
+  <text class="th orange-th" x="580" y="252" text-anchor="middle" dominant-baseline="central">감정 유발</text>
+  <text class="ts orange-ts" x="580" y="272" text-anchor="middle" dominant-baseline="central">"놓칠까 봐"</text>
+  <text class="ts orange-ts" x="580" y="288" text-anchor="middle" dominant-baseline="central">FOMO 자극</text>
 
   <line x1="120" y1="306" x2="120" y2="350" class="line" />
   <line x1="280" y1="306" x2="280" y2="350" class="line" />
@@ -84,17 +80,17 @@
   <line x1="120" y1="350" x2="580" y2="350" class="line" />
   <line x1="340" y1="350" x2="340" y2="380" class="line" marker-end="url(#arrow)" />
 
-  <rect x="180" y="380" width="320" height="44" rx="8" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1" />
-  <text class="th" x="340" y="402" text-anchor="middle" dominant-baseline="central" fill="#791F1F">시스템 2 무력화 → 시스템 1이
+  <rect class="red-bg-strong" x="180" y="380" width="320" height="44" rx="8" />
+  <text class="th red-th" x="340" y="402" text-anchor="middle" dominant-baseline="central">시스템 2 무력화 → 시스템 1이
     독주</text>
 
   <line x1="340" y1="424" x2="340" y2="460" class="line" marker-end="url(#arrow)" />
 
-  <rect x="100" y="460" width="480" height="90" rx="12" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5" />
-  <text class="th" x="340" y="486" text-anchor="middle" dominant-baseline="central" fill="#791F1F">다크패턴이 노리는 바로 이
+  <rect class="red-bg" x="100" y="460" width="480" height="90" rx="12" />
+  <text class="th red-th" x="340" y="486" text-anchor="middle" dominant-baseline="central">다크패턴이 노리는 바로 이
     순간</text>
-  <text class="ts" x="340" y="508" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">기본값 수용 · 큰 버튼 클릭 · 손실
+  <text class="ts red-ts" x="340" y="508" text-anchor="middle" dominant-baseline="central">기본값 수용 · 큰 버튼 클릭 · 손실
     프레이밍에 반응 · 비교 포기</text>
-  <text class="ts" x="340" y="526" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">"지능"의 문제가 아니라 "인지
+  <text class="ts red-ts" x="340" y="526" text-anchor="middle" dominant-baseline="central">"지능"의 문제가 아니라 "인지
     자원"의 문제다</text>
 </svg>

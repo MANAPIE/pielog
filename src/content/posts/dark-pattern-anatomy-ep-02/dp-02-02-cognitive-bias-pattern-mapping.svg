@@ -5,56 +5,27 @@
 
   <defs>
     <style>
-      .bg {
-        fill: #FAFAF7;
-      }
-
-      .th-text {
-        font-size: 13px;
-        font-weight: 500;
-        fill: #1F1E1C;
-      }
-
-      .bias-kr {
-        font-size: 13px;
-        font-weight: 500;
-        fill: #1F1E1C;
-      }
-
-      .bias-en {
-        font-size: 11px;
-        fill: #8B8A85;
-      }
-
-      .cell {
-        font-size: 11px;
-        fill: #5F5E5A;
-      }
-
-      .chip-bg {
-        fill: #EEEDFE;
-      }
-
-      .chip-text {
-        font-size: 10px;
-        fill: #3C3489;
-        font-weight: 500;
-      }
-
-      .example {
-        font-size: 11px;
-        fill: #8B8A85;
-        font-style: italic;
-      }
-
-      .border-primary {
-        stroke: #5F5E5A;
-        stroke-width: 1.2;
-      }
-
-      .border-tertiary {
-        stroke: #D3D1C7;
-        stroke-width: 0.5;
+      .th-text { font-size: 13px; font-weight: 500; fill: #1F1E1C; }
+      .bias-kr { font-size: 13px; font-weight: 500; fill: #1F1E1C; }
+      .bias-en { font-size: 11px; fill: #8B8A85; }
+      .cell { font-size: 11px; fill: #5F5E5A; }
+      .chip-bg { fill: #EEEDFE; }
+      .chip-text { font-size: 10px; fill: #3C3489; font-weight: 500; }
+      .example { font-size: 11px; fill: #8B8A85; font-style: italic; }
+      .border-primary { stroke: #5F5E5A; stroke-width: 1.2; }
+      .border-tertiary { stroke: #D3D1C7; stroke-width: 0.5; }
+      .caption { font-size: 11px; fill: #8B8A85; }
+      @media (prefers-color-scheme: dark) {
+        .th-text { fill: #E5E3DC; }
+        .bias-kr { fill: #E5E3DC; }
+        .bias-en { fill: #888780; }
+        .cell { fill: #B4B2A9; }
+        .chip-bg { fill: #26215C; }
+        .chip-text { fill: #CECBF6; }
+        .example { fill: #888780; }
+        .border-primary { stroke: #B4B2A9; }
+        .border-tertiary { stroke: #444441; }
+        .caption { fill: #888780; }
       }
     </style>
   </defs>
@@ -229,6 +200,6 @@
   </g>
 
   <!-- Caption -->
-  <text x="340" y="682" text-anchor="middle" font-size="11" fill="#8B8A85">▲ 인지 편향과 다크패턴의 연결 구조 ― 7가지 편향 × 작동 메커니즘 × UI
+  <text x="340" y="682" text-anchor="middle" class="caption">▲ 인지 편향과 다크패턴의 연결 구조 ― 7가지 편향 × 작동 메커니즘 × UI
     패턴</text>
 </svg>
