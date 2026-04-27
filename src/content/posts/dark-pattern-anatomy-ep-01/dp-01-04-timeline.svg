@@ -3,57 +3,78 @@
   text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
   .th { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
   .ts { font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+  .axis { stroke: #D3D1C7; stroke-width: 1; }
+  .purple-bg { fill: #EEEDFE; stroke: #AFA9EC; stroke-width: 0.5; }
+  .purple-ts { fill: #3C3489; }
+  .purple-dot { fill: #7F77DD; }
+  .amber-bg { fill: #FAEEDA; stroke: #FAC775; stroke-width: 0.5; }
+  .amber-ts { fill: #633806; }
+  .amber-dot { fill: #BA7517; }
+  .red-bg { fill: #FCEBEB; stroke: #F09595; stroke-width: 0.5; }
+  .red-ts { fill: #791F1F; }
+  .red-dot { fill: #E24B4A; }
   @media (prefers-color-scheme: dark) {
-    .th { fill: #D3D1C7; } .ts { fill: #B4B2A9; }
+    .th { fill: #D3D1C7; }
+    .ts { fill: #B4B2A9; }
+    .axis { stroke: #444441; }
+    .purple-bg { fill: #26215C; stroke: #534AB7; }
+    .purple-ts { fill: #CECBF6; }
+    .purple-dot { fill: #AFA9EC; }
+    .amber-bg { fill: #412402; stroke: #854F0B; }
+    .amber-ts { fill: #FAC775; }
+    .amber-dot { fill: #EF9F27; }
+    .red-bg { fill: #501313; stroke: #A32D2D; }
+    .red-ts { fill: #F7C1C1; }
+    .red-dot { fill: #E24B4A; }
   }
 </style>
 
-<line x1="120" y1="40" x2="120" y2="490" stroke="#D3D1C7" stroke-width="1"/>
+<line class="axis" x1="120" y1="40" x2="120" y2="490"/>
 
-<circle cx="120" cy="50" r="5" fill="#7F77DD"/>
+<circle class="purple-dot" cx="120" cy="50" r="5"/>
 <text class="th" x="60" y="54" text-anchor="end" dominant-baseline="central">2010</text>
-<rect x="145" y="34" width="480" height="30" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
-<text class="ts" x="160" y="49" dominant-baseline="central" fill="#3C3489">Harry Brignull, "dark pattern" 용어 최초 명명 · darkpatterns.org 개설</text>
+<rect class="purple-bg" x="145" y="34" width="480" height="30" rx="6"/>
+<text class="ts purple-ts" x="160" y="49" dominant-baseline="central">Harry Brignull, "dark pattern" 용어 최초 명명 · darkpatterns.org 개설</text>
 
-<circle cx="120" cy="100" r="5" fill="#7F77DD"/>
+<circle class="purple-dot" cx="120" cy="100" r="5"/>
 <text class="th" x="60" y="104" text-anchor="end" dominant-baseline="central">2018</text>
-<rect x="145" y="84" width="480" height="30" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
-<text class="ts" x="160" y="99" dominant-baseline="central" fill="#3C3489">GDPR 시행 — 동의 UI의 다크패턴이 본격적으로 논의되기 시작</text>
+<rect class="purple-bg" x="145" y="84" width="480" height="30" rx="6"/>
+<text class="ts purple-ts" x="160" y="99" dominant-baseline="central">GDPR 시행 — 동의 UI의 다크패턴이 본격적으로 논의되기 시작</text>
 
-<circle cx="120" cy="150" r="5" fill="#7F77DD"/>
+<circle class="purple-dot" cx="120" cy="150" r="5"/>
 <text class="th" x="60" y="154" text-anchor="end" dominant-baseline="central">2019</text>
-<rect x="145" y="134" width="480" height="30" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
-<text class="ts" x="160" y="149" dominant-baseline="central" fill="#3C3489">Mathur et al. 11,000개 쇼핑몰 실증 연구 발표 — 학술적 분류 체계 수립</text>
+<rect class="purple-bg" x="145" y="134" width="480" height="30" rx="6"/>
+<text class="ts purple-ts" x="160" y="149" dominant-baseline="central">Mathur et al. 11,000개 쇼핑몰 실증 연구 발표 — 학술적 분류 체계 수립</text>
 
-<circle cx="120" cy="200" r="5" fill="#7F77DD"/>
+<circle class="purple-dot" cx="120" cy="200" r="5"/>
 <text class="th" x="60" y="204" text-anchor="end" dominant-baseline="central">2021</text>
-<rect x="145" y="184" width="480" height="30" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
-<text class="ts" x="160" y="199" dominant-baseline="central" fill="#3C3489">"Deceptive pattern"으로 용어 전환 논의 시작 · FTC 보고서 발표</text>
+<rect class="purple-bg" x="145" y="184" width="480" height="30" rx="6"/>
+<text class="ts purple-ts" x="160" y="199" dominant-baseline="central">"Deceptive pattern"으로 용어 전환 논의 시작 · FTC 보고서 발표</text>
 
-<circle cx="120" cy="250" r="5" fill="#BA7517"/>
+<circle class="amber-dot" cx="120" cy="250" r="5"/>
 <text class="th" x="60" y="254" text-anchor="end" dominant-baseline="central">2022</text>
-<rect x="145" y="234" width="480" height="30" rx="6" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
-<text class="ts" x="160" y="249" dominant-baseline="central" fill="#633806">EU DSA 채택 · Epic Games FTC 합의 ($245M) · EDPB 가이드라인</text>
+<rect class="amber-bg" x="145" y="234" width="480" height="30" rx="6"/>
+<text class="ts amber-ts" x="160" y="249" dominant-baseline="central">EU DSA 채택 · Epic Games FTC 합의 ($245M) · EDPB 가이드라인</text>
 
-<circle cx="120" cy="300" r="5" fill="#BA7517"/>
+<circle class="amber-dot" cx="120" cy="300" r="5"/>
 <text class="th" x="60" y="304" text-anchor="end" dominant-baseline="central">2023</text>
-<rect x="145" y="284" width="480" height="44" rx="6" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
-<text class="ts" x="160" y="299" dominant-baseline="central" fill="#633806">공정위, 온라인 다크패턴 자율관리 가이드라인 발표 (4범주·19유형)</text>
-<text class="ts" x="160" y="315" dominant-baseline="central" fill="#633806">Amazon Prime FTC 소송 제기</text>
+<rect class="amber-bg" x="145" y="284" width="480" height="44" rx="6"/>
+<text class="ts amber-ts" x="160" y="299" dominant-baseline="central">공정위, 온라인 다크패턴 자율관리 가이드라인 발표 (4범주·19유형)</text>
+<text class="ts amber-ts" x="160" y="315" dominant-baseline="central">Amazon Prime FTC 소송 제기</text>
 
-<circle cx="120" cy="360" r="5" fill="#E24B4A"/>
+<circle class="red-dot" cx="120" cy="360" r="5"/>
 <text class="th" x="60" y="364" text-anchor="end" dominant-baseline="central">2024</text>
-<rect x="145" y="344" width="480" height="30" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
-<text class="ts" x="160" y="359" dominant-baseline="central" fill="#791F1F">전자상거래법 개정 의결 — 6개 유형 다크패턴 금지 조항 신설</text>
+<rect class="red-bg" x="145" y="344" width="480" height="30" rx="6"/>
+<text class="ts red-ts" x="160" y="359" dominant-baseline="central">전자상거래법 개정 의결 — 6개 유형 다크패턴 금지 조항 신설</text>
 
-<circle cx="120" cy="410" r="5" fill="#E24B4A"/>
+<circle class="red-dot" cx="120" cy="410" r="5"/>
 <text class="th" x="60" y="414" text-anchor="end" dominant-baseline="central">2025</text>
-<rect x="145" y="394" width="480" height="44" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
-<text class="ts" x="160" y="409" dominant-baseline="central" fill="#791F1F">2월: 개정 전자상거래법 시행 · 10월: 4개 사업자 최초 시정명령</text>
-<text class="ts" x="160" y="425" dominant-baseline="central" fill="#791F1F">소비자보호 지침 개정, 22대 국회 다크패턴 관련 4건 법안 발의</text>
+<rect class="red-bg" x="145" y="394" width="480" height="44" rx="6"/>
+<text class="ts red-ts" x="160" y="409" dominant-baseline="central">2월: 개정 전자상거래법 시행 · 10월: 4개 사업자 최초 시정명령</text>
+<text class="ts red-ts" x="160" y="425" dominant-baseline="central">소비자보호 지침 개정, 22대 국회 다크패턴 관련 4건 법안 발의</text>
 
-<circle cx="120" cy="470" r="5" fill="#E24B4A"/>
+<circle class="red-dot" cx="120" cy="470" r="5"/>
 <text class="th" x="60" y="474" text-anchor="end" dominant-baseline="central">2026</text>
-<rect x="145" y="454" width="480" height="30" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
-<text class="ts" x="160" y="469" dominant-baseline="central" fill="#791F1F">EU Digital Fairness Act 준비 · 미국 Click-to-Cancel법 시행</text>
+<rect class="red-bg" x="145" y="454" width="480" height="30" rx="6"/>
+<text class="ts red-ts" x="160" y="469" dominant-baseline="central">EU Digital Fairness Act 준비 · 미국 Click-to-Cancel법 시행</text>
 </svg>

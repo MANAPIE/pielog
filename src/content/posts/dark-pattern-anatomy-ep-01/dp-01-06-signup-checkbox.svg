@@ -2,121 +2,138 @@
   font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
   <defs>
     <style>
-      .label {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-      }
-
-      .title {
-        font-size: 14px;
-        font-weight: 500;
-        fill: #2C2C2A;
-      }
-
-      .body {
-        font-size: 11px;
-        fill: #5F5E5A;
-      }
-
-      .annot {
-        font-size: 11px;
-        fill: #5F5E5A;
-      }
-
-      .annot-bold {
-        font-size: 11px;
-        font-weight: 600;
-      }
-
-      .pair-label {
-        font-size: 13px;
-        fill: #888780;
-        font-weight: 500;
+      .label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; }
+      .title { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+      .body { font-size: 11px; fill: #2C2C2A; }
+      .body-secondary { font-size: 11px; fill: #5F5E5A; }
+      .annot { font-size: 11px; fill: #5F5E5A; }
+      .annot-bold { font-size: 11px; font-weight: 600; }
+      .pair-label { font-size: 13px; fill: #888780; font-weight: 500; }
+      .page-bg { fill: #F9F8F4; }
+      .frame-bg { fill: #F1EFE8; }
+      .screen-bg { fill: #FFFFFF; stroke: #D3D1C7; stroke-width: 0.5; }
+      .red-tag { fill: #FCEBEB; }
+      .red-tag-text { fill: #791F1F; }
+      .teal-tag { fill: #E1F5EE; }
+      .teal-tag-text { fill: #085041; }
+      .red-annot-bg { fill: #FCEBEB; }
+      .red-annot-text { fill: #791F1F; }
+      .teal-annot-bg { fill: #E1F5EE; }
+      .teal-annot-text { fill: #085041; }
+      .checkbox-checked { fill: #E24B4A; }
+      .checkbox-empty { fill: none; stroke: #B4B2A9; stroke-width: 1; }
+      .muted-text { fill: #B4B2A9; }
+      .info-text { fill: #888780; }
+      .vs-divider { stroke: #D3D1C7; stroke-width: 0.5; }
+      .vs-circle { fill: #F1EFE8; }
+      .vs-text { fill: #888780; }
+      @media (prefers-color-scheme: dark) {
+        .title { fill: #D3D1C7; }
+        .body { fill: #D3D1C7; }
+        .body-secondary { fill: #B4B2A9; }
+        .annot { fill: #B4B2A9; }
+        .pair-label { fill: #888780; }
+        .page-bg { fill: #1C1B1A; }
+        .frame-bg { fill: #2C2C2A; }
+        .screen-bg { fill: #1C1B1A; stroke: #444441; }
+        .red-tag { fill: #501313; }
+        .red-tag-text { fill: #F7C1C1; }
+        .teal-tag { fill: #04342C; }
+        .teal-tag-text { fill: #9FE1CB; }
+        .red-annot-bg { fill: #501313; }
+        .red-annot-text { fill: #F7C1C1; }
+        .teal-annot-bg { fill: #04342C; }
+        .teal-annot-text { fill: #9FE1CB; }
+        .checkbox-empty { stroke: #5F5E5A; }
+        .muted-text { fill: #5F5E5A; }
+        .info-text { fill: #888780; }
+        .vs-divider { stroke: #444441; }
+        .vs-circle { fill: #2C2C2A; }
+        .vs-text { fill: #888780; }
       }
     </style>
   </defs>
 
-  <rect width="800" height="460" fill="#F9F8F4" rx="16" />
+  <rect class="page-bg" width="800" height="460" rx="16" />
 
   <!-- Pair label -->
   <text x="400" y="34" text-anchor="middle" class="pair-label">사례 2. 회원가입 시 동의 체크박스</text>
 
   <!-- ═══════ LEFT: DARK ═══════ -->
-  <rect x="48" y="52" width="320" height="340" rx="12" fill="#F1EFE8" />
+  <rect class="frame-bg" x="48" y="52" width="320" height="340" rx="12" />
 
   <!-- Tag -->
-  <rect x="64" y="68" width="50" height="20" rx="4" fill="#FCEBEB" />
-  <text x="89" y="81" text-anchor="middle" class="label" fill="#791F1F">DARK</text>
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
 
   <!-- Screen -->
-  <rect x="64" y="96" width="288" height="220" rx="8" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.5" />
+  <rect class="screen-bg" x="64" y="96" width="288" height="220" rx="8" />
 
   <!-- Title -->
   <text x="84" y="122" class="title">회원가입</text>
 
   <!-- Row 1: pre-checked, "필수" label -->
-  <rect x="84" y="134" width="14" height="14" rx="3" fill="#E24B4A" />
+  <rect class="checkbox-checked" x="84" y="134" width="14" height="14" rx="3" />
   <text x="91" y="144" text-anchor="middle" font-size="9" font-weight="600" fill="#FFFFFF">✓</text>
-  <text x="106" y="144" font-size="11" fill="#2C2C2A">마케팅 목적의 개인정보 제3자 제공에</text>
-  <text x="106" y="157" font-size="11" fill="#2C2C2A">동의합니다</text>
-  <rect x="296" y="133" width="34" height="14" rx="3" fill="#FCEBEB" />
-  <text x="313" y="143" text-anchor="middle" font-size="9" font-weight="600" fill="#791F1F">필수</text>
+  <text x="106" y="144" class="body">마케팅 목적의 개인정보 제3자 제공에</text>
+  <text x="106" y="157" class="body">동의합니다</text>
+  <rect class="red-tag" x="296" y="133" width="34" height="14" rx="3" />
+  <text x="313" y="143" text-anchor="middle" font-size="9" font-weight="600" class="red-tag-text">필수</text>
 
   <!-- Row 2: pre-checked -->
-  <rect x="84" y="168" width="14" height="14" rx="3" fill="#E24B4A" />
+  <rect class="checkbox-checked" x="84" y="168" width="14" height="14" rx="3" />
   <text x="91" y="178" text-anchor="middle" font-size="9" font-weight="600" fill="#FFFFFF">✓</text>
-  <text x="106" y="178" font-size="11" fill="#2C2C2A">프로모션 및 이벤트 알림 수신에 동의합니다</text>
+  <text x="106" y="178" class="body">프로모션 및 이벤트 알림 수신에 동의합니다</text>
 
 
   <!-- Row 3: warning text, pre-checked -->
-  <rect x="84" y="202" width="14" height="14" rx="3" fill="#E24B4A" />
+  <rect class="checkbox-checked" x="84" y="202" width="14" height="14" rx="3" />
   <text x="91" y="212" text-anchor="middle" font-size="9" font-weight="600" fill="#FFFFFF">✓</text>
-  <text x="106" y="210" font-size="10" fill="#B4B2A9">위 내용을 확인하지 않으면 서비스 이용이</text>
-  <text x="106" y="222" font-size="10" fill="#B4B2A9">제한될 수 있습니다</text>
+  <text x="106" y="210" font-size="10" class="muted-text">위 내용을 확인하지 않으면 서비스 이용이</text>
+  <text x="106" y="222" font-size="10" class="muted-text">제한될 수 있습니다</text>
 
   <!-- Annotation -->
-  <rect x="64" y="324" width="288" height="62" rx="6" fill="#FCEBEB" />
-  <text x="80" y="342" class="annot-bold" fill="#791F1F">Privacy Zuckering + Forced Action</text>
-  <text x="80" y="358" class="annot" fill="#791F1F">선택 동의를 필수처럼 표시, 사전 체크.</text>
-  <text x="80" y="374" class="annot" fill="#791F1F">경고 문구로 심리적 압박 유도.</text>
+  <rect class="red-annot-bg" x="64" y="324" width="288" height="62" rx="6" />
+  <text x="80" y="342" class="annot-bold red-annot-text">Privacy Zuckering + Forced Action</text>
+  <text x="80" y="358" class="annot red-annot-text">선택 동의를 필수처럼 표시, 사전 체크.</text>
+  <text x="80" y="374" class="annot red-annot-text">경고 문구로 심리적 압박 유도.</text>
 
   <!-- ═══════ RIGHT: BRIGHT ═══════ -->
-  <rect x="432" y="52" width="320" height="340" rx="12" fill="#F1EFE8" />
+  <rect class="frame-bg" x="432" y="52" width="320" height="340" rx="12" />
 
   <!-- Tag -->
-  <rect x="448" y="68" width="60" height="20" rx="4" fill="#E1F5EE" />
-  <text x="478" y="81" text-anchor="middle" class="label" fill="#085041">BRIGHT</text>
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
 
   <!-- Screen -->
-  <rect x="448" y="96" width="288" height="220" rx="8" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.5" />
+  <rect class="screen-bg" x="448" y="96" width="288" height="220" rx="8" />
 
   <!-- Title -->
   <text x="468" y="122" class="title">회원가입</text>
 
   <!-- Row 1: unchecked, "선택" -->
-  <rect x="468" y="134" width="14" height="14" rx="3" fill="none" stroke="#B4B2A9" stroke-width="1" />
-  <text x="490" y="144" font-size="11" fill="#2C2C2A">마케팅 정보 수신에 동의합니다</text>
-  <rect x="678" y="131" width="34" height="14" rx="3" fill="#E1F5EE" />
-  <text x="695" y="141" text-anchor="middle" font-size="9" font-weight="600" fill="#085041">선택</text>
+  <rect class="checkbox-empty" x="468" y="134" width="14" height="14" rx="3" />
+  <text x="490" y="144" class="body">마케팅 정보 수신에 동의합니다</text>
+  <rect class="teal-tag" x="678" y="131" width="34" height="14" rx="3" />
+  <text x="695" y="141" text-anchor="middle" font-size="9" font-weight="600" class="teal-tag-text">선택</text>
 
   <!-- Row 2: unchecked -->
-  <rect x="468" y="168" width="14" height="14" rx="3" fill="none" stroke="#B4B2A9" stroke-width="1" />
-  <text x="490" y="178" font-size="11" fill="#2C2C2A">프로모션 알림을 받겠습니다</text>
-  <rect x="678" y="165" width="34" height="14" rx="3" fill="#E1F5EE" />
-  <text x="695" y="175" text-anchor="middle" font-size="9" font-weight="600" fill="#085041">선택</text>
+  <rect class="checkbox-empty" x="468" y="168" width="14" height="14" rx="3" />
+  <text x="490" y="178" class="body">프로모션 알림을 받겠습니다</text>
+  <rect class="teal-tag" x="678" y="165" width="34" height="14" rx="3" />
+  <text x="695" y="175" text-anchor="middle" font-size="9" font-weight="600" class="teal-tag-text">선택</text>
 
   <!-- Info text -->
-  <text x="468" y="208" font-size="10" fill="#888780">선택 항목은 가입 후 설정에서 언제든 변경할 수 있습니다.</text>
+  <text x="468" y="208" font-size="10" class="info-text">선택 항목은 가입 후 설정에서 언제든 변경할 수 있습니다.</text>
 
   <!-- Annotation -->
-  <rect x="448" y="324" width="288" height="62" rx="6" fill="#E1F5EE" />
-  <text x="464" y="342" class="annot" fill="#085041">체크 해제 기본값, "선택" 명시.</text>
-  <text x="464" y="358" class="annot" fill="#085041">변경 가능성 안내로 사용자 통제권</text>
-  <text x="464" y="374" class="annot" fill="#085041">보장. 경고 문구 없음.</text>
+  <rect class="teal-annot-bg" x="448" y="324" width="288" height="62" rx="6" />
+  <text x="464" y="342" class="annot teal-annot-text">체크 해제 기본값, "선택" 명시.</text>
+  <text x="464" y="358" class="annot teal-annot-text">변경 가능성 안내로 사용자 통제권</text>
+  <text x="464" y="374" class="annot teal-annot-text">보장. 경고 문구 없음.</text>
 
   <!-- VS divider -->
-  <line x1="400" y1="72" x2="400" y2="392" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 4" />
-  <circle cx="400" cy="232" r="16" fill="#F1EFE8" />
-  <text x="400" y="237" text-anchor="middle" font-size="11" font-weight="600" fill="#888780">VS</text>
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="392" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="232" r="16" />
+  <text x="400" y="237" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
 </svg>

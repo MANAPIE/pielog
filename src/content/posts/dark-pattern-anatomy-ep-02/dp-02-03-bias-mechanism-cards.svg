@@ -5,82 +5,61 @@
 
   <defs>
     <style>
-      .bg {
-        fill: #FAFAF7;
-      }
-
-      .card-bg {
-        fill: #FFFFFF;
-        stroke: #D3D1C7;
-        stroke-width: 0.5;
-      }
-
-      .visual-bg {
-        fill: #F1EFE8;
-      }
-
-      .title {
-        font-size: 14px;
-        font-weight: 500;
-        fill: #1F1E1C;
-      }
-
-      .subtitle {
-        font-size: 11px;
-        fill: #8B8A85;
-      }
-
-      .desc {
-        font-size: 12px;
-        fill: #5F5E5A;
-      }
-
-      .label {
-        font-size: 11px;
-        fill: #5F5E5A;
-      }
-
-      .small {
-        font-size: 10px;
-        fill: #8B8A85;
-      }
-
-      .chip-bg {
-        fill: #EEEDFE;
-      }
-
-      .chip-text {
-        font-size: 10px;
-        fill: #3C3489;
-        font-weight: 500;
-      }
-
-      .icon-bg {
-        fill: #FCEBEB;
-      }
-
-      .icon-text {
-        font-size: 14px;
-        font-weight: 600;
-        fill: #791F1F;
-      }
-
-      .bar-gain {
-        fill: #5DCAA5;
-      }
-
-      .bar-loss {
-        fill: #E24B4A;
-      }
-
-      .red-emphasis {
-        fill: #A32D2D;
-        font-weight: 500;
-        font-size: 11px;
-      }
-
-      .red-solid {
-        fill: #E24B4A;
+      .card-bg { fill: #FFFFFF; stroke: #D3D1C7; stroke-width: 0.5; }
+      .visual-bg { fill: #F1EFE8; }
+      .title { font-size: 14px; font-weight: 500; fill: #1F1E1C; }
+      .subtitle { font-size: 11px; fill: #8B8A85; }
+      .desc { font-size: 12px; fill: #5F5E5A; }
+      .label { font-size: 11px; fill: #5F5E5A; }
+      .small { font-size: 10px; fill: #8B8A85; }
+      .chip-bg { fill: #EEEDFE; }
+      .chip-text { font-size: 10px; fill: #3C3489; font-weight: 500; }
+      .icon-bg { fill: #FCEBEB; }
+      .icon-text { font-size: 14px; font-weight: 600; fill: #791F1F; }
+      .bar-gain { fill: #5DCAA5; }
+      .bar-loss { fill: #E24B4A; }
+      .red-emphasis { fill: #A32D2D; font-weight: 500; font-size: 11px; }
+      .red-solid { fill: #E24B4A; }
+      .step-active { fill: #E24B4A; }
+      .step-pending { fill: none; stroke: #D3D1C7; stroke-width: 1; }
+      .step-pending-text { fill: #8B8A85; }
+      .price-label { font-size: 12px; font-weight: 500; fill: #1F1E1C; }
+      .price-sub { font-size: 10px; fill: #8B8A85; }
+      .price-divider { stroke: #D3D1C7; stroke-width: 0.5; }
+      .price-total { fill: #A32D2D; font-size: 12px; font-weight: 500; }
+      .frame-teal { fill: #E1F5EE; }
+      .frame-teal-num { fill: #085041; }
+      .frame-teal-sub { fill: #0F6E56; }
+      .frame-red { fill: #FCEBEB; }
+      .frame-red-num { fill: #791F1F; }
+      .frame-red-sub { fill: #A32D2D; }
+      .caption { font-size: 11px; fill: #8B8A85; }
+      @media (prefers-color-scheme: dark) {
+        .card-bg { fill: #2C2C2A; stroke: #444441; }
+        .visual-bg { fill: #1C1B1A; }
+        .title { fill: #E5E3DC; }
+        .subtitle { fill: #888780; }
+        .desc { fill: #B4B2A9; }
+        .label { fill: #B4B2A9; }
+        .small { fill: #888780; }
+        .chip-bg { fill: #26215C; }
+        .chip-text { fill: #CECBF6; }
+        .icon-bg { fill: #501313; }
+        .icon-text { fill: #F7C1C1; }
+        .red-emphasis { fill: #F09595; }
+        .step-pending { stroke: #5F5E5A; }
+        .step-pending-text { fill: #888780; }
+        .price-label { fill: #E5E3DC; }
+        .price-sub { fill: #888780; }
+        .price-divider { stroke: #444441; }
+        .price-total { fill: #F09595; }
+        .frame-teal { fill: #04342C; }
+        .frame-teal-num { fill: #9FE1CB; }
+        .frame-teal-sub { fill: #5DCAA5; }
+        .frame-red { fill: #501313; }
+        .frame-red-num { fill: #F7C1C1; }
+        .frame-red-sub { fill: #E89898; }
+        .caption { fill: #888780; }
       }
     </style>
   </defs>
@@ -147,7 +126,7 @@
     <text class="subtitle" x="60" y="46">Social proof</text>
 
     <rect class="visual-bg" x="16" y="62" width="278" height="68" rx="6" />
-    <text x="155" y="88" text-anchor="middle" font-size="16" font-weight="500" fill="#E24B4A">🔥 12명이 보고 있습니다</text>
+    <text x="155" y="88" text-anchor="middle" font-size="16" font-weight="500" class="red-solid">🔥 12명이 보고 있습니다</text>
     <text class="small" x="155" y="104" text-anchor="middle">← 검증 불가능한 숫자</text>
     <text class="label" x="155" y="122" text-anchor="middle" font-style="italic">"다른 사람도 사니까 괜찮겠지"</text>
 
@@ -171,16 +150,16 @@
 
     <rect class="visual-bg" x="16" y="62" width="278" height="68" rx="6" />
     <text class="label" x="28" y="82">해지 프로세스 (5단계)</text>
-    <circle cx="42" cy="106" r="10" fill="#E24B4A" />
+    <circle class="step-active" cx="42" cy="106" r="10" />
     <text x="42" y="110" text-anchor="middle" font-size="10" font-weight="500" fill="white">1</text>
-    <circle cx="70" cy="106" r="10" fill="#E24B4A" />
+    <circle class="step-active" cx="70" cy="106" r="10" />
     <text x="70" y="110" text-anchor="middle" font-size="10" font-weight="500" fill="white">2</text>
-    <circle cx="98" cy="106" r="10" fill="#E24B4A" />
+    <circle class="step-active" cx="98" cy="106" r="10" />
     <text x="98" y="110" text-anchor="middle" font-size="10" font-weight="500" fill="white">3</text>
-    <circle cx="126" cy="106" r="10" fill="none" stroke="#D3D1C7" stroke-width="1" />
-    <text x="126" y="110" text-anchor="middle" font-size="10" fill="#8B8A85">4</text>
-    <circle cx="154" cy="106" r="10" fill="none" stroke="#D3D1C7" stroke-width="1" />
-    <text x="154" y="110" text-anchor="middle" font-size="10" fill="#8B8A85">5</text>
+    <circle class="step-pending" cx="126" cy="106" r="10" />
+    <text x="126" y="110" text-anchor="middle" font-size="10" class="step-pending-text">4</text>
+    <circle class="step-pending" cx="154" cy="106" r="10" />
+    <text x="154" y="110" text-anchor="middle" font-size="10" class="step-pending-text">5</text>
     <text class="red-emphasis" x="178" y="110" font-style="italic">"여기까지 왔는데..."</text>
 
     <text class="desc" x="16" y="152">이미 투자한 시간과 노력 때문에 계속 진행한다.</text>
@@ -202,16 +181,16 @@
 
     <rect class="visual-bg" x="16" y="62" width="278" height="86" rx="6" />
     <text class="label" x="28" y="82">상품가</text>
-    <text x="282" y="82" text-anchor="end" font-size="12" font-weight="500" fill="#1F1E1C">9,900원</text>
+    <text class="price-label" x="282" y="82" text-anchor="end">9,900원</text>
     <text class="small" x="28" y="98">+ 배송비</text>
-    <text x="282" y="98" text-anchor="end" font-size="10" fill="#8B8A85">3,000원</text>
+    <text class="price-sub" x="282" y="98" text-anchor="end">3,000원</text>
     <text class="small" x="28" y="112">+ 포장비</text>
-    <text x="282" y="112" text-anchor="end" font-size="10" fill="#8B8A85">1,500원</text>
+    <text class="price-sub" x="282" y="112" text-anchor="end">1,500원</text>
     <text class="small" x="28" y="126">+ 수수료</text>
-    <text x="282" y="126" text-anchor="end" font-size="10" fill="#8B8A85">1,300원</text>
-    <line x1="28" y1="132" x2="282" y2="132" stroke="#D3D1C7" stroke-width="0.5" />
+    <text class="price-sub" x="282" y="126" text-anchor="end">1,300원</text>
+    <line class="price-divider" x1="28" y1="132" x2="282" y2="132" />
     <text class="red-emphasis" x="28" y="144">결제 금액</text>
-    <text x="282" y="144" text-anchor="end" font-size="12" font-weight="500" fill="#A32D2D">15,700원</text>
+    <text class="price-total" x="282" y="144" text-anchor="end">15,700원</text>
 
     <text class="desc" x="16" y="168">처음 본 가격이 기준점이 된다. 단계별로 비용을</text>
     <text class="desc" x="16" y="184">추가하면 최종 가격 저항이 줄어든다.</text>
@@ -231,12 +210,12 @@
     <text class="subtitle" x="60" y="46">Framing effect</text>
 
     <rect class="visual-bg" x="16" y="62" width="278" height="68" rx="6" />
-    <rect x="30" y="72" width="116" height="40" rx="6" fill="#E1F5EE" />
-    <text x="88" y="91" text-anchor="middle" font-size="16" font-weight="500" fill="#085041">95%</text>
-    <text x="88" y="105" text-anchor="middle" font-size="10" fill="#0F6E56">만족</text>
-    <rect x="164" y="72" width="116" height="40" rx="6" fill="#FCEBEB" />
-    <text x="222" y="91" text-anchor="middle" font-size="16" font-weight="500" fill="#791F1F">1/20</text>
-    <text x="222" y="105" text-anchor="middle" font-size="10" fill="#A32D2D">불만족</text>
+    <rect class="frame-teal" x="30" y="72" width="116" height="40" rx="6" />
+    <text x="88" y="91" text-anchor="middle" font-size="16" font-weight="500" class="frame-teal-num">95%</text>
+    <text x="88" y="105" text-anchor="middle" font-size="10" class="frame-teal-sub">만족</text>
+    <rect class="frame-red" x="164" y="72" width="116" height="40" rx="6" />
+    <text x="222" y="91" text-anchor="middle" font-size="16" font-weight="500" class="frame-red-num">1/20</text>
+    <text x="222" y="105" text-anchor="middle" font-size="10" class="frame-red-sub">불만족</text>
     <text class="small" x="155" y="124" text-anchor="middle">같은 사실, 다른 인상</text>
 
     <text class="desc" x="16" y="152">같은 정보를 제시하는 방식만 바꿔도 선택이</text>
@@ -250,5 +229,5 @@
   </g>
 
   <!-- Caption -->
-  <text x="340" y="764" text-anchor="middle" font-size="11" fill="#8B8A85">▲ 6가지 인지 편향이 다크패턴으로 연결되는 방식</text>
+  <text x="340" y="764" text-anchor="middle" class="caption">▲ 6가지 인지 편향이 다크패턴으로 연결되는 방식</text>
 </svg>
