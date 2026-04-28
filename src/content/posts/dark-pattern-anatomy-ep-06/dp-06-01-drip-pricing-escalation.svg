@@ -1,0 +1,68 @@
+<svg width="100%" viewBox="0 0 680 320" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Drip Pricing — 호텔 예약 시 단계별 가격 상승</title>
+<desc>초기 표시가 80,000원에서 최종 결제 121,000원으로 51% 상승하는 과정을 단계별로 보여주는 차트</desc>
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  svg { --b: #B4B2A9; }
+  .th { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+  .ts { font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+  .c-teal rect { fill: #E1F5EE; stroke: #5DCAA5; }
+  .c-amber rect { fill: #FAEEDA; stroke: #FAC775; }
+  .c-coral rect { fill: #FAECE7; stroke: #F0997B; }
+  .c-red rect { fill: #FCEBEB; stroke: #F09595; }
+  .c-red text { fill: #791F1F; }
+  @media (prefers-color-scheme: dark) {
+    svg { --b: #5F5E5A; }
+    .th { fill: #D3D1C7; }
+    .ts { fill: #B4B2A9; }
+    .c-teal rect { fill: #04342C; stroke: #0F6E56; }
+    .c-amber rect { fill: #412402; stroke: #854F0B; }
+    .c-coral rect { fill: #3A1A0E; stroke: #A03A1F; }
+    .c-red rect { fill: #501313; stroke: #A32D2D; }
+    .c-red text { fill: #F7C1C1; }
+  }
+</style>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<!-- Y axis -->
+<line x1="100" y1="40" x2="100" y2="240" stroke="var(--b)" stroke-width="0.5"/>
+<!-- X axis -->
+<line x1="100" y1="240" x2="620" y2="240" stroke="var(--b)" stroke-width="0.5"/>
+
+<!-- Price labels (Y) -->
+<text class="ts" x="92" y="230" text-anchor="end" dominant-baseline="central">80,000</text>
+<text class="ts" x="92" y="180" text-anchor="end" dominant-baseline="central">95,000</text>
+<text class="ts" x="92" y="130" text-anchor="end" dominant-baseline="central">110,000</text>
+<text class="ts" x="92" y="80" text-anchor="end" dominant-baseline="central">121,000</text>
+
+<!-- Horizontal grid lines -->
+<line x1="100" y1="180" x2="620" y2="180" stroke="var(--b)" stroke-width="0.3" stroke-dasharray="3 3"/>
+<line x1="100" y1="130" x2="620" y2="130" stroke="var(--b)" stroke-width="0.3" stroke-dasharray="3 3"/>
+<line x1="100" y1="80" x2="620" y2="80" stroke="var(--b)" stroke-width="0.3" stroke-dasharray="3 3"/>
+
+<!-- Bars (stacked appearance, left to right) -->
+<g class="c-teal"><rect x="130" y="230" width="80" height="10" rx="0"/></g>
+<text class="ts" x="170" y="256" text-anchor="middle" dominant-baseline="central">1박 요금</text>
+
+<g class="c-amber"><rect x="240" y="200" width="80" height="40" rx="0"/></g>
+<text class="ts" x="280" y="256" text-anchor="middle" dominant-baseline="central">+리조트비</text>
+
+<g class="c-amber"><rect x="350" y="170" width="80" height="70" rx="0"/></g>
+<text class="ts" x="390" y="256" text-anchor="middle" dominant-baseline="central">+청소비</text>
+
+<g class="c-amber"><rect x="460" y="155" width="80" height="85" rx="0"/></g>
+<text class="ts" x="500" y="256" text-anchor="middle" dominant-baseline="central">+시설이용</text>
+
+<g class="c-coral"><rect x="570" y="80" width="40" height="160" rx="0"/></g>
+<text class="ts" x="590" y="256" text-anchor="middle" dominant-baseline="central">최종</text>
+
+<!-- Annotation -->
+<line x1="170" y1="226" x2="590" y2="76" stroke="#E24B4A" stroke-width="1" stroke-dasharray="4 3"/>
+<g class="c-red"><rect x="430" y="50" width="100" height="28" rx="6" stroke-width="0.5"/>
+<text class="ts" x="480" y="64" text-anchor="middle" dominant-baseline="central">+51% 상승</text></g>
+
+<!-- Bottom note -->
+<text class="ts" x="360" y="296" text-anchor="middle" dominant-baseline="central">사용자가 보는 가격은 80,000원이지만 실제 결제 금액은 121,000원</text>
+</svg>

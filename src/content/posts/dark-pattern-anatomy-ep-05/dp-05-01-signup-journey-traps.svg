@@ -1,0 +1,180 @@
+<svg width="100%" viewBox="0 0 680 520" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>가입 여정 플로차트 — 각 단계에 숨어 있는 다크패턴</title>
+  <desc>서비스 가입 여정의 5단계(계정 생성, 약관 동의, 프로필 설정, 권한 요청, 첫 화면)를 세로로 배치하고, 각 단계 옆에 관련 다크패턴을 표시한 다이어그램</desc>
+  <style>
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .th {
+      font-size: 14px;
+      font-weight: 500;
+      fill: #2C2C2A;
+    }
+
+    .ts {
+      font-size: 12px;
+      font-weight: 400;
+      fill: #5F5E5A;
+    }
+
+    .arr,
+    .leader {
+      stroke: #B4B2A9;
+      stroke-width: 0.5;
+      fill: none;
+    }
+
+    .c-gray rect {
+      fill: #F1EFE8;
+      stroke: #D3D1C7;
+    }
+
+    .c-gray text {
+      fill: #5F5E5A;
+    }
+
+    .c-coral rect {
+      fill: #FAECE7;
+      stroke: #F0997B;
+    }
+
+    .c-coral text {
+      fill: #4A1B0C;
+    }
+
+    .c-teal rect {
+      fill: #E1F5EE;
+      stroke: #5DCAA5;
+    }
+
+    .c-teal text {
+      fill: #085041;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .th {
+        fill: #D3D1C7;
+      }
+
+      .ts {
+        fill: #B4B2A9;
+      }
+
+      .arr,
+      .leader {
+        stroke: #5F5E5A;
+      }
+
+      .c-gray rect {
+        fill: #2C2C2A;
+        stroke: #444441;
+      }
+
+      .c-gray text {
+        fill: #B4B2A9;
+      }
+
+      .c-coral rect {
+        fill: #3A1A0E;
+        stroke: #A03A1F;
+      }
+
+      .c-coral text {
+        fill: #F8C9B5;
+      }
+
+      .c-teal rect {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .c-teal text {
+        fill: #9FE1CB;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <!-- Step 1 -->
+  <g class="c-gray">
+    <rect x="200" y="30" width="200" height="44" rx="8" stroke-width="0.5" />
+    <text class="th" x="300" y="52" text-anchor="middle" dominant-baseline="central">계정 생성</text>
+  </g>
+  <g class="c-coral">
+    <rect x="440" y="30" width="200" height="44" rx="8" stroke-width="0.5" />
+    <text class="ts" x="540" y="52" text-anchor="middle" dominant-baseline="central">Forced Registration</text>
+  </g>
+  <line class="leader" x1="400" y1="52" x2="440" y2="52" />
+
+  <line x1="300" y1="74" x2="300" y2="110" class="arr" marker-end="url(#arrow)" />
+
+  <!-- Step 2 -->
+  <g class="c-gray">
+    <rect x="200" y="112" width="200" height="44" rx="8" stroke-width="0.5" />
+    <text class="th" x="300" y="134" text-anchor="middle" dominant-baseline="central">약관·개인정보 동의</text>
+  </g>
+  <g class="c-coral">
+    <rect x="440" y="106" width="200" height="56" rx="8" stroke-width="0.5" />
+    <text class="ts" x="540" y="123" text-anchor="middle" dominant-baseline="central">Privacy Zuckering</text>
+    <text class="ts" x="540" y="145" text-anchor="middle" dominant-baseline="central">사전선택 체크박스</text>
+  </g>
+  <line class="leader" x1="400" y1="134" x2="440" y2="134" />
+
+  <line x1="300" y1="156" x2="300" y2="192" class="arr" marker-end="url(#arrow)" />
+
+  <!-- Step 3 -->
+  <g class="c-gray">
+    <rect x="200" y="194" width="200" height="44" rx="8" stroke-width="0.5" />
+    <text class="th" x="300" y="216" text-anchor="middle" dominant-baseline="central">프로필 설정</text>
+  </g>
+  <g class="c-coral">
+    <rect x="440" y="194" width="200" height="44" rx="8" stroke-width="0.5" />
+    <text class="ts" x="540" y="216" text-anchor="middle" dominant-baseline="central">Forced Disclosure</text>
+  </g>
+  <line class="leader" x1="400" y1="216" x2="440" y2="216" />
+
+  <line x1="300" y1="238" x2="300" y2="274" class="arr" marker-end="url(#arrow)" />
+
+  <!-- Step 4 -->
+  <g class="c-gray">
+    <rect x="200" y="276" width="200" height="44" rx="8" stroke-width="0.5" />
+    <text class="th" x="300" y="298" text-anchor="middle" dominant-baseline="central">권한 요청</text>
+  </g>
+  <g class="c-coral">
+    <rect x="440" y="270" width="200" height="56" rx="8" stroke-width="0.5" />
+    <text class="ts" x="540" y="287" text-anchor="middle" dominant-baseline="central">Friend Spam</text>
+    <text class="ts" x="540" y="309" text-anchor="middle" dominant-baseline="central">타이밍 조작</text>
+  </g>
+  <line class="leader" x1="400" y1="298" x2="440" y2="298" />
+
+  <line x1="300" y1="320" x2="300" y2="356" class="arr" marker-end="url(#arrow)" />
+
+  <!-- Step 5 -->
+  <g class="c-teal">
+    <rect x="200" y="358" width="200" height="44" rx="8" stroke-width="0.5" />
+    <text class="th" x="300" y="380" text-anchor="middle" dominant-baseline="central">첫 화면 도착</text>
+  </g>
+
+  <!-- Legend -->
+  <g class="c-gray">
+    <rect x="60" y="440" width="14" height="14" rx="3" stroke-width="0.5" />
+  </g>
+  <text class="ts" x="82" y="447" dominant-baseline="central">여정 단계</text>
+  <g class="c-coral">
+    <rect x="200" y="440" width="14" height="14" rx="3" stroke-width="0.5" />
+  </g>
+  <text class="ts" x="222" y="447" dominant-baseline="central">잠복 패턴</text>
+  <g class="c-teal">
+    <rect x="340" y="440" width="14" height="14" rx="3" stroke-width="0.5" />
+  </g>
+  <text class="ts" x="362" y="447" dominant-baseline="central">도착</text>
+
+  <text class="ts" x="300" y="490" text-anchor="middle" dominant-baseline="central">모든 단계에 하나 이상의 다크패턴이 잠복해 있다</text>
+</svg>
