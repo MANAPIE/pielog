@@ -1,0 +1,308 @@
+<svg width="100%" viewBox="0 0 800 480" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Drip Pricing — 호텔 검색 결과 가격 표시 Before/After</title>
+  <desc>다크패턴: 80,000원으로 표시 후 5단계에 걸쳐 121,000원으로 증가 / 정직한 설계: 검색 결과부터 121,000원 일괄 표시</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 13px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .price-display {
+        font-size: 22px;
+        font-weight: 700;
+        fill: #2C2C2A;
+      }
+
+      .price-small {
+        font-size: 11px;
+        font-weight: 500;
+        fill: #5F5E5A;
+      }
+
+      .delta-text {
+        font-size: 10px;
+        fill: #A32D2D;
+      }
+
+      .delta-line {
+        stroke: #E24B4A;
+        stroke-dasharray: 2 2;
+        stroke-width: 0.5;
+      }
+
+      .item-line {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .row-divider {
+        stroke: #ECEAE2;
+        stroke-width: 0.5;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .price-display {
+          fill: #D3D1C7;
+        }
+
+        .price-small {
+          fill: #B4B2A9;
+        }
+
+        .delta-text {
+          fill: #E89898;
+        }
+
+        .delta-line {
+          stroke: #A32D2D;
+        }
+
+        .item-line {
+          fill: #B4B2A9;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .row-divider {
+          stroke: #3A3936;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="480" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 호텔 검색 결과 가격 표시</text>
+
+  <!-- LEFT: DARK - Drip pricing across stages -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="380" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <!-- Stage 1: search result -->
+  <rect class="screen-bg" x="64" y="96" width="288" height="60" rx="8" />
+  <text x="80" y="118" class="body">검색 결과</text>
+  <text x="80" y="142" class="price-display">₩80,000</text>
+  <text x="185" y="142" class="price-small">/ 1박</text>
+
+  <line class="delta-line" x1="208" y1="160" x2="208" y2="170" />
+  <text x="220" y="168" class="delta-text">+15,000 (리조트 수수료)</text>
+
+  <!-- Stage 2: room select -->
+  <rect class="screen-bg" x="64" y="174" width="288" height="44" rx="8" />
+  <text x="80" y="192" class="body">객실 선택</text>
+  <text x="80" y="207" class="price-small">₩95,000 + 청소비, 시설료 별도</text>
+
+  <line class="delta-line" x1="208" y1="222" x2="208" y2="232" />
+  <text x="220" y="230" class="delta-text">+15,000 (청소비, 시설료)</text>
+
+  <!-- Stage 3: payment summary -->
+  <rect class="screen-bg" x="64" y="236" width="288" height="84" rx="8" />
+  <text x="80" y="256" class="body">결제 단계</text>
+  <text x="80" y="271" class="item-line">객실료 80,000 + 수수료 25,000</text>
+  <text x="80" y="286" class="item-line">+ 세금·봉사료 16,000</text>
+  <text x="332" y="307" text-anchor="end" class="price-display">₩121,000</text>
+
+  <rect class="red-annot-bg" x="64" y="334" width="288" height="81" rx="6" />
+  <text x="80" y="354" class="annot-bold red-annot-text">Drip Pricing</text>
+  <text x="80" y="370" class="annot red-annot-text">초기 표시 80,000원 → 최종 121,000원 (+51%).</text>
+  <text x="80" y="386" class="annot red-annot-text">단계별 소액 추가가 누적되어</text>
+  <text x="80" y="402" class="annot red-annot-text">전체 부담은 크지만 매 단계는 가벼워 보임.</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="380" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <!-- Stage 1: search result with full price -->
+  <rect class="screen-bg" x="448" y="96" width="288" height="80" rx="8" />
+  <text x="464" y="118" class="body">검색 결과 (수수료·세금 포함)</text>
+  <text x="464" y="146" class="price-display">₩121,000</text>
+  <text x="576" y="146" class="price-small">/ 1박</text>
+  <text x="464" y="166" class="price-small" font-style="italic">↓ 내역 보기</text>
+
+  <!-- Detail breakdown -->
+  <rect class="screen-bg" x="448" y="184" width="288" height="118" rx="8" />
+  <text x="464" y="204" class="body" font-weight="500">가격 내역</text>
+  <line x1="464" y1="214" x2="720" y2="214" class="row-divider" />
+  <text x="464" y="232" class="item-line">객실료 (1박)</text>
+  <text x="720" y="232" text-anchor="end" class="item-line">80,000</text>
+  <text x="464" y="250" class="item-line">리조트 수수료</text>
+  <text x="720" y="250" text-anchor="end" class="item-line">15,000</text>
+  <text x="464" y="268" class="item-line">청소비</text>
+  <text x="720" y="268" text-anchor="end" class="item-line">10,000</text>
+  <text x="464" y="286" class="item-line">시설 이용료 + 세금</text>
+  <text x="720" y="286" text-anchor="end" class="item-line">16,000</text>
+
+  <!-- Stage 2: same total at payment -->
+  <rect class="screen-bg" x="448" y="310" width="288" height="44" rx="8" />
+  <text x="464" y="330" class="body">결제 단계</text>
+  <text x="720" y="340" text-anchor="end" class="price-display">₩121,000</text>
+
+  <rect class="teal-annot-bg" x="448" y="368" width="288" height="48" rx="6" />
+  <text x="464" y="388" class="annot teal-annot-text">검색 결과부터 최종 결제까지 동일 가격.</text>
+  <text x="464" y="404" class="annot teal-annot-text">수수료·세금은 항목별로 분해 노출. 단계 간 가격 변동 없음.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="432" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="242" r="16" />
+  <text x="400" y="247" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>
