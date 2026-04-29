@@ -1,0 +1,313 @@
+<svg width="100%" viewBox="0 0 800 450" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Sneak into Basket — 항공권 보험 사전 선택 Before/After</title>
+  <desc>다크패턴: 수하물 보험이 사전 선택되어 장바구니에 자동 포함 / 정직한 설계: 보험은 별도 옵트인 단계로 분리</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 13px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .price {
+        font-size: 13px;
+        font-weight: 600;
+        fill: #2C2C2A;
+      }
+
+      .total-price {
+        font-size: 16px;
+        font-weight: 700;
+        fill: #2C2C2A;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .row-divider {
+        stroke: #ECEAE2;
+        stroke-width: 0.5;
+      }
+
+      .checkbox-fill {
+        fill: #E24B4A;
+      }
+
+      .checkbox-empty {
+        fill: #FFFFFF;
+        stroke: #B4B2A9;
+        stroke-width: 0.5;
+      }
+
+      .add-btn {
+        fill: none;
+        stroke: #1D9E75;
+        stroke-width: 1;
+      }
+
+      .add-btn-text {
+        fill: #1D9E75;
+        font-weight: 500;
+      }
+
+      .small-link {
+        font-size: 9px;
+        fill: #B4B2A9;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .price {
+          fill: #D3D1C7;
+        }
+
+        .total-price {
+          fill: #D3D1C7;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .row-divider {
+          stroke: #3A3936;
+        }
+
+        .checkbox-empty {
+          fill: #1C1B1A;
+          stroke: #5F5E5A;
+        }
+
+        .add-btn {
+          stroke: #5DCAA5;
+        }
+
+        .add-btn-text {
+          fill: #5DCAA5;
+        }
+
+        .small-link {
+          fill: #5F5E5A;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="460" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 항공권 결제 — 수하물 보험 옵션</text>
+
+  <!-- LEFT: DARK -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="355" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <rect class="screen-bg" x="64" y="96" width="288" height="220" rx="8" />
+  <text x="84" y="118" class="title">결제 내역</text>
+
+  <text x="84" y="142" class="body">서울-도쿄 왕복</text>
+  <text x="332" y="142" text-anchor="end" class="price">158,000</text>
+  <line x1="84" y1="156" x2="332" y2="156" class="row-divider" />
+
+  <!-- Pre-checked insurance -->
+  <rect class="checkbox-fill" x="84" y="170" width="14" height="14" rx="3" />
+  <text x="106" y="181" class="body">수하물 보험 (사전 선택됨)</text>
+  <text x="332" y="181" text-anchor="end" class="price">+5,000</text>
+  <text x="106" y="195" class="small-link">해제하려면 체크박스를 클릭하세요</text>
+
+  <line x1="84" y1="210" x2="332" y2="210" class="row-divider" />
+  <text x="84" y="232" class="title">합계</text>
+  <text x="332" y="232" text-anchor="end" class="total-price">163,000</text>
+
+  <text x="84" y="290" class="body">사용자가 의도하지 않은 5,000원이 기본 포함됨</text>
+
+  <rect class="red-annot-bg" x="64" y="328" width="288" height="62" rx="6" />
+  <text x="80" y="346" class="annot-bold red-annot-text">Sneak into Basket</text>
+  <text x="80" y="362" class="annot red-annot-text">보험이 사전 선택. 해제 안내는 작은 회색 글씨. </text>
+  <text x="80" y="378" class="annot red-annot-text">부주의 맹시로 인지율 낮음.</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="355" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <rect class="screen-bg" x="448" y="96" width="288" height="220" rx="8" />
+  <text x="468" y="118" class="title">결제 내역</text>
+
+  <text x="468" y="142" class="body">서울-도쿄 왕복</text>
+  <text x="716" y="142" text-anchor="end" class="price">158,000</text>
+  <line x1="468" y1="156" x2="716" y2="156" class="row-divider" />
+
+  <text x="468" y="178" class="body" font-weight="500">선택 가능한 추가 옵션</text>
+  <rect class="checkbox-empty" x="468" y="188" width="14" height="14" rx="3" />
+  <text x="490" y="199" class="body">수하물 보험 (5,000원)</text>
+
+  <rect class="add-btn" x="640" y="186" width="76" height="20" rx="10" />
+  <text x="678" y="200" text-anchor="middle" font-size="11" class="add-btn-text">추가하기</text>
+
+  <line x1="468" y1="214" x2="716" y2="214" class="row-divider" />
+  <text x="468" y="236" class="title">합계</text>
+  <text x="716" y="236" text-anchor="end" class="total-price">158,000</text>
+
+  <text x="468" y="290" class="body">사용자가 명시적으로 추가한 항목만 합계에 반영됨</text>
+
+  <rect class="teal-annot-bg" x="448" y="328" width="288" height="62" rx="6" />
+  <text x="464" y="346" class="annot teal-annot-text">기본값은 "선택 안 함". </text>
+  <text x="464" y="362" class="annot teal-annot-text">추가 옵션은 "추가하기" 버튼으로 명시적 옵트인.</text>
+  <text x="464" y="378" class="annot teal-annot-text">공정위 "특정옵션 사전선택" 금지 영역.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="412" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="232" r="16" />
+  <text x="400" y="237" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>

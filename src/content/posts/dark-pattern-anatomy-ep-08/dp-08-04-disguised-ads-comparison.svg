@@ -1,0 +1,297 @@
+<svg width="100%" viewBox="0 0 800 420" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Disguised Ads — 다운로드 페이지 Before/After</title>
+  <desc>다크패턴: 광고 다운로드 버튼이 실제 다운로드 버튼과 유사 / 정직한 설계: 광고와 콘텐츠 명확히 구분</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 13px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .download-btn {
+        fill: #1D9E75;
+      }
+
+      .ad-area-faint {
+        fill: #FAFAFA;
+        stroke: #ECEAE2;
+        stroke-width: 0.5;
+      }
+
+      .ad-label-tiny {
+        font-size: 7px;
+        fill: #B4B2A9;
+      }
+
+      .ad-label-clear {
+        font-size: 11px;
+        font-weight: 600;
+        fill: #5F5E5A;
+      }
+
+      .ad-area-clear {
+        fill: #F1EFE8;
+        stroke: #B4B2A9;
+        stroke-width: 0.5;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .download-btn {
+          fill: #0F6E56;
+        }
+
+        .ad-area-faint {
+          fill: #25241F;
+          stroke: #3A3936;
+        }
+
+        .ad-label-tiny {
+          fill: #5F5E5A;
+        }
+
+        .ad-label-clear {
+          fill: #B4B2A9;
+        }
+
+        .ad-area-clear {
+          fill: #2C2C2A;
+          stroke: #5F5E5A;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="420" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 소프트웨어 다운로드 페이지</text>
+
+  <!-- LEFT: DARK - 4 download-looking buttons -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="320" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <rect class="screen-bg" x="64" y="96" width="288" height="180" rx="8" />
+  <text x="84" y="118" class="title">파일 다운로드</text>
+
+  <!-- 4 fake download buttons -->
+  <rect class="ad-area-faint" x="84" y="134" width="248" height="22" rx="4" />
+  <rect class="download-btn" x="248" y="138" width="64" height="14" rx="3" />
+  <text x="280" y="148" text-anchor="middle" font-size="9" fill="#FFFFFF">DOWNLOAD</text>
+  <text x="90" y="148" font-size="9" class="body">대용량 광고: 더 빠른 다운로드</text>
+  <text x="328" y="148" text-anchor="end" class="ad-label-tiny">광고</text>
+
+  <rect class="ad-area-faint" x="84" y="160" width="248" height="22" rx="4" />
+  <rect class="download-btn" x="248" y="164" width="64" height="14" rx="3" />
+  <text x="280" y="174" text-anchor="middle" font-size="9" fill="#FFFFFF">DOWNLOAD</text>
+  <text x="90" y="174" font-size="9" class="body">정품 인증 도구</text>
+  <text x="328" y="174" text-anchor="end" class="ad-label-tiny">광고</text>
+
+  <rect class="ad-area-faint" x="84" y="186" width="248" height="22" rx="4" />
+  <rect class="download-btn" x="248" y="190" width="64" height="14" rx="3" />
+  <text x="280" y="200" text-anchor="middle" font-size="9" fill="#FFFFFF">DOWNLOAD</text>
+  <text x="90" y="200" font-size="9" class="body">⚡ 무료 백신 설치</text>
+  <text x="328" y="200" text-anchor="end" class="ad-label-tiny">광고</text>
+
+  <rect class="ad-area-faint" x="84" y="212" width="248" height="22" rx="4" />
+  <rect class="download-btn" x="248" y="216" width="64" height="14" rx="3" />
+  <text x="280" y="226" text-anchor="middle" font-size="9" fill="#FFFFFF">DOWNLOAD</text>
+  <text x="90" y="226" font-size="9" class="body">실제 파일 (file.zip, 12MB)</text>
+
+  <text x="208" y="258" text-anchor="middle" class="body">실제 다운로드는 4개 중 어느 것?</text>
+
+  <rect class="red-annot-bg" x="64" y="288" width="288" height="62" rx="6" />
+  <text x="80" y="306" class="annot-bold red-annot-text">Disguised Ads</text>
+  <text x="80" y="322" class="annot red-annot-text">광고 버튼이 실제 다운로드 버튼과 동일</text>
+  <text x="80" y="338" class="annot red-annot-text">디자인. "광고" 표시는 7pt 회색 글씨.</text>
+
+  <!-- RIGHT: BRIGHT - 1 clear download, separated ad -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="320" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <rect class="screen-bg" x="448" y="96" width="288" height="180" rx="8" />
+  <text x="468" y="118" class="title">파일 다운로드</text>
+
+  <text x="468" y="142" class="body">file.zip (12MB)</text>
+
+  <!-- single, clear download button -->
+  <rect class="download-btn" x="468" y="154" width="248" height="40" rx="8" />
+  <text x="592" y="178" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">파일 다운로드</text>
+
+  <text x="468" y="216" class="body">SHA-256 체크섬 보기 →</text>
+
+  <!-- separator + clearly labeled ad area -->
+  <line x1="468" y1="235" x2="716" y2="235" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="4 4" />
+  <rect class="ad-area-clear" x="468" y="241" width="248" height="22" rx="4" />
+  <text x="478" y="255" class="ad-label-clear">AD</text>
+  <text x="500" y="255" font-size="9" class="body">스폰서드 콘텐츠 영역</text>
+
+  <rect class="teal-annot-bg" x="448" y="288" width="288" height="62" rx="6" />
+  <text x="464" y="306" class="annot teal-annot-text">실제 다운로드는 본문 영역의 단일 버튼.</text>
+  <text x="464" y="322" class="annot teal-annot-text">광고는 별도 영역에 분리되고</text>
+  <text x="464" y="338" class="annot teal-annot-text">"AD" 라벨이 본문과 동일 크기로 표시.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="372" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="212" r="16" />
+  <text x="400" y="217" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>

@@ -1,0 +1,327 @@
+<svg width="100%" viewBox="0 0 800 480" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>알림 설정의 비대칭 — 동의는 1번, 해제는 8개 토글 Before/After</title>
+  <desc>다크패턴: 카테고리별 분할 토글 / 정직한 설계: 단일 전체 끄기 토글</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .toggle-on {
+        fill: #1D9E75;
+      }
+
+      .toggle-off-track {
+        fill: #D3D1C7;
+      }
+
+      .toggle-knob {
+        fill: #FFFFFF;
+      }
+
+      .row-divider {
+        stroke: #ECEAE2;
+        stroke-width: 0.5;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .item-text {
+        fill: #5F5E5A;
+        font-size: 11px;
+      }
+
+      .group-header {
+        fill: #888780;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .toggle-on {
+          fill: #0F6E56;
+        }
+
+        .toggle-off-track {
+          fill: #5F5E5A;
+        }
+
+        .toggle-knob {
+          fill: #D3D1C7;
+        }
+
+        .row-divider {
+          stroke: #3A3936;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .item-text {
+          fill: #B4B2A9;
+        }
+
+        .group-header {
+          fill: #888780;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="480" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 알림 설정 화면</text>
+
+  <!-- LEFT: DARK - Many toggles -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="380" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <rect class="screen-bg" x="64" y="96" width="288" height="280" rx="8" />
+  <text x="84" y="118" class="title">알림 관리</text>
+
+  <!-- 8 toggles, all on -->
+  <text x="84" y="142" class="item-text">프로모션 이메일</text>
+  <rect class="toggle-on" x="304" y="132" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="328" cy="140" r="6" />
+  <line x1="84" y1="154" x2="332" y2="154" class="row-divider" />
+
+  <text x="84" y="172" class="item-text">추천 상품 알림</text>
+  <rect class="toggle-on" x="304" y="162" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="328" cy="170" r="6" />
+  <line x1="84" y1="184" x2="332" y2="184" class="row-divider" />
+
+  <text x="84" y="202" class="item-text">이벤트 안내 SMS</text>
+  <rect class="toggle-on" x="304" y="192" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="328" cy="200" r="6" />
+  <line x1="84" y1="214" x2="332" y2="214" class="row-divider" />
+
+  <text x="84" y="232" class="item-text">친구 활동 푸시</text>
+  <rect class="toggle-on" x="304" y="222" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="328" cy="230" r="6" />
+  <line x1="84" y1="244" x2="332" y2="244" class="row-divider" />
+
+  <text x="84" y="262" class="item-text">리마인더 알림</text>
+  <rect class="toggle-on" x="304" y="252" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="328" cy="260" r="6" />
+  <line x1="84" y1="274" x2="332" y2="274" class="row-divider" />
+
+  <text x="84" y="292" class="item-text">제휴 광고</text>
+  <rect class="toggle-on" x="304" y="282" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="328" cy="290" r="6" />
+  <line x1="84" y1="304" x2="332" y2="304" class="row-divider" />
+
+  <text x="84" y="322" class="item-text">생일 쿠폰 알림</text>
+  <rect class="toggle-on" x="304" y="312" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="328" cy="320" r="6" />
+  <line x1="84" y1="334" x2="332" y2="334" class="row-divider" />
+
+  <text x="84" y="352" class="item-text">시즌 이벤트</text>
+  <rect class="toggle-on" x="304" y="342" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="328" cy="350" r="6" />
+
+  <rect class="red-annot-bg" x="64" y="388" width="288" height="32" rx="6" />
+  <text x="80" y="408" class="annot-bold red-annot-text">8개 카테고리 — "전체 끄기" 옵션 없음</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="380" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <rect class="screen-bg" x="448" y="96" width="288" height="280" rx="8" />
+  <text x="468" y="118" class="title">알림 관리</text>
+
+  <!-- Single master toggle -->
+  <rect fill="#E1F5EE" x="468" y="138" width="248" height="56" rx="8" />
+  <text x="484" y="162" class="item-text" font-weight="500">마케팅 알림 전체</text>
+  <text x="484" y="180" font-size="9" fill="#888780">프로모션·이벤트·추천 등 모든 광고성 알림</text>
+  <rect class="toggle-off-track" x="672" y="158" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="680" cy="166" r="6" />
+
+  <text x="468" y="220" class="group-header">세부 설정 (선택)</text>
+  <line x1="468" y1="228" x2="716" y2="228" class="row-divider" />
+
+  <text x="468" y="248" class="item-text">서비스 알림 (해지 불가)</text>
+  <rect class="toggle-on" x="688" y="238" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="712" cy="246" r="6" />
+  <line x1="468" y1="260" x2="716" y2="260" class="row-divider" />
+
+  <text x="468" y="280" class="item-text">중요 공지</text>
+  <rect class="toggle-on" x="688" y="270" width="32" height="16" rx="8" />
+  <circle class="toggle-knob" cx="712" cy="278" r="6" />
+
+  <text x="468" y="320" class="body">▾ 카테고리별 세부 설정 (펼침)</text>
+  <text x="468" y="340" class="body" font-size="10">프로모션, 이벤트, 추천 상품 등 개별 설정 가능</text>
+
+  <rect class="teal-annot-bg" x="448" y="388" width="288" height="32" rx="6" />
+  <text x="464" y="408" class="annot-bold teal-annot-text">"전체 끄기" 단일 토글 — 1번에 해제</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="432" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="242" r="16" />
+  <text x="400" y="247" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+
+  <style>
+    @media (prefers-color-scheme: dark) {
+      rect[fill="#E1F5EE"] {
+        fill: #04342C;
+      }
+    }
+  </style>
+</svg>

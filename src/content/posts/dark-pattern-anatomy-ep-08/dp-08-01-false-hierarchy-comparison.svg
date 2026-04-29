@@ -1,0 +1,265 @@
+<svg width="100%" viewBox="0 0 800 460" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>False Hierarchy — 쿠키 동의 팝업 Before/After</title>
+  <desc>다크패턴: "모두 수락"이 압도적으로 강조된 쿠키 팝업 / 정직한 설계: 동등한 시각 위계의 선택지</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .cta-strong {
+        fill: #2563EB;
+      }
+
+      .cta-equal-fill {
+        fill: #1D9E75;
+      }
+
+      .cta-equal-outline {
+        fill: none;
+        stroke: #1D9E75;
+        stroke-width: 1;
+      }
+
+      .text-link-faint {
+        font-size: 9px;
+        fill: #B4B2A9;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .cta-strong {
+          fill: #3B82F6;
+        }
+
+        .cta-equal-fill {
+          fill: #0F6E56;
+        }
+
+        .cta-equal-outline {
+          stroke: #5DCAA5;
+        }
+
+        .text-link-faint {
+          fill: #5F5E5A;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="460" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 쿠키 동의 팝업</text>
+
+  <!-- LEFT: DARK -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="360" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <rect class="screen-bg" x="64" y="96" width="288" height="220" rx="8" />
+  <text x="84" y="130" class="title">쿠키 사용 안내</text>
+  <text x="84" y="152" class="body">더 나은 경험을 위해 쿠키를 사용합니다.</text>
+  <text x="84" y="168" class="body">일부 쿠키는 광고 개인화에도 사용됩니다.</text>
+
+  <!-- 강조된 단일 CTA -->
+  <rect class="cta-strong" x="84" y="194" width="248" height="44" rx="8" />
+  <text x="208" y="221" text-anchor="middle" font-size="14" font-weight="600" fill="#FFFFFF">모두 수락</text>
+
+  <!-- 약화된 거절 옵션 -->
+  <text x="208" y="262" text-anchor="middle" class="text-link-faint">설정 관리</text>
+  <text x="208" y="280" text-anchor="middle" class="text-link-faint">필수 쿠키만 사용</text>
+
+  <rect class="red-annot-bg" x="64" y="328" width="288" height="62" rx="6" />
+  <text x="80" y="346" class="annot-bold red-annot-text">False Hierarchy</text>
+  <text x="80" y="362" class="annot red-annot-text">"모두 수락"은 큰 채움 버튼,</text>
+  <text x="80" y="378" class="annot red-annot-text">"필수만"은 회색 텍스트 링크.</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="360" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <rect class="screen-bg" x="448" y="96" width="288" height="220" rx="8" />
+  <text x="468" y="130" class="title">쿠키 사용 안내</text>
+  <text x="468" y="152" class="body">필수 쿠키 외에 광고 개인화 쿠키도 사용할 수 있습니다.</text>
+  <text x="468" y="168" class="body">선택하실 수 있습니다</text>
+
+  <!-- 동등한 시각 위계 두 버튼 -->
+  <rect class="cta-equal-outline" x="468" y="194" width="120" height="44" rx="8" />
+  <text x="528" y="221" text-anchor="middle" font-size="13" font-weight="500" fill="#1D9E75">필수만 수락</text>
+
+  <rect class="cta-equal-fill" x="596" y="194" width="120" height="44" rx="8" />
+  <text x="656" y="221" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF">모두 수락</text>
+
+  <text x="592" y="262" text-anchor="middle" font-size="11" fill="#1D9E75" style="text-decoration:underline;">개별 항목
+    설정</text>
+
+  <rect class="teal-annot-bg" x="448" y="328" width="288" height="62" rx="6" />
+  <text x="464" y="346" class="annot teal-annot-text">"모두 수락"과 "필수만 수락"이</text>
+  <text x="464" y="362" class="annot teal-annot-text">같은 크기·대비로 나란히 배치. </text>
+  <text x="464" y="378" class="annot teal-annot-text">"설정 관리"는 동등한 가시성을 가진 텍스트 링크.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="412" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="232" r="16" />
+  <text x="400" y="237" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>

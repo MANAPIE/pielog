@@ -1,0 +1,337 @@
+<svg width="100%" viewBox="0 0 800 460" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Bait and Switch — 통신 요금제 광고 Before/After</title>
+  <desc>다크패턴: 9,900원부터 광고 후 실사용은 39,900원 / 정직한 설계: 대표 요금제 가격을 명확히 표시</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 13px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .ad-headline {
+        font-size: 18px;
+        font-weight: 700;
+        fill: #FFFFFF;
+      }
+
+      .ad-sub {
+        font-size: 11px;
+        fill: #FFFFFF;
+        opacity: 0.9;
+      }
+
+      .plan-name {
+        font-size: 12px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .plan-price {
+        font-size: 14px;
+        font-weight: 600;
+        fill: #2C2C2A;
+      }
+
+      .plan-detail {
+        font-size: 10px;
+        fill: #888780;
+      }
+
+      .ad-bg-dark {
+        fill: #2C2C2A;
+      }
+
+      .ad-bg-bright {
+        fill: #1D9E75;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .row-divider {
+        stroke: #ECEAE2;
+        stroke-width: 0.5;
+      }
+
+      .badge-recommended {
+        fill: #1D9E75;
+      }
+
+      .badge-text {
+        fill: #FFFFFF;
+        font-size: 9px;
+        font-weight: 600;
+      }
+
+      .arrow-line {
+        stroke: #B4B2A9;
+        fill: none;
+        stroke-width: 0.5;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .plan-name {
+          fill: #D3D1C7;
+        }
+
+        .plan-price {
+          fill: #D3D1C7;
+        }
+
+        .plan-detail {
+          fill: #888780;
+        }
+
+        .ad-bg-dark {
+          fill: #E24B4A;
+        }
+
+        .ad-bg-bright {
+          fill: #0F6E56;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .row-divider {
+          stroke: #3A3936;
+        }
+
+        .arrow-line {
+          stroke: #5F5E5A;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="460" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 통신 요금제 광고 → 실 요금제 페이지</text>
+
+  <!-- LEFT: DARK -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="370" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <!-- Ad banner -->
+  <rect class="ad-bg-dark" x="64" y="96" width="288" height="80" rx="8" />
+  <text x="208" y="124" text-anchor="middle" class="ad-headline">통신요금</text>
+  <text x="208" y="148" text-anchor="middle" class="ad-headline">월 9,900원부터</text>
+  <text x="208" y="166" text-anchor="middle" class="ad-sub">지금 가입하세요</text>
+
+  <!-- arrow -->
+  <line class="arrow-line" x1="208" y1="180" x2="208" y2="200" marker-end="url(#arrow-down)" />
+  <defs>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="8" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M2 2L5 8L8 2" fill="none" stroke="#B4B2A9" stroke-width="1.5" />
+    </marker>
+  </defs>
+
+  <!-- Plans -->
+  <rect class="screen-bg" x="64" y="208" width="288" height="132" rx="8" />
+  <text x="80" y="228" class="plan-name">알뜰형 (광고 가격)</text>
+  <text x="80" y="246" class="plan-price">월 9,900원</text>
+  <text x="80" y="262" class="plan-detail">데이터 100MB · 통화 30분 한정</text>
+
+  <line x1="80" y1="276" x2="336" y2="276" class="row-divider" />
+
+  <text x="80" y="296" class="plan-name">실사용 가능 요금제</text>
+  <text x="80" y="314" class="plan-price">월 39,900원~</text>
+  <text x="80" y="328" class="plan-detail">데이터 무제한 · 통화 자유</text>
+
+  <rect class="red-annot-bg" x="64" y="351" width="288" height="56" rx="6" />
+  <text x="80" y="366" class="annot-bold red-annot-text">Bait and Switch</text>
+  <text x="80" y="382" class="annot red-annot-text">광고된 9,900원은 사실상 도달 불가.</text>
+  <text x="80" y="398" class="annot red-annot-text">실거래는 4배 가격에서 시작.</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="370" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <!-- Ad banner with full info -->
+  <rect class="ad-bg-bright" x="448" y="96" width="288" height="80" rx="8" />
+  <text x="592" y="124" text-anchor="middle" class="ad-headline">통신요금</text>
+  <text x="592" y="148" text-anchor="middle" class="ad-headline">기본 39,900원</text>
+  <text x="592" y="166" text-anchor="middle" class="ad-sub">알뜰형 9,900원부터 (소량 사용자)</text>
+
+  <line class="arrow-line" x1="592" y1="180" x2="592" y2="200" marker-end="url(#arrow-down)" />
+
+  <!-- Plans -->
+  <rect class="screen-bg" x="448" y="208" width="288" height="132" rx="8" />
+  <text x="464" y="228" class="plan-name">알뜰형</text>
+  <rect class="badge-recommended" x="500" y="217" width="44" height="14" rx="3" fill="#888780" />
+  <text x="522" y="227" text-anchor="middle" class="badge-text">소량용</text>
+  <text x="464" y="246" class="plan-price">월 9,900원</text>
+  <text x="464" y="262" class="plan-detail">데이터 100MB · 통화 30분</text>
+
+  <line x1="464" y1="276" x2="720" y2="276" class="row-divider" />
+
+  <text x="464" y="296" class="plan-name">기본형</text>
+  <rect class="badge-recommended" x="500" y="285" width="44" height="14" rx="3" />
+  <text x="522" y="295" text-anchor="middle" class="badge-text">추천</text>
+  <text x="464" y="314" class="plan-price">월 39,900원</text>
+  <text x="464" y="328" class="plan-detail">데이터 무제한 · 통화 자유</text>
+
+  <rect class="teal-annot-bg" x="448" y="351" width="288" height="56" rx="6" />
+  <text x="464" y="375" class="annot teal-annot-text">대표 요금제 가격을 광고에 명시.</text>
+  <text x="464" y="391" class="annot teal-annot-text">"~부터" 표기는 알뜰형의 한도와 함께 표시.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="412" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="232" r="16" />
+  <text x="400" y="237" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>

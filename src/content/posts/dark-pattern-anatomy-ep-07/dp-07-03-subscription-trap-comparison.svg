@@ -1,0 +1,117 @@
+<svg width="100%" viewBox="0 0 800 460" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Subscription Trap — 무료 체험 화면 Before/After</title>
+  <desc>다크패턴: 자동 결제 안내가 작은 글씨로 묻혀 있음 / 정직한 설계: 결제 일정과 금액을 본문 크기로 명시</desc>
+  <defs>
+    <style>
+      .label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; }
+      .title { font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+      .body { font-size: 11px; fill: #5F5E5A; }
+      .annot { font-size: 11px; fill: #5F5E5A; }
+      .annot-bold { font-size: 11px; font-weight: 600; }
+      .pair-label { font-size: 13px; fill: #888780; font-weight: 500; }
+      .big-headline { font-size: 22px; font-weight: 700; fill: #2C2C2A; }
+      .charge-warn { font-size: 13px; font-weight: 600; fill: #2C2C2A; }
+      .tiny { font-size: 8px; fill: #B4B2A9; }
+      .page-bg { fill: #F9F8F4; }
+      .frame-bg { fill: #F1EFE8; }
+      .screen-bg { fill: #FFFFFF; stroke: #D3D1C7; stroke-width: 0.5; }
+      .red-tag { fill: #FCEBEB; }
+      .red-tag-text { fill: #791F1F; }
+      .teal-tag { fill: #E1F5EE; }
+      .teal-tag-text { fill: #085041; }
+      .red-annot-bg { fill: #FCEBEB; }
+      .red-annot-text { fill: #791F1F; }
+      .teal-annot-bg { fill: #E1F5EE; }
+      .teal-annot-text { fill: #085041; }
+      .cta-red { fill: #E24B4A; }
+      .cta-teal { fill: #1D9E75; }
+      .info-box-bright { fill: #E1F5EE; stroke: #5DCAA5; stroke-width: 0.5; }
+      .info-text-bright { fill: #085041; }
+      .vs-divider { stroke: #D3D1C7; stroke-width: 0.5; }
+      .vs-circle { fill: #F1EFE8; }
+      .vs-text { fill: #888780; }
+      @media (prefers-color-scheme: dark) {
+        .title { fill: #D3D1C7; }
+        .body { fill: #B4B2A9; }
+        .annot { fill: #B4B2A9; }
+        .pair-label { fill: #888780; }
+        .big-headline { fill: #D3D1C7; }
+        .charge-warn { fill: #D3D1C7; }
+        .tiny { fill: #5F5E5A; }
+        .page-bg { fill: #1C1B1A; }
+        .frame-bg { fill: #2C2C2A; }
+        .screen-bg { fill: #1C1B1A; stroke: #444441; }
+        .red-tag { fill: #501313; }
+        .red-tag-text { fill: #F7C1C1; }
+        .teal-tag { fill: #04342C; }
+        .teal-tag-text { fill: #9FE1CB; }
+        .red-annot-bg { fill: #501313; }
+        .red-annot-text { fill: #F7C1C1; }
+        .teal-annot-bg { fill: #04342C; }
+        .teal-annot-text { fill: #9FE1CB; }
+        .info-box-bright { fill: #04342C; stroke: #0F6E56; }
+        .info-text-bright { fill: #9FE1CB; }
+        .vs-divider { stroke: #444441; }
+        .vs-circle { fill: #2C2C2A; }
+        .vs-text { fill: #888780; }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="460" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 무료 체험 시작 화면</text>
+
+  <!-- LEFT: DARK -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="360" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <rect class="screen-bg" x="64" y="96" width="288" height="220" rx="8" />
+
+  <text x="208" y="138" text-anchor="middle" class="big-headline">7일 무료 체험</text>
+  <text x="208" y="160" text-anchor="middle" class="big-headline">시작하기</text>
+
+  <text x="208" y="190" text-anchor="middle" class="body">프리미엄 기능을 7일간 무료로 즐기세요</text>
+
+  <rect class="cta-red" x="84" y="208" width="248" height="40" rx="8" />
+  <text x="208" y="232" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF">7일 무료 체험 시작</text>
+
+  <text x="208" y="276" text-anchor="middle" class="tiny">체험 종료 후 월 14,900원이 자동 결제됩니다.</text>
+  <text x="208" y="288" text-anchor="middle" class="tiny">카드 정보 입력 필수. 종료일 알림 없음.</text>
+
+  <rect class="red-annot-bg" x="64" y="328" width="288" height="62" rx="6" />
+  <text x="80" y="346" class="annot-bold red-annot-text">Subscription Trap</text>
+  <text x="80" y="362" class="annot red-annot-text">자동 결제 안내가 8pt 회색 글씨.</text>
+  <text x="80" y="378" class="annot red-annot-text">현재 편향과 망각이 결합되어 인지율 ↓.</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="360" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <rect class="screen-bg" x="448" y="96" width="288" height="220" rx="8" />
+
+  <text x="592" y="130" text-anchor="middle" class="big-headline">7일 무료 체험</text>
+
+  <rect class="info-box-bright" x="468" y="146" width="248" height="68" rx="6" />
+  <text x="592" y="166" text-anchor="middle" font-size="11" font-weight="600" class="info-text-bright">결제 일정</text>
+  <text x="480" y="184" font-size="11" class="info-text-bright">·  오늘부터 7일간 무료</text>
+  <text x="480" y="200" font-size="11" class="info-text-bright">·  5월 6일부터 월 14,900원 청구</text>
+
+  <text x="592" y="230" text-anchor="middle" class="body">체험 3일 전·1일 전 알림 발송</text>
+
+  <rect class="cta-teal" x="468" y="244" width="248" height="40" rx="8" />
+  <text x="592" y="268" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF">체험 시작하기</text>
+
+  <text x="592" y="304" text-anchor="middle" class="body">결제 정보는 종료 직전에 확인</text>
+
+  <rect class="teal-annot-bg" x="448" y="328" width="288" height="62" rx="6" />
+  <text x="464" y="346" class="annot teal-annot-text">결제 일정·금액을 본문 크기로 명시.</text>
+  <text x="464" y="362" class="annot teal-annot-text">종료 직전 명시적 동의 단계.</text>
+  <text x="464" y="378" class="annot teal-annot-text">사전 결제정보 강제 입력 없음.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="412" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="232" r="16" />
+  <text x="400" y="237" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>

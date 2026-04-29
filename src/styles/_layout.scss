@@ -48,22 +48,29 @@
     opacity: var(--sidebar-opacity, 1);
   }
 
+  &[style*="--sidebar-opacity"] .sidebar-inner {
+    pointer-events: none;
+  }
+
   .sidebar-button {
     opacity: 0;
   }
 
-  &:hover,
   &:focus-within,
-  &.is-active,
-  &.is-open {
+  &.is-active {
     .sidebar-inner {
       opacity: 1 !important;
+      pointer-events: auto;
     }
 
     .sidebar-button {
       opacity: 0 !important;
     }
   }
+}
+
+body.panel-active .sidebar[style*="--sidebar-opacity"] ~ .main-content {
+  pointer-events: none;
 }
 
 .mobile-header,
@@ -83,6 +90,10 @@
     margin: 0 auto;
   }
 
+  body.panel-active .main-content {
+    pointer-events: none;
+  }
+
   .sidebar {
     position: fixed;
     top: 0;
@@ -94,16 +105,20 @@
 
     .sidebar-inner {
       opacity: 0.2;
+      pointer-events: none;
     }
 
     .sidebar-button {
       opacity: 1;
     }
 
-    &:hover,
-    &.is-open {
+    &.is-active {
       left: 0;
       box-shadow: 4px 0 16px $color-shadow;
+
+      .sidebar-inner {
+        pointer-events: auto;
+      }
     }
   }
 
@@ -116,8 +131,15 @@
     z-index: 50;
     transition: right 0.3s ease, box-shadow 0.3s ease;
 
-    &:hover,
-    &.is-open {
+    * {
+      pointer-events: none;
+    }
+
+    &.is-active * {
+      pointer-events: auto;
+    }
+
+    &.is-active {
       right: 0;
       box-shadow: 0 4px 20px $color-shadow;
     }
@@ -152,6 +174,10 @@
     padding-top: $mobile-header-height
   }
 
+  body.panel-active .main-content {
+    pointer-events: none;
+  }
+
   .sidebar,
   .aside-panel {
     position: fixed;
@@ -159,7 +185,7 @@
     background: $color-bg;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    &:not(.is-open) {
+    &:not(.is-active) {
       pointer-events: none;
     }
   }
@@ -170,7 +196,7 @@
     width: $sidebar-width;
     max-width: calc(100vw - #{$peek-width});
 
-    &.is-open {
+    &.is-active {
       transform: translateX(0);
       box-shadow: 0 4px 20px $color-shadow;
       pointer-events: auto;
@@ -183,7 +209,7 @@
     width: $aside-width-min;
     max-width: calc(100vw - #{$peek-width});
 
-    &.is-open {
+    &.is-active {
       transform: translateX(0);
       box-shadow: 0 4px 20px $color-shadow;
       pointer-events: auto;

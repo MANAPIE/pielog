@@ -1,0 +1,259 @@
+<svg width="100%" viewBox="0 0 800 450" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Forced Registration — 게스트 결제 옵션 Before/After</title>
+  <desc>다크패턴: 회원가입만 강조한 결제 게이트 / 정직한 설계: 게스트 결제와 회원가입 동등 배치</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .cta-red {
+        fill: #E24B4A;
+      }
+
+      .cta-teal {
+        fill: #1D9E75;
+      }
+
+      .secondary-btn {
+        fill: none;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .secondary-btn-text {
+        fill: #5F5E5A;
+      }
+
+      .muted-text {
+        fill: #B4B2A9;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .secondary-btn {
+          stroke: #5F5E5A;
+        }
+
+        .secondary-btn-text {
+          fill: #B4B2A9;
+        }
+
+        .muted-text {
+          fill: #5F5E5A;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="450" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 결제 시작 화면</text>
+
+  <!-- LEFT: DARK -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="350" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <rect class="screen-bg" x="64" y="96" width="288" height="220" rx="8" />
+  <text x="208" y="138" text-anchor="middle" class="title">결제를 진행하려면</text>
+  <text x="208" y="158" text-anchor="middle" class="title">로그인이 필요합니다</text>
+
+  <rect class="cta-red" x="84" y="184" width="248" height="36" rx="8" />
+  <text x="208" y="206" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF">로그인</text>
+
+  <rect class="secondary-btn" x="84" y="228" width="248" height="36" rx="8" />
+  <text x="208" y="250" text-anchor="middle" font-size="13" class="secondary-btn-text">회원가입</text>
+
+  <text x="208" y="290" text-anchor="middle" font-size="9" class="muted-text">계속하려면 계정을 만들어야 합니다</text>
+
+  <rect class="red-annot-bg" x="64" y="328" width="288" height="62" rx="6" />
+  <text x="80" y="346" class="annot-bold red-annot-text">Forced Registration</text>
+  <text x="80" y="362" class="annot red-annot-text">게스트 결제 옵션 없음. </text>
+  <text x="80" y="378" class="annot red-annot-text">모든 사용자에게 회원가입을 강제.</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="350" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <rect class="screen-bg" x="448" y="96" width="288" height="220" rx="8" />
+  <text x="592" y="138" text-anchor="middle" class="title">결제 진행 방법을</text>
+  <text x="592" y="158" text-anchor="middle" class="title">선택해주세요</text>
+
+  <rect class="cta-teal" x="468" y="184" width="248" height="36" rx="8" />
+  <text x="592" y="206" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF">게스트로 결제하기</text>
+
+  <rect class="secondary-btn" x="468" y="228" width="248" height="36" rx="8" />
+  <text x="592" y="250" text-anchor="middle" font-size="13" class="secondary-btn-text">로그인 / 회원가입</text>
+
+  <text x="592" y="290" text-anchor="middle" font-size="9" class="body">결제 후 선택적으로 계정을 만드실 수 있습니다</text>
+
+  <rect class="teal-annot-bg" x="448" y="328" width="288" height="62" rx="6" />
+  <text x="464" y="354" class="annot teal-annot-text">게스트 결제와 로그인이 동등한 시각 위계로 배치.</text>
+  <text x="464" y="370" class="annot teal-annot-text">결제 완료 후 선택적 계정 생성을 제안.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="412" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="232" r="16" />
+  <text x="400" y="237" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>
