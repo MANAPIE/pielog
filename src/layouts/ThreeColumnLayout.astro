@@ -33,46 +33,89 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
 
 <script>
   const sidebar = document.querySelector(".sidebar") as HTMLElement | null;
-  if (sidebar && sidebar.style.getPropertyValue("--sidebar-opacity")) {
-    sidebar.addEventListener("click", (e) => {
-      e.stopPropagation();
-      sidebar.classList.add("is-active");
-    });
-    document.addEventListener("click", (e) => {
-      if (!sidebar.contains(e.target as Node)) {
-        sidebar.classList.remove("is-active");
-      }
-    });
-  }
-
-  const sidebarToggle = document.getElementById("sidebar-toggle");
-  const asideToggle = document.getElementById("aside-toggle");
   const asidePanel = document.querySelector(
     ".aside-panel",
   ) as HTMLElement | null;
+  const sidebarToggle = document.getElementById("sidebar-toggle");
+  const asideToggle = document.getElementById("aside-toggle");
   const overlay = document.getElementById("layout-overlay");
 
-  function closeAll() {
-    sidebar?.classList.remove("is-open");
-    asidePanel?.classList.remove("is-open");
-    overlay?.classList.remove("is-visible");
+  function syncBody() {
+    const anyActive =
+      !!sidebar?.classList.contains("is-active") ||
+      !!asidePanel?.classList.contains("is-active");
+    document.body.classList.toggle("panel-active", anyActive);
+    overlay?.classList.toggle("is-visible", anyActive);
   }
 
-  sidebarToggle?.addEventListener("click", () => {
-    const isOpen = sidebar?.classList.contains("is-open");
-    closeAll();
-    if (!isOpen) {
-      sidebar?.classList.add("is-open");
-      overlay?.classList.add("is-visible");
+  function reveal(panel: HTMLElement | null) {
+    if (!panel) return;
+    const other = panel === sidebar ? asidePanel : sidebar;
+    other?.classList.remove("is-active");
+    panel.classList.add("is-active");
+    syncBody();
+  }
+
+  function closePanel(panel: HTMLElement | null) {
+    if (!panel) return;
+    panel.classList.remove("is-active");
+    syncBody();
+  }
+
+  function closeAll() {
+    sidebar?.classList.remove("is-active");
+    asidePanel?.classList.remove("is-active");
+    syncBody();
+  }
+
+  sidebar?.addEventListener("pointerenter", (e) => {
+    if (e.pointerType === "touch") return;
+    reveal(sidebar);
+  });
+  sidebar?.addEventListener("pointerleave", (e) => {
+    if (e.pointerType === "touch") return;
+    closePanel(sidebar);
+  });
+  asidePanel?.addEventListener("pointerenter", (e) => {
+    if (e.pointerType === "touch") return;
+    reveal(asidePanel);
+  });
+  asidePanel?.addEventListener("pointerleave", (e) => {
+    if (e.pointerType === "touch") return;
+    closePanel(asidePanel);
+  });
+
+  sidebar?.addEventListener("click", () => reveal(sidebar));
+  asidePanel?.addEventListener("click", () => reveal(asidePanel));
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as Node;
+    if (sidebarToggle?.contains(target) || asideToggle?.contains(target)) {
+      return;
+    }
+    if (sidebar && !sidebar.contains(target)) {
+      closePanel(sidebar);
+    }
+    if (asidePanel && !asidePanel.contains(target)) {
+      closePanel(asidePanel);
     }
   });
 
-  asideToggle?.addEventListener("click", () => {
-    const isOpen = asidePanel?.classList.contains("is-open");
-    closeAll();
-    if (!isOpen) {
-      asidePanel?.classList.add("is-open");
-      overlay?.classList.add("is-visible");
+  sidebarToggle?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (sidebar?.classList.contains("is-active")) {
+      closePanel(sidebar);
+    } else {
+      reveal(sidebar);
+    }
+  });
+
+  asideToggle?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (asidePanel?.classList.contains("is-active")) {
+      closePanel(asidePanel);
+    } else {
+      reveal(asidePanel);
     }
   });
 
@@ -83,9 +126,31 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
   let touchStartY = 0;
   let isSwiping = false;
 
+  function hasHorizontalScrollableAncestor(target: EventTarget | null): boolean {
+    let node = target as HTMLElement | null;
+    while (node && node !== document.body) {
+      if (node.nodeType === 1) {
+        const style = window.getComputedStyle(node);
+        const overflowX = style.overflowX;
+        if (
+          (overflowX === "auto" || overflowX === "scroll") &&
+          node.scrollWidth > node.clientWidth
+        ) {
+          return true;
+        }
+      }
+      node = node.parentElement;
+    }
+    return false;
+  }
+
   document.addEventListener(
     "touchstart",
     (e) => {
+      if (hasHorizontalScrollableAncestor(e.target)) {
+        isSwiping = false;
+        return;
+      }
       const touch = e.touches[0];
       touchStartX = touch.clientX;
       touchStartY = touch.clientY;
@@ -107,24 +172,20 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
       if (Math.abs(dy) > Math.abs(dx)) return;
       if (Math.abs(dx) < SWIPE_THRESHOLD) return;
 
-      const sidebarOpen = sidebar?.classList.contains("is-open");
-      const asideOpen = asidePanel?.classList.contains("is-open");
+      const sidebarActive = sidebar?.classList.contains("is-active");
+      const asideActive = asidePanel?.classList.contains("is-active");
 
       if (dx > 0) {
-        if (asideOpen) {
-          closeAll();
-        } else if (!sidebarOpen) {
-          closeAll();
-          sidebar?.classList.add("is-open");
-          overlay?.classList.add("is-visible");
+        if (asideActive) {
+          closePanel(asidePanel);
+        } else if (!sidebarActive) {
+          reveal(sidebar);
         }
       } else {
-        if (sidebarOpen) {
-          closeAll();
-        } else if (!asideOpen) {
-          closeAll();
-          asidePanel?.classList.add("is-open");
-          overlay?.classList.add("is-visible");
+        if (sidebarActive) {
+          closePanel(sidebar);
+        } else if (!asideActive) {
+          reveal(asidePanel);
         }
       }
     },
@@ -139,5 +200,4 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
       document.body.classList.remove("is-resizing");
     }, 150);
   });
-
 </script>
