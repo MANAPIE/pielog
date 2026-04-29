@@ -1,0 +1,259 @@
+<svg width="100%" viewBox="0 0 800 420" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Trick Question — 마케팅 동의 체크박스 Before/After</title>
+  <desc>다크패턴: 이중 부정 문장 / 정직한 설계: 긍정형 단문</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 12px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .checkbox-fill {
+        fill: #2563EB;
+      }
+
+      .checkbox-empty {
+        fill: #FFFFFF;
+        stroke: #B4B2A9;
+        stroke-width: 0.5;
+      }
+
+      .negation-bg {
+        fill: #FCEBEB;
+      }
+
+      .negation-text {
+        fill: #A32D2D;
+        font-weight: 600;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .checkbox-empty {
+          fill: #1C1B1A;
+          stroke: #5F5E5A;
+        }
+
+        .negation-bg {
+          fill: #501313;
+        }
+
+        .negation-text {
+          fill: #E89898;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="420" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 마케팅 이메일 수신 동의</text>
+
+  <!-- LEFT: DARK -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="320" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <rect class="screen-bg" x="64" y="96" width="288" height="180" rx="8" />
+  <text x="84" y="125" class="title">알림 설정</text>
+
+  <!-- Trick question with double negation -->
+  <rect class="checkbox-fill" x="84" y="149" width="14" height="14" rx="3" />
+  <text x="106" y="160" class="body">프로모션 이메일 수신에 동의하지 <tspan class="negation-text">않는</tspan> 것을</text>
+  <text x="106" y="176" class="body"> 원하지 <tspan class="negation-text">않으시면</tspan> 박스를 체크 <tspan class="negation-text">
+      해제하지 마세요</tspan>.</text>
+
+  <text x="84" y="214" font-size="11" fill="#A32D2D">→ 부정 표현 4회 중첩</text>
+  <text x="84" y="232" class="body">사용자는 체크해야 동의인지 해제해야</text>
+  <text x="84" y="248" class="body">동의인지 알기 어려움.</text>
+
+  <rect class="red-annot-bg" x="64" y="288" width="288" height="62" rx="6" />
+  <text x="80" y="306" class="annot-bold red-annot-text">Trick Question</text>
+  <text x="80" y="322" class="annot red-annot-text">이중·삼중 부정으로 인지 부하 증가.</text>
+  <text x="80" y="338" class="annot red-annot-text">사전 체크 상태와 결합되면 사실상 강제 동의.</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="320" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <rect class="screen-bg" x="448" y="96" width="288" height="180" rx="8" />
+  <text x="468" y="125" class="title">알림 설정</text>
+
+  <rect class="checkbox-empty" x="468" y="149" width="16" height="16" rx="3" />
+  <text x="494" y="161" class="body" font-weight="500">프로모션 이메일을 받겠습니다</text>
+
+  <text x="494" y="180" font-size="10" fill="#888780">기본값: 해제</text>
+
+  <text x="468" y="216" class="body">긍정형 단문</text>
+  <text x="468" y="233" class="body">한 번의 동작 = 한 가지 의미</text>
+  <text x="468" y="250" class="body">체크 = 수신 동의 / 해제 = 수신 거부</text>
+
+  <rect class="teal-annot-bg" x="448" y="288" width="288" height="62" rx="6" />
+  <text x="464" y="306" class="annot teal-annot-text">한 문장, 긍정형, 명확한 행동.</text>
+  <text x="464" y="322" class="annot teal-annot-text">기본값은 옵트인이 아닌 옵트인 대기.</text>
+  <text x="464" y="338" class="annot teal-annot-text">개인정보보호법 동의 명확성 요건 충족.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="372" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="212" r="16" />
+  <text x="400" y="217" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>
