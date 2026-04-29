@@ -1,0 +1,301 @@
+<svg width="100%" viewBox="0 0 800 480" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Privacy Zuckering — 약관 동의 화면 Before/After</title>
+  <desc>다크패턴: 사전 선택된 체크박스와 묶음 동의 / 정직한 설계: 분리된 필수·선택 동의와 명확한 옵트인</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .screen-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .cta-red {
+        fill: #E24B4A;
+      }
+
+      .cta-teal {
+        fill: #1D9E75;
+      }
+
+      .secondary-btn {
+        fill: none;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .secondary-btn-text {
+        fill: #5F5E5A;
+      }
+
+      .checkbox-fill {
+        fill: #E24B4A;
+      }
+
+      .checkbox-fill-green {
+        fill: #1D9E75;
+      }
+
+      .checkbox-empty {
+        fill: #FFFFFF;
+        stroke: #B4B2A9;
+        stroke-width: 0.5;
+      }
+
+      .row-divider {
+        stroke: #ECEAE2;
+        stroke-width: 0.5;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .screen-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .secondary-btn {
+          stroke: #5F5E5A;
+        }
+
+        .secondary-btn-text {
+          fill: #B4B2A9;
+        }
+
+        .checkbox-empty {
+          fill: #1C1B1A;
+          stroke: #5F5E5A;
+        }
+
+        .row-divider {
+          stroke: #3A3936;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="480" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 약관 동의 화면</text>
+
+  <!-- LEFT: DARK -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="380" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <rect class="screen-bg" x="64" y="96" width="288" height="240" rx="8" />
+  <text x="84" y="122" class="title">서비스 이용 동의</text>
+
+  <!-- Pre-checked rows (red filled) -->
+  <rect class="checkbox-fill" x="84" y="142" width="14" height="14" rx="3" />
+  <text x="106" y="153" class="body" font-weight="500">전체 동의</text>
+  <line x1="84" y1="170" x2="332" y2="170" class="row-divider" />
+
+  <rect class="checkbox-fill" x="84" y="180" width="14" height="14" rx="3" />
+  <text x="106" y="191" class="body">[필수] 이용약관 동의</text>
+
+  <rect class="checkbox-fill" x="84" y="204" width="14" height="14" rx="3" />
+  <text x="106" y="215" class="body">[필수] 개인정보 수집·이용</text>
+
+  <rect class="checkbox-fill" x="84" y="228" width="14" height="14" rx="3" />
+  <text x="106" y="239" class="body">[선택] 마케팅 정보 수신</text>
+
+  <rect class="checkbox-fill" x="84" y="252" width="14" height="14" rx="3" />
+  <text x="106" y="263" class="body">[선택] 제3자 정보 제공</text>
+
+  <rect class="cta-red" x="84" y="286" width="248" height="36" rx="8" />
+  <text x="208" y="308" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF">전체 동의하고 시작하기</text>
+
+  <rect class="red-annot-bg" x="64" y="346" width="288" height="74" rx="6" />
+  <text x="80" y="364" class="annot-bold red-annot-text">Privacy Zuckering</text>
+  <text x="80" y="380" class="annot red-annot-text">선택 항목까지 사전 체크. </text>
+  <text x="80" y="395" class="annot red-annot-text">필수와 선택의 시각적 구분 부재. </text>
+  <text x="80" y="410" class="annot red-annot-text">CTA가 "전체 동의" 단일 버튼으로 묶음 동의 유도.</text>
+
+  <!-- RIGHT: BRIGHT -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="380" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <rect class="screen-bg" x="448" y="96" width="288" height="240" rx="8" />
+  <text x="468" y="122" class="title">서비스 이용 동의</text>
+
+  <text x="468" y="146" class="body" font-weight="500">필수 동의</text>
+  <rect class="checkbox-fill-green" x="468" y="156" width="14" height="14" rx="3" />
+  <text x="490" y="167" class="body">이용약관</text>
+  <rect class="checkbox-fill-green" x="468" y="180" width="14" height="14" rx="3" />
+  <text x="490" y="191" class="body">개인정보 수집·이용</text>
+
+  <line x1="468" y1="208" x2="716" y2="208" class="row-divider" />
+
+  <text x="468" y="226" class="body" font-weight="500">선택 동의 (체크 안 하셔도 됩니다)</text>
+  <rect class="checkbox-empty" x="468" y="236" width="14" height="14" rx="3" />
+  <text x="490" y="247" class="body">마케팅 정보 수신</text>
+  <rect class="checkbox-empty" x="468" y="260" width="14" height="14" rx="3" />
+  <text x="490" y="271" class="body">제3자 정보 제공</text>
+
+  <rect class="cta-teal" x="468" y="286" width="248" height="36" rx="8" />
+  <text x="592" y="308" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF">필수 항목 동의하고 시작</text>
+
+  <rect class="teal-annot-bg" x="448" y="346" width="288" height="74" rx="6" />
+  <text x="464" y="364" class="annot teal-annot-text">필수·선택을 별도 그룹으로 분리.</text>
+  <text x="464" y="380" class="annot teal-annot-text">선택 동의는 기본값 해제. </text>
+  <text x="464" y="395" class="annot teal-annot-text">CTA는 "필수 항목"임을 명시. </text>
+  <text x="464" y="410" class="annot teal-annot-text">사용자는 선택 동의를 의식적으로 추가할 수 있음.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="432" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="242" r="16" />
+  <text x="400" y="247" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>

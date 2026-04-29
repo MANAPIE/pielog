@@ -1,0 +1,301 @@
+<svg width="100%" viewBox="0 0 800 480" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Permission Bombardment — 권한 요청 타이밍 Before/After</title>
+  <desc>다크패턴: 앱 최초 실행 시 모든 권한 일괄 요청 / 정직한 설계: 기능 사용 시점에 맥락과 함께 요청</desc>
+  <defs>
+    <style>
+      .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .title {
+        font-size: 13px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .annot-bold {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pair-label {
+        font-size: 13px;
+        fill: #888780;
+        font-weight: 500;
+      }
+
+      .timestep {
+        font-size: 10px;
+        font-weight: 600;
+        fill: #888780;
+      }
+
+      .page-bg {
+        fill: #F9F8F4;
+      }
+
+      .frame-bg {
+        fill: #F1EFE8;
+      }
+
+      .modal-bg {
+        fill: #FFFFFF;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .red-tag {
+        fill: #FCEBEB;
+      }
+
+      .red-tag-text {
+        fill: #791F1F;
+      }
+
+      .teal-tag {
+        fill: #E1F5EE;
+      }
+
+      .teal-tag-text {
+        fill: #085041;
+      }
+
+      .red-annot-bg {
+        fill: #FCEBEB;
+      }
+
+      .red-annot-text {
+        fill: #791F1F;
+      }
+
+      .teal-annot-bg {
+        fill: #E1F5EE;
+      }
+
+      .teal-annot-text {
+        fill: #085041;
+      }
+
+      .modal-stack {
+        fill: #FFFFFF;
+        stroke: #B4B2A9;
+        stroke-width: 0.5;
+      }
+
+      .modal-stack-2 {
+        fill: #FAFAFA;
+        stroke: #B4B2A9;
+        stroke-width: 0.5;
+      }
+
+      .modal-stack-3 {
+        fill: #F1EFE8;
+        stroke: #B4B2A9;
+        stroke-width: 0.5;
+      }
+
+      .icon-bg {
+        fill: #F1EFE8;
+      }
+
+      .arrow {
+        stroke: #888780;
+        stroke-width: 1;
+        fill: none;
+      }
+
+      .vs-divider {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .vs-circle {
+        fill: #F1EFE8;
+      }
+
+      .vs-text {
+        fill: #888780;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title {
+          fill: #D3D1C7;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .annot {
+          fill: #B4B2A9;
+        }
+
+        .pair-label {
+          fill: #888780;
+        }
+
+        .timestep {
+          fill: #888780;
+        }
+
+        .page-bg {
+          fill: #1C1B1A;
+        }
+
+        .frame-bg {
+          fill: #2C2C2A;
+        }
+
+        .modal-bg {
+          fill: #1C1B1A;
+          stroke: #444441;
+        }
+
+        .red-tag {
+          fill: #501313;
+        }
+
+        .red-tag-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-tag {
+          fill: #04342C;
+        }
+
+        .teal-tag-text {
+          fill: #9FE1CB;
+        }
+
+        .red-annot-bg {
+          fill: #501313;
+        }
+
+        .red-annot-text {
+          fill: #F7C1C1;
+        }
+
+        .teal-annot-bg {
+          fill: #04342C;
+        }
+
+        .teal-annot-text {
+          fill: #9FE1CB;
+        }
+
+        .modal-stack {
+          fill: #2C2C2A;
+          stroke: #5F5E5A;
+        }
+
+        .modal-stack-2 {
+          fill: #25241F;
+          stroke: #5F5E5A;
+        }
+
+        .modal-stack-3 {
+          fill: #1F1E1B;
+          stroke: #5F5E5A;
+        }
+
+        .icon-bg {
+          fill: #2C2C2A;
+        }
+
+        .arrow {
+          stroke: #B4B2A9;
+        }
+
+        .vs-divider {
+          stroke: #444441;
+        }
+
+        .vs-circle {
+          fill: #2C2C2A;
+        }
+
+        .vs-text {
+          fill: #888780;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect class="page-bg" width="800" height="480" rx="16" />
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 권한 요청 타이밍</text>
+
+  <!-- LEFT: DARK - Stacked modals at app launch -->
+  <rect class="frame-bg" x="48" y="52" width="320" height="380" rx="12" />
+  <rect class="red-tag" x="64" y="68" width="50" height="20" rx="4" />
+  <text x="89" y="81" text-anchor="middle" class="label red-tag-text">DARK</text>
+
+  <text x="208" y="106" text-anchor="middle" class="timestep">앱 최초 실행 직후</text>
+
+  <!-- Stacked modals -->
+  <rect class="modal-stack-3" x="98" y="124" width="220" height="140" rx="12" />
+  <rect class="modal-stack-2" x="88" y="138" width="220" height="140" rx="12" />
+  <rect class="modal-stack" x="78" y="152" width="220" height="140" rx="12" />
+  <rect class="modal-bg" x="68" y="166" width="220" height="140" rx="12" />
+
+  <text x="178" y="200" text-anchor="middle" class="title">위치 권한</text>
+  <text x="178" y="223" text-anchor="middle" class="body">위치 정보에 접근할 수 있도록</text>
+  <text x="178" y="237" text-anchor="middle" class="body">허용하시겠습니까?</text>
+  <line x1="69" y1="268" x2="287" y2="268" stroke="#D3D1C7" stroke-width="0.5" />
+  <text x="124" y="290" text-anchor="middle" font-size="11" class="body">허용 안 함</text>
+  <line x1="178" y1="268" x2="178" y2="305" stroke="#D3D1C7" stroke-width="0.5" />
+  <text x="232" y="290" text-anchor="middle" font-size="11" font-weight="600" fill="#1D9E75">허용</text>
+
+  <text x="208" y="325" text-anchor="middle" class="body">→ 카메라 → 마이크 → 연락처 → 알림</text>
+  <text x="208" y="341" text-anchor="middle" class="body">총 5개 권한 연속 요청</text>
+
+  <rect class="red-annot-bg" x="64" y="356" width="288" height="62" rx="6" />
+  <text x="80" y="374" class="annot-bold red-annot-text">Permission Bombardment</text>
+  <text x="80" y="390" class="annot red-annot-text">맥락 없는 일괄 요청. </text>
+  <text x="80" y="406" class="annot red-annot-text">거절 4번의 마찰을 만들어 일괄 수락 유도.</text>
+
+  <!-- RIGHT: BRIGHT - Contextual permission -->
+  <rect class="frame-bg" x="432" y="52" width="320" height="380" rx="12" />
+  <rect class="teal-tag" x="448" y="68" width="60" height="20" rx="4" />
+  <text x="478" y="81" text-anchor="middle" class="label teal-tag-text">BRIGHT</text>
+
+  <text x="592" y="106" text-anchor="middle" class="timestep">사진 업로드 버튼 클릭 시점</text>
+
+  <!-- Single contextual modal -->
+  <rect class="modal-bg" x="468" y="124" width="248" height="180" rx="12" />
+
+  <rect class="icon-bg" x="556" y="141" width="72" height="48" rx="8" />
+  <text x="592" y="171" text-anchor="middle" font-size="20">📷</text>
+
+  <text x="592" y="213" text-anchor="middle" class="title">카메라 권한이 필요합니다</text>
+  <text x="592" y="231" text-anchor="middle" class="body">사진을 업로드하려면 카메라</text>
+  <text x="592" y="245" text-anchor="middle" class="body">접근 권한이 필요합니다.</text>
+
+  <line x1="469" y1="266" x2="715" y2="266" stroke="#D3D1C7" stroke-width="0.5" />
+  <text x="532" y="288" text-anchor="middle" font-size="11" class="body">나중에</text>
+  <line x1="592" y1="266" x2="592" y2="303" stroke="#D3D1C7" stroke-width="0.5" />
+  <text x="656" y="288" text-anchor="middle" font-size="11" font-weight="600" fill="#1D9E75">허용</text>
+
+  <text x="592" y="325" text-anchor="middle" class="body">필요한 시점에 1개씩,</text>
+  <text x="592" y="341" text-anchor="middle" class="body">사용자가 사유를 이해한 후 요청</text>
+
+  <rect class="teal-annot-bg" x="448" y="356" width="288" height="62" rx="6" />
+  <text x="464" y="382" class="annot teal-annot-text">기능 사용 시점에 그 권한이 왜 필요한지 설명과 함께 요청.</text>
+  <text x="464" y="398" class="annot teal-annot-text">사용자는 맥락을 이해하고 결정.</text>
+
+  <line class="vs-divider" x1="400" y1="72" x2="400" y2="432" stroke-dasharray="4 4" />
+  <circle class="vs-circle" cx="400" cy="242" r="16" />
+  <text x="400" y="247" text-anchor="middle" font-size="11" font-weight="600" class="vs-text">VS</text>
+</svg>
