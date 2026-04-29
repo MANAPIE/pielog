@@ -1,0 +1,198 @@
+<svg width="100%" viewBox="0 0 680 460" role="img" xmlns="http://www.w3.org/2000/svg"
+  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title>Confirmshaming 강도 스펙트럼 — 중립적 거절부터 자기 비하까지</title>
+  <desc>거절 카피의 강도를 4단계로 나누어 시각화한 스펙트럼 다이어그램</desc>
+  <defs>
+    <style>
+      .title-text {
+        font-size: 14px;
+        font-weight: 500;
+        fill: #2C2C2A;
+      }
+
+      .caption {
+        font-size: 11px;
+        fill: #888780;
+      }
+
+      .body {
+        font-size: 11px;
+        fill: #5F5E5A;
+      }
+
+      .level-label {
+        font-size: 11px;
+        font-weight: 600;
+        fill: #2C2C2A;
+      }
+
+      .level-num {
+        font-size: 9px;
+        font-weight: 600;
+        fill: #FFFFFF;
+        letter-spacing: 0.06em;
+      }
+
+      .copy-text {
+        font-size: 12px;
+        font-style: italic;
+        fill: #2C2C2A;
+      }
+
+      .marker-dot {
+        fill: #B4B2A9;
+      }
+
+      .axis {
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      .gradient-stop-0 {
+        stop-color: #1D9E75;
+      }
+
+      .gradient-stop-1 {
+        stop-color: #FAC775;
+      }
+
+      .gradient-stop-2 {
+        stop-color: #BA7517;
+      }
+
+      .gradient-stop-3 {
+        stop-color: #E24B4A;
+      }
+
+      .level-1 {
+        fill: #1D9E75;
+      }
+
+      .level-2 {
+        fill: #BA7517;
+      }
+
+      .level-3 {
+        fill: #BA7517;
+      }
+
+      .level-4 {
+        fill: #A32D2D;
+      }
+
+      .summary-box {
+        fill: #F1EFE8;
+        stroke: #D3D1C7;
+        stroke-width: 0.5;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .title-text {
+          fill: #D3D1C7;
+        }
+
+        .caption {
+          fill: #888780;
+        }
+
+        .body {
+          fill: #B4B2A9;
+        }
+
+        .level-label {
+          fill: #D3D1C7;
+        }
+
+        .copy-text {
+          fill: #D3D1C7;
+        }
+
+        .marker-dot {
+          fill: #5F5E5A;
+        }
+
+        .axis {
+          stroke: #5F5E5A;
+        }
+
+        .level-1 {
+          fill: #0F6E56;
+        }
+
+        .level-2 {
+          fill: #854F0B;
+        }
+
+        .level-3 {
+          fill: #854F0B;
+        }
+
+        .level-4 {
+          fill: #791F1F;
+        }
+
+        .summary-box {
+          fill: #2C2C2A;
+          stroke: #444441;
+        }
+      }
+    </style>
+    <linearGradient id="spec-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" class="gradient-stop-0" />
+      <stop offset="33%" class="gradient-stop-1" />
+      <stop offset="66%" class="gradient-stop-2" />
+      <stop offset="100%" class="gradient-stop-3" />
+    </linearGradient>
+  </defs>
+
+  <text x="40" y="36" class="title-text">Confirmshaming 강도 스펙트럼</text>
+  <text x="40" y="56" class="caption">거절 카피의 톤이 약해질수록 사용자의 죄책감과 거절 마찰이 증가</text>
+
+  <!-- Spectrum bar -->
+  <rect x="60" y="86" width="560" height="20" rx="10" fill="url(#spec-grad)" opacity="0.3" />
+  <rect x="60" y="86" width="560" height="20" rx="10" fill="none" stroke="#B4B2A9" stroke-width="0.5" />
+
+  <!-- Tick marks -->
+  <line class="axis" x1="60" y1="106" x2="60" y2="116" />
+  <line class="axis" x1="200" y1="106" x2="200" y2="116" />
+  <line class="axis" x1="340" y1="106" x2="340" y2="116" />
+  <line class="axis" x1="480" y1="106" x2="480" y2="116" />
+  <line class="axis" x1="620" y1="106" x2="620" y2="116" />
+
+  <text x="60" y="132" class="caption">중립</text>
+  <text x="620" y="132" text-anchor="end" class="caption">자기 비하</text>
+
+  <!-- Level 1: 중립 -->
+  <circle class="level-1" cx="100" cy="170" r="14" />
+  <text x="100" y="174" text-anchor="middle" class="level-num">L1</text>
+  <text x="130" y="167" class="level-label">중립적 행동 서술</text>
+  <text x="130" y="183" class="body" font-style="italic">"닫기" / "괜찮습니다"</text>
+  <line class="axis" x1="60" y1="200" x2="620" y2="200" />
+
+  <!-- Level 2: 부드러운 유예 -->
+  <circle class="level-2" cx="100" cy="222" r="14" />
+  <text x="100" y="226" text-anchor="middle" class="level-num">L2</text>
+  <text x="130" y="219" class="level-label">유예 프레임 (반복 노출 신호)</text>
+  <text x="130" y="235" class="body" font-style="italic">"다음에 할게요"</text>
+  <line class="axis" x1="60" y1="252" x2="620" y2="252" />
+
+  <!-- Level 3: 가치 판단 심음 -->
+  <circle class="level-3" cx="100" cy="274" r="14" />
+  <text x="100" y="278" text-anchor="middle" class="level-num">L3</text>
+  <text x="130" y="271" class="level-label">가치 판단을 심은 거절</text>
+  <text x="130" y="287" class="body" font-style="italic">"아니요, 혜택이 필요 없습니다"</text>
+  <line class="axis" x1="60" y1="304" x2="620" y2="304" />
+
+  <!-- Level 4: 자기 비하 + 이모지 -->
+  <circle class="level-4" cx="100" cy="326" r="14" />
+  <text x="100" y="330" text-anchor="middle" class="level-num">L4</text>
+  <text x="130" y="323" class="level-label">자기 비하 1인칭 + 감정 이모지</text>
+  <text x="130" y="339" class="body" font-style="italic">"😢 저는 돈을 절약하고 싶지 않아요"</text>
+
+  <!-- Summary -->
+  <rect class="summary-box" x="40" y="372" width="600" height="68" rx="8" />
+  <text x="338" y="398" text-anchor="middle" class="caption">L1: 정직한 설계 · L2~L3: 회색지대 (반복·프레이밍에 따라 다크패턴 분류) · L4: 명백한
+    다크패턴</text>
+  <text x="338" y="420" text-anchor="middle" class="caption">FTC Amazon Prime 합의(2025)는 Confirmshaming 카피를 명시적 금지 항목으로
+    포함시켰음.</text>
+</svg>
