@@ -73,11 +73,22 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
           </li>
         </ul>
       </li>
+    </ul>
+  </div>
+
+  <div class="sidebar-categories">
+    <ul class="category-tree">
+      <li>
+        <a href="/tags/series">
+          시리즈 모아보기
+          <span title="Post counts">{tagCounts["series"] ?? 0}</span>
+        </a>
+      </li>
       <li>
         <a href="/about">About</a>
       </li>
       <li>
-        <a href="/rss.xml">RSS</a>
+        <a href="/rss.xml" target="_blank">RSS</a>
       </li>
     </ul>
   </div>
@@ -104,7 +115,6 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
       transition: opacity 0.3s ease;
     }
 
-
     .sidebar-logo {
       .site-title {
         font-size: 20px;
@@ -121,7 +131,6 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
             no-repeat;
           margin: 0 3px 2px -2px;
         }
-
       }
 
       .site-subtitle {
@@ -154,10 +163,10 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
       color: $color-text-muted;
     }
 
-    .sidebar-theme {
-      margin-top: 24px;
-      padding-top: 16px;
-      border-top: 1px solid $color-border;
+    .sidebar-categories {
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid $color-border;
     }
 
     .category-tree {
