@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+import AsideHomepage from "../components/AsideHomepage.astro";
+import { findSimilarPosts } from "../lib/similarSlugs";
+
+Astro.response.status = 404;
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+const requestedPath = Astro.url.pathname;
+const suggestions = findSimilarPosts(requestedPath, posts, 3);
+---
+
+<BaseLayout
+	title="404 — PIElog"
+	description="페이지를 찾을 수 없습니다"
+	pageType="home"
+>
+	<h3 class="title-404">404</h3>
+	<p class="not-found-message">
+		<code>{requestedPath}</code> 경로에서 페이지를 찾지 못했어요.<br />
+		아직 발행되지 않은 글일 수도 있어요.<br /><br />
+		혹시 아래 글을 찾으셨나요?
+	</p>
+	<h3 class="section-title">SUGGESTED POSTS</h3>
+	<section class="post-list">
+		{
+			suggestions.map((post) => (
+				<PostCard
+					title={post.data.title}
+					slug={post.id}
+					thumbnail={post.data.thumbnail}
+					tags={post.data.tags}
+					summary={post.data.summary}
+				/>
+			))
+		}
+	</section>
+	<AsideHomepage slot="aside" />
+</BaseLayout>
+
+<style lang="scss">
+	.title-404 {
+		font-size: 50px;
+		line-height: 60px;
+		font-family: "Courier New", Courier, monospace;
+		margin-bottom: 10px;
+	}
+
+	.not-found-message {
+		margin: 0 0 24px;
+		font-size: 14px;
+
+		code {
+			font-family: "Courier New", Courier, monospace;
+		}
+	}
+</style>
