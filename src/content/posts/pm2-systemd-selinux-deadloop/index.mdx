@@ -1,0 +1,379 @@
+---
+title: "한 달간 1분 30초마다 죽고 있었던 서버"
+description: "산발적인 503의 진짜 원인은 PM2도 OOM도 MongoDB도 아닌, SELinux와 systemd PIDFile의 충돌이었습니다. 28,163번의 재시작을 추적한 기록."
+summary: "Next.js 서비스에서 시간을 두고 접속하면 가끔 503이 떨어지던 문제를 추적했습니다. 처음에는 MongoDB 유휴 커넥션을 의심해 옵션을 다듬었고, 다음으로 OOM을 의심했지만 둘 다 원인이 아니었습니다. 진짜 원인은 PM2 데몬 자체가 systemd에 의해 통째로 강제 종료되고 있다는 사실이었고, 그 뿌리에는 SELinux의 사용자 홈 파일 접근 차단이 있었습니다."
+date: 2026-04-28
+tags: ["develop", "infra", "devops", "gce", "centos", "selinux", "pm2", "systemd"]
+draft: false
+---
+
+런칭 전 라이브 테스트 중인 서비스에서 산발적으로 503이 뜨는 문제가 있어 추적을 해보았습니다.
+
+결국 한 달 가까이 서버가 1분 30초마다 통째로 재시작되고 있었음을 알게 되었습니다. systemctl의 카운터에 **28,163**이라는 숫자가 찍혀 있었습니다...
+
+---
+
+## 증상 - 산발적이고 재현이 어려운 503
+
+운영 환경은 단순했습니다. GCE 인스턴스로 돌아가는 **CentOS**, **Apache**에서 reverse proxy로 붙는 그 뒤에 Next.js 두 개와 백그라운드 워커 하나가 **PM2**로 떠 있습니다. systemd가 `pm2-<user>.service` 단위로 PM2를 관리합니다.
+
+증상은 이랬습니다:
+
+- 시간을 두고 접속하면 가-끔 503 또는 timeout
+- 새로고침하면 멀쩡히 응답
+- 외부 모니터링(5분 간격)은 한 번도 다운을 잡지 못함
+- 사용자 보고는 산발적, 반복 재현 시나리오 없음
+
+---
+
+## 첫 번째 가설 - MongoDB Atlas의 유휴 커넥션 끊김
+
+처음 의심을 했던 곳은 데이터베이스였습니다. **MongoDB Atlas**라는 외부 서비스에 연결되어 있기도 했고, 30분 이상 유휴 상태인 커넥션을 끊게끔 되어 있었습니다.
+
+Next.js 같은 hot module 환경에서 글로벌하게 캐시한 mongoose 인스턴스가 그 끊긴 커넥션을 그대로 들고 있다가, 다음 요청에서 연결에 실패하는 것을 많이 봐왔습니다.
+
+증상도 비슷했습니다. 시간을 두고 접속할 때만 문제가 생기는 것처럼 보였으니까요.
+
+connection 옵션부터 점검했습니다:
+
+```ts
+mongoose.connect(uri, {
+  maxPoolSize: 10,
+  minPoolSize: 1,
+  maxIdleTimeMS: 60000,
+  serverSelectionTimeoutMS: 5000,
+  heartbeatFrequencyMS: 10000,
+});
+```
+
+`dbConnect` 헬퍼에서 `readyState` 체크도 점검했습니다. 아예 부하를 무릅쓰고 health check를 주기적으로 해보기도 했고, 캐시한 promise가 reject되었을 때 무효화하는 로직, connecting 상태일 때 race를 피하는 로직 등 다양한 시도를 해보았습니다.
+
+그런데 배포하고 나서 기다렸다 보면 증상은 그대로였고 리포트는 여전히 들어왔습니다.
+
+MongoDB Atlas의 응답 시간 그래프에서 DB 호출 지연이 튀는 흔적도 안 보였습니다. 데이터베이스가 문제가 아닌 것 같았습니다.
+
+---
+
+## PM2 로그를 열다 - 91초마다 새로 시작되는 프로세스
+
+`pm2 log`의 마지막 몇십 줄을 봤습니다.
+
+```text
+0|app | ✓ Ready in 1599ms
+0|app | { ... timestamp ******3699 ... pid 2127439 ... }
+0|app | > app start
+0|app | > next start
+0|app | ▲ Next.js 15.5.9
+0|app | ✓ Ready in 1708ms
+0|app | { ... timestamp ******3790 ... pid 2127664 ... }
+0|app | > app start
+0|app | > next start
+0|app | ✓ Ready in 1550ms
+0|app | { ... timestamp ******3881 ... pid 2128223 ... }
+```
+
+하나의 로그 파일에 Next.js가 반복적으로 시작되는 것마냥 "Ready" 메시지를 뱉고 있었습니다. 타임스탬프 차이는 정확히 **91초**였습니다.
+
+여기서 첫 의문이 생겼습니다. PM2로 띄운 서비스가 왜 91초마다 새로 시작되고 있을까요.
+
+---
+
+## 두 번째 가설 - OOM Killer
+
+`pm2 log`에 에러 메시지가 한 줄도 없는 점을 토대로 또 다른 추정을 해봤습니다.
+
+본인이 throw나 exit로 죽으면 보통 stack trace가 남는데, 깨끗하게 사라지고 다시 시작합니다. 이건 **외부 SIGKILL**이 있었다는 뜻인 것 같았습니다. 가장 흔한 원인은 메모리 부족으로 OOM Killer가 강제 종료시키는 것이었죠.
+
+```bash
+$ sudo dmesg -T | grep -iE "killed process|out of memory|oom"
+$ sudo journalctl -k --since "2 hours ago" | grep -iE "oom|killed process"
+```
+
+그런데 oom 관련해 찾아볼 수 있는 흔적조차 없었습니다. 메모리 현황도 봤습니다.
+
+```bash
+$ free -m
+               total        used        free      shared  buff/cache   available
+Mem:            3650        1674        1346          72        1023        1975
+Swap:              0           0           0
+```
+
+3.6GB 중 1.7GB 사용. 여유 메모리 1.9GB. 스왑도 없고 압박이 되고 있지도 않습니다.
+
+```bash
+$ pm2 list
+┌────┬────────────────┬──────────┬──────┬─────────┬─────┬─────────┐
+│ id │ name           │ mode     │ ↺    │ status  │ cpu │ memory  │
+├────┼────────────────┼──────────┼──────┼─────────┼─────┼─────────┤
+│ 1  │ <worker>       │ fork     │ 0    │ online  │ 0%  │ 64.0mb  │
+│ 0  │ <next1>        │ fork     │ 0    │ online  │ 0%  │ 72.6mb  │
+│ 2  │ <next2>        │ cluster  │ 0    │ online  │ 0%  │ 72.9mb  │
+└────┴────────────────┴──────────┴──────┴─────────┴─────┴─────────┘
+```
+
+각 앱의 메모리는 70~80MB 수준이었고, OOM은 아니라는 뜻이었습니다.
+
+그래서 다시 로그를 보던 중... 다른 것이 눈에 들어왔습니다.
+
+---
+
+## 모순의 발견 - 카운트는 0인데 PID는 바뀐다
+
+`pm2 list`의 ↺ 컬럼이 **모두 0**이었습니다. 하지만 로그에는 PID가 91초마다 새 값으로 바뀌고 있었습니다.
+
+어떻게 이럴 수 있을까요? - **PM2 앱이 죽는 게 아니라, PM2 데몬 자체가 죽고 있는 것**입니다.
+
+PM2 데몬이 재시작되면, 데몬이 관리하던 앱들도 통째로 새 PID로 시작됩니다. 그리고 데몬도 새로 시작되었기 때문에 새로고침 카운트도 0으로 리셋이 되었던 것이었습니다.
+
+각 앱의 uptime을 확인했습니다.
+
+```bash
+$ pm2 describe 0 | grep -E "uptime|restarts|created at"
+│ restarts          │ 0                                       │
+│ uptime            │ 8s                                      │
+│ unstable restarts │ 0                                       │
+│ created at        │ ****-**-10T14:20:11.549Z                │
+
+$ pm2 describe 1 | grep -E "uptime|restarts|created at"
+│ restarts          │ 0                                       │
+│ uptime            │ 8s                                      │
+│ created at        │ ****-**-15T09:13:43.154Z                │
+
+$ pm2 describe 2 | grep -E "uptime|restarts|created at"
+│ restarts          │ 0                                       │
+│ uptime            │ 8s                                      │
+│ created at        │ ****-**-19T15:27:20.971Z                │
+```
+
+세 개의 앱이 모두 **8초, 8초, 8초**의 uptime을 가지고 있습니다. 거의 같은 순간에 시작되었다는 뜻이고, 이는 데몬 단위로 다 같이 재기동되었다는 결정적 증거였습니다.
+
+`created at` 날짜는 제각각이지만 (PM2의 `dump.pm2`에 등록된 시점), 실제 프로세스 uptime은 동기화되어 있었습니다.
+
+---
+
+## 진짜 원인 - journalctl에서 발견한 한 줄
+
+`systemctl status`부터 봤습니다.
+
+```text
+● pm2-<user>.service - PM2 process manager
+     Loaded: loaded (/etc/systemd/system/pm2-<user>.service; enabled)
+     Active: activating (start) since ... ; 29s ago
+    Process: ... ExecStart=/usr/local/bin/pm2 resurrect (code=exited, status=0/SUCCESS)
+
+... pm2[...]: ┌────┬─ ... ─┐
+... pm2[...]: │ id │ name  │ ...
+... pm2[...]: └────┴─ ... ─┘
+... systemd[1]: pm2-<user>.service: Can't open PID file
+                 '/home/<user>/.pm2/pm2.pid' (yet?) after start: Permission denied
+```
+
+상태가 `active (running)`이 아니라 `activating (start)`. PM2 자체는 앱 list를 출력할 정도로 정상 동작 중인데, systemd 관점에서는 "아직 시작 중"인 상태로 멈춰 있습니다.
+
+이어서 `journalctl`로 사이클 전체를 봤습니다.
+
+```bash
+$ sudo journalctl -u pm2-<user> -n 200 --no-pager
+```
+
+```text
+*** ** 02:43:55  systemd[1]: Starting pm2-<user>.service - PM2 process manager...
+*** ** 02:43:56  pm2[...]: [PM2] Spawning PM2 daemon with pm2_home=/home/<user>/.pm2
+*** ** 02:43:56  pm2[...]: [PM2] PM2 Successfully daemonized
+*** ** 02:43:56  pm2[...]: [PM2] Resurrecting
+*** ** 02:44:06  pm2[...]: ┌────┬─ ... ─┐
+*** ** 02:44:06  pm2[...]: │ id │ name  │ ...
+*** ** 02:44:06  pm2[...]: │ 1  │ <worker>     │ ... online ...
+*** ** 02:44:06  pm2[...]: │ 0  │ <next1> │ ... online ...
+*** ** 02:44:06  pm2[...]: │ 2  │ <next2>  │ ... online ...
+*** ** 02:44:06  pm2[...]: └────┴─ ... ─┘
+*** ** 02:44:06  systemd[1]: pm2-<user>.service: Can't open PID file
+                            '/home/<user>/.pm2/pm2.pid' (yet?) after start: Permission denied
+... (90초 대기) ...
+*** ** 02:45:25  systemd[1]: pm2-<user>.service: start operation timed out. Terminating.
+*** ** 02:45:26  systemd[1]: pm2-<user>.service: Failed with result 'timeout'.
+*** ** 02:45:26  systemd[1]: pm2-<user>.service: Consumed 37.904s CPU time, 997.1M memory peak.
+*** ** 02:45:26  systemd[1]: pm2-<user>.service: Scheduled restart job,
+                            restart counter is at 28163.
+*** ** 02:45:26  systemd[1]: Starting pm2-<user>.service - PM2 process manager...
+```
+
+세 가지가 한꺼번에 보였습니다:
+
+- PID 파일을 systemd가 못 읽고 있음 (**Permission denied**)
+- start 타임아웃 후 **SIGKILL** (`Terminating`, `Failed with result 'timeout'`)
+- 재시작 카운터 **28,163**
+
+91초 × 28163 ≈ **약 30일**. 한 달 가까이 이 사이클이 돌고 있었던 겁니다.
+
+---
+
+## SELinux가 정확히 무엇을 차단했는가
+
+`Permission denied`... 꼭 이럴 때 보면 SELinux입니다.
+
+```bash
+$ getenforce
+Enforcing
+```
+
+CentOS 기본값. 다음으로 AVC denial 로그를 봤습니다.
+
+```bash
+$ sudo ausearch -m avc -ts today | grep -i pm2
+type=AVC msg=audit(******3973.515:128822): avc:  denied  { read } for
+  pid=1 comm="systemd" name="pm2.pid"
+  dev="sda2" ino=42530
+  scontext=system_u:system_r:init_t:s0
+  tcontext=system_u:object_r:user_home_t:s0
+  tclass=file permissive=0
+```
+
+이 한 줄에 모든 정보가 들어 있습니다:
+
+- `pid=1 comm="systemd"` - PID 1번 프로세스, 즉 시스템 init 프로세스
+- `denied { read }` - read 동작이 거부됨
+- `scontext=...:init_t:s0` - 호출 측 보안 도메인은 `init_t`
+- `tcontext=...:user_home_t:s0` - 대상 파일의 보안 라벨은 `user_home_t`
+
+파일 라벨도 확인했습니다.
+
+```bash
+$ ls -lZ /home/<user>/.pm2/pm2.pid
+-rw-r--r--. 1 <user> <user> unconfined_u:object_r:user_home_t:s0 7 ... pm2.pid
+
+$ ls -ldZ /home/<user> /home/<user>/.pm2
+drwx------. 8 <user> <user> unconfined_u:object_r:user_home_dir_t:s0 ... /home/<user>
+drwxr-xr-x. 5 <user> <user> unconfined_u:object_r:user_home_t:s0      ... /home/<user>/.pm2
+```
+
+전부 표준 라벨로, CentOS의 기본 SELinux 정책 그대로입니다. 시스템 init 프로세스가 사용자 홈의 파일을 읽지 못하도록 막혀 있고, 보안상 당연한 정책입니다.
+
+문제는 PM2의 `pm2 startup` 명령이 자동 생성하는 systemd unit이 **사용자 홈에 있는 PID 파일을 systemd가 읽도록 요구한다**는 점입니다. 이 두 정책이 정면으로 충돌합니다.
+
+---
+
+## 이슈의 매커니즘 - 왜 정확히 91초였는가
+
+systemd의 `Type=forking` 동작은 이렇습니다:
+
+1. `ExecStart`에 지정된 명령을 실행합니다.
+2. 명령이 fork 후 부모는 종료, 자식이 데몬으로 남습니다.
+3. systemd는 `PIDFile=`에 명시된 파일을 직접 읽어 메인 프로세스의 PID를 확보합니다.
+4. PID 파일을 읽지 못하면 "아직 시작 중"으로 판단해 `TimeoutStartSec`(기본 90초) 동안 기다립니다.
+5. 타임아웃에 도달하면 unit 전체에 SIGKILL을 보냅니다. cgroup 안의 모든 프로세스가 함께 종료됩니다.
+6. `Restart=` 정책에 따라 다시 시작됩니다.
+
+여기에 SELinux가 끼어들면 다음 그림이 됩니다:
+
+- PM2 데몬은 정상적으로 fork되고 데몬화에 성공합니다.
+- 관리하는 Next.js 앱들도 정상적으로 떠서 "Ready" 메시지까지 출력합니다.
+- 하지만 systemd는 PID 파일을 못 읽으니 "start 실패"로 판단합니다.
+- 90초 타임아웃 → cgroup 통째로 SIGKILL → 모든 앱이 같이 죽습니다.
+- 1초 후 재시작이 시작됩니다.
+
+**91초 = TimeoutStartSec 90초 + 정리 1초**. 정확히 일치했습니다.
+
+이 사이클의 다운타임은 짧으면 1.6초(Ready까지)이고 가용률은 약 98%입니다. 90초 중 87초는 정상 응답하고 3초 정도만 503이 나는 셈입니다. 사용자 입장에서는 "어쩌다 한 번 503", 5분 간격 모니터링 입장에서는 "통계상 멀쩡한 서버"가 되는 거죠. 그래서 한 달이 지나도록 모니터링 알림 한 번 울리지 않았습니다.
+
+---
+
+## 해결 - PIDFile 의존을 제거하다
+
+해결 방향은 두 가지였습니다.
+
+**A안) SELinux 정책을 풀어 systemd가 user_home_t를 읽게 하기.**
+
+SELinux를 꺼서 보안을 뚫을 생각은 없었습니다. 시스템 데몬이 사용자 홈을 자유롭게 읽도록만 푸는 것도 보안 트레이드오프가 큽니다. 이 unit 하나를 위한 정책 예외를 만들어 운영하는 것도 부담스러웠습니다.
+
+**B안) PIDFile 의존 자체를 제거하기.**
+
+systemd가 PID 파일이 아니라 cgroup 안의 메인 프로세스를 추측해서 추적하게 합니다. unit 파일 한 곳만 고치면 끝입니다.
+
+B안을 택했습니다.
+
+`/etc/systemd/system/pm2-<user>.service`를 백업하고 다음과 같이 수정했습니다.
+
+```ini
+[Service]
+Type=forking
+# PIDFile=/home/<user>/.pm2/pm2.pid    ← 제거 또는 주석
+GuessMainPID=yes
+TimeoutStartSec=30
+# 기존 ExecStart, ExecStop, ExecReload, User, Environment 등은 그대로
+```
+
+`GuessMainPID=yes`는 PIDFile 없이 동작하는 forking 타입의 표준 fallback입니다. systemd가 cgroup 내부에서 메인 프로세스를 추측해 추적합니다. `TimeoutStartSec=30`은 혹시 또 시작 단계에서 어떤 이유로 막혀도 90초 동안 무한 대기하지 않게 하는 안전장치입니다.
+
+수정한 PID 파일을 적용하기 위해 데몬을 재시작했습니다.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl reset-failed pm2-<user>     # 28163 카운터 초기화
+sudo systemctl restart pm2-<user>
+```
+
+---
+
+## 검증
+
+`systemctl status`부터 다시 봤습니다.
+
+```bash
+$ sudo systemctl status pm2-<user>
+● pm2-<user>.service - PM2 process manager
+     Loaded: loaded (/etc/systemd/system/pm2-<user>.service; enabled)
+     Active: active (running) since *** ****-**-** 02:56:56 UTC; 2s ago
+   Main PID: 2130660 (PM2 v6.*.*: Go)
+     CGroup: /system.slice/pm2-<user>.service
+             ├─2130660 "PM2 v6.*.*: God Daemon ..."
+             ├─2130673 "npm start"
+             ├─2130674 "node ..."
+             ├─2130680 "npm start"
+             ├─2130709 "next-server (v**.*.*)"
+             └─...
+```
+
+`activating (start)`이 아니라 `active (running)`으로 정상 노출됩니다. Main PID가 잘 붙은 것까지 확인했습니다. 그리고 `since`도 바뀌지 않고 그대로입니다.
+
+5분이 지난 후에 다시 로그를 싹 살펴봤습니다.
+
+```bash
+$ sudo journalctl -u pm2-<user> --since "5 min ago" | grep -iE "fail|timed|denied"
+$
+```
+
+(출력 없음.)
+
+```bash
+$ sudo ausearch -m avc -ts recent | grep pm2
+$
+```
+
+(출력 없음. AVC denial이 더는 안 찍힘.)
+
+```bash
+$ pm2 describe 0 | grep -E "uptime|restarts"
+│ restarts          │ 0                                              │
+│ uptime            │ 4m                                             │
+
+$ pm2 describe 2 | grep -E "uptime|restarts"
+│ restarts          │ 0                                              │
+│ uptime            │ 5m                                             │
+```
+
+이전엔 항상 `8s`에 머물던 uptime이 분 단위로 누적되기 시작했습니다.
+
+산발적인 503도 그대로 사라졌습니다.
+
+다음에 PM2 업그레이드나 다른 운영 작업 중에 `pm2 startup`을 다시 돌리면, 수정한 unit 파일이 자동 생성된 기본형으로 덮어씌워질 수 있습니다. 백업본(`.bak`)을 두고, 변경 사항을 별도 문서로 남겨두었습니다. 이 글과 함께요.
+
+---
+
+## 요약하며 마무리
+
+- `pm2 list`의 ↺ 카운트는 0, 그런데 로그의 PID는 계속 바뀐다면 죽는 부분은 명확합니다. 비슷한 패턴을 다시 만나면 PM2 앱 단위가 아니라 데몬 단위, 그것도 systemd 단위를 먼저 의심해야 합니다.
+- stdout/stderr에 에러 흔적 없이 프로세스가 사라진다면, 본인이 죽은 게 아닙니다. OOM Killer가 가장 흔한 용의자지만, **systemd 타임아웃에 의한 SIGKILL**도 정확히 같은 패턴을 만듭니다. dmesg에 OOM 흔적이 없을 때 systemd journal로 시선을 돌리는 게 다음 단계입니다. (사실 `systemctl status`부터 돌리는 게 낫습니다.)
+- 처음에 MongoDB 유휴 커넥션을 의심한 건 합리적인 추론이었습니다. "시간을 두고 접속하면 가끔 503"이라는 증상은 그 가설과 거의 완벽하게 부합했습니다. 옵션도 다듬었고, 그 작업 자체는 의미 있는 정비였습니다. 하지만 증상이 그대로라면 그 가설은 빠르게 폐기하고 다음으로 넘어가야 합니다. 가설에 매몰되지 않는 것 - 진단의 가장 어려운 부분입니다.
+- 외부 모니터링은 가용률만 봅니다. 5분 간격 외부 모니터링이 한 달 동안 이 문제를 한 번도 잡지 못했습니다. 다운타임이 짧고(1.6초) 사이클이 일정하면, 5분 간격 샘플링은 통계적으로 정상으로 보입니다. 응답 시간 그래프와 헬스체크 엔드포인트는 가능하면 1분 간격 모니터링까지 같이 두는 게 안전합니다.
+- user-level 데몬 + 시스템 init은 SELinux의 단골 충돌 지점입니다. `sudo`를 사용하지 않는 `pm2 startup`이 자동 생성한 unit 파일을 그대로 쓰는 환경에서는, Enforcing의 SELinux와의 충돌이 늘 도사리고 있습니다. 사용자 홈에 PID 파일을 두지 않는 구조(혹은 PIDFile 의존 자체를 제거하는 구조)가 안전합니다.
