@@ -110,11 +110,11 @@ const { variant = "sidebar" } = Astro.props;
                 if (emptyEl) emptyEl.hidden = true;
                 resultsEl.innerHTML = items
                     .map(function (item) {
-                        const title =
-                            (item.meta && item.meta.title) || item.url;
-                        const thumbnail = item.meta && item.meta.thumbnail;
+                        const meta = item.meta || {};
+                        const title = meta.title || item.url;
+                        const thumbnail = meta.thumbnail;
                         const tags = (item.filters && item.filters.tag) || [];
-                        const excerpt = item.excerpt || "";
+                        const summary = meta.summary || meta.description || "";
 
                         let html = '<article class="post-card">';
                         html += '<a href="' + escapeHtml(item.url) + '">';
@@ -138,10 +138,10 @@ const { variant = "sidebar" } = Astro.props;
                             '<h2 class="post-card-title">' +
                             escapeHtml(title) +
                             "</h2>";
-                        if (excerpt) {
+                        if (summary) {
                             html +=
                                 '<p class="post-card-summary">' +
-                                excerpt +
+                                escapeHtml(summary) +
                                 "</p>";
                         }
                         html += '<p class="post-card-button">read →</p>';
@@ -316,13 +316,5 @@ const { variant = "sidebar" } = Astro.props;
         font-size: 12px;
         color: $color-text-muted;
         text-align: center;
-    }
-
-    :global(.search--page .post-card-summary mark) {
-        background: $color-primary;
-        color: $color-bg;
-        padding: 0 2px;
-        border-radius: 2px;
-        font-weight: bold;
     }
 </style>
