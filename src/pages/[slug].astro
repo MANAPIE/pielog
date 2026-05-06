@@ -3,6 +3,7 @@ export const prerender = true;
 
 import { getCollection, render } from "astro:content";
 import PostLayout from "../layouts/PostLayout.astro";
+import { stripMarkdown, buildSearchIndex } from "../lib/koreanSearch";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -14,6 +15,14 @@ export async function getStaticPaths() {
 
 const post = Astro.props;
 const { Content, headings } = await render(post);
+const rawBody = post.body ?? "";
+const searchSource = [
+    post.data.title,
+    post.data.description,
+    post.data.summary ?? "",
+    stripMarkdown(rawBody),
+].join(" ");
+const searchIndex = buildSearchIndex(searchSource);
 ---
 
 <PostLayout
@@ -22,6 +31,8 @@ const { Content, headings } = await render(post);
     date={post.data.date}
     tags={post.data.tags}
     headings={headings}
+    searchIndex={searchIndex}
+    thumbnail={post.data.thumbnail}
 >
     <Content />
 </PostLayout>

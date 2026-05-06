@@ -1,0 +1,18 @@
+---
+export const prerender = true;
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SearchBox from "../components/Search.astro";
+---
+
+<BaseLayout title="검색 — PIElog" description="포스트 검색" pageType="search">
+    <section class="search-page">
+        <SearchBox variant="page" />
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    .search-page {
+        margin-top: 7px;
+    }
+</style>

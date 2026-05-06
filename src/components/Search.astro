@@ -1,0 +1,328 @@
+---
+interface Props {
+    variant?: "sidebar" | "page";
+}
+
+const { variant = "sidebar" } = Astro.props;
+---
+
+<div class={`search search--${variant}`} data-search-root>
+    <form class="search-form" data-search-form>
+        <input
+            type="search"
+            class="search-input"
+            placeholder="Search"
+            autocomplete="off"
+            spellcheck="false"
+            data-search-input
+        />
+        <button
+            type="submit"
+            class="search-button"
+            data-search-button
+            aria-label="검색"
+        >
+            검색
+        </button>
+    </form>
+    {
+        variant === "page" && (
+            <>
+                <h1 class="search-title" data-search-title hidden>
+                    SEARCH RESULTS
+                </h1>
+                <div class="post-list" data-search-results />
+                <div class="search-empty" data-search-empty hidden>
+                    검색 결과가 없습니다
+                </div>
+                <div class="search-error" data-search-error hidden />
+            </>
+        )
+    }
+</div>
+
+<script is:inline>
+    (function () {
+        const PARTICLES =
+            /(?:에서|에게|부터|까지|으로|이라|라고|이나|든지|조차|마저|처럼|만큼|에게서|로부터|은|는|이|가|을|를|의|에|로|와|과|도|만|나|께)$/;
+
+        function stripParticles(text) {
+            return text
+                .split(/\s+/)
+                .map(function (word) {
+                    const stripped = word.replace(PARTICLES, "");
+                    return stripped.length > 0 ? stripped : word;
+                })
+                .join(" ");
+        }
+
+        function escapeHtml(s) {
+            return String(s)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        const roots = document.querySelectorAll(
+            "[data-search-root]:not([data-search-bound])",
+        );
+        roots.forEach(function (root) {
+            root.setAttribute("data-search-bound", "1");
+
+            const form = root.querySelector("[data-search-form]");
+            const input = root.querySelector("[data-search-input]");
+            const isPage = root.classList.contains("search--page");
+            const titleEl = root.querySelector("[data-search-title]");
+            const queryEl = root.querySelector("[data-search-query]");
+            const resultsEl = root.querySelector("[data-search-results]");
+            const emptyEl = root.querySelector("[data-search-empty]");
+            const errorEl = root.querySelector("[data-search-error]");
+
+            let initPromise = null;
+
+            function getPagefind() {
+                if (initPromise) return initPromise;
+                initPromise = (async function () {
+                    const mod = await import(
+                        /* @vite-ignore */ "/pagefind/pagefind.js"
+                    );
+                    await mod.options({ excerptLength: 30 });
+                    return mod;
+                })();
+                return initPromise;
+            }
+
+            function showError(msg) {
+                if (!errorEl) return;
+                errorEl.hidden = false;
+                errorEl.textContent = msg;
+            }
+
+            function renderResults(items) {
+                if (!resultsEl) return;
+                if (items.length === 0) {
+                    resultsEl.innerHTML = "";
+                    if (emptyEl) emptyEl.hidden = false;
+                    return;
+                }
+                if (emptyEl) emptyEl.hidden = true;
+                resultsEl.innerHTML = items
+                    .map(function (item) {
+                        const title =
+                            (item.meta && item.meta.title) || item.url;
+                        const thumbnail = item.meta && item.meta.thumbnail;
+                        const tags = (item.filters && item.filters.tag) || [];
+                        const excerpt = item.excerpt || "";
+
+                        let html = '<article class="post-card">';
+                        html += '<a href="' + escapeHtml(item.url) + '">';
+                        if (thumbnail) {
+                            html +=
+                                '<img class="post-card-thumbnail" src="' +
+                                escapeHtml(thumbnail) +
+                                '" alt="' +
+                                escapeHtml(title) +
+                                '" />';
+                        }
+                        html += '<div class="post-card-meta">';
+                        if (tags.length > 0) {
+                            html += '<ul class="post-card-tags">';
+                            tags.forEach(function (t) {
+                                html += "<li>" + escapeHtml(t) + "</li>";
+                            });
+                            html += "</ul>";
+                        }
+                        html +=
+                            '<h2 class="post-card-title">' +
+                            escapeHtml(title) +
+                            "</h2>";
+                        if (excerpt) {
+                            html +=
+                                '<p class="post-card-summary">' +
+                                excerpt +
+                                "</p>";
+                        }
+                        html += '<p class="post-card-button">read →</p>';
+                        html += "</div></a></article>";
+                        return html;
+                    })
+                    .join("");
+            }
+
+            async function runSearch(rawQuery) {
+                const query = (rawQuery || "").trim();
+                if (!query) return;
+                if (queryEl) queryEl.textContent = query;
+                if (titleEl) titleEl.hidden = false;
+                if (errorEl) errorEl.hidden = true;
+                if (emptyEl) emptyEl.hidden = true;
+
+                let pf;
+                try {
+                    pf = await getPagefind();
+                } catch (e) {
+                    showError("검색 인덱스를 불러올 수 없습니다.");
+                    return;
+                }
+                const normalized = stripParticles(query);
+                const search = await pf.search(normalized);
+                if (!search) return;
+                const items = await Promise.all(
+                    search.results.slice(0, 60).map(function (r) {
+                        return r.data();
+                    }),
+                );
+                renderResults(items);
+            }
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const q = input.value.trim();
+                if (!q) return;
+                if (isPage) {
+                    runSearch(q);
+                    try {
+                        const url = new URL(window.location.href);
+                        url.searchParams.set("q", q);
+                        window.history.replaceState(null, "", url.toString());
+                    } catch (err) {}
+                } else {
+                    window.location.href = "/search?q=" + encodeURIComponent(q);
+                }
+            });
+
+            if (isPage) {
+                input.addEventListener("focus", function () {
+                    getPagefind().catch(function () {});
+                });
+                try {
+                    const params = new URLSearchParams(window.location.search);
+                    const q = params.get("q");
+                    if (q) {
+                        input.value = q;
+                        runSearch(q);
+                    }
+                } catch (e) {}
+            }
+        });
+    })();
+</script>
+
+<style lang="scss">
+    @use "../styles/_variables.scss" as *;
+
+    .search {
+        position: relative;
+    }
+
+    .search-form {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input {
+        flex: 1;
+        min-width: 0;
+        width: 100%;
+        padding: 6px 10px;
+        background: $color-bg-half;
+        border: 1px solid $color-border;
+        border-radius: 3px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 12px;
+        color: $color-text;
+        outline: none;
+
+        &::placeholder {
+            color: $color-text-muted;
+        }
+
+        &:focus {
+            border-color: $color-primary;
+        }
+    }
+
+    .search-button {
+        flex-shrink: 0;
+        box-sizing: border-box;
+        width: 0;
+        margin-left: 0;
+        padding: 6px 0;
+        background: $color-tree;
+        border: 1px solid $color-border;
+        border-width: 0;
+        border-radius: 3px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 11px;
+        font-weight: bold;
+        color: $color-primary;
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+            width 0.25s ease,
+            margin-left 0.25s ease,
+            padding 0.25s ease,
+            border-width 0.25s ease,
+            opacity 0.2s ease;
+
+        &:hover {
+            background: $color-bg-half;
+        }
+    }
+
+    .search-form:focus-within .search-button {
+        width: 56px;
+        margin-left: 6px;
+        padding: 6px 10px;
+        border-width: 1px;
+        opacity: 1;
+    }
+
+    .search-title {
+        margin: 27px 0;
+        font-weight: bold;
+        font-size: 9px;
+        letter-spacing: 30%;
+        color: $color-text-muted;
+
+        span {
+            color: $color-primary;
+            display: inline-block;
+            white-space: nowrap;
+            padding: 0 8px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            background: $color-tree;
+            border: 1px solid $color-border;
+            border-radius: 3px;
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+            font-size: 11px;
+            letter-spacing: normal;
+        }
+    }
+
+    .search--page .search-form {
+        margin-bottom: 8px;
+    }
+
+    .search-empty,
+    .search-error {
+        padding: 40px 0;
+        font-size: 12px;
+        color: $color-text-muted;
+        text-align: center;
+    }
+
+    :global(.search--page .post-card-summary mark) {
+        background: $color-primary;
+        color: $color-bg;
+        padding: 0 2px;
+        border-radius: 2px;
+        font-weight: bold;
+    }
+</style>

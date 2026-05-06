@@ -12,7 +12,11 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
 ---
 
 <MobileHeader />
-<div class="layout-wrapper" data-page-type={pageType}>
+<div
+  class="layout-wrapper"
+  data-page-type={pageType}
+  data-pagefind-ignore={pageType !== "post" ? "all" : undefined}
+>
   <aside
     class="sidebar"
     style={sidebarOpacity !== 1

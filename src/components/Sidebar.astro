@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ThemeToggle from "./ThemeToggle.astro";
+import SearchBox from "./Search.astro";
 
 const posts = await getCollection("posts", ({ data }) => !data.draft);
 const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
@@ -21,6 +22,10 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
     <div class="site-subtitle">
       // thoughts & experiments<span class="blink">_</span>
     </div>
+  </div>
+
+  <div class="sidebar-search">
+    <SearchBox variant="sidebar" />
   </div>
 
   <div class="sidebar-categories">
@@ -153,6 +158,10 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
           }
         }
       }
+    }
+
+    .sidebar-search {
+      margin: 16px -2px 0;
     }
 
     .sidebar-section-title {
