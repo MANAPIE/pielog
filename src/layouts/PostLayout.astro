@@ -12,6 +12,7 @@ interface Props {
     ogImage?: string;
     headings?: { depth: number; slug: string; text: string }[];
     searchIndex?: string;
+    summary?: string;
     thumbnail?: ImageMetadata;
 }
 
@@ -23,6 +24,7 @@ const {
     ogImage,
     headings = [],
     searchIndex = "",
+    summary,
     thumbnail,
 } = Astro.props;
 ---
@@ -46,7 +48,8 @@ const {
     </script>
     <div data-pagefind-body hidden style="display:none">
         <h1 data-pagefind-meta="title" data-pagefind-weight="10">{title}</h1>
-        <p>{description}</p>
+        <p data-pagefind-meta="description">{description}</p>
+        {summary && <p data-pagefind-meta="summary">{summary}</p>}
         {thumbnail && (
             <img data-pagefind-meta="thumbnail[src]" src={thumbnail.src} alt="" />
         )}
