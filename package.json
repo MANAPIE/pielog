@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site .vercel/output/static --force-language unknown",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -27,6 +27,7 @@
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
+    "pagefind": "^1.5.2",
     "sass": "^1.99.0"
   }
 }
