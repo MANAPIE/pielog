@@ -1,0 +1,252 @@
+<svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="세션 기반 인증과 토큰 기반 인증의 비교">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .col-tag {
+      font: 700 11px system-ui, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .col-head {
+      font: 600 15px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .band {
+      font: 600 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .item {
+      font: 400 12px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .pro {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .con {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .session-box {
+      fill: var(--sec-blue-50, #eff6ff);
+      stroke: var(--sec-blue-200, #bfdbfe);
+      stroke-width: 1;
+    }
+
+    .token-box {
+      fill: var(--sec-violet-50, #f5f3ff);
+      stroke: var(--sec-violet-200, #ddd6fe);
+      stroke-width: 1;
+    }
+
+    .session-tag {
+      fill: var(--sec-blue-700, #1d4ed8);
+    }
+
+    .token-tag {
+      fill: var(--sec-violet-700, #6d28d9);
+    }
+
+    .node {
+      fill: var(--sec-bg);
+      stroke: var(--sec-slate-200, #e2e8f0);
+      stroke-width: 1;
+    }
+
+    .node-label {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .flow-arrow {
+      stroke: var(--sec-slate-500, #64748b);
+      stroke-width: 1.2;
+      fill: none;
+    }
+
+    .flow-text {
+      font: 400 10px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+  </style>
+
+  <defs>
+    <marker id="starr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)" />
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">세션 기반 vs 토큰 기반 인증</text>
+  <text x="24" y="56" class="caption">서버가 상태를 가지는지(Stateful)가 가장 큰 차이입니다. 각자의 트레이드오프가 다릅니다.</text>
+
+  <!-- LEFT: Session -->
+  <rect x="24" y="80" width="328" height="420" rx="14" class="session-box" />
+  <text x="40" y="104" class="col-tag session-tag">SESSION BASED</text>
+  <text x="40" y="126" class="col-head">세션 기반 (Stateful)</text>
+
+  <!-- Session flow -->
+  <rect x="40" y="148" width="80" height="52" rx="6" class="node" />
+  <text x="80" y="178" text-anchor="middle" class="node-label">클라이언트</text>
+
+  <rect x="148" y="148" width="80" height="52" rx="6" class="node" />
+  <text x="188" y="178" text-anchor="middle" class="node-label">서버</text>
+
+  <rect x="256" y="148" width="80" height="52" rx="6" class="node" />
+  <text x="296" y="178" text-anchor="middle" class="node-label">세션 저장소</text>
+
+  <!-- Arrows -->
+  <line x1="120" y1="170" x2="146" y2="170" class="flow-arrow" marker-end="url(#starr)" />
+  <text x="133" y="164" text-anchor="middle" class="flow-text">로그인</text>
+
+  <line x1="228" y1="170" x2="254" y2="170" class="flow-arrow" marker-end="url(#starr)" />
+  <text x="241" y="164" text-anchor="middle" class="flow-text">저장</text>
+
+  <line x1="148" y1="190" x2="122" y2="190" class="flow-arrow" marker-end="url(#starr)" />
+  <text x="135" y="184" text-anchor="middle" class="flow-text">세션 ID</text>
+
+  <!-- Description -->
+  <text x="40" y="230" class="band">동작 방식</text>
+  <text x="40" y="250" class="item">서버가 세션 데이터를 저장하고,</text>
+  <text x="40" y="268" class="item">클라이언트에는 세션 ID만 쿠키로 전달</text>
+
+  <text x="40" y="298" class="band">장점</text>
+  <text x="40" y="316" class="pro">✓ 즉시 무효화 가능 (서버에서 삭제)</text>
+  <text x="40" y="334" class="pro">✓ 세션 정보 변경 자유로움</text>
+  <text x="40" y="352" class="pro">✓ 크기가 작아 쿠키 부담 적음</text>
+
+  <text x="40" y="380" class="band">단점</text>
+  <text x="40" y="398" class="con">✗ 서버 상태 관리 필요 (Redis 등)</text>
+  <text x="40" y="416" class="con">✗ 수평 확장 시 세션 공유 설계 필요</text>
+  <text x="40" y="434" class="con">✗ CSRF 대비 필요 (쿠키 자동 전송)</text>
+
+  <text x="40" y="464" class="band">대표 사용처</text>
+  <text x="40" y="480" class="item">전통적 서버 렌더링 웹, 관리자 페이지</text>
+
+  <!-- RIGHT: Token -->
+  <rect x="368" y="80" width="328" height="420" rx="14" class="token-box" />
+  <text x="384" y="104" class="col-tag token-tag">TOKEN BASED (JWT)</text>
+  <text x="384" y="126" class="col-head">토큰 기반 (Stateless)</text>
+
+  <!-- Token flow -->
+  <rect x="384" y="148" width="80" height="52" rx="6" class="node" />
+  <text x="424" y="178" text-anchor="middle" class="node-label">클라이언트</text>
+
+  <rect x="492" y="148" width="80" height="52" rx="6" class="node" />
+  <text x="532" y="178" text-anchor="middle" class="node-label">서버</text>
+
+  <rect x="600" y="148" width="80" height="52" rx="6" class="node" stroke-dasharray="3 3" opacity="0.5" />
+  <text x="640" y="178" text-anchor="middle" class="node-label" opacity="0.5">(없음)</text>
+
+  <line x1="464" y1="170" x2="490" y2="170" class="flow-arrow" marker-end="url(#starr)" />
+  <text x="477" y="164" text-anchor="middle" class="flow-text">로그인</text>
+
+  <line x1="492" y1="190" x2="466" y2="190" class="flow-arrow" marker-end="url(#starr)" />
+  <text x="479" y="184" text-anchor="middle" class="flow-text">서명된 토큰</text>
+
+  <text x="384" y="230" class="band">동작 방식</text>
+  <text x="384" y="250" class="item">토큰 자체에 사용자 정보와 서명 포함.</text>
+  <text x="384" y="268" class="item">서버는 매 요청마다 서명만 검증</text>
+
+  <text x="384" y="298" class="band">장점</text>
+  <text x="384" y="316" class="pro">✓ 서버 상태 불필요, 수평 확장 용이</text>
+  <text x="384" y="334" class="pro">✓ 마이크로서비스 간 인증 전달 쉬움</text>
+  <text x="384" y="352" class="pro">✓ 모바일·SPA에 적합</text>
+
+  <text x="384" y="380" class="band">단점</text>
+  <text x="384" y="398" class="con">✗ 즉시 무효화 어려움 (만료까지 유효)</text>
+  <text x="384" y="416" class="con">✗ 토큰 크기가 큼 (payload 포함)</text>
+  <text x="384" y="434" class="con">✗ payload 노출 가능 (암호화 아님)</text>
+
+  <text x="384" y="464" class="band">대표 사용처</text>
+  <text x="384" y="480" class="item">SPA, 모바일 앱, 마이크로서비스 API</text>
+</svg>

@@ -1,0 +1,230 @@
+<svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IDOR 취약점 - 취약한 구현과 안전한 구현 비교">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .col-tag {
+      font: 700 11px system-ui, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .step-num {
+      font: 700 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .step-label {
+      font: 500 12px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .mono {
+      font: 400 11px "SF Mono", ui-monospace, monospace;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .mono-sql {
+      font: 400 11px "SF Mono", ui-monospace, monospace;
+      fill: var(--sec-slate-700, #334155);
+    }
+
+    .col-bad {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-200, #fecaca);
+      stroke-width: 1;
+    }
+
+    .col-good {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-200, #a7f3d0);
+      stroke-width: 1;
+    }
+
+    .tag-bad {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .tag-good {
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .code-box-bad {
+      fill: var(--sec-bg, #ffffff);
+      stroke: var(--sec-red-200, #fecaca);
+      stroke-width: 1;
+    }
+
+    .code-box-good {
+      fill: var(--sec-bg, #ffffff);
+      stroke: var(--sec-emerald-200, #a7f3d0);
+      stroke-width: 1;
+    }
+
+    .result-bad {
+      fill: var(--sec-red-500, #ef4444);
+    }
+
+    .result-good {
+      fill: var(--sec-emerald-500, #10b981);
+    }
+
+    .result-text {
+      font: 700 12px system-ui, sans-serif;
+      fill: #ffffff;
+    }
+
+    .actor {
+      font: 600 12px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+  </style>
+
+  <text x="24" y="36" class="title">IDOR: 인증은 통과, 인가가 빠진 전형적인 사고</text>
+  <text x="24" y="56" class="caption">User B의 토큰으로 User A의 주문을 조회 시도. 권한 체크 여부가 결과를 가릅니다.</text>
+
+  <!-- Scenario description -->
+  <rect x="24" y="80" width="672" height="52" rx="10" fill="var(--sec-slate-50, #f8fafc)"
+    stroke="var(--sec-slate-200, #e2e8f0)" stroke-width="1" />
+  <text x="40" y="102" class="step-label">시나리오</text>
+  <text x="40" y="118" class="mono">User A의 주문 ID 1042 · User B의 토큰으로 GET /api/orders/1042 호출</text>
+
+  <!-- LEFT: Vulnerable -->
+  <rect x="24" y="148" width="328" height="372" rx="14" class="col-bad" />
+  <text x="40" y="172" class="col-tag tag-bad">취약한 구현 (BEFORE)</text>
+
+  <text x="40" y="200" class="step-num">01</text>
+  <text x="68" y="200" class="step-label">토큰 검증 (인증 단계)</text>
+  <text x="68" y="218" class="mono">→ 유효한 User B 토큰, 통과 ✓</text>
+
+  <text x="40" y="250" class="step-num">02</text>
+  <text x="68" y="250" class="step-label">DB 조회 (권한 체크 없음)</text>
+  <rect x="68" y="260" width="268" height="60" rx="6" class="code-box-bad" />
+  <text x="80" y="278" class="mono-sql">SELECT * FROM orders</text>
+  <text x="80" y="294" class="mono-sql">WHERE id = 1042;</text>
+  <text x="80" y="310" class="mono-sql" fill="var(--sec-red-700, #b91c1c)">-- 소유자 검증 누락</text>
+
+  <text x="40" y="346" class="step-num">03</text>
+  <text x="68" y="346" class="step-label">결과 반환</text>
+  <text x="68" y="364" class="mono">User A의 주문 정보가 User B에게 노출됨</text>
+
+  <!-- Result badge -->
+  <rect x="68" y="382" width="240" height="50" rx="10" class="result-bad" />
+  <text x="188" y="403" text-anchor="middle" class="result-text">HTTP 200 OK</text>
+  <text x="188" y="420" text-anchor="middle" style="font: 500 10px system-ui; fill: #ffffff;">IDOR 취약점 발생</text>
+
+  <text x="40" y="468" class="step-label">근본 원인</text>
+  <text x="40" y="486" class="caption" fill="var(--sec-red-700, #b91c1c)">토큰 유효성만 보고 "이 사용자가 이 주문의 소유자인가"를</text>
+  <text x="40" y="500" class="caption" fill="var(--sec-red-700, #b91c1c)">쿼리 레벨에서 검증하지 않았습니다.</text>
+
+  <!-- RIGHT: Safe -->
+  <rect x="368" y="148" width="328" height="372" rx="14" class="col-good" />
+  <text x="384" y="172" class="col-tag tag-good">안전한 구현 (AFTER)</text>
+
+  <text x="384" y="200" class="step-num">01</text>
+  <text x="412" y="200" class="step-label">토큰 검증 (인증 단계)</text>
+  <text x="412" y="218" class="mono">→ 유효한 User B 토큰, 통과 ✓</text>
+
+  <text x="384" y="250" class="step-num">02</text>
+  <text x="412" y="250" class="step-label">DB 조회 (소유자 제약 포함)</text>
+  <rect x="412" y="260" width="268" height="60" rx="6" class="code-box-good" />
+  <text x="424" y="278" class="mono-sql">SELECT * FROM orders</text>
+  <text x="424" y="294" class="mono-sql">WHERE id = 1042</text>
+  <text x="424" y="310" class="mono-sql"> AND user_id = :current_user;</text>
+
+  <text x="384" y="346" class="step-num">03</text>
+  <text x="412" y="346" class="step-label">결과 없음 → 404 또는 403</text>
+  <text x="412" y="364" class="mono">User B는 User A의 주문을 볼 수 없음</text>
+
+  <!-- Result badge -->
+  <rect x="412" y="382" width="240" height="50" rx="10" class="result-good" />
+  <text x="532" y="403" text-anchor="middle" class="result-text">HTTP 403 / 404</text>
+  <text x="532" y="420" text-anchor="middle" style="font: 500 10px system-ui; fill: #ffffff;">접근 거부</text>
+
+  <text x="384" y="468" class="step-label">핵심 원칙</text>
+  <text x="384" y="486" class="caption" fill="var(--sec-emerald-700, #047857)">소유자 제약을 애플리케이션 로직이 아니라 쿼리 자체에</text>
+  <text x="384" y="500" class="caption" fill="var(--sec-emerald-700, #047857)">포함시킵니다. 누락될 여지를 구조적으로 없앱니다.</text>
+</svg>

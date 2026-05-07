@@ -1,0 +1,296 @@
+<svg viewBox="0 0 720 610" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="인증 강도 스펙트럼 - 비밀번호부터 Passkey까지">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .level-title {
+      font: 600 13px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .level-sub {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .attack-label {
+      font: 500 10px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .strength-tag {
+      font: 700 10px system-ui, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .weak {
+      fill: var(--sec-red-500, #ef4444);
+    }
+
+    .medium-weak {
+      fill: var(--sec-amber-500, #f59e0b);
+    }
+
+    .medium-strong {
+      fill: var(--sec-blue-500, #3b82f6);
+    }
+
+    .strong {
+      fill: var(--sec-emerald-500, #10b981);
+    }
+
+    .weak-bg {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-200, #fecaca);
+    }
+
+    .amber-bg {
+      fill: var(--sec-amber-50, #fffbeb);
+      stroke: var(--sec-amber-200, #fde68a);
+    }
+
+    .blue-bg {
+      fill: var(--sec-blue-50, #eff6ff);
+      stroke: var(--sec-blue-200, #bfdbfe);
+    }
+
+    .strong-bg {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-200, #a7f3d0);
+    }
+
+    .check-yes {
+      fill: var(--sec-emerald-500, #10b981);
+    }
+
+    .check-no {
+      fill: var(--sec-red-500, #ef4444);
+    }
+
+    .check-warn {
+      fill: var(--sec-amber-500, #f59e0b);
+    }
+  </style>
+
+  <text x="24" y="36" class="title">인증 강도 스펙트럼</text>
+  <text x="24" y="56" class="caption">위로 갈수록 구현은 쉽지만 공격에 취약합니다. 아래로 갈수록 피싱·탈취 저항성이 높습니다.</text>
+
+  <g transform="translate(0, -15)">
+    <!-- Strength bar -->
+    <defs>
+      <linearGradient id="strengthGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:var(--sec-red-500, #ef4444);stop-opacity:1" />
+        <stop offset="33%" style="stop-color:var(--sec-amber-500, #f59e0b);stop-opacity:1" />
+        <stop offset="66%" style="stop-color:var(--sec-blue-500, #3b82f6);stop-opacity:1" />
+        <stop offset="100%" style="stop-color:var(--sec-emerald-500, #10b981);stop-opacity:1" />
+      </linearGradient>
+    </defs>
+
+    <rect x="44" y="130" width="8" height="430" rx="4" fill="url(#strengthGrad)" />
+    <text x="48" y="120" text-anchor="middle" class="strength-tag" fill="var(--sec-red-700, #b91c1c)">WEAK</text>
+    <text x="48" y="576" text-anchor="middle" class="strength-tag" fill="var(--sec-emerald-700, #047857)">STRONG</text>
+
+    <!-- Level cards -->
+    <!-- Level 1: Password only -->
+    <rect x="64" y="130" width="632" height="96" rx="12" class="weak-bg" stroke-width="1" />
+    <circle cx="92" cy="160" r="14" class="weak" />
+    <text x="92" y="165" text-anchor="middle" style="font: 700 13px system-ui; fill: #ffffff;">1</text>
+    <g transform="translate(0, 6)">
+      <text x="120" y="154" class="level-title">비밀번호만</text>
+      <text x="120" y="180" class="level-sub">가장 기본. 유출된 비밀번호 목록(credential stuffing) 공격에 그대로 뚫립니다.</text>
+      <text x="120" y="198" class="level-sub">2024년에도 대규모 사고의 출발점으로 가장 많이 등장합니다.</text>
+    </g>
+
+    <!-- Attack resistance icons (3 rows) -->
+    <g transform="translate(530, 138)">
+      <text x="0" y="14" class="attack-label">Credential Stuffing</text>
+      <circle cx="150" cy="10" r="10" class="check-no" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✗</text>
+    </g>
+    <g transform="translate(530, 168)">
+      <text x="0" y="14" class="attack-label">Phishing</text>
+      <circle cx="150" cy="10" r="10" class="check-no" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✗</text>
+    </g>
+    <g transform="translate(530, 198)">
+      <text x="0" y="14" class="attack-label">SIM Swap</text>
+      <circle cx="150" cy="10" r="10" fill="var(--sec-slate-200, #e2e8f0)" />
+      <text x="150" y="14" text-anchor="middle"
+        style="font: 400 11px system-ui; fill: var(--sec-fg-muted, #64748b);">—</text>
+    </g>
+
+    <!-- Level 2: Password + SMS OTP -->
+    <rect x="64" y="240" width="632" height="96" rx="12" class="amber-bg" stroke-width="1" />
+    <circle cx="92" cy="270" r="14" class="medium-weak" />
+    <text x="92" y="275" text-anchor="middle" style="font: 700 13px system-ui; fill: #ffffff;">2</text>
+    <g transform="translate(0, 6)">
+      <text x="120" y="264" class="level-title">비밀번호 + SMS OTP</text>
+      <text x="120" y="290" class="level-sub">MFA의 입문. Credential stuffing은 막지만, SIM swap 공격에 취약합니다.</text>
+      <text x="120" y="308" class="level-sub">중요도가 높지 않은 서비스의 시작점 정도로 권장.</text>
+    </g>
+
+    <g transform="translate(530, 248)">
+      <text x="0" y="14" class="attack-label">Credential Stuffing</text>
+      <circle cx="150" cy="10" r="10" class="check-yes" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✓</text>
+    </g>
+    <g transform="translate(530, 278)">
+      <text x="0" y="14" class="attack-label">Phishing</text>
+      <circle cx="150" cy="10" r="10" class="check-no" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✗</text>
+    </g>
+    <g transform="translate(530, 308)">
+      <text x="0" y="14" class="attack-label">SIM Swap</text>
+      <circle cx="150" cy="10" r="10" class="check-no" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✗</text>
+    </g>
+
+    <!-- Level 3: Password + TOTP -->
+    <rect x="64" y="350" width="632" height="96" rx="12" class="blue-bg" stroke-width="1" />
+    <circle cx="92" cy="380" r="14" class="medium-strong" />
+    <text x="92" y="385" text-anchor="middle" style="font: 700 13px system-ui; fill: #ffffff;">3</text>
+    <g transform="translate(0, 6)">
+      <text x="120" y="374" class="level-title">비밀번호 + TOTP 앱 (Google Authenticator 등)</text>
+      <text x="120" y="400" class="level-sub">통신사 의존이 없어 SIM swap을 막지만,</text>
+      <text x="120" y="418" class="level-sub">실시간 피싱 프록시 공격에는 여전히 취약. 대부분 서비스의 현실적 기본 권장선.</text>
+    </g>
+
+    <g transform="translate(530, 358)">
+      <text x="0" y="14" class="attack-label">Credential Stuffing</text>
+      <circle cx="150" cy="10" r="10" class="check-yes" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✓</text>
+    </g>
+    <g transform="translate(530, 388)">
+      <text x="0" y="14" class="attack-label">Phishing</text>
+      <circle cx="150" cy="10" r="10" class="check-warn" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">△</text>
+    </g>
+    <g transform="translate(530, 418)">
+      <text x="0" y="14" class="attack-label">SIM Swap</text>
+      <circle cx="150" cy="10" r="10" class="check-yes" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✓</text>
+    </g>
+
+    <!-- Level 4: Passkey -->
+    <rect x="64" y="460" width="632" height="96" rx="12" class="strong-bg" stroke-width="1" />
+    <circle cx="92" cy="490" r="14" class="strong" />
+    <text x="92" y="495" text-anchor="middle" style="font: 700 13px system-ui; fill: #ffffff;">4</text>
+    <g transform="translate(0, 6)">
+      <text x="120" y="484" class="level-title">Passkey / FIDO2 / WebAuthn</text>
+      <text x="120" y="510" class="level-sub">공개키 암호 기반. 개인키가 기기 밖으로 나가지 않고,</text>
+      <text x="120" y="528" class="level-sub">도메인 바인딩으로 피싱이 불가능. Apple·Google·Microsoft 표준 지원.</text>
+    </g>
+
+    <g transform="translate(530, 468)">
+      <text x="0" y="14" class="attack-label">Credential Stuffing</text>
+      <circle cx="150" cy="10" r="10" class="check-yes" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✓</text>
+    </g>
+    <g transform="translate(530, 498)">
+      <text x="0" y="14" class="attack-label">Phishing</text>
+      <circle cx="150" cy="10" r="10" class="check-yes" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✓</text>
+    </g>
+    <g transform="translate(530, 528)">
+      <text x="0" y="14" class="attack-label">SIM Swap</text>
+      <circle cx="150" cy="10" r="10" class="check-yes" />
+      <text x="150" y="14" text-anchor="middle" style="font: 700 11px system-ui; fill: #ffffff;">✓</text>
+    </g>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(429, 568)">
+    <circle cx="6" cy="0" r="6" class="check-yes" />
+    <text x="18" y="4" class="attack-label">방어</text>
+    <circle cx="66" cy="0" r="6" class="check-warn" />
+    <text x="78" y="4" class="attack-label">부분 방어</text>
+    <circle cx="156" cy="0" r="6" class="check-no" />
+    <text x="168" y="4" class="attack-label">취약</text>
+    <circle cx="216" cy="0" r="6" fill="var(--sec-slate-200, #e2e8f0)" />
+    <text x="228" y="4" class="attack-label">해당 없음</text>
+  </g>
+</svg>
