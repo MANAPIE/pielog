@@ -1,0 +1,231 @@
+<svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="공급망 무결성 - SRI와 코드 서명">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .scenario-tag {
+      font: 700 10px system-ui, sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    .scenario-name {
+      font: 600 13px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .step {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .desc {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .mono-sm {
+      font: 400 10px "SF Mono", ui-monospace, monospace;
+    }
+
+    .attack-bg {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-200, #fecaca);
+    }
+
+    .defense-bg {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-200, #a7f3d0);
+    }
+
+    .attack-t {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .defense-t {
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .node {
+      fill: var(--sec-bg, #ffffff);
+      stroke: var(--sec-slate-200, #e2e8f0);
+    }
+
+    .node-cdn {
+      fill: var(--sec-slate-100, #f1f5f9);
+      stroke: var(--sec-slate-200, #e2e8f0);
+    }
+
+    .node-bad {
+      fill: var(--sec-red-100, #fee2e2);
+      stroke: var(--sec-red-500, #ef4444);
+    }
+
+    .node-good {
+      fill: var(--sec-emerald-100, #d1fae5);
+      stroke: var(--sec-emerald-500, #10b981);
+    }
+  </style>
+
+  <defs>
+    <marker id="sarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)" />
+    </marker>
+    <marker id="sarrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-red-500, #ef4444)" />
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">공급망 변조와 SRI 방어</text>
+  <text x="24" y="56" class="caption">2024년 polyfill.io 사태가 보여준 것: 한 번 신뢰한 외부 스크립트가 언제든 적이 될 수 있음.</text>
+
+  <!-- TOP: Attack scenario -->
+  <rect x="24" y="80" width="672" height="160" rx="14" class="attack-bg" stroke-width="1" />
+  <text x="40" y="102" class="scenario-tag attack-t">SCENARIO 1 · NO SRI</text>
+  <text x="40" y="124" class="scenario-name">CDN 변조 시 그대로 실행됨</text>
+
+  <!-- Flow nodes -->
+  <rect x="40" y="148" width="120" height="36" rx="8" class="node" />
+  <text x="100" y="170" text-anchor="middle" class="step">우리 사이트</text>
+
+  <rect x="200" y="148" width="120" height="36" rx="8" class="node-cdn" />
+  <text x="260" y="163" text-anchor="middle" class="step">CDN</text>
+  <text x="260" y="177" text-anchor="middle" class="desc">(원래 신뢰)</text>
+
+  <rect x="360" y="148" width="120" height="36" rx="8" class="node-bad" />
+  <text x="420" y="163" text-anchor="middle" class="step" fill="var(--sec-red-700, #b91c1c)">CDN 침해됨</text>
+  <text x="420" y="177" text-anchor="middle" class="desc" fill="var(--sec-red-700, #b91c1c)">악성 스크립트 주입</text>
+
+  <rect x="520" y="148" width="156" height="36" rx="8" class="node-bad" />
+  <text x="598" y="163" text-anchor="middle" class="step" fill="var(--sec-red-700, #b91c1c)">사용자 브라우저</text>
+  <text x="598" y="177" text-anchor="middle" class="desc" fill="var(--sec-red-700, #b91c1c)">검증 없이 실행</text>
+
+  <line x1="160" y1="166" x2="200" y2="166" stroke="var(--sec-slate-500, #64748b)" stroke-width="1.2"
+    marker-end="url(#sarr)" />
+  <line x1="320" y1="166" x2="360" y2="166" stroke="var(--sec-red-500, #ef4444)" stroke-width="1.4"
+    marker-end="url(#sarrR)" />
+  <line x1="480" y1="166" x2="520" y2="166" stroke="var(--sec-red-500, #ef4444)" stroke-width="1.4"
+    marker-end="url(#sarrR)" />
+
+  <rect x="40" y="200" width="640" height="32" rx="8" fill="var(--sec-bg, #ffffff)"
+    stroke="var(--sec-red-200, #fecaca)" />
+  <text x="52" y="220" class="mono-sm attack-t">&lt;script
+    src="https://cdn.example.com/lib.js"&gt;&lt;/script&gt;</text>
+
+  <!-- BOTTOM: Defense scenario -->
+  <rect x="24" y="256" width="672" height="184" rx="14" class="defense-bg" stroke-width="1" />
+  <text x="40" y="278" class="scenario-tag defense-t">SCENARIO 2 · WITH SRI</text>
+  <text x="40" y="300" class="scenario-name">해시 불일치로 실행 거부</text>
+
+  <rect x="40" y="324" width="120" height="36" rx="8" class="node" />
+  <text x="100" y="346" text-anchor="middle" class="step">우리 사이트</text>
+
+  <rect x="200" y="324" width="120" height="36" rx="8" class="node-bad" />
+  <text x="260" y="339" text-anchor="middle" class="step" fill="var(--sec-red-700, #b91c1c)">CDN 침해됨</text>
+  <text x="260" y="353" text-anchor="middle" class="desc" fill="var(--sec-red-700, #b91c1c)">악성 스크립트 주입</text>
+
+  <rect x="360" y="324" width="156" height="36" rx="8" fill="var(--sec-amber-100, #fef3c7)"
+    stroke="var(--sec-amber-500, #f59e0b)" />
+  <text x="438" y="339" text-anchor="middle" class="step" fill="var(--sec-amber-700, #b45309)">브라우저 SRI 검증</text>
+  <text x="438" y="353" text-anchor="middle" class="desc" fill="var(--sec-amber-700, #b45309)">해시 비교</text>
+
+  <rect x="556" y="324" width="120" height="36" rx="8" class="node-good" />
+  <text x="616" y="339" text-anchor="middle" class="step" fill="var(--sec-emerald-700, #047857)">실행 거부</text>
+  <text x="616" y="353" text-anchor="middle" class="desc" fill="var(--sec-emerald-700, #047857)">에러 출력</text>
+
+  <line x1="160" y1="342" x2="200" y2="342" stroke="var(--sec-slate-500, #64748b)" stroke-width="1.2"
+    marker-end="url(#sarr)" />
+  <line x1="320" y1="342" x2="360" y2="342" stroke="var(--sec-red-500, #ef4444)" stroke-width="1.4"
+    marker-end="url(#sarrR)" />
+  <line x1="516" y1="342" x2="556" y2="342" stroke="var(--sec-emerald-500, #10b981)" stroke-width="1.4"
+    marker-end="url(#sarrR)" />
+
+  <rect x="40" y="376" width="640" height="56" rx="8" fill="var(--sec-bg, #ffffff)"
+    stroke="var(--sec-emerald-200, #a7f3d0)" />
+  <text x="52" y="394" class="mono-sm defense-t">&lt;script src="https://cdn.example.com/lib.js"</text>
+  <text x="52" y="408" class="mono-sm defense-t"> integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K..."</text>
+  <text x="52" y="422" class="mono-sm defense-t"> crossorigin="anonymous"&gt;&lt;/script&gt;</text>
+</svg>

@@ -1,0 +1,221 @@
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="신뢰 경계 다이어그램 - 신뢰할 수 있는 영역과 그 바깥">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .zone-label {
+      font: 700 11px system-ui, sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    .zone-name {
+      font: 600 13px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .item {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .check-label {
+      font: 600 10px system-ui, sans-serif;
+    }
+
+    .untrusted {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-200, #fecaca);
+      stroke-width: 1;
+      stroke-dasharray: 4 3;
+    }
+
+    .untrusted-t {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .boundary {
+      fill: var(--sec-amber-50, #fffbeb);
+      stroke: var(--sec-amber-500, #f59e0b);
+      stroke-width: 2;
+    }
+
+    .boundary-t {
+      fill: var(--sec-amber-700, #b45309);
+    }
+
+    .trusted {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-500, #10b981);
+      stroke-width: 1.5;
+    }
+
+    .trusted-t {
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .check-pill {
+      fill: var(--sec-amber-500, #f59e0b);
+    }
+  </style>
+
+  <text x="24" y="36" class="title">신뢰 경계: 어디까지가 우리 영역인가</text>
+  <text x="24" y="56" class="caption">신뢰할 수 없는 모든 입력이 신뢰 영역으로 들어올 때 검증·sanitize·escape를 거쳐야 합니다.</text>
+
+  <!-- Untrusted zone -->
+  <rect x="24" y="84" width="216" height="320" rx="14" class="untrusted" />
+  <g transform="translate(0, 8)">
+    <text x="40" y="106" class="zone-label untrusted-t">UNTRUSTED · 신뢰할 수 없는</text>
+    <text x="40" y="128" class="zone-name">바깥세상</text>
+
+    <text x="40" y="158" class="item" fill="var(--sec-red-700, #b91c1c)">· 사용자 입력 (form, query)</text>
+    <text x="40" y="178" class="item" fill="var(--sec-red-700, #b91c1c)">· HTTP body / header / cookie</text>
+    <text x="40" y="198" class="item" fill="var(--sec-red-700, #b91c1c)">· 업로드된 파일</text>
+    <text x="40" y="218" class="item" fill="var(--sec-red-700, #b91c1c)">· URL 파라미터</text>
+    <text x="40" y="238" class="item" fill="var(--sec-red-700, #b91c1c)">· 외부 API 응답</text>
+    <text x="40" y="258" class="item" fill="var(--sec-red-700, #b91c1c)">· CDN에서 불러온 스크립트</text>
+    <text x="40" y="278" class="item" fill="var(--sec-red-700, #b91c1c)">· 메시지 큐 페이로드</text>
+    <text x="40" y="298" class="item" fill="var(--sec-red-700, #b91c1c)">· 파일·문서·역직렬화 데이터</text>
+
+    <text x="40" y="338" class="item" fill="var(--sec-red-700, #b91c1c)" font-weight="600">기본 가정:</text>
+    <text x="40" y="356" class="item" fill="var(--sec-red-700, #b91c1c)">악의적이거나 변조됐을 수</text>
+    <text x="40" y="372" class="item" fill="var(--sec-red-700, #b91c1c)">있다고 가정합니다.</text>
+  </g>
+
+  <!-- Boundary -->
+  <rect x="276" y="120" width="168" height="248" rx="14" class="boundary" />
+  <text x="360" y="148" text-anchor="middle" class="zone-label boundary-t">TRUST BOUNDARY</text>
+  <text x="360" y="170" text-anchor="middle" class="zone-name">신뢰 경계</text>
+
+  <!-- Check pills -->
+  <g transform="translate(0, -6)">
+    <rect x="296" y="194" width="128" height="28" rx="14" class="check-pill" />
+    <text x="360" y="212" text-anchor="middle" class="check-label" fill="#0f172a">VALIDATE</text>
+
+    <rect x="296" y="232" width="128" height="28" rx="14" class="check-pill" />
+    <text x="360" y="250" text-anchor="middle" class="check-label" fill="#0f172a">SANITIZE</text>
+
+    <rect x="296" y="270" width="128" height="28" rx="14" class="check-pill" />
+    <text x="360" y="288" text-anchor="middle" class="check-label" fill="#0f172a">ESCAPE</text>
+
+    <rect x="296" y="308" width="128" height="28" rx="14" class="check-pill" />
+    <text x="360" y="326" text-anchor="middle" class="check-label" fill="#0f172a">VERIFY (HMAC/SIG)</text>
+
+    <text x="360" y="356" text-anchor="middle" class="caption">통과한 입력만 안쪽으로</text>
+  </g>
+
+  <!-- Trusted zone -->
+  <rect x="480" y="84" width="216" height="320" rx="14" class="trusted" />
+  <g transform="translate(0, 8)">
+    <text x="496" y="106" class="zone-label trusted-t">TRUSTED · 신뢰 영역</text>
+    <text x="496" y="128" class="zone-name">내 시스템</text>
+
+    <text x="496" y="158" class="item" fill="var(--sec-emerald-700, #047857)">· 애플리케이션 메모리</text>
+    <text x="496" y="178" class="item" fill="var(--sec-emerald-700, #047857)">· 데이터베이스 쿼리 실행기</text>
+    <text x="496" y="198" class="item" fill="var(--sec-emerald-700, #047857)">· 템플릿 렌더링 엔진</text>
+    <text x="496" y="218" class="item" fill="var(--sec-emerald-700, #047857)">· 파일 시스템 접근</text>
+    <text x="496" y="238" class="item" fill="var(--sec-emerald-700, #047857)">· 시스템 명령 실행</text>
+    <text x="496" y="258" class="item" fill="var(--sec-emerald-700, #047857)">· 객체 역직렬화</text>
+    <text x="496" y="278" class="item" fill="var(--sec-emerald-700, #047857)">· 클라우드 자격증명</text>
+    <text x="496" y="298" class="item" fill="var(--sec-emerald-700, #047857)">· 빌드 결과물 / 아티팩트</text>
+
+    <text x="496" y="338" class="item" fill="var(--sec-emerald-700, #047857)" font-weight="600">기본 가정:</text>
+    <text x="496" y="356" class="item" fill="var(--sec-emerald-700, #047857)">검증된 입력만 들어왔다고</text>
+    <text x="496" y="372" class="item" fill="var(--sec-emerald-700, #047857)">가정하고 동작합니다.</text>
+  </g>
+
+  <!-- Arrows -->
+  <line x1="240" y1="244" x2="276" y2="244" stroke="var(--sec-slate-500, #64748b)" stroke-width="1.4"
+    marker-end="url(#tarr)" />
+  <line x1="444" y1="244" x2="480" y2="244" stroke="var(--sec-slate-500, #64748b)" stroke-width="1.4"
+    marker-end="url(#tarr)" />
+
+  <defs>
+    <marker id="tarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)" />
+    </marker>
+  </defs>
+</svg>
