@@ -1,0 +1,131 @@
+<svg viewBox="0 0 720 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 보호의 다층 방어 구조">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title { font: 600 16px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .caption { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .layer-title { font: 600 13px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .layer-sub { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .layer-tag { font: 700 10px system-ui, sans-serif; letter-spacing: 0.08em; }
+
+    .l1 { fill: var(--sec-blue-50, #eff6ff); stroke: var(--sec-blue-200, #bfdbfe); }
+    .l1-t { fill: var(--sec-blue-700, #1d4ed8); }
+    .l2 { fill: var(--sec-violet-50, #f5f3ff); stroke: var(--sec-violet-200, #ddd6fe); }
+    .l2-t { fill: var(--sec-violet-700, #6d28d9); }
+    .l3 { fill: var(--sec-emerald-50, #ecfdf5); stroke: var(--sec-emerald-200, #a7f3d0); }
+    .l3-t { fill: var(--sec-emerald-700, #047857); }
+    .l4 { fill: var(--sec-amber-50, #fffbeb); stroke: var(--sec-amber-200, #fde68a); }
+    .l4-t { fill: var(--sec-amber-700, #b45309); }
+
+    .data-core { fill: var(--sec-red-50, #fef2f2); stroke: var(--sec-red-500, #ef4444); stroke-width: 2; }
+    .data-text { font: 700 13px system-ui, sans-serif; fill: var(--sec-red-700, #b91c1c); }
+  </style>
+
+  <text x="24" y="36" class="title">데이터 보호는 단일 레이어가 아닙니다</text>
+  <text x="24" y="56" class="caption">한 레이어가 뚫려도 다음 레이어가 막도록 설계합니다. 모든 레이어는 각자의 실패 모드가 다릅니다.</text>
+
+  <!-- Onion layers, bottom to top -->
+  <!-- Layer 4: Transport -->
+  <rect x="24" y="90" width="672" height="362" rx="20" class="l4" stroke-width="1.5"/>
+  <text x="44" y="112" class="layer-tag l4-t">LAYER 4 · TRANSPORT</text>
+  <text x="44" y="130" class="layer-title">전송 보안 (HTTPS / TLS)</text>
+  <text x="44" y="146" class="layer-sub">HSTS · TLS 1.2+ · 인증서 관리 · CAA 레코드</text>
+
+  <!-- Layer 3: Application (headers) -->
+  <rect x="60" y="162" width="600" height="268" rx="16" class="l3" stroke-width="1.5"/>
+  <text x="80" y="184" class="layer-tag l3-t">LAYER 3 · APPLICATION</text>
+  <text x="80" y="202" class="layer-title">보안 헤더 · CORS · CSP</text>
+  <text x="80" y="218" class="layer-sub">브라우저에 보호 규칙을 명시. XSS 2차 방어선.</text>
+
+  <!-- Layer 2: Storage -->
+  <rect x="96" y="234" width="528" height="174" rx="12" class="l2" stroke-width="1.5"/>
+  <text x="116" y="256" class="layer-tag l2-t">LAYER 2 · STORAGE</text>
+  <text x="116" y="274" class="layer-title">저장 암호화 (at-rest)</text>
+  <text x="116" y="290" class="layer-sub">비밀번호는 bcrypt/argon2 · 민감정보는 AES-GCM</text>
+
+  <!-- Layer 1: Keys -->
+  <rect x="132" y="306" width="456" height="80" rx="8" class="l1" stroke-width="1.5"/>
+  <text x="152" y="324" class="layer-tag l1-t">LAYER 1 · KEY MANAGEMENT</text>
+  <text x="152" y="342" class="layer-sub">KMS · Vault · 키 로테이션 · 최소 권한</text>
+
+  <!-- Data core -->
+  <rect x="276" y="354" width="168" height="22" rx="6" class="data-core"/>
+  <text x="360" y="370" text-anchor="middle" class="data-text">YOUR DATA</text>
+
+  <!-- Bottom caption -->
+  <text x="360" y="478" text-anchor="middle" class="caption">"완벽한 암호화 알고리즘보다 중요한 것은 키가 어디에 있느냐입니다."</text>
+</svg>

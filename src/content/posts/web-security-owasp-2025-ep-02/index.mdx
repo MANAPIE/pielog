@@ -1,0 +1,580 @@
+---
+title: "데이터 보호의 기본기 - OWASP Top 10:2025 ep.02"
+description: "인증과 인가가 튼튼해도 데이터가 평문으로 오가면 의미가 없습니다. 보안 설정 오류(A02)와 암호화 실패(A04)를 한 편에서 다룹니다."
+summary: "전송 중 보호(HTTPS/TLS), 저장 시 보호(해시·암호화·키 관리), 애플리케이션 레이어(보안 헤더·CORS), 그리고 클라우드 설정까지. 2025년판 2위와 4위로 올라온 두 카테고리의 핵심을 실전 명령어와 함께 정리합니다."
+date: 2026-04-26
+tags: ["security", "owasp", "tls", "encryption", "headers", "misconfiguration"]
+draft: false
+---
+
+인증과 인가가 튼튼한데 데이터가 평문으로 오가면, 공격자는 인증을 뚫을 필요가 없습니다. 대신 사이에 앉아서 듣기만 하면 됩니다.
+
+---
+
+## 왜 이 두 가지를 같이 다루는가
+
+이번 편에서 다루는 두 카테고리는 2025년판에서 특히 주목할 만합니다.
+
+**Security Misconfiguration(A02)은 2021년 5위에서 2위로 급상승**했습니다. OWASP의 집계에서 **테스트된 애플리케이션의 19%**가 이 카테고리의 취약점을 보였습니다. 10개 중 거의 2개입니다. 원인은 분명합니다. 현대 애플리케이션이 점점 더 많은 동작을 코드가 아니라 설정으로 제어하기 때문입니다. 클라우드 리소스 권한, 컨테이너 옵션, 기능 플래그, IaC 템플릿, CDN 규칙. 설정 한 줄의 실수가 S3 버킷 전체 공개로 이어지는 시대입니다.
+
+**Cryptographic Failures(A04)**는 2021년 2위에서 4위로 내려왔지만, 여전히 상위권입니다. 이 카테고리의 핵심은 "암호화가 필요한 곳에 없거나, 있어도 제대로 안 된" 경우를 말합니다. 2021년까지 "Sensitive Data Exposure"라는 증상 중심 이름이었던 것을, 2025년부터는 원인 중심으로 재정의한 것이 특징입니다.
+
+두 카테고리는 **데이터의 이동·저장·노출** 전체를 다룹니다. 인증은 "누가 오는가"를 묻고, 이번 편은 "데이터 자체가 안전한가"를 묻습니다.
+
+---
+
+## 데이터 보호는 단일 레이어가 아닙니다
+
+시작은 프레임부터 잡는 게 좋습니다. 데이터 보호는 한 곳만 잘한다고 되는 일이 아니라 **여러 레이어의 합**입니다.
+
+![데이터 보호의 다층 방어 구조](sec-02-01-data-protection-layers.svg)
+
+가장 안쪽에 데이터가 있고, 그 주변으로 네 개의 동심원이 있습니다. 키 관리, 저장 암호화, 애플리케이션 레이어(보안 헤더·CORS), 전송 보안. 각 레이어는 서로 다른 공격 시나리오를 막습니다.
+
+- 전송 중 가로채기 → **전송 보안**이 막습니다
+- 브라우저에서의 악성 스크립트 실행 → **보안 헤더**가 막습니다
+- DB 유출 시 원본 데이터 노출 → **저장 암호화**가 막습니다
+- 암호화가 있어도 키가 털리면 무의미 → **키 관리**가 막습니다
+
+그리고 가장 중요한 한 가지. **완벽한 알고리즘보다 중요한 것은 키가 어디에 있느냐입니다.** 이 문장은 이 편 전체를 관통하는 원칙입니다.
+
+이제 바깥 레이어부터 안으로 들어가면서 하나씩 보겠습니다.
+
+---
+
+## 전송 보안: HTTPS와 TLS
+
+### 왜 HTTPS만으로는 부족한가
+
+"HTTPS 쓰고 있으니 괜찮다"는 가장 흔한 착각입니다. HTTPS 적용은 시작이지 끝이 아닙니다. 다음 질문들에 답할 수 있어야 전송 보안이 제대로 된 것입니다.
+
+- HTTP 요청이 HTTPS로 강제 리다이렉트되는가
+- TLS 프로토콜 버전은 무엇이 허용되는가 (1.0, 1.1은 공격받음)
+- 인증서 만료를 감시하고 있는가
+- HSTS가 적용되어 있는가
+- Cipher suite 설정이 현대 기준에 맞는가
+
+하나씩 정리하겠습니다.
+
+### TLS 프로토콜 버전
+
+TLS는 HTTPS의 속 알맹이입니다. 버전별로 상태가 다릅니다.
+
+- **TLS 1.0 / 1.1**: 공격받았습니다. 2020년 기준 주요 브라우저가 지원 중단. **비활성화 필수**
+- **TLS 1.2**: 현재 최소 기준
+- **TLS 1.3**: 최신. 더 빠르고 안전. 가능하면 1.3만 허용
+
+### HSTS와 Preload
+
+HSTS(Strict-Transport-Security) 헤더는 "앞으로 이 도메인은 무조건 HTTPS로만 접속해"라고 브라우저에 지시하는 기능입니다. HTTP → HTTPS 리다이렉트 중간에 발생하는 **SSL Stripping 공격**(중간자 공격자가 HTTPS를 HTTP로 강제 다운그레이드)을 차단합니다.
+
+```
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+```
+
+`max-age`는 최소 6개월 이상이 권장되고, 프로덕션에서는 1년(`31536000`)이 표준입니다.
+
+그런데 한 가지 구멍이 있습니다. HSTS는 브라우저가 해당 헤더를 한 번 받은 이후부터 유효합니다. **첫 방문**은 여전히 HTTP로 갈 수 있고, 그 순간이 공격 기회입니다. 이걸 해결하는 것이 **HSTS Preload**입니다. [hstspreload.org](https://hstspreload.org)에 도메인을 등록하면 브라우저 소스 코드에 "이 도메인은 무조건 HTTPS"라고 하드코딩됩니다. 첫 방문부터 보호됩니다.
+
+### 인증서 관리
+
+- **만료 감시**: 30일 전 알람 필수. Let's Encrypt 자동 갱신 쓰더라도 실패 감지 체계 필요
+- **CAA 레코드**: DNS에 `CAA` 레코드를 추가해서 "이 도메인의 인증서는 이 CA만 발급 가능"이라고 제한. 인증서 오발급 공격 방어
+- **Certificate Transparency 모니터링**: [crt.sh](https://crt.sh)에서 내 도메인으로 발급된 모든 인증서 확인. 모르는 인증서가 있으면 침해 징후
+
+### 어떻게 확인하는가
+
+```bash
+# 외부 공개 도메인: SSL Labs
+# https://www.ssllabs.com/ssltest/analyze.html?d=example.com
+# A 등급 이상 목표. B 이하면 어디가 약한지 리포트에 나옴.
+
+# 내부망·스테이징: testssl.sh
+docker run --rm -ti drwetter/testssl.sh https://staging.example.com
+
+# TLS 버전별 수동 확인 (openssl)
+openssl s_client -connect example.com:443 -tls1    # 연결 실패해야 정상
+openssl s_client -connect example.com:443 -tls1_1  # 연결 실패해야 정상
+openssl s_client -connect example.com:443 -tls1_2  # 성공
+openssl s_client -connect example.com:443 -tls1_3  # 성공
+
+# 인증서 만료일
+echo | openssl s_client -servername example.com -connect example.com:443 2>/dev/null \
+  | openssl x509 -noout -dates
+
+# HSTS 헤더 확인
+curl -sI https://example.com | grep -i strict-transport
+
+# CAA 레코드 확인
+dig CAA example.com
+```
+
+---
+
+## 보안 헤더: 브라우저에 보호 규칙 알리기
+
+보안 헤더는 **"브라우저야, 이 페이지는 이렇게 보호해줘"** 라고 명시적으로 지시하는 HTTP 응답 헤더들입니다. 설정하지 않으면 브라우저는 안전한 기본값을 자동으로 적용하지 않습니다.
+
+![보안 헤더가 막는 공격들](sec-02-03-security-headers-map.svg)
+
+각 헤더가 막는 공격이 다릅니다. 하나씩 보겠습니다.
+
+### Content-Security-Policy (CSP)
+
+가장 강력한 방어선이자 가장 복잡한 헤더입니다. "이 페이지에서 로드할 수 있는 스크립트·이미지·폰트 출처는 이것뿐이다"라고 명시합니다. **XSS가 발생해도 피해를 최소화하는 2차 방어선**입니다. 입력 검증이 뚫려 악성 스크립트가 삽입돼도, CSP가 외부 서버로의 데이터 전송이나 임의 스크립트 실행을 막습니다.
+
+```
+Content-Security-Policy: default-src 'self';
+  script-src 'self' 'nonce-abc123' https://trusted-cdn.com;
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' data: https:;
+  connect-src 'self' https://api.example.com;
+  frame-ancestors 'none';
+```
+
+### CSP는 점진적으로 도입합니다
+
+처음부터 strict하게 쓰면 화면이 깨집니다. **Report-Only 모드**로 먼저 1~2주 운영하면서 실제 차단될 리소스를 파악합니다.
+
+```
+Content-Security-Policy-Report-Only: default-src 'self'; report-uri /csp-report
+```
+
+위반 로그를 수집해서 정책을 다듬은 뒤, 문제없다고 판단되면 enforce 모드로 전환합니다.
+
+**`'unsafe-inline'`은 XSS 방어 의미를 대부분 무력화합니다.** 인라인 스크립트가 꼭 필요하면 nonce 방식을 씁니다. 서버가 매 요청마다 랜덤 nonce를 생성하고, 해당 nonce가 붙은 인라인 스크립트만 실행되도록 합니다.
+
+### 나머지 헤더들
+
+**Strict-Transport-Security**는 이미 위에서 다뤘습니다.
+
+**X-Frame-Options** 또는 CSP의 `frame-ancestors`는 **클릭재킹** 방어입니다. 투명한 iframe 위에 가짜 버튼을 겹쳐서 의도치 않은 클릭을 유도하는 공격을 막습니다.
+
+```
+X-Frame-Options: DENY
+# 또는 CSP로 통합
+Content-Security-Policy: frame-ancestors 'none';
+```
+
+**X-Content-Type-Options: nosniff**는 **MIME sniffing 공격** 방어입니다. 브라우저가 Content-Type을 "추측"하지 못하게 합니다. 이미지로 업로드된 HTML 파일이 스크립트로 실행되는 사고를 방지합니다.
+
+**Referrer-Policy**는 다른 사이트로 이동할 때 내 URL 전체를 알려주는 것을 제한합니다. 쿼리 파라미터에 재설정 토큰·세션 키가 있다면 외부 사이트 서버 로그에 그대로 찍히는데, 이를 막습니다.
+
+```
+Referrer-Policy: strict-origin-when-cross-origin
+```
+
+**Permissions-Policy**는 브라우저 기능 접근을 제한합니다. 사용하지 않는 기능은 원천 차단합니다.
+
+```
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+```
+
+**쿠키의 `__Host-` prefix**. 쿠키 이름을 `__Host-session` 식으로 시작하면 브라우저가 더 엄격한 규칙을 적용합니다. Secure 필수, Path는 `/`, Domain 지정 불가. 서브도메인 공격으로부터 세션을 보호하는 추가 레이어입니다.
+
+### 어떻게 확인하는가
+
+```bash
+# 필수 헤더 한 번에 확인
+curl -sI https://example.com | grep -iE \
+  'strict-transport|content-security|x-content|x-frame|referrer|permissions'
+
+# 응답에서 버전 노출 헤더 제거 확인
+curl -sI https://example.com | grep -iE 'server|x-powered-by'
+# Server: nginx/1.18.0 같은 구체 버전이 나오면 공격자에게 정찰 정보 제공
+
+# 외부 스캐너로 등급 확인
+# https://securityheaders.com/?q=example.com
+# https://observatory.mozilla.org/analyze/example.com
+# 모두 A 등급 이상 목표
+```
+
+---
+
+## 암호화의 기본 개념 정리
+
+저장 보안으로 넘어가기 전에, 자주 헷갈리는 세 가지 개념을 정리합니다. 이 구분을 명확히 해두면 이후 결정이 쉬워집니다.
+
+![해시, 암호화, HMAC의 차이](sec-02-02-hash-vs-encryption.svg)
+
+### 해시: 복원 불가능한 단방향 변환
+
+해시 함수는 입력을 고정 길이 출력으로 변환하지만, **복원이 불가능**합니다. 같은 입력은 항상 같은 출력을 내지만, 출력으로부터 입력을 알아낼 수 없습니다.
+
+**주 용도**: 비밀번호 저장, 파일 무결성 검증, 블록체인 체이닝
+**대표 알고리즘**: SHA-256, SHA-3 (범용), bcrypt / argon2 (비밀번호 전용)
+
+### 암호화: 키로 잠그고 키로 여는 양방향 변환
+
+**주 용도**: 주민번호·카드번호 같은 민감 정보 저장 (나중에 복호화해야 함), TLS 세션 데이터, 파일 암호화
+**대표 알고리즘**: AES-GCM (대칭), RSA-OAEP (비대칭)
+
+대칭과 비대칭의 차이도 짚고 갑니다.
+
+**대칭 암호화**는 같은 키로 암호화하고 복호화합니다. 빠르지만, 키를 양쪽이 공유해야 하는 문제가 있습니다. DB 저장·파일 암호화에 주로 씁니다.
+
+**비대칭 암호화**는 공개키로 암호화하고 개인키로 복호화합니다. 느리지만 키 교환 문제가 없습니다. TLS 세션 초기 수립·서명에 사용합니다. 실제로는 비대칭으로 대칭 키를 교환한 뒤 대칭 암호화로 통신하는 하이브리드 방식이 일반적입니다.
+
+### HMAC: 위변조 탐지용 서명
+
+HMAC은 메시지와 비밀키로 "서명"을 만드는 방식입니다. 메시지가 변조되면 서명이 안 맞게 됩니다. **데이터를 숨기는 게 아니라 "변조 여부"를 증명**하는 것입니다.
+
+**주 용도**: JWT 서명 검증, 웹훅 페이로드 검증, API 요청 서명
+
+### AEAD: 암호화와 무결성을 한 번에
+
+**AES-GCM**이나 **ChaCha20-Poly1305** 같은 **AEAD(Authenticated Encryption with Associated Data)** 모드는 단순히 암호화만 하는 게 아니라 **변조되지 않았음도 같이 증명**합니다.
+
+옛날 AES-CBC 모드는 암호화는 되는데 변조 탐지가 안 돼서 **padding oracle 공격** 등에 취약했습니다. 2025년 기준 새로 짜는 코드라면 **AES-GCM 이상을 기본**으로 하세요.
+
+---
+
+## 저장 보안: 무엇을 어떻게 저장하는가
+
+데이터 종류에 따라 저장 방식이 다릅니다. 공식처럼 외워두면 편합니다.
+
+### 비밀번호: bcrypt/argon2 해시
+
+ep.01에서도 다뤘지만 다시 강조합니다. **비밀번호에 SHA-256을 쓰지 마세요.** 
+
+![빠른 해시와 느린 해시의 GPU 공격 저항성 비교](sec-02-04-bcrypt-slowness.svg)
+
+SHA-256은 속도 최적화된 해시입니다. 현대 GPU는 초당 **100억 개 이상의 SHA-256 해시**를 계산할 수 있습니다. DB가 유출됐을 때 공격자는 1억 개 비밀번호 후보를 **0.01초**에 전부 해시해서 비교할 수 있습니다. 사실상 해시가 걸려 있어도 평문 저장과 비슷한 상태입니다.
+
+bcrypt와 argon2는 **의도적으로 느린** 해시입니다. 해시 하나 계산에 0.25초가 걸리도록 설계되어, 같은 brute force가 **수백만 배 어려워집니다**. 그리고 salt(무작위 값)를 자동으로 각 비밀번호에 추가해서, 같은 비밀번호라도 DB에 저장된 해시가 달라집니다. Rainbow table 공격이 무력화됩니다.
+
+**argon2는 bcrypt의 다음 세대**입니다. 메모리 사용량까지 조정 가능해서 GPU 병렬 공격에 더 강합니다. 신규 프로젝트라면 argon2id 모드를 기본으로 선택하시는 것을 권장합니다.
+
+```javascript
+// Node.js 예시 — argon2
+const argon2 = require('argon2');
+
+// 저장 시
+const hash = await argon2.hash(password, {
+  type: argon2.argon2id,
+  memoryCost: 19456,  // 19 MiB (OWASP 2024 권장)
+  timeCost: 2,
+  parallelism: 1
+});
+
+// 검증 시
+const valid = await argon2.verify(hash, password);
+```
+
+### 민감 정보: AES-GCM 암호화
+
+주민번호·카드번호·여권번호처럼 **나중에 복호화해서 사용해야 하는** 민감 정보는 암호화가 필요합니다. 해시는 안 됩니다 (복원 불가).
+
+```python
+# Python 예시 — AES-GCM
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+import os
+
+# 암호화
+key = AESGCM.generate_key(bit_length=256)  # 실제로는 KMS에서 가져옴
+aesgcm = AESGCM(key)
+nonce = os.urandom(12)  # GCM은 96비트 nonce 권장
+ciphertext = aesgcm.encrypt(nonce, plaintext.encode(), associated_data=None)
+
+# 저장 시: nonce와 ciphertext를 함께 저장 (nonce는 비밀이 아님)
+# 복호화 시: 같은 nonce로 복원
+plaintext = aesgcm.decrypt(nonce, ciphertext, associated_data=None)
+```
+
+주의: **nonce는 매번 달라야 합니다.** 같은 키로 같은 nonce를 재사용하면 암호학적 보안이 깨집니다. 랜덤 생성이 기본입니다.
+
+### 열쇠 그 자체: 이게 진짜 문제
+
+**"완벽한 알고리즘보다 중요한 것은 키가 어디에 있느냐입니다."** 이 편 시작에서 한 이야기를 다시 가져옵니다.
+
+암호화 알고리즘은 공개돼 있고, 잘 검증된 라이브러리를 쓰면 실패하지 않습니다. **실패하는 건 키 관리**입니다. 키를 코드에 하드코딩하거나, DB 옆에 같이 저장하면 암호화 의미가 없습니다. DB 털리면 키도 같이 털립니다.
+
+**실전 권장**:
+
+- **AWS KMS / GCP KMS / Azure Key Vault**: 클라우드 네이티브 키 관리. 애플리케이션은 "이걸 복호화해줘"라고 요청하고 KMS가 대신 처리. 키가 애플리케이션 서버에 직접 노출되지 않음
+- **HashiCorp Vault**: 클라우드 중립적이고 오픈소스. 온프레미스나 멀티클라우드 환경에 유용
+- **Envelope Encryption 패턴**: KMS로 발급한 마스터 키로 데이터 암호화용 키(DEK)를 암호화. 데이터 많을 때 KMS 호출 비용 절감
+
+### 난수의 중요성
+
+토큰 생성, 세션 ID, 비밀번호 재설정 링크, nonce, 암호화 키... 전부 **예측 불가능한 난수**가 필요합니다. `Math.random()`이나 `rand()` 같은 일반 난수는 **절대 쓰지 마세요**. 예측 가능합니다.
+
+반드시 **CSPRNG (Cryptographically Secure Pseudo-Random Number Generator)** 를 쓰세요.
+
+```javascript
+// Node.js
+const crypto = require('crypto');
+const token = crypto.randomBytes(32).toString('hex');  // ✓ OK
+const uuid = crypto.randomUUID();                      // ✓ OK
+Math.random();  // ✗ 절대 금지
+```
+
+```python
+# Python
+import secrets
+token = secrets.token_urlsafe(32)     # ✓ OK
+import random
+random.random()  # ✗ 암호용으로 금지
+```
+
+```javascript
+// 브라우저
+const arr = new Uint8Array(32);
+window.crypto.getRandomValues(arr);   // ✓ OK
+```
+
+---
+
+## 클라우드·인프라 설정 오류
+
+2025년판에서 A02가 2위로 올라온 가장 큰 이유가 이 영역입니다. 코드는 멀쩡한데 설정 한 줄로 전체를 노출하는 사고가 가장 자주 발생합니다.
+
+![자주 발생하는 클라우드 설정 오류 유형](sec-02-05-cloud-misconfig.svg)
+
+### 대표 유형들
+
+**S3 버킷 Public 노출**. 한 체크박스 차이로 전 세계 공개됩니다. 특히 `AuthenticatedUsers` 권한이 함정인데, 이건 "내 AWS 계정 사용자"가 아니라 **"AWS 계정 가진 모든 사람"** 을 의미합니다. 사실상 공개와 같습니다.
+
+**기본 계정·기본 비밀번호**. Jenkins admin/admin, MongoDB 인증 없음, Redis 노출 같은 유형. 배포 직후 몇 시간 내 스캐너에 발견됩니다. Shodan에 `product:"MongoDB"` 검색하면 지금도 수만 건의 노출된 MongoDB가 보입니다.
+
+**관리 포트 인터넷 노출**. SSH 22, DB 3306/5432, Redis 6379, Elasticsearch 9200. `0.0.0.0`으로 바인딩한 결과입니다. 원칙은 "관리 포트는 VPN 또는 bastion 경유"입니다.
+
+**DEBUG 모드 프로덕션 배포**. `DEBUG=True`(Django), `APP_DEBUG=true`(Laravel), `NODE_ENV=development`(Next.js). 에러 페이지에 스택 트레이스가 찍히고, DB 접속 정보가 노출됩니다.
+
+**관리·디버그 엔드포인트 노출**. `/debug`, `/metrics`, `/.git/config`, `/actuator/env`(Spring Boot), `/.env`. 모두 자동 스캔의 표적입니다.
+
+**IAM 와일드카드 정책**. `Action: "*", Resource: "*"`. 한 서비스가 뚫리면 전체 계정 장악으로 이어집니다. **최소 권한 원칙**이 IAM의 첫 규칙입니다.
+
+### 어떻게 확인하는가
+
+```bash
+# 외부에서 열린 포트 전체 확인
+nmap -sV -p- --min-rate=1000 example.com
+# 의도한 포트 (80, 443)만 있는지. DB·Redis 포트 있으면 긴급
+
+# S3 버킷 공개 여부
+aws s3api get-bucket-acl --bucket your-bucket
+aws s3api get-public-access-block --bucket your-bucket
+
+# IaC 스캔 — Terraform / CloudFormation / Kubernetes manifest
+docker run --rm -v "$PWD:/tf" bridgecrew/checkov -d /tf
+docker run --rm -v "$PWD:/src" aquasec/tfsec /src
+
+# 컨테이너 이미지 스캔
+trivy image your-app:latest
+
+# Kubernetes 보안 벤치마크
+kube-bench
+```
+
+### CI에 통합하기
+
+수동 점검은 언젠가 빠뜨립니다. PR 단계에서 자동 차단이 기본입니다.
+
+```yaml
+# .github/workflows/security.yml 예시
+- name: Checkov — IaC 보안 스캔
+  uses: bridgecrewio/checkov-action@master
+  with:
+    directory: ./terraform
+    framework: terraform
+
+- name: Trivy — 컨테이너 이미지 스캔
+  uses: aquasecurity/trivy-action@master
+  with:
+    image-ref: 'your-app:${{ github.sha }}'
+    severity: 'CRITICAL,HIGH'
+    exit-code: '1'
+```
+
+Critical/High가 나오면 PR 머지가 차단됩니다. 사람의 기억에 의존하지 않게 하는 것이 핵심입니다.
+
+### 컨테이너 특화 주의사항
+
+컨테이너는 자체로 작은 OS입니다. 기본값이 넓은 권한이라 좁히는 노력이 필요합니다.
+
+- **최소 이미지**: `ubuntu:latest` 대신 `distroless` 또는 `alpine`. 깔린 바이너리가 적을수록 공격 표면이 줄어듭니다. `curl`조차 없는 컨테이너는 RCE에 성공해도 공격자가 할 일이 제한적입니다
+- **Non-root user**: 기본값 root는 탈출 시 호스트 장악으로 이어질 수 있습니다. `USER appuser` 명시
+- **Read-only root filesystem**: 런타임 수정 불가로 설정
+- **`--privileged` 금지**: 이 옵션은 컨테이너 격리를 대부분 무효화합니다
+
+```dockerfile
+# 최소 이미지 + non-root 예시
+FROM gcr.io/distroless/nodejs20-debian12
+WORKDIR /app
+COPY --chown=nonroot:nonroot . .
+USER nonroot
+CMD ["server.js"]
+```
+
+---
+
+## 환경 분리와 시크릿 관리
+
+### dev / staging / production 분리
+
+세 환경이 같은 AWS 계정, 같은 네트워크, 같은 DB를 공유하면 **한쪽이 뚫렸을 때 전체가 위험**해집니다. 특히 dev 환경은 상대적으로 보안이 느슨한데, 이게 production의 관문이 되기 쉽습니다.
+
+최소한의 분리 원칙:
+
+- AWS 계정 분리 또는 VPC 분리
+- K8s namespace 분리
+- IAM 권한 완전 분리 (dev 개발자가 production 리소스 접근 불가)
+- DB 인스턴스 분리 (production 데이터를 dev에 복사하지 않기, 해도 익명화 후)
+
+### 시크릿은 시크릿 매니저로
+
+환경변수에 평문으로 넣지 마세요. 특히 컨테이너 이미지 `ENV SECRET=...`은 **`docker history <image>`로 레이어별 명령어를 볼 수 있어** 그대로 유출됩니다.
+
+권장 방식:
+- **AWS Secrets Manager / Parameter Store**, **GCP Secret Manager**, **Azure Key Vault**
+- **HashiCorp Vault** (클라우드 중립)
+- **Doppler**, **Infisical** 같은 전용 SaaS
+
+애플리케이션은 시작 시 시크릿 매니저에서 값을 받아옵니다. 키 로테이션도 코드 변경 없이 가능합니다.
+
+### CI/CD 시크릿 주의
+
+GitHub Actions는 `secrets.*` 참조 시 자동 마스킹하지만, **인코딩을 거치면 마스킹이 우회**됩니다. base64로 변환해서 출력하는 것만으로도 로그에 그대로 찍힙니다. PR에서 워크플로우를 수정할 수 있는 권한이 있다면 시크릿 탈취가 가능합니다.
+
+방어:
+- Fork PR에는 시크릿 제공하지 않기 (`pull_request_target` 트리거 주의)
+- 필요한 시크릿만 최소 범위로 설정 (environment 단위로 격리)
+- **GitHub Actions → AWS OIDC** 같은 방식으로 장기 자격증명 완전 제거
+
+---
+
+## 민감 데이터 노출 패턴
+
+A04의 실제 사고는 대개 "암호화 실패" 보다는 "**애초에 보호가 없었음**"에 가깝습니다. 흔한 노출 패턴들을 짚습니다.
+
+### URL 파라미터에 민감 정보
+
+```
+# 나쁨: 세션 토큰을 URL에 노출
+https://example.com/reset?token=secret_token_here&user=alice
+```
+
+URL은 **서버 로그, 브라우저 히스토리, Referer 헤더, CDN 로그**에 모두 기록됩니다. Referer로 외부 사이트에도 샙니다. 민감 정보는 반드시 HTTP body나 헤더에 담습니다.
+
+### 에러 메시지로 내부 정보 노출
+
+```
+# 나쁨: 프로덕션 응답에 스택 트레이스
+Fatal error: Uncaught PDOException: SQLSTATE[42S02]:
+Table 'prod_db.users_v2' doesn't exist in /app/src/repo/UserRepo.php:42
+```
+
+공격자가 정찰에 사용할 수 있는 모든 정보가 들어있습니다. DB 이름, 테이블 이름, 내부 경로, 프레임워크 버전. 프로덕션은 generic 메시지, 내부는 상세 로그로 분리합니다.
+
+### 로그에 민감 정보
+
+```javascript
+// 나쁨
+console.log('Login attempt:', req.body);  // body에 password 포함
+logger.info({ user });                    // user 객체에 hashedPassword 포함
+```
+
+로그 미들웨어에서 **redact 필터**를 기본으로 적용하세요. `password`, `token`, `authorization`, `ssn`, `creditCard` 같은 필드는 자동 마스킹.
+
+### 프론트엔드 번들에 서버 시크릿
+
+```bash
+# 배포된 JS 번들에 서버 시크릿 새지 않는지
+npm run build
+grep -rE 'sk_live|SECRET|api[_-]?key' dist/ build/ .next/ public/
+```
+
+Next.js의 `NEXT_PUBLIC_` 접두사, Vite의 `VITE_` 접두사가 붙은 환경변수만 클라이언트에 노출됨을 명확히 인지해야 합니다. 나머지는 서버 전용입니다.
+
+---
+
+## 체크리스트
+
+이번 편의 내용을 배포 전 점검이나 정기 점검에 쓸 수 있게 묶었습니다.
+
+**전송 보안 (HTTPS / TLS)**
+- [ ] 모든 HTTP 요청이 HTTPS로 301 리다이렉트
+- [ ] TLS 1.2 이상만 허용, 1.0/1.1 비활성화
+- [ ] SSL Labs 등급 A 이상
+- [ ] HSTS 헤더 적용 (`max-age` 6개월 이상)
+- [ ] HSTS Preload 등록 (중요 서비스)
+- [ ] 인증서 만료 30일 전 알람
+- [ ] CAA DNS 레코드 설정
+- [ ] CT 모니터링 (crt.sh 주기 확인)
+
+**보안 헤더**
+- [ ] `Strict-Transport-Security`
+- [ ] `Content-Security-Policy` (Report-Only부터 시작)
+- [ ] `X-Frame-Options: DENY` 또는 CSP `frame-ancestors`
+- [ ] `X-Content-Type-Options: nosniff`
+- [ ] `Referrer-Policy: strict-origin-when-cross-origin`
+- [ ] `Permissions-Policy`로 미사용 기능 차단
+- [ ] `Server`, `X-Powered-By` 버전 노출 제거
+- [ ] securityheaders.com A 등급 이상
+
+**저장 보안**
+- [ ] 비밀번호: bcrypt / argon2 / scrypt
+- [ ] 민감 정보: AES-GCM 또는 ChaCha20-Poly1305
+- [ ] 암호화 키는 KMS / Vault 등 전용 시스템
+- [ ] CSPRNG로만 난수 생성
+- [ ] 데이터베이스 백업도 같은 수준 암호화
+- [ ] 프론트엔드 번들에 서버 시크릿 없음
+
+**클라우드·인프라 설정**
+- [ ] S3 / GCS 버킷 Public 접근 차단
+- [ ] 관리 포트 인터넷 노출 없음
+- [ ] DB / Redis / Elasticsearch 공인 IP 노출 없음
+- [ ] DEBUG 모드 프로덕션 OFF
+- [ ] 관리·디버그 엔드포인트 프로덕션 차단
+- [ ] IAM 와일드카드 정책 없음
+- [ ] IaC 스캔(Checkov / tfsec) CI 통합
+- [ ] 컨테이너: non-root, read-only FS, 최소 이미지
+- [ ] dev / staging / prod 환경 분리
+
+**시크릿 관리**
+- [ ] 시크릿 매니저 사용 (환경변수 평문 X)
+- [ ] Git 히스토리에 시크릿 없음 (gitleaks 스캔)
+- [ ] 시크릿 로테이션 정책
+- [ ] CI/CD 시크릿 최소 범위
+- [ ] 장기 자격증명 대신 OIDC 기반 임시 자격증명
+
+**민감 데이터 노출 방지**
+- [ ] URL 파라미터에 토큰·개인정보 없음
+- [ ] 에러 메시지 generic (스택 트레이스 외부 노출 X)
+- [ ] 로그에 비밀번호·토큰 masking 필터
+- [ ] 개인정보 처리 시 마스킹 출력
+
+---
+
+## 더 파고들 포인트
+
+**mTLS (Mutual TLS)**. 클라이언트도 인증서를 제시해 서로 인증하는 방식. 내부 서비스 간 통신, B2B API, 제로 트러스트 아키텍처에서 기본이 되고 있습니다. 인증 정보를 TLS 레이어에 위임하기 때문에 애플리케이션 코드가 단순해집니다.
+
+**Envelope Encryption**. 데이터 암호화용 키(DEK)를 각 레코드마다 새로 생성하고, 그 DEK를 KMS의 마스터 키(KEK)로 암호화해서 같이 저장하는 패턴. 대량 데이터 처리 시 KMS 호출 비용을 줄이면서도 키 로테이션을 가능하게 합니다.
+
+**Tokenization vs Encryption**. 카드번호·주민번호 같은 구조화된 민감정보는 암호화보다 **토큰화**가 유리할 때가 많습니다. 원본을 별도 vault에 저장하고 대체 토큰을 DB에 쓰는 방식. PCI-DSS 대응이 쉬워집니다.
+
+**Post-Quantum Cryptography**. NIST가 2024년 첫 PQC 표준(ML-KEM, ML-DSA)을 발표했습니다. 양자 컴퓨터가 현재의 RSA·ECC를 깨는 시점에 대비한 전환 논의가 시작됐습니다. 당장 전환은 아니더라도 "하이브리드 전환"에 대한 인지는 필요합니다.
+
+**Cookie Prefixes 심화**. `__Host-` 외에도 `__Secure-` prefix가 있습니다. 덜 엄격하지만(Path·Domain 자유) Secure 속성은 강제. 서브도메인 공격 표면을 구조적으로 줄이는 방법입니다.
+
+---
+
+## 참고 자료
+
+- OWASP. (2025). *A02:2025 – Security Misconfiguration*. https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/
+- OWASP. (2025). *A04:2025 – Cryptographic Failures*. https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures/
+- OWASP Cheat Sheet Series. *Transport Layer Protection Cheat Sheet*. https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html
+- OWASP Cheat Sheet Series. *HTTP Security Response Headers Cheat Sheet*. https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Security_Response_Headers_Cheat_Sheet.html
+- OWASP Cheat Sheet Series. *Password Storage Cheat Sheet*. https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+- Mozilla. *Web Security Guidelines*. https://infosec.mozilla.org/guidelines/web_security
+- NIST. (2024). *FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)*. https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf
+
+---
+
+## 다음 편 예고
+
+> [ep.03 - 신뢰 경계의 관리](/web-security-owasp-2025-ep-03)
+
+데이터를 안전하게 보호했다면, 다음은 **"들어오는 것"과 "불러오는 것"** 의 문제입니다. 사용자 입력이 코드로 해석되는 인젝션(A05), 그리고 외부에서 불러온 코드·데이터를 무턱대고 믿는 무결성 실패(A08). 다음 편에서는 SQL Injection부터 역직렬화·CDN 스크립트·CI/CD 파이프라인 보호까지, **"신뢰할 수 있는 것"과 "신뢰할 수 없는 것"의 경계 관리** 를 다룹니다.
