@@ -1,0 +1,214 @@
+<svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" role="img"
+  aria-label="Circuit Breaker 패턴 - Closed/Open/Half-Open 상태 머신">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .state-name {
+      font: 700 14px system-ui, sans-serif;
+      fill: #ffffff;
+    }
+
+    .state-tag {
+      font: 700 9px system-ui, sans-serif;
+      letter-spacing: 0.06em;
+      fill: var(--sec-bg, #ffffff);
+    }
+
+    .state-desc {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .behavior {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .behavior2 {
+      font: 400 11px system-ui, sans-serif;
+    }
+
+    .transition {
+      font: 500 10px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .closed-state {
+      fill: var(--sec-emerald-500, #10b981);
+    }
+
+    .open-state {
+      fill: var(--sec-red-500, #ef4444);
+    }
+
+    .half-state {
+      fill: var(--sec-amber-500, #f59e0b);
+    }
+
+    .state-bg-closed {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-500, #10b981);
+      stroke-width: 2;
+    }
+
+    .state-bg-open {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-500, #ef4444);
+      stroke-width: 2;
+    }
+
+    .state-bg-half {
+      fill: var(--sec-amber-50, #fffbeb);
+      stroke: var(--sec-amber-500, #f59e0b);
+      stroke-width: 2;
+    }
+
+    .arrow {
+      stroke: var(--sec-slate-500, #64748b);
+      stroke-width: 1.4;
+      fill: none;
+    }
+  </style>
+
+  <defs>
+    <marker id="cbarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)" />
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">Circuit Breaker — 연쇄 장애를 끊는 차단기</text>
+  <text x="24" y="56" class="caption">의존하는 서비스가 죽으면 우리도 같이 죽지 않도록. 보안 차원에서는 자원 고갈로 인한 DoS를 막는 핵심 패턴.</text>
+
+  <!-- CLOSED state -->
+  <rect x="40" y="100" width="200" height="160" rx="14" class="state-bg-closed" />
+  <rect x="56" y="116" width="84" height="20" rx="10" class="closed-state" />
+  <text x="98" y="130" text-anchor="middle" class="state-tag">CLOSED · 정상</text>
+  <text x="56" y="160" class="state-desc">요청 통과</text>
+  <text x="56" y="180" class="behavior">호출이 정상적으로 전달됨.</text>
+  <text x="56" y="196" class="behavior">실패 카운터를 모니터링.</text>
+  <text x="56" y="220" class="behavior2" font-weight="600" fill="var(--sec-emerald-700, #047857)">조건</text>
+  <text x="56" y="236" class="behavior">실패율이 임계값 미만</text>
+
+  <!-- OPEN state -->
+  <rect x="480" y="100" width="200" height="160" rx="14" class="state-bg-open" />
+  <rect x="496" y="116" width="80" height="20" rx="10" class="open-state" />
+  <text x="536" y="130" text-anchor="middle" class="state-tag">OPEN · 차단</text>
+  <text x="496" y="160" class="state-desc">즉시 실패 반환</text>
+  <text x="496" y="180" class="behavior">호출하지 않고 바로 에러.</text>
+  <text x="496" y="196" class="behavior">의존 서비스에 부하 안 줌.</text>
+  <text x="496" y="220" class="behavior2" font-weight="600" fill="var(--sec-red-700, #b91c1c)">조건</text>
+  <text x="496" y="236" class="behavior">실패율이 임계값 초과</text>
+
+  <!-- HALF-OPEN state -->
+  <rect x="260" y="280" width="200" height="160" rx="14" class="state-bg-half" />
+  <rect x="276" y="296" width="100" height="20" rx="10" class="half-state" />
+  <text x="326" y="310" text-anchor="middle" class="state-tag">HALF-OPEN · 시험</text>
+  <text x="276" y="340" class="state-desc">제한적 시도</text>
+  <text x="276" y="360" class="behavior">소수의 요청만 보내본다.</text>
+  <text x="276" y="376" class="behavior">결과로 다음 상태 결정.</text>
+  <text x="276" y="400" class="behavior2" font-weight="600" fill="var(--sec-amber-700, #b45309)">조건</text>
+  <text x="276" y="416" class="behavior">OPEN 후 일정 시간 경과</text>
+
+  <!-- Transitions -->
+  <!-- CLOSED → OPEN -->
+  <path d="M 240 174 Q 360 130 480 174" class="arrow" fill="none" marker-end="url(#cbarr)" />
+  <text x="360" y="120" text-anchor="middle" class="transition" font-weight="600">실패율 임계 초과</text>
+  <text x="360" y="135" text-anchor="middle" class="behavior">예: 50% 실패 over 10 req</text>
+
+  <!-- OPEN → HALF-OPEN -->
+  <path d="M 580 260 Q 520 320 460 340" class="arrow" fill="none" marker-end="url(#cbarr)" />
+  <text x="476" y="288" class="transition" font-weight="600">타임아웃 (30s)</text>
+
+  <!-- HALF-OPEN → CLOSED (success) -->
+  <path d="M 260 350 Q 180 300 140 260" class="arrow" fill="none" marker-end="url(#cbarr)" />
+  <text x="130" y="322" class="transition" font-weight="600">성공 → 닫음</text>
+
+  <!-- HALF-OPEN → OPEN (failure) -->
+  <path d="M 460 390 Q 540 380 580 260" class="arrow" fill="none" marker-end="url(#cbarr)" />
+  <text x="545" y="361" class="transition" font-weight="600">실패 → 다시 열음</text>
+</svg>

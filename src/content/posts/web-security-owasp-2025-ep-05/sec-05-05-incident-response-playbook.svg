@@ -1,0 +1,239 @@
+<svg viewBox="0 0 720 510" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="사고 대응 Playbook의 단계와 핵심 활동">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .phase-num {
+      font: 700 14px system-ui, sans-serif;
+      fill: var(--sec-bg, #ffffff);
+    }
+
+    .phase-name {
+      font: 600 13px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .phase-tag {
+      font: 700 9px system-ui, sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    .activity {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .desc {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .key {
+      font: 600 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .phase-bg {
+      fill: var(--sec-bg, #ffffff);
+      stroke: var(--sec-slate-200, #e2e8f0);
+    }
+
+    .num-1 {
+      fill: var(--sec-amber-500, #f59e0b);
+    }
+
+    .num-2 {
+      fill: var(--sec-red-500, #ef4444);
+    }
+
+    .num-3 {
+      fill: var(--sec-blue-500, #3b82f6);
+    }
+
+    .num-4 {
+      fill: var(--sec-violet-500, #8b5cf6);
+    }
+
+    .num-5 {
+      fill: var(--sec-emerald-500, #10b981);
+    }
+
+    .tag-1 {
+      fill: var(--sec-amber-700, #b45309);
+    }
+
+    .tag-2 {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .tag-3 {
+      fill: var(--sec-blue-700, #1d4ed8);
+    }
+
+    .tag-4 {
+      fill: var(--sec-violet-700, #6d28d9);
+    }
+
+    .tag-5 {
+      fill: var(--sec-emerald-700, #047857);
+    }
+  </style>
+
+  <text x="24" y="36" class="title">Incident Response Playbook — 사고 발생 시 정해진 흐름</text>
+  <text x="24" y="56" class="caption">"이미 정해진 절차가 있는가" 가 사고의 피해 규모를 결정합니다. 한밤중에 즉흥적 결정을 내리지 마세요.</text>
+
+  <!-- Phase 1: Detect -->
+  <rect x="24" y="84" width="328" height="120" rx="12" class="phase-bg" stroke-width="1" />
+  <g transform="translate(4, 4)">
+    <circle cx="48" cy="108" r="16" class="num-1" />
+    <text x="48" y="114" text-anchor="middle" class="phase-num">1</text>
+    <text x="76" y="102" class="phase-tag tag-1">DETECT · 탐지</text>
+    <text x="76" y="120" class="phase-name">알림 발생 / 수동 발견</text>
+  </g>
+  <g transform="translate(0, 2)">
+    <text x="40" y="148" class="activity">· 알림 검증 (false positive?)</text>
+    <text x="40" y="166" class="activity">· 심각도 분류 (P0~P3)</text>
+    <text x="40" y="184" class="activity">· 사고 채널 개설 (Slack 등)</text>
+  </g>
+
+  <!-- Phase 2: Contain -->
+  <rect x="368" y="84" width="328" height="120" rx="12" class="phase-bg" stroke-width="1" />
+  <g transform="translate(4, 4)">
+    <circle cx="392" cy="108" r="16" class="num-2" />
+    <text x="392" y="114" text-anchor="middle" class="phase-num">2</text>
+    <text x="420" y="102" class="phase-tag tag-2">CONTAIN · 격리</text>
+    <text x="420" y="120" class="phase-name">피해 확산 차단</text>
+  </g>
+  <g transform="translate(0, 2)">
+    <text x="384" y="148" class="activity">· 침해된 자격증명 즉시 폐기</text>
+    <text x="384" y="166" class="activity">· 영향받은 시스템 네트워크 격리</text>
+    <text x="384" y="184" class="activity">· 의심 IP·계정 차단 (kill switch)</text>
+  </g>
+
+  <!-- Phase 3: Investigate -->
+  <rect x="24" y="216" width="328" height="120" rx="12" class="phase-bg" stroke-width="1" />
+  <g transform="translate(4, 4)">
+    <circle cx="48" cy="240" r="16" class="num-3" />
+    <text x="48" y="246" text-anchor="middle" class="phase-num">3</text>
+    <text x="76" y="234" class="phase-tag tag-3">INVESTIGATE · 분석</text>
+    <text x="76" y="252" class="phase-name">무엇이 일어났는가</text>
+  </g>
+  <g transform="translate(0, 2)">
+    <text x="40" y="280" class="activity">· 침투 경로 추적 (로그 분석)</text>
+    <text x="40" y="298" class="activity">· 영향 범위 확정 (어떤 데이터, 누가)</text>
+    <text x="40" y="316" class="activity">· 증거 보존 (포렌식)</text>
+  </g>
+
+  <!-- Phase 4: Recover -->
+  <rect x="368" y="216" width="328" height="120" rx="12" class="phase-bg" stroke-width="1" />
+  <g transform="translate(4, 4)">
+    <circle cx="392" cy="240" r="16" class="num-4" />
+    <text x="392" y="246" text-anchor="middle" class="phase-num">4</text>
+    <text x="420" y="234" class="phase-tag tag-4">RECOVER · 복구</text>
+    <text x="420" y="252" class="phase-name">정상 운영 회복</text>
+  </g>
+  <g transform="translate(0, 2)">
+    <text x="384" y="280" class="activity">· 클린 백업에서 복원</text>
+    <text x="384" y="298" class="activity">· 자격증명·시크릿 전체 로테이션</text>
+    <text x="384" y="316" class="activity">· 점진적 트래픽 복원, 모니터링 강화</text>
+  </g>
+
+  <!-- Phase 5: Learn -->
+  <rect x="24" y="348" width="672" height="148" rx="12" class="phase-bg" stroke-width="1" />
+  <g transform="translate(4, 4)">
+    <circle cx="48" cy="372" r="16" class="num-5" />
+    <text x="48" y="378" text-anchor="middle" class="phase-num">5</text>
+    <text x="76" y="366" class="phase-tag tag-5">LEARN · 학습</text>
+    <text x="76" y="384" class="phase-name">Post-mortem과 재발 방지</text>
+  </g>
+  <g transform="translate(0, 2)">
+    <text x="40" y="412" class="activity">· Blameless post-mortem 작성: 시간선, 근본 원인, 영향, 대응 평가</text>
+    <text x="40" y="432" class="activity">· 재발 방지 액션 아이템 도출 + 책임자 + 마감일</text>
+    <text x="40" y="452" class="activity">· 알림 임계 조정, 모니터링 갭 보완, Playbook 업데이트</text>
+  </g>
+  <text x="40" y="478" class="key" fill="var(--sec-emerald-700, #047857)">→ 같은 사고가 두 번 일어나지 않도록 시스템화하는 것이 핵심</text>
+</svg>
