@@ -1,0 +1,247 @@
+<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="공급망 공격 경로 - 의존성 트리에서 빌드까지">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .stage-title {
+      font: 600 13px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .stage-desc {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .vector-name {
+      font: 600 11px system-ui, sans-serif;
+    }
+
+    .vector-desc {
+      font: 400 10px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .stage-tag {
+      font: 700 10px system-ui, sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    .stage-bg {
+      fill: var(--sec-slate-50, #f8fafc);
+      stroke: var(--sec-slate-200, #e2e8f0);
+    }
+
+    .stage-tag-c {
+      fill: var(--sec-slate-700, #334155);
+    }
+
+    .vector-box {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-200, #fecaca);
+    }
+
+    .vector-t {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .arrow {
+      stroke: var(--sec-slate-500, #64748b);
+      stroke-width: 1.4;
+      fill: none;
+    }
+
+    .target-box {
+      fill: var(--sec-blue-50, #eff6ff);
+      stroke: var(--sec-blue-500, #3b82f6);
+      stroke-width: 1.6;
+    }
+
+    .target-t {
+      fill: var(--sec-blue-700, #1d4ed8);
+    }
+  </style>
+
+  <defs>
+    <marker id="suparr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)" />
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">공급망 공격 경로</text>
+  <text x="24" y="56" class="caption">"내가 짠 코드"가 아니라 "내가 끌어다 쓰는 모든 것"이 공격 표면입니다.</text>
+
+  <!-- Stage 1: Source -->
+  <rect x="24" y="80" width="200" height="380" rx="14" class="stage-bg" stroke-width="1" />
+
+  <g transform="translate(0, 6)">
+    <text x="40" y="102" class="stage-tag stage-tag-c">STAGE 1 · SOURCE</text>
+    <text x="40" y="122" class="stage-title">의존성 패키지</text>
+    <text x="40" y="138" class="stage-desc">npm, PyPI, Maven 등</text>
+
+    <rect x="40" y="158" width="168" height="46" rx="8" class="vector-box" />
+    <text x="48" y="176" class="vector-name vector-t">악성 패키지 등록</text>
+    <text x="48" y="192" class="vector-desc">유사 이름 typosquatting</text>
+
+    <rect x="40" y="216" width="168" height="46" rx="8" class="vector-box" />
+    <text x="48" y="234" class="vector-name vector-t">유지보수자 침해</text>
+    <text x="48" y="250" class="vector-desc">계정 탈취 / 권한 양도</text>
+
+    <rect x="40" y="274" width="168" height="46" rx="8" class="vector-box" />
+    <text x="48" y="292" class="vector-name vector-t">Dependency Confusion</text>
+    <text x="48" y="308" class="vector-desc">내부 이름을 public에 등록</text>
+
+    <rect x="40" y="332" width="168" height="46" rx="8" class="vector-box" />
+    <text x="48" y="350" class="vector-name vector-t">간접 의존성 침해</text>
+    <text x="48" y="366" class="vector-desc">Transitive 깊은 곳에서</text>
+
+    <rect x="40" y="390" width="168" height="46" rx="8" class="vector-box" />
+    <text x="48" y="408" class="vector-name vector-t">알려진 CVE 미패치</text>
+    <text x="48" y="424" class="vector-desc">Outdated component</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line x1="224" y1="270" x2="252" y2="270" class="arrow" marker-end="url(#suparr)" />
+
+  <!-- Stage 2: Build -->
+  <rect x="252" y="80" width="200" height="380" rx="14" class="stage-bg" stroke-width="1" />
+
+  <g transform="translate(0, 6)">
+    <text x="268" y="102" class="stage-tag stage-tag-c">STAGE 2 · BUILD</text>
+    <text x="268" y="122" class="stage-title">CI/CD 파이프라인</text>
+    <text x="268" y="138" class="stage-desc">GitHub Actions, Jenkins</text>
+
+    <rect x="268" y="158" width="168" height="46" rx="8" class="vector-box" />
+    <text x="276" y="176" class="vector-name vector-t">빌드 시스템 침투</text>
+    <text x="276" y="192" class="vector-desc">SolarWinds 패턴</text>
+
+    <rect x="268" y="216" width="168" height="46" rx="8" class="vector-box" />
+    <text x="276" y="234" class="vector-name vector-t">CI 시크릿 탈취</text>
+    <text x="276" y="250" class="vector-desc">PR 통한 환경변수 추출</text>
+
+    <rect x="268" y="274" width="168" height="46" rx="8" class="vector-box" />
+    <text x="276" y="292" class="vector-name vector-t">악성 GitHub Action</text>
+    <text x="276" y="308" class="vector-desc">태그 변경 가능 / 미고정</text>
+
+    <rect x="268" y="332" width="168" height="46" rx="8" class="vector-box" />
+    <text x="276" y="350" class="vector-name vector-t">Install script 실행</text>
+    <text x="276" y="366" class="vector-desc">npm postinstall 등</text>
+
+    <rect x="268" y="390" width="168" height="46" rx="8" class="vector-box" />
+    <text x="276" y="408" class="vector-name vector-t">베이스 이미지 변조</text>
+    <text x="276" y="424" class="vector-desc">Docker 레이어 침해</text>
+  </g>
+
+  <line x1="452" y1="270" x2="480" y2="270" class="arrow" marker-end="url(#suparr)" />
+
+  <!-- Stage 3: Distribute -->
+  <rect x="480" y="80" width="216" height="380" rx="14" class="stage-bg" stroke-width="1" />
+  <g transform="translate(0, 6)">
+    <text x="496" y="102" class="stage-tag stage-tag-c">STAGE 3 · DISTRIBUTE</text>
+    <text x="496" y="122" class="stage-title">배포 / 사용자</text>
+    <text x="496" y="138" class="stage-desc">CDN, 자동 업데이트, 사용자 환경</text>
+
+    <rect x="496" y="158" width="184" height="46" rx="8" class="vector-box" />
+    <text x="504" y="176" class="vector-name vector-t">CDN 변조</text>
+    <text x="504" y="192" class="vector-desc">Polyfill.io 패턴</text>
+
+    <rect x="496" y="216" width="184" height="46" rx="8" class="vector-box" />
+    <text x="504" y="234" class="vector-name vector-t">서명 없는 자동 업데이트</text>
+    <text x="504" y="250" class="vector-desc">중간자 공격으로 가짜 배포</text>
+
+    <rect x="496" y="274" width="184" height="46" rx="8" class="vector-box" />
+    <text x="504" y="292" class="vector-name vector-t">레지스트리 침해</text>
+    <text x="504" y="308" class="vector-desc">npm/Docker Hub 계정 탈취</text>
+
+    <!-- Target -->
+    <rect x="496" y="332" width="184" height="104" rx="10" class="target-box" />
+    <text x="588" y="360" text-anchor="middle" class="stage-title target-t">최종 표적</text>
+    <text x="588" y="376" text-anchor="middle" class="stage-desc target-t">우리 서비스</text>
+    <text x="588" y="400" text-anchor="middle" class="vector-desc target-t">한 번의 신뢰 가정 누락이</text>
+    <text x="588" y="416" text-anchor="middle" class="vector-desc target-t">전체 배포 채널을 뚫을 수 있음</text>
+  </g>
+</svg>
