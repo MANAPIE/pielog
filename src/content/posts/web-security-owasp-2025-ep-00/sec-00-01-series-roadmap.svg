@@ -1,0 +1,192 @@
+<svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OWASP Top 10 2025 시리즈 로드맵 - 총 6편 구성">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .sec-bg { fill: var(--sec-bg, #ffffff); }
+    .sec-fg { fill: var(--sec-fg, #0f172a); }
+    .sec-muted { fill: var(--sec-fg-muted, #64748b); }
+    .sec-border { stroke: var(--sec-border, #e2e8f0); fill: none; }
+
+    .node-bg { fill: var(--sec-slate-50, #f8fafc); stroke: var(--sec-slate-200, #e2e8f0); stroke-width: 1; }
+    .node-bg-cur { fill: var(--sec-blue-50, #eff6ff); stroke: var(--sec-blue-500, #3b82f6); stroke-width: 1.6; }
+    .chip-auth { fill: var(--sec-violet-50, #f5f3ff); stroke: var(--sec-violet-200, #ddd6fe); }
+    .chip-auth-t { fill: var(--sec-violet-700, #6d28d9); }
+    .chip-data { fill: var(--sec-emerald-50, #ecfdf5); stroke: var(--sec-emerald-200, #a7f3d0); }
+    .chip-data-t { fill: var(--sec-emerald-700, #047857); }
+    .chip-inj { fill: var(--sec-red-50, #fef2f2); stroke: var(--sec-red-200, #fecaca); }
+    .chip-inj-t { fill: var(--sec-red-700, #b91c1c); }
+    .chip-supply { fill: var(--sec-amber-50, #fffbeb); stroke: var(--sec-amber-200, #fde68a); }
+    .chip-supply-t { fill: var(--sec-amber-700, #b45309); }
+    .chip-ops { fill: var(--sec-blue-50, #eff6ff); stroke: var(--sec-blue-200, #bfdbfe); }
+    .chip-ops-t { fill: var(--sec-blue-700, #1d4ed8); }
+
+    .title { font: 600 16px system-ui, sans-serif; }
+    .ep-num { font: 700 12px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); letter-spacing: 0.04em; }
+    .ep-title { font: 600 14px system-ui, sans-serif; }
+    .ep-sub { font: 400 12px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .chip-label { font: 600 10px system-ui, sans-serif; letter-spacing: 0.02em; }
+    .caption { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .arrow { stroke: var(--sec-slate-200, #e2e8f0); stroke-width: 1.2; fill: none; }
+  </style>
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="24" y="36" class="title sec-fg">OWASP Top 10:2025 시리즈 로드맵</text>
+  <text x="24" y="56" class="caption">총 6편 · 오프닝 1편 + 본편 5편 · OWASP Top 10의 10개 카테고리를 주제별로 묶어 구성</text>
+
+  <!-- ep.00 : opening (highlighted) -->
+  <g>
+    <rect x="24" y="84" width="672" height="68" rx="14" class="node-bg-cur"/>
+    <text x="44" y="112" class="ep-num">EP.00 · NOW</text>
+    <text x="136" y="112" class="ep-title sec-fg">시작하며 — OWASP Top 10:2025가 말하는 것</text>
+    <text x="44" y="132" class="ep-sub">시리즈 구성, 2025년판의 변화, 배포 직전 30분 스모크 테스트</text>
+
+    <!-- 현재 위치 표시 -->
+    <rect x="618" y="100" width="58" height="20" rx="10" fill="var(--sec-blue-500, #3b82f6)"/>
+    <text x="647" y="114" text-anchor="middle" class="chip-label" fill="#ffffff">지금 여기</text>
+  </g>
+
+  <!-- ep.01 : Auth -->
+  <g>
+    <rect x="24" y="172" width="672" height="60" rx="14" class="node-bg"/>
+    <text x="44" y="196" class="ep-num">EP.01</text>
+    <text x="90" y="196" class="ep-title sec-fg">인증과 인가의 경계</text>
+    <text x="44" y="216" class="ep-sub">IDOR · 권한 상승 · 세션 · JWT · MFA</text>
+
+    <rect x="528" y="184" width="68" height="22" rx="6" class="chip-auth"/>
+    <text x="562" y="199" text-anchor="middle" class="chip-label chip-auth-t">A01</text>
+    <rect x="602" y="184" width="68" height="22" rx="6" class="chip-auth"/>
+    <text x="636" y="199" text-anchor="middle" class="chip-label chip-auth-t">A07</text>
+  </g>
+
+  <!-- ep.02 : Data protection -->
+  <g>
+    <rect x="24" y="244" width="672" height="60" rx="14" class="node-bg"/>
+    <text x="44" y="268" class="ep-num">EP.02</text>
+    <text x="90" y="268" class="ep-title sec-fg">데이터 보호의 기본기</text>
+    <text x="44" y="288" class="ep-sub">HTTPS · TLS · 보안 헤더 · 해시와 암호화 · 키 관리</text>
+
+    <rect x="528" y="256" width="68" height="22" rx="6" class="chip-data"/>
+    <text x="562" y="271" text-anchor="middle" class="chip-label chip-data-t">A02</text>
+    <rect x="602" y="256" width="68" height="22" rx="6" class="chip-data"/>
+    <text x="636" y="271" text-anchor="middle" class="chip-label chip-data-t">A04</text>
+  </g>
+
+  <!-- ep.03 : Trust boundary -->
+  <g>
+    <rect x="24" y="316" width="672" height="60" rx="14" class="node-bg"/>
+    <text x="44" y="340" class="ep-num">EP.03</text>
+    <text x="90" y="340" class="ep-title sec-fg">신뢰 경계의 관리</text>
+    <text x="44" y="360" class="ep-sub">SQL/XSS/Command Injection · 역직렬화 · SRI · CI/CD 무결성</text>
+
+    <rect x="528" y="328" width="68" height="22" rx="6" class="chip-inj"/>
+    <text x="562" y="343" text-anchor="middle" class="chip-label chip-inj-t">A05</text>
+    <rect x="602" y="328" width="68" height="22" rx="6" class="chip-inj"/>
+    <text x="636" y="343" text-anchor="middle" class="chip-label chip-inj-t">A08</text>
+  </g>
+
+  <!-- ep.04 : Code 밖의 리스크 -->
+  <g>
+    <rect x="24" y="388" width="672" height="60" rx="14" class="node-bg"/>
+    <text x="44" y="412" class="ep-num">EP.04</text>
+    <text x="90" y="412" class="ep-title sec-fg">코드 밖의 리스크</text>
+    <text x="44" y="432" class="ep-sub">공급망 · 의존성 · SBOM · Threat Modeling · 비즈니스 로직 악용</text>
+
+    <rect x="528" y="400" width="68" height="22" rx="6" class="chip-supply"/>
+    <text x="562" y="415" text-anchor="middle" class="chip-label chip-supply-t">A03</text>
+    <rect x="602" y="400" width="68" height="22" rx="6" class="chip-supply"/>
+    <text x="636" y="415" text-anchor="middle" class="chip-label chip-supply-t">A06</text>
+  </g>
+
+  <!-- ep.05 : Operations -->
+  <g>
+    <rect x="24" y="460" width="672" height="60" rx="14" class="node-bg"/>
+    <text x="44" y="484" class="ep-num">EP.05</text>
+    <text x="90" y="484" class="ep-title sec-fg">운영의 관측과 탄력성</text>
+    <text x="44" y="504" class="ep-sub">로깅 · 알림 · Fail Closed · Circuit Breaker · Chaos Engineering</text>
+
+    <rect x="528" y="472" width="68" height="22" rx="6" class="chip-ops"/>
+    <text x="562" y="487" text-anchor="middle" class="chip-label chip-ops-t">A09</text>
+    <rect x="602" y="472" width="68" height="22" rx="6" class="chip-ops"/>
+    <text x="636" y="487" text-anchor="middle" class="chip-label chip-ops-t">A10</text>
+  </g>
+</svg>

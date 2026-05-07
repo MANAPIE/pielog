@@ -1,0 +1,178 @@
+<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="배포 직전 30분 스모크 테스트 6단계 플로우">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title { font: 600 16px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .caption { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+
+    .step-num { font: 700 11px system-ui, sans-serif; fill: var(--sec-blue-700, #1d4ed8); letter-spacing: 0.04em; }
+    .step-title { font: 600 12px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .step-tool { font: 400 11px "SF Mono", ui-monospace, monospace; fill: var(--sec-fg-muted, #64748b); }
+    .step-time { font: 500 10px system-ui, sans-serif; fill: var(--sec-emerald-700, #047857); }
+
+    .step-box { fill: var(--sec-blue-50, #eff6ff); stroke: var(--sec-blue-200, #bfdbfe); stroke-width: 1; }
+    .step-icon { fill: var(--sec-blue-500, #3b82f6); }
+    .time-pill { fill: var(--sec-emerald-50, #ecfdf5); stroke: var(--sec-emerald-200, #a7f3d0); }
+    .arrow { stroke: var(--sec-slate-200, #e2e8f0); stroke-width: 1.2; fill: none; }
+  </style>
+
+  <defs>
+    <marker id="arrF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">배포 직전 30~60분 스모크 테스트</text>
+  <text x="24" y="56" class="caption">크리티컬·하이 이슈만 잡아도 실제 사고의 상당 부분을 예방할 수 있습니다.</text>
+
+  <!-- 6 steps in 2 rows of 3 -->
+  <!-- Row 1 -->
+  <g>
+    <rect x="24" y="96" width="208" height="100" rx="10" class="step-box"/>
+    <text x="40" y="118" class="step-num">STEP 01</text>
+    <rect x="150" y="104" width="68" height="18" rx="6" class="time-pill"/>
+    <text x="184" y="117" text-anchor="middle" class="step-time">~5분</text>
+    <text x="40" y="144" class="step-title">시크릿 유출 검사</text>
+    <text x="40" y="168" class="step-tool">$ gitleaks detect</text>
+    <text x="40" y="184" class="step-tool">  --source . --redact</text>
+  </g>
+
+  <g>
+    <rect x="256" y="96" width="208" height="100" rx="10" class="step-box"/>
+    <text x="272" y="118" class="step-num">STEP 02</text>
+    <rect x="382" y="104" width="68" height="18" rx="6" class="time-pill"/>
+    <text x="416" y="117" text-anchor="middle" class="step-time">~3분</text>
+    <text x="272" y="144" class="step-title">전송 보안 등급</text>
+    <text x="272" y="168" class="step-tool">ssllabs.com 또는</text>
+    <text x="272" y="184" class="step-tool">testssl.sh</text>
+  </g>
+
+  <g>
+    <rect x="488" y="96" width="208" height="100" rx="10" class="step-box"/>
+    <text x="504" y="118" class="step-num">STEP 03</text>
+    <rect x="614" y="104" width="68" height="18" rx="6" class="time-pill"/>
+    <text x="648" y="117" text-anchor="middle" class="step-time">~2분</text>
+    <text x="504" y="144" class="step-title">보안 헤더 점검</text>
+    <text x="504" y="168" class="step-tool">securityheaders.com</text>
+    <text x="504" y="184" class="step-tool">또는 curl -I</text>
+  </g>
+
+  <!-- Arrows between step 1→2→3 -->
+  <line x1="232" y1="146" x2="256" y2="146" class="arrow" marker-end="url(#arrF)"/>
+  <line x1="464" y1="146" x2="488" y2="146" class="arrow" marker-end="url(#arrF)"/>
+
+  <!-- Vertical arrow down right column -->
+  <path d="M 592 196 L 592 216" class="arrow" marker-end="url(#arrF)"/>
+
+  <!-- Row 2 -->
+  <g>
+    <rect x="24" y="216" width="208" height="100" rx="10" class="step-box"/>
+    <text x="40" y="238" class="step-num">STEP 06</text>
+    <rect x="150" y="224" width="68" height="18" rx="6" class="time-pill"/>
+    <text x="184" y="237" text-anchor="middle" class="step-time">~10분</text>
+    <text x="40" y="264" class="step-title">자동 스캐너</text>
+    <text x="40" y="288" class="step-tool">zap-baseline.py</text>
+    <text x="40" y="304" class="step-tool">  -t https://...</text>
+  </g>
+
+  <g>
+    <rect x="256" y="216" width="208" height="100" rx="10" class="step-box"/>
+    <text x="272" y="238" class="step-num">STEP 05</text>
+    <rect x="382" y="224" width="68" height="18" rx="6" class="time-pill"/>
+    <text x="416" y="237" text-anchor="middle" class="step-time">~10분</text>
+    <text x="272" y="264" class="step-title">IDOR 수동 테스트</text>
+    <text x="272" y="288" class="step-tool">User B 토큰으로</text>
+    <text x="272" y="304" class="step-tool">User A 리소스 호출</text>
+  </g>
+
+  <g>
+    <rect x="488" y="216" width="208" height="100" rx="10" class="step-box"/>
+    <text x="504" y="238" class="step-num">STEP 04</text>
+    <rect x="614" y="224" width="68" height="18" rx="6" class="time-pill"/>
+    <text x="648" y="237" text-anchor="middle" class="step-time">~3분</text>
+    <text x="504" y="264" class="step-title">의존성 취약점</text>
+    <text x="504" y="288" class="step-tool">npm audit --production</text>
+    <text x="504" y="304" class="step-tool">또는 pip-audit</text>
+  </g>
+
+  <!-- Arrows row 2: right → left -->
+  <line x1="488" y1="266" x2="464" y2="266" class="arrow" marker-end="url(#arrF)"/>
+  <line x1="256" y1="266" x2="232" y2="266" class="arrow" marker-end="url(#arrF)"/>
+
+  <!-- 하단 캡션 -->
+  <text x="360" y="348" text-anchor="middle" class="caption">크리티컬·하이 이슈는 즉시 차단, 나머지는 이슈 티켓으로 관리 → 배포 진행</text>
+</svg>
