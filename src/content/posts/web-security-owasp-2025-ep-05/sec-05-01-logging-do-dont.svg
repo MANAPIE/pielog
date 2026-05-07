@@ -1,0 +1,181 @@
+<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="로깅의 양면 - 보안에 도움되는 로그와 위험한 로그">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title { font: 600 16px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .caption { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .col-tag { font: 700 10px system-ui, sans-serif; letter-spacing: 0.08em; }
+    .col-head { font: 600 14px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .item { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .desc { font: 400 10px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .mono-sm { font: 400 10px "SF Mono", ui-monospace, monospace; }
+
+    .good-bg { fill: var(--sec-emerald-50, #ecfdf5); stroke: var(--sec-emerald-200, #a7f3d0); }
+    .good-t { fill: var(--sec-emerald-700, #047857); }
+    .bad-bg { fill: var(--sec-red-50, #fef2f2); stroke: var(--sec-red-200, #fecaca); }
+    .bad-t { fill: var(--sec-red-700, #b91c1c); }
+
+    .check-good { fill: var(--sec-emerald-500, #10b981); }
+    .check-bad { fill: var(--sec-red-500, #ef4444); }
+    .icon-text { font: 700 11px system-ui, sans-serif; fill: #ffffff; }
+
+    .row-divider { stroke: var(--sec-slate-200, #e2e8f0); stroke-width: 1; }
+  </style>
+
+  <text x="24" y="36" class="title">로깅: 무엇을 남기고 무엇을 남기지 말 것인가</text>
+  <text x="24" y="56" class="caption">로그는 사고 대응의 가장 강력한 도구이지만, 잘못 남긴 로그는 그 자체가 보안 사고가 됩니다.</text>
+
+  <!-- LEFT: What to log -->
+  <rect x="24" y="80" width="328" height="384" rx="14" class="good-bg" stroke-width="1"/>
+  <text x="40" y="104" class="col-tag good-t">DO LOG · 반드시 남겨야 할 것</text>
+  <text x="40" y="124" class="col-head">보안 이벤트</text>
+
+  <circle cx="50" cy="158" r="10" class="check-good"/>
+  <text x="50" y="162" text-anchor="middle" class="icon-text">✓</text>
+  <text x="68" y="148" class="item" font-weight="600">인증 이벤트</text>
+  <text x="68" y="164" class="desc">로그인 성공·실패, 비밀번호 변경,</text>
+  <text x="68" y="176" class="desc">MFA 등록·해제, 세션 발급·종료</text>
+
+  <circle cx="50" cy="208" r="10" class="check-good"/>
+  <text x="50" y="212" text-anchor="middle" class="icon-text">✓</text>
+  <text x="68" y="198" class="item" font-weight="600">인가 거부</text>
+  <text x="68" y="214" class="desc">권한 부족 응답 (403, 401),</text>
+  <text x="68" y="226" class="desc">관리자 액션 시도, 정책 위반</text>
+
+  <circle cx="50" cy="258" r="10" class="check-good"/>
+  <text x="50" y="262" text-anchor="middle" class="icon-text">✓</text>
+  <text x="68" y="248" class="item" font-weight="600">민감 작업</text>
+  <text x="68" y="264" class="desc">결제, 데이터 export, 권한 변경,</text>
+  <text x="68" y="276" class="desc">계정 삭제, API 키 발급·폐기</text>
+
+  <circle cx="50" cy="308" r="10" class="check-good"/>
+  <text x="50" y="312" text-anchor="middle" class="icon-text">✓</text>
+  <text x="68" y="298" class="item" font-weight="600">입력 검증 실패</text>
+  <text x="68" y="314" class="desc">SQL/XSS 페이로드 탐지,</text>
+  <text x="68" y="326" class="desc">비정상 요청 패턴, 5xx 에러</text>
+
+  <circle cx="50" cy="358" r="10" class="check-good"/>
+  <text x="50" y="362" text-anchor="middle" class="icon-text">✓</text>
+  <text x="68" y="348" class="item" font-weight="600">설정 변경</text>
+  <text x="68" y="364" class="desc">권한 부여, IAM 정책 수정,</text>
+  <text x="68" y="376" class="desc">시스템 환경 변경</text>
+
+  <line x1="40" y1="394" x2="336" y2="394" class="row-divider"/>
+  <text x="40" y="416" class="item" font-weight="600" fill="var(--sec-emerald-700, #047857)">메타데이터 (모든 로그에 포함)</text>
+  <text x="40" y="434" class="desc">타임스탬프 (UTC, ms), 사용자 ID,</text>
+  <text x="40" y="448" class="desc">요청 ID(trace ID), 소스 IP, User-Agent</text>
+
+  <!-- RIGHT: Don't log -->
+  <rect x="368" y="80" width="328" height="384" rx="14" class="bad-bg" stroke-width="1"/>
+  <text x="384" y="104" class="col-tag bad-t">DON'T LOG · 절대 남기지 말 것</text>
+  <text x="384" y="124" class="col-head">민감 정보</text>
+
+  <circle cx="394" cy="158" r="10" class="check-bad"/>
+  <text x="394" y="162" text-anchor="middle" class="icon-text">✗</text>
+  <text x="412" y="148" class="item" font-weight="600">자격증명</text>
+  <text x="412" y="164" class="desc">비밀번호(평문/해시), API 키,</text>
+  <text x="412" y="176" class="desc">JWT 전체, 세션 토큰, OAuth 토큰</text>
+
+  <circle cx="394" cy="208" r="10" class="check-bad"/>
+  <text x="394" y="212" text-anchor="middle" class="icon-text">✗</text>
+  <text x="412" y="198" class="item" font-weight="600">개인정보 (PII)</text>
+  <text x="412" y="214" class="desc">주민번호, 카드번호, 의료기록,</text>
+  <text x="412" y="226" class="desc">상세 주소, 사회보장번호</text>
+
+  <circle cx="394" cy="258" r="10" class="check-bad"/>
+  <text x="394" y="262" text-anchor="middle" class="icon-text">✗</text>
+  <text x="412" y="248" class="item" font-weight="600">암호화 키 자료</text>
+  <text x="412" y="264" class="desc">개인키, AES 키, 시크릿,</text>
+  <text x="412" y="276" class="desc">CSRF 토큰, nonce 값</text>
+
+  <circle cx="394" cy="308" r="10" class="check-bad"/>
+  <text x="394" y="312" text-anchor="middle" class="icon-text">✗</text>
+  <text x="412" y="298" class="item" font-weight="600">전체 요청 body</text>
+  <text x="412" y="314" class="desc">위 모든 게 들어있을 수 있음.</text>
+  <text x="412" y="326" class="desc">필요 필드만 선별 또는 redact</text>
+
+  <circle cx="394" cy="358" r="10" class="check-bad"/>
+  <text x="394" y="362" text-anchor="middle" class="icon-text">✗</text>
+  <text x="412" y="348" class="item" font-weight="600">스택 트레이스 (외부)</text>
+  <text x="412" y="364" class="desc">내부 경로, DB 스키마,</text>
+  <text x="412" y="376" class="desc">의존성 버전 노출 (사용자 응답에)</text>
+
+  <line x1="384" y1="394" x2="680" y2="394" class="row-divider"/>
+  <text x="384" y="416" class="item" font-weight="600" fill="var(--sec-red-700, #b91c1c)">로그 마스킹 필터 적용</text>
+  <text x="384" y="434" class="desc">password, token, authorization, ssn,</text>
+  <text x="384" y="448" class="desc">credit_card, secret, key 같은 필드 자동 redact</text>
+</svg>

@@ -1,0 +1,248 @@
+<svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OWASP Top 10 2021년판과 2025년판 비교">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title { font: 600 16px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .col-head { font: 600 13px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .col-sub { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .rank { font: 700 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); letter-spacing: 0.04em; }
+    .item { font: 500 12px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .caption { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+
+    .row-same { fill: var(--sec-slate-50, #f8fafc); stroke: var(--sec-slate-200, #e2e8f0); stroke-width: 1; }
+    .row-up { fill: var(--sec-red-50, #fef2f2); stroke: var(--sec-red-200, #fecaca); stroke-width: 1; }
+    .row-new { fill: var(--sec-amber-50, #fffbeb); stroke: var(--sec-amber-200, #fde68a); stroke-width: 1; }
+    .row-merged { fill: var(--sec-violet-50, #f5f3ff); stroke: var(--sec-violet-200, #ddd6fe); stroke-width: 1; }
+
+    .arrow-up { stroke: var(--sec-red-500, #ef4444); stroke-width: 1.4; fill: none; }
+    .arrow-down { stroke: var(--sec-slate-500, #64748b); stroke-width: 1.2; fill: none; opacity: 0.6; }
+    .arrow-merge { stroke: var(--sec-violet-500, #8b5cf6); stroke-width: 1.4; fill: none; stroke-dasharray: 4 3; }
+
+    .badge { font: 700 9px system-ui, sans-serif; letter-spacing: 0.06em; }
+    .badge-new { fill: var(--sec-amber-700, #b45309); }
+    .badge-up { fill: var(--sec-red-700, #b91c1c); }
+    .badge-merge { fill: var(--sec-violet-700, #6d28d9); }
+  </style>
+
+  <defs>
+    <marker id="arrUp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-red-500, #ef4444)"/>
+    </marker>
+    <marker id="arrDown" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)" opacity="0.6"/>
+    </marker>
+    <marker id="arrMerge" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-violet-500, #8b5cf6)"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">OWASP Top 10: 2021 → 2025 변화</text>
+  <text x="24" y="56" class="caption">굵은 테두리 = 주목할 변화. 색상: 적색=상승, 호박색=신규, 보라=통합</text>
+
+  <!-- Column headers -->
+  <text x="144" y="92" text-anchor="middle" class="col-head">2021년판</text>
+  <text x="144" y="108" text-anchor="middle" class="col-sub">기존</text>
+  <text x="576" y="92" text-anchor="middle" class="col-head">2025년판</text>
+  <text x="576" y="108" text-anchor="middle" class="col-sub">현재</text>
+
+  <!-- 2021 column: x=24, width=240 -->
+  <!-- 2025 column: x=456, width=240 -->
+
+  <!-- A01: Broken Access Control (same) -->
+  <rect x="24" y="124" width="240" height="32" rx="8" class="row-same"/>
+  <text x="36" y="144" class="rank">01</text>
+  <text x="70" y="144" class="item">Broken Access Control</text>
+
+  <rect x="456" y="124" width="240" height="32" rx="8" class="row-same"/>
+  <text x="468" y="144" class="rank">01</text>
+  <text x="502" y="144" class="item">Broken Access Control</text>
+
+  <line x1="264" y1="140" x2="456" y2="140" class="arrow-down" marker-end="url(#arrDown)"/>
+
+  <!-- A02 2021: Cryptographic Failures → A04 2025 -->
+  <rect x="24" y="164" width="240" height="32" rx="8" class="row-same"/>
+  <text x="36" y="184" class="rank">02</text>
+  <text x="70" y="184" class="item">Cryptographic Failures</text>
+
+  <!-- A03 2021: Injection → A05 2025 -->
+  <rect x="24" y="204" width="240" height="32" rx="8" class="row-same"/>
+  <text x="36" y="224" class="rank">03</text>
+  <text x="70" y="224" class="item">Injection</text>
+
+  <!-- A04 2021: Insecure Design → A06 2025 -->
+  <rect x="24" y="244" width="240" height="32" rx="8" class="row-same"/>
+  <text x="36" y="264" class="rank">04</text>
+  <text x="70" y="264" class="item">Insecure Design</text>
+
+  <!-- A05 2021: Security Misconfiguration → A02 2025 (UP!) -->
+  <rect x="24" y="284" width="240" height="32" rx="8" class="row-up" stroke-width="1.8"/>
+  <text x="36" y="304" class="rank">05</text>
+  <text x="70" y="304" class="item">Security Misconfiguration</text>
+  <rect x="242" y="290" width="38" height="18" rx="4" fill="var(--sec-red-500, #ef4444)"/>
+  <text x="261" y="302" text-anchor="middle" class="badge" fill="#ffffff">UP</text>
+
+  <!-- A06 2021: Vulnerable and Outdated Components → A03 2025 (expanded & renamed) -->
+  <rect x="24" y="324" width="240" height="32" rx="8" class="row-merged" stroke-width="1.8"/>
+  <text x="36" y="344" class="rank">06</text>
+  <text x="70" y="344" class="item">Vulnerable Components</text>
+
+  <!-- A07 2021: Ident & Auth Failures → A07 2025 -->
+  <rect x="24" y="364" width="240" height="32" rx="8" class="row-same"/>
+  <text x="36" y="384" class="rank">07</text>
+  <text x="70" y="384" class="item">Identification &amp; Auth Failures</text>
+
+  <!-- A08 2021: Software and Data Integrity Failures → A08 2025 -->
+  <rect x="24" y="404" width="240" height="32" rx="8" class="row-same"/>
+  <text x="36" y="424" class="rank">08</text>
+  <text x="70" y="424" class="item">SW &amp; Data Integrity Failures</text>
+
+  <!-- A09 2021: Security Logging & Monitoring → A09 2025 -->
+  <rect x="24" y="444" width="240" height="32" rx="8" class="row-same"/>
+  <text x="36" y="464" class="rank">09</text>
+  <text x="70" y="464" class="item">Logging &amp; Monitoring Failures</text>
+
+  <!-- === 핵심 변화 화살표 === -->
+
+  <!-- A05(2021) → A02(2025) : UP -->
+  <path d="M 264 300 C 340 300, 380 180, 456 180" class="arrow-up" marker-end="url(#arrUp)"/>
+
+  <!-- A06(2021) Vulnerable Components → A03(2025) Supply Chain (확장) -->
+  <path d="M 264 340 C 340 340, 380 220, 456 220" class="arrow-merge" marker-end="url(#arrMerge)"/>
+
+  <!-- A10(2021) SSRF → A01(2025) Broken Access Control (merge) -->
+  <path d="M 264 500 C 340 500, 380 140, 456 140" class="arrow-merge" marker-end="url(#arrMerge)"/>
+
+  <!-- A10 2021: SSRF → A01 2025 (merged) -->
+  <rect x="24" y="484" width="240" height="32" rx="8" class="row-merged" stroke-width="1.8"/>
+  <text x="36" y="504" class="rank">10</text>
+  <text x="70" y="504" class="item">Server-Side Request Forgery</text>
+  <rect x="244" y="490" width="56" height="18" rx="4" fill="var(--sec-violet-500, #8b5cf6)"/>
+  <text x="272" y="502" text-anchor="middle" class="badge" fill="#ffffff">MERGE</text>
+
+  <!-- === 2025 column === -->
+
+  <!-- A02: Security Misconfiguration (UP from 5) -->
+  <rect x="456" y="164" width="240" height="32" rx="8" class="row-up" stroke-width="1.8"/>
+  <text x="468" y="184" class="rank">02</text>
+  <text x="502" y="184" class="item">Security Misconfiguration</text>
+  <rect x="678" y="170" width="38" height="18" rx="4" fill="var(--sec-red-500, #ef4444)"/>
+  <text x="697" y="182" text-anchor="middle" class="badge" fill="#ffffff">↑3</text>
+
+  <!-- A03: Software Supply Chain Failures (NEW) -->
+  <rect x="456" y="204" width="240" height="32" rx="8" class="row-new" stroke-width="1.8"/>
+  <text x="468" y="224" class="rank">03</text>
+  <text x="502" y="224" class="item" style="letter-spacing:-0.3">Software Supply Chain Failures</text>
+  <rect x="678" y="210" width="38" height="18" rx="4" fill="var(--sec-amber-500, #f59e0b)"/>
+  <text x="697" y="222" text-anchor="middle" class="badge" fill="#ffffff">NEW</text>
+
+  <!-- A04: Cryptographic Failures (down from 2) -->
+  <rect x="456" y="244" width="240" height="32" rx="8" class="row-same"/>
+  <text x="468" y="264" class="rank">04</text>
+  <text x="502" y="264" class="item">Cryptographic Failures</text>
+
+  <!-- A05: Injection (down from 3) -->
+  <rect x="456" y="284" width="240" height="32" rx="8" class="row-same"/>
+  <text x="468" y="304" class="rank">05</text>
+  <text x="502" y="304" class="item">Injection</text>
+
+  <!-- A06: Insecure Design (down from 4) -->
+  <rect x="456" y="324" width="240" height="32" rx="8" class="row-same"/>
+  <text x="468" y="344" class="rank">06</text>
+  <text x="502" y="344" class="item">Insecure Design</text>
+
+  <!-- A07: Authentication Failures (same) -->
+  <rect x="456" y="364" width="240" height="32" rx="8" class="row-same"/>
+  <text x="468" y="384" class="rank">07</text>
+  <text x="502" y="384" class="item">Authentication Failures</text>
+
+  <!-- A08: SW or Data Integrity Failures (same) -->
+  <rect x="456" y="404" width="240" height="32" rx="8" class="row-same"/>
+  <text x="468" y="424" class="rank">08</text>
+  <text x="502" y="424" class="item">SW or Data Integrity Failures</text>
+
+  <!-- A09: Security Logging & Alerting Failures (same) -->
+  <rect x="456" y="444" width="240" height="32" rx="8" class="row-same"/>
+  <text x="468" y="464" class="rank">09</text>
+  <text x="502" y="464" class="item">Logging &amp; Alerting Failures</text>
+
+  <!-- A10: Mishandling of Exceptional Conditions (NEW) -->
+  <rect x="456" y="484" width="240" height="32" rx="8" class="row-new" stroke-width="1.8"/>
+  <text x="468" y="504" class="rank">10</text>
+  <text x="502" y="504" class="item">Mishandling of Exceptions</text>
+  <rect x="678" y="490" width="38" height="18" rx="4" fill="var(--sec-amber-500, #f59e0b)"/>
+  <text x="697" y="502" text-anchor="middle" class="badge" fill="#ffffff">NEW</text>
+</svg>

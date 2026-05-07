@@ -1,0 +1,269 @@
+<svg viewBox="0 0 760 660" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="STRIDE 위협 모델링 프레임워크">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .header-label {
+      font: 600 11px system-ui, sans-serif;
+      fill: var(--sec-slate-700, #334155);
+      letter-spacing: 0.02em;
+    }
+
+    .letter {
+      font: 700 28px system-ui, sans-serif;
+      fill: var(--sec-bg, #ffffff);
+    }
+
+    .threat-name {
+      font: 600 14px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .property {
+      font: 500 11px system-ui, sans-serif;
+    }
+
+    .question {
+      font: 400 12px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+      font-style: italic;
+    }
+
+    .example {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .defense {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .ko {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .row-bg {
+      fill: var(--sec-bg, #ffffff);
+      stroke: var(--sec-slate-200, #e2e8f0);
+      stroke-width: 1;
+    }
+
+    .header-bg {
+      fill: var(--sec-slate-100, #f1f5f9);
+    }
+
+    .s-circle {
+      fill: var(--sec-red-500, #ef4444);
+    }
+
+    .t-circle {
+      fill: var(--sec-amber-500, #f59e0b);
+    }
+
+    .r-circle {
+      fill: var(--sec-violet-500, #8b5cf6);
+    }
+
+    .i-circle {
+      fill: var(--sec-blue-500, #3b82f6);
+    }
+
+    .d-circle {
+      fill: var(--sec-slate-700, #334155);
+    }
+
+    .e-circle {
+      fill: var(--sec-emerald-500, #10b981);
+    }
+
+    .breaks {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+  </style>
+
+  <text x="28" y="40" class="title">STRIDE — 위협을 6가지 범주로 본다</text>
+  <text x="28" y="62" class="caption">Microsoft가 만든 위협 모델링 프레임워크. 설계 단계에서 "이 컴포넌트가 어떻게 깨질 수 있는가"를 묻습니다.</text>
+
+  <!-- Header -->
+  <rect x="24" y="92" width="80" height="40" rx="8" class="header-bg" />
+  <text x="64" y="117" text-anchor="middle" class="header-label">위협</text>
+
+  <rect x="112" y="92" width="176" height="40" rx="8" class="header-bg" />
+  <text x="200" y="117" text-anchor="middle" class="header-label">깨지는 보안 속성</text>
+
+  <rect x="296" y="92" width="256" height="40" rx="8" class="header-bg" />
+  <text x="424" y="117" text-anchor="middle" class="header-label">설계 시 던질 질문</text>
+
+  <rect x="560" y="92" width="176" height="40" rx="8" class="header-bg" />
+  <text x="648" y="117" text-anchor="middle" class="header-label">대표 방어</text>
+
+  <!-- Row S (y=144) -->
+  <rect x="24" y="144" width="712" height="80" rx="8" class="row-bg" />
+  <circle cx="64" cy="184" r="22" class="s-circle" />
+  <text x="64" y="193" text-anchor="middle" class="letter">S</text>
+  <text x="112" y="168" class="threat-name">Spoofing</text>
+  <text x="112" y="188" class="property breaks">Authentication</text>
+  <text x="112" y="208" class="ko">신원 위조</text>
+  <text x="296" y="168" class="question">"이 요청자가 정말 그 사람인가?"</text>
+  <text x="296" y="188" class="example">예: 다른 사용자 토큰 도용</text>
+  <text x="296" y="208" class="example">예: 가짜 IP 주소</text>
+  <text x="560" y="168" class="defense" font-weight="600">MFA · 강한 인증</text>
+  <text x="560" y="188" class="defense">JWT 서명 검증</text>
+  <text x="560" y="208" class="defense">mTLS · WebAuthn</text>
+
+  <!-- Row T (y=228) -->
+  <rect x="24" y="228" width="712" height="80" rx="8" class="row-bg" />
+  <circle cx="64" cy="268" r="22" class="t-circle" />
+  <text x="64" y="277" text-anchor="middle" class="letter">T</text>
+  <text x="112" y="252" class="threat-name">Tampering</text>
+  <text x="112" y="272" class="property breaks">Integrity</text>
+  <text x="112" y="292" class="ko">데이터 변조</text>
+  <text x="296" y="252" class="question">"이 데이터가 변조되지 않았나?"</text>
+  <text x="296" y="272" class="example">예: 요청 body 조작</text>
+  <text x="296" y="292" class="example">예: DB 직접 수정</text>
+  <text x="560" y="252" class="defense" font-weight="600">HMAC · 서명</text>
+  <text x="560" y="272" class="defense">DB 무결성 제약</text>
+  <text x="560" y="292" class="defense">Audit log</text>
+
+  <!-- Row R (y=312) -->
+  <rect x="24" y="312" width="712" height="80" rx="8" class="row-bg" />
+  <circle cx="64" cy="352" r="22" class="r-circle" />
+  <text x="64" y="361" text-anchor="middle" class="letter">R</text>
+  <text x="112" y="336" class="threat-name">Repudiation</text>
+  <text x="112" y="356" class="property breaks">Non-repudiation</text>
+  <text x="112" y="376" class="ko">행위 부인</text>
+  <text x="296" y="336" class="question">"누가 언제 무엇을 했는지 증명 가능?"</text>
+  <text x="296" y="356" class="example">예: 결제 후 "안 했다" 부인</text>
+  <text x="296" y="376" class="example">예: 로그 삭제로 흔적 지우기</text>
+  <text x="560" y="336" class="defense" font-weight="600">Append-only audit log</text>
+  <text x="560" y="356" class="defense">서명된 트랜잭션</text>
+  <text x="560" y="376" class="defense">로그 무결성 보장</text>
+
+  <!-- Row I (y=396) -->
+  <rect x="24" y="396" width="712" height="80" rx="8" class="row-bg" />
+  <circle cx="64" cy="436" r="22" class="i-circle" />
+  <text x="64" y="445" text-anchor="middle" class="letter">I</text>
+  <text x="112" y="420" class="threat-name">Information Disclosure</text>
+  <text x="112" y="440" class="property breaks">Confidentiality</text>
+  <text x="112" y="460" class="ko">정보 노출</text>
+  <text x="296" y="420" class="question">"노출되면 안 되는 데이터가 새지 않나?"</text>
+  <text x="296" y="440" class="example">예: 에러 메시지에 DB 경로</text>
+  <text x="296" y="460" class="example">예: 로그에 비밀번호</text>
+  <text x="560" y="420" class="defense" font-weight="600">암호화 (저장·전송)</text>
+  <text x="560" y="440" class="defense">접근 제어 · 최소 권한</text>
+  <text x="560" y="460" class="defense">로그 마스킹</text>
+
+  <!-- Row D (y=480) -->
+  <rect x="24" y="480" width="712" height="80" rx="8" class="row-bg" />
+  <circle cx="64" cy="520" r="22" class="d-circle" />
+  <text x="64" y="529" text-anchor="middle" class="letter">D</text>
+  <text x="112" y="504" class="threat-name">Denial of Service</text>
+  <text x="112" y="524" class="property breaks">Availability</text>
+  <text x="112" y="544" class="ko">가용성 침해</text>
+  <text x="296" y="504" class="question">"누가 일부러 망가뜨려 멈출 수 있나?"</text>
+  <text x="296" y="524" class="example">예: 비싼 쿼리 반복 호출 → ep.05 참조</text>
+  <text x="296" y="544" class="example">예: 슬로우로리스 · 큰 페이로드 업로드</text>
+  <text x="560" y="504" class="defense" font-weight="600">Rate limit · CDN · WAF</text>
+  <text x="560" y="524" class="defense">리소스 quota · Circuit breaker</text>
+  <text x="560" y="544" class="defense">Timeout · Auto-scaling</text>
+
+  <!-- Row E (y=564) -->
+  <rect x="24" y="564" width="712" height="80" rx="8" class="row-bg" />
+  <circle cx="64" cy="604" r="22" class="e-circle" />
+  <text x="64" y="613" text-anchor="middle" class="letter">E</text>
+  <text x="112" y="588" class="threat-name">Elevation of Privilege</text>
+  <text x="112" y="608" class="property breaks">Authorization</text>
+  <text x="112" y="628" class="ko">권한 상승</text>
+  <text x="296" y="588" class="question">"낮은 권한이 높은 권한 행세를 할 수 있나?"</text>
+  <text x="296" y="608" class="example">예: 일반 사용자가 admin API 호출</text>
+  <text x="296" y="628" class="example">예: 토큰 변조로 admin claim 위조</text>
+  <text x="560" y="588" class="defense" font-weight="600">RBAC · 권한 검증 미들웨어</text>
+  <text x="560" y="608" class="defense">최소 권한 · 기본값 거부</text>
+  <text x="560" y="628" class="defense">JWT claim 검증 · 정책 엔진</text>
+</svg>

@@ -1,0 +1,176 @@
+<svg viewBox="0 0 720 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JWT 구조와 alg:none 공격 시나리오">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title { font: 600 16px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .caption { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .section-head { font: 600 13px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .part-label { font: 700 10px system-ui, sans-serif; letter-spacing: 0.08em; }
+    .mono { font: 400 11px "SF Mono", ui-monospace, monospace; }
+    .mono-sm { font: 400 10px "SF Mono", ui-monospace, monospace; }
+    .note { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+
+    .header-box { fill: var(--sec-red-50, #fef2f2); stroke: var(--sec-red-200, #fecaca); }
+    .header-text { fill: var(--sec-red-700, #b91c1c); }
+    .payload-box { fill: var(--sec-violet-50, #f5f3ff); stroke: var(--sec-violet-200, #ddd6fe); }
+    .payload-text { fill: var(--sec-violet-700, #6d28d9); }
+    .sig-box { fill: var(--sec-blue-50, #eff6ff); stroke: var(--sec-blue-200, #bfdbfe); }
+    .sig-text { fill: var(--sec-blue-700, #1d4ed8); }
+
+    .attack-box { fill: var(--sec-amber-50, #fffbeb); stroke: var(--sec-amber-500, #f59e0b); stroke-width: 1.6; }
+    .attack-text { fill: var(--sec-amber-700, #b45309); }
+    .arrow { stroke: var(--sec-slate-500, #64748b); stroke-width: 1.2; fill: none; }
+    .warn { font: 600 11px system-ui, sans-serif; fill: var(--sec-red-700, #b91c1c); }
+  </style>
+
+  <defs>
+    <marker id="jarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">JWT는 암호화가 아닙니다. 서명일 뿐입니다.</text>
+  <text x="24" y="56" class="caption">payload는 base64 디코드 한 번이면 읽힙니다. 서명 검증이 전부입니다.</text>
+
+  <!-- Normal JWT -->
+  <text x="24" y="92" class="section-head">일반적인 JWT 구조</text>
+
+  <!-- Token visualization -->
+  <rect x="24" y="106" width="672" height="40" rx="8" fill="var(--sec-slate-50, #f8fafc)" stroke="var(--sec-slate-200, #e2e8f0)"/>
+  <text x="36" y="130" class="mono-sm header-text">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</text>
+  <text x="290" y="130" class="mono-sm" fill="var(--sec-slate-500, #64748b)">.</text>
+  <text x="302" y="130" class="mono-sm payload-text">eyJzdWIiOiJ1c2VyMTIzIiwicm9sZSI6InVzZXIifQ</text>
+  <text x="562" y="130" class="mono-sm" fill="var(--sec-slate-500, #64748b)">.</text>
+  <text x="574" y="130" class="mono-sm sig-text">SflKxwRJS...</text>
+
+  <!-- Part labels -->
+  <text x="148" y="160" text-anchor="middle" class="part-label header-text">HEADER</text>
+  <text x="432" y="160" text-anchor="middle" class="part-label payload-text">PAYLOAD</text>
+  <text x="620" y="160" text-anchor="middle" class="part-label sig-text">SIGNATURE</text>
+
+  <!-- Arrows down -->
+  <line x1="148" y1="168" x2="148" y2="188" class="arrow" marker-end="url(#jarr)"/>
+  <line x1="432" y1="168" x2="432" y2="188" class="arrow" marker-end="url(#jarr)"/>
+  <line x1="620" y1="168" x2="620" y2="188" class="arrow" marker-end="url(#jarr)"/>
+
+  <!-- Decoded boxes -->
+  <rect x="36" y="190" width="224" height="80" rx="8" class="header-box"/>
+  <text x="48" y="212" class="mono header-text">&#123;</text>
+  <text x="56" y="228" class="mono header-text">  "alg": "HS256",</text>
+  <text x="56" y="244" class="mono header-text">  "typ": "JWT"</text>
+  <text x="48" y="260" class="mono header-text">&#125;</text>
+
+  <rect x="320" y="190" width="224" height="80" rx="8" class="payload-box"/>
+  <text x="332" y="212" class="mono payload-text">&#123;</text>
+  <text x="340" y="228" class="mono payload-text">  "sub": "user123",</text>
+  <text x="340" y="244" class="mono payload-text">  "role": "user"</text>
+  <text x="332" y="260" class="mono payload-text">&#125;</text>
+
+  <rect x="552" y="190" width="144" height="80" rx="8" class="sig-box"/>
+  <text x="564" y="214" class="mono-sm sig-text">HMACSHA256(</text>
+  <text x="564" y="228" class="mono-sm sig-text">  header + "."</text>
+  <text x="564" y="242" class="mono-sm sig-text">  + payload,</text>
+  <text x="564" y="256" class="mono-sm sig-text">  secret)</text>
+
+  <!-- Key insight -->
+  <text x="36" y="286" class="note">· Header와 Payload는 단순히 base64 인코딩. 누구나 디코드해서 읽을 수 있습니다.</text>
+  <text x="36" y="302" class="note">· Signature만 서버의 비밀키로 계산됩니다. 위조 방지는 서명 검증 하나에 전적으로 의존합니다.</text>
+
+  <!-- Divider -->
+  <line x1="24" y1="324" x2="696" y2="324" stroke="var(--sec-slate-200, #e2e8f0)" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- alg:none attack -->
+  <text x="24" y="354" class="section-head">공격 시나리오: alg:none</text>
+  <text x="24" y="372" class="caption">헤더를 "alg": "none"으로 바꾸고 signature를 비웁니다. 취약한 라이브러리는 서명 검증을 건너뜁니다.</text>
+
+  <!-- Attack JWT -->
+  <rect x="24" y="388" width="672" height="40" rx="8" class="attack-box"/>
+  <text x="36" y="412" class="mono-sm attack-text">eyJhbGciOiJub25lIn0</text>
+  <text x="170" y="412" class="mono-sm" fill="var(--sec-slate-500, #64748b)">.</text>
+  <text x="182" y="412" class="mono-sm attack-text">eyJzdWIiOiJ1c2VyMTIzIiwicm9sZSI6ImFkbWluIn0</text>
+  <text x="490" y="412" class="mono-sm" fill="var(--sec-slate-500, #64748b)">.</text>
+  <text x="502" y="412" class="mono-sm attack-text">[빈 문자열]</text>
+
+  <!-- Attack decoded -->
+  <rect x="24" y="442" width="328" height="44" rx="8" class="attack-box"/>
+  <text x="40" y="460" class="mono attack-text">{ "alg": "none" }</text>
+  <text x="40" y="476" class="note">→ 서명 알고리즘을 "없음"으로 선언</text>
+
+  <rect x="368" y="442" width="328" height="44" rx="8" class="attack-box"/>
+  <text x="384" y="460" class="mono attack-text">{ "sub": "user123", "role": "admin" }</text>
+  <text x="384" y="476" class="warn">→ 권한을 admin으로 변조</text>
+</svg>

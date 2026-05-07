@@ -1,0 +1,203 @@
+<svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="자주 발생하는 클라우드 설정 오류 유형">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .card-tag {
+      font: 700 9px system-ui, sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    .card-title {
+      font: 600 13px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .card-desc {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .card-example {
+      font: 400 10px "SF Mono", ui-monospace, monospace;
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .card-red {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-200, #fecaca);
+    }
+
+    .card-red-t {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .icon-circle {
+      fill: var(--sec-red-500, #ef4444);
+    }
+
+    .icon-text {
+      font: 700 16px system-ui, sans-serif;
+      fill: #ffffff;
+    }
+  </style>
+
+  <text x="24" y="36" class="title">자주 발생하는 클라우드 설정 오류</text>
+  <text x="24" y="56" class="caption">Shodan·Censys 같은 스캐너가 24시간 감시합니다. 배포 후 몇 시간 안에 발견되는 유형들.</text>
+
+  <!-- Row 1 -->
+  <!-- 1. S3 public -->
+  <rect x="24" y="80" width="216" height="148" rx="12" class="card-red" stroke-width="1" />
+  <circle cx="46" cy="104" r="12" class="icon-circle" />
+  <text x="46" y="109" text-anchor="middle" class="icon-text">1</text>
+  <text x="64" y="107" class="card-tag card-red-t">STORAGE</text>
+  <text x="40" y="134" class="card-title">S3 버킷 Public 노출</text>
+  <text x="40" y="152" class="card-desc">AuthenticatedUsers 권한은</text>
+  <text x="40" y="166" class="card-desc">사실상 "AWS 계정 있는 모두"</text>
+  <text x="40" y="184" class="card-desc">= 전 세계 공개와 같음.</text>
+  <text x="40" y="208" class="card-example">aws s3 ls s3://bucket/</text>
+
+  <!-- 2. Default credentials -->
+  <rect x="252" y="80" width="216" height="148" rx="12" class="card-red" stroke-width="1" />
+  <circle cx="274" cy="104" r="12" class="icon-circle" />
+  <text x="274" y="109" text-anchor="middle" class="icon-text">2</text>
+  <text x="292" y="107" class="card-tag card-red-t">AUTH</text>
+  <text x="268" y="134" class="card-title">기본 계정 · 기본 비밀번호</text>
+  <text x="268" y="152" class="card-desc">Jenkins admin/admin, MongoDB</text>
+  <text x="268" y="166" class="card-desc">인증 없음, Redis 노출 등.</text>
+  <text x="268" y="184" class="card-desc">배포 직후 수 시간 내 발견.</text>
+  <text x="268" y="208" class="card-example">port 27017 · no auth</text>
+
+  <!-- 3. Open management port -->
+  <rect x="480" y="80" width="216" height="148" rx="12" class="card-red" stroke-width="1" />
+  <circle cx="502" cy="104" r="12" class="icon-circle" />
+  <text x="502" y="109" text-anchor="middle" class="icon-text">3</text>
+  <text x="520" y="107" class="card-tag card-red-t">NETWORK</text>
+  <text x="496" y="134" class="card-title">관리 포트 인터넷 노출</text>
+  <text x="496" y="152" class="card-desc">SSH 22, DB 3306/5432,</text>
+  <text x="496" y="166" class="card-desc">Redis 6379, Elasticsearch 9200</text>
+  <text x="496" y="184" class="card-desc">0.0.0.0 바인딩 결과.</text>
+  <text x="496" y="208" class="card-example">nmap -p- 으로 확인 가능</text>
+
+  <!-- Row 2 -->
+  <!-- 4. Debug mode production -->
+  <rect x="24" y="240" width="216" height="148" rx="12" class="card-red" stroke-width="1" />
+  <circle cx="46" cy="264" r="12" class="icon-circle" />
+  <text x="46" y="269" text-anchor="middle" class="icon-text">4</text>
+  <text x="64" y="267" class="card-tag card-red-t">APPLICATION</text>
+  <text x="40" y="294" class="card-title">DEBUG 모드 프로덕션</text>
+  <text x="40" y="312" class="card-desc">에러 페이지에 스택 트레이스,</text>
+  <text x="40" y="326" class="card-desc">DB 경로·쿼리·내부 경로가</text>
+  <text x="40" y="344" class="card-desc">그대로 노출됨.</text>
+  <text x="40" y="368" class="card-example">DEBUG=True, APP_DEBUG=true</text>
+
+  <!-- 5. Exposed admin panel -->
+  <rect x="252" y="240" width="216" height="148" rx="12" class="card-red" stroke-width="1" />
+  <circle cx="274" cy="264" r="12" class="icon-circle" />
+  <text x="274" y="269" text-anchor="middle" class="icon-text">5</text>
+  <text x="292" y="267" class="card-tag card-red-t">ENDPOINT</text>
+  <text x="268" y="294" class="card-title">관리·디버그 엔드포인트</text>
+  <text x="268" y="312" class="card-desc">/debug · /metrics · /.git</text>
+  <text x="268" y="326" class="card-desc">/actuator/env (Spring Boot)</text>
+  <text x="268" y="344" class="card-desc">모두 자동 스캔 대상.</text>
+  <text x="268" y="368" class="card-example">curl /actuator/env</text>
+
+  <!-- 6. IAM wildcard -->
+  <rect x="480" y="240" width="216" height="148" rx="12" class="card-red" stroke-width="1" />
+  <circle cx="502" cy="264" r="12" class="icon-circle" />
+  <text x="502" y="269" text-anchor="middle" class="icon-text">6</text>
+  <text x="520" y="267" class="card-tag card-red-t">IAM</text>
+  <text x="496" y="294" class="card-title">IAM 와일드카드 정책</text>
+  <text x="496" y="312" class="card-desc">Action: "*" · Resource: "*"</text>
+  <text x="496" y="326" class="card-desc">한 경로 뚫리면 전체 계정 장악.</text>
+  <text x="496" y="344" class="card-desc">최소 권한 원칙 위반.</text>
+  <text x="496" y="368" class="card-example">{"Action": "*", ...}</text>
+
+  <!-- Bottom -->
+  <text x="360" y="406" text-anchor="middle" class="caption">→ IaC 스캐너(Checkov · tfsec · Trivy)로 PR 단계에서 자동 차단이
+    기본.</text>
+</svg>

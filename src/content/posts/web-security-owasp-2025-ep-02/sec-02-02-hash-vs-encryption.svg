@@ -1,0 +1,262 @@
+<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="해시와 암호화와 HMAC의 차이">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .col-tag {
+      font: 700 10px system-ui, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .col-head {
+      font: 600 14px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .sub {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .mono-sm {
+      font: 400 10px "SF Mono", ui-monospace, monospace;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .label {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .band {
+      font: 600 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .item {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .hash-box {
+      fill: var(--sec-blue-50, #eff6ff);
+      stroke: var(--sec-blue-200, #bfdbfe);
+    }
+
+    .enc-box {
+      fill: var(--sec-violet-50, #f5f3ff);
+      stroke: var(--sec-violet-200, #ddd6fe);
+    }
+
+    .hmac-box {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-200, #a7f3d0);
+    }
+
+    .hash-t {
+      fill: var(--sec-blue-700, #1d4ed8);
+    }
+
+    .enc-t {
+      fill: var(--sec-violet-700, #6d28d9);
+    }
+
+    .hmac-t {
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .input {
+      fill: var(--sec-bg, #ffffff);
+      stroke: var(--sec-slate-200, #e2e8f0);
+    }
+
+    .arrow {
+      stroke: var(--sec-slate-500, #64748b);
+      stroke-width: 1.2;
+      fill: none;
+    }
+
+    .arrow-label {
+      font: 500 10px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+  </style>
+
+  <defs>
+    <marker id="harr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)" />
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">헷갈리기 쉬운 세 가지: 해시, 암호화, HMAC</text>
+  <text x="24" y="56" class="caption">각자 해결하는 문제가 다릅니다. 잘못된 것을 잘못된 곳에 쓰면 보안이 아닙니다.</text>
+
+  <!-- HASH column -->
+  <rect x="24" y="80" width="216" height="384" rx="14" class="hash-box" stroke-width="1" />
+  <text x="40" y="102" class="col-tag hash-t">ONE-WAY</text>
+  <text x="40" y="122" class="col-head">해시 (Hash)</text>
+  <text x="40" y="140" class="sub">단방향. 복원 불가능.</text>
+
+  <!-- diagram -->
+  <rect x="48" y="158" width="168" height="30" rx="6" class="input" />
+  <text x="132" y="178" text-anchor="middle" class="mono-sm">"password123"</text>
+
+  <line x1="132" y1="190" x2="132" y2="214" class="arrow" marker-end="url(#harr)" />
+  <text x="140" y="205" class="arrow-label">SHA-256</text>
+
+  <rect x="40" y="218" width="184" height="30" rx="6" class="hash-box" stroke-width="1.4" />
+  <text x="132" y="238" text-anchor="middle" class="mono-sm hash-t">ef92b77...b48a4f</text>
+
+  <text x="40" y="276" class="band">대표 알고리즘</text>
+  <text x="40" y="294" class="item">· SHA-256 / SHA-3 (범용)</text>
+  <text x="40" y="310" class="item">· bcrypt / argon2 (비밀번호)</text>
+
+  <text x="40" y="336" class="band">주 용도</text>
+  <text x="40" y="354" class="item">· 비밀번호 저장</text>
+  <text x="40" y="370" class="item">· 파일 무결성 검증</text>
+  <text x="40" y="386" class="item">· 블록체인 체이닝</text>
+
+  <text x="40" y="414" class="band">흔한 실수</text>
+  <text x="40" y="432" class="item" fill="var(--sec-red-700, #b91c1c)">· 비밀번호에 SHA-256 사용</text>
+  <text x="40" y="448" class="item" fill="var(--sec-red-700, #b91c1c)">· salt 없이 해시</text>
+
+  <!-- ENCRYPTION column -->
+  <rect x="252" y="80" width="216" height="384" rx="14" class="enc-box" stroke-width="1" />
+  <text x="268" y="102" class="col-tag enc-t">TWO-WAY</text>
+  <text x="268" y="122" class="col-head">암호화 (Encryption)</text>
+  <text x="268" y="140" class="sub">양방향. 키로 복원 가능.</text>
+
+  <rect x="276" y="158" width="168" height="30" rx="6" class="input" />
+  <text x="360" y="178" text-anchor="middle" class="mono-sm">"주민번호"</text>
+
+  <line x1="360" y1="190" x2="360" y2="214" class="arrow" marker-end="url(#harr)" />
+  <text x="368" y="205" class="arrow-label">AES-GCM + 키</text>
+
+  <rect x="268" y="218" width="184" height="30" rx="6" class="enc-box" stroke-width="1.4" />
+  <text x="360" y="238" text-anchor="middle" class="mono-sm enc-t">3f2a9c...(키로 복원 가능)</text>
+
+  <text x="268" y="276" class="band">대표 알고리즘</text>
+  <text x="268" y="294" class="item">· AES-GCM (대칭)</text>
+  <text x="268" y="310" class="item">· RSA-OAEP (비대칭)</text>
+
+  <text x="268" y="336" class="band">주 용도</text>
+  <text x="268" y="354" class="item">· 주민번호·카드번호 저장</text>
+  <text x="268" y="370" class="item">· TLS 세션 데이터</text>
+  <text x="268" y="386" class="item">· 파일·백업 암호화</text>
+
+  <text x="268" y="414" class="band">흔한 실수</text>
+  <text x="268" y="432" class="item" fill="var(--sec-red-700, #b91c1c)">· 키를 DB 옆에 함께 저장</text>
+  <text x="268" y="448" class="item" fill="var(--sec-red-700, #b91c1c)">· AES-ECB 또는 AES-CBC 사용</text>
+
+  <!-- HMAC column -->
+  <rect x="480" y="80" width="216" height="384" rx="14" class="hmac-box" stroke-width="1" />
+  <text x="496" y="102" class="col-tag hmac-t">INTEGRITY</text>
+  <text x="496" y="122" class="col-head">HMAC</text>
+  <text x="496" y="140" class="sub">위변조 탐지. 복원 아님.</text>
+
+  <rect x="504" y="158" width="168" height="30" rx="6" class="input" />
+  <text x="588" y="178" text-anchor="middle" class="mono-sm">메시지 + 키</text>
+
+  <line x1="588" y1="190" x2="588" y2="214" class="arrow" marker-end="url(#harr)" />
+  <text x="596" y="205" class="arrow-label">HMAC-SHA256</text>
+
+  <rect x="496" y="218" width="184" height="30" rx="6" class="hmac-box" stroke-width="1.4" />
+  <text x="588" y="238" text-anchor="middle" class="mono-sm hmac-t">bf4c8a...(서명)</text>
+
+  <text x="496" y="276" class="band">대표 알고리즘</text>
+  <text x="496" y="294" class="item">· HMAC-SHA256</text>
+  <text x="496" y="310" class="item">· Ed25519 (공개키 서명)</text>
+
+  <text x="496" y="336" class="band">주 용도</text>
+  <text x="496" y="354" class="item">· JWT 서명 검증</text>
+  <text x="496" y="370" class="item">· 웹훅 페이로드 검증</text>
+  <text x="496" y="386" class="item">· API 요청 서명</text>
+
+  <text x="496" y="414" class="band">흔한 실수</text>
+  <text x="496" y="432" class="item" fill="var(--sec-red-700, #b91c1c)">· 짧은/예측 가능한 시크릿</text>
+  <text x="496" y="448" class="item" fill="var(--sec-red-700, #b91c1c)">· timing attack 비교 미사용</text>
+</svg>

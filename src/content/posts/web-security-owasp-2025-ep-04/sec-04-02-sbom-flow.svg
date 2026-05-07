@@ -1,0 +1,178 @@
+<svg viewBox="0 0 720 472" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SBOM - 소프트웨어 자재명세서의 구성과 활용">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title { font: 600 16px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .caption { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .section-tag { font: 700 10px system-ui, sans-serif; letter-spacing: 0.06em; }
+    .section-name { font: 600 13px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .label { font: 500 11px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .desc { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .mono-sm { font: 400 10px "SF Mono", ui-monospace, monospace; }
+
+    .info-bg { fill: var(--sec-blue-50, #eff6ff); stroke: var(--sec-blue-200, #bfdbfe); }
+    .info-t { fill: var(--sec-blue-700, #1d4ed8); }
+    .scan-bg { fill: var(--sec-emerald-50, #ecfdf5); stroke: var(--sec-emerald-200, #a7f3d0); }
+    .scan-t { fill: var(--sec-emerald-700, #047857); }
+    .alert-bg { fill: var(--sec-amber-50, #fffbeb); stroke: var(--sec-amber-200, #fde68a); }
+    .alert-t { fill: var(--sec-amber-700, #b45309); }
+
+    .card { fill: var(--sec-bg, #ffffff); stroke: var(--sec-slate-200, #e2e8f0); }
+  </style>
+
+  <defs>
+    <marker id="bomarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">SBOM: 내가 쓰는 모든 컴포넌트의 명세</text>
+  <text x="24" y="56" class="caption">"무엇을 쓰고 있는지 모르면 무엇이 위험한지도 모릅니다." Log4Shell이 가르친 교훈.</text>
+
+  <!-- Step 1: Generate -->
+  <rect x="24" y="80" width="204" height="280" rx="14" class="info-bg" stroke-width="1"/>
+  <text x="40" y="102" class="section-tag info-t">STEP 1 · GENERATE</text>
+  <text x="40" y="122" class="section-name">SBOM 생성</text>
+  <text x="40" y="138" class="desc">빌드 시점에 자동 생성</text>
+
+  <rect x="40" y="160" width="172" height="60" rx="8" class="card"/>
+  <text x="52" y="180" class="label">Syft</text>
+  <text x="52" y="196" class="desc">컨테이너·디렉토리 스캔</text>
+  <text x="52" y="210" class="mono-sm" fill="var(--sec-slate-700, #334155)">syft your-app:latest</text>
+
+  <rect x="40" y="224" width="172" height="60" rx="8" class="card"/>
+  <text x="52" y="244" class="label">CycloneDX / SPDX</text>
+  <text x="52" y="260" class="desc">표준 포맷 (JSON/XML)</text>
+  <text x="52" y="274" class="mono-sm" fill="var(--sec-slate-700, #334155)">--output cyclonedx-json</text>
+
+  <rect x="40" y="288" width="172" height="60" rx="8" class="card"/>
+  <text x="52" y="308" class="label">npm / pip 내장</text>
+  <text x="52" y="324" class="desc">생태계별 도구</text>
+  <text x="52" y="338" class="mono-sm" fill="var(--sec-slate-700, #334155)">npm sbom --sbom-format=...</text>
+
+  <line x1="228" y1="220" x2="258" y2="220" stroke="var(--sec-slate-500, #64748b)" stroke-width="1.4" marker-end="url(#bomarr)"/>
+
+  <!-- Step 2: Scan -->
+  <rect x="258" y="80" width="204" height="280" rx="14" class="scan-bg" stroke-width="1"/>
+  <text x="274" y="102" class="section-tag scan-t">STEP 2 · SCAN</text>
+  <text x="274" y="122" class="section-name">취약점 매칭</text>
+  <text x="274" y="138" class="desc">SBOM × CVE 데이터베이스</text>
+
+  <rect x="274" y="160" width="172" height="60" rx="8" class="card"/>
+  <text x="286" y="180" class="label">Grype</text>
+  <text x="286" y="196" class="desc">SBOM에서 직접 스캔</text>
+  <text x="286" y="210" class="mono-sm" fill="var(--sec-slate-700, #334155)">grype sbom:./sbom.json</text>
+
+  <rect x="274" y="224" width="172" height="60" rx="8" class="card"/>
+  <text x="286" y="244" class="label">Trivy</text>
+  <text x="286" y="260" class="desc">SBOM·이미지·IaC 통합</text>
+  <text x="286" y="274" class="mono-sm" fill="var(--sec-slate-700, #334155)">trivy sbom sbom.json</text>
+
+  <rect x="274" y="288" width="172" height="60" rx="8" class="card"/>
+  <text x="286" y="308" class="label">Dependabot / Renovate</text>
+  <text x="286" y="324" class="desc">PR 자동 생성</text>
+  <text x="286" y="338" class="mono-sm" fill="var(--sec-slate-700, #334155)">dependabot.yml</text>
+
+  <line x1="462" y1="220" x2="492" y2="220" stroke="var(--sec-slate-500, #64748b)" stroke-width="1.4" marker-end="url(#bomarr)"/>
+
+  <!-- Step 3: Respond -->
+  <rect x="492" y="80" width="204" height="280" rx="14" class="alert-bg" stroke-width="1"/>
+  <text x="508" y="102" class="section-tag alert-t">STEP 3 · RESPOND</text>
+  <text x="508" y="122" class="section-name">대응</text>
+  <text x="508" y="138" class="desc">우선순위 + 신속 패치</text>
+
+  <rect x="508" y="160" width="172" height="60" rx="8" class="card"/>
+  <text x="520" y="180" class="label">긴급 (CVSS 9+)</text>
+  <text x="520" y="196" class="desc">24시간 내 패치</text>
+  <text x="520" y="210" class="desc">또는 우회 조치</text>
+
+  <rect x="508" y="224" width="172" height="60" rx="8" class="card"/>
+  <text x="520" y="244" class="label">중요 (CVSS 7~8.9)</text>
+  <text x="520" y="260" class="desc">1주일 내 패치</text>
+  <text x="520" y="274" class="desc">정기 릴리스 우선순위</text>
+
+  <rect x="508" y="288" width="172" height="60" rx="8" class="card"/>
+  <text x="520" y="308" class="label">일반</text>
+  <text x="520" y="324" class="desc">정기 업데이트 사이클</text>
+  <text x="520" y="338" class="desc">Renovate 자동 PR</text>
+
+  <!-- Bottom: Why SBOM -->
+  <rect x="24" y="380" width="672" height="76" rx="10" fill="var(--sec-slate-50, #f8fafc)" stroke="var(--sec-slate-200, #e2e8f0)"/>
+  <text x="40" y="402" class="label">Log4Shell 사례 (2021)</text>
+  <text x="40" y="422" class="desc">CVE-2021-44228 발표 직후 모든 조직이 같은 질문을 했습니다: "우리가 Log4j 쓰나? 어디에서?"</text>
+  <text x="40" y="442" class="desc">SBOM이 있는 조직은 30분, 없는 조직은 며칠. 다음 Log4Shell이 올 때 30분 안에 답할 수 있어야 합니다.</text>
+</svg>

@@ -1,0 +1,203 @@
+<svg viewBox="0 0 720 496" xmlns="http://www.w3.org/2000/svg" role="img"
+  aria-label="Fail Closed vs Fail Open - 장애 시 어디로 기울 것인가">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .col-tag {
+      font: 700 11px system-ui, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .col-head {
+      font: 600 14px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .scenario {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .desc {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .label {
+      font: 600 11px system-ui, sans-serif;
+    }
+
+    .closed-bg {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-200, #a7f3d0);
+    }
+
+    .open-bg {
+      fill: var(--sec-amber-50, #fffbeb);
+      stroke: var(--sec-amber-200, #fde68a);
+    }
+
+    .closed-t {
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .open-t {
+      fill: var(--sec-amber-700, #b45309);
+    }
+
+    .case-row {
+      fill: var(--sec-bg, #ffffff);
+      stroke: var(--sec-slate-200, #e2e8f0);
+    }
+
+    .arrow-closed {
+      fill: var(--sec-emerald-500, #10b981);
+    }
+
+    .arrow-open {
+      fill: var(--sec-amber-500, #f59e0b);
+    }
+  </style>
+
+  <text x="24" y="36" class="title">장애가 났을 때, 안전 쪽으로 기울 것인가 가용성 쪽으로 기울 것인가</text>
+  <text x="24" y="56" class="caption">Fail Closed (안전 쪽 차단) vs Fail Open (가용성 쪽 통과). 정답은 컨텍스트마다 다릅니다.</text>
+
+  <!-- Header columns -->
+  <rect x="24" y="80" width="328" height="60" rx="10" class="closed-bg" stroke-width="1" />
+  <text x="40" y="104" class="col-tag closed-t">FAIL CLOSED · 차단 기본</text>
+  <text x="40" y="126" class="col-head">의심되면 막는다</text>
+
+  <rect x="368" y="80" width="328" height="60" rx="10" class="open-bg" stroke-width="1" />
+  <text x="384" y="104" class="col-tag open-t">FAIL OPEN · 통과 기본</text>
+  <text x="384" y="126" class="col-head">의심되어도 통과시킨다</text>
+
+  <!-- Case 1: Auth -->
+  <rect x="24" y="146" width="672" height="80" rx="10" class="case-row" stroke-width="1" />
+  <text x="40" y="166" class="label" fill="var(--sec-slate-700, #334155)">시나리오 1 — 인증 서비스 장애</text>
+  <text x="40" y="186" class="desc">예: OAuth 프로바이더 응답 없음, 세션 DB 연결 실패</text>
+
+  <rect x="40" y="194" width="296" height="20" rx="4" fill="var(--sec-emerald-100, #d1fae5)" />
+  <text x="48" y="208" class="scenario" fill="var(--sec-emerald-700, #047857)">→ 로그인 거부 / 세션 만료 (사용자가 다시 시도)</text>
+
+  <rect x="384" y="194" width="296" height="20" rx="4" fill="var(--sec-red-100, #fee2e2)" />
+  <text x="392" y="208" class="scenario" fill="var(--sec-red-700, #b91c1c)">→ "임시 통과" = 인증 우회. 절대 금지.</text>
+
+  <!-- Case 2: Authz -->
+  <rect x="24" y="232" width="672" height="80" rx="10" class="case-row" stroke-width="1" />
+  <text x="40" y="252" class="label" fill="var(--sec-slate-700, #334155)">시나리오 2 — 인가 서비스 장애</text>
+  <text x="40" y="272" class="desc">예: 권한 정책 DB 응답 없음, ACL 캐시 만료</text>
+
+  <rect x="40" y="280" width="296" height="20" rx="4" fill="var(--sec-emerald-100, #d1fae5)" />
+  <text x="48" y="294" class="scenario" fill="var(--sec-emerald-700, #047857)">→ 403 거부 또는 안전한 폴백 (캐시된 최소 권한)</text>
+
+  <rect x="384" y="280" width="296" height="20" rx="4" fill="var(--sec-red-100, #fee2e2)" />
+  <text x="392" y="294" class="scenario" fill="var(--sec-red-700, #b91c1c)">→ 모든 요청 허용. 권한 상승의 전형적 함정.</text>
+
+  <!-- Case 3: Payment -->
+  <rect x="24" y="318" width="672" height="80" rx="10" class="case-row" stroke-width="1" />
+  <text x="40" y="338" class="label" fill="var(--sec-slate-700, #334155)">시나리오 3 — 결제 게이트웨이 장애</text>
+  <text x="40" y="358" class="desc">예: 결제 PG 응답 없음, 신용카드 검증 실패</text>
+
+  <rect x="40" y="366" width="296" height="20" rx="4" fill="var(--sec-emerald-100, #d1fae5)" />
+  <text x="48" y="380" class="scenario" fill="var(--sec-emerald-700, #047857)">→ 결제 거부 + 사용자 안내. 매출 손실 &lt; 손해
+    위험.</text>
+
+  <rect x="384" y="366" width="296" height="20" rx="4" fill="var(--sec-red-100, #fee2e2)" />
+  <text x="392" y="380" class="scenario" fill="var(--sec-red-700, #b91c1c)">→ "결제 성공" 가정. 무료 상품 발송. 부정 사용 위험.</text>
+
+  <!-- Case 4: Rate limit -->
+  <rect x="24" y="404" width="672" height="80" rx="10" class="case-row" stroke-width="1" />
+  <text x="40" y="424" class="label" fill="var(--sec-slate-700, #334155)">시나리오 4 — Rate Limit 저장소 (Redis 등) 장애</text>
+  <text x="40" y="444" class="desc">예: Redis 응답 없음, 카운터 캐시 만료. 컨텍스트에 따라 양쪽 다 합리적.</text>
+
+  <rect x="40" y="452" width="296" height="20" rx="4" fill="var(--sec-amber-100, #fef3c7)" />
+  <text x="48" y="466" class="scenario" fill="var(--sec-amber-700, #b45309)">→ 보수적: 모든 요청 거부 (DDoS 방어 우선)</text>
+
+  <rect x="384" y="452" width="296" height="20" rx="4" fill="var(--sec-amber-100, #fef3c7)" />
+  <text x="392" y="466" class="scenario" fill="var(--sec-amber-700, #b45309)">→ 적극적: 통과 + 알림 (가용성 우선)</text>
+</svg>

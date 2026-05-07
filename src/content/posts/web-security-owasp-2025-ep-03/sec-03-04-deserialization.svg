@@ -1,0 +1,207 @@
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="역직렬화의 위험 - JSON과 Pickle의 차이">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .col-tag {
+      font: 700 10px system-ui, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .col-head {
+      font: 600 14px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .label {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .mono {
+      fill: var(--sec-fg, #0f172a);
+      font: 400 11px "SF Mono", ui-monospace, monospace;
+    }
+
+    .mono-sm {
+      fill: var(--sec-fg, #0f172a);
+      font: 400 10px "SF Mono", ui-monospace, monospace;
+    }
+
+    .desc {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .safe-bg {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-200, #a7f3d0);
+    }
+
+    .dangerous-bg {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-200, #fecaca);
+    }
+
+    .safe-t {
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .dangerous-t {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .code-box {
+      fill: var(--sec-bg, #ffffff);
+    }
+
+    .data-only {
+      fill: var(--sec-emerald-100, #d1fae5);
+      stroke: var(--sec-emerald-500, #10b981);
+    }
+
+    .with-code {
+      fill: var(--sec-red-100, #fee2e2);
+      stroke: var(--sec-red-500, #ef4444);
+    }
+  </style>
+
+  <text x="24" y="36" class="title">역직렬화: JSON과 Pickle의 결정적 차이</text>
+  <text x="24" y="56" class="caption">"파싱"이라는 같은 단어로 묶여 있지만, 한쪽은 데이터만 복원, 다른 쪽은 코드까지 실행합니다.</text>
+
+  <!-- LEFT: JSON (safe) -->
+  <rect x="24" y="80" width="328" height="332" rx="14" class="safe-bg" stroke-width="1" />
+  <text x="40" y="104" class="col-tag safe-t">SAFE · DATA ONLY</text>
+  <text x="40" y="124" class="col-head">JSON 파싱</text>
+  <text x="40" y="142" class="desc">데이터 구조만 복원. 코드 실행 경로 없음.</text>
+
+  <!-- Input -->
+  <text x="40" y="172" class="label">입력 (외부에서 받음)</text>
+  <rect x="40" y="180" width="296" height="46" rx="6" class="code-box" stroke="var(--sec-slate-200, #e2e8f0)" />
+  <text x="52" y="198" class="mono">{ "name": "Alice",</text>
+  <text x="52" y="214" class="mono"> "age": 30 }</text>
+
+  <!-- Process -->
+  <text x="40" y="244" class="label">처리</text>
+  <rect x="40" y="252" width="296" height="28" rx="6" class="code-box" stroke="var(--sec-slate-200, #e2e8f0)" />
+  <text x="52" y="270" class="mono">JSON.parse(input)</text>
+
+  <!-- Result -->
+  <text x="40" y="304" class="label">결과 (메모리 상태)</text>
+  <rect x="40" y="312" width="296" height="68" rx="6" class="data-only" />
+  <text x="52" y="332" class="mono safe-t">{ name: "Alice", age: 30 }</text>
+  <text x="52" y="350" class="mono-sm safe-t">→ 단순 데이터 객체</text>
+  <text x="52" y="364" class="mono-sm safe-t">→ 메소드 없음, 실행 없음</text>
+
+  <text x="40" y="396" class="desc safe-t" font-weight="600">→ 외부 입력에 권장. 안전.</text>
+
+  <!-- RIGHT: Pickle (dangerous) -->
+  <rect x="368" y="80" width="328" height="332" rx="14" class="dangerous-bg" stroke-width="1" />
+  <text x="384" y="104" class="col-tag dangerous-t">DANGEROUS · CODE EXECUTION</text>
+  <text x="384" y="124" class="col-head">Pickle · Java OIS · PHP unserialize</text>
+  <text x="384" y="142" class="desc">객체 복원 중 코드 실행 가능. RCE로 직결.</text>
+
+  <!-- Input -->
+  <text x="384" y="172" class="label">입력 (조작된 페이로드)</text>
+  <rect x="384" y="180" width="296" height="46" rx="6" class="code-box" stroke="var(--sec-red-200, #fecaca)" />
+  <text x="396" y="198" class="mono-sm">cos\nsystem\n(S'rm -rf /'\ntR.</text>
+  <text x="396" y="214" class="mono-sm dangerous-t">(악의적인 클래스 인스턴스 조작)</text>
+
+  <!-- Process -->
+  <text x="384" y="244" class="label">처리</text>
+  <rect x="384" y="252" width="296" height="28" rx="6" class="code-box" stroke="var(--sec-red-200, #fecaca)" />
+  <text x="396" y="270" class="mono">pickle.loads(input)</text>
+
+  <!-- Result -->
+  <text x="384" y="304" class="label">결과 (메모리 상태)</text>
+  <rect x="384" y="312" width="296" height="68" rx="6" class="with-code" />
+  <text x="396" y="332" class="mono dangerous-t">os.system("rm -rf /") 실행됨</text>
+  <text x="396" y="350" class="mono-sm dangerous-t">→ 객체 복원 과정에서 임의 코드</text>
+  <text x="396" y="364" class="mono-sm dangerous-t">→ 서버 RCE</text>
+
+  <text x="384" y="396" class="desc dangerous-t" font-weight="600">→ 외부 입력에 절대 사용 금지.</text>
+</svg>

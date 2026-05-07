@@ -1,0 +1,576 @@
+---
+title: "운영의 관측과 탄력성 - OWASP Top 10:2025 ep.05"
+description: "사고는 결국 일어납니다. 빨리 알아차리는 것과 안전하게 멈추는 것이 피해 규모를 결정합니다. 시리즈의 마지막 편."
+summary: "Logging & Alerting Failures(A09)와 2025년 신규 카테고리 Mishandling of Exceptional Conditions(A10)를 다룹니다. 무엇을 로깅하고 무엇을 로깅하지 말아야 할지, Fail Closed의 의미, Circuit Breaker 패턴, Chaos Engineering의 보안적 의미, 그리고 Incident Response Playbook까지."
+date: 2026-04-29
+tags: ["security", "owasp", "logging", "monitoring", "resilience", "incident-response"]
+draft: false
+---
+
+지금까지 다섯 편이 "사고를 막는" 이야기였습니다. 이번 편은 다릅니다. 이번 편의 전제는 이렇습니다. **사고는 결국 일어납니다.** 충분히 잘 만들어도, 충분히 검증해도, 모든 layered defense를 적용해도, 어디선가 무엇인가는 뚫립니다. 보안의 성숙도는 사고를 안 일으키는 능력이 아니라 **사고를 빨리 알고 안전하게 처리하는 능력**으로 측정됩니다.
+
+---
+
+## 왜 이 두 가지를 같이 다루는가
+
+이번 편의 두 카테고리는 모두 **"비정상 상황을 어떻게 다루는가"** 에 관한 것입니다.
+
+**Logging and Alerting Failures(A09)** 는 OWASP Top 10에 오래 자리잡은 카테고리입니다. 2017년 "Insufficient Logging & Monitoring"으로 처음 등장해 2021년 "Security Logging and Monitoring Failures"로 이름이 다듬어졌고, 2025년판에서 "Alerting"이 명시적으로 추가됐습니다. 이름의 변화가 곧 강조점의 변화입니다. **로그를 쌓는 것보다 거기서 무엇이 발생했음을 알아채고 행동으로 연결하는 것이 중요**하다는 것.
+
+**Mishandling of Exceptional Conditions(A10)** 는 2025년판의 신규 카테고리입니다. 2021년의 SSRF가 A01로 흡수되면서 비어 있던 자리에 들어왔습니다. **에러·예외·장애·재시도 같은 비정상 흐름을 잘못 처리해서 보안 사고가 되는** 모든 패턴을 묶었습니다.
+
+두 카테고리가 만나는 지점이 있습니다. **"평소가 아닌 상황"에서 무너지는 시스템**. 평소엔 잘 도는 인증·결제·권한 체크가 의존 서비스 장애나 예외 상황에서 안전하지 않은 방향으로 기우는 문제입니다.
+
+---
+
+## A09. Logging and Alerting Failures
+
+### 정체
+
+A09의 핵심 질문은 두 가지입니다.
+
+1. **무슨 일이 일어났는지 사후에 재구성할 수 있는가?**
+2. **일어나는 동안 알아차릴 수 있는가?**
+
+이게 안 되면 공격자는 며칠·몇 달을 시스템 안에 머물 수 있습니다. **Dwell time(체류 시간)** 이라고 부르는 이 수치가 보안 성숙도의 가장 직접적인 지표 중 하나입니다.
+
+### 실제 사례
+
+**Equifax (2017)**. 1억 4천 7백만 명의 개인정보 유출. 사후 조사에서 드러난 사실: 공격자가 **76일 동안 시스템 안에 머물면서** 9천 회 이상의 쿼리를 실행. 모니터링이 있었다면 그 정도 비정상 패턴을 그렇게 오래 놓치는 것은 어려웠을 것입니다. 게다가 조사 도중 **로그 분석 도구의 SSL 인증서가 만료**되어 있어 로그 자체가 일부 누락된 상태였습니다.
+
+**Marriott / Starwood (2014~2018)**. 5억 명 데이터 유출. 공격자가 **4년 동안** 시스템에 침투해 있었습니다. 이상 행동 탐지가 작동하지 않았거나 알림이 무시되고 있었습니다. 인수 전 Starwood 시스템부터 침투가 시작됐는데, 합병 후에도 발견되지 않았습니다.
+
+이 두 사건의 공통점은 **알아차리는 능력의 부재**입니다. 침투 자체는 막을 수 없었더라도 빨리 알아차렸다면 피해는 훨씬 작았을 것입니다.
+
+### 무엇을 로깅할 것인가
+
+로깅의 어려움은 양 끝의 함정 사이에 있습니다. **너무 적게 남기면** 사고 분석이 불가능하고, **너무 많이 남기면** 알림 피로와 비용 폭증으로 결국 무시됩니다. 그리고 **잘못 남기면** 로그 자체가 데이터 유출이 됩니다.
+
+![로깅의 양면 - 보안에 도움되는 로그와 위험한 로그](sec-05-01-logging-do-dont.svg)
+
+#### 반드시 남겨야 할 것
+
+**인증 이벤트**. 로그인 성공·실패, 비밀번호 변경, MFA 등록·해제, 세션 발급·종료. 인증 실패 패턴은 credential stuffing 같은 공격의 가장 빠른 신호입니다.
+
+**인가 거부**. 권한 부족 응답(403, 401), 관리자 액션 시도, 정책 위반. **403이 갑자기 늘어나는 것은 정찰의 신호**입니다.
+
+**민감 작업**. 결제, 데이터 export, 권한 변경, 계정 삭제, API 키 발급·폐기. 사고 후 "누가 무엇을 했는가"를 답할 수 있어야 합니다.
+
+**입력 검증 실패**. SQL/XSS 페이로드 탐지, 비정상 요청 패턴, 5xx 에러. 공격 시도가 어디로 향하는지 보여줍니다.
+
+**설정 변경**. 권한 부여, IAM 정책 수정, 시스템 환경 변경. 가장 자주 사고의 원인이 되는 영역.
+
+각 로그에는 공통 메타데이터가 들어갑니다. **타임스탬프(UTC, 밀리초)**, **사용자 ID**, **요청 ID(trace ID)**, **소스 IP**, **User-Agent**.
+
+#### 절대 남기지 말아야 할 것
+
+**자격증명**: 비밀번호(평문/해시 모두), API 키, JWT 전체, 세션 토큰, OAuth 토큰. JWT는 특히 주의 — payload가 base64 인코딩만 되어 있어 로그에 그대로 새면 디코드 한 번이면 사용자 정보가 노출됩니다.
+
+**개인정보 (PII)**: 주민번호, 카드번호, 의료기록, 상세 주소. 법적으로 보호 의무가 있는 데이터입니다.
+
+**암호화 키 자료**: 개인키, AES 키, 시크릿, CSRF 토큰, nonce.
+
+**전체 요청 body**: 위의 모든 것이 들어 있을 가능성이 높습니다. 필요한 필드만 선별하거나 redact 필터를 거칩니다.
+
+**스택 트레이스 (외부 응답에)**: 내부 경로, DB 스키마, 의존성 버전을 노출. 사용자에게는 generic 메시지, 내부 로그에만 상세히.
+
+```javascript
+// 로그 redact 미들웨어 예시 (pino 기준)
+const logger = pino({
+  redact: {
+    paths: [
+      'req.headers.authorization',
+      'req.headers.cookie',
+      'req.body.password',
+      'req.body.token',
+      'req.body.creditCard',
+      'req.body.ssn',
+      '*.password',
+      '*.secret',
+    ],
+    censor: '[REDACTED]'
+  }
+});
+```
+
+이런 필터가 있어도 누군가 새 필드명을 추가하면 빠질 수 있습니다. **개발 단계의 코드 리뷰**와 **로그 샘플링 정기 점검**이 같이 가야 합니다.
+
+### 로그 인프라 자체의 보안
+
+로그 시스템 자체가 공격 표적이 됩니다. 공격자가 가장 먼저 하는 일은 흔적 지우기.
+
+- **Append-only**: 한 번 쓰인 로그는 수정·삭제 불가. AWS CloudWatch Logs, GCP Cloud Logging은 기본 append-only. 자체 호스팅이면 immutable storage 사용.
+- **분리된 권한**: 로그 시스템 접근 권한은 일반 운영 권한과 분리. 운영자가 로그를 지울 수 없게.
+- **무결성 서명**: 중요한 audit 로그는 HMAC 서명. 변조 시 검증 단계에서 발견.
+- **외부 SIEM 전송**: 로컬 로그가 침해돼도 외부에 사본 보존.
+
+### 알림: 단순한 로그 수집을 넘어
+
+로그를 수집해놓고 보지 않으면 안 한 것과 같습니다. 알림 설계가 핵심입니다.
+
+#### 알림 임계값
+
+너무 민감하면 **알림 피로(alert fatigue)** 가 옵니다. 한 시간에 50개씩 오는 알림은 다 무시됩니다. Equifax 사후 조사의 한 가지는 "탐지 도구는 작동했지만 운영팀이 매일 너무 많은 알림에 익숙해져 있어 진짜를 골라내지 못했다"였습니다.
+
+너무 둔감하면 진짜를 놓칩니다. 균형이 필요합니다.
+
+원칙:
+- **모든 알림은 즉각적인 액션이 가능해야 한다.** 무엇을 해야 할지 모르는 알림은 알림이 아닙니다.
+- **심각도별 채널 분리**. P0(즉시 호출) / P1(업무 시간 내) / P2(일일 리뷰).
+- **노이즈 제거 메커니즘 정기 점검**. False positive가 잦은 룰은 튜닝 또는 폐기.
+
+#### 무엇을 알릴 것인가
+
+- 짧은 시간에 많은 인증 실패 (credential stuffing 신호)
+- 갑작스러운 403/404 폭증 (스캐닝 신호)
+- 비정상적 시간대의 관리자 액션
+- 대량 데이터 download
+- 새 IAM 정책 변경 (특히 권한 확장)
+- 새 IP·새 국가에서의 관리자 로그인
+- 알려지지 않은 서비스로의 outbound 연결 (C2 신호)
+
+### 탐지에서 대응까지의 시간
+
+![탐지부터 복구까지의 시간 흐름과 핵심 지표](sec-05-02-detection-timeline.svg)
+
+세 가지 핵심 지표가 있습니다.
+
+**MTTD (Mean Time to Detect)** — 사고 발생부터 탐지까지 평균. 이게 길면 공격자가 자유롭게 정찰·확산할 시간이 깁니다. **목표는 15분 미만** (성숙 조직 기준).
+
+**MTTR (Mean Time to Respond)** — 탐지부터 차단·격리까지 평균. Playbook이 준비되어 있어야 짧아집니다. **목표는 1시간 미만**.
+
+**Dwell Time (체류 시간)** — 공격자가 시스템 내에 머문 총 시간. 위 두 지표의 합. 2024년 Mandiant 보고서 기준 전 세계 평균 약 10일까지 단축됐지만, 여전히 일부 조직은 수개월. 짧을수록 좋습니다.
+
+### Incident Response Playbook
+
+알림이 뜨면 무엇을 할 것인가? 이게 미리 정해져 있어야 합니다. 한밤중에 누군가 깨어나서 즉흥적으로 결정하지 않도록.
+
+![Incident Response Playbook의 단계](sec-05-05-incident-response-playbook.svg)
+
+표준 5단계입니다.
+
+**1. Detect**: 알림 검증, 심각도 분류(P0~P3), 사고 채널 개설(Slack 등).
+
+**2. Contain**: 피해 확산 차단. 침해된 자격증명 즉시 폐기, 영향받은 시스템 네트워크 격리, 의심 IP·계정 차단(kill switch).
+
+**3. Investigate**: 무엇이 일어났는가. 침투 경로 추적, 영향 범위 확정, 증거 보존(포렌식).
+
+**4. Recover**: 정상 운영 회복. 클린 백업에서 복원, 자격증명·시크릿 전체 로테이션, 점진적 트래픽 복원.
+
+**5. Learn**: Blameless post-mortem 작성. 시간선·근본 원인·영향·대응 평가. 재발 방지 액션 아이템 + 책임자 + 마감일. 알림 임계 조정, 모니터링 갭 보완, Playbook 업데이트.
+
+**Blameless post-mortem**의 핵심은 "누가 잘못했나"가 아니라 "어떤 시스템적 갭이 있었나"입니다. 비난 문화는 사고를 숨기게 만들고, 결국 더 큰 사고로 이어집니다. Google, Etsy 등이 정착시킨 문화이고 이제는 업계 표준에 가깝습니다.
+
+### 어떻게 확인하는가
+
+```bash
+# 1. 로그 누락 확인 — 인증 시도가 로그에 남는가
+# A) 잘못된 비밀번호로 5번 로그인
+for i in {1..5}; do
+  curl -X POST https://example.com/login \
+    -d 'email=test@example.com&password=wrong'
+done
+# B) 로그 시스템에서 5건의 실패 로그가 있는지 확인
+
+# 2. 알림 발동 확인 — 50번 시도 후 알림이 오는가
+for i in {1..50}; do
+  curl -X POST https://example.com/login \
+    -d "email=test@example.com&password=wrong$i" &
+done
+wait
+# 알림이 와야 정상
+
+# 3. 로그 마스킹 확인 — 비밀번호가 로그에 안 남는가
+# 로그 검색에서 password 필드 검사
+grep -i 'password' /var/log/app.log | head
+# password=actual_value 식으로 보이면 마스킹 실패
+
+# 4. 시계 동기화 — 분산 환경에서 타임스탬프 일치
+chronyc sources  # 또는 timedatectl
+# 모든 호스트가 NTP 동기화
+
+# 5. 로그 보존 정책 점검
+# 보안 사고 분석에는 최소 90일 권장. PCI-DSS는 1년.
+```
+
+### A09 체크리스트
+
+- [ ] 인증 이벤트(성공·실패) 로그
+- [ ] 인가 거부 로그
+- [ ] 민감 작업 audit log
+- [ ] 입력 검증 실패 로그
+- [ ] 설정 변경 audit log
+- [ ] 모든 로그에 trace ID·사용자 ID·timestamp
+- [ ] 로그 마스킹 필터 적용 (password, token 등)
+- [ ] 외부 응답에 스택 트레이스 노출 X
+- [ ] 로그 시스템 append-only
+- [ ] 로그 외부 SIEM/저장소 사본
+- [ ] 시간 동기화 (NTP)
+- [ ] 알림 임계값 정의 + 정기 튜닝
+- [ ] 심각도별 알림 채널 분리
+- [ ] On-call rotation 정의
+- [ ] Incident Response Playbook 문서화
+- [ ] Blameless post-mortem 문화
+- [ ] MTTD / MTTR / Dwell Time 측정
+- [ ] 로그 보존 90일 이상 (규제에 따라 더 길게)
+
+### 더 파고들 포인트
+
+**SIEM (Security Information and Event Management)**. 여러 소스의 로그를 한 곳에서 상관 분석. Splunk, Elastic Security, Datadog, Microsoft Sentinel 등이 대표 도구. 작은 조직은 ELK Stack이나 Loki + Grafana로 시작 가능.
+
+**UEBA (User and Entity Behavior Analytics)**. 머신러닝 기반 이상 행동 탐지. "이 사용자가 평소에 안 가던 시간에 평소에 안 보던 데이터를 export 했다" 같은 패턴 자동 감지. 단, false positive 관리가 까다로움.
+
+**Honey Token / Honeypot**. 공격자만 손댈 만한 가짜 자격증명·파일·계정을 시스템에 심어둠. 거기에 누가 손대면 즉시 침해 신호. 비용 대비 효과가 큰 기법.
+
+**Detection Engineering**. SRE 운동의 보안판. 탐지 룰을 코드로 관리(Detection-as-Code), 테스트 자동화, CI 통합. Sigma 같은 표준 룰 포맷이 자리잡고 있음.
+
+---
+
+## A10. Mishandling of Exceptional Conditions
+
+### 신규 카테고리의 정체
+
+2025년판에서 새로 등장한 카테고리입니다. **에러·예외·장애·재시도 같은 비정상 흐름을 잘못 처리해서 보안 사고가 되는** 모든 패턴이 여기에 들어갑니다.
+
+평소 흐름(happy path)은 누구나 잘 만듭니다. 사고는 **평소가 아닌 흐름**에서 터집니다. 그리고 그 흐름은 코드 리뷰와 자동 테스트에서 자주 누락됩니다.
+
+전형적인 시나리오:
+- 인증 서비스가 응답하지 않을 때 무엇을 할 것인가
+- 결제 게이트웨이 timeout 시 어떻게 처리할 것인가
+- Rate limit 저장소가 죽었을 때 모든 요청을 통과시킬 것인가 막을 것인가
+- DB 트랜잭션 롤백이 실패하면 어떤 상태가 되는가
+- 외부 API 호출이 부분 성공한 경우 어떻게 다룰 것인가
+
+### Fail Closed vs Fail Open
+
+이 카테고리의 핵심 결정.
+
+![Fail Closed vs Fail Open 결정 매트릭스](sec-05-03-fail-closed-vs-open.svg)
+
+**Fail Closed**는 의심되면 막는다. 보안에 유리. 가용성 희생.
+**Fail Open**은 의심되어도 통과시킨다. 가용성에 유리. 보안 위험.
+
+정답은 컨텍스트마다 다릅니다.
+
+**시나리오 1 — 인증 서비스 장애**: OAuth 프로바이더 응답 없음, 세션 DB 연결 실패.
+- ✓ Fail Closed: 로그인 거부 / 세션 만료. 사용자가 다시 시도하게.
+- ✗ Fail Open: "임시 통과" = 인증 우회. **절대 금지**.
+
+**시나리오 2 — 인가 서비스 장애**: 권한 정책 DB 응답 없음, ACL 캐시 만료.
+- ✓ Fail Closed: 403 거부 또는 안전한 폴백(캐시된 최소 권한).
+- ✗ Fail Open: 모든 요청 허용. **권한 상승의 전형**.
+
+**시나리오 3 — 결제 게이트웨이 장애**.
+- ✓ Fail Closed: 결제 거부 + 사용자 안내. 매출 손실 < 부정 사용 위험.
+- ✗ Fail Open: "결제 성공" 가정. 무료 상품 발송. **부정 사용 위험**.
+
+**시나리오 4 — Rate Limit 저장소(Redis 등) 장애**: 컨텍스트에 따라 다름.
+- 보수적: 모든 요청 거부 (DDoS 방어 우선)
+- 적극적: 통과 + 알림 (가용성 우선) — 트래픽 특성에 따라 결정
+
+**원칙**: 보안 통제는 기본 Fail Closed. 가용성이 절대 우선인 명확한 이유가 있을 때만 Fail Open으로 결정하고, 그 결정을 문서화합니다.
+
+### Timeout과 재시도
+
+비정상 처리에서 가장 자주 사고가 나는 영역.
+
+#### 모든 외부 호출에 timeout
+
+```python
+# 나쁨: timeout 없음 → 의존 서비스 느려지면 우리도 같이 느려짐 → 결국 다운
+response = requests.get('https://api.example.com/data')
+
+# 안전
+response = requests.get(
+    'https://api.example.com/data',
+    timeout=(3, 10)  # connect 3초, read 10초
+)
+```
+
+Timeout이 없으면 한 의존 서비스의 느림이 우리 스레드 풀을 모두 점유. 서비스가 다운됩니다. **이게 보안 문제인 이유**: 의도적인 slow request가 DoS로 이어지기 때문입니다.
+
+#### 멱등성과 재시도
+
+재시도는 안전한 동작이어야만 합니다. 결제 같은 비멱등 작업은 재시도가 위험합니다.
+
+```python
+# 멱등키(idempotency key) 패턴
+def process_payment(idempotency_key, amount, user_id):
+    existing = db.get_payment_by_key(idempotency_key)
+    if existing:
+        return existing  # 이미 처리됨, 같은 결과 반환
+    
+    result = pg.charge(amount, user_id)
+    db.save_payment(idempotency_key, result)
+    return result
+```
+
+같은 멱등키로 두 번 호출해도 결제는 한 번만 일어납니다. 네트워크 timeout으로 클라이언트가 재시도해도 안전.
+
+#### Exponential Backoff + Jitter
+
+재시도가 동시에 몰리면 의존 서비스가 더 죽습니다. **Thundering Herd 문제**.
+
+```python
+import random, time
+
+def retry_with_backoff(fn, max_retries=3):
+    for attempt in range(max_retries):
+        try:
+            return fn()
+        except TransientError:
+            if attempt == max_retries - 1:
+                raise
+            # Exponential: 1s, 2s, 4s
+            # Jitter: 무작위 추가로 동시 재시도 방지
+            delay = (2 ** attempt) + random.uniform(0, 1)
+            time.sleep(delay)
+```
+
+### Circuit Breaker
+
+연쇄 장애를 끊는 패턴.
+
+![Circuit Breaker 상태 머신](sec-05-04-circuit-breaker.svg)
+
+세 상태가 있습니다.
+
+- **CLOSED (정상)**: 요청을 정상 통과시킴. 실패 카운터 모니터링.
+- **OPEN (차단)**: 실패율이 임계 초과. 즉시 실패 반환. 의존 서비스에 부하 주지 않음.
+- **HALF-OPEN (시험)**: OPEN 후 일정 시간 경과. 소수 요청만 시도. 성공하면 CLOSED, 실패하면 다시 OPEN.
+
+```python
+# 라이브러리 사용 권장 (직접 구현은 어렵습니다)
+# Python: pybreaker
+# Java: Resilience4j, Hystrix (deprecated)
+# Node.js: opossum
+
+from pybreaker import CircuitBreaker
+
+breaker = CircuitBreaker(
+    fail_max=5,           # 5번 연속 실패하면 OPEN
+    reset_timeout=30,     # 30초 후 HALF-OPEN
+    exclude=[ValueError]  # 특정 예외는 카운트 제외
+)
+
+@breaker
+def call_payment_service(amount):
+    return requests.post('https://payment.api/charge', json={'amount': amount})
+```
+
+**보안 차원의 의미**: Circuit Breaker가 없으면 의존 서비스 장애 시 우리 자원이 모두 timeout 대기에 묶여 DoS와 동일한 상태가 됩니다. 의도적 slow attack의 기본 방어선입니다.
+
+### Bulkhead 패턴
+
+자원을 분리해서 한쪽 장애가 다른 쪽으로 번지지 않게 합니다. 선박의 격벽에서 따온 이름.
+
+```python
+# ThreadPool 분리 예시
+critical_pool = ThreadPoolExecutor(max_workers=10)  # 결제 등 핵심
+bulk_pool = ThreadPoolExecutor(max_workers=20)      # 일반 API
+report_pool = ThreadPoolExecutor(max_workers=5)     # 리포트(느려도 됨)
+
+# 리포트 기능이 느려져도 결제 풀은 영향 없음
+```
+
+DB connection pool, HTTP client pool도 같은 원리로 분리.
+
+### Graceful Degradation
+
+전부 다 안 되면 일부라도 되게 합니다. 추천 시스템 다운 → 인기 상품 보여줌. 실시간 가격 API 실패 → 캐시된 가격 + "일부 정보가 최신이 아닐 수 있습니다" 안내.
+
+**보안 관점에서는 여기에 함정**도 있습니다. Degradation 모드가 보안 통제를 같이 우회하면 안 됩니다. 권한 체크 서비스가 죽었다고 권한 체크를 건너뛰는 degradation은 사고입니다.
+
+### 에러 메시지 표준화
+
+에러 응답이 사용자에게는 generic, 내부 로그에는 상세하게.
+
+```python
+# 안전한 패턴
+@app.errorhandler(Exception)
+def handle_error(e):
+    error_id = uuid.uuid4()
+    
+    # 내부 로그: 스택 트레이스 + 컨텍스트
+    logger.error(f"Error {error_id}", exc_info=True, extra={
+        'user_id': g.user_id,
+        'path': request.path,
+        'method': request.method
+    })
+    
+    # 사용자: generic 메시지 + 추적용 ID만
+    return jsonify({
+        'error': 'An unexpected error occurred',
+        'error_id': str(error_id)
+    }), 500
+```
+
+사용자가 "이런 에러가 났다"고 신고할 때 error_id로 내부 로그를 빠르게 찾을 수 있고, 동시에 외부에는 내부 정보가 노출되지 않습니다.
+
+### Chaos Engineering
+
+평상시에 일부러 장애를 일으켜서 시스템이 어떻게 반응하는지 관찰하는 연습. Netflix가 시작한 "Chaos Monkey"가 유명합니다.
+
+보안 관점의 Chaos Engineering ("Security Chaos Engineering"):
+- 인증 서비스 임의 차단 → 모든 서비스가 정말 fail closed로 동작하는가
+- 시크릿 매니저 일시 다운 → 어플리케이션이 어떻게 반응하는가
+- IAM role 일시 폐기 → graceful 종료되는가, 아니면 panic하는가
+- DNS 응답 지연 → SSRF 방어가 그래도 작동하는가
+
+이런 시나리오를 **개발 환경에서 정기적으로** 돌려봅니다. 한밤중에 사고로 처음 마주치는 것보다 훨씬 낫습니다.
+
+도구: AWS Fault Injection Simulator, Gremlin, Chaos Mesh, LitmusChaos.
+
+### 디버그 모드와 백도어
+
+A10 카테고리의 또 한 가지 흔한 패턴.
+
+- 개발 단계의 "skip auth" 플래그가 production에 그대로
+- DEBUG 모드가 켜져 있어 에러에 민감 정보 노출
+- 개발자가 임시로 만든 admin 백도어
+- 환경변수 오타로 SECRET이 빈 문자열인데 그대로 동작
+
+방어:
+- **Production 빌드는 디버그 코드 컴파일 단계에서 제거**
+- **시작 시 sanity check**: 필수 환경변수, 시크릿 길이, 모드 확인. 부적합이면 시작 거부 (fail closed)
+
+```python
+# 시작 시 검증 예시
+def validate_config():
+    if os.environ.get('DEBUG') == 'true' and ENV == 'production':
+        sys.exit('FATAL: DEBUG must not be true in production')
+    
+    secret = os.environ.get('JWT_SECRET', '')
+    if len(secret) < 32:
+        sys.exit('FATAL: JWT_SECRET must be at least 32 chars')
+    
+    if not os.environ.get('DATABASE_URL'):
+        sys.exit('FATAL: DATABASE_URL not set')
+    
+    # 더 많은 검증...
+```
+
+부팅 시점에 명시적으로 fail하는 것이 운영 중 미묘한 보안 결함보다 항상 낫습니다.
+
+### A10 체크리스트
+
+- [ ] 모든 외부 호출에 timeout 설정
+- [ ] 보안 통제는 fail closed가 기본
+- [ ] Fail open이 필요한 곳은 명시적 결정 + 문서화
+- [ ] 멱등키로 비멱등 작업의 안전한 재시도
+- [ ] Exponential backoff + jitter
+- [ ] Circuit breaker 적용 (의존 서비스마다)
+- [ ] Bulkhead로 자원 격리
+- [ ] Graceful degradation이 보안 우회하지 않음
+- [ ] 에러 메시지: 사용자 generic, 내부 상세
+- [ ] error_id로 추적 가능
+- [ ] 부팅 시 sanity check (필수 설정 검증)
+- [ ] DEBUG 모드 production OFF (시작 시 검증)
+- [ ] 임시 백도어·skip 플래그 빌드에서 제거
+- [ ] Chaos engineering 정기 실행 (가능한 조직)
+
+### 더 파고들 포인트
+
+**Failure Mode and Effects Analysis (FMEA)**. 시스템의 모든 컴포넌트에 대해 "이게 죽으면 무슨 일이 일어나는가"를 체계적으로 분석. 항공·자동차 산업의 안전공학 도구. 보안에도 그대로 적용 가능.
+
+**Backpressure**. Pull 방식의 흐름 제어. 소비자가 처리할 수 있는 만큼만 생산자가 보내는 패턴. Reactive Streams가 표준화. 메시지 큐·스트리밍 시스템에서 중요.
+
+**Saga Pattern**. 분산 트랜잭션의 대안. 각 단계의 보상 트랜잭션(compensating transaction) 정의. 부분 실패 시 깨끗하게 롤백. 보안 차원에서는 "결제 성공·배송 실패" 같은 inconsistent state 방지.
+
+**Forensic Readiness**. 평소부터 사고 발생 시 분석 가능한 상태로 준비. 충분한 로그 보존 기간, 시간 동기화, 증거 무결성 보장. 사고 직후가 아니라 평소에 준비해야 함.
+
+---
+
+## 자주 묶여서 나타나는 사고 패턴
+
+A09와 A10이 다른 카테고리들과 어떻게 연쇄되는지 짚습니다.
+
+**패턴 1: 인증 서비스 장애 → fail open → 인증 우회**
+
+OAuth 프로바이더 응답 timeout. 코드가 fail open으로 짜여 있어 timeout = "익명 사용자로 진행". 일부 엔드포인트에서 권한 체크 없이 통과. 이 시간 동안 데이터 노출.
+
+**패턴 2: 알림 누락 → 며칠간 침투 미발견 → 데이터 대량 유출**
+
+공격자가 SQL Injection으로 진입. 비정상 패턴이 로그에 남았지만 알림 룰이 없어서 안 잡힘. 4일 동안 천천히 데이터 export. 발견은 외부(고객 신고)에서. Equifax 패턴.
+
+**패턴 3: Circuit Breaker 부재 → 의존 서비스 느림 → DoS**
+
+PG사 응답 시간이 평소 100ms에서 5초로 증가. timeout이 30초로 설정. 우리 서비스의 모든 스레드가 결제 호출 대기에 묶임. 다른 요청 처리 불가. 사실상 다운. 보안 통제(rate limit, WAF)도 멈춤.
+
+**패턴 4: 디버그 코드 잔존 → 백도어**
+
+개발 단계의 `if (req.headers['x-skip-auth'] === 'true') return next()` 가 그대로 production. 누군가 우연히 또는 의도적으로 발견. 인증 우회 가능. CI/CD 단계의 grep 검사가 있었다면 잡혔을 사고.
+
+---
+
+## 시리즈 회고: 다섯 편을 관통하는 원칙
+
+여기까지 다섯 편(ep.00 오프닝 + 본편 5편)을 마무리하면서, 시리즈 전체를 관통한 원칙들을 정리합니다.
+
+**Defense in Depth**. 한 레이어가 뚫려도 다음 레이어가 막도록. 인증 → 인가 → 쿼리 제약 → 로깅·알림. 어느 한 곳도 단일 의존점이 되지 않게.
+
+**Secure by Default**. 기본값이 안전해야 합니다. 권한 기본 거부, 가시성 기본 비공개, 통신 기본 HTTPS, 에러 기본 generic. 누군가 매번 보안을 켜야 하는 구조는 결국 빠뜨립니다.
+
+**Trust Boundary 명시**. 신뢰할 수 있는 영역과 없는 영역을 의식적으로 구분하고, 경계에서 검증·escape·verify를 거치게. 어디서 누가 검증했는지 모호하면 결국 누락됩니다.
+
+**자동화로 사람의 한계 보완**. 의존성 업데이트(Dependabot), CVE 스캔(Trivy), IaC 검사(Checkov), 시크릿 누출 검사(gitleaks), 이미지 서명(Cosign). 사람의 기억에 의존하지 않는 구조.
+
+**측정 가능한 지표**. 보안은 "이만하면 되겠지"가 아니라 측정합니다. MTTP(패치 시간), MTTD(탐지 시간), MTTR(대응 시간), Dwell Time(체류 시간). 측정해야 개선됩니다.
+
+**비난 없는 학습**. 사고는 일어납니다. 사고 후 "누가 잘못했나"가 아니라 "어떤 시스템 갭이 있었나"를 묻는 문화가 더 안전한 시스템을 만듭니다.
+
+OWASP Top 10:2025의 10개 카테고리를 모두 다뤘습니다. 모든 카테고리의 모든 디테일을 30분 안에 따라잡을 수 있는 사람은 없습니다. 이 시리즈가 도구로 쓰이기를 바랍니다. 새 프로젝트를 시작할 때 ep.04의 위협 모델링부터 보고, 인증 코드를 짤 때 ep.01의 체크리스트로 점검하고, 사고 대응 절차를 만들 때 ep.05의 Playbook을 참고하는 식으로요.
+
+마지막 한 문장만 남깁니다. **보안은 "더 이상 사고가 안 나게 하는 것"이 아니라 "사고가 나도 회복할 수 있게 하는 것"입니다.** 이 관점이 자리잡으면 나머지는 시간 문제입니다.
+
+---
+
+## 이번 편 체크리스트 총정리
+
+**로깅·알림 (A09)**
+- [ ] 인증·인가·민감 작업 로그
+- [ ] 로그 마스킹 필터
+- [ ] 외부 응답에 스택 트레이스 X
+- [ ] Append-only + 외부 SIEM 사본
+- [ ] 시간 동기화 (NTP)
+- [ ] 알림 임계값 + 정기 튜닝
+- [ ] On-call rotation
+- [ ] Incident Response Playbook
+- [ ] Blameless post-mortem
+- [ ] MTTD / MTTR / Dwell Time 측정
+- [ ] 90일 이상 로그 보존
+
+**예외 처리 (A10)**
+- [ ] 모든 외부 호출에 timeout
+- [ ] Fail closed 기본
+- [ ] 멱등키로 안전한 재시도
+- [ ] Exponential backoff + jitter
+- [ ] Circuit breaker
+- [ ] Bulkhead로 자원 격리
+- [ ] 에러 응답 (generic + error_id)
+- [ ] 부팅 시 sanity check
+- [ ] DEBUG production OFF 검증
+- [ ] 디버그·백도어 코드 빌드 제거
+- [ ] Chaos engineering (가능한 조직)
+
+---
+
+## 참고 자료
+
+- OWASP. (2025). *A09:2025 – Logging and Alerting Failures*. https://owasp.org/Top10/2025/A09_2025-Logging_and_Alerting_Failures/
+- OWASP. (2025). *A10:2025 – Mishandling of Exceptional Conditions*. https://owasp.org/Top10/2025/A10_2025-Mishandling_of_Exceptional_Conditions/
+- OWASP. *Logging Cheat Sheet*. https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+- OWASP. *Error Handling Cheat Sheet*. https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html
+- NIST. (2012). *SP 800-61 Rev. 2 — Computer Security Incident Handling Guide*. https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf
+- Google SRE Book. *Postmortem Culture*. https://sre.google/sre-book/postmortem-culture/
+- Nygard, M. (2007). *Release It! Design and Deploy Production-Ready Software*. (Circuit Breaker, Bulkhead 등 패턴의 원전)
+- Mandiant. (2024). *M-Trends Report*. (Dwell time 등 업계 통계)
+- Rinehart, A. & Shortridge, K. (2020). *Security Chaos Engineering*. O'Reilly.
+
+---
+
+## 시리즈 마무리
+
+> [ep.00 - 시리즈 오프닝](/web-security-owasp-2025-ep-00)으로 돌아가기
+
+OWASP Top 10:2025를 다섯 편으로 풀어낸 시리즈가 끝났습니다. 한 번에 다 적용할 수는 없습니다. ep.00의 30분 스모크 테스트부터 시작하시고, 가장 위험한 항목 한두 개씩 잡아가는 것이 현실적입니다. 보안은 일회성 프로젝트가 아니라 운영 모드입니다. 천천히, 그러나 꾸준히.

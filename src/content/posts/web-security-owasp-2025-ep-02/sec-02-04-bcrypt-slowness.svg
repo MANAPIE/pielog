@@ -1,0 +1,187 @@
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="빠른 해시와 느린 해시 - GPU 공격 비교">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title {
+      font: 600 16px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .caption {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .col-tag {
+      font: 700 10px system-ui, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .col-head {
+      font: 600 14px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .metric-label {
+      font: 500 11px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .metric-val {
+      font: 700 22px system-ui, sans-serif;
+    }
+
+    .metric-unit {
+      font: 500 12px system-ui, sans-serif;
+      fill: var(--sec-fg-muted, #64748b);
+    }
+
+    .note {
+      font: 400 11px system-ui, sans-serif;
+      fill: var(--sec-fg, #0f172a);
+    }
+
+    .bad {
+      fill: var(--sec-red-50, #fef2f2);
+      stroke: var(--sec-red-200, #fecaca);
+    }
+
+    .bad-t {
+      fill: var(--sec-red-700, #b91c1c);
+    }
+
+    .good {
+      fill: var(--sec-emerald-50, #ecfdf5);
+      stroke: var(--sec-emerald-200, #a7f3d0);
+    }
+
+    .good-t {
+      fill: var(--sec-emerald-700, #047857);
+    }
+
+    .chip {
+      fill: var(--sec-bg, #ffffff);
+      stroke: var(--sec-slate-200, #e2e8f0);
+    }
+  </style>
+
+  <text x="24" y="36" class="title">왜 비밀번호는 SHA-256이 아니라 bcrypt/argon2인가</text>
+  <text x="24" y="56" class="caption">동일한 DB 유출 상황에서 공격자가 1억 개 비밀번호를 무차별 대입하는 데 걸리는 시간 비교.</text>
+
+  <!-- LEFT: SHA-256 -->
+  <rect x="24" y="80" width="328" height="336" rx="14" class="bad" stroke-width="1" />
+  <text x="40" y="104" class="col-tag bad-t">FAST HASH (BAD FOR PASSWORDS)</text>
+  <text x="40" y="126" class="col-head">SHA-256</text>
+  <text x="40" y="144" class="caption">속도 최적화된 해시. 비밀번호 저장에 부적합.</text>
+
+  <!-- Metrics -->
+  <rect x="40" y="164" width="296" height="64" rx="8" class="chip" />
+  <text x="56" y="186" class="metric-label">해시 1개 계산 시간</text>
+  <text x="56" y="212" class="metric-val bad-t">~0.000001초</text>
+  <text x="200" y="212" class="metric-unit">(1 마이크로초)</text>
+
+  <rect x="40" y="240" width="296" height="64" rx="8" class="chip" />
+  <text x="56" y="262" class="metric-label">현대 GPU 초당 시도 횟수</text>
+  <text x="56" y="288" class="metric-val bad-t">~100억 hashes/s</text>
+
+  <rect x="40" y="316" width="296" height="80" rx="8" class="chip" />
+  <text x="56" y="338" class="metric-label">1억 개 후보 brute force 소요</text>
+  <text x="56" y="366" class="metric-val bad-t">~0.01초</text>
+  <text x="56" y="384" class="note" fill="var(--sec-red-700, #b91c1c)">→ DB 유출되면 사실상 전부 깨짐</text>
+
+  <!-- RIGHT: bcrypt -->
+  <rect x="368" y="80" width="328" height="336" rx="14" class="good" stroke-width="1" />
+  <text x="384" y="104" class="col-tag good-t">SLOW HASH (DESIGNED FOR PASSWORDS)</text>
+  <text x="384" y="126" class="col-head">bcrypt / argon2</text>
+  <text x="384" y="144" class="caption">의도적으로 느림. 공격자의 대입을 방해.</text>
+
+  <!-- Metrics -->
+  <rect x="384" y="164" width="296" height="64" rx="8" class="chip" />
+  <text x="400" y="186" class="metric-label">해시 1개 계산 시간 (cost=12)</text>
+  <text x="400" y="212" class="metric-val good-t">~0.25초</text>
+  <text x="485" y="212" class="metric-unit">(SHA-256 대비 25만 배)</text>
+
+  <rect x="384" y="240" width="296" height="64" rx="8" class="chip" />
+  <text x="400" y="262" class="metric-label">현대 GPU 초당 시도 횟수</text>
+  <text x="400" y="288" class="metric-val good-t">~40,000 hashes/s</text>
+
+  <rect x="384" y="316" width="296" height="80" rx="8" class="chip" />
+  <text x="400" y="338" class="metric-label">1억 개 후보 brute force 소요</text>
+  <text x="400" y="366" class="metric-val good-t">~42분</text>
+  <text x="400" y="384" class="note" fill="var(--sec-emerald-700, #047857)">→ 긴 비밀번호면 사실상 불가능</text>
+</svg>

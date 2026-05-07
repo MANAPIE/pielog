@@ -1,0 +1,153 @@
+<svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="보안의 무게중심이 코드에서 운영 전반으로 이동">
+  <style>
+    /* sec-theme-vars */
+    :root {
+      --sec-fg: #0f172a;
+      --sec-fg-muted: #64748b;
+      --sec-bg: #ffffff;
+      --sec-border: #e2e8f0;
+      --sec-slate-50: #f8fafc;
+      --sec-slate-100: #f1f5f9;
+      --sec-slate-200: #e2e8f0;
+      --sec-slate-300: #cbd5e1;
+      --sec-slate-400: #94a3b8;
+      --sec-slate-500: #64748b;
+      --sec-slate-700: #334155;
+      --sec-blue-50: #eff6ff;
+      --sec-blue-200: #bfdbfe;
+      --sec-blue-500: #3b82f6;
+      --sec-blue-700: #1d4ed8;
+      --sec-red-50: #fef2f2;
+      --sec-red-100: #fee2e2;
+      --sec-red-200: #fecaca;
+      --sec-red-500: #ef4444;
+      --sec-red-700: #b91c1c;
+      --sec-amber-50: #fffbeb;
+      --sec-amber-100: #fef3c7;
+      --sec-amber-200: #fde68a;
+      --sec-amber-500: #f59e0b;
+      --sec-amber-700: #b45309;
+      --sec-emerald-50: #ecfdf5;
+      --sec-emerald-100: #d1fae5;
+      --sec-emerald-200: #a7f3d0;
+      --sec-emerald-500: #10b981;
+      --sec-emerald-700: #047857;
+      --sec-violet-50: #f5f3ff;
+      --sec-violet-200: #ddd6fe;
+      --sec-violet-500: #8b5cf6;
+      --sec-violet-700: #6d28d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sec-fg: #e2e8f0;
+        --sec-fg-muted: #94a3b8;
+        --sec-bg: #0f172a;
+        --sec-border: #334155;
+        --sec-slate-50: #1e293b;
+        --sec-slate-100: #334155;
+        --sec-slate-200: #475569;
+        --sec-slate-300: #64748b;
+        --sec-slate-400: #94a3b8;
+        --sec-slate-500: #cbd5e1;
+        --sec-slate-700: #e2e8f0;
+        --sec-blue-50: #172554;
+        --sec-blue-200: #1e40af;
+        --sec-blue-500: #60a5fa;
+        --sec-blue-700: #93c5fd;
+        --sec-red-50: #450a0a;
+        --sec-red-100: #7f1d1d;
+        --sec-red-200: #991b1b;
+        --sec-red-500: #f87171;
+        --sec-red-700: #fca5a5;
+        --sec-amber-50: #451a03;
+        --sec-amber-100: #78350f;
+        --sec-amber-200: #92400e;
+        --sec-amber-500: #fbbf24;
+        --sec-amber-700: #fcd34d;
+        --sec-emerald-50: #022c22;
+        --sec-emerald-100: #064e3b;
+        --sec-emerald-200: #065f46;
+        --sec-emerald-500: #34d399;
+        --sec-emerald-700: #6ee7b7;
+        --sec-violet-50: #2e1065;
+        --sec-violet-200: #5b21b6;
+        --sec-violet-500: #a78bfa;
+        --sec-violet-700: #c4b5fd;
+      }
+    }
+
+    .title { font: 600 16px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .caption { font: 400 11px system-ui, sans-serif; fill: var(--sec-fg-muted, #64748b); }
+    .col-head { font: 600 13px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .col-year { font: 700 11px system-ui, sans-serif; letter-spacing: 0.08em; }
+    .band { font: 600 11px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .item { font: 400 12px system-ui, sans-serif; fill: var(--sec-fg, #0f172a); }
+    .year-2021 { fill: var(--sec-slate-500, #64748b); }
+    .year-2025 { fill: var(--sec-blue-700, #1d4ed8); }
+
+    .zone-code { fill: var(--sec-slate-50, #f8fafc); stroke: var(--sec-slate-200, #e2e8f0); stroke-width: 1; }
+    .zone-config { fill: var(--sec-blue-50, #eff6ff); stroke: var(--sec-blue-200, #bfdbfe); stroke-width: 1; }
+    .zone-supply { fill: var(--sec-amber-50, #fffbeb); stroke: var(--sec-amber-200, #fde68a); stroke-width: 1; }
+    .zone-ops { fill: var(--sec-emerald-50, #ecfdf5); stroke: var(--sec-emerald-200, #a7f3d0); stroke-width: 1; }
+
+    .arrow { stroke: var(--sec-slate-500, #64748b); stroke-width: 1.4; fill: none; }
+  </style>
+
+  <defs>
+    <marker id="arrS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--sec-slate-500, #64748b)"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="title">보안의 무게중심은 코드에서 운영 전반으로</text>
+  <text x="24" y="56" class="caption">2021년판이 코드 품질 중심이었다면, 2025년판은 설정·공급망·운영까지 확장되었습니다.</text>
+
+  <!-- 2021 column -->
+  <text x="140" y="96" text-anchor="middle" class="col-year year-2021">2021</text>
+  <text x="140" y="114" text-anchor="middle" class="col-head">코드 중심</text>
+
+  <!-- 2025 column -->
+  <text x="560" y="96" text-anchor="middle" class="col-year year-2025">2025</text>
+  <text x="560" y="114" text-anchor="middle" class="col-head">SDLC 전반</text>
+
+  <!-- === 2021 side: smaller zone === -->
+  <!-- Code zone -->
+  <rect x="36" y="130" width="208" height="230" rx="14" class="zone-code"/>
+  <text x="140" y="154" text-anchor="middle" class="band">코드 품질</text>
+  <text x="48" y="184" class="item">· Broken Access Control</text>
+  <text x="48" y="206" class="item">· Cryptographic Failures</text>
+  <text x="48" y="228" class="item">· Injection</text>
+  <text x="48" y="250" class="item">· Insecure Design</text>
+  <text x="48" y="272" class="item">· Auth Failures</text>
+  <text x="48" y="294" class="item">· SW Integrity Failures</text>
+  <text x="48" y="316" class="item">· Logging Failures</text>
+  <text x="48" y="338" class="item">· SSRF · Misconfiguration ...</text>
+
+  <!-- Arrow: 2021 → 2025 -->
+  <path d="M 260 240 L 440 240" class="arrow" marker-end="url(#arrS)"/>
+  <text x="350" y="228" text-anchor="middle" class="caption">범위 확장</text>
+
+  <!-- === 2025 side: nested zones === -->
+  <!-- Outer: 운영 전반 -->
+  <rect x="300" y="130" width="392" height="260" rx="14" class="zone-ops"/>
+  <text x="312" y="152" class="band">운영 / 관측 / 탄력성</text>
+  <text x="312" y="168" class="caption">Logging &amp; Alerting · Exception Handling</text>
+
+  <!-- 공급망 -->
+  <rect x="316" y="188" width="362" height="188" rx="12" class="zone-supply"/>
+  <text x="328" y="210" class="band">공급망 / 빌드 / 배포</text>
+  <text x="328" y="226" class="caption">Supply Chain · CI/CD · SBOM · Dependencies</text>
+
+  <!-- 설정 -->
+  <rect x="332" y="244" width="330" height="116" rx="10" class="zone-config"/>
+  <text x="344" y="266" class="band">설정 / 인프라 / 클라우드</text>
+  <text x="344" y="282" class="caption">IaC · Cloud Config · Secrets · Headers</text>
+
+  <!-- 코드 (가장 안쪽) -->
+  <rect x="348" y="298" width="298" height="54" rx="8" class="zone-code"/>
+  <text x="360" y="320" class="band">코드 품질</text>
+  <text x="360" y="338" class="caption">Injection · Auth · Access Control · Crypto ...</text>
+
+  <!-- Footer caption -->
+  <text x="360" y="419" text-anchor="middle" class="caption">→ 코드만 잘 짜도 사고가 줄지 않습니다. 어디서 사고가 시작되는지 스펙트럼이 넓어졌습니다.</text>
+</svg>
