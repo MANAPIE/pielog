@@ -1,0 +1,249 @@
+<svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .panel {
+      fill: #fafafa;
+      stroke: #e5e7eb;
+      stroke-width: 1
+    }
+
+    .header {
+      fill: #1f2937
+    }
+
+    .header-text {
+      fill: #fff;
+      font-size: 11px;
+      font-weight: 600
+    }
+
+    .meta-bg {
+      fill: #f3f4f6
+    }
+
+    .meta-text {
+      fill: #4b5563;
+      font-size: 10px
+    }
+
+    .meta-bold {
+      fill: #1f2937;
+      font-size: 10px;
+      font-weight: 600
+    }
+
+    .card {
+      fill: #fff;
+      stroke: #d1d5db;
+      stroke-width: 1
+    }
+
+    .placeholder {
+      fill: #e5e7eb
+    }
+
+    .placeholder-text {
+      fill: #9ca3af;
+      font-size: 10px
+    }
+
+    .input {
+      fill: #fff;
+      stroke: #d1d5db;
+      stroke-width: 1
+    }
+
+    .btn {
+      fill: #3b82f6
+    }
+
+    .btn-text {
+      fill: #fff;
+      font-size: 11px;
+      font-weight: 600
+    }
+
+    .num {
+      fill: #ef4444
+    }
+
+    .num-text {
+      fill: #fff;
+      font-size: 9px;
+      font-weight: 700
+    }
+
+    .desc-title {
+      fill: #1f2937;
+      font-size: 11px;
+      font-weight: 700
+    }
+
+    .desc-body {
+      fill: #4b5563;
+      font-size: 10px
+    }
+
+    .section-title {
+      fill: #1f2937;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .divider {
+      stroke: #f3f4f6;
+      stroke-width: 1
+    }
+
+    .caption {
+      fill: #6b7280;
+      font-size: 10px;
+      font-style: italic
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .panel {
+        fill: #1a1a1a;
+        stroke: #2a2a2a
+      }
+
+      .header {
+        fill: #404040
+      }
+
+      .header-text {
+        fill: #f5f5f5
+      }
+
+      .meta-bg {
+        fill: #262626
+      }
+
+      .meta-text {
+        fill: #a3a3a3
+      }
+
+      .meta-bold {
+        fill: #e5e5e5
+      }
+
+      .card {
+        fill: #171717;
+        stroke: #404040
+      }
+
+      .placeholder {
+        fill: #2a2a2a
+      }
+
+      .placeholder-text {
+        fill: #737373
+      }
+
+      .input {
+        fill: #171717;
+        stroke: #404040
+      }
+
+      .btn {
+        fill: #3b82f6
+      }
+
+      .num {
+        fill: #f87171
+      }
+
+      .desc-title {
+        fill: #f5f5f5
+      }
+
+      .desc-body {
+        fill: #a3a3a3
+      }
+
+      .section-title {
+        fill: #f5f5f5
+      }
+
+      .divider {
+        stroke: #2a2a2a
+      }
+
+      .caption {
+        fill: #737373
+      }
+    }
+  </style>
+  <rect x="20" y="20" width="760" height="480" class="panel" rx="6" />
+  <rect x="20" y="20" width="760" height="40" class="header" rx="6 6 0 0" />
+  <text x="40" y="44" class="header-text">화면 ID: LGN-001</text>
+  <text x="220" y="44" class="header-text">화면명: 로그인</text>
+  <text x="390" y="44" class="header-text">버전: v1.2</text>
+  <text x="530" y="44" class="header-text">작성: 홍기획</text>
+  <text x="700" y="44" class="header-text">2026.05.08</text>
+  <rect x="20" y="60" width="760" height="28" class="meta-bg" />
+  <text x="40" y="78" class="meta-bold">진입 경로:</text>
+  <text x="105" y="78" class="meta-text">(1) 앱 최초 실행 · (2) 로그아웃 후 · (3) 인증 필요 화면 접근 · (4) 세션 만료 시</text>
+
+  <text x="40" y="110" class="section-title">화면 레이아웃</text>
+  <rect x="40" y="120" width="280" height="360" class="card" rx="4" />
+  <rect x="100" y="140" width="160" height="320" class="panel" rx="14" stroke-width="1.5" />
+  <rect x="100" y="140" width="160" height="20" class="meta-bg" rx="14 14 0 0" />
+  <text x="180" y="153" text-anchor="middle" class="placeholder-text" style="font-size:8px">9:41</text>
+  <rect x="140" y="180" width="80" height="24" class="placeholder" rx="3" />
+  <text x="180" y="196" text-anchor="middle" class="placeholder-text">LOGO</text>
+  <circle cx="240" cy="192" r="8" class="num" /><text x="240" y="195" text-anchor="middle" class="num-text">1</text>
+  <rect x="120" y="225" width="120" height="26" class="input" rx="3" />
+  <text x="128" y="241" class="placeholder-text">이메일 주소</text>
+  <circle cx="240" cy="238" r="8" class="num" /><text x="240" y="241" text-anchor="middle" class="num-text">2</text>
+  <rect x="120" y="260" width="120" height="26" class="input" rx="3" />
+  <text x="128" y="276" class="placeholder-text">비밀번호</text>
+  <circle cx="240" cy="273" r="8" class="num" /><text x="240" y="276" text-anchor="middle" class="num-text">3</text>
+  <rect x="120" y="305" width="120" height="30" class="btn" rx="4" />
+  <text x="180" y="324" text-anchor="middle" class="btn-text">로그인</text>
+  <circle cx="240" cy="320" r="8" class="num" /><text x="240" y="323" text-anchor="middle" class="num-text">4</text>
+  <text x="180" y="356" text-anchor="middle" class="placeholder-text" style="font-size:8px">── 또는 ──</text>
+  <circle cx="138" cy="380" r="14" class="placeholder" />
+  <circle cx="180" cy="380" r="14" class="placeholder" />
+  <circle cx="222" cy="380" r="14" class="placeholder" />
+  <circle cx="240" cy="378" r="8" class="num" /><text x="240" y="381" text-anchor="middle" class="num-text">5</text>
+  <text x="180" y="420" text-anchor="middle" class="placeholder-text" style="font-size:9px">비밀번호 찾기</text>
+  <text x="180" y="437" text-anchor="middle" class="placeholder-text" style="font-size:9px">회원가입</text>
+  <circle cx="240" cy="428" r="8" class="num" /><text x="240" y="431" text-anchor="middle" class="num-text">6</text>
+
+  <text x="350" y="110" class="section-title">Description</text>
+  <rect x="350" y="120" width="410" height="360" class="card" rx="4" />
+  <g transform="translate(365,130)">
+    <circle cx="8" cy="8" r="8" class="num" /><text x="8" y="11" text-anchor="middle" class="num-text">1</text>
+    <text x="22" y="11" class="desc-title">로고 영역</text>
+    <text x="22" y="26" class="desc-body">- 서비스 로고 이미지 (width: 100px)</text>
+    <text x="22" y="40" class="desc-body">- 탭 시 동작 없음</text>
+    <line x1="0" y1="50" x2="395" y2="50" class="divider" />
+    <circle cx="8" cy="65" r="8" class="num" /><text x="8" y="68" text-anchor="middle" class="num-text">2</text>
+    <text x="22" y="68" class="desc-title">이메일 입력 필드</text>
+    <text x="22" y="83" class="desc-body">- Input type: email · Placeholder: "이메일 주소 입력"</text>
+    <text x="22" y="97" class="desc-body">- 최대 50자 / 이메일 전용 키보드</text>
+    <line x1="0" y1="107" x2="395" y2="107" class="divider" />
+    <circle cx="8" cy="122" r="8" class="num" /><text x="8" y="125" text-anchor="middle" class="num-text">3</text>
+    <text x="22" y="125" class="desc-title">비밀번호 입력 필드</text>
+    <text x="22" y="140" class="desc-body">- Input type: password (마스킹 ●●●●)</text>
+    <text x="22" y="154" class="desc-body">- 보기/숨기기 토글 / 최소 8자 ~ 최대 20자</text>
+    <line x1="0" y1="164" x2="395" y2="164" class="divider" />
+    <circle cx="8" cy="179" r="8" class="num" /><text x="8" y="182" text-anchor="middle" class="num-text">4</text>
+    <text x="22" y="182" class="desc-title">로그인 버튼</text>
+    <text x="22" y="197" class="desc-body">- 활성: 이메일 &amp; PW 모두 1자 이상</text>
+    <text x="22" y="211" class="desc-body">- 탭 → API 호출 → 성공 시 HOME-001로 이동</text>
+    <text x="22" y="225" class="desc-body">- 중복 탭 방지: 최초 탭 후 비활성화</text>
+    <line x1="0" y1="235" x2="395" y2="235" class="divider" />
+    <circle cx="8" cy="250" r="8" class="num" /><text x="8" y="253" text-anchor="middle" class="num-text">5</text>
+    <text x="22" y="253" class="desc-title">소셜 로그인</text>
+    <text x="22" y="268" class="desc-body">- 카카오 / 네이버 / Apple 순서 고정</text>
+    <text x="22" y="282" class="desc-body">- 탭 → 해당 OAuth 인증 화면으로 전환</text>
+    <line x1="0" y1="292" x2="395" y2="292" class="divider" />
+    <circle cx="8" cy="307" r="8" class="num" /><text x="8" y="310" text-anchor="middle" class="num-text">6</text>
+    <text x="22" y="310" class="desc-title">하단 링크</text>
+    <text x="22" y="325" class="desc-body">- "비밀번호 찾기" → PW-FIND-001</text>
+    <text x="22" y="339" class="desc-body">- "회원가입" → REG-001</text>
+  </g>
+  <text x="400" y="525" text-anchor="middle" class="caption">▲ 화면설계서 한 장의 기본 구조: 좌측 와이어프레임 + 우측 디스크립션</text>
+</svg>
