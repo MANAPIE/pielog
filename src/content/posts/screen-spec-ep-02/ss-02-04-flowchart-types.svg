@@ -1,0 +1,304 @@
+<svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title {
+      fill: #111827;
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .panel {
+      fill: #fafafa;
+      stroke: #e5e7eb;
+      stroke-width: 1.5
+    }
+
+    .panel-h {
+      fill: #1f2937;
+      stroke: #1f2937
+    }
+
+    .panel-h-text {
+      fill: #fff;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .scr {
+      fill: #dbeafe;
+      stroke: #3b82f6;
+      stroke-width: 1.5
+    }
+
+    .scr-text {
+      fill: #1e40af;
+      font-size: 10px;
+      font-weight: 600;
+      text-anchor: middle
+    }
+
+    .scr-id {
+      fill: #3b82f6;
+      font-size: 8px;
+      text-anchor: middle
+    }
+
+    .biz-start {
+      fill: #d1fae5;
+      stroke: #10b981;
+      stroke-width: 1.5
+    }
+
+    .biz-end {
+      fill: #fee2e2;
+      stroke: #ef4444;
+      stroke-width: 1.5
+    }
+
+    .biz-proc {
+      fill: #fef3c7;
+      stroke: #f59e0b;
+      stroke-width: 1.5
+    }
+
+    .biz-cond {
+      fill: #f3e8ff;
+      stroke: #a855f7;
+      stroke-width: 1.5
+    }
+
+    .biz-text {
+      fill: #1f2937;
+      font-size: 10px;
+      text-anchor: middle
+    }
+
+    .biz-bold {
+      fill: #1f2937;
+      font-size: 10px;
+      font-weight: 700;
+      text-anchor: middle
+    }
+
+    .arrow {
+      stroke: #6b7280;
+      stroke-width: 1.5;
+      fill: none;
+      marker-end: url(#arr3)
+    }
+
+    .arrow-label {
+      fill: #6b7280;
+      font-size: 9px
+    }
+
+    .label-y {
+      fill: #10b981;
+      font-size: 9px;
+      font-weight: 700
+    }
+
+    .label-n {
+      fill: #ef4444;
+      font-size: 9px;
+      font-weight: 700
+    }
+
+    .caption {
+      fill: #6b7280;
+      font-size: 11px;
+      text-anchor: middle
+    }
+
+    .caption-bold {
+      fill: #1f2937;
+      font-size: 11px;
+      font-weight: 700;
+      text-anchor: middle
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .title {
+        fill: #f5f5f5
+      }
+
+      .panel {
+        fill: #1a1a1a;
+        stroke: #404040
+      }
+
+      .panel-h {
+        fill: #404040;
+        stroke: #525252
+      }
+
+      .scr {
+        fill: #172554;
+        stroke: #3b82f6
+      }
+
+      .scr-text {
+        fill: #bfdbfe
+      }
+
+      .scr-id {
+        fill: #93c5fd
+      }
+
+      .biz-start {
+        fill: #064e3b;
+        stroke: #10b981
+      }
+
+      .biz-end {
+        fill: #450a0a;
+        stroke: #ef4444
+      }
+
+      .biz-proc {
+        fill: #3a2a0a;
+        stroke: #f59e0b
+      }
+
+      .biz-cond {
+        fill: #2a103a;
+        stroke: #a855f7
+      }
+
+      .biz-text {
+        fill: #e5e5e5
+      }
+
+      .biz-bold {
+        fill: #f5f5f5
+      }
+
+      .arrow {
+        stroke: #a3a3a3
+      }
+
+      .arrow-label {
+        fill: #a3a3a3
+      }
+
+      .caption {
+        fill: #a3a3a3
+      }
+
+      .caption-bold {
+        fill: #f5f5f5
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b7280" />
+    </marker>
+  </defs>
+  <text x="400" y="32" text-anchor="middle" class="title">두 가지 플로우차트 — 화면 플로우 vs 업무 플로우</text>
+
+  <!-- LEFT: Screen Flow -->
+  <rect x="20" y="60" width="375" height="380" class="panel" rx="6" />
+  <rect x="20" y="60" width="375" height="32" class="panel-h" rx="6 6 0 0" />
+  <text x="40" y="81" class="panel-h-text">① 화면 플로우 (Screen Flow)</text>
+  <text x="285" y="81" class="panel-h-text" style="font-size:10px;font-weight:400">사용자 관점</text>
+
+  <!-- All screens uniform 100x48 -->
+  <!-- Row 1 -->
+  <rect x="40" y="110" width="100" height="48" class="scr" rx="6" />
+  <text x="90" y="130" class="scr-text">홈 메인</text>
+  <text x="90" y="146" class="scr-id">HOME-001</text>
+
+  <line x1="140" y1="134" x2="173" y2="134" class="arrow" />
+  <text x="144" y="125" class="arrow-label">검색 탭</text>
+
+  <rect x="175" y="110" width="100" height="48" class="scr" rx="6" />
+  <text x="225" y="130" class="scr-text">검색 결과</text>
+  <text x="225" y="146" class="scr-id">SRC-001</text>
+
+  <line x1="275" y1="134" x2="288" y2="134" class="arrow" />
+  <rect x="290" y="110" width="100" height="48" class="scr" rx="6" />
+  <text x="340" y="130" class="scr-text">상품 상세</text>
+  <text x="340" y="146" class="scr-id">PRD-002</text>
+
+  <!-- Row 2 -->
+  <line x1="90" y1="158" x2="90" y2="200" class="arrow" />
+  <text x="95" y="180" class="arrow-label">아이템 탭</text>
+  <rect x="40" y="205" width="100" height="48" class="scr" rx="6" />
+  <text x="90" y="225" class="scr-text">상품 목록</text>
+  <text x="90" y="241" class="scr-id">PRD-001</text>
+
+  <line x1="140" y1="229" x2="288" y2="229" class="arrow" />
+  <line x1="288" y1="229" x2="288" y2="166" class="arrow" />
+  <text x="195" y="222" class="arrow-label">아이템 탭</text>
+
+  <line x1="340" y1="158" x2="340" y2="220" class="arrow" />
+  <text x="345" y="180" class="arrow-label">구매하기 탭</text>
+  <rect x="290" y="225" width="100" height="48" class="scr" rx="6" />
+  <text x="340" y="245" class="scr-text">주문서</text>
+  <text x="340" y="261" class="scr-id">ORD-001</text>
+
+  <line x1="340" y1="273" x2="340" y2="300" class="arrow" />
+  <rect x="290" y="305" width="100" height="48" class="scr" rx="6" />
+  <text x="340" y="325" class="scr-text">주문 완료</text>
+  <text x="340" y="341" class="scr-id">ORD-002</text>
+
+  <text x="207" y="400" class="caption-bold">사용자 동선과 화면 간 이동을</text>
+  <text x="207" y="417" class="caption">박스 + 화살표로 단순하게 표현</text>
+
+  <!-- RIGHT: Business Flow -->
+  <rect x="405" y="60" width="375" height="380" class="panel" rx="6" />
+  <rect x="405" y="60" width="375" height="32" class="panel-h" rx="6 6 0 0" />
+  <text x="425" y="81" class="panel-h-text">② 업무 플로우 (Business Flow)</text>
+  <text x="690" y="81" class="panel-h-text" style="font-size:10px;font-weight:400">시스템 관점</text>
+
+  <!-- Start -->
+  <ellipse cx="592" cy="118" rx="40" ry="16" class="biz-start" />
+  <text x="592" y="122" class="biz-bold">시작</text>
+
+  <line x1="592" y1="134" x2="592" y2="155" class="arrow" />
+
+  <!-- Process: 결제 요청 -->
+  <rect x="540" y="155" width="105" height="32" class="biz-proc" rx="4" />
+  <text x="592" y="175" class="biz-text">결제 요청</text>
+
+  <line x1="592" y1="187" x2="592" y2="208" class="arrow" />
+
+  <!-- Diamond: 잔액 충분? -->
+  <polygon points="592,210 642,238 592,266 542,238" class="biz-cond" />
+  <text x="592" y="236" class="biz-text">잔액 충분?</text>
+  <text x="592" y="248" class="biz-text">/ 한도 OK?</text>
+
+  <!-- Y branch -->
+  <line x1="642" y1="238" x2="700" y2="238" class="arrow" />
+  <text x="652" y="232" class="label-y">Y</text>
+  <rect x="700" y="222" width="70" height="32" class="biz-proc" rx="4" />
+  <text x="735" y="242" class="biz-text">결제 처리</text>
+
+  <line x1="735" y1="254" x2="735" y2="285" class="arrow" />
+  <line x1="735" y1="285" x2="615" y2="285" class="arrow" />
+
+  <!-- N branch -->
+  <line x1="542" y1="238" x2="490" y2="238" class="arrow" />
+  <text x="525" y="232" class="label-n">N</text>
+  <rect x="430" y="222" width="60" height="32" class="biz-end" rx="4" />
+  <text x="460" y="242" class="biz-text">에러</text>
+
+  <line x1="460" y1="254" x2="460" y2="320" class="arrow" />
+
+  <!-- Process: 결과 저장 -->
+  <rect x="540" y="285" width="105" height="32" class="biz-proc" rx="4" />
+  <text x="592" y="305" class="biz-text">DB 저장</text>
+
+  <line x1="592" y1="317" x2="592" y2="338" class="arrow" />
+
+  <!-- End -->
+  <ellipse cx="592" cy="354" rx="40" ry="16" class="biz-end" />
+  <text x="592" y="358" class="biz-bold">종료</text>
+
+  <line x1="460" y1="320" x2="460" y2="354" class="arrow" />
+  <line x1="460" y1="354" x2="552" y2="354" class="arrow" />
+
+  <text x="592" y="400" class="caption-bold">데이터 흐름과 처리 단계를</text>
+  <text x="592" y="417" class="caption">조건 분기 / 처리 박스로 표현</text>
+</svg>

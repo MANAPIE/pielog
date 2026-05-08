@@ -1,0 +1,218 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title {
+      fill: #111827;
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .frame {
+      fill: #fafafa;
+      stroke: #d1d5db;
+      stroke-width: 1.5
+    }
+
+    .step {
+      fill: #3b82f6
+    }
+
+    .step-text {
+      fill: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      text-anchor: middle
+    }
+
+    .step-name {
+      fill: #1f2937;
+      font-size: 11px;
+      font-weight: 600;
+      text-anchor: middle
+    }
+
+    .step-sub {
+      fill: #6b7280;
+      font-size: 9.5px;
+      text-anchor: middle
+    }
+
+    .arrow {
+      stroke: #9ca3af;
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arr)
+    }
+
+    .skel {
+      fill: #cbd5e1;
+      stroke: #94a3b8;
+      stroke-width: 0.8
+    }
+
+    .skel-line {
+      stroke: #94a3b8;
+      stroke-width: 4;
+      stroke-linecap: round
+    }
+
+    .group-bg {
+      fill: #f3f4f6;
+      stroke: #9ca3af;
+      stroke-width: 1;
+      stroke-dasharray: 4 3
+    }
+
+    .group-text {
+      fill: #4b5563;
+      font-size: 10px;
+      font-style: italic;
+      text-anchor: middle
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .title {
+        fill: #f5f5f5
+      }
+
+      .frame {
+        fill: #1a1a1a;
+        stroke: #525252
+      }
+
+      .step {
+        fill: #3b82f6
+      }
+
+      .step-name {
+        fill: #f5f5f5
+      }
+
+      .step-sub {
+        fill: #a3a3a3
+      }
+
+      .arrow {
+        stroke: #737373
+      }
+
+      .skel {
+        fill: #525252;
+        stroke: #737373
+      }
+
+      .skel-line {
+        stroke: #737373
+      }
+
+      .group-bg {
+        fill: #262626;
+        stroke: #525252
+      }
+
+      .group-text {
+        fill: #d4d4d4
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af" />
+    </marker>
+  </defs>
+  <text x="400" y="35" text-anchor="middle" class="title">설계서 문서 구조 — 표지부터 개별 화면까지</text>
+
+  <!-- 6 boxes uniform 110x120, evenly spaced -->
+  <g transform="translate(33,90)">
+    <rect width="110" height="120" class="frame" rx="6" />
+    <rect x="25" y="20" width="60" height="14" class="skel" rx="2" />
+    <line x1="25" y1="48" x2="85" y2="48" class="skel-line" />
+    <line x1="25" y1="62" x2="75" y2="62" class="skel-line" />
+    <line x1="25" y1="76" x2="85" y2="76" class="skel-line" />
+    <circle cx="55" cy="100" r="10" class="step" />
+    <text x="55" y="103" class="step-text">1</text>
+  </g>
+  <text x="88" y="232" class="step-name">표지</text>
+  <text x="88" y="248" class="step-sub">Cover Page</text>
+
+  <g transform="translate(158,90)">
+    <rect width="110" height="120" class="frame" rx="6" />
+    <rect x="20" y="18" width="70" height="10" class="skel" rx="1" />
+    <rect x="20" y="34" width="70" height="10" class="skel" rx="1" />
+    <rect x="20" y="50" width="70" height="10" class="skel" rx="1" />
+    <rect x="20" y="66" width="70" height="10" class="skel" rx="1" />
+    <circle cx="55" cy="100" r="10" class="step" />
+    <text x="55" y="103" class="step-text">2</text>
+  </g>
+  <text x="213" y="232" class="step-name">개정이력</text>
+  <text x="213" y="248" class="step-sub">History</text>
+
+  <g transform="translate(283,90)">
+    <rect width="110" height="120" class="frame" rx="6" />
+    <line x1="25" y1="22" x2="85" y2="22" class="skel-line" />
+    <line x1="30" y1="38" x2="85" y2="38" class="skel-line" />
+    <line x1="30" y1="52" x2="80" y2="52" class="skel-line" />
+    <line x1="25" y1="68" x2="85" y2="68" class="skel-line" />
+    <line x1="30" y1="82" x2="80" y2="82" class="skel-line" />
+    <circle cx="55" cy="100" r="10" class="step" />
+    <text x="55" y="103" class="step-text">3</text>
+  </g>
+  <text x="338" y="232" class="step-name">목차</text>
+  <text x="338" y="248" class="step-sub">Table of Contents</text>
+
+  <g transform="translate(408,90)">
+    <rect width="110" height="120" class="frame" rx="6" />
+    <rect x="20" y="20" width="35" height="20" class="skel" rx="2" />
+    <rect x="60" y="20" width="35" height="20" class="skel" rx="2" />
+    <rect x="20" y="46" width="35" height="20" class="skel" rx="2" />
+    <rect x="60" y="46" width="35" height="20" class="skel" rx="2" />
+    <circle cx="55" cy="100" r="10" class="step" />
+    <text x="55" y="103" class="step-text">4</text>
+  </g>
+  <text x="463" y="232" class="step-name">공통 가이드</text>
+  <text x="463" y="248" class="step-sub">Common Guide</text>
+
+  <g transform="translate(533,90)">
+    <rect width="110" height="120" class="frame" rx="6" />
+    <rect x="20" y="20" width="20" height="20" class="skel" rx="2" />
+    <rect x="65" y="20" width="20" height="20" class="skel" rx="2" />
+    <rect x="42" y="55" width="20" height="20" class="skel" rx="2" />
+    <line x1="40" y1="30" x2="65" y2="30" class="skel-line" />
+    <line x1="52" y1="40" x2="52" y2="55" class="skel-line" />
+    <circle cx="55" cy="100" r="10" class="step" />
+    <text x="55" y="103" class="step-text">5</text>
+  </g>
+  <text x="588" y="232" class="step-name">플로우차트</text>
+  <text x="588" y="248" class="step-sub">Flowchart</text>
+
+  <g transform="translate(658,90)">
+    <rect width="110" height="120" class="frame" rx="6" />
+    <rect x="14" y="18" width="35" height="40" class="skel" rx="2" />
+    <line x1="55" y1="22" x2="95" y2="22" class="skel-line" />
+    <line x1="55" y1="32" x2="92" y2="32" class="skel-line" />
+    <line x1="55" y1="42" x2="95" y2="42" class="skel-line" />
+    <line x1="55" y1="52" x2="88" y2="52" class="skel-line" />
+    <line x1="14" y1="70" x2="95" y2="70" class="skel-line" />
+    <line x1="14" y1="82" x2="95" y2="82" class="skel-line" />
+    <circle cx="55" cy="100" r="10" class="step" />
+    <text x="55" y="103" class="step-text">6</text>
+  </g>
+  <text x="713" y="232" class="step-name">개별 화면</text>
+  <text x="713" y="248" class="step-sub">Screens</text>
+
+  <!-- Arrows between boxes -->
+  <line x1="143" y1="150" x2="160" y2="150" class="arrow" />
+  <line x1="268" y1="150" x2="285" y2="150" class="arrow" />
+  <line x1="393" y1="150" x2="410" y2="150" class="arrow" />
+  <line x1="518" y1="150" x2="535" y2="150" class="arrow" />
+  <line x1="643" y1="150" x2="660" y2="150" class="arrow" />
+
+  <!-- Group labels positioned below text rows so no overlap -->
+  <rect x="33" y="275" width="360" height="28" class="group-bg" rx="4" />
+  <text x="213" y="293" class="group-text">문서 헤더 / 식별 정보 (1~3)</text>
+  <rect x="408" y="275" width="360" height="28" class="group-bg" rx="4" />
+  <text x="588" y="293" class="group-text">실제 설계 본문 (4~6)</text>
+
+  <text x="400" y="345" text-anchor="middle" style="fill:#6b7280;font-size:11px;font-style:italic">이 6단계가 갖춰지면 수백 페이지
+    설계서도 관리 가능한 문서가 됩니다.</text>
+</svg>
