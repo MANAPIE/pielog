@@ -1,0 +1,181 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title{fill:#111827;font-size:15px;font-weight:700}
+    .panel{fill:#fafafa;stroke:#1f2937;stroke-width:2}
+    .header{fill:#1f2937}.header-text{fill:#fff;font-size:10px;font-weight:600}
+    .meta-strip{fill:#f3f4f6}.meta-text{fill:#4b5563;font-size:10px}
+    .card{fill:#fff;stroke:#d1d5db;stroke-width:1}
+    .placeholder{fill:#e5e7eb}
+    .placeholder-text{fill:#9ca3af;font-size:11px;font-weight:600;text-anchor:middle}
+    .placeholder-text-sm{fill:#9ca3af;font-size:9px}
+    .num-circle{fill:#3b82f6}
+    .num-text{fill:#fff;font-size:9.5px;font-weight:700;text-anchor:middle}
+    .desc-bold{fill:#1f2937;font-size:11px;font-weight:700}
+    .desc{fill:#4b5563;font-size:10px}
+    .btn-primary{fill:#3b82f6}
+    .btn-primary-text{fill:#fff;font-size:9px;font-weight:700;text-anchor:middle}
+    .btn-secondary{fill:#fff;stroke:#d1d5db}
+    .btn-secondary-text{fill:#374151;font-size:9px;text-anchor:middle}
+    .divider{stroke:#e5e7eb}
+    .miss{fill:#fee2e2;stroke:#ef4444;stroke-width:1.5}
+    .miss-text{fill:#991b1b;font-size:10px;font-weight:700}
+    .miss-section{fill:#991b1b;font-size:11px;font-weight:700}
+    .miss-bullet{fill:#991b1b;font-size:10px}
+    .qmark{fill:#ef4444;font-size:18px;font-weight:800;text-anchor:middle}
+    .qmark-bg{fill:#fee2e2;stroke:#ef4444;stroke-width:1.5}
+    .qbox{fill:none;stroke:#ef4444;stroke-width:1;stroke-dasharray:4 3}
+    .qbox-title{fill:#991b1b;font-size:13px;font-weight:700;text-anchor:middle}
+    .qbox-q-bold{fill:#991b1b;font-size:10px;font-weight:600}
+    .qbox-q{fill:#991b1b;font-size:10px}
+    .qbox-footer{fill:#991b1b;font-size:11px;font-weight:700;text-anchor:middle}
+    .caption{fill:#6b7280;font-size:11px;font-style:italic;text-anchor:middle}
+    @media(prefers-color-scheme:dark){
+      .title{fill:#f5f5f5}
+      .panel{fill:#1a1a1a;stroke:#525252}
+      .header{fill:#404040}.meta-strip{fill:#262626}.meta-text{fill:#a3a3a3}
+      .card{fill:#171717;stroke:#404040}.placeholder{fill:#2a2a2a}
+      .placeholder-text{fill:#737373}.placeholder-text-sm{fill:#737373}
+      .num-circle{fill:#3b82f6}
+      .desc-bold{fill:#f5f5f5}.desc{fill:#a3a3a3}
+      .btn-secondary{fill:#171717;stroke:#404040}
+      .btn-secondary-text{fill:#d4d4d4}
+      .divider{stroke:#404040}
+      .miss{fill:#450a0a;stroke:#ef4444}
+      .miss-text{fill:#fca5a5}
+      .miss-section{fill:#fca5a5}
+      .miss-bullet{fill:#fca5a5}
+      .qmark{fill:#fca5a5}
+      .qmark-bg{fill:#450a0a;stroke:#ef4444}
+      .qbox{stroke:#ef4444}
+      .qbox-title{fill:#fca5a5}
+      .qbox-q-bold{fill:#fca5a5}
+      .qbox-q{fill:#fca5a5}
+      .qbox-footer{fill:#fca5a5}
+      .caption{fill:#737373}
+    }
+  </style>
+  <text x="400" y="32" text-anchor="middle" class="title">실습 B — 의도적 누락이 포함된 설계서</text>
+
+  <!-- Document mockup -->
+  <rect x="40" y="60" width="500" height="510" class="panel" rx="6"/>
+
+  <!-- Header -->
+  <rect x="40" y="60" width="500" height="32" class="header" rx="6 6 0 0"/>
+  <text x="60" y="82" class="header-text">PRD-002</text>
+  <text x="125" y="82" class="header-text">상품 상세</text>
+
+  <!-- Meta -->
+  <rect x="41" y="92" width="498" height="22" class="meta-strip"/>
+  <text x="60" y="107" class="meta-text">진입 경로: 상품 목록에서 아이템 탭</text>
+
+  <!-- Wireframe (small) -->
+  <rect x="60" y="135" width="160" height="240" class="card" rx="4"/>
+  <rect x="80" y="155" width="120" height="80" class="placeholder" rx="3"/>
+  <text x="140" y="200" class="placeholder-text">상품 이미지</text>
+  <circle cx="195" cy="148" r="9" class="num-circle"/>
+  <text x="195" y="151" class="num-text">1</text>
+  <rect x="80" y="245" width="120" height="14" class="placeholder" rx="2"/>
+  <rect x="80" y="263" width="80" height="12" class="placeholder" rx="2"/>
+  <rect x="80" y="280" width="60" height="10" class="placeholder" rx="2"/>
+  <circle cx="195" cy="262" r="9" class="num-circle"/>
+  <text x="195" y="265" class="num-text">2</text>
+  <rect x="80" y="300" width="55" height="22" class="btn-primary" rx="3"/>
+  <text x="107" y="315" class="btn-primary-text">구매</text>
+  <rect x="140" y="300" width="60" height="22" class="btn-secondary" rx="3"/>
+  <text x="170" y="315" class="btn-secondary-text">♡ 찜</text>
+  <circle cx="195" cy="290" r="9" class="num-circle"/>
+  <text x="195" y="293" class="num-text">3</text>
+  <circle cx="195" cy="335" r="9" class="num-circle"/>
+  <text x="195" y="338" class="num-text">4</text>
+  <line x1="80" y1="345" x2="200" y2="345" class="divider"/>
+  <text x="80" y="358" class="placeholder-text-sm">★★★ 리뷰 N개</text>
+  <circle cx="195" cy="358" r="9" class="num-circle"/>
+  <text x="195" y="361" class="num-text">5</text>
+
+  <!-- Description (sparse) -->
+  <rect x="240" y="135" width="280" height="240" class="card" rx="4"/>
+  <text x="252" y="155" class="desc-bold">[Description]</text>
+  <circle cx="260" cy="178" r="8" class="num-circle"/>
+  <text x="260" y="181" class="num-text">1</text>
+  <text x="275" y="181" class="desc">상품 이미지 영역 - 좌우 스와이프</text>
+  <circle cx="260" cy="208" r="8" class="num-circle"/>
+  <text x="260" y="211" class="num-text">2</text>
+  <text x="275" y="211" class="desc">상품 정보 - 상품명, 가격, 평점</text>
+  <circle cx="260" cy="238" r="8" class="num-circle"/>
+  <text x="260" y="241" class="num-text">3</text>
+  <text x="275" y="241" class="desc">구매하기 - 주문서로 이동</text>
+  <circle cx="260" cy="268" r="8" class="num-circle"/>
+  <text x="260" y="271" class="num-text">4</text>
+  <text x="275" y="271" class="desc">찜하기 - 찜 목록에 추가</text>
+  <circle cx="260" cy="298" r="8" class="num-circle"/>
+  <text x="260" y="301" class="num-text">5</text>
+  <text x="275" y="301" class="desc">리뷰 - 최근 3개, 전체 보기 이동</text>
+  <circle cx="260" cy="328" r="8" class="num-circle"/>
+  <text x="260" y="331" class="num-text">6</text>
+  <text x="275" y="331" class="desc">관련 상품 - 가로 스크롤 노출</text>
+
+  <!-- Question marks for missing items - uniform 20px padding all sides -->
+  <rect x="60" y="395" width="460" height="160" class="miss" rx="6"/>
+  <text x="80" y="419" class="miss-text">⚠ 빠진 항목 — 27개 질문 중 답을 찾을 수 없는 것이 거의 전부입니다</text>
+  <text x="80" y="442" class="miss-section">치명적 누락 (개발 시 즉시 멈추는 부분):</text>
+  <text x="80" y="462" class="miss-bullet">• 품절 시 구매 버튼 처리 미정의 → 결제 시도 가능</text>
+  <text x="80" y="477" class="miss-bullet">• 비로그인 상태에서 구매/찜 동작 미정의</text>
+  <text x="80" y="492" class="miss-bullet">• 목적지 화면 ID 미기재 (주문서 / 리뷰 목록)</text>
+  <text x="80" y="507" class="miss-bullet">• Loading / Error 상태 미정의</text>
+  <text x="80" y="522" class="miss-bullet">• 진입 경로 1개만 기재 → 뒤로가기 동작 정의 불가</text>
+  <text x="80" y="537" class="miss-bullet">• 전환 방식, 전달 데이터, 중복 탭 방지 등 거의 모두</text>
+
+  <!-- Right side: Question marks -->
+  <g transform="translate(560,60)">
+    <rect width="220" height="510" class="qbox" rx="6"/>
+    <text x="110" y="35" class="qbox-title">놓친 질문들</text>
+
+    <g transform="translate(5,5)">
+      <circle cx="30" cy="65" r="12" class="qmark-bg"/>
+      <text x="30" y="70" class="qmark">?</text>
+      <text x="50" y="63" class="qbox-q-bold">화면 설명은?</text>
+      <text x="50" y="76" class="qbox-q">진입 경로 더 있는데?</text>
+
+      <circle cx="30" cy="110" r="12" class="qmark-bg"/>
+      <text x="30" y="115" class="qmark">?</text>
+      <text x="50" y="108" class="qbox-q-bold">이미지 몇 장?</text>
+      <text x="50" y="121" class="qbox-q">핀치 줌? 인디케이터?</text>
+
+      <circle cx="30" cy="155" r="12" class="qmark-bg"/>
+      <text x="30" y="160" class="qmark">?</text>
+      <text x="50" y="153" class="qbox-q-bold">상품명 너무 길면?</text>
+      <text x="50" y="166" class="qbox-q">할인가 표시 방식?</text>
+
+      <circle cx="30" cy="200" r="12" class="qmark-bg"/>
+      <text x="30" y="205" class="qmark">?</text>
+      <text x="50" y="198" class="qbox-q-bold">품절이면?</text>
+      <text x="50" y="211" class="qbox-q">비로그인이면?</text>
+
+      <circle cx="30" cy="245" r="12" class="qmark-bg"/>
+      <text x="30" y="250" class="qmark">?</text>
+      <text x="50" y="243" class="qbox-q-bold">찜 해제는?</text>
+      <text x="50" y="256" class="qbox-q">피드백은 토스트?</text>
+
+      <circle cx="30" cy="290" r="12" class="qmark-bg"/>
+      <text x="30" y="295" class="qmark">?</text>
+      <text x="50" y="288" class="qbox-q-bold">목적지 ID?</text>
+      <text x="50" y="301" class="qbox-q">전환 방식? 데이터?</text>
+
+      <circle cx="30" cy="335" r="12" class="qmark-bg"/>
+      <text x="30" y="340" class="qmark">?</text>
+      <text x="50" y="333" class="qbox-q-bold">로딩 화면?</text>
+      <text x="50" y="346" class="qbox-q">에러 화면?</text>
+
+      <circle cx="30" cy="380" r="12" class="qmark-bg"/>
+      <text x="30" y="385" class="qmark">?</text>
+      <text x="50" y="378" class="qbox-q-bold">공유 기능 없나?</text>
+      <text x="50" y="391" class="qbox-q">구매 버튼 위치?</text>
+
+      <circle cx="30" cy="425" r="12" class="qmark-bg"/>
+      <text x="30" y="430" class="qmark">?</text>
+      <text x="50" y="423" class="qbox-q-bold">관련 상품 0개면?</text>
+      <text x="50" y="436" class="qbox-q">탭 시 동작?</text>
+    </g>
+    <text x="110" y="480" class="qbox-footer">✕ 27개의 답 없음</text>
+  </g>
+</svg>
