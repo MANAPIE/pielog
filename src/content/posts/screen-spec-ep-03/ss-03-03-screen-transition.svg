@@ -1,0 +1,245 @@
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title {
+      fill: #111827;
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .card {
+      stroke-width: 2
+    }
+
+    .c1 {
+      fill: #eff6ff;
+      stroke: #3b82f6
+    }
+
+    .c2 {
+      fill: #fef3c7;
+      stroke: #f59e0b
+    }
+
+    .c3 {
+      fill: #f3e8ff;
+      stroke: #a855f7
+    }
+
+    .c4 {
+      fill: #d1fae5;
+      stroke: #10b981
+    }
+
+    .icon {
+      font-size: 24px;
+      text-anchor: middle
+    }
+
+    .h {
+      font-size: 13px;
+      font-weight: 700;
+      text-anchor: middle
+    }
+
+    .h1 {
+      fill: #1e3a8a
+    }
+
+    .h2 {
+      fill: #92400e
+    }
+
+    .h3 {
+      fill: #581c87
+    }
+
+    .h4 {
+      fill: #065f46
+    }
+
+    .body {
+      font-size: 10.5px;
+      text-anchor: middle
+    }
+
+    .b1 {
+      fill: #1e40af
+    }
+
+    .b2 {
+      fill: #92400e
+    }
+
+    .b3 {
+      fill: #6b21a8
+    }
+
+    .b4 {
+      fill: #047857
+    }
+
+    .ex {
+      font-size: 10px;
+      font-family: 'Menlo', monospace;
+      text-anchor: middle
+    }
+
+    .e1 {
+      fill: #1e40af
+    }
+
+    .e2 {
+      fill: #92400e
+    }
+
+    .e3 {
+      fill: #6b21a8
+    }
+
+    .e4 {
+      fill: #047857
+    }
+
+    .arrow {
+      stroke: #9ca3af;
+      stroke-width: 2.5;
+      fill: none;
+      marker-end: url(#arr5)
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .title {
+        fill: #f5f5f5
+      }
+
+      .c1 {
+        fill: #0f1f3a;
+        stroke: #3b82f6
+      }
+
+      .c2 {
+        fill: #3a2a0a;
+        stroke: #f59e0b
+      }
+
+      .c3 {
+        fill: #2a103a;
+        stroke: #a855f7
+      }
+
+      .c4 {
+        fill: #0a3022;
+        stroke: #10b981
+      }
+
+      .h1 {
+        fill: #93c5fd
+      }
+
+      .h2 {
+        fill: #fcd34d
+      }
+
+      .h3 {
+        fill: #d8b4fe
+      }
+
+      .h4 {
+        fill: #6ee7b7
+      }
+
+      .b1 {
+        fill: #bfdbfe
+      }
+
+      .b2 {
+        fill: #fde68a
+      }
+
+      .b3 {
+        fill: #e9d5ff
+      }
+
+      .b4 {
+        fill: #a7f3d0
+      }
+
+      .e1 {
+        fill: #bfdbfe
+      }
+
+      .e2 {
+        fill: #fde68a
+      }
+
+      .e3 {
+        fill: #e9d5ff
+      }
+
+      .e4 {
+        fill: #a7f3d0
+      }
+
+      .arrow {
+        stroke: #737373
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr5" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af" />
+    </marker>
+  </defs>
+  <text x="400" y="35" text-anchor="middle" class="title">화면 전환 정의 4요소</text>
+
+  <!-- 4 boxes connected (uniform 170x160) -->
+  <g transform="translate(20,90)">
+    <rect width="170" height="170" class="card c1" rx="10" />
+    <text x="85" y="36" class="icon">🎯</text>
+    <text x="85" y="64" class="h h1">트리거</text>
+    <text x="85" y="86" class="body b1">어떤 동작이</text>
+    <text x="85" y="102" class="body b1">전환을 일으키는가</text>
+    <text x="85" y="130" class="ex e1">[구매하기] 버튼 탭</text>
+    <text x="85" y="146" class="ex e1">/ 스와이프 좌</text>
+  </g>
+
+  <line x1="195" y1="170" x2="216" y2="170" class="arrow" />
+
+  <g transform="translate(220,90)">
+    <rect width="170" height="170" class="card c2" rx="10" />
+    <text x="85" y="36" class="icon">📍</text>
+    <text x="85" y="64" class="h h2">목적지</text>
+    <text x="85" y="86" class="body b2">어느 화면으로</text>
+    <text x="85" y="102" class="body b2">이동하는가</text>
+    <text x="85" y="130" class="ex e2">ORD-001</text>
+    <text x="85" y="146" class="ex e2">(주문서)</text>
+  </g>
+
+  <line x1="395" y1="170" x2="416" y2="170" class="arrow" />
+
+  <g transform="translate(420,90)">
+    <rect width="170" height="170" class="card c3" rx="10" />
+    <text x="85" y="36" class="icon">🔀</text>
+    <text x="85" y="64" class="h h3">전환 방식</text>
+    <text x="85" y="86" class="body b3">어떻게 화면이</text>
+    <text x="85" y="102" class="body b3">바뀌는가</text>
+    <text x="85" y="130" class="ex e3">Push / Pop /</text>
+    <text x="85" y="146" class="ex e3">Modal / Replace</text>
+  </g>
+
+  <line x1="595" y1="170" x2="616" y2="170" class="arrow" />
+
+  <g transform="translate(620,90)">
+    <rect width="170" height="170" class="card c4" rx="10" />
+    <text x="85" y="36" class="icon">📦</text>
+    <text x="85" y="64" class="h h4">전달 데이터</text>
+    <text x="85" y="86" class="body b4">무엇을 함께</text>
+    <text x="85" y="102" class="body b4">넘기는가</text>
+    <text x="85" y="130" class="ex e4">item_id,</text>
+    <text x="85" y="146" class="ex e4">quantity</text>
+  </g>
+
+  <text x="400" y="290" text-anchor="middle" style="fill:#6b7280;font-size:11px;font-style:italic">"상세 화면으로 이동" 한 줄로는
+    부족합니다. 4가지가 모두 채워져야 추적 가능한 전환입니다.</text>
+</svg>
