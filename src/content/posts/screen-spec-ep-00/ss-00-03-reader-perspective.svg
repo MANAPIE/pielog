@@ -1,0 +1,230 @@
+<svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title {
+      fill: #111827;
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .doc-bg {
+      fill: #fafafa;
+      stroke: #d1d5db;
+      stroke-width: 1.5
+    }
+
+    .doc-line {
+      stroke: #e5e7eb;
+      stroke-width: 6;
+      stroke-linecap: round
+    }
+
+    .doc-label {
+      fill: #1f2937;
+      font-size: 11px;
+      font-weight: 700
+    }
+
+    .card {
+      stroke-width: 2
+    }
+
+    .card-design {
+      fill: #fef3c7;
+      stroke: #f59e0b
+    }
+
+    .card-dev {
+      fill: #dbeafe;
+      stroke: #3b82f6
+    }
+
+    .card-qa {
+      fill: #d1fae5;
+      stroke: #10b981
+    }
+
+    .card-cli {
+      fill: #fce7f3;
+      stroke: #ec4899
+    }
+
+    .role {
+      font-size: 13px;
+      font-weight: 700
+    }
+
+    .role-design {
+      fill: #92400e
+    }
+
+    .role-dev {
+      fill: #1e40af
+    }
+
+    .role-qa {
+      fill: #065f46
+    }
+
+    .role-cli {
+      fill: #9d174d
+    }
+
+    .focus {
+      font-size: 10px
+    }
+
+    .focus-design {
+      fill: #92400e
+    }
+
+    .focus-dev {
+      fill: #1e40af
+    }
+
+    .focus-qa {
+      fill: #065f46
+    }
+
+    .focus-cli {
+      fill: #9d174d
+    }
+
+    .arr-design {
+      stroke: #f59e0b
+    }
+
+    .arr-dev {
+      stroke: #3b82f6
+    }
+
+    .arr-qa {
+      stroke: #10b981
+    }
+
+    .arr-cli {
+      stroke: #ec4899
+    }
+
+    .arr {
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 4 3
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .title {
+        fill: #f5f5f5
+      }
+
+      .doc-bg {
+        fill: #1a1a1a;
+        stroke: #404040
+      }
+
+      .doc-line {
+        stroke: #404040
+      }
+
+      .doc-label {
+        fill: #f5f5f5
+      }
+
+      .card-design {
+        fill: #451a03;
+        stroke: #f59e0b
+      }
+
+      .card-dev {
+        fill: #1e293b;
+        stroke: #3b82f6
+      }
+
+      .card-qa {
+        fill: #064e3b;
+        stroke: #10b981
+      }
+
+      .card-cli {
+        fill: #500724;
+        stroke: #ec4899
+      }
+
+      .role-design {
+        fill: #fcd34d
+      }
+
+      .role-dev {
+        fill: #93c5fd
+      }
+
+      .role-qa {
+        fill: #6ee7b7
+      }
+
+      .role-cli {
+        fill: #fbcfe8
+      }
+
+      .focus-design {
+        fill: #fcd34d
+      }
+
+      .focus-dev {
+        fill: #93c5fd
+      }
+
+      .focus-qa {
+        fill: #6ee7b7
+      }
+
+      .focus-cli {
+        fill: #fbcfe8
+      }
+    }
+  </style>
+  <text x="400" y="35" text-anchor="middle" class="title">같은 문서, 다른 시선</text>
+
+  <!-- Center document -->
+  <rect x="320" y="170" width="160" height="200" class="doc-bg" rx="6" />
+  <text x="400" y="195" text-anchor="middle" class="doc-label">화면설계서</text>
+  <line x1="340" y1="215" x2="460" y2="215" class="doc-line" />
+  <line x1="340" y1="235" x2="450" y2="235" class="doc-line" />
+  <line x1="340" y1="255" x2="460" y2="255" class="doc-line" />
+  <line x1="340" y1="275" x2="430" y2="275" class="doc-line" />
+  <line x1="340" y1="295" x2="455" y2="295" class="doc-line" />
+  <line x1="340" y1="315" x2="445" y2="315" class="doc-line" />
+  <line x1="340" y1="335" x2="450" y2="335" class="doc-line" />
+
+  <!-- Top-left: Designer -->
+  <rect x="40" y="80" width="200" height="100" class="card card-design" rx="8" />
+  <text x="60" y="108" class="role role-design">🎨 디자이너</text>
+  <text x="60" y="130" class="focus focus-design">레이아웃 / 요소 배치</text>
+  <text x="60" y="146" class="focus focus-design">화면 간 이동 구조</text>
+  <text x="60" y="162" class="focus focus-design">상태별 화면 변화</text>
+  <line x1="240" y1="170" x2="320" y2="220" class="arr arr-design" />
+
+  <!-- Top-right: Developer -->
+  <rect x="560" y="80" width="200" height="100" class="card card-dev" rx="8" />
+  <text x="580" y="108" class="role role-dev">💻 개발자</text>
+  <text x="580" y="130" class="focus focus-dev">동작 로직 / 조건 분기</text>
+  <text x="580" y="146" class="focus focus-dev">데이터 소스 / API</text>
+  <text x="580" y="162" class="focus focus-dev">에러 처리 / 엣지 케이스</text>
+  <line x1="560" y1="170" x2="480" y2="220" class="arr arr-dev" />
+
+  <!-- Bottom-left: QA -->
+  <rect x="40" y="350" width="200" height="100" class="card card-qa" rx="8" />
+  <text x="60" y="378" class="role role-qa">🔍 QA</text>
+  <text x="60" y="400" class="focus focus-qa">검증 기준 / 경계값</text>
+  <text x="60" y="416" class="focus focus-qa">에러 메시지 일치</text>
+  <text x="60" y="432" class="focus focus-qa">화면 전환 경로</text>
+  <line x1="240" y1="350" x2="320" y2="320" class="arr arr-qa" />
+
+  <!-- Bottom-right: Client -->
+  <rect x="560" y="350" width="200" height="100" class="card card-cli" rx="8" />
+  <text x="580" y="378" class="role role-cli">🤝 클라이언트</text>
+  <text x="580" y="400" class="focus focus-cli">요구사항 반영 여부</text>
+  <text x="580" y="416" class="focus focus-cli">전체 사용 흐름</text>
+  <text x="580" y="432" class="focus focus-cli">기대와의 차이</text>
+  <line x1="560" y1="350" x2="480" y2="320" class="arr arr-cli" />
+</svg>

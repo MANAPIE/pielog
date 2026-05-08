@@ -1,0 +1,243 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title {
+      fill: #111827;
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .table-bg {
+      fill: #fff;
+      stroke: #e5e7eb;
+      stroke-width: 1
+    }
+
+    .head-bg {
+      fill: #f9fafb
+    }
+
+    .head-row-line {
+      stroke: #e5e7eb;
+      stroke-width: 1.5
+    }
+
+    .head-text {
+      fill: #374151;
+      font-size: 11px;
+      font-weight: 700
+    }
+
+    .row-line {
+      stroke: #f3f4f6;
+      stroke-width: 1
+    }
+
+    .ver-major {
+      fill: #3b82f6
+    }
+
+    .ver-minor {
+      fill: #9ca3af
+    }
+
+    .ver-text {
+      fill: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      text-anchor: middle
+    }
+
+    .cell-bold {
+      fill: #1f2937;
+      font-size: 10.5px;
+      font-weight: 600
+    }
+
+    .cell {
+      fill: #4b5563;
+      font-size: 10.5px
+    }
+
+    .cell-faint {
+      fill: #9ca3af;
+      font-size: 10.5px
+    }
+
+    .badge-good {
+      fill: #d1fae5
+    }
+
+    .badge-bad {
+      fill: #fee2e2
+    }
+
+    .badge-good-text {
+      fill: #065f46;
+      font-size: 9.5px;
+      font-weight: 700
+    }
+
+    .badge-bad-text {
+      fill: #991b1b;
+      font-size: 9.5px;
+      font-weight: 700
+    }
+
+    .arrow {
+      stroke: #10b981;
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arr2)
+    }
+
+    .annot {
+      fill: #10b981;
+      font-size: 11px;
+      font-weight: 600
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .title {
+        fill: #f5f5f5
+      }
+
+      .table-bg {
+        fill: #171717;
+        stroke: #404040
+      }
+
+      .head-bg {
+        fill: #262626
+      }
+
+      .head-row-line {
+        stroke: #404040
+      }
+
+      .head-text {
+        fill: #e5e5e5
+      }
+
+      .row-line {
+        stroke: #2a2a2a
+      }
+
+      .ver-major {
+        fill: #3b82f6
+      }
+
+      .ver-minor {
+        fill: #525252
+      }
+
+      .cell-bold {
+        fill: #f5f5f5
+      }
+
+      .cell {
+        fill: #a3a3a3
+      }
+
+      .cell-faint {
+        fill: #525252
+      }
+
+      .badge-good {
+        fill: #064e3b
+      }
+
+      .badge-bad {
+        fill: #450a0a
+      }
+
+      .badge-good-text {
+        fill: #6ee7b7
+      }
+
+      .badge-bad-text {
+        fill: #fca5a5
+      }
+
+      .annot {
+        fill: #34d399
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#10b981" />
+    </marker>
+  </defs>
+  <text x="400" y="32" text-anchor="middle" class="title">개정이력 (Document History)</text>
+
+  <!-- Table -->
+  <rect x="40" y="61" width="720" height="287" class="table-bg" rx="6" />
+  <rect x="40" y="60" width="720" height="34" class="head-bg" rx="6 6 0 0" />
+  <line x1="40" y1="94" x2="760" y2="94" class="head-row-line" />
+
+  <!-- Header -->
+  <text x="60" y="82" class="head-text">VERSION</text>
+  <text x="155" y="82" class="head-text">DATE</text>
+  <text x="245" y="82" class="head-text">CHANGE</text>
+  <text x="565" y="82" class="head-text">PAGE</text>
+  <text x="685" y="82" class="head-text">AUTHOR</text>
+
+  <!-- Row 1 -->
+  <rect x="62" y="106" width="40" height="20" class="ver-minor" rx="3" />
+  <text x="82" y="120" class="ver-text">V0.1</text>
+  <text x="155" y="120" class="cell">2025.03.15</text>
+  <text x="245" y="120" class="cell-bold">초안 작성 (홈, 검색, 상품 목록)</text>
+  <text x="565" y="120" class="cell">전체</text>
+  <text x="685" y="120" class="cell">홍기획</text>
+  <line x1="40" y1="138" x2="760" y2="138" class="row-line" />
+
+  <!-- Row 2 -->
+  <rect x="62" y="148" width="40" height="20" class="ver-minor" rx="3" />
+  <text x="82" y="162" class="ver-text">V0.2</text>
+  <text x="155" y="162" class="cell">2025.03.20</text>
+  <text x="245" y="162" class="cell-bold">검색 필터 UI 변경, 정렬 옵션 추가</text>
+  <text x="565" y="162" class="cell">SRC-001 (p.15~18)</text>
+  <text x="685" y="162" class="cell">홍기획</text>
+  <line x1="40" y1="180" x2="760" y2="180" class="row-line" />
+
+  <!-- Row 3 -->
+  <rect x="62" y="190" width="40" height="20" class="ver-minor" rx="3" />
+  <text x="82" y="204" class="ver-text">V0.3</text>
+  <text x="155" y="204" class="cell">2025.03.25</text>
+  <text x="245" y="204" class="cell-bold">내부 리뷰 피드백 반영 (에러 상태 추가)</text>
+  <text x="565" y="204" class="cell">전체</text>
+  <text x="685" y="204" class="cell">홍기획</text>
+  <line x1="40" y1="222" x2="760" y2="222" class="row-line" />
+
+  <!-- Row 4 - Major version -->
+  <rect x="62" y="232" width="40" height="20" class="ver-major" rx="3" />
+  <text x="82" y="246" class="ver-text">V1.0</text>
+  <text x="155" y="246" class="cell">2025.04.01</text>
+  <text x="245" y="246" class="cell-bold">1차 클라이언트 전달 버전</text>
+  <text x="565" y="246" class="cell">전체</text>
+  <text x="685" y="246" class="cell">홍기획</text>
+  <line x1="40" y1="264" x2="760" y2="264" class="row-line" />
+
+  <!-- Row 5 -->
+  <rect x="62" y="274" width="40" height="20" class="ver-major" rx="3" />
+  <text x="82" y="288" class="ver-text">V1.1</text>
+  <text x="155" y="288" class="cell">2025.04.08</text>
+  <text x="245" y="288" class="cell-bold">클라이언트 피드백 반영: 장바구니 플로우 변경</text>
+  <text x="565" y="288" class="cell">CRT-001, ORD-001</text>
+  <text x="685" y="288" class="cell">홍기획</text>
+  <line x1="40" y1="306" x2="760" y2="306" class="row-line" />
+
+  <!-- Row 6 -->
+  <rect x="62" y="316" width="40" height="20" class="ver-major" rx="3" />
+  <text x="82" y="330" class="ver-text">V1.2</text>
+  <text x="155" y="330" class="cell">2026.05.08</text>
+  <text x="245" y="330" class="cell-faint">[Bad] 수정 반영</text>
+  <rect x="475" y="318" width="60" height="18" class="badge-bad" rx="9" />
+  <text x="505" y="330" text-anchor="middle" class="badge-bad-text">불충분</text>
+  <text x="565" y="330" class="cell-faint">-</text>
+  <text x="685" y="330" class="cell">홍기획</text>
+
+  <!-- Annotations -->
+  <text x="245" y="370" class="annot">✓ 좋은 개정이력은 "무엇이, 어디서, 왜" 바뀌었는지 한눈에 보입니다.</text>
+</svg>

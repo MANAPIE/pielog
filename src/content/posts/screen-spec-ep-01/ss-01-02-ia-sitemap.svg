@@ -1,0 +1,204 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title {
+      fill: #111827;
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .root {
+      fill: #1f2937;
+      stroke: #1f2937
+    }
+
+    .root-text {
+      fill: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      text-anchor: middle
+    }
+
+    .d1 {
+      fill: #3b82f6;
+      stroke: #2563eb
+    }
+
+    .d1-text {
+      fill: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      text-anchor: middle
+    }
+
+    .d2 {
+      fill: #dbeafe;
+      stroke: #3b82f6;
+      stroke-width: 1.5
+    }
+
+    .d2-text {
+      fill: #1e40af;
+      font-size: 10px;
+      font-weight: 600;
+      text-anchor: middle
+    }
+
+    .d2-id {
+      fill: #3b82f6;
+      font-size: 9px;
+      text-anchor: middle;
+      font-family: 'Menlo', monospace
+    }
+
+    .line {
+      stroke: #9ca3af;
+      stroke-width: 1.5;
+      fill: none
+    }
+
+    .depth-label {
+      fill: #9ca3af;
+      font-size: 9px;
+      font-weight: 600;
+      text-anchor: end
+    }
+
+    .caption {
+      fill: #6b7280;
+      font-size: 11px;
+      font-style: italic;
+      text-anchor: middle
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .title {
+        fill: #f5f5f5
+      }
+
+      .root {
+        fill: #404040;
+        stroke: #525252
+      }
+
+      .d1 {
+        fill: #3b82f6;
+        stroke: #60a5fa
+      }
+
+      .d2 {
+        fill: #172554;
+        stroke: #3b82f6
+      }
+
+      .d2-text {
+        fill: #bfdbfe
+      }
+
+      .d2-id {
+        fill: #93c5fd
+      }
+
+      .line {
+        stroke: #525252
+      }
+
+      .caption {
+        fill: #737373
+      }
+
+      .depth-label {
+        fill: #737373
+      }
+    }
+  </style>
+  <text x="400" y="32" text-anchor="middle" class="title">메뉴구조도 예시 — 이커머스 앱</text>
+
+  <!-- Depth labels (right-aligned, no overlap) -->
+  <text x="30" y="83" class="depth-label">Root</text>
+  <text x="30" y="163" class="depth-label">1 Dep.</text>
+  <text x="30" y="226" class="depth-label">2 Dep.</text>
+
+  <!-- Root -->
+  <rect x="340" y="65" width="120" height="36" class="root" rx="6" />
+  <text x="400" y="88" class="root-text">서비스 ROOT</text>
+
+  <!-- Lines from root down to horizontal bus -->
+  <line x1="400" y1="101" x2="400" y2="125" class="line" />
+  <line x1="93" y1="125" x2="707" y2="125" class="line" />
+
+  <!-- Vertical drops to D1 -->
+  <line x1="93" y1="125" x2="93" y2="145" class="line" />
+  <line x1="246" y1="125" x2="246" y2="145" class="line" />
+  <line x1="400" y1="125" x2="400" y2="145" class="line" />
+  <line x1="554" y1="125" x2="554" y2="145" class="line" />
+  <line x1="707" y1="125" x2="707" y2="145" class="line" />
+
+  <!-- D1 nodes (5 cols, w=120, evenly spaced) -->
+  <rect x="33" y="145" width="120" height="36" class="d1" rx="5" />
+  <text x="93" y="168" class="d1-text">홈</text>
+  <rect x="186" y="145" width="120" height="36" class="d1" rx="5" />
+  <text x="246" y="168" class="d1-text">검색</text>
+  <rect x="340" y="145" width="120" height="36" class="d1" rx="5" />
+  <text x="400" y="168" class="d1-text">상품</text>
+  <rect x="494" y="145" width="120" height="36" class="d1" rx="5" />
+  <text x="554" y="168" class="d1-text">주문</text>
+  <rect x="647" y="145" width="120" height="36" class="d1" rx="5" />
+  <text x="707" y="168" class="d1-text">MY</text>
+
+  <!-- Vertical drops to D2 -->
+  <line x1="93" y1="181" x2="93" y2="205" class="line" />
+  <line x1="246" y1="181" x2="246" y2="205" class="line" />
+  <line x1="400" y1="181" x2="400" y2="205" class="line" />
+  <line x1="554" y1="181" x2="554" y2="205" class="line" />
+  <line x1="707" y1="181" x2="707" y2="205" class="line" />
+
+  <!-- D2 nodes - stacked vertically (2 per column), w=120 -->
+  <!-- 홈 column -->
+  <rect x="33" y="205" width="120" height="44" class="d2" rx="5" />
+  <text x="93" y="222" class="d2-text">홈 메인</text>
+  <text x="93" y="240" class="d2-id">HOME-001</text>
+  <line x1="93" y1="249" x2="93" y2="261" class="line" />
+  <rect x="33" y="261" width="120" height="44" class="d2" rx="5" />
+  <text x="93" y="278" class="d2-text">알림 목록</text>
+  <text x="93" y="296" class="d2-id">HOME-002</text>
+
+  <!-- 검색 column -->
+  <rect x="186" y="205" width="120" height="44" class="d2" rx="5" />
+  <text x="246" y="222" class="d2-text">검색 결과</text>
+  <text x="246" y="240" class="d2-id">SRC-001</text>
+  <line x1="246" y1="249" x2="246" y2="261" class="line" />
+  <rect x="186" y="261" width="120" height="44" class="d2" rx="5" />
+  <text x="246" y="278" class="d2-text">최근 검색어</text>
+  <text x="246" y="296" class="d2-id">SRC-002</text>
+
+  <!-- 상품 column -->
+  <rect x="340" y="205" width="120" height="44" class="d2" rx="5" />
+  <text x="400" y="222" class="d2-text">상품 목록</text>
+  <text x="400" y="240" class="d2-id">PRD-001</text>
+  <line x1="400" y1="249" x2="400" y2="261" class="line" />
+  <rect x="340" y="261" width="120" height="44" class="d2" rx="5" />
+  <text x="400" y="278" class="d2-text">상품 상세</text>
+  <text x="400" y="296" class="d2-id">PRD-002</text>
+
+  <!-- 주문 column -->
+  <rect x="494" y="205" width="120" height="44" class="d2" rx="5" />
+  <text x="554" y="222" class="d2-text">주문서</text>
+  <text x="554" y="240" class="d2-id">ORD-001</text>
+  <line x1="554" y1="249" x2="554" y2="261" class="line" />
+  <rect x="494" y="261" width="120" height="44" class="d2" rx="5" />
+  <text x="554" y="278" class="d2-text">주문 완료</text>
+  <text x="554" y="296" class="d2-id">ORD-002</text>
+
+  <!-- MY column -->
+  <rect x="647" y="205" width="120" height="44" class="d2" rx="5" />
+  <text x="707" y="222" class="d2-text">마이 홈</text>
+  <text x="707" y="240" class="d2-id">MY-001</text>
+  <line x1="707" y1="249" x2="707" y2="261" class="line" />
+  <rect x="647" y="261" width="120" height="44" class="d2" rx="5" />
+  <text x="707" y="278" class="d2-text">설정</text>
+  <text x="707" y="296" class="d2-id">SET-001</text>
+
+  <text x="400" y="370" class="caption">트리 형태로 서비스의 계층 구조를 보여줍니다. 모든 화면에 ID를 부여합니다.</text>
+  <text x="400" y="395" class="caption">화면 수가 많으면 사용자/관리자 영역으로 나눠서 작성합니다.</text>
+</svg>

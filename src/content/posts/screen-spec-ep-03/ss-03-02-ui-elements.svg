@@ -1,0 +1,435 @@
+<svg viewBox="0 0 800 750" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title {
+      fill: #111827;
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .card {
+      stroke-width: 2
+    }
+
+    .c1 {
+      fill: #eff6ff;
+      stroke: #3b82f6
+    }
+
+    .c2 {
+      fill: #fef3c7;
+      stroke: #f59e0b
+    }
+
+    .c3 {
+      fill: #d1fae5;
+      stroke: #10b981
+    }
+
+    .c4 {
+      fill: #f3e8ff;
+      stroke: #a855f7
+    }
+
+    .c5 {
+      fill: #fce7f3;
+      stroke: #ec4899
+    }
+
+    .c6 {
+      fill: #ffedd5;
+      stroke: #fb923c
+    }
+
+    .c7 {
+      fill: #ccfbf1;
+      stroke: #14b8a6
+    }
+
+    .c8 {
+      fill: #fee2e2;
+      stroke: #ef4444
+    }
+
+    .h {
+      font-size: 13px;
+      font-weight: 700
+    }
+
+    .h1 {
+      fill: #1e3a8a
+    }
+
+    .h2 {
+      fill: #92400e
+    }
+
+    .h3 {
+      fill: #065f46
+    }
+
+    .h4 {
+      fill: #581c87
+    }
+
+    .h5 {
+      fill: #9d174d
+    }
+
+    .h6 {
+      fill: #9a3412
+    }
+
+    .h7 {
+      fill: #115e59
+    }
+
+    .h8 {
+      fill: #991b1b
+    }
+
+    .item {
+      fill: #1f2937;
+      font-size: 10px
+    }
+
+    .demo-input {
+      fill: #fff;
+      stroke: #3b82f6;
+      stroke-width: 1.5
+    }
+
+    .demo-btn {
+      fill: #3b82f6
+    }
+
+    .demo-btn-text {
+      fill: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      text-anchor: middle
+    }
+
+    .demo-list {
+      fill: #fff;
+      stroke: #10b981;
+      stroke-width: 1
+    }
+
+    .demo-list-line {
+      stroke: #d1fae5;
+      stroke-width: 3;
+      stroke-linecap: round
+    }
+
+    .demo-modal {
+      fill: #fff;
+      stroke: #a855f7;
+      stroke-width: 1.5
+    }
+
+    .demo-tab {
+      fill: #fff;
+      stroke: #ec4899;
+      stroke-width: 1
+    }
+
+    .demo-tab-active {
+      fill: #ec4899
+    }
+
+    .demo-toggle-bg {
+      fill: #fb923c
+    }
+
+    .demo-toggle-handle {
+      fill: #fff
+    }
+
+    .demo-dropdown {
+      fill: #fff;
+      stroke: #14b8a6;
+      stroke-width: 1.5
+    }
+
+    .demo-page {
+      fill: #fff;
+      stroke: #ef4444;
+      stroke-width: 1
+    }
+
+    .placeholder-small {
+      fill: #9ca3af;
+      font-size: 9px
+    }
+
+    .footer {
+      fill: #6b7280;
+      font-size: 11px;
+      font-style: italic;
+      text-anchor: middle
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .title {
+        fill: #f5f5f5
+      }
+
+      .c1 {
+        fill: #0f1f3a;
+        stroke: #3b82f6
+      }
+
+      .c2 {
+        fill: #3a2a0a;
+        stroke: #f59e0b
+      }
+
+      .c3 {
+        fill: #0a3022;
+        stroke: #10b981
+      }
+
+      .c4 {
+        fill: #2a103a;
+        stroke: #a855f7
+      }
+
+      .c5 {
+        fill: #3a0a22;
+        stroke: #ec4899
+      }
+
+      .c6 {
+        fill: #3a1f0a;
+        stroke: #fb923c
+      }
+
+      .c7 {
+        fill: #042f2e;
+        stroke: #14b8a6
+      }
+
+      .c8 {
+        fill: #450a0a;
+        stroke: #ef4444
+      }
+
+      .h1 {
+        fill: #93c5fd
+      }
+
+      .h2 {
+        fill: #fcd34d
+      }
+
+      .h3 {
+        fill: #6ee7b7
+      }
+
+      .h4 {
+        fill: #d8b4fe
+      }
+
+      .h5 {
+        fill: #fbcfe8
+      }
+
+      .h6 {
+        fill: #fdba74
+      }
+
+      .h7 {
+        fill: #5eead4
+      }
+
+      .h8 {
+        fill: #fca5a5
+      }
+
+      .item {
+        fill: #e5e5e5
+      }
+
+      .demo-input {
+        fill: #171717;
+        stroke: #3b82f6
+      }
+
+      .demo-list {
+        fill: #171717;
+        stroke: #10b981
+      }
+
+      .demo-list-line {
+        stroke: #064e3b
+      }
+
+      .demo-modal {
+        fill: #171717;
+        stroke: #a855f7
+      }
+
+      .demo-tab {
+        fill: #171717;
+        stroke: #ec4899
+      }
+
+      .demo-dropdown {
+        fill: #171717;
+        stroke: #14b8a6
+      }
+
+      .demo-page {
+        fill: #171717;
+        stroke: #ef4444
+      }
+
+      .placeholder-small {
+        fill: #737373
+      }
+
+      .footer {
+        fill: #a3a3a3
+      }
+    }
+  </style>
+  <text x="400" y="32" text-anchor="middle" class="title">UI 요소별 필수 정의 항목</text>
+
+  <!-- Layout per card (uniform 245x200):
+       y=28: title
+       y=44~80: demo preview area (centered demos)
+       y=110~174: 5 item slots (gap 16, more space above for breathing) -->
+
+  <!-- Row 1 -->
+  <!-- 1. Input Field -->
+  <g transform="translate(30,60)">
+    <rect width="245" height="200" class="card c1" rx="8" />
+    <text x="20" y="28" class="h h1">📝 입력 필드</text>
+    <rect x="20" y="55" width="160" height="22" class="demo-input" rx="3" />
+    <text x="28" y="70" class="placeholder-small">이메일 주소</text>
+    <text x="20" y="110" class="item">• Input type / Placeholder</text>
+    <text x="20" y="126" class="item">• 글자 수 제한 (최소/최대)</text>
+    <text x="20" y="142" class="item">• 키보드 타입 (모바일)</text>
+    <text x="20" y="158" class="item">• 유효성 검증 시점·메시지</text>
+    <text x="20" y="174" class="item">• 클리어 버튼 / Autofill</text>
+  </g>
+
+  <!-- 2. Button -->
+  <g transform="translate(285,60)">
+    <rect width="245" height="200" class="card c2" rx="8" />
+    <text x="20" y="28" class="h h2">🔘 버튼</text>
+    <rect x="20" y="52" width="100" height="26" class="demo-btn" rx="4" />
+    <text x="70" y="69" class="demo-btn-text">구매하기</text>
+    <text x="20" y="110" class="item">• 버튼 텍스트 / 탭 동작</text>
+    <text x="20" y="126" class="item">• 활성 조건 / 비활성 표현</text>
+    <text x="20" y="142" class="item">• 로딩 상태 표현</text>
+    <text x="20" y="158" class="item">• 중복 탭 방지</text>
+    <text x="20" y="174" class="item">• 성공 / 실패 시 동작</text>
+  </g>
+
+  <!-- 3. List -->
+  <g transform="translate(540,60)">
+    <rect width="245" height="200" class="card c3" rx="8" />
+    <text x="20" y="28" class="h h3">📋 리스트 / 테이블</text>
+    <rect x="20" y="46" width="200" height="40" class="demo-list" rx="3" />
+    <line x1="35" y1="57" x2="135" y2="57" class="demo-list-line" />
+    <line x1="35" y1="67" x2="100" y2="67" class="demo-list-line" />
+    <line x1="35" y1="78" x2="125" y2="77" class="demo-list-line" />
+    <text x="20" y="110" class="item">• 아이템 구성 / 정렬 기준</text>
+    <text x="20" y="126" class="item">• 페이징 방식 / 로딩 건수</text>
+    <text x="20" y="142" class="item">• 빈 상태 화면</text>
+    <text x="20" y="158" class="item">• 말줄임 처리</text>
+    <text x="20" y="174" class="item">• 스와이프 / 탭 동작</text>
+  </g>
+
+  <!-- Row 2 -->
+  <!-- 4. Modal/Popup -->
+  <g transform="translate(30,280)">
+    <rect width="245" height="200" class="card c4" rx="8" />
+    <text x="20" y="28" class="h h4">💬 모달 / 팝업</text>
+    <rect x="20" y="44" width="160" height="42" class="demo-modal" rx="4" />
+    <text x="100" y="58" text-anchor="middle" class="placeholder-small" style="font-weight:600">알림</text>
+    <text x="100" y="70" text-anchor="middle" class="placeholder-small">정말 삭제하시겠습니까?</text>
+    <rect x="100" y="76" width="36" height="6" class="demo-btn" rx="2" />
+    <rect x="140" y="76" width="36" height="6" stroke="#a855f7" stroke-width="0.5" fill="none" rx="2" />
+    <text x="20" y="110" class="item">• 유형 / 호출 조건</text>
+    <text x="20" y="126" class="item">• 닫기 규칙 / 딤 처리</text>
+    <text x="20" y="142" class="item">• 중첩 정책</text>
+    <text x="20" y="158" class="item">• 자동 소멸 시간</text>
+    <text x="20" y="174" class="item">• 닫힘 후 복귀 화면</text>
+  </g>
+
+  <!-- 5. Tab -->
+  <g transform="translate(285,280)">
+    <rect width="245" height="200" class="card c5" rx="8" />
+    <text x="20" y="28" class="h h5">🔖 탭 / 네비게이션</text>
+    <rect x="20" y="51.5" width="60" height="22.5" class="demo-tab-active" rx="3 3 0 0" />
+    <text x="50" y="67" text-anchor="middle" style="fill:#fff;font-size:10px;font-weight:600">전체</text>
+    <rect x="80" y="52" width="50" height="22" class="demo-tab" rx="3 3 0 0" />
+    <text x="105" y="67" text-anchor="middle" style="fill:#9d174d;font-size:10px">신상</text>
+    <rect x="130" y="52" width="50" height="22" class="demo-tab" rx="3 3 0 0" />
+    <text x="155" y="67" text-anchor="middle" style="fill:#9d174d;font-size:10px">인기</text>
+    <line x1="20" y1="74" x2="200" y2="74" stroke="#ec4899" stroke-width="1" />
+    <text x="20" y="110" class="item">• 기본 선택 탭</text>
+    <text x="20" y="126" class="item">• 전환 시 데이터 유지/초기화</text>
+    <text x="20" y="142" class="item">• 탭 수 고정 / 가변</text>
+    <text x="20" y="158" class="item">• 많을 시 스크롤 처리</text>
+    <text x="20" y="174" class="item">• 선택 탭의 시각적 구분</text>
+  </g>
+
+  <!-- 6. Toggle/Checkbox/Radio -->
+  <g transform="translate(540,280)">
+    <rect width="245" height="200" class="card c6" rx="8" />
+    <text x="20" y="28" class="h h6">⏼ 토글 / 체크 / 라디오</text>
+    <rect x="20" y="56" width="32" height="18" class="demo-toggle-bg" rx="9" />
+    <circle cx="44" cy="65" r="6.5" class="demo-toggle-handle" />
+    <rect x="65" y="58" width="14" height="14" stroke="#fb923c" stroke-width="1.5" fill="#fb923c" rx="2" />
+    <text x="68" y="69" style="fill:#fff;font-size:11px;font-weight:700">✓</text>
+    <circle cx="100" cy="65" r="6" stroke="#fb923c" stroke-width="1.5" fill="none" />
+    <circle cx="100" cy="65" r="3" class="demo-toggle-bg" />
+    <text x="20" y="110" class="item">• 기본 상태 (ON/OFF, 선택)</text>
+    <text x="20" y="126" class="item">• 즉시 반영 / 롤백</text>
+    <text x="20" y="142" class="item">• 전체 선택 (체크박스)</text>
+    <text x="20" y="158" class="item">• 미선택 허용 (라디오)</text>
+    <text x="20" y="174" class="item">• 그룹 단위 선택 처리</text>
+  </g>
+
+  <!-- Row 3 (centered, 2 cards) -->
+  <!-- 7. Dropdown / Select -->
+  <g transform="translate(157,500)">
+    <rect width="245" height="200" class="card c7" rx="8" />
+    <text x="20" y="28" class="h h7">🔽 드롭다운 / 셀렉트</text>
+    <rect x="20" y="55" width="160" height="22" class="demo-dropdown" rx="3" />
+    <text x="28" y="69" class="placeholder-small">카테고리 선택</text>
+    <text x="170" y="68" class="placeholder-small" style="fill:#14b8a6;font-weight:700">▾</text>
+    <text x="20" y="110" class="item">• 목록 데이터 소스</text>
+    <text x="20" y="126" class="item">• 기본 선택값</text>
+    <text x="20" y="142" class="item">• 검색 가능 여부</text>
+    <text x="20" y="158" class="item">• 다중 선택 여부</text>
+    <text x="20" y="174" class="item">• 옵션 수 많을 시 스크롤</text>
+  </g>
+
+  <!-- 8. Pagination -->
+  <g transform="translate(412,500)">
+    <rect width="245" height="200" class="card c8" rx="8" />
+    <text x="20" y="28" class="h h8">📄 페이징</text>
+    <rect x="20" y="55" width="22" height="22" class="demo-page" rx="3" />
+    <text x="31" y="70" text-anchor="middle" class="placeholder-small">‹</text>
+    <rect x="46" y="55" width="22" height="22" fill="#ef4444" rx="3" />
+    <text x="57" y="70" text-anchor="middle" style="fill:#fff;font-size:10px;font-weight:700">1</text>
+    <rect x="72" y="55" width="22" height="22" class="demo-page" rx="3" />
+    <text x="83" y="70" text-anchor="middle" class="placeholder-small">2</text>
+    <rect x="98" y="55" width="22" height="22" class="demo-page" rx="3" />
+    <text x="109" y="70" text-anchor="middle" class="placeholder-small">3</text>
+    <rect x="124" y="55" width="22" height="22" class="demo-page" rx="3" />
+    <text x="135" y="70" text-anchor="middle" class="placeholder-small">›</text>
+    <text x="20" y="110" class="item">• 무한스크롤 / 페이지 번호</text>
+    <text x="20" y="126" class="item">• 1회 로딩 건수</text>
+    <text x="20" y="142" class="item">• 추가 로딩 트리거</text>
+    <text x="20" y="158" class="item">• 마지막 페이지 안내</text>
+    <text x="20" y="174" class="item">• 검색·필터 변경 시 초기화</text>
+  </g>
+
+  <text x="400" y="735" class="footer">유형마다 정의해야 할 항목이 다릅니다. 빠뜨리면 개발자 질문이 쏟아집니다.</text>
+</svg>

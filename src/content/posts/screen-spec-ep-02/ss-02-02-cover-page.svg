@@ -1,0 +1,197 @@
+<svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg"
+  font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title {
+      fill: #111827;
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .cover {
+      fill: #fafafa;
+      stroke: #1f2937;
+      stroke-width: 2
+    }
+
+    .accent-bar {
+      fill: #3b82f6
+    }
+
+    .doc-title {
+      fill: #1f2937;
+      font-size: 24px;
+      font-weight: 800;
+      text-anchor: middle
+    }
+
+    .doc-sub {
+      fill: #6b7280;
+      font-size: 13px;
+      text-anchor: middle
+    }
+
+    .field-label {
+      fill: #9ca3af;
+      font-size: 10px;
+      font-weight: 600
+    }
+
+    .field-value {
+      fill: #1f2937;
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .draft {
+      fill: #fef3c7;
+      stroke: #f59e0b;
+      stroke-width: 1.5
+    }
+
+    .draft-text {
+      fill: #92400e;
+      font-size: 11px;
+      font-weight: 700;
+      text-anchor: middle
+    }
+
+    .meta-divider {
+      stroke: #e5e7eb;
+      stroke-width: 1
+    }
+
+    .checklist {
+      fill: #374151;
+      font-size: 11px;
+      font-weight: 600
+    }
+
+    .check-good {
+      fill: #10b981;
+      font-size: 13px;
+      font-weight: 700
+    }
+
+    .annot {
+      fill: #3b82f6;
+      font-size: 10px;
+      font-weight: 600
+    }
+
+    .annot-line {
+      stroke: #3b82f6;
+      stroke-width: 1;
+      fill: none;
+      stroke-dasharray: 2 2
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .title {
+        fill: #f5f5f5
+      }
+
+      .cover {
+        fill: #1a1a1a;
+        stroke: #525252
+      }
+
+      .doc-title {
+        fill: #f5f5f5
+      }
+
+      .doc-sub {
+        fill: #a3a3a3
+      }
+
+      .field-label {
+        fill: #737373
+      }
+
+      .field-value {
+        fill: #e5e5e5
+      }
+
+      .draft {
+        fill: #3a2a0a;
+        stroke: #f59e0b
+      }
+
+      .draft-text {
+        fill: #fcd34d
+      }
+
+      .meta-divider {
+        stroke: #404040
+      }
+
+      .checklist {
+        fill: #d4d4d4
+      }
+
+      .annot {
+        fill: #60a5fa
+      }
+
+      .annot-line {
+        stroke: #60a5fa
+      }
+    }
+  </style>
+  <text x="400" y="32" text-anchor="middle" class="title">표지 구성 예시</text>
+
+  <!-- Cover document -->
+  <rect x="200" y="60" width="400" height="450" class="cover" rx="6" />
+  <rect x="200" y="60" width="400" height="8" class="accent-bar" rx="6 6 0 0" />
+
+  <!-- Draft badge -->
+  <rect x="220" y="90" width="80" height="24" class="draft" rx="12" />
+  <text x="260" y="106" class="draft-text">DRAFT</text>
+
+  <g transform="translate(0,-30)">
+    <!-- Title -->
+    <text x="400" y="190" class="doc-title">화면설계서</text>
+    <text x="400" y="218" class="doc-sub">Screen Specification Document</text>
+
+    <line x1="240" y1="250" x2="560" y2="250" class="meta-divider" />
+
+    <!-- Fields -->
+    <text x="240" y="278" class="field-label">PROJECT</text>
+    <text x="240" y="296" class="field-value">마켓플레이스 앱 구축 프로젝트</text>
+
+    <text x="240" y="328" class="field-label">PLATFORM</text>
+    <text x="240" y="346" class="field-value">Mobile App (iOS / Android)</text>
+
+    <text x="240" y="378" class="field-label">SCOPE</text>
+    <text x="240" y="396" class="field-value">사용자 영역</text>
+
+    <line x1="240" y1="420" x2="560" y2="420" class="meta-divider" />
+
+    <text x="240" y="448" class="field-label">VERSION</text>
+    <text x="240" y="466" class="field-value">v1.2</text>
+
+    <text x="380" y="448" class="field-label">DATE</text>
+    <text x="380" y="466" class="field-value">2026.05.08</text>
+
+    <text x="240" y="488" class="field-label">AUTHOR</text>
+    <text x="240" y="506" class="field-value">홍기획 / 서비스기획팀</text>
+
+    <text x="380" y="488" class="field-label">REVIEWER</text>
+    <text x="380" y="506" class="field-value">김팀장 / 이PM</text>
+  </g>
+  <!-- Annotations -->
+  <line x1="200" y1="100" x2="120" y2="100" class="annot-line" />
+  <text x="60" y="98" class="annot">DRAFT 표시</text>
+  <text x="60" y="112" class="annot" style="font-size:9px;font-weight:400;fill:#6b7280">미완성 표기</text>
+
+  <g transform="translate(0,-30)">
+    <line x1="600" y1="200" x2="680" y2="200" class="annot-line" />
+    <text x="688" y="198" class="annot">문서 정체성</text>
+    <text x="688" y="212" class="annot" style="font-size:9px;font-weight:400;fill:#6b7280">한눈에 식별</text>
+
+    <line x1="600" y1="455" x2="680" y2="455" class="annot-line" />
+    <text x="688" y="453" class="annot">버전·작성자</text>
+    <text x="688" y="467" class="annot" style="font-size:9px;font-weight:400;fill:#6b7280">파일명과 일치</text>
+  </g>
+  <text x="400" y="530" text-anchor="middle" style="fill:#6b7280;font-size:11px;font-style:italic">표지를 예쁘게 꾸미기보다, 필수 항목이
+    빠짐없이 들어가 있는지가 더 중요합니다.</text>
+</svg>

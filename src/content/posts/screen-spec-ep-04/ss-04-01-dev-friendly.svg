@@ -1,0 +1,145 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <style>
+    .title{fill:#111827;font-size:15px;font-weight:700}
+    .sub{fill:#6b7280;font-size:11px}
+    .card{stroke-width:2}
+    .c1{fill:#eff6ff;stroke:#3b82f6}.c2{fill:#fef3c7;stroke:#f59e0b}
+    .c3{fill:#f3e8ff;stroke:#a855f7}.c4{fill:#d1fae5;stroke:#10b981}
+    .c5{fill:#fce7f3;stroke:#ec4899}
+    .num-bg{stroke-width:0}
+    .n1{fill:#3b82f6}.n2{fill:#f59e0b}.n3{fill:#a855f7}.n4{fill:#10b981}.n5{fill:#ec4899}
+    .num-text{fill:#fff;font-size:18px;font-weight:800;text-anchor:middle}
+    .h{font-size:13px;font-weight:700}
+    .h1{fill:#1e3a8a}.h2{fill:#92400e}.h3{fill:#581c87}.h4{fill:#065f46}.h5{fill:#9d174d}
+    .body{font-size:10.5px}
+    .b1{fill:#1e40af}.b2{fill:#92400e}.b3{fill:#6b21a8}.b4{fill:#047857}.b5{fill:#be185d}
+    /* Example boxes (bottom of each card) */
+    .ex-box{fill:#fff;stroke-width:0.5}
+    .ex1-box{stroke:#3b82f6}
+    .ex1-bar{stroke:#ef4444;stroke-width:3}
+    .ex1-text{fill:#1f2937;font-size:9px}
+    .ex1-tag{fill:#ef4444;font-size:8px;font-weight:700;text-anchor:middle}
+    .ex2-box{stroke:#f59e0b}
+    .ex2-tag{fill:#92400e;font-size:8.5px;font-weight:700}
+    .ex2-text{fill:#92400e;font-size:8px}
+    .ex3-box{stroke:#a855f7;stroke-width:1}
+    .ex3-tag{fill:#a855f7;font-size:8px;font-weight:700;text-anchor:middle}
+    .ex3-note{fill:#6b21a8;font-size:8px;text-anchor:middle}
+    .ex4-box{stroke:#10b981;stroke-width:1}
+    .ex4-text{fill:#065f46;font-size:9px;font-weight:600;text-anchor:middle}
+    .ex5-text{fill:#9d174d;font-size:14px;font-weight:700;text-anchor:middle}
+    @media(prefers-color-scheme:dark){
+      .title{fill:#f5f5f5}.sub{fill:#a3a3a3}
+      .c1{fill:#0f1f3a;stroke:#3b82f6}.c2{fill:#3a2a0a;stroke:#f59e0b}
+      .c3{fill:#2a103a;stroke:#a855f7}.c4{fill:#0a3022;stroke:#10b981}
+      .c5{fill:#3a0a22;stroke:#ec4899}
+      .h1{fill:#93c5fd}.h2{fill:#fcd34d}.h3{fill:#d8b4fe}.h4{fill:#6ee7b7}.h5{fill:#fbcfe8}
+      .b1{fill:#bfdbfe}.b2{fill:#fde68a}.b3{fill:#e9d5ff}.b4{fill:#a7f3d0}.b5{fill:#fbcfe8}
+      .ex-box{fill:#171717}
+      .ex1-text{fill:#e5e5e5}
+      .ex1-tag{fill:#fca5a5}
+      .ex2-tag{fill:#fcd34d}
+      .ex2-text{fill:#fcd34d}
+      .ex3-tag{fill:#d8b4fe}
+      .ex3-note{fill:#e9d5ff}
+      .ex4-text{fill:#a7f3d0}
+      .ex5-text{fill:#fbcfe8}
+    }
+  </style>
+  <text x="400" y="38" text-anchor="middle" class="title">개발자가 읽기 좋은 설계서 5가지 팁</text>
+  <text x="400" y="58" text-anchor="middle" class="sub">"이 부분은 어떻게 해요?" 라는 질문이 줄어드는 만큼 설계서가 좋다는 뜻입니다.</text>
+
+  <!-- 5 cards uniform width 150x320 -->
+  <g transform="translate(15,90)">
+    <rect width="150" height="320" class="card c1" rx="10"/>
+    <circle cx="75" cy="42" r="22" class="num-bg n1"/>
+    <text x="75" y="50" class="num-text">1</text>
+    <text x="75" y="92" text-anchor="middle" class="h h1">변경 표시</text>
+    <line x1="20" y1="108" x2="130" y2="108" stroke="#3b82f6" stroke-width="0.5" stroke-dasharray="2 2"/>
+    <text x="20" y="130" class="body b1">변경된 디스크립션 옆에</text>
+    <text x="20" y="146" class="body b1">빨간 세로 막대 표시</text>
+    <text x="20" y="178" class="body b1">변경된 페이지 상단에</text>
+    <text x="20" y="194" class="body b1">★ Updated (V1.2)</text>
+    <text x="20" y="220" class="body b1" style="font-style:italic">전체를 다시 읽지</text>
+    <text x="20" y="236" class="body b1" style="font-style:italic">않아도 되도록</text>
+    <rect x="20" y="260" width="110" height="40" class="ex-box ex1-box" rx="3"/>
+    <line x1="22" y1="260" x2="22" y2="300" class="ex1-bar"/>
+    <text x="30" y="278" class="ex1-text">변경된 주석</text>
+    <text x="80" y="290" class="ex1-tag">★ V1.2</text>
+  </g>
+
+  <g transform="translate(170,90)">
+    <rect width="150" height="320" class="card c2" rx="10"/>
+    <circle cx="75" cy="42" r="22" class="num-bg n2"/>
+    <text x="75" y="50" class="num-text">2</text>
+    <text x="75" y="92" text-anchor="middle" class="h h2">미결 사항 명시</text>
+    <line x1="20" y1="108" x2="130" y2="108" stroke="#f59e0b" stroke-width="0.5" stroke-dasharray="2 2"/>
+    <text x="20" y="130" class="body b2">결정 못한 부분을</text>
+    <text x="20" y="146" class="body b2">숨기지 말고 표시</text>
+    <text x="20" y="170" class="body b2">[TBD], [미결]로</text>
+    <text x="20" y="186" class="body b2">예상 확정 시점 함께</text>
+    <text x="20" y="220" class="body b2" style="font-style:italic">없으면 개발자는</text>
+    <text x="20" y="236" class="body b2" style="font-style:italic">정해진 줄 알고</text>
+    <text x="20" y="252" class="body b2" style="font-style:italic">임의로 구현합니다</text>
+    <rect x="20" y="270" width="110" height="32" class="ex-box ex2-box" rx="3"/>
+    <text x="28" y="284" class="ex2-tag">[TBD]</text>
+    <text x="28" y="295" class="ex2-text">Apple 로그인 지원?</text>
+  </g>
+
+  <g transform="translate(325,90)">
+    <rect width="150" height="320" class="card c3" rx="10"/>
+    <circle cx="75" cy="42" r="22" class="num-bg n3"/>
+    <text x="75" y="50" class="num-text">3</text>
+    <text x="75" y="92" text-anchor="middle" class="h h3">PDF 동시 전달</text>
+    <line x1="20" y1="108" x2="130" y2="108" stroke="#a855f7" stroke-width="0.5" stroke-dasharray="2 2"/>
+    <text x="20" y="130" class="body b3">PPT는 환경에 따라</text>
+    <text x="20" y="146" class="body b3">레이아웃이 어긋남</text>
+    <text x="20" y="170" class="body b3">PPT 원본 + PDF를</text>
+    <text x="20" y="186" class="body b3">함께 보내주기</text>
+    <text x="20" y="220" class="body b3" style="font-style:italic">Mac ↔ Windows</text>
+    <text x="20" y="236" class="body b3" style="font-style:italic">폰트 깨짐 방지</text>
+    <g transform="translate(40,260)">
+      <rect width="32" height="40" class="ex-box ex3-box" rx="2"/>
+      <text x="16" y="23" class="ex3-tag">PPT</text>
+      <rect x="38" width="32" height="40" class="ex-box ex3-box" rx="2"/>
+      <text x="54" y="23" class="ex3-tag">PDF</text>
+      <text x="36" y="50" class="ex3-note">+ 함께 전달</text>
+    </g>
+  </g>
+
+  <g transform="translate(480,90)">
+    <rect width="150" height="320" class="card c4" rx="10"/>
+    <circle cx="75" cy="42" r="22" class="num-bg n4"/>
+    <text x="75" y="50" class="num-text">4</text>
+    <text x="75" y="92" text-anchor="middle" class="h h4">사전 질문 유도</text>
+    <line x1="20" y1="108" x2="130" y2="108" stroke="#10b981" stroke-width="0.5" stroke-dasharray="2 2"/>
+    <text x="20" y="130" class="body b4">전달 직후 한 마디:</text>
+    <text x="20" y="158" class="body b4" style="font-weight:700">"개발하면서 명세가</text>
+    <text x="20" y="174" class="body b4" style="font-weight:700">더 필요한 부분이</text>
+    <text x="20" y="190" class="body b4" style="font-weight:700">있을까요?"</text>
+    <text x="20" y="220" class="body b4" style="font-style:italic">개발 착수 전에</text>
+    <text x="20" y="236" class="body b4" style="font-style:italic">빠진 부분 잡기</text>
+    <text x="20" y="252" class="body b4" style="font-style:italic">→ 재작업 비용 절감</text>
+    <g transform="translate(35,275)">
+      <rect width="80" height="20" class="ex-box ex4-box" rx="10"/>
+      <text x="40" y="13" class="ex4-text">📨 1분 메시지</text>
+    </g>
+  </g>
+
+  <g transform="translate(635,90)">
+    <rect width="150" height="320" class="card c5" rx="10"/>
+    <circle cx="75" cy="42" r="22" class="num-bg n5"/>
+    <text x="75" y="50" class="num-text">5</text>
+    <text x="75" y="92" text-anchor="middle" class="h h5">문서로 보완</text>
+    <line x1="20" y1="108" x2="130" y2="108" stroke="#ec4899" stroke-width="0.5" stroke-dasharray="2 2"/>
+    <text x="20" y="130" class="body b5">구두 답변은 빠르나</text>
+    <text x="20" y="146" class="body b5">기록되지 않음</text>
+    <text x="20" y="170" class="body b5">답변한 내용은</text>
+    <text x="20" y="186" class="body b5">반드시 설계서에</text>
+    <text x="20" y="202" class="body b5">반영</text>
+    <text x="20" y="232" class="body b5" style="font-style:italic">다른 개발자/QA가</text>
+    <text x="20" y="248" class="body b5" style="font-style:italic">같은 질문을 다시</text>
+    <text x="20" y="264" class="body b5" style="font-style:italic">하지 않도록</text>
+    <text x="75" y="295" class="ex5-text">📝 → 문서</text>
+  </g>
+</svg>
