@@ -5,9 +5,27 @@ const posts = await getCollection("posts", ({ data }) => !data.draft);
 const recentPosts = posts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 10);
-const allTags = [
-  ...new Set(posts.flatMap((post) => post.data.tags ?? [])),
-].sort();
+const tagCounts = new Map<string, number>();
+for (const post of posts) {
+  for (const tag of post.data.tags ?? []) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+const sortedTags = [...tagCounts.entries()].sort(
+  (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+);
+const maxCount = sortedTags[0]?.[1] ?? 0;
+const minCount = sortedTags[sortedTags.length - 1]?.[1] ?? 0;
+const tagTier = (count: number) => {
+  if (maxCount === minCount) return 3;
+  const ratio = (count - minCount) / (maxCount - minCount);
+  return Math.min(5, Math.max(1, Math.ceil(ratio * 5))) || 1;
+};
+const allTags = sortedTags.map(([tag, count]) => ({
+  tag,
+  count,
+  tier: tagTier(count),
+}));
 ---
 
 <div class="aside-home">
@@ -45,8 +63,12 @@ const allTags = [
     {
       allTags.length > 0 ? (
         <div class="tag-list">
-          {allTags.map((tag, i) => (
-            <a href={`/tags/${tag}/`} class="tag-link">
+          {allTags.map(({ tag, count, tier }) => (
+            <a
+              href={`/tags/${tag}/`}
+              class={`tag-link tag-tier-${tier}`}
+              title={`${count} posts`}
+            >
               {tag}
             </a>
           ))}
@@ -199,5 +221,22 @@ const allTags = [
     font-family: "Courier New", Courier, monospace;
     font-weight: bold;
     font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .tag-tier-1 {
+    font-size: 11px;
+  }
+  .tag-tier-2 {
+    font-size: 13px;
+  }
+  .tag-tier-3 {
+    font-size: 15px;
+  }
+  .tag-tier-4 {
+    font-size: 17px;
+  }
+  .tag-tier-5 {
+    font-size: 19px;
   }
 </style>
