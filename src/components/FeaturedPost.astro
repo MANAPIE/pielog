@@ -1,0 +1,270 @@
+---
+import type { ImageMetadata } from "astro";
+
+interface Candidate {
+    title: string;
+    slug: string;
+    thumbnail?: string;
+    tags?: string[];
+    summary?: string;
+    description?: string;
+}
+
+interface Props {
+    candidates: Array<{
+        title: string;
+        slug: string;
+        thumbnail?: ImageMetadata;
+        tags?: string[];
+        summary?: string;
+        description?: string;
+    }>;
+}
+
+const { candidates } = Astro.props;
+
+const serialized: Candidate[] = candidates.map((c) => ({
+    title: c.title,
+    slug: c.slug,
+    thumbnail: c.thumbnail?.src,
+    tags: c.tags,
+    summary: c.summary,
+    description: c.description,
+}));
+
+const initial = serialized[0];
+---
+
+{
+    initial && (
+        <section class="featured-section">
+            <h3 class="section-title">FEATURED POST</h3>
+            <article class="featured-card" data-featured-card>
+                <a
+                    class="featured-card-link"
+                    href={`/${initial.slug}/`}
+                    data-featured-link
+                    data-no-thumb={initial.thumbnail ? undefined : ""}
+                >
+                    {initial.thumbnail && (
+                        <img
+                            class="featured-card-thumbnail"
+                            src={initial.thumbnail}
+                            alt={initial.title}
+                            data-featured-thumbnail
+                        />
+                    )}
+                    <div class="featured-card-meta">
+                        {initial.tags && initial.tags.length > 0 && (
+                            <ul
+                                class="featured-card-tags"
+                                data-featured-tags
+                            >
+                                {initial.tags.map((tag) => (
+                                    <li>{tag}</li>
+                                ))}
+                            </ul>
+                        )}
+                        <h2
+                            class="featured-card-title"
+                            data-featured-title
+                        >
+                            {initial.title}
+                        </h2>
+                        {(initial.summary || initial.description) && (
+                            <p
+                                class="featured-card-summary"
+                                data-featured-summary
+                            >
+                                {initial.summary ?? initial.description}
+                            </p>
+                        )}
+                        <p class="featured-card-button">read →</p>
+                    </div>
+                </a>
+            </article>
+            <script
+                is:inline
+                type="application/json"
+                data-featured-candidates
+                set:html={JSON.stringify(serialized)}
+            />
+            <script is:inline>
+                (() => {
+                    const node = document.querySelector(
+                        "[data-featured-candidates]",
+                    );
+                    if (!node || !node.textContent) return;
+                    let list;
+                    try {
+                        list = JSON.parse(node.textContent);
+                    } catch (e) {
+                        return;
+                    }
+                    if (!Array.isArray(list) || list.length <= 1) return;
+                    const pick =
+                        list[Math.floor(Math.random() * list.length)];
+                    if (!pick || pick.slug === list[0].slug) return;
+
+                    const card = document.querySelector(
+                        "[data-featured-card]",
+                    );
+                    if (!card) return;
+                    const link = card.querySelector("[data-featured-link]");
+                    const thumb = card.querySelector(
+                        "[data-featured-thumbnail]",
+                    );
+                    const tagsEl = card.querySelector(
+                        "[data-featured-tags]",
+                    );
+                    const titleEl = card.querySelector(
+                        "[data-featured-title]",
+                    );
+                    const summaryEl = card.querySelector(
+                        "[data-featured-summary]",
+                    );
+
+                    if (link) {
+                        link.href = `/${pick.slug}/`;
+                        if (pick.thumbnail) {
+                            link.removeAttribute("data-no-thumb");
+                        } else {
+                            link.setAttribute("data-no-thumb", "");
+                        }
+                    }
+                    if (pick.thumbnail) {
+                        if (thumb) {
+                            thumb.src = pick.thumbnail;
+                            thumb.alt = pick.title;
+                        } else if (link) {
+                            const img = document.createElement("img");
+                            img.className = "featured-card-thumbnail";
+                            img.src = pick.thumbnail;
+                            img.alt = pick.title;
+                            img.setAttribute("data-featured-thumbnail", "");
+                            link.insertBefore(img, link.firstChild);
+                        }
+                    } else if (thumb) {
+                        thumb.remove();
+                    }
+                    if (titleEl) titleEl.textContent = pick.title;
+                    if (summaryEl) {
+                        summaryEl.textContent =
+                            pick.summary || pick.description || "";
+                    }
+                    if (tagsEl && pick.tags) {
+                        tagsEl.replaceChildren(
+                            ...pick.tags.map((tag) => {
+                                const li = document.createElement("li");
+                                li.textContent = tag;
+                                return li;
+                            }),
+                        );
+                    }
+                })();
+            </script>
+        </section>
+    )
+}
+
+<style lang="scss">
+    @use "../styles/_variables.scss" as *;
+
+    .featured-section {
+        margin-bottom: 40px;
+    }
+
+    .featured-card {
+        margin-bottom: 1.5rem;
+
+        .featured-card-link {
+            display: grid;
+            grid-template-columns: minmax(280px, 360px) 1fr;
+            gap: 0;
+            background: $color-bg;
+            border: 1px solid $color-border;
+            box-shadow: 0px 4px 20px var(--color-shadow);
+            color: $color-text;
+            text-decoration: none;
+            transition: box-shadow 0.1s ease;
+
+            &:hover {
+                box-shadow: 0px 4px 20px var(--color-shadow-hover);
+                color: $color-text;
+            }
+
+            @media (max-width: #{$bp-narrow - 1}) {
+                grid-template-columns: 1fr;
+            }
+
+            &[data-no-thumb] {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .featured-card-thumbnail {
+            width: 100%;
+            height: 100%;
+            min-height: 240px;
+            object-fit: cover;
+            display: block;
+
+            @media (max-width: #{$bp-narrow - 1}) {
+                min-height: 0;
+                aspect-ratio: 1200 / 630;
+            }
+        }
+
+        .featured-card-meta {
+            padding: 22px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-card-tags {
+            font-size: 12px;
+            line-height: 1.8;
+
+            :global(li) {
+                color: $color-primary;
+                display: inline-block;
+                white-space: nowrap;
+                padding: 0 8px;
+                margin-right: 8px;
+                margin-bottom: 8px;
+                background: $color-tree;
+                border: 1px solid $color-border;
+                border-radius: 3px;
+                font-family: "Courier New", Courier, monospace;
+                font-weight: bold;
+                font-size: 11px;
+            }
+        }
+
+        .featured-card-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: $color-text;
+            margin-bottom: 8px;
+            line-height: 1.35;
+
+            @media (max-width: #{$bp-mobile - 1}) {
+                font-size: 18px;
+            }
+        }
+
+        .featured-card-summary {
+            font-size: 12px;
+            color: $color-primary;
+            flex: 1 1 auto;
+            min-height: 160px;
+        }
+
+        .featured-card-button {
+            font-size: 11px;
+            font-weight: bold;
+            font-family: "Courier New", Courier, monospace;
+            margin-top: 14px;
+        }
+    }
+</style>
