@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="OWASP Top 10 2025 ep.04 cover">
+  <style>
+  :root {
+    --c-bg: #f1f5f9;
+    --c-fg: #0f172a;
+    --c-muted: #64748b;
+    --c-accent: #7c3aed; --c-accent-2: #a78bfa; --c-accent-3: #c4b5fd;
+    --c-num: rgba(124, 58, 237, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0b1220;
+      --c-fg: #e2e8f0;
+      --c-muted: #94a3b8;
+      --c-accent: #a78bfa; --c-accent-2: #7c3aed; --c-accent-3: #4c1d95;
+      --c-num: rgba(167, 139, 250, 0.18);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect x="-40" y="-80" width="380" height="790" rx="26" fill="none" stroke="var(--c-accent)" stroke-width="12"/>
+  <rect x="-10" y="30" width="320" height="80" rx="18" fill="var(--c-accent)"/>
+  <rect x="-10" y="140" width="320" height="80" rx="18" fill="var(--c-accent-2)"/>
+  <rect x="-10" y="250" width="320" height="80" rx="18" fill="var(--c-accent)"/>
+  <rect x="-10" y="360" width="320" height="80" rx="18" fill="var(--c-accent-2)"/>
+  <rect x="-10" y="470" width="320" height="80" rx="18" fill="var(--c-accent)"/>
+  <rect x="430" y="-80" width="380" height="790" rx="26" fill="none" stroke="var(--c-accent-2)" stroke-width="12"/>
+  <rect x="460" y="30" width="320" height="80" rx="18" fill="var(--c-accent-2)"/>
+  <rect x="460" y="140" width="320" height="80" rx="18" fill="var(--c-accent)"/>
+  <rect x="460" y="250" width="320" height="80" rx="18" fill="var(--c-accent-2)"/>
+  <rect x="460" y="360" width="320" height="80" rx="18" fill="var(--c-accent)"/>
+  <rect x="460" y="470" width="320" height="80" rx="18" fill="var(--c-accent-2)"/>
+  <rect x="900" y="-80" width="380" height="790" rx="26" fill="none" stroke="var(--c-accent)" stroke-width="12"/>
+  <rect x="930" y="30" width="320" height="80" rx="18" fill="var(--c-accent)"/>
+  <rect x="930" y="140" width="320" height="80" rx="18" fill="var(--c-accent-2)"/>
+  <rect x="930" y="250" width="320" height="80" rx="18" fill="var(--c-accent)"/>
+  <rect x="930" y="360" width="320" height="80" rx="18" fill="var(--c-accent-2)"/>
+  <rect x="930" y="470" width="320" height="80" rx="18" fill="var(--c-accent)"/>
+  <line x1="340" y1="315" x2="430" y2="315" stroke="var(--c-accent)" stroke-width="14" stroke-linecap="round"/>
+  <line x1="810" y1="315" x2="900" y2="315" stroke="var(--c-accent)" stroke-width="14" stroke-linecap="round"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">04</text>
+</svg>

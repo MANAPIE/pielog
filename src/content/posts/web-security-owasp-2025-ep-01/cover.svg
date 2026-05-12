@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="OWASP Top 10 2025 ep.01 cover">
+  <style>
+  :root {
+    --c-bg: #f1f5f9;
+    --c-fg: #0f172a;
+    --c-muted: #64748b;
+    --c-accent: #7c3aed; --c-accent-2: #a78bfa; --c-accent-3: #c4b5fd;
+    --c-num: rgba(124, 58, 237, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0b1220;
+      --c-fg: #e2e8f0;
+      --c-muted: #94a3b8;
+      --c-accent: #a78bfa; --c-accent-2: #7c3aed; --c-accent-3: #4c1d95;
+      --c-num: rgba(167, 139, 250, 0.18);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect x="40" y="40" width="540" height="430" rx="38" fill="var(--c-accent)" fill-opacity="0.10" stroke="var(--c-accent)" stroke-width="14"/>
+  <line x1="80" y1="255" x2="540" y2="255" stroke="var(--c-accent-2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="620" y="40" width="540" height="430" rx="38" fill="none" stroke="var(--c-accent)" stroke-width="14"/>
+  <line x1="660" y1="255" x2="1120" y2="255" stroke="var(--c-accent-2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="80" y="530" width="190" height="56" rx="16" fill="var(--c-accent-2)"/>
+  <rect x="310" y="530" width="190" height="56" rx="16" fill="var(--c-accent)"/>
+  <rect x="540" y="530" width="190" height="56" rx="16" fill="var(--c-accent-2)"/>
+  <rect x="770" y="530" width="190" height="56" rx="16" fill="var(--c-accent)"/>
+  <line x1="278" y1="558" x2="302" y2="558" stroke="var(--c-accent)" stroke-width="6" stroke-linecap="round"/>
+  <line x1="508" y1="558" x2="532" y2="558" stroke="var(--c-accent)" stroke-width="6" stroke-linecap="round"/>
+  <line x1="738" y1="558" x2="762" y2="558" stroke="var(--c-accent)" stroke-width="6" stroke-linecap="round"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">01</text>
+</svg>

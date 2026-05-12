@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="화면설계서 가이드 ep.02 cover">
+  <style>
+  :root {
+    --c-bg: #f1f5f9;
+    --c-fg: #0f172a;
+    --c-muted: #64748b;
+    --c-accent: #059669; --c-accent-2: #34d399; --c-accent-3: #86efac;
+    --c-num: rgba(5, 150, 105, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0b1220;
+      --c-fg: #e2e8f0;
+      --c-muted: #94a3b8;
+      --c-accent: #34d399; --c-accent-2: #059669; --c-accent-3: #064e3b;
+      --c-num: rgba(52, 211, 153, 0.18);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect x="470" y="35" width="260" height="100" rx="22" fill="var(--c-accent)"/>
+  <line x1="600" y1="135" x2="220" y2="245" stroke="var(--c-accent)" stroke-width="10" stroke-linecap="round"/>
+  <rect x="120" y="245" width="200" height="100" rx="20" fill="none" stroke="var(--c-accent)" stroke-width="12"/>
+  <line x1="600" y1="135" x2="600" y2="245" stroke="var(--c-accent)" stroke-width="10" stroke-linecap="round"/>
+  <rect x="500" y="245" width="200" height="100" rx="20" fill="none" stroke="var(--c-accent)" stroke-width="12"/>
+  <line x1="600" y1="135" x2="980" y2="245" stroke="var(--c-accent)" stroke-width="10" stroke-linecap="round"/>
+  <rect x="880" y="245" width="200" height="100" rx="20" fill="none" stroke="var(--c-accent)" stroke-width="12"/>
+  <line x1="220" y1="345" x2="110" y2="472" stroke="var(--c-accent-2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="40" y="472" width="140" height="80" rx="16" fill="var(--c-accent-2)"/>
+  <line x1="220" y1="345" x2="330" y2="472" stroke="var(--c-accent-2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="260" y="472" width="140" height="80" rx="16" fill="var(--c-accent-2)"/>
+  <line x1="600" y1="345" x2="490" y2="472" stroke="var(--c-accent-2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="420" y="472" width="140" height="80" rx="16" fill="var(--c-accent-2)"/>
+  <line x1="600" y1="345" x2="710" y2="472" stroke="var(--c-accent-2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="640" y="472" width="140" height="80" rx="16" fill="var(--c-accent-2)"/>
+  <line x1="980" y1="345" x2="870" y2="472" stroke="var(--c-accent-2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="800" y="472" width="140" height="80" rx="16" fill="var(--c-accent-2)"/>
+  <line x1="980" y1="345" x2="1090" y2="472" stroke="var(--c-accent-2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="1020" y="472" width="140" height="80" rx="16" fill="var(--c-accent-2)"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">02</text>
+</svg>
