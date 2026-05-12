@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="다크패턴 해부 ep.00 cover">
+  <style>
+  :root {
+    --c-bg: #f1f5f9;
+    --c-fg: #0f172a;
+    --c-muted: #64748b;
+    --c-accent: #dc2626; --c-accent-2: #f87171; --c-accent-3: #fca5a5;
+    --c-num: rgba(220, 38, 38, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0b1220;
+      --c-fg: #e2e8f0;
+      --c-muted: #94a3b8;
+      --c-accent: #f87171; --c-accent-2: #dc2626; --c-accent-3: #7f1d1d;
+      --c-num: rgba(248, 113, 113, 0.18);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect x="-60" y="40" width="1320" height="115" rx="30" fill="var(--c-accent)"/>
+  <rect x="30" y="67" width="280" height="60" rx="16" fill="var(--c-bg)" fill-opacity="0.85"/>
+  <rect x="950" y="72" width="140" height="50" rx="14" fill="var(--c-accent-2)"/>
+  <rect x="1110" y="72" width="140" height="50" rx="14" fill="var(--c-accent-2)"/>
+  <rect x="-60" y="185" width="1320" height="115" rx="30" fill="none" stroke="var(--c-accent)" stroke-width="12"/>
+  <rect x="30" y="212" width="280" height="60" rx="16" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+  <rect x="950" y="217" width="140" height="50" rx="14" fill="var(--c-accent-2)"/>
+  <rect x="1110" y="217" width="140" height="50" rx="14" fill="var(--c-accent-2)"/>
+  <rect x="-60" y="330" width="1320" height="115" rx="30" fill="var(--c-accent)"/>
+  <rect x="30" y="357" width="280" height="60" rx="16" fill="var(--c-bg)" fill-opacity="0.85"/>
+  <rect x="950" y="362" width="140" height="50" rx="14" fill="var(--c-accent-2)"/>
+  <rect x="1110" y="362" width="140" height="50" rx="14" fill="var(--c-accent-2)"/>
+  <rect x="-60" y="475" width="1320" height="115" rx="30" fill="none" stroke="var(--c-accent)" stroke-width="12"/>
+  <rect x="30" y="502" width="280" height="60" rx="16" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+  <rect x="950" y="507" width="140" height="50" rx="14" fill="var(--c-accent-2)"/>
+  <rect x="1110" y="507" width="140" height="50" rx="14" fill="var(--c-accent-2)"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">00</text>
+</svg>
