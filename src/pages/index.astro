@@ -4,12 +4,28 @@ export const prerender = true;
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
+import FeaturedPost from "../components/FeaturedPost.astro";
 import AsideHomepage from "../components/AsideHomepage.astro";
 
 const posts = await getCollection("posts", ({ data }) => !data.draft);
 const sortedPosts = posts.sort(
 	(a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
+
+const featuredCandidates = sortedPosts
+	.filter(
+		(p) =>
+			p.data.tags?.includes("cover") ||
+			!p.data.tags?.includes("series"),
+	)
+	.map((p) => ({
+		title: p.data.title,
+		slug: p.id,
+		thumbnail: p.data.thumbnail,
+		tags: p.data.tags,
+		summary: p.data.summary,
+		description: p.data.description,
+	}));
 ---
 
 <BaseLayout
@@ -17,6 +33,7 @@ const sortedPosts = posts.sort(
 	description="MANAPIE's thoughts & experiments"
 	pageType="home"
 >
+	<FeaturedPost candidates={featuredCandidates} />
 	<h3 class="section-title">POSTS</h3>
 	<section class="post-list">
 		{
