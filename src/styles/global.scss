@@ -229,6 +229,10 @@ img {
     p>img {
         margin: 1.5rem auto !important;
     }
+
+    &>p:nth-child(1)>img {
+        margin-top: -0.5rem !important;
+    }
 }
 
 /* ========================

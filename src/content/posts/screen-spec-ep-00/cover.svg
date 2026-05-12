@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="화면설계서 가이드 ep.00 cover">
+  <style>
+  :root {
+    --c-bg: #f1f5f9;
+    --c-fg: #0f172a;
+    --c-muted: #64748b;
+    --c-accent: #059669; --c-accent-2: #34d399; --c-accent-3: #86efac;
+    --c-num: rgba(5, 150, 105, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0b1220;
+      --c-fg: #e2e8f0;
+      --c-muted: #94a3b8;
+      --c-accent: #34d399; --c-accent-2: #059669; --c-accent-3: #064e3b;
+      --c-num: rgba(52, 211, 153, 0.18);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect x="-40" y="-40" width="1280" height="710" rx="30" fill="none" stroke="var(--c-accent)" stroke-width="14"/>
+  <rect x="20" y="20" width="1160" height="80" rx="18" fill="var(--c-accent)"/>
+  <rect x="20" y="130" width="780" height="490" rx="22" fill="var(--c-accent)" fill-opacity="0.10" stroke="var(--c-accent)" stroke-width="10"/>
+  <rect x="830" y="130" width="350" height="490" rx="22" fill="var(--c-accent-2)" fill-opacity="0.45"/>
+  <rect x="60" y="170" width="700" height="44" rx="14" fill="var(--c-accent-2)"/>
+  <rect x="60" y="240" width="540" height="32" rx="10" fill="var(--c-accent)" fill-opacity="0.55"/>
+  <rect x="60" y="300" width="600" height="32" rx="10" fill="var(--c-accent)" fill-opacity="0.55"/>
+  <rect x="60" y="360" width="460" height="32" rx="10" fill="var(--c-accent)" fill-opacity="0.55"/>
+  <rect x="60" y="430" width="640" height="160" rx="20" fill="var(--c-accent)"/>
+  <circle cx="880" cy="180" r="22" fill="var(--c-accent)"/>
+  <circle cx="880" cy="260" r="22" fill="var(--c-accent)"/>
+  <circle cx="880" cy="340" r="22" fill="var(--c-accent)"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">00</text>
+</svg>

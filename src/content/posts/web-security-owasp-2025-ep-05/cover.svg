@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="OWASP Top 10 2025 ep.05 cover">
+  <style>
+  :root {
+    --c-bg: #f1f5f9;
+    --c-fg: #0f172a;
+    --c-muted: #64748b;
+    --c-accent: #7c3aed; --c-accent-2: #a78bfa; --c-accent-3: #c4b5fd;
+    --c-num: rgba(124, 58, 237, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0b1220;
+      --c-fg: #e2e8f0;
+      --c-muted: #94a3b8;
+      --c-accent: #a78bfa; --c-accent-2: #7c3aed; --c-accent-3: #4c1d95;
+      --c-num: rgba(167, 139, 250, 0.18);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect x="40" y="40" width="540" height="530" rx="34" fill="var(--c-accent)" fill-opacity="0.10" stroke="var(--c-accent)" stroke-width="14"/>
+  <rect x="620" y="40" width="540" height="530" rx="34" fill="none" stroke="var(--c-accent)" stroke-width="14" stroke-dasharray="20 12"/>
+  <circle cx="170" cy="110" r="34" fill="var(--c-accent)"/>
+  <rect x="220" y="98" width="330" height="24" rx="12" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <circle cx="750" cy="110" r="34" fill="none" stroke="var(--c-accent-2)" stroke-width="8"/>
+  <rect x="800" y="98" width="330" height="24" rx="12" fill="var(--c-accent)" fill-opacity="0.4"/>
+  <circle cx="170" cy="205" r="34" fill="var(--c-accent)"/>
+  <rect x="220" y="193" width="330" height="24" rx="12" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <circle cx="750" cy="205" r="34" fill="none" stroke="var(--c-accent-2)" stroke-width="8"/>
+  <rect x="800" y="193" width="330" height="24" rx="12" fill="var(--c-accent)" fill-opacity="0.4"/>
+  <circle cx="170" cy="300" r="34" fill="var(--c-accent)"/>
+  <rect x="220" y="288" width="330" height="24" rx="12" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <circle cx="750" cy="300" r="34" fill="none" stroke="var(--c-accent-2)" stroke-width="8"/>
+  <rect x="800" y="288" width="330" height="24" rx="12" fill="var(--c-accent)" fill-opacity="0.4"/>
+  <circle cx="170" cy="395" r="34" fill="var(--c-accent)"/>
+  <rect x="220" y="383" width="330" height="24" rx="12" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <circle cx="750" cy="395" r="34" fill="none" stroke="var(--c-accent-2)" stroke-width="8"/>
+  <rect x="800" y="383" width="330" height="24" rx="12" fill="var(--c-accent)" fill-opacity="0.4"/>
+  <circle cx="170" cy="490" r="34" fill="var(--c-accent)"/>
+  <rect x="220" y="478" width="330" height="24" rx="12" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <circle cx="750" cy="490" r="34" fill="none" stroke="var(--c-accent-2)" stroke-width="8"/>
+  <rect x="800" y="478" width="330" height="24" rx="12" fill="var(--c-accent)" fill-opacity="0.4"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">05</text>
+</svg>
