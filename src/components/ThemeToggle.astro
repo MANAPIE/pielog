@@ -29,8 +29,17 @@
       "iframe.giscus-frame",
     ) as HTMLIFrameElement | null;
     if (!iframe) return;
+
+    const wrapper = document.querySelector(
+      "[data-giscus-light][data-giscus-dark]",
+    ) as HTMLElement | null;
+    const themeUrl =
+      theme === "dark"
+        ? wrapper?.dataset.giscusDark
+        : wrapper?.dataset.giscusLight;
+
     iframe.contentWindow?.postMessage(
-      { giscus: { setConfig: { theme } } },
+      { giscus: { setConfig: { theme: themeUrl ?? theme } } },
       "https://giscus.app",
     );
   }

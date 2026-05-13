@@ -36,11 +36,61 @@ const { tag, posts } = Astro.props;
 	description={`Posts tagged "${tag}"`}
 	pageType="home"
 >
-	<section class="tag-page">
-		<h1 class="tag-page-title">
-			<span>{tag}</span>
-			POSTS
+	<header class="tag-hero">
+		<svg
+			class="hero-bg"
+			viewBox="0 0 820 280"
+			preserveAspectRatio="xMidYMid slice"
+			aria-hidden="true"
+		>
+			<defs>
+				<pattern
+					id="hero-bg-tag-dots"
+					x="0"
+					y="0"
+					width="24"
+					height="24"
+					patternUnits="userSpaceOnUse"
+				>
+					<circle cx="12" cy="12" r="1.2" fill="var(--color-dot)" />
+				</pattern>
+				<radialGradient id="hero-bg-tag-halo-a" cx="0.85" cy="0.15" r="0.7">
+					<stop offset="0" stop-color="var(--color-accent)" stop-opacity="0.28" />
+					<stop offset="1" stop-color="var(--color-accent)" stop-opacity="0" />
+				</radialGradient>
+				<radialGradient id="hero-bg-tag-halo-b" cx="0.08" cy="0.92" r="0.6">
+					<stop offset="0" stop-color="var(--color-accent-3)" stop-opacity="0.34" />
+					<stop offset="1" stop-color="var(--color-accent-3)" stop-opacity="0" />
+				</radialGradient>
+			</defs>
+			<rect width="820" height="280" fill="url(#hero-bg-tag-dots)" />
+			<rect width="820" height="280" fill="url(#hero-bg-tag-halo-a)" />
+			<rect width="820" height="280" fill="url(#hero-bg-tag-halo-b)" />
+			<circle
+				cx="740"
+				cy="40"
+				r="160"
+				fill="none"
+				stroke="var(--color-line)"
+				stroke-width="1.4"
+			/>
+			<circle
+				cx="740"
+				cy="40"
+				r="110"
+				fill="none"
+				stroke="var(--color-line)"
+				stroke-width="1.4"
+			/>
+			<circle cx="700" cy="180" r="5" fill="var(--color-accent-2)" />
+			<circle cx="720" cy="200" r="3" fill="var(--color-accent-3)" />
+		</svg>
+		<span class="tag-hero-kicker">tag · {posts.length} posts</span>
+		<h1 class="tag-hero-title">
+			<span class="tag-hero-hash">#</span>{tag}
 		</h1>
+	</header>
+	<section class="tag-page">
 		<div class="post-list">
 			{
 				posts.map((post) => (
@@ -61,28 +111,41 @@ const { tag, posts } = Astro.props;
 <style lang="scss">
 	@use "../../styles/_variables.scss" as *;
 
-	.tag-page-title {
-		font-size: 17px;
-		margin: 7px 0 27px;
-		font-weight: bold;
-		font-size: 9px;
-		letter-spacing: 30%;
-		color: $color-text-muted;
+	.tag-hero {
+		position: relative;
+		isolation: isolate;
+		margin-bottom: 36px;
+		padding: 36px 32px 32px;
+		border: 1px solid $color-border;
+		background: $color-bg;
+		overflow: hidden;
 
-		span {
-			color: $color-primary;
-			display: inline-block;
-			white-space: nowrap;
-			padding: 0 8px;
-			margin-right: 8px;
-			margin-bottom: 8px;
-			background: $color-tree;
-			border: 1px solid $color-border;
-			border-radius: 3px;
-			font-family: "Courier New", Courier, monospace;
-			font-weight: bold;
-			font-size: 11px;
-			letter-spacing: normal;
+		@media (max-width: #{$bp-mobile - 1}) {
+			padding: 24px 20px 20px;
 		}
+	}
+
+	.tag-hero-kicker {
+		display: block;
+		font-family: ui-monospace, "SF Mono", Menlo, monospace;
+		font-size: 11px;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: $color-text-muted;
+		margin-bottom: 12px;
+	}
+
+	.tag-hero-title {
+		font-size: clamp(36px, 7vw, 56px);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		line-height: 1;
+		margin: 0;
+		color: $color-text;
+	}
+
+	.tag-hero-hash {
+		color: $color-accent;
+		margin-right: 4px;
 	}
 </style>

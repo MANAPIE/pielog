@@ -17,13 +17,83 @@ const suggestions = findSimilarPosts(requestedPath, posts, 3);
 	description="페이지를 찾을 수 없습니다"
 	pageType="home"
 >
-	<h3 class="title-404">404</h3>
-	<p class="not-found-message">
-		<code>{requestedPath}</code> 경로에서 페이지를 찾지 못했어요.<br />
-		아직 발행되지 않은 글일 수도 있어요.<br /><br />
-		혹시 아래 글을 찾으셨나요?
-	</p>
-	<h3 class="section-title">SUGGESTED POSTS</h3>
+	<header class="hero-404">
+		<svg
+			class="hero-bg"
+			viewBox="0 0 820 380"
+			preserveAspectRatio="xMidYMid slice"
+			aria-hidden="true"
+		>
+			<defs>
+				<pattern
+					id="hero-bg-404-dots"
+					x="0"
+					y="0"
+					width="24"
+					height="24"
+					patternUnits="userSpaceOnUse"
+				>
+					<circle cx="12" cy="12" r="1.2" fill="var(--color-dot)" />
+				</pattern>
+				<radialGradient id="hero-bg-404-halo-a" cx="0.85" cy="0.15" r="0.7">
+					<stop offset="0" stop-color="var(--color-accent)" stop-opacity="0.28" />
+					<stop offset="1" stop-color="var(--color-accent)" stop-opacity="0" />
+				</radialGradient>
+				<radialGradient id="hero-bg-404-halo-b" cx="0.08" cy="0.92" r="0.6">
+					<stop offset="0" stop-color="var(--color-accent-3)" stop-opacity="0.34" />
+					<stop offset="1" stop-color="var(--color-accent-3)" stop-opacity="0" />
+				</radialGradient>
+			</defs>
+			<rect width="820" height="380" fill="url(#hero-bg-404-dots)" />
+			<rect width="820" height="380" fill="url(#hero-bg-404-halo-a)" />
+			<rect width="820" height="380" fill="url(#hero-bg-404-halo-b)" />
+			<circle
+				cx="740"
+				cy="60"
+				r="220"
+				fill="none"
+				stroke="var(--color-line)"
+				stroke-width="1.4"
+			/>
+			<circle
+				cx="740"
+				cy="60"
+				r="150"
+				fill="none"
+				stroke="var(--color-line)"
+				stroke-width="1.4"
+			/>
+			<circle
+				cx="90"
+				cy="340"
+				r="180"
+				fill="none"
+				stroke="var(--color-line)"
+				stroke-width="1.4"
+			/>
+			<g transform="rotate(-8 410 200)">
+				<line
+					x1="200"
+					y1="200"
+					x2="620"
+					y2="200"
+					stroke="var(--color-line-strong)"
+					stroke-width="1.4"
+					stroke-dasharray="6 8"
+				/>
+			</g>
+			<circle cx="700" cy="240" r="6" fill="var(--color-accent-2)" />
+			<circle cx="720" cy="260" r="4" fill="var(--color-accent-3)" />
+		</svg>
+		<span class="hero-404-kicker">// route not found_</span>
+		<h1 class="hero-404-title">404</h1>
+		<p class="hero-404-message">
+			<code>{requestedPath}</code> 경로에서 페이지를 찾지 못했어요.<br />
+			아직 발행되지 않은 글일 수도 있어요.
+		</p>
+	</header>
+
+	<span class="section-kicker">// suggested posts_</span>
 	<section class="post-list">
 		{
 			suggestions.map((post) => (
@@ -41,19 +111,53 @@ const suggestions = findSimilarPosts(requestedPath, posts, 3);
 </BaseLayout>
 
 <style lang="scss">
-	.title-404 {
-		font-size: 50px;
-		line-height: 60px;
-		font-family: "Courier New", Courier, monospace;
-		margin-bottom: 10px;
+	@use "../styles/variables" as *;
+
+	.hero-404 {
+		position: relative;
+		isolation: isolate;
+		margin-bottom: 36px;
+		padding: 40px 32px 32px;
+		border: 1px solid $color-border;
+		background: $color-bg;
+		overflow: hidden;
+
+		@media (max-width: #{$bp-mobile - 1}) {
+			padding: 28px 20px 24px;
+		}
 	}
 
-	.not-found-message {
-		margin: 0 0 24px;
+	.hero-404-kicker {
+		display: block;
+		font-family: ui-monospace, "SF Mono", Menlo, monospace;
+		font-size: 11px;
+		letter-spacing: 0.14em;
+		color: $color-accent;
+		margin-bottom: 8px;
+	}
+
+	.hero-404-title {
+		font-family: ui-monospace, "SF Mono", Menlo, monospace;
+		font-size: clamp(96px, 18vw, 168px);
+		font-weight: 800;
+		letter-spacing: -0.06em;
+		line-height: 0.9;
+		margin: 0 0 16px;
+		color: $color-text;
+	}
+
+	.hero-404-message {
+		margin: 0;
 		font-size: 14px;
+		color: $color-text-muted;
+		line-height: 1.7;
 
 		code {
-			font-family: "Courier New", Courier, monospace;
+			font-family: ui-monospace, "SF Mono", Menlo, monospace;
+			color: $color-accent;
+			background: $color-surface;
+			padding: 1px 6px;
+			border-radius: 3px;
 		}
 	}
 </style>

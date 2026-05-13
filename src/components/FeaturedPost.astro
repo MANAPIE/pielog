@@ -38,7 +38,102 @@ const initial = serialized[0];
 {
     initial && (
         <section class="featured-section">
-            <h3 class="section-title">FEATURED POST</h3>
+            <svg
+                class="hero-bg"
+                viewBox="0 0 820 540"
+                preserveAspectRatio="xMidYMid slice"
+                aria-hidden="true"
+            >
+                <defs>
+                    <pattern
+                        id="hero-bg-featured-dots"
+                        x="0"
+                        y="0"
+                        width="24"
+                        height="24"
+                        patternUnits="userSpaceOnUse"
+                    >
+                        <circle cx="12" cy="12" r="1.2" fill="var(--color-dot)" />
+                    </pattern>
+                    <radialGradient
+                        id="hero-bg-featured-halo-a"
+                        cx="0.85"
+                        cy="0.15"
+                        r="0.7"
+                    >
+                        <stop
+                            offset="0"
+                            stop-color="var(--color-accent)"
+                            stop-opacity="0.28"
+                        />
+                        <stop
+                            offset="1"
+                            stop-color="var(--color-accent)"
+                            stop-opacity="0"
+                        />
+                    </radialGradient>
+                    <radialGradient
+                        id="hero-bg-featured-halo-b"
+                        cx="0.08"
+                        cy="0.92"
+                        r="0.6"
+                    >
+                        <stop
+                            offset="0"
+                            stop-color="var(--color-accent-3)"
+                            stop-opacity="0.34"
+                        />
+                        <stop
+                            offset="1"
+                            stop-color="var(--color-accent-3)"
+                            stop-opacity="0"
+                        />
+                    </radialGradient>
+                </defs>
+                <rect width="820" height="540" fill="url(#hero-bg-featured-dots)" />
+                <rect width="820" height="540" fill="url(#hero-bg-featured-halo-a)" />
+                <rect width="820" height="540" fill="url(#hero-bg-featured-halo-b)" />
+                <circle
+                    cx="740"
+                    cy="80"
+                    r="220"
+                    fill="none"
+                    stroke="var(--color-line)"
+                    stroke-width="1.4"
+                />
+                <circle
+                    cx="740"
+                    cy="80"
+                    r="150"
+                    fill="none"
+                    stroke="var(--color-line)"
+                    stroke-width="1.4"
+                />
+                <circle
+                    cx="80"
+                    cy="480"
+                    r="180"
+                    fill="none"
+                    stroke="var(--color-line)"
+                    stroke-width="1.4"
+                />
+                <g transform="rotate(8 410 270)">
+                    <rect
+                        x="40"
+                        y="40"
+                        width="120"
+                        height="120"
+                        fill="none"
+                        stroke="var(--color-line)"
+                        stroke-width="1.4"
+                        stroke-dasharray="4 8"
+                    />
+                </g>
+                <circle cx="720" cy="280" r="6" fill="var(--color-accent-2)" />
+                <circle cx="744" cy="304" r="4" fill="var(--color-accent-3)" />
+                <circle cx="700" cy="320" r="3" fill="var(--color-accent)" />
+            </svg>
+            <span class="section-kicker">// featured post_</span>
             <article class="featured-card" data-featured-card>
                 <a
                     class="featured-card-link"
@@ -171,25 +266,40 @@ const initial = serialized[0];
     @use "../styles/_variables.scss" as *;
 
     .featured-section {
+        position: relative;
+        isolation: isolate;
         margin-bottom: 40px;
+        padding: 28px 28px 32px;
+        border: 1px solid $color-border;
+        background: $color-bg;
+        overflow: hidden;
+
+        @media (max-width: #{$bp-mobile - 1}) {
+            padding: 20px 16px 24px;
+        }
     }
 
     .featured-card {
-        margin-bottom: 1.5rem;
+        margin-bottom: 0;
 
         .featured-card-link {
             display: grid;
             grid-template-columns: minmax(280px, 360px) 1fr;
             gap: 0;
             background: $color-bg;
-            border: 1px solid $color-border;
+            border: 1px solid $color-line;
             box-shadow: 0px 4px 20px var(--color-shadow);
             color: $color-text;
             text-decoration: none;
-            transition: box-shadow 0.1s ease;
+            transition:
+                box-shadow 0.15s ease,
+                border-color 0.15s ease,
+                transform 0.15s ease;
 
             &:hover {
-                box-shadow: 0px 4px 20px var(--color-shadow-hover);
+                border-color: $color-accent;
+                box-shadow: 0px 6px 22px var(--color-shadow-hover);
+                transform: translateY(-2px);
                 color: $color-text;
             }
 
@@ -224,21 +334,6 @@ const initial = serialized[0];
         .featured-card-tags {
             font-size: 12px;
             line-height: 1.8;
-
-            :global(li) {
-                color: $color-primary;
-                display: inline-block;
-                white-space: nowrap;
-                padding: 0 8px;
-                margin-right: 8px;
-                margin-bottom: 8px;
-                background: $color-tree;
-                border: 1px solid $color-border;
-                border-radius: 3px;
-                font-family: "Courier New", Courier, monospace;
-                font-weight: bold;
-                font-size: 11px;
-            }
         }
 
         .featured-card-title {

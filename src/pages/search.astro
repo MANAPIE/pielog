@@ -3,16 +3,42 @@ export const prerender = true;
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SearchBox from "../components/Search.astro";
+import AsideHomepage from "../components/AsideHomepage.astro";
 ---
 
 <BaseLayout title="검색 — PIElog" description="포스트 검색" pageType="search">
+    <header class="search-header">
+        <span class="search-header-kicker">// search_</span>
+        <h1 class="search-header-title">검색</h1>
+    </header>
     <section class="search-page">
         <SearchBox variant="page" />
     </section>
+    <AsideHomepage slot="aside" />
 </BaseLayout>
 
 <style lang="scss">
-    .search-page {
-        margin-top: 7px;
+    @use "../styles/variables" as *;
+
+    .search-header {
+        margin: 8px 0 24px;
+    }
+
+    .search-header-kicker {
+        display: block;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        color: $color-accent;
+        margin-bottom: 6px;
+    }
+
+    .search-header-title {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0;
+        color: $color-text;
     }
 </style>

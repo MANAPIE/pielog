@@ -29,7 +29,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
   </div>
 
   <div class="sidebar-categories">
-    <h3 class="sidebar-section-title">CATEGORIES</h3>
+    <span class="section-kicker">// categories_</span>
     <ul class="category-tree">
       <li>
         <a href="/">Home</a>
@@ -161,18 +161,11 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
     }
 
     .sidebar-search {
-      margin: 16px -2px 0;
-    }
-
-    .sidebar-section-title {
-      margin: 20px 0;
-      font-weight: bold;
-      font-size: 9px;
-      letter-spacing: 30%;
-      color: $color-text-muted;
+      margin: 8px -2px 6px;
     }
 
     .sidebar-categories {
+      padding-top: 4px;
       padding-bottom: 16px;
       margin-bottom: 16px;
       border-bottom: 1px solid $color-border;
@@ -182,11 +175,27 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
       font-size: 14px;
 
       a {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 4px;
         color: $color-text;
         text-decoration: none;
+        padding: 2px 4px;
+        margin: 0 -4px;
+        border-radius: 3px;
+        transition:
+          background-color 0.15s ease,
+          color 0.15s ease;
 
         &:hover {
-          text-decoration: underline;
+          background: $color-surface;
+          color: $color-accent;
+          text-decoration: none;
+
+          span {
+            border-color: $color-accent;
+            color: $color-accent;
+          }
         }
       }
 
@@ -205,6 +214,9 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
         font-size: 11px;
         line-height: 16px;
         min-width: 8px;
+        transition:
+          border-color 0.15s ease,
+          color 0.15s ease;
       }
 
       li {

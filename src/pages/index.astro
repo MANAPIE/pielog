@@ -34,7 +34,7 @@ const featuredCandidates = sortedPosts
 	pageType="home"
 >
 	<FeaturedPost candidates={featuredCandidates} />
-	<h3 class="section-title">POSTS</h3>
+	<span class="section-kicker">// all posts · {sortedPosts.length}_</span>
 	<section class="post-list">
 		{
 			sortedPosts.map((post) => (
