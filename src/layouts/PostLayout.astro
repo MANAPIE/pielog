@@ -111,8 +111,6 @@ const {
 </script>
 
 <style lang="scss">
-    @use "../styles/_variables.scss" as *;
-
     .post-meta {
         display: flex;
         align-items: center;
@@ -121,25 +119,5 @@ const {
 
     .post-tags {
         margin: 1px 0 2px;
-    }
-
-    .post-tag {
-        color: $color-primary;
-        display: inline-block;
-        white-space: nowrap;
-        padding: 0 8px;
-        margin-right: 8px;
-        margin-bottom: 8px;
-        background: $color-tree;
-        border: 1px solid $color-border;
-        border-radius: 3px;
-        font-family: "Courier New", Courier, monospace;
-        font-weight: bold;
-        font-size: 11px;
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
     }
 </style>

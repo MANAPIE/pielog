@@ -30,7 +30,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
 
 <div class="aside-home">
   <section class="aside-section">
-    <h3 class="aside-section-title">TOP READS</h3>
+    <span class="section-kicker">// top reads_</span>
     <ul class="aside-section-list" id="top-reads">
       <li class="recent-post-item">
         <span class="recent-post-num" style="font-size:12px;">loading...</span>
@@ -39,7 +39,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
   </section>
 
   <section class="aside-section">
-    <h3 class="aside-section-title">RECENT POSTS</h3>
+    <span class="section-kicker">// recent posts_</span>
     {
       recentPosts.length > 0 ? (
         <ul class="aside-section-list">
@@ -59,7 +59,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
   </section>
 
   <section class="aside-section">
-    <h3 class="aside-section-title">TAG INDEX</h3>
+    <span class="section-kicker">// tag index_</span>
     {
       allTags.length > 0 ? (
         <div class="tag-list">
@@ -80,7 +80,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
   </section>
 
   <section class="aside-section">
-    <h3 class="aside-section-title">VISITORS</h3>
+    <span class="section-kicker">// visitors_</span>
     <ul class="aside-section-list">
       <li class="recent-post-item">
         <span class="recent-post-num"
@@ -138,23 +138,15 @@ const allTags = sortedTags.map(([tag, count]) => ({
   @use "../styles/_variables.scss" as *;
 
   .aside-home {
-    padding: 5px 20px 0;
+    padding: 5px 20px 20px;
   }
 
   .aside-section {
-    padding-bottom: 20px;
+    padding: 20px 0;
 
     & + .aside-section {
       border-top: 1px solid $color-border;
     }
-  }
-
-  .aside-section-title {
-    margin: 20px 0 10px;
-    font-weight: bold;
-    font-size: 9px;
-    letter-spacing: 30%;
-    color: $color-text-muted;
   }
 
   .aside-placeholder {
@@ -169,7 +161,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
 
   .recent-post-item + .recent-post-item,
   :global(#top-reads .recent-post-item + .recent-post-item) {
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   .recent-post-link,
@@ -180,10 +172,16 @@ const allTags = sortedTags.map(([tag, count]) => ({
     font-size: 13px;
     color: inherit;
     text-decoration: none;
+    padding: 3px 6px;
+    margin: 0 -6px;
+    border-radius: 3px;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
 
-    &:hover .recent-post-title,
-    &:hover :global(.recent-post-title) {
-      text-decoration: underline;
+    &:hover {
+      background: $color-surface;
+      color: $color-accent;
     }
   }
 
@@ -194,6 +192,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
     color: $color-text-muted;
     flex-shrink: 0;
     min-width: 2.5ch;
+    font-weight: bold;
   }
 
   .recent-post-title,
@@ -209,18 +208,6 @@ const allTags = sortedTags.map(([tag, count]) => ({
   }
 
   .tag-link {
-    color: $color-primary;
-    display: inline-block;
-    white-space: nowrap;
-    padding: 0 8px;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    background: $color-tree;
-    border: 1px solid $color-border;
-    border-radius: 3px;
-    font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
-    font-size: 11px;
     line-height: 1.6;
   }
 

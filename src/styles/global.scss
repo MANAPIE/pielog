@@ -12,10 +12,17 @@
     --color-bg-zero: #ffffff00;
     --color-text: #333333;
     --color-text-muted: #8A8278;
-    --color-accent: #183075;
+    --color-accent: #b8623a;
+    --color-accent-2: #c89968;
+    --color-accent-3: #e8c47a;
     --color-primary: #7a7269;
     --color-border: #D6D9E0;
     --color-tree: #E0D6D6;
+    --color-surface: rgba(122, 114, 105, 0.06);
+    --color-surface-strong: rgba(122, 114, 105, 0.14);
+    --color-line: rgba(184, 98, 58, 0.18);
+    --color-line-strong: rgba(184, 98, 58, 0.45);
+    --color-dot: rgba(122, 114, 105, 0.22);
     --color-code-bg: #f5f5f5;
     --color-shadow: rgba(0, 0, 0, 0.08);
     --color-shadow-hover: rgba(0, 0, 0, 0.18);
@@ -28,9 +35,16 @@
     --color-text: #e8e8e8;
     --color-text-muted: #a09a94;
     --color-accent: #f4e39a;
+    --color-accent-2: #d4925a;
+    --color-accent-3: #7eb8e0;
     --color-primary: #c0b8b0;
     --color-border: #555555;
     --color-tree: #3d3d3d;
+    --color-surface: rgba(255, 255, 255, 0.04);
+    --color-surface-strong: rgba(255, 255, 255, 0.08);
+    --color-line: rgba(244, 227, 154, 0.22);
+    --color-line-strong: rgba(244, 227, 154, 0.5);
+    --color-dot: rgba(244, 227, 154, 0.16);
     --color-code-bg: #242424;
     --color-shadow: rgba(0, 0, 0, 0.4);
     --color-shadow-hover: rgba(0, 0, 0, 0.8);
@@ -88,28 +102,89 @@ img {
 }
 
 /* ========================
+   Hero Background (decorative SVG layer)
+   ======================== */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ========================
+   Section Kicker
+   ======================== */
+.section-kicker {
+    display: block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: $color-accent;
+    margin: 12px 0;
+}
+
+/* ========================
+   Tag (post-card / featured / post-header / aside)
+   ======================== */
+.post-card-tags li,
+.featured-card-tags li,
+.post-tag,
+.tag-link {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 1px 8px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    background: $color-surface-strong;
+    border: 1px solid $color-border;
+    border-radius: 3px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: $color-text-muted;
+    text-decoration: none;
+    transition:
+        border-color 0.15s ease,
+        color 0.15s ease,
+        background-color 0.15s ease;
+
+    &::before {
+        content: "#";
+        color: $color-accent;
+        margin-right: 1px;
+    }
+}
+
+.post-tag:hover,
+.tag-link:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+    background: $color-surface;
+    text-decoration: none;
+}
+
+/* ========================
    Site Footer
    ======================== */
 .site-footer {
     max-width: $main-width;
-    margin: 0 auto;
     padding: 20px;
-    color: $color-text-muted;
-    font-size: 12px;
     text-align: center;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
+    margin: 12px auto;
 }
 
 /* ========================
    Post Card (글 목록)
    ======================== */
-.section-title {
-    margin: 9px 0 31px;
-    font-weight: bold;
-    font-size: 9px;
-    letter-spacing: 30%;
-    color: $color-text-muted;
-}
-
 .post-list {
     columns: 3;
     column-gap: 26px;
@@ -134,10 +209,15 @@ img {
         box-shadow: 0px 4px 20px var(--color-shadow);
         color: $color-text;
         text-decoration: none;
-        transition: box-shadow 0.1s ease;
+        transition:
+            box-shadow 0.15s ease,
+            border-color 0.15s ease,
+            transform 0.15s ease;
 
         &:hover {
-            box-shadow: 0px 4px 20px var(--color-shadow-hover);
+            border-color: $color-accent;
+            box-shadow: 0px 6px 22px var(--color-shadow-hover);
+            transform: translateY(-2px);
             color: $color-text;
         }
     }
@@ -149,21 +229,6 @@ img {
     .post-card-tags {
         font-size: 12px;
         line-height: 1.8;
-
-        li {
-            color: $color-primary;
-            display: inline-block;
-            white-space: nowrap;
-            padding: 0 8px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            background: $color-tree;
-            border: 1px solid $color-border;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            font-size: 11px;
-        }
     }
 
     .post-card-title {
@@ -197,7 +262,7 @@ img {
         font-size: 2rem;
         font-weight: 700;
         line-height: 1.3;
-        margin-bottom: 0.5rem;
+        margin: 0.5rem 0;
     }
 
     time {
