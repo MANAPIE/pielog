@@ -1,0 +1,155 @@
+/*!
+ * PIElog Giscus theme — dark
+ * Based on giscus.app/themes/custom_example.css structure.
+ */
+
+main {
+  /* ===== Syntax highlighting (GitHub Dark tones) ===== */
+  --color-prettylights-syntax-comment: #8b949e;
+  --color-prettylights-syntax-constant: #79c0ff;
+  --color-prettylights-syntax-entity: #d2a8ff;
+  --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+  --color-prettylights-syntax-entity-tag: #7ee787;
+  --color-prettylights-syntax-keyword: #ff7b72;
+  --color-prettylights-syntax-string: #a5d6ff;
+  --color-prettylights-syntax-variable: #ffa657;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
+  --color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
+  --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
+  --color-prettylights-syntax-carriage-return-text: #f0f6fc;
+  --color-prettylights-syntax-carriage-return-bg: #b62324;
+  --color-prettylights-syntax-string-regexp: #7ee787;
+  --color-prettylights-syntax-markup-list: #f2cc60;
+  --color-prettylights-syntax-markup-heading: #1f6feb;
+  --color-prettylights-syntax-markup-italic: #c9d1d9;
+  --color-prettylights-syntax-markup-bold: #c9d1d9;
+  --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
+  --color-prettylights-syntax-markup-deleted-bg: #67060c;
+  --color-prettylights-syntax-markup-inserted-text: #aff5b4;
+  --color-prettylights-syntax-markup-inserted-bg: #033a16;
+  --color-prettylights-syntax-markup-changed-text: #ffdfb6;
+  --color-prettylights-syntax-markup-changed-bg: #5a1e02;
+  --color-prettylights-syntax-markup-ignored-text: #c9d1d9;
+  --color-prettylights-syntax-markup-ignored-bg: #1158c7;
+  --color-prettylights-syntax-meta-diff-range: #d2a8ff;
+  --color-prettylights-syntax-brackethighlighter-angle: #8b949e;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
+  --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
+
+  /* ===== Buttons ===== */
+  --color-btn-text: #e8e8e8;
+  --color-btn-bg: rgba(255, 255, 255, 0.05);
+  --color-btn-border: #555555;
+  --color-btn-shadow: 0 0 #0000;
+  --color-btn-inset-shadow: 0 0 #0000;
+  --color-btn-hover-bg: rgba(244, 227, 154, 0.08);
+  --color-btn-hover-border: #f4e39a;
+  --color-btn-active-bg: rgba(244, 227, 154, 0.16);
+  --color-btn-active-border: #f4e39a;
+  --color-btn-selected-bg: rgba(244, 227, 154, 0.12);
+
+  --color-btn-primary-text: #1a1a1a;
+  --color-btn-primary-bg: #f4e39a;
+  --color-btn-primary-border: rgba(244, 227, 154, 0.4);
+  --color-btn-primary-shadow: 0 0 #0000;
+  --color-btn-primary-inset-shadow: 0 0 #0000;
+  --color-btn-primary-hover-bg: #e6d488;
+  --color-btn-primary-hover-border: rgba(244, 227, 154, 0.4);
+  --color-btn-primary-selected-bg: #e6d488;
+  --color-btn-primary-selected-shadow: 0 0 #0000;
+  --color-btn-primary-disabled-text: rgba(26, 26, 26, 0.6);
+  --color-btn-primary-disabled-bg: rgba(244, 227, 154, 0.5);
+  --color-btn-primary-disabled-border: rgba(244, 227, 154, 0.2);
+
+  --color-action-list-item-default-hover-bg: rgba(255, 255, 255, 0.08);
+  --color-segmented-control-bg: rgba(255, 255, 255, 0.06);
+  --color-segmented-control-button-bg: #1a1a1a;
+  --color-segmented-control-button-selected-border: #f4e39a;
+
+  /* ===== Foreground / canvas ===== */
+  --color-fg-default: #e8e8e8;
+  --color-fg-muted: #a09a94;
+  --color-fg-subtle: #6e6963;
+  --color-canvas-default: #1a1a1a;
+  --color-canvas-overlay: #1a1a1a;
+  --color-canvas-inset: #242424;
+  --color-canvas-subtle: rgba(255, 255, 255, 0.04);
+  --color-border-default: #555555;
+  --color-border-muted: #3d3d3d;
+  --color-neutral-muted: rgba(255, 255, 255, 0.1);
+
+  /* ===== Accent (gold) ===== */
+  --color-accent-fg: #f4e39a;
+  --color-accent-emphasis: #f4e39a;
+  --color-accent-muted: rgba(244, 227, 154, 0.5);
+  --color-accent-subtle: rgba(244, 227, 154, 0.16);
+
+  --color-success-fg: #7ee787;
+  --color-attention-fg: #d4a72c;
+  --color-attention-muted: rgba(212, 167, 44, 0.4);
+  --color-attention-subtle: rgba(212, 167, 44, 0.15);
+  --color-danger-fg: #f85149;
+  --color-danger-muted: rgba(248, 81, 73, 0.4);
+  --color-danger-subtle: rgba(248, 81, 73, 0.1);
+  --color-primer-shadow-inset: 0 0 #0000;
+
+  --color-scale-gray-7: #555555;
+  --color-scale-blue-8: #f4e39a;
+
+  /* Extensions from @primer/css/alerts/flash.scss */
+  --color-social-reaction-bg-hover: var(--color-scale-gray-7);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
+}
+
+/*! Custom layout (same as giscus example) */
+.gsc-reactions-count {
+  display: none;
+}
+.gsc-timeline {
+  flex-direction: column-reverse;
+}
+.gsc-header {
+  padding-bottom: 1rem;
+}
+.gsc-comments > .gsc-header {
+  order: 1;
+}
+.gsc-comments > .gsc-comment-box {
+  margin-bottom: 1rem;
+  order: 2;
+}
+.gsc-comments > .gsc-timeline {
+  order: 3;
+}
+.gsc-homepage-bg {
+  background-color: #1a1a1a;
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-dimmed.gif");
+}
+
+/* Pretendard for body (matches site) */
+main,
+main button,
+main input,
+main textarea {
+  font-family:
+    "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", sans-serif;
+}
+
+/* Monospace for code (matches site) */
+main code,
+main pre,
+main kbd,
+main samp {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+}

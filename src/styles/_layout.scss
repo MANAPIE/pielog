@@ -41,6 +41,26 @@
   background: $color-bg;
 }
 
+/* About: extend main into the aside column on desktop */
+.layout-wrapper[data-page-type="about"] {
+  @media (min-width: $bp-mid) {
+    grid-template-columns: $sidebar-width 1fr;
+
+    .main-content {
+      width: auto;
+      max-width: $main-width + $aside-width-max;
+    }
+  }
+
+  .aside-panel {
+    display: none;
+  }
+}
+
+body:has(.layout-wrapper[data-page-type="about"]) #aside-toggle {
+  display: none;
+}
+
 .sidebar {
   .sidebar-inner {
     overflow-y: auto;
@@ -69,7 +89,7 @@
   }
 }
 
-body.panel-active .sidebar[style*="--sidebar-opacity"] ~ .main-content {
+body.panel-active .sidebar[style*="--sidebar-opacity"]~.main-content {
   pointer-events: none;
 }
 

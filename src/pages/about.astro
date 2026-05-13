@@ -4,9 +4,1803 @@ export const prerender = true;
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="About — PIElog" description="블로그 소개" pageType="about">
-    <div class="about-content">
-        <h1>About</h1>
-        <p>준비 중</p>
-    </div>
+<BaseLayout
+    title="About — PIElog"
+    description="MANAPIE의 블로그 PIElog를 소개합니다. // thoughts & experiments_"
+    pageType="about"
+>
+    <article class="about">
+        <!-- ============ HERO ============ -->
+        <header class="about-hero">
+            <svg
+                class="about-hero-bg"
+                viewBox="0 0 820 420"
+                preserveAspectRatio="xMidYMid slice"
+                aria-hidden="true"
+            >
+                <defs>
+                    <pattern
+                        id="about-dots"
+                        x="0"
+                        y="0"
+                        width="24"
+                        height="24"
+                        patternUnits="userSpaceOnUse"
+                    >
+                        <circle cx="12" cy="12" r="1.2" fill="var(--ab-dot)"
+                        ></circle>
+                    </pattern>
+                    <radialGradient
+                        id="about-halo-a"
+                        cx="0.85"
+                        cy="0.15"
+                        r="0.7"
+                    >
+                        <stop
+                            offset="0"
+                            stop-color="var(--ab-accent)"
+                            stop-opacity="0.28"></stop>
+                        <stop
+                            offset="1"
+                            stop-color="var(--ab-accent)"
+                            stop-opacity="0"></stop>
+                    </radialGradient>
+                    <radialGradient
+                        id="about-halo-b"
+                        cx="0.08"
+                        cy="0.92"
+                        r="0.6"
+                    >
+                        <stop
+                            offset="0"
+                            stop-color="var(--ab-accent-3)"
+                            stop-opacity="0.34"></stop>
+                        <stop
+                            offset="1"
+                            stop-color="var(--ab-accent-3)"
+                            stop-opacity="0"></stop>
+                    </radialGradient>
+                </defs>
+
+                <rect width="820" height="420" fill="url(#about-dots)"></rect>
+                <rect width="820" height="420" fill="url(#about-halo-a)"></rect>
+                <rect width="820" height="420" fill="url(#about-halo-b)"></rect>
+
+                <circle
+                    cx="740"
+                    cy="60"
+                    r="240"
+                    fill="none"
+                    stroke="var(--ab-line)"
+                    stroke-width="1.4"></circle>
+                <circle
+                    cx="740"
+                    cy="60"
+                    r="170"
+                    fill="none"
+                    stroke="var(--ab-line)"
+                    stroke-width="1.4"></circle>
+                <circle
+                    cx="740"
+                    cy="60"
+                    r="100"
+                    fill="none"
+                    stroke="var(--ab-line)"
+                    stroke-width="1.4"></circle>
+                <circle
+                    cx="90"
+                    cy="380"
+                    r="190"
+                    fill="none"
+                    stroke="var(--ab-line)"
+                    stroke-width="1.4"></circle>
+
+                <g transform="rotate(-9 410 210)">
+                    <rect
+                        x="640"
+                        y="240"
+                        width="200"
+                        height="200"
+                        fill="none"
+                        stroke="var(--ab-line)"
+                        stroke-width="1.4"
+                        stroke-dasharray="4 8"></rect>
+                </g>
+
+                <circle
+                    cx="660"
+                    cy="300"
+                    r="22"
+                    fill="var(--ab-accent)"
+                    fill-opacity="0.18"></circle>
+                <circle
+                    cx="660"
+                    cy="300"
+                    r="22"
+                    fill="none"
+                    stroke="var(--ab-accent)"
+                    stroke-width="1.4"
+                    stroke-dasharray="3 5"></circle>
+                <circle cx="700" cy="320" r="7" fill="var(--ab-accent-2)"
+                ></circle>
+                <circle cx="630" cy="340" r="4" fill="var(--ab-accent)"
+                ></circle>
+                <circle cx="690" cy="350" r="5" fill="var(--ab-accent-3)"
+                ></circle>
+
+                <rect
+                    x="40"
+                    y="60"
+                    width="38"
+                    height="10"
+                    rx="5"
+                    fill="var(--ab-accent-2)"
+                    fill-opacity="0.55"></rect>
+                <rect
+                    x="40"
+                    y="76"
+                    width="22"
+                    height="6"
+                    rx="3"
+                    fill="var(--ab-accent-3)"
+                    fill-opacity="0.7"></rect>
+
+                <line
+                    x1="120"
+                    y1="220"
+                    x2="220"
+                    y2="220"
+                    stroke="var(--ab-accent)"
+                    stroke-width="1.4"
+                    stroke-dasharray="4 6"
+                    stroke-opacity="0.6"></line>
+                <line
+                    x1="120"
+                    y1="240"
+                    x2="180"
+                    y2="240"
+                    stroke="var(--ab-accent)"
+                    stroke-width="1.4"
+                    stroke-opacity="0.4"></line>
+            </svg>
+
+            <div class="about-hero-inner">
+                <span class="about-eyebrow">
+                    <span class="about-eyebrow-dot"></span>
+                    // thoughts &amp; experiments_
+                </span>
+                <h1 class="about-title">
+                    About<span class="about-title-dot">.</span>
+                </h1>
+                <p class="about-lede">
+                    PIElog는 <strong>파이(MANAPIE)</strong>가 여러 경계에서
+                    마주친 문제들을 기록하는 블로그입니다.<br />
+                    정리된 결론도 있지만, <em>// thoughts &amp; experiments_</em
+                    >라는 부제 그대로, 진행 중인 실험과 부서진 지점도 함께
+                    공유하고 싶습니다.
+                </p>
+
+                <div class="about-hero-meta">
+                    <div class="about-hero-card">
+                        <svg
+                            class="about-hero-card-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"></circle>
+                            <circle cx="12" cy="12" r="4" fill="currentColor"
+                            ></circle>
+                        </svg>
+                        <div>
+                            <span class="about-hero-card-label">Editor</span>
+                            <strong>MANAPIE</strong>
+                        </div>
+                    </div>
+                    <div class="about-hero-card">
+                        <svg
+                            class="about-hero-card-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <rect
+                                x="3"
+                                y="3"
+                                width="18"
+                                height="18"
+                                rx="3"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"></rect>
+                            <path
+                                d="M3 9 H21"
+                                stroke="currentColor"
+                                stroke-width="1.6"></path>
+                            <circle
+                                cx="6.5"
+                                cy="6.5"
+                                r="0.8"
+                                fill="currentColor"></circle>
+                            <circle
+                                cx="9.5"
+                                cy="6.5"
+                                r="0.8"
+                                fill="currentColor"></circle>
+                        </svg>
+                        <div>
+                            <span class="about-hero-card-label">Since</span>
+                            <strong>2026 → now</strong>
+                        </div>
+                    </div>
+                    <div class="about-hero-card">
+                        <svg
+                            class="about-hero-card-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M4 18 L10 10 L14 14 L20 6"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                            <circle cx="20" cy="6" r="1.6" fill="currentColor"
+                            ></circle>
+                        </svg>
+                        <div>
+                            <span class="about-hero-card-label">Stance</span>
+                            <strong>π-shaped</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============ WHY PIELOG ============ -->
+        <section class="about-section">
+            <header class="about-section-head">
+                <span class="about-section-num">01</span>
+                <div>
+                    <span class="about-section-kicker">manifesto</span>
+                    <h2>Why PIElog</h2>
+                </div>
+                <svg
+                    class="about-section-glyph"
+                    viewBox="0 0 60 60"
+                    aria-hidden="true"
+                >
+                    <rect
+                        x="6"
+                        y="6"
+                        width="22"
+                        height="22"
+                        rx="3"
+                        fill="var(--ab-accent)"
+                        fill-opacity="0.18"
+                        stroke="var(--ab-accent)"
+                        stroke-width="1.4"></rect>
+                    <rect
+                        x="32"
+                        y="10"
+                        width="18"
+                        height="18"
+                        rx="3"
+                        fill="var(--ab-accent-2)"
+                        fill-opacity="0.4"
+                        stroke="var(--ab-accent-2)"
+                        stroke-width="1.4"
+                        transform="rotate(8 41 19)"></rect>
+                    <rect
+                        x="10"
+                        y="32"
+                        width="16"
+                        height="16"
+                        rx="3"
+                        fill="none"
+                        stroke="var(--ab-accent)"
+                        stroke-width="1.4"
+                        stroke-dasharray="3 4"
+                        transform="rotate(-6 18 40)"></rect>
+                    <rect
+                        x="30"
+                        y="32"
+                        width="22"
+                        height="22"
+                        rx="3"
+                        fill="var(--ab-accent-3)"
+                        fill-opacity="0.55"
+                        stroke="var(--ab-accent)"
+                        stroke-width="1.4"></rect>
+                    <circle cx="30" cy="30" r="3" fill="var(--ab-accent)"
+                    ></circle>
+                </svg>
+            </header>
+
+            <p>
+                부서져 본 사람만이 다시 조립할 수 있고, 다시 조립한 경험만이
+                자산이 됩니다.<br />
+                하지만 실무에서 부서지고 다시 조립한 것들은 시간이 지나면 흩어지고
+                맙니다.
+            </p>
+            <p>
+                흩어지기 전에 붙들어 두는 일, 그리고 같은 자리를 지나고 있을
+                누군가의 손에 닿게 두는 일.<br />
+                이 블로그가 자리한 이유입니다.
+            </p>
+
+            <blockquote class="about-quote">
+                <svg viewBox="0 0 28 28" aria-hidden="true">
+                    <path
+                        d="M6 16 Q6 8 14 8 M16 16 Q16 8 24 8"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"></path>
+                </svg>
+                <p>
+                    여기서는 사람과 기계, 사용자와 시스템, 그리고 디자인과
+                    개발이 한 사람 안에서 동시에 일어납니다.<br />
+                    디자인을 이야기하는 글에도 코드가 비집고 들어오고, 개발을 이야기하는
+                    글에도 사용자의 얼굴이 어른거립니다.<br />
+                    둘을 가지런히 나눌 수 있을 때도 있지만, 굳이 나누지 않습니다.
+                </p>
+            </blockquote>
+        </section>
+
+        <!-- ============ MANAPIE ============ -->
+        <section class="about-section about-section--portrait">
+            <header class="about-section-head">
+                <span class="about-section-num">02</span>
+                <div>
+                    <span class="about-section-kicker">profile</span>
+                    <h2>파이 (MANAPIE)</h2>
+                </div>
+                <svg
+                    class="about-section-glyph about-section-glyph--pi"
+                    viewBox="0 0 60 60"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M8 18 H52"
+                        stroke="var(--ab-accent)"
+                        stroke-width="3"
+                        stroke-linecap="round"></path>
+                    <path
+                        d="M20 18 V52"
+                        stroke="var(--ab-accent)"
+                        stroke-width="3"
+                        stroke-linecap="round"></path>
+                    <path
+                        d="M40 18 V52"
+                        stroke="var(--ab-accent)"
+                        stroke-width="3"
+                        stroke-linecap="round"></path>
+                    <circle cx="20" cy="54" r="3" fill="var(--ab-accent-2)"
+                    ></circle>
+                    <circle cx="40" cy="54" r="3" fill="var(--ab-accent-2)"
+                    ></circle>
+                    <circle cx="48" cy="14" r="2" fill="var(--ab-accent-3)"
+                    ></circle>
+                </svg>
+            </header>
+
+            <div class="about-portrait">
+                <figure
+                    class="about-portrait-figure"
+                    aria-label="프로필 이미지"
+                >
+                    <div class="about-portrait-frame">
+                        <svg viewBox="0 0 200 240" aria-hidden="true">
+                            <rect
+                                width="200"
+                                height="240"
+                                fill="var(--ab-surface)"></rect>
+                            <circle
+                                cx="100"
+                                cy="92"
+                                r="46"
+                                fill="var(--ab-accent)"
+                                fill-opacity="0.18"></circle>
+                            <circle
+                                cx="100"
+                                cy="92"
+                                r="46"
+                                fill="none"
+                                stroke="var(--ab-accent)"
+                                stroke-width="1.6"
+                                stroke-dasharray="3 5"></circle>
+                            <path
+                                d="M40 230 Q100 150 160 230 Z"
+                                fill="var(--ab-accent)"
+                                fill-opacity="0.18"></path>
+                            <path
+                                d="M40 230 Q100 150 160 230"
+                                fill="none"
+                                stroke="var(--ab-accent)"
+                                stroke-width="1.6"></path>
+                        </svg>
+                        <figcaption>PIE 입니다. PI가 아닙니다.</figcaption>
+                    </div>
+                    <div class="about-portrait-tags">
+                        <span
+                            ><svg viewBox="0 0 14 14" aria-hidden="true"
+                                ><path
+                                    d="M3 7 L6 10 L11 4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path></svg
+                            >Computer Science</span
+                        >
+                        <span
+                            ><svg viewBox="0 0 14 14" aria-hidden="true"
+                                ><path
+                                    d="M3 7 L6 10 L11 4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path></svg
+                            >Visual Communication Design</span
+                        >
+                        <span class="is-accent"
+                            ><svg viewBox="0 0 14 14" aria-hidden="true"
+                                ><circle cx="7" cy="7" r="3" fill="currentColor"
+                                ></circle></svg
+                            >Design Engineer</span
+                        >
+                    </div>
+                </figure>
+
+                <div class="about-portrait-body">
+                    <p>
+                        컴퓨터공학과 시각디자인학을 함께 전공했습니다.<br />
+                        한쪽을 부전공으로 거친 게 아니라, 두 길을 끝까지 함께 걸어
+                        졸업했습니다. <br />
+                        디자인을 모르는 개발자도, 코드를 모르는 디자이너도 아닙니다.
+                    </p>
+
+                    <div class="about-pi-card">
+                        <div class="about-pi-card-head">
+                            <span class="about-pi-glyph">π</span>
+                            <div>
+                                <strong>π-shaped</strong>
+                                <span>두 분야에 동시에 깊이를 가진 사람</span>
+                            </div>
+                        </div>
+                        <p>
+                            T자형 인재가 한 분야의 깊이를 가진 사람이라면, 두
+                            분야의 동시에 깊이를 가진 사람을
+                            <strong>π-shaped</strong>라고 부릅니다. <br />
+                            한국어로는 <strong>풀스택 개자이너</strong> (개발자+디자이너),
+                            영어로는 <strong>Design Engineer</strong>. <br />
+                            저는 그렇게 불려왔지만, 지금은 그 이름들이 다 담아내지
+                            못하는 자리에 있습니다. <br />
+                            앞으로는 나무 뿌리만큼 더 깊게 더 넓게 뻗어나가려고 합니다.
+                        </p>
+                    </div>
+
+                    <div class="about-timeline">
+                        <div class="about-timeline-line" aria-hidden="true">
+                        </div>
+                        <div class="about-timeline-item">
+                            <span class="about-timeline-dot"></span>
+                            <span class="about-timeline-year">2004</span>
+                            <p>
+                                처음으로 HTML과 PHP를 더듬어 페이지 한 장을
+                                띄우던 손은 그 뒤로 줄곧 모양을 바꿔 왔습니다.
+                            </p>
+                        </div>
+                        <div class="about-timeline-item">
+                            <span class="about-timeline-dot"></span>
+                            <span class="about-timeline-year">→</span>
+                            <p>
+                                정적인 페이지를 짜던 손이 어느새 서버를 세우고,
+                                서버 아래에서 사용자를 들여다보고, 사용자 너머로
+                                팀과 제품 전체를 그리는 일까지 닿았습니다.
+                            </p>
+                        </div>
+                        <div class="about-timeline-item">
+                            <span class="about-timeline-dot is-accent"></span>
+                            <span class="about-timeline-year">now</span>
+                            <p>
+                                사람과 기계가 맞닿는 가장자리, 그 가장자리가
+                                자꾸 넓어지는 곳을 따라 일해 왔습니다.<br />
+                                프리랜서로 시작해 풀스택 엔지니어를 지나 CTO와 PM의
+                                자리에도 앉아 보았고, 지금도 어느 한 곳에만 머물러
+                                있지 않습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="about-portrait-outro">
+                        블로그 바깥에서는 꼬냑 한 잔, 손에 잡히는 카메라 한 대,
+                        이국 타지의 오래된 골목… <br />
+                        그 사이에서 또 다른 경험에 시간을 나눕니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ HOW I WRITE ============ -->
+        <section class="about-section">
+            <header class="about-section-head">
+                <span class="about-section-num">03</span>
+                <div>
+                    <span class="about-section-kicker">principles</span>
+                    <h2>어떻게 쓰는가</h2>
+                </div>
+                <svg
+                    class="about-section-glyph"
+                    viewBox="0 0 60 60"
+                    aria-hidden="true"
+                >
+                    <rect
+                        x="8"
+                        y="8"
+                        width="44"
+                        height="44"
+                        rx="8"
+                        fill="none"
+                        stroke="var(--ab-accent)"
+                        stroke-width="1.6"
+                        stroke-dasharray="3 5"></rect>
+                    <path
+                        d="M18 30 L26 38 L42 22"
+                        fill="none"
+                        stroke="var(--ab-accent)"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </header>
+
+            <ul class="about-principles">
+                <li>
+                    <span class="about-principles-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <circle
+                                cx="14"
+                                cy="14"
+                                r="11"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"></circle>
+                            <path
+                                d="M14 7 L14 14 L19 17"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"></path>
+                        </svg>
+                    </span>
+                    <div>
+                        <strong>직접 부서져 본 것을 씁니다.</strong>
+                        <p>
+                            새로운 주제를 무작정 던져보기 보다는 제가 알고 있는
+                            것, 해온 것들을 씁니다.
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <span class="about-principles-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <rect
+                                x="4"
+                                y="6"
+                                width="6"
+                                height="16"
+                                rx="1.5"
+                                fill="currentColor"
+                                fill-opacity="0.85"></rect>
+                            <rect
+                                x="11"
+                                y="6"
+                                width="6"
+                                height="16"
+                                rx="1.5"
+                                fill="currentColor"
+                                fill-opacity="0.55"></rect>
+                            <rect
+                                x="18"
+                                y="6"
+                                width="6"
+                                height="16"
+                                rx="1.5"
+                                fill="currentColor"
+                                fill-opacity="0.3"></rect>
+                        </svg>
+                    </span>
+                    <div>
+                        <strong>시리즈로 씁니다.</strong>
+                        <p>한 번에 끝나지 않는 주제는 여러 편으로 나눕니다.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="about-principles-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <path
+                                d="M6 6 L22 6"
+                                stroke="currentColor"
+                                stroke-width="2.2"
+                                stroke-linecap="round"></path>
+                            <path
+                                d="M6 13 L18 13"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-opacity="0.6"></path>
+                            <path
+                                d="M6 19 L20 19"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-opacity="0.4"></path>
+                            <path
+                                d="M6 25 L14 25"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-opacity="0.25"></path>
+                        </svg>
+                    </span>
+                    <div>
+                        <strong>결론을 먼저 말합니다.</strong>
+                        <p>
+                            리드 단락에서 무엇을 다루고 무엇을 얻을 수 있는지
+                            먼저 밝힙니다.
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <span class="about-principles-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <rect
+                                x="5"
+                                y="5"
+                                width="8"
+                                height="8"
+                                rx="1.5"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"></rect>
+                            <rect
+                                x="15"
+                                y="5"
+                                width="8"
+                                height="8"
+                                rx="1.5"
+                                fill="currentColor"></rect>
+                            <rect
+                                x="5"
+                                y="15"
+                                width="8"
+                                height="8"
+                                rx="1.5"
+                                fill="currentColor"
+                                fill-opacity="0.5"></rect>
+                            <rect
+                                x="15"
+                                y="15"
+                                width="8"
+                                height="8"
+                                rx="1.5"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-dasharray="2 3"></rect>
+                        </svg>
+                    </span>
+                    <div>
+                        <strong>가져갈 수 있는 자산을 남깁니다.</strong>
+                        <p>
+                            다이어그램, 체크리스트, 분류 카드처럼 오래 쓸 수
+                            있는 것들을 만들어 둡니다.
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <span class="about-principles-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <circle cx="14" cy="14" r="3" fill="currentColor"
+                            ></circle>
+                            <circle
+                                cx="14"
+                                cy="14"
+                                r="7"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"></circle>
+                            <circle
+                                cx="14"
+                                cy="14"
+                                r="11"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.4"
+                                stroke-dasharray="3 4"></circle>
+                        </svg>
+                    </span>
+                    <div>
+                        <strong>기계와 함께 합니다.</strong>
+                        <p>
+                            초안은 사람이 작성하고, AI 에이전트와 함께 글을
+                            다듬습니다.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ============ COLOPHON ============ -->
+        <section class="about-section">
+            <header class="about-section-head">
+                <span class="about-section-num">04</span>
+                <div>
+                    <span class="about-section-kicker">colophon</span>
+                    <h2>이 사이트의 뼈대</h2>
+                </div>
+                <svg
+                    class="about-section-glyph"
+                    viewBox="0 0 60 60"
+                    aria-hidden="true"
+                >
+                    <rect
+                        x="8"
+                        y="38"
+                        width="44"
+                        height="10"
+                        rx="2"
+                        fill="var(--ab-accent)"
+                        fill-opacity="0.25"
+                        stroke="var(--ab-accent)"
+                        stroke-width="1.4"></rect>
+                    <rect
+                        x="12"
+                        y="26"
+                        width="36"
+                        height="10"
+                        rx="2"
+                        fill="var(--ab-accent)"
+                        fill-opacity="0.45"
+                        stroke="var(--ab-accent)"
+                        stroke-width="1.4"></rect>
+                    <rect
+                        x="16"
+                        y="14"
+                        width="28"
+                        height="10"
+                        rx="2"
+                        fill="var(--ab-accent)"
+                        fill-opacity="0.75"
+                        stroke="var(--ab-accent)"
+                        stroke-width="1.4"></rect>
+                </svg>
+            </header>
+
+            <p class="about-colophon-intro">
+                이 사이트가 어떻게 만들어졌는지에 대한 메모입니다.
+            </p>
+
+            <ul class="about-colophon">
+                <li>
+                    <span class="about-colophon-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <polygon
+                                points="14,4 24,22 4,22"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linejoin="round"></polygon>
+                            <circle cx="14" cy="22" r="2" fill="currentColor"
+                            ></circle>
+                        </svg>
+                    </span>
+                    <span class="about-colophon-layer">Framework</span>
+                    <strong>Astro + MDX</strong>
+                </li>
+                <li>
+                    <span class="about-colophon-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <path
+                                d="M14 4 L24 14 L14 24 L4 14 Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <span class="about-colophon-layer">Hosting</span>
+                    <strong>Vercel</strong>
+                </li>
+                <li>
+                    <span class="about-colophon-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <rect
+                                x="5"
+                                y="14"
+                                width="3"
+                                height="9"
+                                fill="currentColor"></rect>
+                            <rect
+                                x="11"
+                                y="9"
+                                width="3"
+                                height="14"
+                                fill="currentColor"></rect>
+                            <rect
+                                x="17"
+                                y="5"
+                                width="3"
+                                height="18"
+                                fill="currentColor"></rect>
+                            <rect
+                                x="23"
+                                y="11"
+                                width="3"
+                                height="12"
+                                fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <span class="about-colophon-layer">Analytics</span>
+                    <strong>Vercel Analytics</strong>
+                </li>
+                <li>
+                    <span class="about-colophon-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <path
+                                d="M5 7 H23 V19 L19 19 L15 23 L11 19 L5 19 Z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linejoin="round"></path>
+                            <circle cx="11" cy="13" r="1.3" fill="currentColor"
+                            ></circle>
+                            <circle cx="14" cy="13" r="1.3" fill="currentColor"
+                            ></circle>
+                            <circle cx="17" cy="13" r="1.3" fill="currentColor"
+                            ></circle>
+                        </svg>
+                    </span>
+                    <span class="about-colophon-layer">Comments</span>
+                    <strong>giscus</strong>
+                </li>
+                <li>
+                    <span class="about-colophon-icon">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <circle
+                                cx="14"
+                                cy="14"
+                                r="10"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"></circle>
+                            <path
+                                d="M4 14 H24 M14 4 Q19 14 14 24 Q9 14 14 4"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.4"></path>
+                        </svg>
+                    </span>
+                    <span class="about-colophon-layer">Domain</span>
+                    <strong>
+                        pielog.me<span class="about-colophon-sub">
+                            · 블로그</span
+                        >
+                        <br />
+                        manapie.me<span class="about-colophon-sub">
+                            · 개인 페이지</span
+                        >
+                    </strong>
+                </li>
+            </ul>
+
+            <p class="about-colophon-outro">
+                구축 과정은
+                <a href="/astro-vercel-implementation/"
+                    >Astro + Vercel 셋업 후기</a
+                >에 정리되어 있습니다.
+            </p>
+        </section>
+
+        <!-- ============ CONNECT ============ -->
+        <section class="about-section">
+            <header class="about-section-head">
+                <span class="about-section-num">05</span>
+                <div>
+                    <span class="about-section-kicker">connect</span>
+                    <h2>닿는 길</h2>
+                </div>
+                <svg
+                    class="about-section-glyph"
+                    viewBox="0 0 60 60"
+                    aria-hidden="true"
+                >
+                    <circle cx="14" cy="20" r="4" fill="var(--ab-accent)"
+                    ></circle>
+                    <circle cx="46" cy="16" r="4" fill="var(--ab-accent-2)"
+                    ></circle>
+                    <circle cx="40" cy="44" r="4" fill="var(--ab-accent-3)"
+                    ></circle>
+                    <circle
+                        cx="16"
+                        cy="42"
+                        r="4"
+                        fill="var(--ab-accent)"
+                        fill-opacity="0.6"></circle>
+                    <line
+                        x1="14"
+                        y1="20"
+                        x2="46"
+                        y2="16"
+                        stroke="var(--ab-line-strong)"
+                        stroke-width="1.2"></line>
+                    <line
+                        x1="46"
+                        y1="16"
+                        x2="40"
+                        y2="44"
+                        stroke="var(--ab-line-strong)"
+                        stroke-width="1.2"></line>
+                    <line
+                        x1="40"
+                        y1="44"
+                        x2="16"
+                        y2="42"
+                        stroke="var(--ab-line-strong)"
+                        stroke-width="1.2"></line>
+                    <line
+                        x1="16"
+                        y1="42"
+                        x2="14"
+                        y2="20"
+                        stroke="var(--ab-line-strong)"
+                        stroke-width="1.2"></line>
+                    <line
+                        x1="14"
+                        y1="20"
+                        x2="40"
+                        y2="44"
+                        stroke="var(--ab-line-strong)"
+                        stroke-width="1.2"
+                        stroke-dasharray="2 4"></line>
+                </svg>
+            </header>
+
+            <div class="about-connect">
+                <a
+                    class="about-connect-card is-primary"
+                    href="mailto:bakery@manapie.me"
+                >
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <rect
+                            x="4"
+                            y="8"
+                            width="24"
+                            height="16"
+                            rx="2"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"></rect>
+                        <path
+                            d="M4 9 L16 18 L28 9"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                    <span class="about-connect-label">Email</span>
+                    <strong>bakery@manapie.me</strong>
+                </a>
+                <a class="about-connect-card" href="https://manapie.me">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <circle
+                            cx="16"
+                            cy="16"
+                            r="11"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"></circle>
+                        <path
+                            d="M5 16 H27 M16 5 Q22 16 16 27 Q10 16 16 5"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.6"></path>
+                    </svg>
+                    <span class="about-connect-label">Personal</span>
+                    <strong>manapie.me</strong>
+                </a>
+                <a class="about-connect-card" href="https://github.com/MANAPIE">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <path
+                            d="M16 4 C9.4 4 4 9.4 4 16 c0 5.3 3.4 9.8 8.2 11.4 c0.6 0.1 0.8-0.3 0.8-0.6 v-2.1 c-3.3 0.7-4-1.6-4-1.6 c-0.5-1.4-1.3-1.7-1.3-1.7 c-1.1-0.7 0.1-0.7 0.1-0.7 c1.2 0.1 1.8 1.2 1.8 1.2 c1.1 1.8 2.8 1.3 3.5 1 c0.1-0.8 0.4-1.3 0.8-1.6 c-2.6-0.3-5.4-1.3-5.4-5.9 c0-1.3 0.5-2.4 1.2-3.2 c-0.1-0.3-0.5-1.5 0.1-3.2 c0 0 1-0.3 3.3 1.2 c1-0.3 2-0.4 3-0.4 c1 0 2 0.1 3 0.4 c2.3-1.5 3.3-1.2 3.3-1.2 c0.7 1.7 0.2 2.9 0.1 3.2 c0.8 0.8 1.2 1.9 1.2 3.2 c0 4.6-2.8 5.6-5.5 5.9 c0.4 0.4 0.8 1.1 0.8 2.2 v3.3 c0 0.3 0.2 0.7 0.8 0.6 C24.6 25.8 28 21.3 28 16 C28 9.4 22.6 4 16 4 Z"
+                            fill="currentColor"></path>
+                    </svg>
+                    <span class="about-connect-label">Code</span>
+                    <strong>GitHub</strong>
+                </a>
+                <a
+                    class="about-connect-card"
+                    href="https://kr.linkedin.com/in/byeonghoon-ahn-b434ba2b4"
+                >
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <rect
+                            x="4"
+                            y="4"
+                            width="24"
+                            height="24"
+                            rx="3"
+                            fill="currentColor"></rect>
+                        <rect
+                            x="8"
+                            y="13"
+                            width="4"
+                            height="11"
+                            fill="var(--ab-bg)"></rect>
+                        <circle cx="10" cy="9.5" r="2" fill="var(--ab-bg)"
+                        ></circle>
+                        <path
+                            d="M14 13 H18 V14.5 C18.8 13.4 20 13 21 13 C23.5 13 24 14.8 24 17 V24 H20 V18 C20 16.8 19.6 16 18.6 16 C17.6 16 17 16.8 17 18 V24 H14 Z"
+                            fill="var(--ab-bg)"></path>
+                    </svg>
+                    <span class="about-connect-label">Career</span>
+                    <strong>LinkedIn</strong>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============ FOOTNOTE ============ -->
+        <footer class="about-footnote">
+            <p>
+                블로그 글에 대한 피드백, 시리즈 주제 제안은 환영합니다.<br />
+                재미있는 프로젝트라면 언제든 연락 주세요.
+            </p>
+            <p class="about-footnote-license">
+                본문은 별도 표기가 없는 한 <strong>CC BY-NC 4.0</strong>으로
+                공유합니다.
+            </p>
+        </footer>
+    </article>
 </BaseLayout>
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .about {
+        --ab-bg: #{$color-bg};
+        --ab-surface: rgba(122, 114, 105, 0.06);
+        --ab-text: #{$color-text};
+        --ab-muted: #{$color-text-muted};
+        --ab-border: #{$color-border};
+        --ab-accent: #b8623a;
+        --ab-accent-2: #c89968;
+        --ab-accent-3: #e8c47a;
+        --ab-line: rgba(184, 98, 58, 0.18);
+        --ab-line-strong: rgba(184, 98, 58, 0.45);
+        --ab-dot: rgba(122, 114, 105, 0.22);
+
+        color: var(--ab-text);
+        font-size: 15px;
+        line-height: 1.85;
+    }
+
+    :global([data-theme="dark"]) .about {
+        --ab-surface: rgba(244, 227, 154, 0.05);
+        --ab-accent: #f4e39a;
+        --ab-accent-2: #d4925a;
+        --ab-accent-3: #7eb8e0;
+        --ab-line: rgba(244, 227, 154, 0.22);
+        --ab-line-strong: rgba(244, 227, 154, 0.5);
+        --ab-dot: rgba(244, 227, 154, 0.16);
+    }
+
+    /* ============ HERO ============ */
+    .about-hero {
+        position: relative;
+        margin: 0 0 64px;
+        padding: 64px 48px 56px;
+        border: 1px solid var(--ab-border);
+        background: var(--ab-bg);
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .about-hero-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .about-hero-inner {
+        max-width: 680px;
+    }
+
+    .about-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: var(--ab-accent);
+        margin-bottom: 18px;
+    }
+
+    .about-eyebrow-dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ab-accent);
+        box-shadow: 0 0 0 4px rgba(184, 98, 58, 0.18);
+
+        :global([data-theme="dark"]) & {
+            box-shadow: 0 0 0 4px rgba(244, 227, 154, 0.18);
+        }
+    }
+
+    .about-title {
+        font-size: clamp(48px, 9vw, 88px);
+        line-height: 0.95;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin: 0 0 24px;
+        color: var(--ab-text);
+    }
+
+    .about-title-dot {
+        color: var(--ab-accent);
+    }
+
+    .about-lede {
+        font-size: 16px;
+        line-height: 1.85;
+        color: var(--ab-text);
+        margin: 0 0 28px;
+
+        strong {
+            font-weight: 700;
+            color: var(--ab-accent);
+        }
+
+        em {
+            font-style: normal;
+            font-family: ui-monospace, "SF Mono", Menlo, monospace;
+            font-size: 0.9em;
+            color: var(--ab-muted);
+        }
+    }
+
+    .about-hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .about-hero-card {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px 8px 10px;
+        border: 1px solid var(--ab-border);
+        background: var(--ab-bg);
+        color: var(--ab-text);
+
+        strong {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+        }
+    }
+
+    .about-hero-card-icon {
+        width: 22px;
+        height: 22px;
+        color: var(--ab-accent);
+        flex-shrink: 0;
+    }
+
+    .about-hero-card-label {
+        display: block;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ab-muted);
+    }
+
+    /* ============ SECTION COMMON ============ */
+    .about-section {
+        margin: 0 0 72px;
+
+        > p {
+            margin: 0 0 18px;
+            max-width: 720px;
+        }
+    }
+
+    .about-section-head {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 28px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--ab-border);
+    }
+
+    .about-section-num {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 54px;
+        font-weight: 800;
+        line-height: 1;
+        color: var(--ab-accent);
+        letter-spacing: -0.04em;
+    }
+
+    .about-section-kicker {
+        display: block;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ab-muted);
+        margin-bottom: -6px;
+    }
+
+    .about-section-head h2 {
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0;
+        color: var(--ab-text);
+        margin-bottom: -6px;
+    }
+
+    .about-section-glyph {
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
+
+        @media (max-width: $bp-mobile) {
+            display: none;
+        }
+    }
+
+    /* ============ WHY ============ */
+    .about-quote {
+        position: relative;
+        margin: 28px 0 0;
+        padding: 28px 28px 28px 64px;
+        max-width: 760px;
+        background: var(--ab-surface);
+        border-left: 3px solid var(--ab-accent);
+
+        svg {
+            position: absolute;
+            top: 24px;
+            left: 22px;
+            width: 28px;
+            height: 28px;
+            color: var(--ab-accent);
+        }
+
+        p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--ab-text);
+        }
+    }
+
+    /* ============ PORTRAIT ============ */
+    .about-portrait {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 44px;
+
+        @media (max-width: $bp-narrow) {
+            grid-template-columns: 220px 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: calc($bp-narrow - 100px)) {
+            grid-template-columns: 170px 1fr;
+        }
+
+        @media (max-width: $bp-mobile) {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+    }
+
+    .about-portrait-figure {
+        margin: 0;
+        position: sticky;
+        top: 20px;
+        align-self: start;
+
+        @media (max-width: $bp-mobile) {
+            position: static;
+        }
+    }
+
+    .about-portrait-frame {
+        border: 1px solid var(--ab-border);
+        background: var(--ab-bg);
+        margin-bottom: 14px;
+        max-width: 280px;
+
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            font-family: ui-monospace, "SF Mono", Menlo, monospace;
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            color: var(--ab-muted);
+            padding: 8px 12px;
+            border-top: 1px dashed var(--ab-border);
+        }
+    }
+
+    .about-portrait-tags {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: ui-monospace, "SF Mono", Menlo, monospace;
+            font-size: 11px;
+            color: var(--ab-muted);
+
+            svg {
+                width: 12px;
+                height: 12px;
+                color: var(--ab-muted);
+            }
+
+            &.is-accent {
+                color: var(--ab-accent);
+
+                svg {
+                    color: var(--ab-accent);
+                }
+            }
+        }
+    }
+
+    .about-portrait-body {
+        min-width: 0;
+        max-width: 760px;
+    }
+
+    .about-pi-card {
+        margin: 24px 0;
+        padding: 22px 24px;
+        background: var(--ab-surface);
+        border: 1px solid var(--ab-border);
+        position: relative;
+
+        p {
+            margin: 0;
+            font-size: 14px;
+
+            strong {
+                color: var(--ab-accent);
+                font-weight: 700;
+            }
+        }
+    }
+
+    .about-pi-card-head {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        border-bottom: 1px dashed var(--ab-border);
+
+        strong {
+            display: block;
+            font-size: 16px;
+            color: var(--ab-text);
+        }
+
+        span:not(.about-pi-glyph) {
+            font-size: 12px;
+            color: var(--ab-muted);
+        }
+    }
+
+    .about-pi-glyph {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: var(--ab-accent);
+        color: var(--ab-bg);
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 28px;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .about-timeline {
+        position: relative;
+        margin: 28px 0;
+        padding-left: 28px;
+    }
+
+    .about-timeline-line {
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: 7px;
+        width: 1px;
+        background: var(--ab-border);
+    }
+
+    .about-timeline-item {
+        position: relative;
+        margin-bottom: 18px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 4px 14px;
+        align-items: baseline;
+
+        p {
+            grid-column: 2;
+            margin: 0;
+            font-size: 14px;
+            color: var(--ab-text);
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .about-timeline-dot {
+        position: absolute;
+        top: 8px;
+        left: -28px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--ab-bg);
+        border: 2px solid var(--ab-border);
+
+        &.is-accent {
+            border-color: var(--ab-accent);
+            background: var(--ab-accent);
+            box-shadow: 0 0 0 4px rgba(184, 98, 58, 0.16);
+
+            :global([data-theme="dark"]) & {
+                box-shadow: 0 0 0 4px rgba(244, 227, 154, 0.16);
+            }
+        }
+    }
+
+    .about-timeline-year {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--ab-accent);
+    }
+
+    .about-portrait-outro {
+        font-style: italic;
+        color: var(--ab-muted);
+        font-size: 14px;
+    }
+
+    /* ============ PRINCIPLES ============ */
+    .about-principles {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+
+        @media (max-width: $bp-mid) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: $bp-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .about-principles li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        padding: 20px 22px;
+        background: var(--ab-bg);
+        border: 1px solid var(--ab-border);
+        position: relative;
+        transition:
+            border-color 0.15s ease,
+            box-shadow 0.15s ease;
+
+        &:hover {
+            border-color: var(--ab-accent);
+            box-shadow: 0 4px 18px var(--color-shadow);
+        }
+
+        strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ab-text);
+            margin-bottom: 4px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--ab-muted);
+            line-height: 1.7;
+        }
+    }
+
+    .about-principles-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--ab-surface);
+        color: var(--ab-accent);
+        flex-shrink: 0;
+
+        svg {
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    /* ============ COLOPHON ============ */
+    .about-colophon-intro {
+        color: var(--ab-muted);
+        font-size: 14px;
+    }
+
+    .about-colophon {
+        list-style: none;
+        margin: 0 0 18px;
+        padding: 0;
+        max-width: 880px;
+        border: 1px solid var(--ab-border);
+        background: var(--ab-bg);
+    }
+
+    .about-colophon li {
+        display: grid;
+        grid-template-columns: 56px 110px 1fr;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 18px;
+        border-bottom: 1px dashed var(--ab-border);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: $bp-mobile) {
+            grid-template-columns: 40px 1fr;
+
+            .about-colophon-layer {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            strong {
+                grid-column: 2;
+                grid-row: 2;
+            }
+        }
+    }
+
+    .about-colophon-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--ab-surface);
+        color: var(--ab-accent);
+        grid-row: span 2;
+
+        @media (max-width: $bp-mobile) {
+            grid-row: 1 / 3;
+            width: 36px;
+            height: 36px;
+        }
+
+        svg {
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    .about-colophon-layer {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ab-muted);
+    }
+
+    .about-colophon strong {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ab-text);
+        line-height: 1.6;
+    }
+
+    .about-colophon-sub {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--ab-muted);
+    }
+
+    .about-colophon-outro {
+        font-size: 13px;
+        color: var(--ab-muted);
+
+        a {
+            color: var(--ab-accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+
+            &:hover {
+                text-decoration-thickness: 2px;
+            }
+        }
+    }
+
+    /* ============ CONNECT ============ */
+    .about-connect {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+
+        @media (max-width: $bp-mid) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: $bp-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .about-connect-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 2px 16px;
+        padding: 18px 22px;
+        background: var(--ab-bg);
+        border: 1px solid var(--ab-border);
+        color: var(--ab-text);
+        text-decoration: none;
+        transition:
+            border-color 0.15s ease,
+            transform 0.15s ease,
+            box-shadow 0.15s ease;
+
+        svg {
+            grid-row: span 2;
+            width: 28px;
+            height: 28px;
+            color: var(--ab-accent);
+            align-self: center;
+        }
+
+        .about-connect-label {
+            font-family: ui-monospace, "SF Mono", Menlo, monospace;
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ab-muted);
+        }
+
+        strong {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        &:hover {
+            border-color: var(--ab-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px var(--color-shadow);
+            text-decoration: none;
+        }
+
+        &.is-primary {
+            background: var(--ab-surface);
+            border-color: var(--ab-accent);
+
+            svg {
+                color: var(--ab-accent);
+            }
+        }
+    }
+
+    /* ============ FOOTNOTE ============ */
+    .about-footnote {
+        margin-top: 64px;
+        padding: 32px 36px;
+        border-top: 1px solid var(--ab-border);
+        text-align: center;
+        position: relative;
+
+        p {
+            margin: 0 auto 8px;
+            max-width: 520px;
+            font-size: 14px;
+            color: var(--ab-text);
+        }
+    }
+
+    .about-footnote-license {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--ab-muted) !important;
+
+        strong {
+            color: var(--ab-accent);
+            font-weight: 700;
+        }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: $bp-mobile) {
+        .about-hero {
+            padding: 40px 24px 32px;
+        }
+
+        .about-section {
+            margin-bottom: 56px;
+        }
+
+        .about-section-head {
+            grid-template-columns: auto 1fr;
+            gap: 14px;
+        }
+
+        .about-section-num {
+            font-size: 46px;
+        }
+
+        .about-section-head h2 {
+            font-size: 20px;
+            margin-bottom: -4px;
+        }
+
+        .about-footnote {
+            padding: 28px 16px;
+        }
+    }
+</style>

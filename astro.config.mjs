@@ -7,7 +7,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blog.manapie.me',
+  site: 'https://pielog.me',
   output: 'server',
   integrations: [react(), sitemap(), mdx()],
   adapter: vercel({
