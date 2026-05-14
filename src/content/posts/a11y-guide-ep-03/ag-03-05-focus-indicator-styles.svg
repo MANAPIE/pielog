@@ -1,0 +1,142 @@
+<svg width="100%" viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>포커스 인디케이터 4가지 스타일 비교</title>
+  <desc>outline 제거, 브라우저 기본, 커스텀 단일 링, 이중 링 네 가지 포커스 스타일을 비교하고 권장 패턴 표시</desc>
+  <style>
+    .title { font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif; fill: #2C2C2A; }
+    .card-h { font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif; }
+    .card-d { font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif; }
+    .btn-l { font: 500 13px/1 'Pretendard Variable', system-ui, sans-serif; }
+    .badge { font: 600 11px/1 'Pretendard Variable', system-ui, sans-serif; fill: #FFFFFF; }
+    .caption { font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif; fill: #6F6E66; }
+
+    .rust-card { fill: #FAECE7; stroke: #993C1D; }
+    .rust-head { fill: #993C1D; }
+    .rust-t { fill: #712B13; }
+    .rust-strong { fill: #993C1D; }
+    .amber-card { fill: #FAEEDA; stroke: #8F590F; }
+    .amber-head { fill: #8F590F; }
+    .amber-t { fill: #633806; }
+    .teal-card { fill: #E1F5EE; stroke: #0F664A; }
+    .teal-head { fill: #0F664A; }
+    .teal-t { fill: #085041; }
+    .purple-card { fill: #EEEDFE; stroke: #534AB7; }
+    .purple-head { fill: #534AB7; }
+    .purple-t { fill: #3C3489; }
+
+    .btn-bg { fill: #FFFFFF; stroke: #D3D1C7; }
+    .btn-t { fill: #2C2C2A; }
+    .focus-ring { stroke: #185FA5; }
+    .focus-inner { stroke: #FFFFFF; }
+    .focus-default { stroke: #2C2C2A; }
+
+    @media (prefers-color-scheme: dark) {
+      .title { fill: #E8E6DE; }
+      .caption { fill: #B4B2A9; }
+      .rust-card { fill: #3F1A0C; stroke: #993C1D; }
+      .rust-head { fill: #993C1D; }
+      .rust-t { fill: #F5BFB1; }
+      .rust-strong { fill: #F09595; }
+      .amber-card { fill: #412402; stroke: #854F0B; }
+      .amber-head { fill: #854F0B; }
+      .amber-t { fill: #FAC775; }
+      .teal-card { fill: #04342C; stroke: #0F6E56; }
+      .teal-head { fill: #0F6E56; }
+      .teal-t { fill: #9FE1CB; }
+      .purple-card { fill: #26215C; stroke: #534AB7; }
+      .purple-head { fill: #534AB7; }
+      .purple-t { fill: #CECBF6; }
+      .btn-bg { fill: #1F1F1D; stroke: #444441; }
+      .btn-t { fill: #E8E6DE; }
+      .focus-ring { stroke: #185FA5; }
+      .focus-inner { stroke: #1F1F1D; }
+      .focus-default { stroke: #E8E6DE; }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">포커스 인디케이터 — 4가지 스타일</text>
+  <text class="caption" x="40" y="50">키보드 사용자에게 "지금 어디에 있는지"를 알려주는 가장 중요한 시각 단서</text>
+
+  <!-- 1. outline: none -->
+  <g transform="translate(40, 80)">
+    <rect class="rust-card" x="0" y="0" width="170" height="200" rx="12" stroke-width="0.5"/>
+    <rect class="rust-head" x="0" y="0" width="170" height="28" rx="12"/>
+    <rect class="rust-head" x="0" y="16" width="170" height="12"/>
+    <text class="badge" x="14" y="20">금지</text>
+
+    <text class="card-h rust-t" x="14" y="52">outline: none</text>
+
+    <!-- 버튼 데모 (포커스 표시 없음) -->
+    <g transform="translate(35, 76)">
+      <rect class="btn-bg" x="0" y="0" width="100" height="40" rx="6" stroke-width="0.5"/>
+      <text class="btn-l btn-t" x="50" y="26" text-anchor="middle">버튼</text>
+    </g>
+
+    <text class="card-d rust-t" x="14" y="148">포커스 시 아무 변화 없음</text>
+    <text class="card-d rust-t" x="14" y="164">키보드 사용자: 길을 잃음</text>
+    <text class="card-d rust-strong" x="14" y="184">WCAG 2.4.7 위반 (A)</text>
+  </g>
+
+  <!-- 2. 브라우저 기본 -->
+  <g transform="translate(225, 80)">
+    <rect class="amber-card" x="0" y="0" width="170" height="200" rx="12" stroke-width="0.5"/>
+    <rect class="amber-head" x="0" y="0" width="170" height="28" rx="12"/>
+    <rect class="amber-head" x="0" y="16" width="170" height="12"/>
+    <text class="badge" x="14" y="20">미흡</text>
+
+    <text class="card-h amber-t" x="14" y="52">기본 outline</text>
+
+    <!-- 버튼 데모 (얇은 점선) -->
+    <g transform="translate(35, 76)">
+      <rect class="focus-default" x="-2" y="-2" width="104" height="44" rx="7" fill="none" stroke-width="1" stroke-dasharray="2 1"/>
+      <rect class="btn-bg" x="0" y="0" width="100" height="40" rx="6" stroke-width="0.5"/>
+      <text class="btn-l btn-t" x="50" y="26" text-anchor="middle">버튼</text>
+    </g>
+
+    <text class="card-d amber-t" x="14" y="148">얇은 점선 — 잘 안 보임</text>
+    <text class="card-d amber-t" x="14" y="164">2.4.11(2px) 미충족 가능</text>
+    <text class="card-d amber-t" x="14" y="184">색 대비 부족 케이스 많음</text>
+  </g>
+
+  <!-- 3. 커스텀 단일 링 -->
+  <g transform="translate(410, 80)">
+    <rect class="teal-card" x="0" y="0" width="170" height="200" rx="12" stroke-width="0.5"/>
+    <rect class="teal-head" x="0" y="0" width="170" height="28" rx="12"/>
+    <rect class="teal-head" x="0" y="16" width="170" height="12"/>
+    <text class="badge" x="14" y="20">권장</text>
+
+    <text class="card-h teal-t" x="14" y="52">커스텀 링</text>
+
+    <!-- 버튼 데모 -->
+    <g transform="translate(35, 76)">
+      <rect class="focus-ring" x="-4" y="-4" width="108" height="48" rx="8" fill="none" stroke-width="3"/>
+      <rect class="btn-bg" x="0" y="0" width="100" height="40" rx="6" stroke-width="0.5"/>
+      <text class="btn-l btn-t" x="50" y="26" text-anchor="middle">버튼</text>
+    </g>
+
+    <text class="card-d teal-t" x="14" y="148">3px solid + offset 2px</text>
+    <text class="card-d teal-t" x="14" y="164">대비 3:1 이상</text>
+    <text class="card-d teal-t" x="14" y="184">2.4.11 충족</text>
+  </g>
+
+  <!-- 4. 이중 링 -->
+  <g transform="translate(595, 80)">
+    <rect class="purple-card" x="0" y="0" width="170" height="200" rx="12" stroke-width="0.5"/>
+    <rect class="purple-head" x="0" y="0" width="170" height="28" rx="12"/>
+    <rect class="purple-head" x="0" y="16" width="170" height="12"/>
+    <text class="badge" x="14" y="20">최적</text>
+
+    <text class="card-h purple-t" x="14" y="52">이중 링</text>
+
+    <!-- 버튼 데모 -->
+    <g transform="translate(35, 76)">
+      <rect class="focus-ring" x="-6" y="-6" width="112" height="52" rx="10" fill="none" stroke-width="3"/>
+      <rect class="focus-inner" x="-2" y="-2" width="104" height="44" rx="7" fill="none" stroke-width="2"/>
+      <rect class="btn-bg" x="0" y="0" width="100" height="40" rx="6" stroke-width="0.5"/>
+      <text class="btn-l btn-t" x="50" y="26" text-anchor="middle">버튼</text>
+    </g>
+
+    <text class="card-d purple-t" x="14" y="148">내부 흰선 + 외부 컬러</text>
+    <text class="card-d purple-t" x="14" y="164">어떤 배경에서도 식별</text>
+    <text class="card-d purple-t" x="14" y="184">2.4.12 (AAA) 가능</text>
+  </g>
+</svg>

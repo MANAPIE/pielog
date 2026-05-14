@@ -1,0 +1,222 @@
+<svg width="100%" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>터치 타겟 크기 기준과 간격</title>
+  <desc>WCAG 2.5.8 최소 24×24px, Apple HIG 44×44pt, Material 48dp 권장 크기를 비교하고 충분한 간격의 중요성을 시각화</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .grp-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .lbl {
+      font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .meta {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .source {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .badge {
+      font: 600 11px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .body-t {
+      fill: #2C2C2A;
+    }
+
+    .body-sub {
+      fill: #5F5E5A;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-line {
+      stroke: #0F664A;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .body-t {
+        fill: #E8E6DE;
+      }
+
+      .body-sub {
+        fill: #B4B2A9;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-line {
+        stroke: #5DCAA5;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">터치 타겟 — 크기 기준과 간격</text>
+  <text class="caption" x="40" y="50">WCAG 2.5.8(2.2 신규)은 최소 24px, 모바일 플랫폼 가이드는 44~48px을 권장합니다</text>
+
+  <!-- 크기 비교 영역 -->
+  <text class="grp-h body-t" x="40" y="86">크기 비교 (실제 비율, 1px = 1 SVG 단위)</text>
+
+  <!-- WCAG 최소 24px -->
+  <g transform="translate(60, 110)">
+    <rect class="amber-card" x="0" y="0" width="24" height="24" rx="3" stroke-width="0.5" />
+    <text class="badge amber-t" x="12" y="16" text-anchor="middle">24</text>
+    <text class="lbl body-t" x="36" y="0" dy="14">WCAG 2.5.8</text>
+    <text class="meta body-sub" x="36" y="0" dy="28">24 × 24 px · 최소</text>
+    <text class="source body-sub" x="36" y="0" dy="44">AA 통과선, 예외 항목 존재</text>
+  </g>
+
+  <!-- Material 48 -->
+  <g transform="translate(60, 180)">
+    <rect class="teal-card" x="0" y="0" width="48" height="48" rx="6" stroke-width="0.5" />
+    <text class="badge teal-t" x="24" y="28" text-anchor="middle">48</text>
+    <text class="lbl body-t" x="60" y="-2" dy="22">Material Design</text>
+    <text class="meta body-sub" x="60" y="-2" dy="38">48 × 48 dp · 권장</text>
+  </g>
+
+  <!-- Apple HIG 44 -->
+  <g transform="translate(280, 180)">
+    <rect class="teal-card" x="0" y="0" width="44" height="44" rx="6" stroke-width="0.5" />
+    <text class="badge teal-t" x="22" y="26" text-anchor="middle">44</text>
+    <text class="lbl body-t" x="56" y="-2" dy="22">Apple HIG</text>
+    <text class="meta body-sub" x="56" y="-2" dy="38">44 × 44 pt · 권장</text>
+  </g>
+
+  <!-- 권장 표준 -->
+  <g transform="translate(500, 180)">
+    <rect class="purple-card" x="0" y="0" width="44" height="44" rx="6" stroke-width="0.5" />
+    <text class="badge purple-t" x="22" y="26" text-anchor="middle">★</text>
+    <text class="lbl body-t" x="56" y="-2" dy="22">실무 권장</text>
+    <text class="meta body-sub" x="56" y="-2" dy="38">44 × 44 px (안전)</text>
+  </g>
+
+  <!-- 간격 영역 -->
+  <text class="grp-h body-t" x="40" y="266">간격 규칙 — 인접 타겟 사이 최소 8px</text>
+
+  <!-- 좋은 예 -->
+  <g transform="translate(60, 286)">
+    <rect class="teal-card" x="0" y="0" width="44" height="44" rx="6" stroke-width="0.5" />
+    <text class="badge teal-t" x="22" y="28" text-anchor="middle">A</text>
+    <!-- 간격 표시 -->
+    <line class="teal-line" x1="44" y1="22" x2="60" y2="22" stroke-width="0.8" stroke-dasharray="2 1" />
+    <text class="meta teal-t" x="52" y="14" text-anchor="middle">8+</text>
+    <rect class="teal-card" x="60" y="0" width="44" height="44" rx="6" stroke-width="0.5" />
+    <text class="badge teal-t" x="82" y="28" text-anchor="middle">B</text>
+    <text class="lbl teal-t" x="120" y="18">충분한 간격</text>
+    <text class="source teal-t" x="120" y="36">오터치 위험 낮음</text>
+  </g>
+
+  <!-- 나쁜 예 -->
+  <g transform="translate(440, 286)">
+    <rect class="rust-card" x="0" y="0" width="44" height="44" rx="6" stroke-width="0.5" />
+    <text class="badge rust-t" x="22" y="28" text-anchor="middle">A</text>
+    <rect class="rust-card" x="44" y="0" width="44" height="44" rx="6" stroke-width="0.5" />
+    <text class="badge rust-t" x="66" y="28" text-anchor="middle">B</text>
+    <text class="lbl rust-t" x="104" y="18">간격 0px — 오터치 빈발</text>
+    <text class="source rust-t" x="104" y="34">고령·운동 장애 사용자 좌절</text>
+  </g>
+</svg>

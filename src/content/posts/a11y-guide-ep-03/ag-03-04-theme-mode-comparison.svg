@@ -1,0 +1,162 @@
+<svg width="100%" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>라이트·다크·고대비 모드 컬러 토큰 비교</title>
+  <desc>세 가지 색상 테마(라이트, 다크, 고대비)에서 각 토큰(배경, 본문, 보조, 강조, 에러)이 어떤 색상을 사용하는지와 대비 기준을 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .mode-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .mode-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .tk-name {
+      font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .tk-hex {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .meta {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">테마별 컬러 토큰 비교</text>
+  <text class="caption" x="40" y="50">같은 의미의 토큰이 테마에 따라 다른 색을 가집니다 — 디자인 시스템의 핵심</text>
+
+  <!-- Light (데모 — 실제 라이트 모드 카드를 시각화) -->
+  <g>
+    <rect x="40" y="76" width="232" height="300" rx="14" fill="#FFFFFF" stroke="#D3D1C7" />
+    <text class="mode-h" x="60" y="100" fill="#2C2C2A">☀ 라이트 모드</text>
+    <text class="mode-d" x="60" y="118" fill="#5F5E5A">기본 모드</text>
+
+    <g transform="translate(60, 138)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#FFFFFF" stroke="#D3D1C7" />
+      <text class="tk-name" x="30" y="14" fill="#2C2C2A">배경</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#5F5E5A">#FFFFFF</text>
+    </g>
+    <g transform="translate(60, 168)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#333333" />
+      <text class="tk-name" x="30" y="14" fill="#2C2C2A">본문</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#5F5E5A">#333333</text>
+    </g>
+    <g transform="translate(60, 198)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#666666" />
+      <text class="tk-name" x="30" y="14" fill="#2C2C2A">보조</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#5F5E5A">#666666</text>
+    </g>
+    <g transform="translate(60, 228)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#0066CC" />
+      <text class="tk-name" x="30" y="14" fill="#2C2C2A">강조</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#5F5E5A">#0066CC</text>
+    </g>
+    <g transform="translate(60, 258)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#CC0000" />
+      <text class="tk-name" x="30" y="14" fill="#2C2C2A">에러</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#5F5E5A">#CC0000</text>
+    </g>
+
+    <line x1="60" y1="296" x2="252" y2="296" stroke="#D3D1C7" stroke-width="0.5" />
+    <text class="meta" x="60" y="316" fill="#5F5E5A">대비 기준</text>
+    <text class="meta" x="60" y="336" fill="#0F664A">≥ 4.5 : 1 (AA)</text>
+    <text class="mode-d" x="60" y="356" fill="#5F5E5A">prefers-color-scheme: light</text>
+  </g>
+
+  <!-- Dark (데모 — 실제 다크 모드 카드를 시각화) -->
+  <g>
+    <rect x="284" y="76" width="232" height="300" rx="14" fill="#1A1A2E" />
+    <text class="mode-h" x="304" y="100" fill="#E0E0E0">🌙 다크 모드</text>
+    <text class="mode-d" x="304" y="118" fill="#A0A0A0">prefers-color-scheme</text>
+
+    <g transform="translate(304, 138)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#1A1A2E" stroke="#444441" />
+      <text class="tk-name" x="30" y="14" fill="#E0E0E0">배경</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#A0A0A0">#1A1A2E</text>
+    </g>
+    <g transform="translate(304, 168)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#E0E0E0" />
+      <text class="tk-name" x="30" y="14" fill="#E0E0E0">본문</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#A0A0A0">#E0E0E0</text>
+    </g>
+    <g transform="translate(304, 198)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#A0A0A0" />
+      <text class="tk-name" x="30" y="14" fill="#E0E0E0">보조</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#A0A0A0">#A0A0A0</text>
+    </g>
+    <g transform="translate(304, 228)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#66B3FF" />
+      <text class="tk-name" x="30" y="14" fill="#E0E0E0">강조</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#A0A0A0">#66B3FF</text>
+    </g>
+    <g transform="translate(304, 258)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#FF6B6B" />
+      <text class="tk-name" x="30" y="14" fill="#E0E0E0">에러</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#A0A0A0">#FF6B6B</text>
+    </g>
+
+    <line x1="304" y1="296" x2="496" y2="296" stroke="#444441" stroke-width="0.5" />
+    <text class="meta" x="304" y="316" fill="#A0A0A0">대비 기준</text>
+    <text class="meta" x="304" y="336" fill="#97C459">≥ 4.5 : 1 (AA)</text>
+    <text class="mode-d" x="304" y="356" fill="#A0A0A0">prefers-color-scheme: dark</text>
+  </g>
+
+  <!-- High Contrast (데모 — 실제 고대비 모드 카드를 시각화) -->
+  <g>
+    <rect x="528" y="76" width="232" height="300" rx="14" fill="#000000" />
+    <text class="mode-h" x="548" y="100" fill="#FFFFFF">⚡ 고대비 모드</text>
+    <text class="mode-d" x="548" y="118" fill="#FFFF00">forced-colors: active</text>
+
+    <g transform="translate(548, 138)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#000000" stroke="#FFFFFF" />
+      <text class="tk-name" x="30" y="14" fill="#FFFFFF">배경</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#FFFF00">#000000</text>
+    </g>
+    <g transform="translate(548, 168)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#FFFFFF" />
+      <text class="tk-name" x="30" y="14" fill="#FFFFFF">본문</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#FFFF00">#FFFFFF</text>
+    </g>
+    <g transform="translate(548, 198)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#FFFF00" />
+      <text class="tk-name" x="30" y="14" fill="#FFFFFF">보조</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#FFFF00">#FFFF00</text>
+    </g>
+    <g transform="translate(548, 228)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#00FFFF" />
+      <text class="tk-name" x="30" y="14" fill="#FFFFFF">강조</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#FFFF00">#00FFFF</text>
+    </g>
+    <g transform="translate(548, 258)">
+      <rect x="0" y="0" width="20" height="20" rx="4" fill="#FF0000" />
+      <text class="tk-name" x="30" y="14" fill="#FFFFFF">에러</text>
+      <text class="tk-hex" x="190" y="14" text-anchor="end" fill="#FFFF00">#FF0000</text>
+    </g>
+
+    <line x1="548" y1="296" x2="740" y2="296" stroke="#FFFFFF" stroke-width="0.5" opacity="0.3" />
+    <text class="meta" x="548" y="316" fill="#FFFF00">대비 기준</text>
+    <text class="meta" x="548" y="336" fill="#FFFF00">≥ 7 : 1 (AAA)</text>
+    <text class="mode-d" x="548" y="356" fill="#FFFF00">시스템 색상 키워드 사용</text>
+  </g>
+</svg>

@@ -1,0 +1,225 @@
+<svg width="100%" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>라이트/다크 모드 대비 비교</title>
+  <desc>같은 hex 색상이 라이트 모드 #FFFFFF 배경과 다크 모드 #121212 배경에서 서로 다른 대비비를 가지며, 통과/실패 판정이 뒤바뀌는 사례 비교. 연한 회색·경고 오렌지·연한 초록은 흰
+    배경에서 실패하지만 어두운 배경에서는 통과하고, 진회색·링크 파랑·진초록은 반대로 동작한다.</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .col-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .hex-l {
+      font: 500 12px/1 'JetBrains Mono', monospace;
+      fill: #2C2C2A;
+    }
+
+    .hex-d {
+      font: 500 12px/1 'JetBrains Mono', monospace;
+      fill: #E8E6DE;
+    }
+
+    .meta-l {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #5F5E5A;
+    }
+
+    .meta-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #B4B2A9;
+    }
+
+    .aa {
+      font: 700 18px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .badge-text {
+      font: 600 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .light-card {
+      fill: #F7F5EE;
+      stroke: #D3D1C7;
+    }
+
+    .dark-card {
+      fill: #1F1F1D;
+      stroke: #444441;
+    }
+
+    .header-l {
+      fill: #2C2C2A;
+    }
+
+    .header-d {
+      fill: #444441;
+    }
+
+    .chip-on-light {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .chip-on-dark {
+      fill: #121212;
+      stroke: #2C2C2A;
+    }
+
+    .badge-pass {
+      fill: #0F664A;
+    }
+
+    .badge-fail {
+      fill: #993C1D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      /* 카드와 칩은 정적 유지 — 실제 명도비를 시각적으로 재현해야 함 */
+    }
+  </style>
+
+  <text class="title" x="40" y="32">대비는 배경에 따라 달라진다 — 라이트/다크 비교</text>
+  <text class="caption" x="40" y="50">같은 색이 모드에 따라 통과/실패 뒤집힘 · 일반 텍스트 AA 통과선 4.5:1</text>
+
+  <!-- 라이트 모드 카드 -->
+  <g>
+    <rect class="light-card" x="40" y="76" width="350" height="322" rx="14" stroke-width="0.5" />
+    <rect class="header-l" x="40" y="76" width="350" height="32" rx="14" />
+    <rect class="header-l" x="40" y="96" width="350" height="12" />
+    <text class="col-h" x="60" y="98">라이트 모드 · 배경 #FFFFFF</text>
+
+    <g transform="translate(40, 124)">
+      <rect class="chip-on-light" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#AAAAAA">Aa</text>
+      <text class="hex-l" x="95" y="14">#AAAAAA</text>
+      <text class="meta-l" x="95" y="29">연한 회색</text>
+      <rect class="badge-fail" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">실패 2.32:1</text>
+    </g>
+
+    <g transform="translate(40, 168)">
+      <rect class="chip-on-light" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#FF9900">Aa</text>
+      <text class="hex-l" x="95" y="14">#FF9900</text>
+      <text class="meta-l" x="95" y="29">경고 오렌지</text>
+      <rect class="badge-fail" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">실패 2.14:1</text>
+    </g>
+
+    <g transform="translate(40, 212)">
+      <rect class="chip-on-light" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#66CC66">Aa</text>
+      <text class="hex-l" x="95" y="14">#66CC66</text>
+      <text class="meta-l" x="95" y="29">연한 초록</text>
+      <rect class="badge-fail" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">실패 2.02:1</text>
+    </g>
+
+    <g transform="translate(40, 256)">
+      <rect class="chip-on-light" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#595959">Aa</text>
+      <text class="hex-l" x="95" y="14">#595959</text>
+      <text class="meta-l" x="95" y="29">본문 진회색</text>
+      <rect class="badge-pass" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">통과 7.01:1</text>
+    </g>
+
+    <g transform="translate(40, 300)">
+      <rect class="chip-on-light" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#0055AA">Aa</text>
+      <text class="hex-l" x="95" y="14">#0055AA</text>
+      <text class="meta-l" x="95" y="29">링크 파랑</text>
+      <rect class="badge-pass" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">통과 7.29:1</text>
+    </g>
+
+    <g transform="translate(40, 344)">
+      <rect class="chip-on-light" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#006600">Aa</text>
+      <text class="hex-l" x="95" y="14">#006600</text>
+      <text class="meta-l" x="95" y="29">성공 진초록</text>
+      <rect class="badge-pass" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">통과 7.24:1</text>
+    </g>
+  </g>
+
+  <!-- 다크 모드 카드 -->
+  <g>
+    <rect class="dark-card" x="410" y="76" width="350" height="322" rx="14" stroke-width="0.5" />
+    <rect class="header-d" x="410" y="76" width="350" height="32" rx="14" />
+    <rect class="header-d" x="410" y="96" width="350" height="12" />
+    <text class="col-h" x="430" y="98">다크 모드 · 배경 #121212</text>
+
+    <g transform="translate(410, 124)">
+      <rect class="chip-on-dark" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#AAAAAA">Aa</text>
+      <text class="hex-d" x="95" y="14">#AAAAAA</text>
+      <text class="meta-d" x="95" y="29">연한 회색</text>
+      <rect class="badge-pass" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">통과 8.07:1</text>
+    </g>
+
+    <g transform="translate(410, 168)">
+      <rect class="chip-on-dark" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#FF9900">Aa</text>
+      <text class="hex-d" x="95" y="14">#FF9900</text>
+      <text class="meta-d" x="95" y="29">경고 오렌지</text>
+      <rect class="badge-pass" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">통과 8.75:1</text>
+    </g>
+
+    <g transform="translate(410, 212)">
+      <rect class="chip-on-dark" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#66CC66">Aa</text>
+      <text class="hex-d" x="95" y="14">#66CC66</text>
+      <text class="meta-d" x="95" y="29">연한 초록</text>
+      <rect class="badge-pass" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">통과 9.27:1</text>
+    </g>
+
+    <g transform="translate(410, 256)">
+      <rect class="chip-on-dark" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#595959">Aa</text>
+      <text class="hex-d" x="95" y="14">#595959</text>
+      <text class="meta-d" x="95" y="29">본문 진회색</text>
+      <rect class="badge-fail" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">실패 2.67:1</text>
+    </g>
+
+    <g transform="translate(410, 300)">
+      <rect class="chip-on-dark" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#0055AA">Aa</text>
+      <text class="hex-d" x="95" y="14">#0055AA</text>
+      <text class="meta-d" x="95" y="29">링크 파랑</text>
+      <rect class="badge-fail" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">실패 2.57:1</text>
+    </g>
+
+    <g transform="translate(410, 344)">
+      <rect class="chip-on-dark" x="20" y="0" width="60" height="36" rx="6" stroke-width="0.5" />
+      <text class="aa" x="50" y="25" text-anchor="middle" fill="#006600">Aa</text>
+      <text class="hex-d" x="95" y="14">#006600</text>
+      <text class="meta-d" x="95" y="29">성공 진초록</text>
+      <rect class="badge-fail" x="230" y="7" width="90" height="22" rx="4" />
+      <text class="badge-text" x="275" y="22" text-anchor="middle">실패 2.59:1</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,191 @@
+<svg width="100%" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>색상만 사용 vs 색상+아이콘+텍스트 다중 채널</title>
+  <desc>폼 검증 결과를 색상에만 의존해서 표현한 경우와, 아이콘과 텍스트 메시지를 함께 제공한 경우를 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .lbl {
+      font: 500 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .val {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .msg-ok {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .msg-err {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .bullet {
+      font: 400 11px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-stroke {
+      stroke: #993C1D;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-stroke {
+      stroke: #0F664A;
+    }
+
+    .input-bg {
+      fill: #FFFFFF;
+    }
+
+    .body-t {
+      fill: #2C2C2A;
+    }
+
+    .body-sub {
+      fill: #5F5E5A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-stroke {
+        stroke: #993C1D;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-stroke {
+        stroke: #0F6E56;
+      }
+
+      .input-bg {
+        fill: #1F1F1D;
+      }
+
+      .body-t {
+        fill: #E8E6DE;
+      }
+
+      .body-sub {
+        fill: #B4B2A9;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">색상만 사용 vs 다중 채널 정보 전달</text>
+  <text class="caption" x="40" y="50">색각 이상자에게 정보가 전달되려면 색 외에 다른 단서가 필요합니다</text>
+
+  <!-- Bad -->
+  <g>
+    <rect class="rust-card" x="40" y="76" width="350" height="280" rx="14" stroke-width="0.5" />
+    <rect class="rust-head" x="40" y="76" width="350" height="32" rx="14" />
+    <rect class="rust-head" x="40" y="96" width="350" height="12" />
+    <text class="col-h" x="60" y="98">색상만 사용 — 정보 전달 실패</text>
+
+    <text class="lbl body-t" x="60" y="134">이름</text>
+    <rect class="input-bg teal-stroke" x="60" y="142" width="310" height="32" rx="6" stroke-width="2" />
+    <text class="val body-t" x="74" y="162">홍길동</text>
+
+    <text class="lbl body-t" x="60" y="194">이메일</text>
+    <rect class="input-bg rust-stroke" x="60" y="202" width="310" height="32" rx="6" stroke-width="2" />
+    <text class="val body-t" x="74" y="222">hong@</text>
+
+    <text class="lbl body-t" x="60" y="254">전화</text>
+    <rect class="input-bg rust-stroke" x="60" y="262" width="310" height="32" rx="6" stroke-width="2" />
+
+    <text class="bullet body-sub" x="60" y="320">· 색각 이상자: 어떤 게 오류인지 불명</text>
+    <text class="bullet body-sub" x="60" y="338">· 흑백 인쇄/스크린샷: 구분 불가</text>
+  </g>
+
+  <!-- Good -->
+  <g>
+    <rect class="teal-card" x="410" y="76" width="350" height="280" rx="14" stroke-width="0.5" />
+    <rect class="teal-head" x="410" y="76" width="350" height="32" rx="14" />
+    <rect class="teal-head" x="410" y="96" width="350" height="12" />
+    <text class="col-h" x="430" y="98">색상 + 아이콘 + 텍스트 — 3중 채널</text>
+
+    <text class="lbl body-t" x="430" y="134">이름</text>
+    <rect class="input-bg teal-stroke" x="430" y="142" width="310" height="32" rx="6" stroke-width="2" />
+    <text class="msg-ok teal-t" x="726" y="162" text-anchor="end">✓</text>
+    <text class="val body-t" x="444" y="162">홍길동</text>
+
+    <text class="lbl body-t" x="430" y="194">이메일</text>
+    <rect class="input-bg rust-stroke" x="430" y="202" width="310" height="32" rx="6" stroke-width="2" />
+    <text class="msg-err rust-t" x="726" y="222" text-anchor="end">⚠</text>
+    <text class="val body-t" x="444" y="222">hong@</text>
+    <text class="msg-err rust-t" x="430" y="252">⚠ 올바른 이메일 형식을 입력하세요</text>
+
+    <text class="lbl body-t" x="430" y="278">전화</text>
+    <rect class="input-bg rust-stroke" x="430" y="286" width="310" height="32" rx="6" stroke-width="2" />
+    <text class="msg-err rust-t" x="726" y="306" text-anchor="end">⚠</text>
+    <text class="msg-err rust-t" x="430" y="336">⚠ 필수 입력 항목입니다</text>
+  </g>
+</svg>
