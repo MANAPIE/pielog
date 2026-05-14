@@ -1,0 +1,258 @@
+<svg width="100%" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>WCAG 2.2 전체 구조</title>
+  <desc>WCAG 2.2가 4원칙 → 13지침 → 86 성공기준 → 충분 기법으로 펼쳐지는 4단 계층 구조</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .lv {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+      fill: #6F6E66;
+    }
+
+    .h2l {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .h3l {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1;
+      fill: none;
+    }
+
+    .teal-bg {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .amber-bg {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .purple-bg {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .rust-bg {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .neutral-bg {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .neutral-t {
+      fill: #2C2C2A;
+    }
+
+    .green-bg {
+      fill: #F1EFE8;
+      stroke: #6F6E66;
+    }
+
+    .green-side {
+      fill: #27500A;
+    }
+
+    .green-t {
+      fill: #2C2C2A;
+    }
+
+    .green-d {
+      fill: #5F5E5A;
+    }
+
+    .amber-side {
+      fill: #8F590F;
+    }
+
+    .rust-side {
+      fill: #993C1D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .lv {
+        fill: #B4B2A9;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .teal-bg {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .amber-bg {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .purple-bg {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .rust-bg {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .neutral-bg {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .neutral-t {
+        fill: #E8E6DE;
+      }
+
+      .green-bg {
+        fill: #232624;
+        stroke: #444441;
+      }
+
+      .green-side {
+        fill: #4F7A2A;
+      }
+
+      .green-t {
+        fill: #E8E6DE;
+      }
+
+      .green-d {
+        fill: #B4B2A9;
+      }
+
+      .amber-side {
+        fill: #854F0B;
+      }
+
+      .rust-side {
+        fill: #993C1D;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-wc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">WCAG 2.2 전체 구조</text>
+  <text class="caption" x="40" y="50">4단 계층: 원칙 → 지침 → 성공기준 → 기법</text>
+
+  <!-- Level 1: 원칙 -->
+  <text class="lv" x="40" y="92">LEVEL 1 · 원칙</text>
+  <g>
+    <rect class="teal-bg" x="40" y="100" width="160" height="60" rx="12" stroke-width="0.5" />
+    <text class="h2l teal-t" x="120" y="126" text-anchor="middle">Perceivable</text>
+    <text class="h3l teal-t" x="120" y="144" text-anchor="middle">인식 가능</text>
+  </g>
+  <g>
+    <rect class="amber-bg" x="216" y="100" width="160" height="60" rx="12" stroke-width="0.5" />
+    <text class="h2l amber-t" x="296" y="126" text-anchor="middle">Operable</text>
+    <text class="h3l amber-t" x="296" y="144" text-anchor="middle">운용 가능</text>
+  </g>
+  <g>
+    <rect class="purple-bg" x="392" y="100" width="160" height="60" rx="12" stroke-width="0.5" />
+    <text class="h2l purple-t" x="472" y="126" text-anchor="middle">Understandable</text>
+    <text class="h3l purple-t" x="472" y="144" text-anchor="middle">이해 가능</text>
+  </g>
+  <g>
+    <rect class="rust-bg" x="568" y="100" width="160" height="60" rx="12" stroke-width="0.5" />
+    <text class="h2l rust-t" x="648" y="126" text-anchor="middle">Robust</text>
+    <text class="h3l rust-t" x="648" y="144" text-anchor="middle">견고</text>
+  </g>
+
+  <!-- 화살표 -->
+  <line x1="384" y1="166" x2="384" y2="194" class="arr" marker-end="url(#arr-wc)" />
+
+  <!-- Level 2: 지침 -->
+  <text class="lv" x="40" y="190">LEVEL 2 · 지침</text>
+  <g>
+    <rect class="neutral-bg" x="40" y="200" width="688" height="40" rx="8" stroke-width="0.5" />
+    <text class="h3l neutral-t" x="60" y="224">13개 지침 · 각 원칙당 1~5개씩 분포 (예: 1.1 대체 텍스트, 2.1 키보드 접근성, 3.3 입력 지원)</text>
+  </g>
+
+  <line x1="384" y1="246" x2="384" y2="272" class="arr" marker-end="url(#arr-wc)" />
+
+  <!-- Level 3: 성공 기준 -->
+  <text class="lv" x="40" y="268">LEVEL 3 · 성공 기준 (Success Criteria)</text>
+  <g>
+    <rect class="green-bg" x="40" y="278" width="216" height="40" rx="8" stroke-width="0.5" />
+    <rect class="green-side" x="40" y="278" width="6" height="40" />
+    <text class="h2l green-t" x="60" y="294">A · 최소</text>
+    <text class="h3l green-d" x="60" y="310">31개 기준 (2.2 기준)</text>
+  </g>
+  <g>
+    <rect class="amber-bg" x="276" y="278" width="216" height="40" rx="8" stroke-width="0.5" />
+    <rect class="amber-side" x="276" y="278" width="6" height="40" />
+    <text class="h2l amber-t" x="296" y="294">AA · 표준</text>
+    <text class="h3l amber-t" x="296" y="310">24개 기준 (누적 55개)</text>
+  </g>
+  <g>
+    <rect class="rust-bg" x="512" y="278" width="216" height="40" rx="8" stroke-width="0.5" />
+    <rect class="rust-side" x="512" y="278" width="6" height="40" />
+    <text class="h2l rust-t" x="532" y="294">AAA · 강화</text>
+    <text class="h3l rust-t" x="532" y="310">31개 기준 (총 86개)</text>
+  </g>
+</svg>

@@ -1,0 +1,179 @@
+<svg width="100%" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>KWCAG와 WCAG의 매핑</title>
+  <desc>한국형 웹 콘텐츠 접근성 지침 KWCAG 2.2가 국제 표준 WCAG 2.2와 어떻게 대응되는지를 항목 수 기준으로 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .col-en {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .met {
+      font: 700 22px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .met-s {
+      font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .row-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1;
+      fill: none;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-map" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M 2 1 L 8 5 L 2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">KWCAG와 WCAG의 매핑</text>
+  <text class="caption" x="40" y="50">국제 표준 86개 → 국내 검사 24개로 정제</text>
+
+  <!-- WCAG side -->
+  <g>
+    <rect class="blue-card" x="40" y="80" width="320" height="260" rx="14" stroke-width="0.5" />
+    <rect class="blue-head" x="40" y="80" width="320" height="40" rx="14" />
+    <rect class="blue-head" x="40" y="106" width="320" height="14" />
+    <text class="col-h" x="60" y="106">WCAG 2.2</text>
+    <text class="col-en blue-t" x="60" y="138">국제 표준 · W3C</text>
+
+    <g transform="translate(60,158)">
+      <text class="met blue-t" x="0" y="20">4</text>
+      <text class="met-s blue-t" x="32" y="20">원칙</text>
+      <text class="row-d blue-t" x="0" y="38">Perceivable · Operable · Understandable · Robust</text>
+    </g>
+
+    <g transform="translate(60,218)">
+      <text class="met blue-t" x="0" y="20">13</text>
+      <text class="met-s blue-t" x="40" y="20">지침</text>
+      <text class="row-d blue-t" x="0" y="38">각 원칙당 1~5개</text>
+    </g>
+
+    <g transform="translate(60,278)">
+      <text class="met blue-t" x="0" y="20">86</text>
+      <text class="met-s blue-t" x="44" y="20">성공 기준</text>
+      <text class="row-d blue-t" x="0" y="38">A 31 · AA 24 · AAA 31</text>
+    </g>
+  </g>
+
+  <!-- 화살표 -->
+  <g>
+    <line x1="368" y1="210" x2="432" y2="210" class="arr" marker-end="url(#arr-map)" />
+    <text class="caption" x="400" y="196" text-anchor="middle">정제·국내화</text>
+    <text class="caption" x="400" y="230" text-anchor="middle">우선 24개</text>
+  </g>
+
+  <!-- KWCAG side -->
+  <g>
+    <rect class="amber-card" x="440" y="80" width="320" height="260" rx="14" stroke-width="0.5" />
+    <rect class="amber-head" x="440" y="80" width="320" height="40" rx="14" />
+    <rect class="amber-head" x="440" y="106" width="320" height="14" />
+    <text class="col-h" x="460" y="106">KWCAG 2.2</text>
+    <text class="col-en amber-t" x="460" y="138">국내 표준 · 과기정통부</text>
+
+    <g transform="translate(460,158)">
+      <text class="met amber-t" x="0" y="20">4</text>
+      <text class="met-s amber-t" x="32" y="20">원칙</text>
+      <text class="row-d amber-t" x="0" y="38">동일 (인식·운용·이해·견고성)</text>
+    </g>
+
+    <g transform="translate(460,218)">
+      <text class="met amber-t" x="0" y="20">13</text>
+      <text class="met-s amber-t" x="40" y="20">지침</text>
+      <text class="row-d amber-t" x="0" y="38">유사 (1.1~4.1 동일 번호 체계)</text>
+    </g>
+
+    <g transform="translate(460,278)">
+      <text class="met amber-t" x="0" y="20">24</text>
+      <text class="met-s amber-t" x="44" y="20">검사 항목</text>
+      <text class="row-d amber-t" x="0" y="38">인식 7 · 운용 8 · 이해 5 · 견고 4</text>
+    </g>
+  </g>
+</svg>
