@@ -1,0 +1,227 @@
+<svg width="100%" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>상황적 장애: 나도 대상자다</title>
+  <desc>일상적 상황에서 누구나 겪는 일시적·상황적 장애 사례와 그에 대응하는 접근성 기능을 매칭한 도식</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .h-sit {
+      font: 500 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .h-aff {
+      font: 600 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .h-sol {
+      font: 500 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 0.5;
+      fill: none;
+    }
+
+    .neutral-bg {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .teal-bg {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .amber-bg {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .purple-bg {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .rust-bg {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .pink-bg {
+      fill: #FBEAF0;
+      stroke: #993556;
+    }
+
+    .pink-t {
+      fill: #72243E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .h-sit {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .neutral-bg {
+        fill: #2C2C2A;
+        stroke: #444441;
+      }
+
+      .teal-bg {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .amber-bg {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .purple-bg {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .rust-bg {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .pink-bg {
+        fill: #4B1A2C;
+        stroke: #993556;
+      }
+
+      .pink-t {
+        fill: #F5C0CF;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-sit" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">상황적 장애 — 누구나 일상에서 마주친다</text>
+  <text class="caption" x="40" y="50">왼쪽 상황 → 가운데 영향 → 오른쪽 해결 기능</text>
+
+  <!-- 헤더 -->
+  <text class="caption" x="60" y="78">상황</text>
+  <text class="caption" x="360" y="78" text-anchor="middle">영향받는 감각</text>
+  <text class="caption" x="690" y="78" text-anchor="right">접근성 기능</text>
+
+  <!-- 행 1 -->
+  <g transform="translate(40, 90)">
+    <rect class="neutral-bg" x="0" y="0" width="220" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sit" x="12" y="20">밝은 햇빛 아래 스마트폰</text>
+    <line x1="220" y1="16" x2="244" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="teal-bg" x="244" y="0" width="156" height="32" rx="16" stroke-width="0.5" />
+    <text class="h-aff teal-t" x="322" y="20" text-anchor="middle">시각 · 대비 저하</text>
+    <line x1="400" y1="16" x2="424" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="amber-bg" x="424" y="0" width="296" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sol amber-t" x="436" y="20">고대비 디자인 · 충분한 글자 크기</text>
+  </g>
+
+  <!-- 행 2 -->
+  <g transform="translate(40, 130)">
+    <rect class="neutral-bg" x="0" y="0" width="220" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sit" x="12" y="20">시끄러운 카페에서 영상</text>
+    <line x1="220" y1="16" x2="244" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="amber-bg" x="244" y="0" width="156" height="32" rx="16" stroke-width="0.5" />
+    <text class="h-aff amber-t" x="322" y="20" text-anchor="middle">청각 · 소리 인식 불가</text>
+    <line x1="400" y1="16" x2="424" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="amber-bg" x="424" y="0" width="296" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sol amber-t" x="436" y="20">자막 · 텍스트 대안</text>
+  </g>
+
+  <!-- 행 3 -->
+  <g transform="translate(40, 170)">
+    <rect class="neutral-bg" x="0" y="0" width="220" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sit" x="12" y="20">한 손으로 아이 안고 조작</text>
+    <line x1="220" y1="16" x2="244" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="purple-bg" x="244" y="0" width="156" height="32" rx="16" stroke-width="0.5" />
+    <text class="h-aff purple-t" x="322" y="20" text-anchor="middle">운동 · 한 손 사용</text>
+    <line x1="400" y1="16" x2="424" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="amber-bg" x="424" y="0" width="296" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sol amber-t" x="436" y="20">큰 터치 타겟 · 제스처 단순화</text>
+  </g>
+
+  <!-- 행 4 -->
+  <g transform="translate(40, 210)">
+    <rect class="neutral-bg" x="0" y="0" width="220" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sit" x="12" y="20">운전 중 내비게이션</text>
+    <line x1="220" y1="16" x2="244" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="rust-bg" x="244" y="0" width="156" height="32" rx="16" stroke-width="0.5" />
+    <text class="h-aff rust-t" x="322" y="20" text-anchor="middle">시각+운동 동시 제약</text>
+    <line x1="400" y1="16" x2="424" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="amber-bg" x="424" y="0" width="296" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sol amber-t" x="436" y="20">음성 인터페이스 · 큰 아이콘</text>
+  </g>
+
+  <!-- 행 5 -->
+  <g transform="translate(40, 250)">
+    <rect class="neutral-bg" x="0" y="0" width="220" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sit" x="12" y="20">극도의 피로 또는 스트레스</text>
+    <line x1="220" y1="16" x2="244" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="pink-bg" x="244" y="0" width="156" height="32" rx="16" stroke-width="0.5" />
+    <text class="h-aff pink-t" x="322" y="20" text-anchor="middle">인지 · 집중력 저하</text>
+    <line x1="400" y1="16" x2="424" y2="16" class="arr" marker-end="url(#arr-sit)" />
+    <rect class="amber-bg" x="424" y="0" width="296" height="32" rx="6" stroke-width="0.5" />
+    <text class="h-sol amber-t" x="436" y="20">명확한 레이블 · 단순한 구조</text>
+  </g>
+</svg>

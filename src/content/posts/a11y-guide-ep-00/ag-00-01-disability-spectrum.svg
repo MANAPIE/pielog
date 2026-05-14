@@ -1,0 +1,126 @@
+<svg width="100%" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>장애의 스펙트럼: 영구적·일시적·상황적</title>
+  <desc>마이크로소프트 인클루시브 디자인 툴킷의 세 가지 장애 스펙트럼을 시각, 청각, 신체 세 가지 능력에 대해 각각 비교한 도식</desc>
+  <style>
+    .title { font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif; fill: #2C2C2A; }
+    .col-h { font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif; }
+    .row-h { font: 500 13px/1.4 'Pretendard Variable', system-ui, sans-serif; }
+    .body  { font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif; fill: #5F5E5A; }
+    .caption { font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif; fill: #6F6E66; }
+
+    .neutral-bg { fill: #FFFFFF; stroke: #D3D1C7; }
+    .rust-bg { fill: #FAECE7; stroke: #993C1D; }
+    .rust-t { fill: #712B13; }
+    .pink-bg { fill: #FBEAF0; stroke: #993556; }
+    .pink-t { fill: #72243E; }
+    .amber-bg { fill: #FAEEDA; stroke: #8F590F; }
+    .amber-t { fill: #633806; }
+    .teal-bg { fill: #E1F5EE; stroke: #0F664A; }
+    .teal-t { fill: #085041; }
+    .teal-dot { fill: #0F664A; }
+    .amber-dot { fill: #8F590F; }
+    .purple-bg { fill: #EEEDFE; stroke: #534AB7; }
+    .purple-t { fill: #3C3489; }
+    .purple-dot { fill: #534AB7; }
+    .on-dot { fill: #FFFFFF; }
+
+    @media (prefers-color-scheme: dark) {
+      .title { fill: #E8E6DE; }
+      .body { fill: #B4B2A9; }
+      .caption { fill: #B4B2A9; }
+      .neutral-bg { fill: #2C2C2A; stroke: #444441; }
+      .rust-bg { fill: #3F1A0C; stroke: #993C1D; }
+      .rust-t { fill: #F5BFB1; }
+      .pink-bg { fill: #4B1A2C; stroke: #993556; }
+      .pink-t { fill: #F5C0CF; }
+      .amber-bg { fill: #412402; stroke: #854F0B; }
+      .amber-t { fill: #FAC775; }
+      .teal-bg { fill: #04342C; stroke: #0F6E56; }
+      .teal-t { fill: #9FE1CB; }
+      .teal-dot { fill: #5DCAA5; }
+      .amber-dot { fill: #FAC775; }
+      .purple-bg { fill: #26215C; stroke: #534AB7; }
+      .purple-t { fill: #CECBF6; }
+      .purple-dot { fill: #AFA9EC; }
+      .on-dot { fill: #04342C; }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">장애의 스펙트럼</text>
+  <text class="caption" x="40" y="50">Microsoft Inclusive Design Toolkit</text>
+
+  <!-- 컬럼 헤더 -->
+  <g>
+    <rect class="rust-bg" x="180" y="70" width="180" height="32" rx="8" stroke-width="0.5"/>
+    <text class="col-h rust-t" x="270" y="90" text-anchor="middle">영구적</text>
+
+    <rect class="pink-bg" x="372" y="70" width="180" height="32" rx="8" stroke-width="0.5"/>
+    <text class="col-h pink-t" x="462" y="90" text-anchor="middle">일시적</text>
+
+    <rect class="amber-bg" x="564" y="70" width="180" height="32" rx="8" stroke-width="0.5"/>
+    <text class="col-h amber-t" x="654" y="90" text-anchor="middle">상황적</text>
+  </g>
+
+  <!-- 시각 행 -->
+  <g>
+    <rect class="teal-bg" x="40" y="120" width="128" height="60" rx="12" stroke-width="0.5"/>
+    <circle class="teal-dot" cx="64" cy="150" r="10"/>
+    <text class="row-h on-dot" x="64" y="154" text-anchor="middle">시</text>
+    <text class="row-h teal-t" x="88" y="146">시각</text>
+    <text class="caption teal-t" x="88" y="162">눈으로 보는 능력</text>
+
+    <rect class="neutral-bg" x="180" y="120" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="270" y="146" text-anchor="middle">전맹</text>
+    <text class="body" x="270" y="164" text-anchor="middle">백색증</text>
+
+    <rect class="neutral-bg" x="372" y="120" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="462" y="146" text-anchor="middle">백내장 수술 후</text>
+    <text class="body" x="462" y="164" text-anchor="middle">결막염</text>
+
+    <rect class="neutral-bg" x="564" y="120" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="654" y="146" text-anchor="middle">햇빛 아래 화면</text>
+    <text class="body" x="654" y="164" text-anchor="middle">운전 중 시선 분산</text>
+  </g>
+
+  <!-- 청각 행 -->
+  <g>
+    <rect class="amber-bg" x="40" y="195" width="128" height="60" rx="12" stroke-width="0.5"/>
+    <circle class="amber-dot" cx="64" cy="225" r="10"/>
+    <text class="row-h on-dot" x="64" y="229" text-anchor="middle">청</text>
+    <text class="row-h amber-t" x="88" y="221">청각</text>
+    <text class="caption amber-t" x="88" y="237">소리를 듣는 능력</text>
+
+    <rect class="neutral-bg" x="180" y="195" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="270" y="221" text-anchor="middle">농인</text>
+    <text class="body" x="270" y="239" text-anchor="middle">선천적 난청</text>
+
+    <rect class="neutral-bg" x="372" y="195" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="462" y="221" text-anchor="middle">중이염</text>
+    <text class="body" x="462" y="239" text-anchor="middle">콘서트 직후</text>
+
+    <rect class="neutral-bg" x="564" y="195" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="654" y="221" text-anchor="middle">시끄러운 카페</text>
+    <text class="body" x="654" y="239" text-anchor="middle">지하철 안</text>
+  </g>
+
+  <!-- 신체 행 -->
+  <g>
+    <rect class="purple-bg" x="40" y="270" width="128" height="60" rx="12" stroke-width="0.5"/>
+    <circle class="purple-dot" cx="64" cy="300" r="10"/>
+    <text class="row-h on-dot" x="64" y="304" text-anchor="middle">신</text>
+    <text class="row-h purple-t" x="88" y="296">신체</text>
+    <text class="caption purple-t" x="88" y="312">조작·이동 능력</text>
+
+    <rect class="neutral-bg" x="180" y="270" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="270" y="296" text-anchor="middle">한쪽 팔 없음</text>
+    <text class="body" x="270" y="314" text-anchor="middle">파킨슨병</text>
+
+    <rect class="neutral-bg" x="372" y="270" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="462" y="296" text-anchor="middle">팔 골절</text>
+    <text class="body" x="462" y="314" text-anchor="middle">손목 터널 증후군</text>
+
+    <rect class="neutral-bg" x="564" y="270" width="180" height="60" rx="12" stroke-width="0.5"/>
+    <text class="body" x="654" y="296" text-anchor="middle">아기 안고 있음</text>
+    <text class="body" x="654" y="314" text-anchor="middle">장갑 착용 중</text>
+  </g>
+</svg>

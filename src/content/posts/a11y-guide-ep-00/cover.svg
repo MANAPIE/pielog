@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="접근성 가이드 ep.00 cover">
+  <style>
+  :root {
+    --c-bg: #f1f5f9;
+    --c-fg: #0f172a;
+    --c-muted: #64748b;
+    --c-accent: #2563eb; --c-accent-2: #60a5fa; --c-accent-3: #93c5fd;
+    --c-num: rgba(37, 99, 235, 0.14);
+    --c-dot: rgba(37, 99, 235, 0.10);
+    --c-line: rgba(37, 99, 235, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0b1220;
+      --c-fg: #e2e8f0;
+      --c-muted: #94a3b8;
+      --c-accent: #60a5fa; --c-accent-2: #2563eb; --c-accent-3: #1e3a8a;
+      --c-num: rgba(96, 165, 250, 0.16);
+      --c-dot: rgba(96, 165, 250, 0.10);
+      --c-line: rgba(96, 165, 250, 0.20);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots00" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="halo00a" cx="0.82" cy="0.18" r="0.6">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo00b" cx="0.12" cy="0.88" r="0.55">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots00)"/>
+  <rect width="1200" height="630" fill="url(#halo00a)"/>
+  <rect width="1200" height="630" fill="url(#halo00b)"/>
+
+  <circle cx="1090" cy="100" r="340" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="1090" cy="100" r="260" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="1090" cy="100" r="180" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="140" cy="560" r="260" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <circle cx="380" cy="315" r="200" fill="var(--c-accent)" fill-opacity="0.08"/>
+  <circle cx="380" cy="315" r="140" fill="var(--c-accent)" fill-opacity="0.18"/>
+  <circle cx="380" cy="315" r="84" fill="var(--c-accent)"/>
+  <circle cx="380" cy="315" r="32" fill="var(--c-bg)"/>
+  <circle cx="380" cy="315" r="200" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="3 9"/>
+
+  <line x1="476" y1="222" x2="742" y2="148" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 8" stroke-opacity="0.5"/>
+  <line x1="498" y1="284" x2="932" y2="252" stroke="var(--c-accent)" stroke-width="2" stroke-opacity="0.5"/>
+  <line x1="500" y1="345" x2="1052" y2="425" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 8" stroke-opacity="0.5"/>
+  <line x1="472" y1="396" x2="700" y2="438" stroke="var(--c-accent)" stroke-width="2" stroke-opacity="0.5"/>
+  <line x1="438" y1="436" x2="846" y2="528" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 8" stroke-opacity="0.5"/>
+
+  <circle cx="780" cy="140" r="36" fill="var(--c-accent)"/>
+  <circle cx="780" cy="140" r="56" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="4 6"/>
+
+  <rect x="940" y="220" width="64" height="64" fill="var(--c-accent-2)" transform="rotate(45 972 252)"/>
+  <rect x="924" y="204" width="96" height="96" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="5 7" transform="rotate(45 972 252)"/>
+
+  <rect x="1040" y="384" width="92" height="92" rx="16" fill="none" stroke="var(--c-accent)" stroke-width="6"/>
+  <rect x="1062" y="406" width="48" height="48" rx="10" fill="var(--c-accent-2)"/>
+
+  <polygon points="868,476 920,566 816,566" fill="var(--c-accent-3)"/>
+  <polygon points="868,476 920,566 816,566" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
+
+  <circle cx="700" cy="438" r="20" fill="var(--c-accent)"/>
+  <circle cx="700" cy="438" r="38" fill="none" stroke="var(--c-accent)" stroke-width="3"/>
+
+  <circle cx="940" cy="448" r="9" fill="var(--c-accent)"/>
+  <circle cx="970" cy="466" r="6" fill="var(--c-accent-2)"/>
+  <circle cx="922" cy="478" r="5" fill="var(--c-accent-3)"/>
+
+  <rect x="640" y="60" width="44" height="12" rx="4" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <rect x="600" y="80" width="30" height="6" rx="3" fill="var(--c-accent-3)" fill-opacity="0.8"/>
+  <rect x="1100" y="290" width="44" height="8" rx="4" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <rect x="1130" y="306" width="22" height="6" rx="3" fill="var(--c-accent-3)" fill-opacity="0.7"/>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">00</text>
+</svg>

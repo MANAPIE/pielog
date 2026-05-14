@@ -1,0 +1,269 @@
+<svg width="100%" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>보조기기 분류: 입력·출력·환경 설정</title>
+  <desc>사용자가 웹과 앱을 사용할 때 활용하는 보조기기를 입력 장치, 출력 장치, 환경 설정 세 카테고리로 분류한 도식</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .item {
+      font: 400 12px/1.5 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .desc {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #5F5E5A;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-d {
+      fill: #0F6E56;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-d {
+      fill: #854F0B;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .purple-d {
+      fill: #534AB7;
+    }
+
+    .neutral-item {
+      fill: #FFFFFF;
+    }
+
+    .on-head {
+      fill: #FFFFFF;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .item {
+        fill: #E8E6DE;
+      }
+
+      .desc {
+        fill: #B4B2A9;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-d {
+        fill: #5DCAA5;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .amber-d {
+        fill: #FAC775;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .purple-d {
+        fill: #AFA9EC;
+      }
+
+      .neutral-item {
+        fill: #1F1F1D;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">보조기기(Assistive Technology) 분류</text>
+  <text class="caption" x="40" y="50">사용자가 실제로 웹·앱을 어떻게 조작하고 인식하는가</text>
+
+  <!-- 입력 장치 -->
+  <g>
+    <rect class="teal-card" x="40" y="74" width="240" height="280" rx="14" stroke-width="0.5" />
+    <rect class="teal-head" x="40" y="74" width="240" height="44" rx="14" />
+    <rect class="teal-head" x="40" y="100" width="240" height="18" />
+    <text class="col-h on-head" x="60" y="102">입력 장치</text>
+    <text class="desc teal-t" x="60" y="138">사용자 → 시스템</text>
+
+    <g transform="translate(60, 158)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#0F664A" stroke-width="0.5" />
+      <text class="item" x="12" y="14">키보드 전용 조작</text>
+      <text class="desc" x="12" y="27">Tab · Enter · 화살표만 사용</text>
+    </g>
+    <g transform="translate(60, 196)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#0F664A" stroke-width="0.5" />
+      <text class="item" x="12" y="14">스위치 장치</text>
+      <text class="desc" x="12" y="27">버튼 1~2개로 전체 조작</text>
+    </g>
+    <g transform="translate(60, 234)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#0F664A" stroke-width="0.5" />
+      <text class="item" x="12" y="14">음성 인식</text>
+      <text class="desc" x="12" y="27">Dragon · Voice Control</text>
+    </g>
+    <g transform="translate(60, 272)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#0F664A" stroke-width="0.5" />
+      <text class="item" x="12" y="14">시선 추적기</text>
+      <text class="desc" x="12" y="27">Eye Tracker · Tobii</text>
+    </g>
+    <g transform="translate(60, 310)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#0F664A" stroke-width="0.5" />
+      <text class="item" x="12" y="14">헤드 포인터</text>
+      <text class="desc" x="12" y="27">머리 움직임으로 커서 제어</text>
+    </g>
+  </g>
+
+  <!-- 출력 장치 -->
+  <g>
+    <rect class="amber-card" x="296" y="74" width="240" height="280" rx="14" stroke-width="0.5" />
+    <rect class="amber-head" x="296" y="74" width="240" height="44" rx="14" />
+    <rect class="amber-head" x="296" y="100" width="240" height="18" />
+    <text class="col-h on-head" x="316" y="102">출력 장치</text>
+    <text class="desc amber-t" x="316" y="138">시스템 → 사용자</text>
+
+    <g transform="translate(316, 158)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#8F590F" stroke-width="0.5" />
+      <text class="item" x="12" y="14">스크린리더</text>
+      <text class="desc" x="12" y="27">VoiceOver · NVDA · TalkBack</text>
+    </g>
+    <g transform="translate(316, 196)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#8F590F" stroke-width="0.5" />
+      <text class="item" x="12" y="14">점자 디스플레이</text>
+      <text class="desc" x="12" y="27">텍스트를 점자로 출력</text>
+    </g>
+    <g transform="translate(316, 234)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#8F590F" stroke-width="0.5" />
+      <text class="item" x="12" y="14">화면 확대기</text>
+      <text class="desc" x="12" y="27">ZoomText · 시스템 확대</text>
+    </g>
+    <g transform="translate(316, 272)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#8F590F" stroke-width="0.5" />
+      <text class="item" x="12" y="14">음성 변환(TTS)</text>
+      <text class="desc" x="12" y="27">텍스트를 음성으로 읽어줌</text>
+    </g>
+    <g transform="translate(316, 310)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#8F590F" stroke-width="0.5" />
+      <text class="item" x="12" y="14">햅틱 피드백</text>
+      <text class="desc" x="12" y="27">진동으로 상태 전달</text>
+    </g>
+  </g>
+
+  <!-- 환경 설정 -->
+  <g>
+    <rect class="purple-card" x="552" y="74" width="240" height="280" rx="14" stroke-width="0.5" />
+    <rect class="purple-head" x="552" y="74" width="240" height="44" rx="14" />
+    <rect class="purple-head" x="552" y="100" width="240" height="18" />
+    <text class="col-h on-head" x="572" y="102">환경 설정</text>
+    <text class="desc purple-t" x="572" y="138">OS·앱이 제공하는 옵션</text>
+
+    <g transform="translate(572, 158)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#534AB7" stroke-width="0.5" />
+      <text class="item" x="12" y="14">고대비 모드</text>
+      <text class="desc" x="12" y="27">색·대비 강화</text>
+    </g>
+    <g transform="translate(572, 196)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#534AB7" stroke-width="0.5" />
+      <text class="item" x="12" y="14">텍스트 크기 확대</text>
+      <text class="desc" x="12" y="27">시스템 전역 적용</text>
+    </g>
+    <g transform="translate(572, 234)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#534AB7" stroke-width="0.5" />
+      <text class="item" x="12" y="14">모션 감소</text>
+      <text class="desc" x="12" y="27">애니메이션 축소</text>
+    </g>
+    <g transform="translate(572, 272)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#534AB7" stroke-width="0.5" />
+      <text class="item" x="12" y="14">다크 모드</text>
+      <text class="desc" x="12" y="27">색상 반전 · 부담 완화</text>
+    </g>
+    <g transform="translate(572, 310)">
+      <rect class="neutral-item" x="0" y="0" width="200" height="32" rx="6" stroke="#534AB7" stroke-width="0.5" />
+      <text class="item" x="12" y="14">색상 필터</text>
+      <text class="desc" x="12" y="27">색약 보정 모드</text>
+    </g>
+  </g>
+</svg>
