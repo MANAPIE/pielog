@@ -11,7 +11,7 @@ interface Props {
 const { title, slug, thumbnail, tags, summary } = Astro.props;
 ---
 
-<article class="post-card">
+<div class="post-card">
     <a href={`/${slug}/`}>
         {
             thumbnail && (
@@ -32,9 +32,9 @@ const { title, slug, thumbnail, tags, summary } = Astro.props;
                     </ul>
                 )
             }
-            <h2 class="post-card-title">{title}</h2>
+            <h3 class="post-card-title">{title}</h3>
             {summary && <p class="post-card-summary">{summary}</p>}
             <p class="post-card-button">read →</p>
         </div>
     </a>
-</article>
+</div>

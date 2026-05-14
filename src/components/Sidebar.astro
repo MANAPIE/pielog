@@ -28,8 +28,8 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
     <SearchBox variant="sidebar" />
   </div>
 
-  <div class="sidebar-categories">
-    <span class="section-kicker">// categories_</span>
+  <nav class="sidebar-categories" aria-label="카테고리">
+    <h2 class="section-kicker">// categories_</h2>
     <ul class="category-tree">
       <li>
         <a href="/">Home</a>
@@ -79,9 +79,9 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
         </ul>
       </li>
     </ul>
-  </div>
+  </nav>
 
-  <div class="sidebar-categories">
+  <nav class="sidebar-categories" aria-label="사이트">
     <ul class="category-tree">
       <li>
         <a href="/tags/cover">
@@ -96,7 +96,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
         <a href="/rss.xml" target="_blank">RSS</a>
       </li>
     </ul>
-  </div>
+  </nav>
 
   <div class="sidebar-theme">
     <ThemeToggle />
@@ -122,7 +122,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
 
     .sidebar-logo {
       .site-title {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: bold;
         color: $color-text;
         text-decoration: none;
@@ -140,7 +140,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
 
       .site-subtitle {
         font-family: "Courier New", Courier, monospace;
-        font-size: 11px;
+        font-size: 0.6875rem;
         color: $color-primary;
         margin-top: 5px;
 
@@ -172,7 +172,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
     }
 
     .category-tree {
-      font-size: 14px;
+      font-size: 0.875rem;
 
       a {
         display: inline-flex;
@@ -187,7 +187,8 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
           background-color 0.15s ease,
           color 0.15s ease;
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
           background: $color-surface;
           color: $color-accent;
           text-decoration: none;
@@ -211,7 +212,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
         border-radius: 100%;
         font-family: "Courier New", Courier, monospace;
         font-weight: bold;
-        font-size: 11px;
+        font-size: 0.6875rem;
         line-height: 16px;
         min-width: 8px;
         transition:

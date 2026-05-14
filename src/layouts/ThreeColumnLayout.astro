@@ -11,6 +11,7 @@ interface Props {
 const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
 ---
 
+<a href="#main-content" class="sr-only sr-only-focusable">본문으로 건너뛰기</a>
 <MobileHeader />
 <div
   class="layout-wrapper"
@@ -18,6 +19,7 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
   data-pagefind-ignore={pageType !== "post" ? "all" : undefined}
 >
   <aside
+    id="sidebar"
     class="sidebar"
     style={sidebarOpacity !== 1
       ? `--sidebar-opacity: ${sidebarOpacity}`
@@ -25,10 +27,10 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
   >
     <Sidebar />
   </aside>
-  <main class="main-content">
+  <main id="main-content" class="main-content">
     <slot />
   </main>
-  <aside class="aside-panel">
+  <aside id="aside-panel" class="aside-panel">
     <slot name="aside" />
   </aside>
   <Footer />
@@ -44,26 +46,83 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
   const asideToggle = document.getElementById("aside-toggle");
   const overlay = document.getElementById("layout-overlay");
 
+  const FOCUSABLE_SELECTOR =
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  // 600px 미만(true mobile)만 모달 — 600~1339는 hover-reveal, 1340+는 sticky 3-column
+  const MODAL_QUERY = "(max-width: 599px)";
+
+  type OpenOpts = { viaKeyboard?: boolean };
+  type CloseOpts = { restoreFocus?: boolean };
+
+  let lastTrigger: HTMLElement | null = null;
+
+  function isModal() {
+    return window.matchMedia(MODAL_QUERY).matches;
+  }
+
+  function getFocusables(panel: HTMLElement | null) {
+    if (!panel) return [] as HTMLElement[];
+    return Array.from(
+      panel.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+    ).filter((el) => !el.hasAttribute("inert") && el.offsetParent !== null);
+  }
+
+  function syncAria() {
+    sidebarToggle?.setAttribute(
+      "aria-expanded",
+      String(!!sidebar?.classList.contains("is-active")),
+    );
+    asideToggle?.setAttribute(
+      "aria-expanded",
+      String(!!asidePanel?.classList.contains("is-active")),
+    );
+  }
+
+  function applyInert() {
+    if (!isModal()) {
+      sidebar?.removeAttribute("inert");
+      asidePanel?.removeAttribute("inert");
+      return;
+    }
+    if (sidebar)
+      sidebar.toggleAttribute("inert", !sidebar.classList.contains("is-active"));
+    if (asidePanel)
+      asidePanel.toggleAttribute(
+        "inert",
+        !asidePanel.classList.contains("is-active"),
+      );
+  }
+
   function syncBody() {
     const anyActive =
       !!sidebar?.classList.contains("is-active") ||
       !!asidePanel?.classList.contains("is-active");
     document.body.classList.toggle("panel-active", anyActive);
     overlay?.classList.toggle("is-visible", anyActive);
+    syncAria();
+    applyInert();
   }
 
-  function reveal(panel: HTMLElement | null) {
+  function reveal(panel: HTMLElement | null, opts: OpenOpts = {}) {
     if (!panel) return;
     const other = panel === sidebar ? asidePanel : sidebar;
     other?.classList.remove("is-active");
     panel.classList.add("is-active");
     syncBody();
+    if (opts.viaKeyboard) {
+      const focusables = getFocusables(panel);
+      focusables[0]?.focus();
+    }
   }
 
-  function closePanel(panel: HTMLElement | null) {
+  function closePanel(panel: HTMLElement | null, opts: CloseOpts = {}) {
     if (!panel) return;
     panel.classList.remove("is-active");
     syncBody();
+    if (opts.restoreFocus && lastTrigger) {
+      lastTrigger.focus();
+      lastTrigger = null;
+    }
   }
 
   function closeAll() {
@@ -71,6 +130,9 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
     asidePanel?.classList.remove("is-active");
     syncBody();
   }
+
+  // 초기 ARIA 상태 동기화
+  syncBody();
 
   sidebar?.addEventListener("pointerenter", (e) => {
     if (e.pointerType === "touch") return;
@@ -108,22 +170,61 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
   sidebarToggle?.addEventListener("click", (e) => {
     e.stopPropagation();
     if (sidebar?.classList.contains("is-active")) {
-      closePanel(sidebar);
+      closePanel(sidebar, { restoreFocus: true });
     } else {
-      reveal(sidebar);
+      lastTrigger = sidebarToggle as HTMLElement;
+      reveal(sidebar, { viaKeyboard: true });
     }
   });
 
   asideToggle?.addEventListener("click", (e) => {
     e.stopPropagation();
     if (asidePanel?.classList.contains("is-active")) {
-      closePanel(asidePanel);
+      closePanel(asidePanel, { restoreFocus: true });
     } else {
-      reveal(asidePanel);
+      lastTrigger = asideToggle as HTMLElement;
+      reveal(asidePanel, { viaKeyboard: true });
     }
   });
 
   overlay?.addEventListener("click", closeAll);
+
+  // Esc로 열린 패널 닫기
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (sidebar?.classList.contains("is-active")) {
+      closePanel(sidebar, { restoreFocus: true });
+    } else if (asidePanel?.classList.contains("is-active")) {
+      closePanel(asidePanel, { restoreFocus: true });
+    }
+  });
+
+  // 모달 모드에서 Tab 포커스 트랩
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    if (!isModal()) return;
+    const activePanel = sidebar?.classList.contains("is-active")
+      ? sidebar
+      : asidePanel?.classList.contains("is-active")
+        ? asidePanel
+        : null;
+    if (!activePanel) return;
+    const focusables = getFocusables(activePanel);
+    if (focusables.length === 0) {
+      e.preventDefault();
+      return;
+    }
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const current = document.activeElement as HTMLElement | null;
+    if (e.shiftKey && current === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && current === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 
   const SWIPE_THRESHOLD = 50;
   let touchStartX = 0;

@@ -132,12 +132,14 @@ body.panel-active .sidebar[style*="--sidebar-opacity"]~.main-content {
       opacity: 1;
     }
 
-    &.is-active {
+    &.is-active,
+    &:focus-within {
       left: 0;
       box-shadow: 4px 0 16px $color-shadow;
 
       .sidebar-inner {
         pointer-events: auto;
+        opacity: 1;
       }
     }
   }
@@ -155,11 +157,13 @@ body.panel-active .sidebar[style*="--sidebar-opacity"]~.main-content {
       pointer-events: none;
     }
 
-    &.is-active * {
+    &.is-active *,
+    &:focus-within * {
       pointer-events: auto;
     }
 
-    &.is-active {
+    &.is-active,
+    &:focus-within {
       right: 0;
       box-shadow: 0 4px 20px $color-shadow;
     }
@@ -191,7 +195,7 @@ body.panel-active .sidebar[style*="--sidebar-opacity"]~.main-content {
 
   .main-content {
     max-width: 100%;
-    padding-top: $mobile-header-height
+    padding-top: $mobile-header-height;
   }
 
   body.panel-active .main-content {
@@ -216,7 +220,8 @@ body.panel-active .sidebar[style*="--sidebar-opacity"]~.main-content {
     width: $sidebar-width;
     max-width: calc(100vw - #{$peek-width});
 
-    &.is-active {
+    &.is-active,
+    &:focus-within {
       transform: translateX(0);
       box-shadow: 0 4px 20px $color-shadow;
       pointer-events: auto;
@@ -229,7 +234,8 @@ body.panel-active .sidebar[style*="--sidebar-opacity"]~.main-content {
     width: $aside-width-min;
     max-width: calc(100vw - #{$peek-width});
 
-    &.is-active {
+    &.is-active,
+    &:focus-within {
       transform: translateX(0);
       box-shadow: 0 4px 20px $color-shadow;
       pointer-events: auto;

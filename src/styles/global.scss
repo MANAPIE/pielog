@@ -11,8 +11,8 @@
     --color-bg-half: #ffffff99;
     --color-bg-zero: #ffffff00;
     --color-text: #333333;
-    --color-text-muted: #8A8278;
-    --color-accent: #b8623a;
+    --color-text-muted: #6F6961;
+    --color-accent: #a55530;
     --color-accent-2: #c89968;
     --color-accent-3: #e8c47a;
     --color-primary: #7a7269;
@@ -20,8 +20,8 @@
     --color-tree: #E0D6D6;
     --color-surface: rgba(122, 114, 105, 0.06);
     --color-surface-strong: rgba(122, 114, 105, 0.14);
-    --color-line: rgba(184, 98, 58, 0.18);
-    --color-line-strong: rgba(184, 98, 58, 0.45);
+    --color-line: rgba(165, 85, 48, 0.18);
+    --color-line-strong: rgba(165, 85, 48, 0.45);
     --color-dot: rgba(122, 114, 105, 0.22);
     --color-code-bg: #f5f5f5;
     --color-shadow: rgba(0, 0, 0, 0.08);
@@ -114,16 +114,65 @@ img {
 }
 
 /* ========================
+   Accessibility — Visually Hidden
+   ======================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-visible {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    z-index: 200;
+    background: var(--color-bg);
+    border: 2px solid var(--color-accent);
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+/* ========================
+   Accessibility — Focus Visible
+   ======================== */
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* ========================
    Section Kicker
    ======================== */
-.section-kicker {
+.section-kicker,
+h2.section-kicker,
+h3.section-kicker {
     display: block;
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 11px;
+    font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     color: $color-accent;
     margin: 12px 0;
+    line-height: inherit;
 }
 
 /* ========================
@@ -143,7 +192,7 @@ img {
     border-radius: 3px;
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 0.6875rem;
     letter-spacing: 0.02em;
     color: $color-text-muted;
     text-decoration: none;
@@ -153,7 +202,7 @@ img {
         background-color 0.15s ease;
 
     &::before {
-        content: "#";
+        content: "# ";
         color: $color-accent;
         margin-right: 1px;
     }
@@ -175,7 +224,7 @@ img {
     padding: 20px;
     text-align: center;
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     color: var(--color-accent);
@@ -227,25 +276,25 @@ img {
     }
 
     .post-card-tags {
-        font-size: 12px;
+        font-size: 0.75rem;
         line-height: 1.8;
     }
 
     .post-card-title {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: bold;
         color: $color-text;
         margin-bottom: 4px;
     }
 
     .post-card-summary {
-        font-size: 11px;
+        font-size: 0.6875rem;
         color: $color-primary;
         min-height: 160px;
     }
 
     .post-card-button {
-        font-size: 11px;
+        font-size: 0.6875rem;
         font-weight: bold;
         font-family: 'Courier New', Courier, monospace;
         margin-top: 10px;
@@ -338,8 +387,9 @@ img {
         resize: vertical;
         line-height: 1.6;
 
-        &:focus {
-            outline: none;
+        &:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
             border-color: $color-primary;
         }
     }
@@ -376,4 +426,24 @@ img {
 [data-theme="dark"] .sidebar-button,
 [data-theme="dark"] .emblem {
     background-image: url("/images/manapie-emblem-small-dark.svg") !important;
+}
+
+/* ========================
+   Reduced Motion
+   ======================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .blink {
+        animation: none !important;
+        opacity: 1 !important;
+    }
 }
