@@ -37,7 +37,7 @@ for (const item of tocItems) {
 
 {
   tree.length > 0 && (
-    <nav class="toc-tree">
+    <nav class="toc-tree" aria-label="목차">
       <span class="toc-indicator" aria-hidden="true" />
       <ul>
         {tree.map((node) => (
@@ -127,12 +127,16 @@ for (const item of tocItems) {
     if (!current) return;
 
     tocItems.forEach((l) => l.classList.remove("is-active"));
+    document
+      .querySelectorAll(".toc-tree a[aria-current]")
+      .forEach((a) => a.removeAttribute("aria-current"));
     const activeLink = document.querySelector(
       `.toc-tree a[href="#${(current as HTMLElement).id}"]`,
     );
     const activeLi = activeLink?.parentElement;
-    if (activeLi) {
+    if (activeLi && activeLink) {
       activeLi.classList.add("is-active");
+      activeLink.setAttribute("aria-current", "location");
       moveIndicator(activeLi);
     }
   }
@@ -148,12 +152,13 @@ for (const item of tocItems) {
 
   .toc-tree {
     position: relative;
-    font-size: 13px;
+    font-size: 0.8125rem;
     padding: 60px 20px 20px 20px;
     opacity: 0.7;
     transition: opacity 0.25s ease;
 
-    &:hover {
+    &:hover,
+    &:focus-within {
       opacity: 1;
     }
 
@@ -161,7 +166,7 @@ for (const item of tocItems) {
       position: absolute;
       left: 0;
       top: 60px;
-      font-size: 8px;
+      font-size: 0.5rem;
       line-height: 26px;
       opacity: 0;
       transition:
@@ -176,15 +181,20 @@ for (const item of tocItems) {
     }
 
     a {
+      display: block;
       color: $color-text;
       text-decoration: none;
       padding: 3px 6px;
       margin: -3px -6px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       transition:
         background-color 0.15s ease,
         color 0.15s ease;
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         background: $color-surface;
         color: $color-accent;
       }
@@ -196,9 +206,6 @@ for (const item of tocItems) {
       font-weight: bold;
       line-height: 26px;
       margin-bottom: 5px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
 
       ul {
         margin: 4px 0;

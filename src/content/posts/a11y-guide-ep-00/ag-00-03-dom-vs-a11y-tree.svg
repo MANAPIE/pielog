@@ -1,0 +1,208 @@
+<svg width="100%" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>DOM 트리와 접근성 트리의 관계</title>
+  <desc>HTML DOM 트리가 브라우저에서 접근성 트리로 변환되는 과정을 좌우 비교로 보여주는 도식. 스크린리더는 접근성 트리를 읽음</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .mono {
+      font: 400 12px/1.6 'JetBrains Mono', 'D2Coding', monospace;
+      fill: #2C2C2A;
+    }
+
+    .desc {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1;
+      fill: none;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-stroke {
+      stroke: #8F590F;
+    }
+
+    .node-bg {
+      fill: #FFFFFF;
+    }
+
+    .node-bg-active {
+      fill: #FAEEDA;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .mono {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .amber-stroke {
+        stroke: #854F0B;
+      }
+
+      .node-bg {
+        fill: #1F1F1D;
+      }
+
+      .node-bg-active {
+        fill: #5A3208;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">DOM 트리 → 접근성 트리</text>
+  <text class="caption" x="40" y="50">스크린리더가 페이지를 “읽는” 방식</text>
+
+  <!-- 왼쪽: DOM Tree -->
+  <g>
+    <rect class="blue-card" x="40" y="76" width="320" height="335" rx="14" stroke-width="0.5" />
+    <rect class="blue-head" x="40" y="76" width="320" height="38" rx="14" />
+    <rect class="blue-head" x="40" y="100" width="320" height="14" />
+    <text class="col-h" x="60" y="100">DOM Tree</text>
+    <text class="desc blue-t" x="60" y="134">브라우저가 파싱한 HTML 구조</text>
+
+    <g transform="translate(60, 156)">
+      <text class="mono" x="0" y="0">&lt;nav&gt;</text>
+      <text class="mono" x="16" y="22">&lt;ul&gt;</text>
+      <text class="mono" x="32" y="44">&lt;li&gt;</text>
+      <text class="mono" x="48" y="66">&lt;a href="/"&gt;</text>
+      <text class="mono" x="64" y="88">홈</text>
+      <text class="mono" x="48" y="110">&lt;/a&gt;</text>
+      <text class="mono" x="32" y="132">&lt;/li&gt;</text>
+      <text class="mono" x="32" y="154">&lt;li&gt;</text>
+      <text class="mono" x="48" y="176">&lt;a href="/about"&gt;</text>
+      <text class="mono" x="64" y="198">소개</text>
+      <text class="mono" x="48" y="220">&lt;/a&gt;</text>
+      <text class="mono" x="32" y="242">&lt;/li&gt;</text>
+    </g>
+  </g>
+
+  <!-- 변환 화살표 -->
+  <line x1="370" y1="241" x2="430" y2="241" class="arr" marker-end="url(#arr-end)" />
+  <text class="caption" x="400" y="227" text-anchor="middle">브라우저 변환</text>
+  <text class="caption" x="400" y="259" text-anchor="middle">role</text>
+  <text class="caption" x="400" y="274" text-anchor="middle">name</text>
+  <text class="caption" x="400" y="289" text-anchor="middle">state</text>
+
+  <!-- 오른쪽: Accessibility Tree -->
+  <g>
+    <rect class="amber-card" x="440" y="76" width="320" height="335" rx="14" stroke-width="0.5" />
+    <rect class="amber-head" x="440" y="76" width="320" height="38" rx="14" />
+    <rect class="amber-head" x="440" y="100" width="320" height="14" />
+    <text class="col-h" x="460" y="100">Accessibility Tree</text>
+    <text class="desc amber-t" x="460" y="134">스크린리더가 인식하는 구조</text>
+
+    <g transform="translate(460, 156)">
+      <g>
+        <rect class="node-bg amber-stroke" x="0" y="-12" width="220" height="22" rx="4" stroke-width="0.5" />
+        <text class="mono" x="8" y="3">navigation</text>
+        <text class="caption" x="100" y="3">landmark</text>
+      </g>
+      <g transform="translate(16, 30)">
+        <rect class="node-bg amber-stroke" x="0" y="-12" width="204" height="22" rx="4" stroke-width="0.5" />
+        <text class="mono" x="8" y="3">list</text>
+        <text class="caption" x="100" y="3">2 items</text>
+      </g>
+      <g transform="translate(32, 60)">
+        <rect class="node-bg amber-stroke" x="0" y="-12" width="188" height="22" rx="4" stroke-width="0.5" />
+        <text class="mono" x="8" y="3">listitem</text>
+      </g>
+      <g transform="translate(48, 90)">
+        <rect class="node-bg-active amber-stroke" x="0" y="-12" width="172" height="22" rx="4" stroke-width="0.5" />
+        <text class="mono" x="8" y="3">link "홈"</text>
+      </g>
+      <g transform="translate(32, 120)">
+        <rect class="node-bg amber-stroke" x="0" y="-12" width="188" height="22" rx="4" stroke-width="0.5" />
+        <text class="mono" x="8" y="3">listitem</text>
+      </g>
+      <g transform="translate(48, 150)">
+        <rect class="node-bg-active amber-stroke" x="0" y="-12" width="172" height="22" rx="4" stroke-width="0.5" />
+        <text class="mono" x="8" y="3">link "소개"</text>
+      </g>
+    </g>
+  </g>
+</svg>

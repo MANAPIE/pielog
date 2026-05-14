@@ -1,0 +1,217 @@
+<svg width="100%" viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>네이티브 button vs ARIA div 코드 길이 비교</title>
+  <desc>같은 동작의 버튼을 네이티브 button 요소로 작성한 경우 3줄, div+role+키보드 핸들러로 작성한 경우 8줄로 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .mono {
+      font: 400 12px/1.5 'JetBrains Mono', monospace;
+    }
+
+    .lines {
+      font: 700 28px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .lines-l {
+      font: 400 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.9;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-badge {
+      fill: #0F664A;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-badge {
+      fill: #712B13;
+    }
+
+    .tag {
+      fill: #185FA5;
+    }
+
+    .attr {
+      fill: #8F590F;
+    }
+
+    .val {
+      fill: #0F664A;
+    }
+
+    .mono-body {
+      fill: #2C2C2A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-badge {
+        fill: #0F6E56;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-badge {
+        fill: #6B2614;
+      }
+
+      .tag {
+        fill: #5DA0E1;
+      }
+
+      .attr {
+        fill: #FAC775;
+      }
+
+      .val {
+        fill: #5DCAA5;
+      }
+
+      .mono-body {
+        fill: #E8E6DE;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">네이티브 button vs ARIA div — 코드 비용</text>
+  <text class="caption" x="40" y="50">같은 동작을 하려면 ARIA로는 더 많은 코드가 필요합니다</text>
+
+  <!-- Native -->
+  <g>
+    <rect class="teal-card" x="40" y="76" width="350" height="215" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="40" y="76" width="350" height="32" rx="12" />
+    <rect class="teal-head" x="40" y="96" width="350" height="12" />
+    <text class="col-h" x="60" y="98">네이티브 button</text>
+
+    <rect class="teal-badge" x="60" y="124" width="50" height="40" rx="6" />
+    <text class="lines" x="85" y="153" text-anchor="middle">3</text>
+    <text class="lines-l" x="85" y="180" text-anchor="middle">줄</text>
+
+    <g transform="translate(126, 132)">
+      <text class="mono mono-body">
+        <tspan class="tag">&lt;button</tspan>
+        <tspan class="attr"> onclick</tspan>
+        <tspan>=</tspan>
+        <tspan class="val">"doAction()"</tspan>
+        <tspan class="tag">&gt;</tspan>
+      </text>
+      <text class="mono mono-body" y="18"> 삭제</text>
+      <text class="mono" y="36">
+        <tspan class="tag">&lt;/button&gt;</tspan>
+      </text>
+    </g>
+
+    <text class="mono teal-t" x="60" y="220">자동 포함:</text>
+    <text class="mono teal-t" x="60" y="238">· tabindex, role, focusable</text>
+    <text class="mono teal-t" x="60" y="256">· Enter/Space 키 핸들링</text>
+    <text class="mono teal-t" x="60" y="274">· disabled, focus 시각 표시</text>
+  </g>
+
+  <!-- ARIA -->
+  <g>
+    <rect class="rust-card" x="410" y="76" width="350" height="215" rx="12" stroke-width="0.5" />
+    <rect class="rust-head" x="410" y="76" width="350" height="32" rx="12" />
+    <rect class="rust-head" x="410" y="96" width="350" height="12" />
+    <text class="col-h" x="430" y="98">div + ARIA + 키보드 핸들러</text>
+
+    <rect class="rust-badge" x="430" y="124" width="50" height="40" rx="6" />
+    <text class="lines" x="455" y="153" text-anchor="middle">8</text>
+    <text class="lines-l" x="455" y="180" text-anchor="middle">줄+</text>
+
+    <g transform="translate(496, 124)">
+      <text class="mono mono-body">
+        <tspan class="tag">&lt;div</tspan>
+      </text>
+      <text class="mono mono-body" y="14">
+        <tspan class="attr">role</tspan>=<tspan class="val">"button"</tspan>
+      </text>
+      <text class="mono mono-body" y="28">
+        <tspan class="attr">tabindex</tspan>=<tspan class="val">"0"</tspan>
+      </text>
+      <text class="mono mono-body" y="42">
+        <tspan class="attr">aria-label</tspan>=<tspan class="val">"삭제"</tspan>
+      </text>
+      <text class="mono mono-body" y="56">
+        <tspan class="attr">onkeydown</tspan>=<tspan class="val">"..."</tspan>
+      </text>
+      <text class="mono" y="70">
+        <tspan class="tag">&gt;삭제&lt;/div&gt;</tspan>
+      </text>
+    </g>
+
+    <text class="mono rust-t" x="430" y="220">직접 구현 필요:</text>
+    <text class="mono rust-t" x="430" y="238">· Enter/Space 모두 처리</text>
+    <text class="mono rust-t" x="430" y="256">· preventDefault 호출</text>
+    <text class="mono rust-t" x="430" y="274">· 상태별 ARIA 동기화</text>
+  </g>
+</svg>

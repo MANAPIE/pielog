@@ -1,0 +1,229 @@
+<svg width="100%" viewBox="0 0 800 610" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>디자인 시스템 버튼 컴포넌트 접근성 명세</title>
+  <desc>버튼 컴포넌트의 시각 사양, 키보드, 스크린리더, 안티패턴 네 영역에 걸친 접근성 명세서 카드</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .doc-h {
+      font: 700 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .sec-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .item {
+      font: 400 12px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .mono {
+      font: 400 11px/1.5 'JetBrains Mono', monospace;
+    }
+
+    .x {
+      font: 700 12px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .check {
+      font: 700 12px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .item-t {
+      fill: #2C2C2A;
+    }
+
+    .mono-t {
+      fill: #5F5E5A;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-strong {
+      fill: #0F664A;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-strong {
+      fill: #993C1D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .item-t {
+        fill: #E8E6DE;
+      }
+
+      .mono-t {
+        fill: #B4B2A9;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-strong {
+        fill: #5DCAA5;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-strong {
+        fill: #F09595;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="36">디자인 시스템 — 버튼 컴포넌트 접근성 명세</text>
+  <text class="caption" x="40" y="58">매 디자인마다 접근성을 다시 고민할 필요가 없도록 컴포넌트에 명세를 박아둡니다</text>
+
+  <!-- 컴포넌트 헤더 -->
+  <rect class="blue-head" x="40" y="84" width="720" height="52" rx="12" />
+  <text class="doc-h" x="64" y="116">Button · 버튼 컴포넌트</text>
+
+  <!-- 시각 사양 -->
+  <g transform="translate(40, 156)">
+    <rect class="blue-card" x="0" y="0" width="350" height="210" rx="12" stroke-width="0.75" />
+    <text class="sec-h blue-t" x="22" y="32">▸ 시각 사양</text>
+    <text class="item item-t" x="22" y="58">· 최소 높이 44px (모바일) / 36px (데스크톱)</text>
+    <text class="item item-t" x="22" y="84">· 텍스트 대비 ≥ 4.5:1</text>
+    <text class="item item-t" x="22" y="110">· 비활성 상태: 대비 ≥ 3:1 + 시각 단서</text>
+    <text class="item item-t" x="22" y="136">· 포커스 링: 3px solid, 대비 ≥ 3:1</text>
+    <text class="item item-t" x="22" y="162">· hover · active · disabled 시각 상태 명시</text>
+    <text class="item item-t" x="22" y="188">· 아이콘 전용 버튼: 정사각형 + 24×24 이상</text>
+  </g>
+
+  <!-- 키보드 -->
+  <g transform="translate(410, 156)">
+    <rect class="amber-card" x="0" y="0" width="350" height="210" rx="12" stroke-width="0.75" />
+    <text class="sec-h amber-t" x="22" y="32">▸ 키보드</text>
+    <text class="item item-t" x="22" y="58">· Enter / Space 키로 활성화</text>
+    <text class="item item-t" x="22" y="84">· Tab으로 포커스 이동</text>
+    <text class="item item-t" x="22" y="110">· 비활성 시: tabindex 유지 +</text>
+    <text class="mono mono-t" x="30" y="136"> aria-disabled="true"</text>
+    <text class="item item-t" x="22" y="162">· disabled 속성은 포커스 자체에서 제외됨</text>
+    <text class="item item-t" x="30" y="188"> → 안내가 필요하면 aria-disabled 사용</text>
+  </g>
+
+  <!-- 스크린리더 -->
+  <g transform="translate(40, 380)">
+    <rect class="teal-card" x="0" y="0" width="350" height="210" rx="12" stroke-width="0.75" />
+    <text class="sec-h teal-t" x="22" y="32">▸ 스크린리더</text>
+    <text class="item item-t" x="22" y="58">· role="button" (네이티브 button 미사용 시)</text>
+    <text class="item item-t" x="22" y="84">· 아이콘 전용: aria-label 필수</text>
+    <text class="mono mono-t" x="30" y="110"> aria-label="장바구니"</text>
+    <text class="item item-t" x="22" y="136">· 로딩 상태: aria-busy="true" + 알림</text>
+    <text class="item item-t" x="22" y="162">· 토글: aria-pressed="true|false"</text>
+    <text class="item item-t" x="22" y="188">· 메뉴/팝업 트리거: aria-expanded</text>
+  </g>
+
+  <!-- 안티패턴 -->
+  <g transform="translate(410, 380)">
+    <rect class="rust-card" x="0" y="0" width="350" height="210" rx="12" stroke-width="0.75" />
+    <text class="sec-h rust-t" x="22" y="32">▸ 안티패턴</text>
+
+    <text class="x rust-strong" x="22" y="58">✗</text>
+    <text class="item item-t" x="40" y="58">&lt;div onClick&gt; · 키보드 미동작</text>
+
+    <text class="check teal-strong" x="22" y="84">✓</text>
+    <text class="item item-t" x="40" y="84">&lt;button&gt; 네이티브 사용</text>
+
+    <text class="x rust-strong" x="22" y="110">✗</text>
+    <text class="item item-t" x="40" y="110">tabindex="-1" 으로 키보드 차단</text>
+
+    <text class="x rust-strong" x="22" y="136">✗</text>
+    <text class="item item-t" x="40" y="136">disabled로 회색 + 사라짐</text>
+
+    <text class="check teal-strong" x="22" y="162">✓</text>
+    <text class="item item-t" x="40" y="162">aria-disabled로 안내 유지</text>
+
+    <text class="x rust-strong" x="22" y="188">✗</text>
+    <text class="item item-t" x="40" y="188">아이콘 전용 + aria-label 없음</text>
+  </g>
+</svg>

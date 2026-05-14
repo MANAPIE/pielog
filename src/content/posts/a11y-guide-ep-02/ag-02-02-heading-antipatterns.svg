@@ -1,0 +1,140 @@
+<svg width="100%" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>헤딩 사용 안티패턴 3가지</title>
+  <desc>레벨 건너뛰기, 스타일 목적 헤딩 사용, 헤딩 없이 볼드만 사용하는 세 가지 흔한 실수 패턴</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .card-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .card-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .mono {
+      font: 400 11px/1.5 'JetBrains Mono', monospace;
+    }
+
+    .badge {
+      font: 700 12px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-sub {
+      fill: #993C1D;
+    }
+
+    .body-t {
+      fill: #2C2C2A;
+    }
+
+    .body-d {
+      fill: #5F5E5A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .body-t {
+        fill: #E8E6DE;
+      }
+
+      .body-d {
+        fill: #B4B2A9;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-sub {
+        fill: #F09595;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">헤딩 사용 안티패턴 3가지</text>
+  <text class="caption" x="40" y="50">레벨을 건너뛰거나 시각 목적으로 사용하면 스크린리더의 지도가 망가집니다</text>
+
+  <!-- Pattern 1 -->
+  <g transform="translate(40, 80)">
+    <rect class="rust-card" x="0" y="0" width="240" height="170" rx="12" stroke-width="0.5" />
+    <rect class="rust-head" x="0" y="0" width="240" height="32" rx="12" />
+    <rect class="rust-head" x="0" y="20" width="240" height="12" />
+    <text class="badge" x="14" y="22">안티패턴 1 · 레벨 건너뛰기</text>
+    <text class="card-h rust-t" x="14" y="58">h1 → h3 (h2 생략)</text>
+    <g transform="translate(14, 74)">
+      <text class="mono body-t" x="0" y="0">&lt;h1&gt;메인&lt;/h1&gt;</text>
+      <text class="mono rust-sub" x="0" y="18">&lt;h3&gt;인기 상품&lt;/h3&gt;</text>
+    </g>
+    <text class="card-d body-d" x="14" y="132">스크린리더가 "h2가 빠졌나?</text>
+    <text class="card-d body-d" x="14" y="146">놓친 게 있나?" 혼란</text>
+  </g>
+
+  <!-- Pattern 2 -->
+  <g transform="translate(296, 80)">
+    <rect class="rust-card" x="0" y="0" width="240" height="170" rx="12" stroke-width="0.5" />
+    <rect class="rust-head" x="0" y="0" width="240" height="32" rx="12" />
+    <rect class="rust-head" x="0" y="20" width="240" height="12" />
+    <text class="badge" x="14" y="22">안티패턴 2 · 스타일 목적 사용</text>
+    <text class="card-h rust-t" x="14" y="58">"작은 글씨가 필요해서 h4"</text>
+    <g transform="translate(14, 74)">
+      <text class="mono rust-sub" x="0" y="0">&lt;h4&gt;작은 글자&lt;/h4&gt;</text>
+      <text class="mono body-t" x="0" y="18">// 사실은 본문 텍스트</text>
+    </g>
+    <text class="card-d body-d" x="14" y="132">의미 구조에 잡음 추가</text>
+    <text class="card-d body-d" x="14" y="146">CSS로 크기 조절이 정답</text>
+  </g>
+
+  <!-- Pattern 3 -->
+  <g transform="translate(552, 80)">
+    <rect class="rust-card" x="0" y="0" width="208" height="170" rx="12" stroke-width="0.5" />
+    <rect class="rust-head" x="0" y="0" width="208" height="32" rx="12" />
+    <rect class="rust-head" x="0" y="20" width="208" height="12" />
+    <text class="badge" x="14" y="22">안티패턴 3 · 볼드만 사용</text>
+    <text class="card-h rust-t" x="14" y="58">제목인데 &lt;p&gt;&lt;strong&gt;</text>
+    <g transform="translate(14, 74)">
+      <text class="mono body-t" x="0" y="0">&lt;p&gt;&lt;strong&gt;</text>
+      <text class="mono rust-sub" x="0" y="14"> 섹션 제목</text>
+      <text class="mono body-t" x="0" y="28">&lt;/strong&gt;&lt;/p&gt;</text>
+    </g>
+    <text class="card-d body-d" x="14" y="146">스크린리더에선 그냥 문단</text>
+  </g>
+</svg>

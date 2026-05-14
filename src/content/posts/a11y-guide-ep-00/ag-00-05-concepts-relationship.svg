@@ -1,0 +1,185 @@
+<svg width="100%" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>접근성·사용성·유니버설 디자인의 관계</title>
+  <desc>세 개념이 동심원 구조로 포함 관계를 이루며, 접근성이 사용성의 전제 조건이라는 점을 보여주는 도식</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .ring-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .ring-en {
+      font: 500 11px/1.4 'JetBrains Mono', monospace;
+    }
+
+    .ring-d {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .label-h {
+      font: 500 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .label-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #5F5E5A;
+    }
+
+    .leader {
+      stroke: #6F6E66;
+      stroke-width: 0.5;
+      stroke-dasharray: 2 2;
+      fill: none;
+    }
+
+    .purple-bg {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .purple-dot {
+      fill: #534AB7;
+    }
+
+    .amber-bg {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-dot {
+      fill: #8F590F;
+    }
+
+    .teal-bg {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-dot {
+      fill: #0F664A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .label-h {
+        fill: #E8E6DE;
+      }
+
+      .label-d {
+        fill: #B4B2A9;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .leader {
+        stroke: #B4B2A9;
+      }
+
+      .purple-bg {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .purple-dot {
+        fill: #AFA9EC;
+      }
+
+      .amber-bg {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .amber-dot {
+        fill: #FAC775;
+      }
+
+      .teal-bg {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-dot {
+        fill: #5DCAA5;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">접근성 · 사용성 · 유니버설 디자인</text>
+  <text class="caption" x="40" y="50">세 개념의 포함 관계</text>
+
+  <!-- 외부: 유니버설 디자인 -->
+  <rect class="purple-bg" x="200" y="76" width="400" height="280" rx="14" stroke-width="0.5" />
+  <text class="ring-h purple-t" x="220" y="100">유니버설 디자인</text>
+  <text class="ring-en purple-t" x="220" y="116">Universal Design</text>
+
+  <!-- 중간: 사용성 -->
+  <rect class="amber-bg" x="232" y="140" width="336" height="200" rx="12" stroke-width="0.5" />
+  <text class="ring-h amber-t" x="252" y="164">사용성</text>
+  <text class="ring-en amber-t" x="252" y="180">Usability</text>
+
+  <!-- 내부: 접근성 -->
+  <rect class="teal-bg" x="264" y="204" width="272" height="120" rx="10" stroke-width="0.5" />
+  <text class="ring-h teal-t" x="284" y="228">접근성</text>
+  <text class="ring-en teal-t" x="284" y="244">Accessibility</text>
+  <text class="ring-d teal-t" x="284" y="298">장벽 없이 접근·인식·조작할 수 있다</text>
+
+  <!-- 왼쪽 라벨: 접근성 -->
+  <line x1="264" y1="264" x2="160" y2="264" class="leader" />
+  <circle class="teal-dot" cx="264" cy="264" r="2" />
+  <text class="label-h" x="156" y="262" text-anchor="end">접근성</text>
+  <text class="label-d" x="156" y="276" text-anchor="end">사용할 수 있는가?</text>
+  <text class="label-d" x="156" y="290" text-anchor="end">WCAG · 법규</text>
+
+  <!-- 왼쪽 라벨: 사용성 -->
+  <line x1="232" y1="180" x2="160" y2="180" class="leader" />
+  <circle class="amber-dot" cx="232" cy="180" r="2" />
+  <text class="label-h" x="156" y="178" text-anchor="end">사용성</text>
+  <text class="label-d" x="156" y="192" text-anchor="end">쉽고 효율적인가?</text>
+  <text class="label-d" x="156" y="206" text-anchor="end">ISO 9241 · 휴리스틱</text>
+
+  <!-- 오른쪽 라벨: 유니버설 디자인 -->
+  <line x1="600" y1="116" x2="660" y2="116" class="leader" />
+  <circle class="purple-dot" cx="600" cy="116" r="2" />
+  <text class="label-h" x="664" y="114">유니버설 디자인</text>
+  <text class="label-d" x="664" y="128">모두를 포함하는가?</text>
+  <text class="label-d" x="664" y="142">처음부터 모든 사람을</text>
+  <text class="label-d" x="664" y="156">위한 설계 철학</text>
+</svg>

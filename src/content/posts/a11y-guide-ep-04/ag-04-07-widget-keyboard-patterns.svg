@@ -1,0 +1,219 @@
+<svg width="100%" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>복합 위젯 키보드 패턴</title>
+  <desc>탭 리스트, 메뉴, 트리뷰, 그리드, 라디오 그룹, 날짜 선택기 등 복합 위젯의 표준 키보드 패턴 매트릭스</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .h {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+    }
+
+    .w-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .w-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #5F5E5A;
+    }
+
+    .key {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      fill: #2C2C2A;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .hd {
+      fill: #2C2C2A;
+    }
+
+    .cell {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .kb-bg {
+      fill: #F1EFE8;
+      stroke: #6F6E66;
+      stroke-width: 0.5;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .w-h,
+      .key {
+        fill: #E8E6DE;
+      }
+
+      .w-d,
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .hd {
+        fill: #444441;
+      }
+
+      .cell {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .kb-bg {
+        fill: #232624;
+        stroke: #444441;
+      }
+    }
+  </style>
+
+  <g transform="translate(-20, 0)">
+    <text class="title" x="40" y="32">복합 위젯 키보드 패턴 매트릭스</text>
+    <text class="caption" x="40" y="50">WAI-ARIA Authoring Practices(APG) 표준 패턴</text>
+
+    <!-- 헤더 -->
+    <g transform="translate(40, 76)">
+      <rect class="hd" x="0" y="0" width="200" height="30" rx="2" />
+      <text class="h" x="14" y="20">위젯</text>
+      <rect class="hd" x="206" y="0" width="160" height="30" rx="2" />
+      <text class="h" x="220" y="20">Tab 동작</text>
+      <rect class="hd" x="372" y="0" width="200" height="30" rx="2" />
+      <text class="h" x="386" y="20">내부 탐색</text>
+      <rect class="hd" x="578" y="0" width="182" height="30" rx="2" />
+      <text class="h" x="592" y="20">활성화</text>
+    </g>
+
+    <!-- Row 1: 탭 -->
+    <g transform="translate(40, 112)">
+      <rect class="cell" x="0" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-h" x="14" y="18">탭 리스트</text>
+      <text class="w-d" x="14" y="32">role="tablist"</text>
+
+      <rect class="cell" x="206" y="0" width="160" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-d" x="220" y="24">목록 전체에 1회</text>
+
+      <rect class="cell" x="372" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="386" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="402" y="24" text-anchor="middle">←</text>
+      <rect class="kb-bg" x="424" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="440" y="24" text-anchor="middle">→</text>
+      <text class="w-d" x="464" y="24">탭 사이</text>
+
+      <rect class="cell" x="578" y="0" width="182" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-d" x="592" y="24">자동 또는 Enter</text>
+    </g>
+
+    <!-- Row 2: 메뉴 -->
+    <g transform="translate(40, 158)">
+      <rect class="cell" x="0" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-h" x="14" y="18">메뉴</text>
+      <text class="w-d" x="14" y="32">role="menu"</text>
+
+      <rect class="cell" x="206" y="0" width="160" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-d" x="220" y="24">메뉴 버튼에 포커스</text>
+
+      <rect class="cell" x="372" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="386" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="402" y="24" text-anchor="middle">↑</text>
+      <rect class="kb-bg" x="424" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="440" y="24" text-anchor="middle">↓</text>
+      <text class="w-d" x="464" y="24">항목 이동</text>
+
+      <rect class="cell" x="578" y="0" width="182" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="592" y="10" width="56" height="20" rx="3" />
+      <text class="key" x="620" y="24" text-anchor="middle">Enter</text>
+    </g>
+
+    <!-- Row 3: 트리뷰 -->
+    <g transform="translate(40, 204)">
+      <rect class="cell" x="0" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-h" x="14" y="18">트리뷰</text>
+      <text class="w-d" x="14" y="32">role="tree"</text>
+
+      <rect class="cell" x="206" y="0" width="160" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-d" x="220" y="24">트리 전체에 1회</text>
+
+      <rect class="cell" x="372" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="386" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="402" y="24" text-anchor="middle">↑↓</text>
+      <rect class="kb-bg" x="424" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="440" y="24" text-anchor="middle">←→</text>
+      <text class="w-d" x="464" y="24">탐색 + 펼치기</text>
+
+      <rect class="cell" x="578" y="0" width="182" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="592" y="10" width="56" height="20" rx="3" />
+      <text class="key" x="620" y="24" text-anchor="middle">Enter</text>
+    </g>
+
+    <!-- Row 4: 그리드 -->
+    <g transform="translate(40, 250)">
+      <rect class="cell" x="0" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-h" x="14" y="18">그리드 / 테이블</text>
+      <text class="w-d" x="14" y="32">role="grid"</text>
+
+      <rect class="cell" x="206" y="0" width="160" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-d" x="220" y="24">그리드 전체에 1회</text>
+
+      <rect class="cell" x="372" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="386" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="402" y="24" text-anchor="middle">↑↓</text>
+      <rect class="kb-bg" x="424" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="440" y="24" text-anchor="middle">←→</text>
+      <text class="w-d" x="464" y="24">셀 이동</text>
+
+      <rect class="cell" x="578" y="0" width="182" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="592" y="10" width="56" height="20" rx="3" />
+      <text class="key" x="620" y="24" text-anchor="middle">Enter</text>
+    </g>
+
+    <!-- Row 5: 라디오 -->
+    <g transform="translate(40, 296)">
+      <rect class="cell" x="0" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-h" x="14" y="18">라디오 그룹</text>
+      <text class="w-d" x="14" y="32">role="radiogroup"</text>
+
+      <rect class="cell" x="206" y="0" width="160" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-d" x="220" y="24">그룹 전체에 1회</text>
+
+      <rect class="cell" x="372" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="386" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="402" y="24" text-anchor="middle">↑↓</text>
+      <rect class="kb-bg" x="424" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="440" y="24" text-anchor="middle">←→</text>
+      <text class="w-d" x="464" y="24">항목 이동</text>
+
+      <rect class="cell" x="578" y="0" width="182" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-d" x="592" y="24">화살표로 자동 선택</text>
+    </g>
+
+    <!-- Row 6: 날짜 선택기 -->
+    <g transform="translate(40, 342)">
+      <rect class="cell" x="0" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-h" x="14" y="18">날짜 선택기</text>
+      <text class="w-d" x="14" y="32">role="dialog" + grid</text>
+
+      <rect class="cell" x="206" y="0" width="160" height="40" rx="2" stroke-width="0.5" />
+      <text class="w-d" x="220" y="24">입력 필드에 포커스</text>
+
+      <rect class="cell" x="372" y="0" width="200" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="386" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="402" y="24" text-anchor="middle">↑↓</text>
+      <rect class="kb-bg" x="424" y="10" width="32" height="20" rx="3" />
+      <text class="key" x="440" y="24" text-anchor="middle">←→</text>
+      <text class="w-d" x="464" y="24">날짜 이동</text>
+
+      <rect class="cell" x="578" y="0" width="182" height="40" rx="2" stroke-width="0.5" />
+      <rect class="kb-bg" x="592" y="10" width="56" height="20" rx="3" />
+      <text class="key" x="620" y="24" text-anchor="middle">Enter</text>
+    </g>
+  </g>
+</svg>

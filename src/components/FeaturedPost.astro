@@ -133,7 +133,7 @@ const initial = serialized[0];
                 <circle cx="744" cy="304" r="4" fill="var(--color-accent-3)" />
                 <circle cx="700" cy="320" r="3" fill="var(--color-accent)" />
             </svg>
-            <span class="section-kicker">// featured post_</span>
+            <h2 class="section-kicker">// featured post_</h2>
             <article class="featured-card" data-featured-card>
                 <a
                     class="featured-card-link"
@@ -160,12 +160,12 @@ const initial = serialized[0];
                                 ))}
                             </ul>
                         )}
-                        <h2
+                        <h3
                             class="featured-card-title"
                             data-featured-title
                         >
                             {initial.title}
-                        </h2>
+                        </h3>
                         {(initial.summary || initial.description) && (
                             <p
                                 class="featured-card-summary"
@@ -332,31 +332,31 @@ const initial = serialized[0];
         }
 
         .featured-card-tags {
-            font-size: 12px;
+            font-size: 0.75rem;
             line-height: 1.8;
         }
 
         .featured-card-title {
-            font-size: 22px;
+            font-size: 1.375rem;
             font-weight: bold;
             color: $color-text;
             margin-bottom: 8px;
             line-height: 1.35;
 
             @media (max-width: #{$bp-mobile - 1}) {
-                font-size: 18px;
+                font-size: 1.125rem;
             }
         }
 
         .featured-card-summary {
-            font-size: 12px;
+            font-size: 0.75rem;
             color: $color-primary;
             flex: 1 1 auto;
             min-height: 160px;
         }
 
         .featured-card-button {
-            font-size: 11px;
+            font-size: 0.6875rem;
             font-weight: bold;
             font-family: "Courier New", Courier, monospace;
             margin-top: 14px;

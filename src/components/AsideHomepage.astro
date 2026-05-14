@@ -30,16 +30,16 @@ const allTags = sortedTags.map(([tag, count]) => ({
 
 <div class="aside-home">
   <section class="aside-section">
-    <span class="section-kicker">// top reads_</span>
+    <h2 class="section-kicker">// top reads_</h2>
     <ul class="aside-section-list" id="top-reads">
       <li class="recent-post-item">
-        <span class="recent-post-num" style="font-size:12px;">loading...</span>
+        <span class="recent-post-num" style="font-size:0.75rem;">loading...</span>
       </li>
     </ul>
   </section>
 
   <section class="aside-section">
-    <span class="section-kicker">// recent posts_</span>
+    <h2 class="section-kicker">// recent posts_</h2>
     {
       recentPosts.length > 0 ? (
         <ul class="aside-section-list">
@@ -59,7 +59,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
   </section>
 
   <section class="aside-section">
-    <span class="section-kicker">// tag index_</span>
+    <h2 class="section-kicker">// tag index_</h2>
     {
       allTags.length > 0 ? (
         <div class="tag-list">
@@ -80,7 +80,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
   </section>
 
   <section class="aside-section">
-    <span class="section-kicker">// visitors_</span>
+    <h2 class="section-kicker">// visitors_</h2>
     <ul class="aside-section-list">
       <li class="recent-post-item">
         <span class="recent-post-num"
@@ -116,7 +116,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
       if (!container) return;
       if (posts.length === 0) {
         container.innerHTML =
-          '<li class="recent-post-item"><span class="recent-post-num" style="font-size:12px;">아직 데이터가 없습니다</span></li>';
+          '<li class="recent-post-item"><span class="recent-post-num" style="font-size:0.75rem;">아직 데이터가 없습니다</span></li>';
         return;
       }
       container.innerHTML = posts
@@ -150,7 +150,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
   }
 
   .aside-placeholder {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .aside-section-list {
@@ -169,7 +169,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
     display: flex;
     align-items: baseline;
     gap: 8px;
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: inherit;
     text-decoration: none;
     padding: 3px 6px;
@@ -179,7 +179,8 @@ const allTags = sortedTags.map(([tag, count]) => ({
       background-color 0.15s ease,
       color 0.15s ease;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background: $color-surface;
       color: $color-accent;
     }
@@ -188,7 +189,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
   .recent-post-num,
   :global(#top-reads .recent-post-num) {
     font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: $color-text-muted;
     flex-shrink: 0;
     min-width: 2.5ch;
@@ -203,7 +204,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
   }
 
   .tag-list {
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.8;
   }
 
@@ -212,18 +213,18 @@ const allTags = sortedTags.map(([tag, count]) => ({
   }
 
   .tag-tier-1 {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
   .tag-tier-2 {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
   .tag-tier-3 {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
   .tag-tier-4 {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
   .tag-tier-5 {
-    font-size: 19px;
+    font-size: 1.1875rem;
   }
 </style>

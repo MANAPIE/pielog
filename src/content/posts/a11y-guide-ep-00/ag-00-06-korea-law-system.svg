@@ -1,0 +1,203 @@
+<svg width="100%" viewBox="0 0 800 410" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>한국 접근성 법규 체계</title>
+  <desc>장애인차별금지법과 국가정보화 기본법이 KWCAG 2.2 지침으로 이어지고 웹 접근성 인증(WA 마크)으로 검증되는 체계</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .box-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .box-d {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .box-y {
+      font: 500 11px/1.4 'JetBrains Mono', monospace;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1;
+      fill: none;
+    }
+
+    .rust-bg {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-side {
+      fill: #993C1D;
+    }
+
+    .rust-h {
+      fill: #712B13;
+    }
+
+    .rust-tag {
+      fill: #993C1D;
+    }
+
+    .amber-bg {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-side {
+      fill: #8F590F;
+    }
+
+    .amber-h {
+      fill: #633806;
+    }
+
+    .amber-tag {
+      fill: #8F590F;
+    }
+
+    .teal-bg {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-side {
+      fill: #0F664A;
+    }
+
+    .teal-h {
+      fill: #085041;
+    }
+
+    .teal-tag {
+      fill: #0F664A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .rust-bg {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-side {
+        fill: #993C1D;
+      }
+
+      .rust-h {
+        fill: #F5BFB1;
+      }
+
+      .rust-tag {
+        fill: #F09595;
+      }
+
+      .amber-bg {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-side {
+        fill: #854F0B;
+      }
+
+      .amber-h {
+        fill: #FAC775;
+      }
+
+      .amber-tag {
+        fill: #FAC775;
+      }
+
+      .teal-bg {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-side {
+        fill: #0F6E56;
+      }
+
+      .teal-h {
+        fill: #9FE1CB;
+      }
+
+      .teal-tag {
+        fill: #5DCAA5;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-law" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">한국 접근성 법규 체계</text>
+  <text class="caption" x="40" y="50">법률 · 지침 · 인증으로 이어지는 3단 구조</text>
+
+  <!-- 상위: 두 개의 법 -->
+  <g>
+    <rect class="rust-bg" x="60" y="80" width="320" height="89" rx="12" stroke-width="0.5" />
+    <rect class="rust-side" x="60" y="80" width="6" height="89" />
+    <text class="box-y rust-tag" x="80" y="100">법률</text>
+    <text class="box-h rust-h" x="80" y="122">장애인차별금지법</text>
+    <text class="box-d rust-h" x="80" y="140">2008년 시행 · 차별 금지 + 제재</text>
+    <text class="box-d rust-h" x="80" y="156">민간 포함 차별 구제 소송 근거</text>
+  </g>
+
+  <g>
+    <rect class="rust-bg" x="420" y="80" width="320" height="89" rx="12" stroke-width="0.5" />
+    <rect class="rust-side" x="420" y="80" width="6" height="89" />
+    <text class="box-y rust-tag" x="440" y="100">법률</text>
+    <text class="box-h rust-h" x="440" y="122">국가정보화 기본법</text>
+    <text class="box-d rust-h" x="440" y="140">2009년 시행 · 웹 접근성 의무화</text>
+    <text class="box-d rust-h" x="440" y="156">공공기관 대상 강제 적용</text>
+  </g>
+
+  <!-- 화살표 -->
+  <line x1="220" y1="169" x2="220" y2="205" class="arr" marker-end="url(#arr-law)" />
+  <line x1="580" y1="169" x2="580" y2="205" class="arr" marker-end="url(#arr-law)" />
+
+  <!-- 중위: KWCAG -->
+  <g>
+    <rect class="amber-bg" x="60" y="208" width="680" height="89" rx="12" stroke-width="0.5" />
+    <rect class="amber-side" x="60" y="208" width="6" height="89" />
+    <text class="box-y amber-tag" x="80" y="228">지침</text>
+    <text class="box-h amber-h" x="80" y="250">한국형 웹 콘텐츠 접근성 지침 2.2 (KWCAG 2.2)</text>
+    <text class="box-d amber-h" x="80" y="268">2022년 개정 · WCAG 2.1 기반 + 국내 환경 반영 · 4원칙 13지침 24검사항목</text>
+    <text class="box-d amber-h" x="80" y="284">국가표준 (KS X OT0003)</text>
+  </g>
+
+  <!-- 화살표 -->
+  <line x1="400" y1="297" x2="400" y2="333" class="arr" marker-end="url(#arr-law)" />
+
+  <!-- 하위: 인증 -->
+  <g>
+    <rect class="teal-bg" x="200" y="336" width="400" height="56" rx="12" stroke-width="0.5" />
+    <rect class="teal-side" x="200" y="336" width="6" height="56" />
+    <text class="box-y teal-tag" x="220" y="356">인증</text>
+    <text class="box-h teal-h" x="220" y="378">웹 접근성 인증 (WA 마크) · 한국웹접근성인증평가원 심사</text>
+  </g>
+</svg>

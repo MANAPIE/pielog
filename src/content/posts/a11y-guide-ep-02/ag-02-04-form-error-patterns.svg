@@ -1,0 +1,217 @@
+<svg width="100%" viewBox="0 0 800 390" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>폼 에러 표시: 나쁜 예와 좋은 예</title>
+  <desc>왼쪽은 어떤 필드가 오류인지 알 수 없는 나쁜 에러 표시, 오른쪽은 필드 바로 아래 명확한 메시지와 해결 방법을 보여주는 좋은 에러 표시</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .lbl {
+      font: 500 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .ph {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .val {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .err {
+      font: 500 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .hint {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .bullet {
+      font: 400 11px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-sub {
+      fill: #993C1D;
+    }
+
+    .rust-stroke {
+      stroke: #993C1D;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-sub {
+      fill: #0F6E56;
+    }
+
+    .teal-stroke {
+      stroke: #0F664A;
+    }
+
+    .field-bg {
+      fill: #FFFFFF;
+    }
+
+    .body-t {
+      fill: #2C2C2A;
+    }
+
+    .body-d {
+      fill: #5F5E5A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption,
+      .ph {
+        fill: #B4B2A9;
+      }
+
+      .body-t {
+        fill: #E8E6DE;
+      }
+
+      .body-d {
+        fill: #B4B2A9;
+      }
+
+      .field-bg {
+        fill: #1F1F1D;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-sub {
+        fill: #F09595;
+      }
+
+      .rust-stroke {
+        stroke: #F09595;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-sub {
+        fill: #5DCAA5;
+      }
+
+      .teal-stroke {
+        stroke: #5DCAA5;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">폼 에러 표시 — 흔한 실패와 권장안</text>
+  <text class="caption" x="40" y="50">에러를 어떻게 보여주는가가 폼 사용성을 좌우합니다</text>
+
+  <!-- Bad example -->
+  <g>
+    <rect class="rust-card" x="40" y="76" width="350" height="290" rx="14" stroke-width="0.5" />
+    <rect class="rust-head" x="40" y="76" width="350" height="32" rx="14" />
+    <rect class="rust-head" x="40" y="96" width="350" height="12" />
+    <text class="col-h" x="60" y="98">나쁜 예 — 어디가 문제인가</text>
+
+    <!-- 필드 1 -->
+    <text class="lbl body-t" x="60" y="138">이메일</text>
+    <rect class="field-bg rust-stroke" x="60" y="146" width="310" height="36" rx="6" stroke-width="1" />
+    <text class="val body-t" x="72" y="168">user@</text>
+
+    <!-- 필드 2 -->
+    <text class="lbl body-t" x="60" y="208">비밀번호</text>
+    <rect class="field-bg rust-stroke" x="60" y="216" width="310" height="36" rx="6" stroke-width="1" />
+
+    <!-- 전체 에러 (어떤 필드인지 불명) -->
+    <rect class="rust-head" x="60" y="272" width="310" height="32" rx="6" />
+    <text class="col-h" x="74" y="292">⚠ 입력 오류</text>
+
+    <text class="bullet body-d" x="60" y="326">· 어떤 필드의 오류인지 불명</text>
+    <text class="bullet body-d" x="60" y="344">· 해결 방법 안내 없음</text>
+  </g>
+
+  <!-- Good example -->
+  <g>
+    <rect class="teal-card" x="410" y="76" width="350" height="290" rx="14" stroke-width="0.5" />
+    <rect class="teal-head" x="410" y="76" width="350" height="32" rx="14" />
+    <rect class="teal-head" x="410" y="96" width="350" height="12" />
+    <text class="col-h" x="430" y="98">좋은 예 — 명확한 안내</text>
+
+    <!-- 필드 1: 정상 -->
+    <text class="lbl body-t" x="430" y="138">이메일 주소</text>
+    <rect class="field-bg teal-stroke" x="430" y="146" width="310" height="36" rx="6" stroke-width="0.8" />
+    <text class="val body-t" x="442" y="168">name@example.com</text>
+    <text class="hint teal-t" x="730" y="168" text-anchor="end">✓</text>
+
+    <!-- 필드 2: 에러 -->
+    <text class="lbl body-t" x="430" y="208">비밀번호</text>
+    <rect class="field-bg rust-stroke" x="430" y="216" width="310" height="36" rx="6" stroke-width="1.5" />
+    <text class="val body-t" x="442" y="238">···</text>
+    <text class="err rust-sub" x="730" y="238" text-anchor="end">⚠</text>
+
+    <text class="err rust-sub" x="430" y="272">⚠ 비밀번호는 최소 8자 이상이어야 합니다.</text>
+    <text class="hint body-d" x="430" y="288">현재 3자. 영문·숫자·특수문자 조합 권장</text>
+
+    <text class="bullet body-d" x="430" y="326">· 해당 필드 바로 아래 표시</text>
+    <text class="bullet body-d" x="430" y="344">· 구체적 수정 방법 + aria-describedby</text>
+  </g>
+</svg>

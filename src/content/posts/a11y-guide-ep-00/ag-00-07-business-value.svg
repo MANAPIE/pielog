@@ -1,0 +1,240 @@
+<svg width="100%" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>접근성의 비즈니스 가치</title>
+  <desc>접근성 개선이 시장 규모·SEO·사용성·법적 리스크 네 가지 비즈니스 지표에 어떻게 영향을 주는지 정량적으로 표현한 도식</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .lbl {
+      font: 600 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .met {
+      font: 700 28px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .unit {
+      font: 500 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .body {
+      font: 400 12px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .src {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .blue-bg {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-tag {
+      fill: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .blue-bar {
+      fill: #185FA5;
+    }
+
+    .teal-bg {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-tag {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-bar {
+      fill: #0F664A;
+    }
+
+    .amber-bg {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-tag {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-bar {
+      fill: #8F590F;
+    }
+
+    .rust-bg {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-tag {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-bar {
+      fill: #993C1D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .blue-bg {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-tag {
+        fill: #5DA0E1;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .blue-bar {
+        fill: #5DA0E1;
+      }
+
+      .teal-bg {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-tag {
+        fill: #5DCAA5;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-bar {
+        fill: #5DCAA5;
+      }
+
+      .amber-bg {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-tag {
+        fill: #FAC775;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .amber-bar {
+        fill: #FAC775;
+      }
+
+      .rust-bg {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-tag {
+        fill: #F09595;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-bar {
+        fill: #F09595;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">접근성의 비즈니스 가치</text>
+  <text class="caption" x="40" y="50">네 가지 지표로 본 정량적 임팩트</text>
+
+  <!-- 카드 1: 시장 규모 -->
+  <g transform="translate(40, 76)">
+    <rect class="blue-bg" x="0" y="0" width="175" height="265" rx="12" stroke-width="0.5" />
+    <text class="lbl blue-tag" x="18" y="30">시장 규모</text>
+    <text class="met blue-t" x="18" y="86">13억</text>
+    <text class="unit blue-t" x="18" y="110">전 세계 장애인 인구</text>
+    <rect class="blue-bar" x="18" y="130" width="28" height="3" rx="1.5" />
+    <text class="body blue-t" x="18" y="162">$1.9조</text>
+    <text class="body blue-t" x="18" y="178">연간 구매력</text>
+    <text class="body blue-t" x="18" y="208">+가족·동반자 포함 시</text>
+    <text class="body blue-t" x="18" y="224">인구의 25%가 영향권</text>
+    <text class="src blue-tag" x="18" y="248">출처: WHO 2023</text>
+  </g>
+
+  <!-- 카드 2: SEO -->
+  <g transform="translate(227, 76)">
+    <rect class="teal-bg" x="0" y="0" width="175" height="265" rx="12" stroke-width="0.5" />
+    <text class="lbl teal-tag" x="18" y="30">검색 최적화</text>
+    <text class="met teal-t" x="18" y="86">+18%</text>
+    <text class="unit teal-t" x="18" y="110">유기 검색 유입 평균</text>
+    <rect class="teal-bar" x="18" y="130" width="28" height="3" rx="1.5" />
+    <text class="body teal-t" x="18" y="162">시맨틱 마크업·alt</text>
+    <text class="body teal-t" x="18" y="178">헤딩·landmark가 직접</text>
+    <text class="body teal-t" x="18" y="194">크롤링 효율을 개선</text>
+    <text class="body teal-t" x="18" y="224">+12~30% 가시성 향상</text>
+    <text class="src teal-tag" x="18" y="248">출처: 다수 사례 보고</text>
+  </g>
+
+  <!-- 카드 3: 사용성·전환율 -->
+  <g transform="translate(414, 76)">
+    <rect class="amber-bg" x="0" y="0" width="175" height="265" rx="12" stroke-width="0.5" />
+    <text class="lbl amber-tag" x="18" y="30">사용성·전환율</text>
+    <text class="met amber-t" x="18" y="86">+20%</text>
+    <text class="unit amber-t" x="18" y="110">폼 작성 완료율 상승</text>
+    <rect class="amber-bar" x="18" y="130" width="28" height="3" rx="1.5" />
+    <text class="body amber-t" x="18" y="162">−15% 이탈률</text>
+    <text class="body amber-t" x="18" y="178">접근성 리팩토링 후</text>
+    <text class="body amber-t" x="18" y="208">+24% NPS 개선</text>
+    <text class="body amber-t" x="18" y="224">사례 다수 보고</text>
+    <text class="src amber-tag" x="18" y="248">출처: GDS · Forrester</text>
+  </g>
+
+  <!-- 카드 4: 법적 리스크 -->
+  <g transform="translate(601, 76)">
+    <rect class="rust-bg" x="0" y="0" width="175" height="265" rx="12" stroke-width="0.5" />
+    <text class="lbl rust-tag" x="18" y="30">법적 리스크</text>
+    <text class="met rust-t" x="18" y="86">4,000+</text>
+    <text class="unit rust-t" x="18" y="110">연간 ADA 소송 건수</text>
+    <rect class="rust-bar" x="18" y="130" width="28" height="3" rx="1.5" />
+    <text class="body rust-t" x="18" y="162">EU EAA 2025.6 시행</text>
+    <text class="body rust-t" x="18" y="178">민간 기업 광범위 적용</text>
+    <text class="body rust-t" x="18" y="208">$50K+ 평균 합의금</text>
+    <text class="body rust-t" x="18" y="224">소송당 추정 손실</text>
+    <text class="src rust-tag" x="18" y="248">출처: UsableNet 2023</text>
+  </g>
+</svg>

@@ -1,0 +1,193 @@
+<svg width="100%" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>단계별 접근성 체크리스트 요약</title>
+  <desc>기획, 디자인, 개발 세 단계 각각의 핵심 체크리스트 항목 수와 주요 검사 포인트 요약 카드</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .stage-h {
+      font: 700 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .stage-c {
+      font: 700 24px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .stage-cl {
+      font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .item {
+      font: 400 11px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #FFFFFF;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .purple-card {
+      fill: #FFFFFF;
+      stroke: #534AB7;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .amber-card {
+      fill: #FFFFFF;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #1F1F1D;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .purple-card {
+        fill: #1F1F1D;
+        stroke: #534AB7;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .amber-card {
+        fill: #1F1F1D;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">단계별 체크리스트 요약</text>
+  <text class="caption" x="40" y="50">기획 9 / 디자인 10 / 개발 15 항목 — 부록 참조</text>
+
+  <!-- 기획 단계 -->
+  <g transform="translate(30, 76)">
+    <rect class="teal-card" x="0" y="0" width="240" height="317" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="240" height="75" rx="12" />
+    <rect class="teal-head" x="0" y="63" width="240" height="12" />
+    <text class="stage-h" x="14" y="28">기획 단계</text>
+    <text class="stage-c" x="211" y="32" text-anchor="middle">9</text>
+    <text class="stage-cl" x="211" y="50" text-anchor="middle">항목</text>
+    <text class="stage-cl" x="14" y="60">기획자·PM 책임</text>
+
+    <text class="item teal-t" x="14" y="104">☐ 헤딩 계층 와이어프레임</text>
+    <text class="item teal-t" x="14" y="124">☐ 폼 레이블·에러 메시지</text>
+    <text class="item teal-t" x="14" y="144">☐ 대체 텍스트 정책</text>
+    <text class="item teal-t" x="14" y="164">☐ 영상 자막·대본 계획</text>
+    <text class="item teal-t" x="14" y="184">☐ 시간 제한 연장 옵션</text>
+    <text class="item teal-t" x="14" y="204">☐ 드래그 대안</text>
+    <text class="item teal-t" x="14" y="224">☐ CAPTCHA 대안</text>
+    <text class="item teal-t" x="14" y="244">☐ 도움 기능 일관 위치</text>
+    <text class="item teal-t" x="14" y="264">☐ 접근성 인수 조건</text>
+  </g>
+
+  <!-- 디자인 단계 -->
+  <g transform="translate(280, 76)">
+    <rect class="purple-card" x="0" y="0" width="240" height="317" rx="12" stroke-width="0.5" />
+    <rect class="purple-head" x="0" y="0" width="240" height="75" rx="12" />
+    <rect class="purple-head" x="0" y="63" width="240" height="12" />
+    <text class="stage-h" x="14" y="28">디자인 단계</text>
+    <text class="stage-c" x="211" y="32" text-anchor="middle">10</text>
+    <text class="stage-cl" x="211" y="50" text-anchor="middle">항목</text>
+    <text class="stage-cl" x="14" y="60">디자이너 책임</text>
+
+    <text class="item purple-t" x="14" y="104">☐ 일반 텍스트 4.5:1+</text>
+    <text class="item purple-t" x="14" y="124">☐ 비텍스트 UI 3:1+</text>
+    <text class="item purple-t" x="14" y="144">☐ 색상 외 추가 단서</text>
+    <text class="item purple-t" x="14" y="164">☐ 포커스 인디케이터</text>
+    <text class="item purple-t" x="14" y="184">☐ 터치 타겟 44×44dp+</text>
+    <text class="item purple-t" x="14" y="204">☐ 200% 확대 리플로우</text>
+    <text class="item purple-t" x="14" y="224">☐ 다크·고대비 팔레트</text>
+    <text class="item purple-t" x="14" y="244">☐ 모든 상태 디자인</text>
+    <text class="item purple-t" x="14" y="264">☐ 어노테이션 핸드오프</text>
+    <text class="item purple-t" x="14" y="284">☐ 모션 감소 대체</text>
+  </g>
+
+  <!-- 개발 단계 -->
+  <g transform="translate(530, 76)">
+    <rect class="amber-card" x="0" y="0" width="240" height="317" rx="12" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="240" height="75" rx="12" />
+    <rect class="amber-head" x="0" y="63" width="240" height="12" />
+    <text class="stage-h" x="14" y="28">개발 단계</text>
+    <text class="stage-c" x="211" y="32" text-anchor="middle">15</text>
+    <text class="stage-cl" x="211" y="50" text-anchor="middle">항목</text>
+    <text class="stage-cl" x="14" y="60">개발자·QA 책임</text>
+
+    <text class="item amber-t" x="14" y="100">☐ HTML lang 속성</text>
+    <text class="item amber-t" x="14" y="118">☐ 의미 있는 title</text>
+    <text class="item amber-t" x="14" y="136">☐ 시맨틱 HTML 우선</text>
+    <text class="item amber-t" x="14" y="154">☐ 랜드마크 적절</text>
+    <text class="item amber-t" x="14" y="172">☐ 헤딩 계층 정상</text>
+    <text class="item amber-t" x="14" y="190">☐ 이미지 alt 적절</text>
+    <text class="item amber-t" x="14" y="208">☐ 폼 레이블 프로그래밍</text>
+    <text class="item amber-t" x="14" y="226">☐ 키보드 전체 사용 가능</text>
+    <text class="item amber-t" x="14" y="244">☐ 포커스 순서 논리적</text>
+    <text class="item amber-t" x="14" y="262">☐ 모달 포커스 트랩</text>
+    <text class="item amber-t" x="14" y="280">☐ aria-live 알림</text>
+    <text class="item amber-t" x="14" y="298">☐ Skip Navigation</text>
+  </g>
+</svg>

@@ -46,7 +46,7 @@ const {
         document.head.appendChild(link);
       })();
     </script>
-    <div data-pagefind-body hidden style="display:none">
+    <div data-pagefind-body hidden aria-hidden="true" style="display:none">
         <h1 data-pagefind-meta="title" data-pagefind-weight="10">{title}</h1>
         <p data-pagefind-meta="description">{description}</p>
         {summary && <p data-pagefind-meta="summary">{summary}</p>}

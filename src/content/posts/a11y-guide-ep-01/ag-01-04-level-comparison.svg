@@ -1,0 +1,257 @@
+<svg width="100%" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>WCAG 등급 비교: A·AA·AAA</title>
+  <desc>WCAG의 세 가지 등급 A, AA, AAA의 정의·기준 수·법적 의미·실무 적용 가이드를 나란히 비교한 카드</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .badge {
+      font: 700 32px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .badge-en {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+      opacity: 0.9;
+    }
+
+    .lbl {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .met {
+      font: 700 24px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .met-s {
+      font: 500 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .body {
+      font: 400 12px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .tag {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-sub {
+      fill: #0F6E56;
+    }
+
+    .teal-line {
+      stroke: #0F664A;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-sub {
+      fill: #854F0B;
+    }
+
+    .amber-line {
+      stroke: #8F590F;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-sub {
+      fill: #993C1D;
+    }
+
+    .rust-line {
+      stroke: #993C1D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-sub {
+        fill: #5DCAA5;
+      }
+
+      .teal-line {
+        stroke: #5DCAA5;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .amber-sub {
+        fill: #C29654;
+      }
+
+      .amber-line {
+        stroke: #FAC775;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-sub {
+        fill: #C77B6B;
+      }
+
+      .rust-line {
+        stroke: #F09595;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">A · AA · AAA 등급</text>
+  <text class="caption" x="40" y="50">법적 기준점은 AA · 실무 권장 목표도 AA 전체 충족</text>
+
+  <!-- A -->
+  <g transform="translate(40, 80)">
+    <rect class="teal-card" x="0" y="0" width="240" height="295" rx="14" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="240" height="84" rx="14" />
+    <rect class="teal-head" x="0" y="64" width="240" height="20" />
+    <text class="badge" x="20" y="46">A</text>
+    <text class="badge-en" x="20" y="66">LEVEL · 최소</text>
+
+    <text class="lbl teal-t" x="18" y="112">최소 요건</text>
+    <text class="body teal-t" x="18" y="130">접근 자체를 가능하게</text>
+
+    <text class="met teal-t" x="18" y="170">31개</text>
+    <text class="met-s teal-t" x="80" y="170">성공 기준</text>
+
+    <line class="teal-line" x1="18" y1="186" x2="46" y2="186" stroke-width="2" opacity="0.6" />
+
+    <text class="tag teal-sub" x="18" y="206">법적 의미</text>
+    <text class="body teal-t" x="18" y="222">필수 최저 기준</text>
+    <text class="body teal-t" x="18" y="238">미충족 시 명백한 차별</text>
+
+    <text class="tag teal-sub" x="18" y="258">실무</text>
+    <text class="body teal-t" x="18" y="274">절대 미충족 항목 없도록</text>
+  </g>
+
+  <!-- AA -->
+  <g transform="translate(295, 80)">
+    <rect class="amber-card" x="0" y="0" width="240" height="295" rx="14" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="240" height="84" rx="14" />
+    <rect class="amber-head" x="0" y="64" width="240" height="20" />
+    <text class="badge" x="20" y="46">AA</text>
+    <text class="badge-en" x="20" y="66">LEVEL · 표준</text>
+
+    <text class="lbl amber-t" x="18" y="112">법적·실무 표준</text>
+    <text class="body amber-t" x="18" y="130">대부분 법규가 요구</text>
+
+    <text class="met amber-t" x="18" y="170">+24개</text>
+    <text class="met-s amber-t" x="97" y="170">누적 55개</text>
+
+    <line class="amber-line" x1="18" y1="186" x2="46" y2="186" stroke-width="2" opacity="0.6" />
+
+    <text class="tag amber-sub" x="18" y="206">법적 의미</text>
+    <text class="body amber-t" x="18" y="222">EAA · ADA · KWCAG</text>
+    <text class="body amber-t" x="18" y="238">모두 AA 기준 의무화</text>
+
+    <text class="tag amber-sub" x="18" y="258">실무</text>
+    <text class="body amber-t" x="18" y="274">전 항목 충족 목표</text>
+  </g>
+
+  <!-- AAA -->
+  <g transform="translate(550, 80)">
+    <rect class="rust-card" x="0" y="0" width="240" height="295" rx="14" stroke-width="0.5" />
+    <rect class="rust-head" x="0" y="0" width="240" height="84" rx="14" />
+    <rect class="rust-head" x="0" y="64" width="240" height="20" />
+    <text class="badge" x="20" y="46">AAA</text>
+    <text class="badge-en" x="20" y="66">LEVEL · 강화</text>
+
+    <text class="lbl rust-t" x="18" y="112">강화 기준</text>
+    <text class="body rust-t" x="18" y="130">선별 적용 권장</text>
+
+    <text class="met rust-t" x="18" y="170">+31개</text>
+    <text class="met-s rust-t" x="95" y="170">누적 86개</text>
+
+    <line class="rust-line" x1="18" y1="186" x2="46" y2="186" stroke-width="2" opacity="0.6" />
+
+    <text class="tag rust-sub" x="18" y="206">법적 의미</text>
+    <text class="body rust-t" x="18" y="222">강제 요구 거의 없음</text>
+    <text class="body rust-t" x="18" y="238">대비 7:1·수어·읽기 수준</text>
+
+    <text class="tag rust-sub" x="18" y="258">실무</text>
+    <text class="body rust-t" x="18" y="274">가능한 항목만 선별</text>
+  </g>
+</svg>

@@ -1,0 +1,328 @@
+<svg width="100%" viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>POUR 원칙별 13개 지침 매트릭스</title>
+  <desc>4개 원칙 아래 13개 지침이 어떻게 분포되어 있는지와 각 지침의 핵심 키워드를 정리한 매트릭스</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .princ {
+      font: 700 13px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .princ-en {
+      font: 500 10px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .gid-n {
+      font: 600 12px/1 'JetBrains Mono', monospace;
+    }
+
+    .gid-t {
+      font: 500 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .gid-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-row {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-n {
+      fill: #085041;
+    }
+
+    .teal-t {
+      fill: #2C2C2A;
+    }
+
+    .teal-d {
+      fill: #5F5E5A;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-row {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-n {
+      fill: #633806;
+    }
+
+    .amber-t {
+      fill: #2C2C2A;
+    }
+
+    .amber-d {
+      fill: #5F5E5A;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-row {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-n {
+      fill: #3C3489;
+    }
+
+    .purple-t {
+      fill: #2C2C2A;
+    }
+
+    .purple-d {
+      fill: #5F5E5A;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-row {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-n {
+      fill: #712B13;
+    }
+
+    .rust-t {
+      fill: #2C2C2A;
+    }
+
+    .rust-d {
+      fill: #5F5E5A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-row {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-n {
+        fill: #5DCAA5;
+      }
+
+      .teal-t {
+        fill: #E8E6DE;
+      }
+
+      .teal-d {
+        fill: #B4B2A9;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-row {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-n {
+        fill: #FAC775;
+      }
+
+      .amber-t {
+        fill: #E8E6DE;
+      }
+
+      .amber-d {
+        fill: #B4B2A9;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-row {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-n {
+        fill: #AFA9EC;
+      }
+
+      .purple-t {
+        fill: #E8E6DE;
+      }
+
+      .purple-d {
+        fill: #B4B2A9;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-row {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-n {
+        fill: #F09595;
+      }
+
+      .rust-t {
+        fill: #E8E6DE;
+      }
+
+      .rust-d {
+        fill: #B4B2A9;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">원칙별 지침 매트릭스</text>
+  <text class="caption" x="40" y="50">4개 원칙 아래 13개 지침이 어떻게 펼쳐지는가</text>
+
+  <!-- Perceivable - 4 지침 -->
+  <g>
+    <rect class="teal-head" x="40" y="76" width="120" height="124" rx="12" />
+    <text class="princ" x="100" y="125" text-anchor="middle">P - 인식 가능</text>
+    <text class="princ-en" x="100" y="143" text-anchor="middle">Perceivable</text>
+    <text class="princ-en" x="100" y="160" text-anchor="middle">4 지침</text>
+  </g>
+  <g transform="translate(176, 76)">
+    <rect class="teal-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n teal-n" x="12" y="18">1.1</text>
+    <text class="gid-t teal-t" x="48" y="18">대체 텍스트</text>
+    <text class="gid-d teal-d" x="180" y="18">이미지, 비텍스트 콘텐츠에 대한 텍스트 대안</text>
+  </g>
+  <g transform="translate(176, 108)">
+    <rect class="teal-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n teal-n" x="12" y="18">1.2</text>
+    <text class="gid-t teal-t" x="48" y="18">시간 기반 미디어</text>
+    <text class="gid-d teal-d" x="180" y="18">자막, 오디오 디스크립션, 수어 통역</text>
+  </g>
+  <g transform="translate(176, 140)">
+    <rect class="teal-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n teal-n" x="12" y="18">1.3</text>
+    <text class="gid-t teal-t" x="48" y="18">적응 가능</text>
+    <text class="gid-d teal-d" x="180" y="18">정보 구조, 의미 있는 순서, 감각 특성에 독립적</text>
+  </g>
+  <g transform="translate(176, 172)">
+    <rect class="teal-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n teal-n" x="12" y="18">1.4</text>
+    <text class="gid-t teal-t" x="48" y="18">구별 가능</text>
+    <text class="gid-d teal-d" x="180" y="18">색상 대비, 텍스트 크기 조절, 콘텐츠 분리</text>
+  </g>
+
+  <!-- Operable - 5 지침 -->
+  <g>
+    <rect class="amber-head" x="40" y="212" width="120" height="156" rx="12" />
+    <text class="princ" x="100" y="275" text-anchor="middle">O - 운용 가능</text>
+    <text class="princ-en" x="100" y="293" text-anchor="middle">Operable</text>
+    <text class="princ-en" x="100" y="310" text-anchor="middle">5 지침</text>
+  </g>
+  <g transform="translate(176, 212)">
+    <rect class="amber-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n amber-n" x="12" y="18">2.1</text>
+    <text class="gid-t amber-t" x="48" y="18">키보드 접근성</text>
+    <text class="gid-d amber-d" x="180" y="18">키보드만으로 모든 기능 사용 가능</text>
+  </g>
+  <g transform="translate(176, 244)">
+    <rect class="amber-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n amber-n" x="12" y="18">2.2</text>
+    <text class="gid-t amber-t" x="48" y="18">충분한 시간</text>
+    <text class="gid-d amber-d" x="180" y="18">시간 제한 조절, 자동 갱신 제어</text>
+  </g>
+  <g transform="translate(176, 276)">
+    <rect class="amber-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n amber-n" x="12" y="18">2.3</text>
+    <text class="gid-t amber-t" x="48" y="18">발작 방지</text>
+    <text class="gid-d amber-d" x="180" y="18">초당 3회 이하 깜빡임, 모션 감소 옵션</text>
+  </g>
+  <g transform="translate(176, 308)">
+    <rect class="amber-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n amber-n" x="12" y="18">2.4</text>
+    <text class="gid-t amber-t" x="48" y="18">탐색 가능</text>
+    <text class="gid-d amber-d" x="180" y="18">제목, 초점 순서, 링크 목적, 포커스 표시</text>
+  </g>
+  <g transform="translate(176, 340)">
+    <rect class="amber-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n amber-n" x="12" y="18">2.5</text>
+    <text class="gid-t amber-t" x="48" y="18">입력 방식</text>
+    <text class="gid-d amber-d" x="180" y="18">포인터, 모션, 터치 타겟 크기, 드래그 대안</text>
+  </g>
+
+  <!-- Understandable - 3 지침 -->
+  <g>
+    <rect class="purple-head" x="40" y="380" width="120" height="92" rx="12" />
+    <text class="princ" x="100" y="413" text-anchor="middle">U - 이해 가능</text>
+    <text class="princ-en" x="100" y="431" text-anchor="middle">Understandable</text>
+    <text class="princ-en" x="100" y="449" text-anchor="middle">3 지침</text>
+  </g>
+  <g transform="translate(176, 380)">
+    <rect class="purple-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n purple-n" x="12" y="18">3.1</text>
+    <text class="gid-t purple-t" x="48" y="18">가독성</text>
+    <text class="gid-d purple-d" x="180" y="18">언어 선언, 어려운 단어·약어 설명</text>
+  </g>
+  <g transform="translate(176, 412)">
+    <rect class="purple-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n purple-n" x="12" y="18">3.2</text>
+    <text class="gid-t purple-t" x="48" y="18">예측 가능</text>
+    <text class="gid-d purple-d" x="180" y="18">일관된 내비게이션, 일관된 식별</text>
+  </g>
+  <g transform="translate(176, 444)">
+    <rect class="purple-row" x="0" y="0" width="584" height="28" rx="6" stroke-width="0.5" />
+    <text class="gid-n purple-n" x="12" y="18">3.3</text>
+    <text class="gid-t purple-t" x="48" y="18">입력 지원</text>
+    <text class="gid-d purple-d" x="180" y="18">에러 식별·예방·수정 안내, 도움말 제공</text>
+  </g>
+
+  <!-- Robust - 1 지침 -->
+  <g>
+    <rect class="rust-head" x="40" y="484" width="120" height="40" rx="12" />
+    <text class="princ" x="100" y="503" text-anchor="middle">R - 견고</text>
+    <text class="princ-en" x="100" y="517" text-anchor="middle">Robust · 1 지침</text>
+  </g>
+  <g transform="translate(176, 484)">
+    <rect class="rust-row" x="0" y="0" width="584" height="40" rx="6" stroke-width="0.5" />
+    <text class="gid-n rust-n" x="12" y="24">4.1</text>
+    <text class="gid-t rust-t" x="48" y="24">호환성</text>
+    <text class="gid-d rust-d" x="180" y="24">파싱(deprecated), 이름·역할·값, 상태 알림</text>
+  </g>
+</svg>

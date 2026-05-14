@@ -1,0 +1,136 @@
+<svg width="100%" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>VoiceOver와 TalkBack 모바일 스크린리더 비교</title>
+  <desc>iOS VoiceOver와 Android TalkBack의 활성화 방법, 기본 제스처, 시장 점유율, 개발 시 고려사항 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .plat-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .plat-d {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .sec-h {
+      font: 600 12px/1 'JetBrains Mono', monospace;
+      fill: #6F6E66;
+    }
+
+    .item {
+      font: 400 11px/1.5 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .blue-card {
+      fill: #FFFFFF;
+      stroke: #185FA5;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .teal-card {
+      fill: #FFFFFF;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .item {
+        fill: #E8E6DE;
+      }
+
+      .sec-h,
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .blue-card {
+        fill: #1F1F1D;
+        stroke: #185FA5;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .teal-card {
+        fill: #1F1F1D;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">모바일 스크린리더 — VoiceOver vs TalkBack</text>
+  <text class="caption" x="40" y="50">개발자가 알아야 할 활성화, 제스처, 점유율, 차이점</text>
+
+  <!-- VoiceOver -->
+  <g transform="translate(40, 76)">
+    <rect class="blue-card" x="0" y="0" width="350" height="310" rx="12" stroke-width="0.5" />
+    <rect class="blue-head" x="0" y="0" width="350" height="56" rx="12" />
+    <rect class="blue-head" x="0" y="44" width="350" height="12" />
+    <text class="plat-h" x="14" y="25">VoiceOver (iOS)</text>
+    <text class="plat-d" x="14" y="43">Apple 내장 · 무료</text>
+
+    <text class="sec-h" x="14" y="80">활성화</text>
+    <text class="item" x="14" y="98">· 설정 → 손쉬운 사용 → VoiceOver</text>
+    <text class="item" x="14" y="116">· 사이드 버튼 3회 클릭 (단축)</text>
+    <text class="item" x="14" y="134">· "시리야, VoiceOver 켜줘"</text>
+
+    <text class="sec-h" x="14" y="160">기본 제스처</text>
+    <text class="item" x="14" y="178">· 오른쪽 스와이프 → 다음 요소</text>
+    <text class="item" x="14" y="196">· 왼쪽 스와이프 → 이전 요소</text>
+    <text class="item" x="14" y="214">· 더블 탭 → 활성화</text>
+    <text class="item" x="14" y="232">· 두 손가락 위 스와이프 → 모두 읽기</text>
+    <text class="item" x="14" y="250">· 로터 회전 (두 손가락 회전)</text>
+
+    <text class="sec-h" x="14" y="274">iOS 시장 점유율 (국내)</text>
+    <text class="item" x="14" y="290">약 25~30% (한국, 2024)</text>
+  </g>
+
+  <!-- TalkBack -->
+  <g transform="translate(410, 76)">
+    <rect class="teal-card" x="0" y="0" width="350" height="310" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="350" height="56" rx="12" />
+    <rect class="teal-head" x="0" y="44" width="350" height="12" />
+    <text class="plat-h" x="14" y="25">TalkBack (Android)</text>
+    <text class="plat-d" x="14" y="43">Google 내장 · 무료</text>
+
+    <text class="sec-h" x="14" y="80">활성화</text>
+    <text class="item" x="14" y="98">· 설정 → 접근성 → TalkBack</text>
+    <text class="item" x="14" y="116">· 볼륨 키 동시 길게 누르기 (단축)</text>
+    <text class="item" x="14" y="134">· "OK Google, TalkBack 켜줘"</text>
+
+    <text class="sec-h" x="14" y="160">기본 제스처</text>
+    <text class="item" x="14" y="178">· 오른쪽 스와이프 → 다음 요소</text>
+    <text class="item" x="14" y="196">· 왼쪽 스와이프 → 이전 요소</text>
+    <text class="item" x="14" y="214">· 더블 탭 → 활성화</text>
+    <text class="item" x="14" y="232">· 두 손가락 스와이프 → 스크롤</text>
+    <text class="item" x="14" y="250">· 세 손가락 탭 → TalkBack 메뉴</text>
+
+    <text class="sec-h" x="14" y="274">Android 시장 점유율 (국내)</text>
+    <text class="item" x="14" y="290">약 70~75% (한국, 2024)</text>
+  </g>
+</svg>

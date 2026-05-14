@@ -1,0 +1,277 @@
+<svg width="100%" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>CI/CD 파이프라인의 접근성 게이트 통합</title>
+  <desc>코드 작성부터 배포까지 4단계 게이트(ESLint, Storybook, E2E, Lighthouse CI)에서 접근성을 자동 검증하는 파이프라인</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .stage-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .stage-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .gate-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .gate-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .mono {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .header-bg {
+      fill: #185FA5;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .header-bg {
+        fill: #185FA5;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-cicd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">CI/CD 파이프라인 접근성 게이트</text>
+  <text class="caption" x="40" y="50">4단계 게이트에서 단계적으로 차단 — 빠를수록 수정 비용 낮음</text>
+
+  <!-- 스테이지 헤더 -->
+  <rect class="header-bg" x="40" y="80" width="720" height="40" rx="8" />
+  <text class="stage-h" x="60" y="106">개발 → PR → CI → 배포</text>
+  <text class="stage-d" x="740" y="104" text-anchor="end">왼쪽일수록 빠르고 저렴, 오른쪽일수록 정확하고 비쌈</text>
+
+  <!-- Stage 1: ESLint -->
+  <g transform="translate(40, 144)">
+    <rect class="teal-card" x="0" y="0" width="162" height="250" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="162" height="36" rx="12" />
+    <rect class="teal-head" x="0" y="24" width="162" height="12" />
+    <text class="stage-h" x="14" y="22">① ESLint</text>
+
+    <text class="gate-h teal-t" x="14" y="62">jsx-a11y 규칙</text>
+    <text class="gate-d teal-t" x="14" y="80">로컬 / 커밋 훅</text>
+
+    <text class="mono teal-t" x="14" y="110">// .eslintrc.json</text>
+    <text class="mono teal-t" x="14" y="126">extends: [</text>
+    <text class="mono teal-t" x="14" y="142"> "plugin:</text>
+    <text class="mono teal-t" x="14" y="158"> jsx-a11y/</text>
+    <text class="mono teal-t" x="14" y="174"> recommended"</text>
+    <text class="mono teal-t" x="14" y="190">]</text>
+
+    <text class="gate-d teal-t" x="14" y="218">위반 시</text>
+    <text class="gate-h teal-t" x="14" y="234">커밋 차단</text>
+  </g>
+
+  <line x1="207" y1="264" x2="221" y2="264" class="arr" marker-end="url(#arr-cicd)" />
+
+  <!-- Stage 2: Storybook -->
+  <g transform="translate(226, 144)">
+    <rect class="purple-card" x="0" y="0" width="162" height="250" rx="12" stroke-width="0.5" />
+    <rect class="purple-head" x="0" y="0" width="162" height="36" rx="12" />
+    <rect class="purple-head" x="0" y="24" width="162" height="12" />
+    <text class="stage-h" x="14" y="22">② Storybook</text>
+
+    <text class="gate-h purple-t" x="14" y="62">a11y 애드온</text>
+    <text class="gate-d purple-t" x="14" y="80">PR 자동 실행</text>
+
+    <text class="mono purple-t" x="14" y="110">// addons</text>
+    <text class="mono purple-t" x="14" y="126">"@storybook/</text>
+    <text class="mono purple-t" x="14" y="142">addon-a11y"</text>
+
+    <text class="gate-d purple-t" x="14" y="170">컴포넌트별</text>
+    <text class="gate-d purple-t" x="14" y="186">리포트 생성</text>
+
+    <text class="gate-d purple-t" x="14" y="218">위반 시</text>
+    <text class="gate-h purple-t" x="14" y="234">PR 코멘트</text>
+  </g>
+
+  <line x1="393" y1="264" x2="407" y2="264" class="arr" marker-end="url(#arr-cicd)" />
+
+  <!-- Stage 3: E2E -->
+  <g transform="translate(412, 144)">
+    <rect class="amber-card" x="0" y="0" width="162" height="250" rx="12" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="162" height="36" rx="12" />
+    <rect class="amber-head" x="0" y="24" width="162" height="12" />
+    <text class="stage-h" x="14" y="22">③ E2E 테스트</text>
+
+    <text class="gate-h amber-t" x="14" y="62">axe-core 통합</text>
+    <text class="gate-d amber-t" x="14" y="80">CI 실행</text>
+
+    <text class="mono amber-t" x="14" y="110">cypress-axe</text>
+    <text class="mono amber-t" x="14" y="126">+ axe/playwright</text>
+
+    <text class="gate-d amber-t" x="14" y="156">WCAG 2.2 AA</text>
+    <text class="gate-d amber-t" x="14" y="172">실제 페이지 검증</text>
+    <text class="gate-d amber-t" x="14" y="188">상태별 테스트</text>
+
+    <text class="gate-d amber-t" x="14" y="218">위반 시</text>
+    <text class="gate-h amber-t" x="14" y="234">빌드 차단</text>
+  </g>
+
+  <line x1="579" y1="264" x2="593" y2="264" class="arr" marker-end="url(#arr-cicd)" />
+
+  <!-- Stage 4: Lighthouse CI -->
+  <g transform="translate(598, 144)">
+    <rect class="rust-card" x="0" y="0" width="162" height="250" rx="12" stroke-width="0.5" />
+    <rect class="rust-head" x="0" y="0" width="162" height="36" rx="12" />
+    <rect class="rust-head" x="0" y="24" width="162" height="12" />
+    <text class="stage-h" x="14" y="22">④ LH CI</text>
+
+    <text class="gate-h rust-t" x="14" y="62">Lighthouse</text>
+    <text class="gate-d rust-t" x="14" y="80">배포 전</text>
+
+    <text class="mono rust-t" x="14" y="110">minScore:</text>
+    <text class="mono rust-t" x="14" y="126">0.9</text>
+
+    <text class="gate-d rust-t" x="14" y="156">점수 임계값</text>
+    <text class="gate-d rust-t" x="14" y="172">설정</text>
+
+    <text class="gate-d rust-t" x="14" y="218">미달 시</text>
+    <text class="gate-h rust-t" x="14" y="234">배포 차단</text>
+  </g>
+
+  <!-- Footer -->
+  <text class="caption" x="40" y="428">완전한 자동화는 불가능하므로 이 파이프라인을 통과해도 분기별 수동 + 보조기기 실사용 테스트가 추가로 필요합니다</text>
+</svg>

@@ -1,0 +1,258 @@
+<svg width="100%" viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>대체 텍스트 의사결정 트리</title>
+  <desc>이미지의 역할에 따라 alt 속성을 어떻게 작성할지 결정하는 흐름도. 정보 전달, 장식, 기능, 캡션 중복 네 가지 분기</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .q-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .ans {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+      fill: #6F6E66;
+    }
+
+    .out-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .out-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .mono {
+      font: 400 11px/1.4 'JetBrains Mono', monospace;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1;
+      fill: none;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .blue-sub {
+      fill: #185FA5;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .beige-card {
+      fill: #F1EFE8;
+      stroke: #6F6E66;
+    }
+
+    .beige-t {
+      fill: #2C2C2A;
+    }
+
+    .beige-d {
+      fill: #5F5E5A;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-sub {
+      fill: #8F590F;
+    }
+
+    .mono-bg {
+      fill: #FFFFFF;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption,
+      .ans {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .blue-sub {
+        fill: #5DA0E1;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .beige-card {
+        fill: #232624;
+        stroke: #444441;
+      }
+
+      .beige-t {
+        fill: #E8E6DE;
+      }
+
+      .beige-d {
+        fill: #B4B2A9;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .amber-sub {
+        fill: #FAC775;
+      }
+
+      .mono-bg {
+        fill: #1F1F1D;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-alt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">대체 텍스트(alt) 의사결정 트리</text>
+  <text class="caption" x="40" y="50">이미지 유형별로 alt 작성 방식이 달라집니다</text>
+
+  <!-- 시작 -->
+  <g>
+    <rect class="blue-head" x="320" y="78" width="160" height="40" rx="20" />
+    <text class="q-h" x="400" y="103" text-anchor="middle">이미지가 있다</text>
+  </g>
+  <line x1="400" y1="118" x2="400" y2="142" class="arr" marker-end="url(#arr-alt)" />
+
+  <!-- Q1: 정보를 전달하는가 -->
+  <g>
+    <rect class="purple-head" x="280" y="150" width="240" height="40" rx="8" />
+    <text class="q-h" x="400" y="175" text-anchor="middle">정보를 전달하는가?</text>
+  </g>
+
+  <!-- Yes 분기 (왼쪽) -->
+  <line x1="320" y1="190" x2="200" y2="222" class="arr" marker-end="url(#arr-alt)" />
+  <text class="ans" x="230" y="198">YES</text>
+
+  <!-- No 분기 (오른쪽) -->
+  <line x1="480" y1="190" x2="600" y2="222" class="arr" marker-end="url(#arr-alt)" />
+  <text class="ans" x="561" y="198">NO</text>
+
+  <!-- 왼쪽: 정보 전달 -->
+  <g>
+    <rect class="purple-head" x="40" y="230" width="320" height="40" rx="8" />
+    <text class="q-h" x="200" y="255" text-anchor="middle">어떤 종류의 정보?</text>
+  </g>
+
+  <!-- 정보 종류 3가지 -->
+  <g transform="translate(40, 290)">
+    <rect class="blue-card" x="0" y="0" width="100" height="80" rx="10" stroke-width="0.5" />
+    <text class="out-h blue-t" x="10" y="20">단순 정보</text>
+    <text class="out-d blue-sub" x="10" y="38">alt에 직접</text>
+    <text class="out-d blue-sub" x="10" y="52">기술</text>
+    <rect class="mono-bg" x="10" y="58" width="80" height="16" rx="3" />
+    <text class="mono blue-t" x="14" y="70">alt="N 로고"</text>
+  </g>
+  <g transform="translate(150, 290)">
+    <rect class="blue-card" x="0" y="0" width="100" height="80" rx="10" stroke-width="0.5" />
+    <text class="out-h blue-t" x="10" y="20">복잡한 정보</text>
+    <text class="out-d blue-sub" x="10" y="38">차트·그래프</text>
+    <text class="out-d blue-sub" x="10" y="52">짧은 alt +</text>
+    <text class="out-d blue-sub" x="10" y="66">본문 상세 설명</text>
+  </g>
+  <g transform="translate(260, 290)">
+    <rect class="blue-card" x="0" y="0" width="100" height="80" rx="10" stroke-width="0.5" />
+    <text class="out-h blue-t" x="10" y="20">텍스트 이미지</text>
+    <text class="out-d blue-sub" x="10" y="38">이미지 내</text>
+    <text class="out-d blue-sub" x="10" y="52">텍스트를</text>
+    <text class="out-d blue-sub" x="10" y="66">그대로</text>
+  </g>
+
+  <!-- 오른쪽: 비정보 -->
+  <g>
+    <rect class="purple-head" x="440" y="230" width="320" height="40" rx="8" />
+    <text class="q-h" x="600" y="255" text-anchor="middle">순수 장식 vs 기능?</text>
+  </g>
+
+  <g transform="translate(440, 290)">
+    <rect class="beige-card" x="0" y="0" width="155" height="80" rx="10" stroke-width="0.5" />
+    <text class="out-h beige-t" x="10" y="20">순수 장식</text>
+    <text class="out-d beige-d" x="10" y="38">구분선·배경 패턴</text>
+    <rect class="mono-bg" x="10" y="50" width="135" height="20" rx="3" />
+    <text class="mono beige-t" x="14" y="64">alt=""</text>
+  </g>
+  <g transform="translate(605, 290)">
+    <rect class="amber-card" x="0" y="0" width="155" height="80" rx="10" stroke-width="0.5" />
+    <text class="out-h amber-t" x="10" y="20">기능적 이미지</text>
+    <text class="out-d amber-sub" x="10" y="38">아이콘 버튼·링크</text>
+    <rect class="mono-bg" x="10" y="50" width="135" height="20" rx="3" />
+    <text class="mono amber-t" x="14" y="64">alt="검색"</text>
+  </g>
+
+  <!-- 하단: 캡션 중복 케이스 -->
+  <g transform="translate(40, 400)">
+    <rect class="amber-card" x="0" y="0" width="720" height="56" rx="10" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="6" height="56" />
+    <text class="out-h amber-t" x="20" y="22">예외 — 캡션이 이미 동일 정보 제공</text>
+    <text class="out-d amber-sub" x="20" y="40">캡션과 alt가 같은 내용이면 중복. alt=""로 두고 캡션에 모든 정보를 담거나, alt에 보완 정보만 기술</text>
+  </g>
+</svg>

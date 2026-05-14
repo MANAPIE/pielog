@@ -1,0 +1,272 @@
+<svg width="100%" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>접근성 성숙도 5단계 모델</title>
+  <desc>초기, 계획, 통합, 측정, 최적화 다섯 단계의 접근성 성숙도 모델. 각 단계의 특징과 다음 단계로 가기 위한 요건</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .lvl-num {
+      font: 700 28px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .lvl-l {
+      font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .lvl-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .lvl-d {
+      font: 400 11px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">접근성 성숙도 5단계</text>
+  <text class="caption" x="40" y="50">조직의 현재 위치를 진단하고 다음 한 단계를 계획하기 위한 척도</text>
+
+  <!-- Level 1 -->
+  <g transform="translate(30, 76)">
+    <rect class="rust-head" x="0" y="0" width="140" height="58" rx="8" />
+    <text class="lvl-num" x="18" y="40">1</text>
+    <text class="lvl-l" x="44" y="27">초기</text>
+    <text class="lvl-l" x="44" y="41">Ad-hoc</text>
+
+    <rect class="rust-card" x="0" y="64" width="140" height="248" rx="8" stroke-width="0.5" />
+    <text class="lvl-d rust-t" x="12" y="86">· 접근성 인식 부재</text>
+    <text class="lvl-d rust-t" x="18" y="102"> 또는 개인 수준</text>
+    <text class="lvl-d rust-t" x="12" y="126">· 이슈 발생 시 사후 대응</text>
+    <text class="lvl-d rust-t" x="12" y="150">· 프로세스 없음</text>
+    <text class="lvl-d rust-t" x="12" y="174">· 도구 없음</text>
+    <line x1="12" y1="208" x2="128" y2="208" stroke="#993C1D" stroke-width="0.5" opacity="0.7" />
+    <text class="lvl-h rust-t" x="12" y="232">신호</text>
+    <text class="lvl-d rust-t" x="12" y="252">"접근성? 그게 뭐죠"</text>
+    <text class="lvl-d rust-t" x="12" y="276">"고객 컴플레인 후</text>
+    <text class="lvl-d rust-t" x="12" y="292"> 고치겠다"</text>
+  </g>
+
+  <!-- Level 2 -->
+  <g transform="translate(180, 76)">
+    <rect class="amber-head" x="0" y="0" width="140" height="58" rx="8" />
+    <text class="lvl-num" x="18" y="40">2</text>
+    <text class="lvl-l" x="44" y="27">계획</text>
+    <text class="lvl-l" x="44" y="41">Planned</text>
+
+    <rect class="amber-card" x="0" y="64" width="140" height="248" rx="8" stroke-width="0.5" />
+    <text class="lvl-d amber-t" x="12" y="86">· 접근성 정책 문서화</text>
+    <text class="lvl-d amber-t" x="12" y="110">· 기본 교육 실시</text>
+    <text class="lvl-d amber-t" x="12" y="134">· 파일럿 프로젝트 적용</text>
+    <line x1="12" y1="208" x2="128" y2="208" stroke="#8F590F" stroke-width="0.5" opacity="0.7" />
+    <text class="lvl-h amber-t" x="12" y="232">신호</text>
+    <text class="lvl-d amber-t" x="12" y="252">"가이드는 있는데</text>
+    <text class="lvl-d amber-t" x="12" y="268"> 아무도 안 본다"</text>
+    <text class="lvl-d amber-t" x="12" y="292">"한 프로젝트만 시범 적용"</text>
+  </g>
+
+  <!-- Level 3 -->
+  <g transform="translate(330, 76)">
+    <rect class="purple-head" x="0" y="0" width="140" height="58" rx="8" />
+    <text class="lvl-num" x="18" y="40">3</text>
+    <text class="lvl-l" x="44" y="27">통합</text>
+    <text class="lvl-l" x="44" y="41">Integrated</text>
+
+    <rect class="purple-card" x="0" y="64" width="140" height="248" rx="8" stroke-width="0.5" />
+    <text class="lvl-d purple-t" x="12" y="86">· 개발 프로세스에</text>
+    <text class="lvl-d purple-t" x="18" y="102"> 접근성 통합</text>
+    <text class="lvl-d purple-t" x="12" y="126">· 자동화 테스트 적용</text>
+    <text class="lvl-d purple-t" x="12" y="150">· 디자인 시스템</text>
+    <text class="lvl-d purple-t" x="18" y="166"> 접근성 명세</text>
+    <text class="lvl-d purple-t" x="12" y="190">· 챔피언 모델 운영</text>
+    <line x1="12" y1="208" x2="128" y2="208" stroke="#534AB7" stroke-width="0.5" opacity="0.7" />
+    <text class="lvl-h purple-t" x="12" y="232">신호</text>
+    <text class="lvl-d purple-t" x="12" y="252">"PR에 axe 통과 필수"</text>
+  </g>
+
+  <!-- Level 4 -->
+  <g transform="translate(480, 76)">
+    <rect class="teal-head" x="0" y="0" width="140" height="58" rx="8" />
+    <text class="lvl-num" x="18" y="40">4</text>
+    <text class="lvl-l" x="44" y="27">측정</text>
+    <text class="lvl-l" x="44" y="41">Measured</text>
+
+    <rect class="teal-card" x="0" y="64" width="140" height="248" rx="8" stroke-width="0.5" />
+    <text class="lvl-d teal-t" x="12" y="86">· KPI로 접근성 지표 추적</text>
+    <text class="lvl-d teal-t" x="12" y="110">· 정기 감사 (내부 + 외부)</text>
+    <text class="lvl-d teal-t" x="12" y="134">· 장애인 사용자</text>
+    <text class="lvl-d teal-t" x="18" y="150"> 테스트 정례화</text>
+    <text class="lvl-d teal-t" x="12" y="174">· 트렌드 분석 예방 활동</text>
+    <line x1="12" y1="208" x2="128" y2="208" stroke="#0F664A" stroke-width="0.5" opacity="0.7" />
+    <text class="lvl-h teal-t" x="12" y="232">신호</text>
+    <text class="lvl-d teal-t" x="12" y="252">"OKR에 접근성 지표 포함"</text>
+  </g>
+
+  <!-- Level 5 -->
+  <g transform="translate(630, 76)">
+    <rect class="blue-head" x="0" y="0" width="140" height="58" rx="8" />
+    <text class="lvl-num" x="18" y="40">5</text>
+    <text class="lvl-l" x="44" y="27">최적화</text>
+    <text class="lvl-l" x="44" y="41">Optimized</text>
+
+    <rect class="blue-card" x="0" y="64" width="140" height="248" rx="8" stroke-width="0.5" />
+    <text class="lvl-d blue-t" x="12" y="86">· 조직 문화의 일부</text>
+    <text class="lvl-d blue-t" x="12" y="110">· 지속 개선 사이클</text>
+    <text class="lvl-d blue-t" x="12" y="134">· 업계 리더십, 표준 참여</text>
+    <text class="lvl-d blue-t" x="12" y="158">· 신기술 선제 대응</text>
+    <line x1="12" y1="208" x2="128" y2="208" stroke="#185FA5" stroke-width="0.5" opacity="0.7" />
+    <text class="lvl-h blue-t" x="12" y="232">신호</text>
+    <text class="lvl-d blue-t" x="12" y="252">"AI, XR도 선제 대응"</text>
+  </g>
+
+  <!-- 화살표 -->
+  <text class="caption" x="400" y="410" text-anchor="middle">→ 단계를 건너뛰려 하면 다음 단계에서 무너집니다 →</text>
+</svg>

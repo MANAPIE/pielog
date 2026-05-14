@@ -33,8 +33,9 @@ const featuredCandidates = sortedPosts
 	description="MANAPIE's thoughts & experiments"
 	pageType="home"
 >
+	<h1 class="sr-only">PIElog — MANAPIE의 글과 실험</h1>
 	<FeaturedPost candidates={featuredCandidates} />
-	<span class="section-kicker">// all posts · {sortedPosts.length}_</span>
+	<h2 class="section-kicker">// all posts · {sortedPosts.length}_</h2>
 	<section class="post-list">
 		{
 			sortedPosts.map((post) => (

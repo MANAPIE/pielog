@@ -1,0 +1,242 @@
+<svg width="100%" viewBox="0 0 800 580" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>WCAG 2.1에서 2.2로 추가된 9가지 신규 기준</title>
+  <desc>WCAG 2.2에서 새로 추가된 9개 성공 기준을 등급별로 분류하고 각각의 실무 영향을 정리</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .grp-h {
+      font: 600 13px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .row-id {
+      font: 600 12px/1 'JetBrains Mono', monospace;
+    }
+
+    .row-t {
+      font: 500 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .row-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .impact-h {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      fill: #6F6E66;
+    }
+
+    .impact {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .green-head {
+      fill: #27500A;
+    }
+
+    .green-card {
+      fill: #FFFFFF;
+      stroke: #27500A;
+    }
+
+    .green-side {
+      fill: #27500A;
+    }
+
+    .green-n {
+      fill: #27500A;
+    }
+
+    .row-t-l {
+      fill: #2C2C2A;
+    }
+
+    .row-d-l {
+      fill: #5F5E5A;
+    }
+
+    .impact-l {
+      fill: #2C2C2A;
+    }
+
+    .brown-head {
+      fill: #854F0B;
+    }
+
+    .brown-card {
+      fill: #FFFFFF;
+      stroke: #854F0B;
+    }
+
+    .brown-side {
+      fill: #854F0B;
+    }
+
+    .brown-n {
+      fill: #854F0B;
+    }
+
+    .red-head {
+      fill: #993C1D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .impact-h {
+        fill: #B4B2A9;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .green-head {
+        fill: #4F7A2A;
+      }
+
+      .green-card {
+        fill: #1F1F1D;
+        stroke: #4F7A2A;
+      }
+
+      .green-side {
+        fill: #4F7A2A;
+      }
+
+      .green-n {
+        fill: #A8D88A;
+      }
+
+      .row-t-l {
+        fill: #E8E6DE;
+      }
+
+      .row-d-l {
+        fill: #B4B2A9;
+      }
+
+      .impact-l {
+        fill: #E8E6DE;
+      }
+
+      .brown-head {
+        fill: #BB7A24;
+      }
+
+      .brown-card {
+        fill: #1F1F1D;
+        stroke: #BB7A24;
+      }
+
+      .brown-side {
+        fill: #BB7A24;
+      }
+
+      .brown-n {
+        fill: #FAC775;
+      }
+
+      .red-head {
+        fill: #C25438;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">WCAG 2.1 → 2.2 신규 9개 성공 기준</text>
+  <text class="caption" x="40" y="50">2023년 10월 확정 · 실무 영향이 큰 항목 위주로 정리</text>
+
+  <!-- 그룹 1: Level A (2개) -->
+  <rect class="green-head" x="40" y="76" width="720" height="28" rx="6" />
+  <text class="grp-h" x="60" y="94">LEVEL A · 2개</text>
+  <text class="grp-h" x="700" y="94" text-anchor="end">최소 의무</text>
+
+  <g transform="translate(40, 110)">
+    <rect class="green-card" x="0" y="0" width="720" height="48" rx="6" stroke-width="0.5" />
+    <rect class="green-side" x="0" y="0" width="6" height="48" />
+    <text class="row-id green-n" x="20" y="20">3.2.6</text>
+    <text class="row-t row-t-l" x="72" y="20">일관된 도움</text>
+    <text class="row-d row-d-l" x="72" y="36">고객지원·연락처·도움말이 모든 페이지에서 같은 위치에 있어야 함</text>
+    <text class="impact-h" x="500" y="20">실무 영향</text>
+    <text class="impact impact-l" x="500" y="38">헤더·푸터의 도움 메뉴 위치 통일</text>
+  </g>
+
+  <g transform="translate(40, 164)">
+    <rect class="green-card" x="0" y="0" width="720" height="48" rx="6" stroke-width="0.5" />
+    <rect class="green-side" x="0" y="0" width="6" height="48" />
+    <text class="row-id green-n" x="20" y="20">3.3.7</text>
+    <text class="row-t row-t-l" x="72" y="20">중복 입력 방지</text>
+    <text class="row-d row-d-l" x="72" y="36">동일 정보를 사용자가 재입력하지 않도록 자동 채움 또는 선택 제공</text>
+    <text class="impact-h" x="500" y="20">실무 영향</text>
+    <text class="impact impact-l" x="500" y="38">배송지·계정 정보 자동완성 기능</text>
+  </g>
+
+  <!-- 그룹 2: Level AA (5개) -->
+  <rect class="brown-head" x="40" y="232" width="720" height="28" rx="6" />
+  <text class="grp-h" x="60" y="250">LEVEL AA · 5개</text>
+  <text class="grp-h" x="700" y="250" text-anchor="end">법적 기준</text>
+
+  <g transform="translate(40, 266)">
+    <rect class="brown-card" x="0" y="0" width="720" height="48" rx="6" stroke-width="0.5" />
+    <rect class="brown-side" x="0" y="0" width="6" height="48" />
+    <text class="row-id brown-n" x="20" y="20">2.4.11</text>
+    <text class="row-t row-t-l" x="72" y="20">초점 표시 (최소)</text>
+    <text class="row-d row-d-l" x="72" y="36">키보드 포커스 인디케이터가 최소 2px 두께로 표시되어야 함</text>
+    <text class="impact-h" x="500" y="20">실무 영향</text>
+    <text class="impact impact-l" x="500" y="38">커스텀 outline 스타일 전면 점검</text>
+  </g>
+
+  <g transform="translate(40, 320)">
+    <rect class="brown-card" x="0" y="0" width="720" height="48" rx="6" stroke-width="0.5" />
+    <rect class="brown-side" x="0" y="0" width="6" height="48" />
+    <text class="row-id brown-n" x="20" y="20">2.4.13</text>
+    <text class="row-t row-t-l" x="72" y="20">포커스 미가림</text>
+    <text class="row-d row-d-l" x="72" y="36">포커스된 요소가 다른 요소(스티키 헤더 등)에 가려지지 않아야 함</text>
+    <text class="impact-h" x="500" y="20">실무 영향</text>
+    <text class="impact impact-l" x="500" y="38">스티키 헤더·모달 점검</text>
+  </g>
+
+  <g transform="translate(40, 374)">
+    <rect class="brown-card" x="0" y="0" width="720" height="48" rx="6" stroke-width="0.5" />
+    <rect class="brown-side" x="0" y="0" width="6" height="48" />
+    <text class="row-id brown-n" x="20" y="20">2.5.7</text>
+    <text class="row-t row-t-l" x="72" y="20">드래그 동작 대안</text>
+    <text class="row-d row-d-l" x="72" y="36">드래그가 필수인 기능에 단일 포인터(클릭/탭) 대안 제공</text>
+    <text class="impact-h" x="500" y="20">실무 영향</text>
+    <text class="impact impact-l" x="500" y="38">칸반 보드·슬라이더 재설계</text>
+  </g>
+
+  <g transform="translate(40, 428)">
+    <rect class="brown-card" x="0" y="0" width="720" height="48" rx="6" stroke-width="0.5" />
+    <rect class="brown-side" x="0" y="0" width="6" height="48" />
+    <text class="row-id brown-n" x="20" y="20">2.5.8</text>
+    <text class="row-t row-t-l" x="72" y="20">타겟 크기 (최소)</text>
+    <text class="row-d row-d-l" x="72" y="36">터치/포인터 타겟 최소 24×24px (예외 있음)</text>
+    <text class="impact-h" x="500" y="20">실무 영향</text>
+    <text class="impact impact-l" x="500" y="38">모바일 UI 전수 검사 필요</text>
+  </g>
+
+  <g transform="translate(40, 482)">
+    <rect class="brown-card" x="0" y="0" width="720" height="48" rx="6" stroke-width="0.5" />
+    <rect class="brown-side" x="0" y="0" width="6" height="48" />
+    <text class="row-id brown-n" x="20" y="20">3.3.8</text>
+    <text class="row-t row-t-l" x="72" y="20">접근 가능한 인증</text>
+    <text class="row-d row-d-l" x="72" y="36">인지적 부담이 큰 인증(CAPTCHA 등)에 대안 제공</text>
+    <text class="impact-h" x="500" y="20">실무 영향</text>
+    <text class="impact impact-l" x="500" y="38">패스키·생체 인증 도입 검토</text>
+  </g>
+
+  <!-- 그룹 3: Level AAA (2개) - 간략 -->
+  <rect class="red-head" x="40" y="546" width="720" height="28" rx="6" />
+  <text class="grp-h" x="60" y="564">LEVEL AAA · 2개 — 2.4.12 초점 표시(강화), 3.3.9 접근 가능한 인증(강화)</text>
+</svg>

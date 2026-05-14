@@ -1,0 +1,115 @@
+<svg width="100%" viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>WCAG 명도 대비 기준 매트릭스</title>
+  <desc>일반 텍스트, 큰 텍스트, 비텍스트 UI 세 카테고리에 대해 AA와 AAA 등급별 최소 명도 대비 비율을 정리한 카드</desc>
+  <style>
+    .title { font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif; fill: #2C2C2A; }
+    .card-h { font: 600 15px/1.4 'Pretendard Variable', system-ui, sans-serif; }
+    .card-en { font: 500 11px/1 'JetBrains Mono', monospace; }
+    .card-d { font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif; }
+    .lvl { font: 600 12px/1 'JetBrains Mono', monospace; }
+    .ratio { font: 700 18px/1 'Pretendard Variable', system-ui, sans-serif; }
+    .ratio-s { font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif; }
+    .dash { font: 700 18px/1 'Pretendard Variable', system-ui, sans-serif; }
+    .caption { font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif; fill: #6F6E66; }
+
+    .teal-card { fill: #E1F5EE; stroke: #0F664A; }
+    .teal-t { fill: #085041; }
+    .teal-sub { fill: #0F6E56; }
+    .teal-line { stroke: #0F664A; }
+    .amber-card { fill: #FAEEDA; stroke: #8F590F; }
+    .amber-t { fill: #633806; }
+    .amber-sub { fill: #854F0B; }
+    .amber-line { stroke: #8F590F; }
+    .purple-card { fill: #EEEDFE; stroke: #534AB7; }
+    .purple-t { fill: #3C3489; }
+    .purple-sub { fill: #534AB7; }
+    .purple-line { stroke: #534AB7; }
+    .empty-t { fill: #6F6E66; }
+
+    @media (prefers-color-scheme: dark) {
+      .title { fill: #E8E6DE; }
+      .caption { fill: #B4B2A9; }
+
+      .teal-card { fill: #04342C; stroke: #0F6E56; }
+      .teal-t { fill: #9FE1CB; }
+      .teal-sub { fill: #5DCAA5; }
+      .teal-line { stroke: #5DCAA5; }
+      .amber-card { fill: #412402; stroke: #854F0B; }
+      .amber-t { fill: #FAC775; }
+      .amber-sub { fill: #FAC775; }
+      .amber-line { stroke: #FAC775; }
+      .purple-card { fill: #26215C; stroke: #534AB7; }
+      .purple-t { fill: #CECBF6; }
+      .purple-sub { fill: #AFA9EC; }
+      .purple-line { stroke: #AFA9EC; }
+      .empty-t { fill: #B4B2A9; }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">WCAG 명도 대비 기준</text>
+  <text class="caption" x="40" y="50">대비비(contrast ratio)는 두 색 간 명도 차이를 1~21 범위로 측정한 값</text>
+
+  <!-- Card 1: 일반 텍스트 -->
+  <g transform="translate(40, 72)">
+    <rect class="teal-card" x="0" y="0" width="240" height="230" rx="14" stroke-width="0.5"/>
+    <text class="card-h teal-t" x="18" y="30">일반 텍스트</text>
+    <text class="card-en teal-sub" x="18" y="46">Normal Text</text>
+    <text class="card-d teal-sub" x="18" y="66">&lt; 18pt / &lt; 14pt bold</text>
+    <text class="card-d teal-sub" x="18" y="82">본문, 캡션, 작은 버튼</text>
+
+    <line class="teal-line" x1="18" y1="100" x2="46" y2="100" stroke-width="2" opacity="0.6"/>
+
+    <text class="lvl teal-sub" x="18" y="124">AA · 최소</text>
+    <text class="ratio teal-t" x="222" y="126" text-anchor="end">4.5 : 1</text>
+
+    <text class="lvl teal-sub" x="18" y="160">AAA · 강화</text>
+    <text class="ratio teal-t" x="222" y="162" text-anchor="end">7.0 : 1</text>
+
+    <text class="lvl teal-sub" x="18" y="196">실무 권장</text>
+    <text class="ratio teal-t" x="222" y="198" text-anchor="end">4.5+ : 1</text>
+    <text class="ratio-s teal-sub" x="222" y="214" text-anchor="end">+0.5 여유</text>
+  </g>
+
+  <!-- Card 2: 큰 텍스트 -->
+  <g transform="translate(295, 72)">
+    <rect class="amber-card" x="0" y="0" width="240" height="230" rx="14" stroke-width="0.5"/>
+    <text class="card-h amber-t" x="18" y="30">큰 텍스트</text>
+    <text class="card-en amber-sub" x="18" y="46">Large Text</text>
+    <text class="card-d amber-sub" x="18" y="66">≥ 18pt / ≥ 14pt bold</text>
+    <text class="card-d amber-sub" x="18" y="82">제목, 큰 버튼, 헤드라인</text>
+
+    <line class="amber-line" x1="18" y1="100" x2="46" y2="100" stroke-width="2" opacity="0.6"/>
+
+    <text class="lvl amber-sub" x="18" y="124">AA · 최소</text>
+    <text class="ratio amber-t" x="222" y="126" text-anchor="end">3.0 : 1</text>
+
+    <text class="lvl amber-sub" x="18" y="160">AAA · 강화</text>
+    <text class="ratio amber-t" x="222" y="162" text-anchor="end">4.5 : 1</text>
+
+    <text class="lvl amber-sub" x="18" y="196">실무 권장</text>
+    <text class="ratio amber-t" x="222" y="198" text-anchor="end">3.0 : 1</text>
+    <text class="ratio-s amber-sub" x="222" y="214" text-anchor="end">통과 기준</text>
+  </g>
+
+  <!-- Card 3: 비텍스트 UI -->
+  <g transform="translate(550, 72)">
+    <rect class="purple-card" x="0" y="0" width="240" height="230" rx="14" stroke-width="0.5"/>
+    <text class="card-h purple-t" x="18" y="30">비텍스트 UI</text>
+    <text class="card-en purple-sub" x="18" y="46">Non-text Contrast</text>
+    <text class="card-d purple-sub" x="18" y="66">아이콘, 테두리, 그래프</text>
+    <text class="card-d purple-sub" x="18" y="82">버튼 보더, 체크박스, 차트 선</text>
+
+    <line class="purple-line" x1="18" y1="100" x2="46" y2="100" stroke-width="2" opacity="0.6"/>
+
+    <text class="lvl purple-sub" x="18" y="124">AA · 최소</text>
+    <text class="ratio purple-t" x="222" y="126" text-anchor="end">3.0 : 1</text>
+
+    <text class="lvl purple-sub" x="18" y="160">AAA · 강화</text>
+    <text class="dash empty-t" x="222" y="162" text-anchor="end">—</text>
+    <text class="ratio-s purple-sub" x="222" y="178" text-anchor="end">기준 없음</text>
+
+    <text class="lvl purple-sub" x="18" y="196">실무 권장</text>
+    <text class="ratio purple-t" x="222" y="198" text-anchor="end">3.0 : 1</text>
+    <text class="ratio-s purple-sub" x="222" y="214" text-anchor="end">통과 기준</text>
+  </g>
+</svg>

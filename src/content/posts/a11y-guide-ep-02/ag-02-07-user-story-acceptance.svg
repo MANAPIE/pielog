@@ -1,0 +1,194 @@
+<svg width="100%" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>유저 스토리에 접근성 인수 조건 추가</title>
+  <desc>"장바구니 담기" 기능을 예시로, 일반 유저 스토리와 기능 인수 조건에 더해 접근성 인수 조건을 추가로 작성하는 패턴</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .grp-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .label {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .story {
+      font: 400 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .ac {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .check {
+      font: 600 12px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .body-t {
+      fill: #2C2C2A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .body-t {
+        fill: #E8E6DE;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">유저 스토리에 접근성 인수 조건 추가</text>
+  <text class="caption" x="40" y="50">기능 AC 옆에 접근성 AC를 나란히 두는 것이 누락을 막는 가장 확실한 방법</text>
+
+  <!-- 유저 스토리 -->
+  <g>
+    <rect class="blue-card" x="40" y="76" width="720" height="64" rx="12" stroke-width="0.5" />
+    <rect class="blue-head" x="40" y="76" width="720" height="28" rx="12" />
+    <rect class="blue-head" x="40" y="92" width="720" height="12" />
+    <text class="grp-h" x="60" y="96">유저 스토리</text>
+    <text class="story body-t" x="60" y="126">사용자로서 상품을 장바구니에 담아 나중에 결제할 수 있도록 보관할 수 있다.</text>
+  </g>
+
+  <!-- 기능 인수 조건 -->
+  <g>
+    <rect class="amber-card" x="40" y="156" width="350" height="240" rx="12" stroke-width="0.5" />
+    <rect class="amber-head" x="40" y="156" width="350" height="28" rx="12" />
+    <rect class="amber-head" x="40" y="172" width="350" height="12" />
+    <text class="grp-h" x="60" y="176">인수 조건 — 기능</text>
+
+    <g transform="translate(60, 219)">
+      <text class="check amber-t" x="0" y="0">✓</text>
+      <text class="ac body-t" x="18" y="0">"장바구니 담기" 버튼 클릭 시 상품이 추가된다</text>
+    </g>
+    <g transform="translate(60, 259)">
+      <text class="check amber-t" x="0" y="0">✓</text>
+      <text class="ac body-t" x="18" y="0">담긴 수량이 장바구니 아이콘에 표시된다</text>
+    </g>
+    <g transform="translate(60, 299)">
+      <text class="check amber-t" x="0" y="0">✓</text>
+      <text class="ac body-t" x="18" y="0">토스트로 담김 완료를 알린다</text>
+    </g>
+    <g transform="translate(60, 335)">
+      <text class="check amber-t" x="0" y="0">✓</text>
+      <text class="ac body-t" x="18" y="0">동일 상품 추가 시 수량만 증가</text>
+    </g>
+    <g transform="translate(60, 371)">
+      <text class="check amber-t" x="0" y="0">✓</text>
+      <text class="ac body-t" x="18" y="0">미로그인 사용자는 로컬에 임시 저장된다</text>
+    </g>
+  </g>
+
+  <!-- 접근성 인수 조건 -->
+  <g>
+    <rect class="teal-card" x="410" y="156" width="350" height="240" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="410" y="156" width="350" height="28" rx="12" />
+    <rect class="teal-head" x="410" y="172" width="350" height="12" />
+    <text class="grp-h" x="430" y="176">인수 조건 — 접근성</text>
+
+    <g transform="translate(430, 219)">ㅁ
+      <text class="check teal-t" x="0" y="0">♿</text>
+      <text class="ac body-t" x="18" y="0">버튼이 키보드 Enter/Space로 활성화된다 (WCAG 2.1.1)</text>
+    </g>
+    <g transform="translate(430, 259)">
+      <text class="check teal-t" x="0" y="0">♿</text>
+      <text class="ac body-t" x="18" y="0">버튼의 접근 가능한 이름이 "[상품명] 장바구니 담기"이다</text>
+    </g>
+    <g transform="translate(430, 299)">
+      <text class="check teal-t" x="0" y="0">♿</text>
+      <text class="ac body-t" x="18" y="0">완료 메시지가 aria-live="polite"로 전달된다</text>
+    </g>
+    <g transform="translate(430, 335)">
+      <text class="check teal-t" x="0" y="0">♿</text>
+      <text class="ac body-t" x="18" y="0">수량 변경이 스크린리더에 "장바구니 3개 상품"으로 읽힌다</text>
+    </g>
+    <g transform="translate(430, 371)">
+      <text class="check teal-t" x="0" y="0">♿</text>
+      <text class="ac body-t" x="18" y="0">터치 타겟 최소 44×44dp (WCAG 2.5.8)</text>
+    </g>
+  </g>
+</svg>

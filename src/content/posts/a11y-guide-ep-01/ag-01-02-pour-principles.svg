@@ -1,0 +1,263 @@
+<svg width="100%" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>POUR 4원칙</title>
+  <desc>WCAG의 네 가지 핵심 원칙 Perceivable, Operable, Understandable, Robust 각각의 정의와 실무 의미</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .badge {
+      font: 700 28px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .badge-en {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+      opacity: 0.9;
+    }
+
+    .card-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .card-en {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .card-d {
+      font: 400 12px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .card-ex {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-line {
+      stroke: #0F664A;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-line {
+      stroke: #8F590F;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .purple-line {
+      stroke: #534AB7;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-line {
+      stroke: #993C1D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-line {
+        stroke: #5DCAA5;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .amber-line {
+        stroke: #FAC775;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .purple-line {
+        stroke: #AFA9EC;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-line {
+        stroke: #F09595;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">POUR — WCAG 4대 원칙</text>
+  <text class="caption" x="40" y="50">접근성을 떠받치는 네 개의 기둥</text>
+
+  <!-- P -->
+  <g transform="translate(40, 80)">
+    <rect class="teal-card" x="0" y="0" width="170" height="260" rx="14" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="170" height="80" rx="14" />
+    <rect class="teal-head" x="0" y="60" width="170" height="20" />
+    <text class="badge" x="20" y="42">P</text>
+    <text class="badge-en" x="20" y="62">Perceivable</text>
+    <text class="card-h teal-t" x="14" y="106">인식 가능</text>
+    <text class="card-d teal-t" x="14" y="128">콘텐츠를 감각으로</text>
+    <text class="card-d teal-t" x="14" y="144">인식할 수 있어야 한다</text>
+    <line class="teal-line" x1="14" y1="160" x2="156" y2="160" stroke-width="0.5" opacity="0.4" />
+    <text class="card-en teal-t" x="14" y="178">예시</text>
+    <text class="card-ex teal-t" x="14" y="196">이미지에 대체 텍스트</text>
+    <text class="card-ex teal-t" x="14" y="212">영상에 자막</text>
+    <text class="card-ex teal-t" x="14" y="228">색상에만 의존 금지</text>
+    <text class="card-ex teal-t" x="14" y="244">충분한 대비비</text>
+  </g>
+
+  <!-- O -->
+  <g transform="translate(225, 80)">
+    <rect class="amber-card" x="0" y="0" width="170" height="260" rx="14" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="170" height="80" rx="14" />
+    <rect class="amber-head" x="0" y="60" width="170" height="20" />
+    <text class="badge" x="20" y="42">O</text>
+    <text class="badge-en" x="20" y="62">Operable</text>
+    <text class="card-h amber-t" x="14" y="106">운용 가능</text>
+    <text class="card-d amber-t" x="14" y="128">인터페이스를</text>
+    <text class="card-d amber-t" x="14" y="144">조작할 수 있어야 한다</text>
+    <line class="amber-line" x1="14" y1="160" x2="156" y2="160" stroke-width="0.5" opacity="0.4" />
+    <text class="card-en amber-t" x="14" y="178">예시</text>
+    <text class="card-ex amber-t" x="14" y="196">키보드만으로 모든 기능</text>
+    <text class="card-ex amber-t" x="14" y="212">충분한 시간 제공</text>
+    <text class="card-ex amber-t" x="14" y="228">초점 표시 명확</text>
+    <text class="card-ex amber-t" x="14" y="244">최소 24×24px 타겟</text>
+  </g>
+
+  <!-- U -->
+  <g transform="translate(410, 80)">
+    <rect class="purple-card" x="0" y="0" width="170" height="260" rx="14" stroke-width="0.5" />
+    <rect class="purple-head" x="0" y="0" width="170" height="80" rx="14" />
+    <rect class="purple-head" x="0" y="60" width="170" height="20" />
+    <text class="badge" x="20" y="42">U</text>
+    <text class="badge-en" x="20" y="62">Understandable</text>
+    <text class="card-h purple-t" x="14" y="106">이해 가능</text>
+    <text class="card-d purple-t" x="14" y="128">콘텐츠와 조작 방법을</text>
+    <text class="card-d purple-t" x="14" y="144">이해할 수 있어야 한다</text>
+    <line class="purple-line" x1="14" y1="160" x2="156" y2="160" stroke-width="0.5" opacity="0.4" />
+    <text class="card-en purple-t" x="14" y="178">예시</text>
+    <text class="card-ex purple-t" x="14" y="196">언어 선언 (html lang)</text>
+    <text class="card-ex purple-t" x="14" y="212">예측 가능한 동작</text>
+    <text class="card-ex purple-t" x="14" y="228">명확한 레이블·지시</text>
+    <text class="card-ex purple-t" x="14" y="244">에러 예방·식별</text>
+  </g>
+
+  <!-- R -->
+  <g transform="translate(595, 80)">
+    <rect class="rust-card" x="0" y="0" width="170" height="260" rx="14" stroke-width="0.5" />
+    <rect class="rust-head" x="0" y="0" width="170" height="80" rx="14" />
+    <rect class="rust-head" x="0" y="60" width="170" height="20" />
+    <text class="badge" x="20" y="42">R</text>
+    <text class="badge-en" x="20" y="62">Robust</text>
+    <text class="card-h rust-t" x="14" y="106">견고</text>
+    <text class="card-d rust-t" x="14" y="128">다양한 보조 기술에서</text>
+    <text class="card-d rust-t" x="14" y="144">안정적으로 작동해야</text>
+    <line class="rust-line" x1="14" y1="160" x2="156" y2="160" stroke-width="0.5" opacity="0.4" />
+    <text class="card-en rust-t" x="14" y="178">예시</text>
+    <text class="card-ex rust-t" x="14" y="196">올바른 HTML 파싱</text>
+    <text class="card-ex rust-t" x="14" y="212">name · role · value</text>
+    <text class="card-ex rust-t" x="14" y="228">상태 변화 전달</text>
+    <text class="card-ex rust-t" x="14" y="244">시맨틱 우선, ARIA 보완</text>
+  </g>
+</svg>

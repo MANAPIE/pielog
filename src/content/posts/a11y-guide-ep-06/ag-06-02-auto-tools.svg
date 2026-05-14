@@ -1,0 +1,221 @@
+<svg width="100%" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>접근성 자동화 도구 5종 비교</title>
+  <desc>axe-core, Lighthouse, pa11y, Storybook a11y addon, WAVE 다섯 가지 자동화 도구의 유형, 장점, 한계 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+    }
+
+    .tool-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .tool-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #5F5E5A;
+    }
+
+    .badge {
+      font: 600 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .card {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .head {
+      fill: #2C2C2A;
+    }
+
+    .teal-bar {
+      fill: #0F664A;
+    }
+
+    .blue-bar {
+      fill: #185FA5;
+    }
+
+    .amber-bar {
+      fill: #8F590F;
+    }
+
+    .purple-bar {
+      fill: #534AB7;
+    }
+
+    .rust-bar {
+      fill: #993C1D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .tool-h {
+        fill: #E8E6DE;
+      }
+
+      .tool-d {
+        fill: #B4B2A9;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .card {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .head {
+        fill: #444441;
+      }
+
+      .teal-bar {
+        fill: #0F6E56;
+      }
+
+      .blue-bar {
+        fill: #185FA5;
+      }
+
+      .amber-bar {
+        fill: #854F0B;
+      }
+
+      .purple-bar {
+        fill: #534AB7;
+      }
+
+      .rust-bar {
+        fill: #993C1D;
+      }
+    }
+  </style>
+  <g transform="translate(-20, 0)">
+
+    <text class="title" x="40" y="32">자동화 도구 5종 비교</text>
+    <text class="caption" x="40" y="50">CI 파이프라인에 어떤 조합으로 넣을지 결정하는 기준</text>
+
+    <!-- 헤더 -->
+    <g transform="translate(40, 76)">
+      <rect class="head" x="0" y="0" width="180" height="30" rx="2" />
+      <text class="col-h" x="14" y="20">도구</text>
+      <rect class="head" x="186" y="0" width="120" height="30" rx="2" />
+      <text class="col-h" x="200" y="20">유형</text>
+      <rect class="head" x="312" y="0" width="220" height="30" rx="2" />
+      <text class="col-h" x="326" y="20">장점</text>
+      <rect class="head" x="538" y="0" width="222" height="30" rx="2" />
+      <text class="col-h" x="552" y="20">한계</text>
+    </g>
+
+    <!-- axe-core -->
+    <g transform="translate(40, 112)">
+      <rect class="card" x="0" y="0" width="180" height="40" rx="2" stroke-width="0.5" />
+      <rect class="teal-bar" x="0" y="0" width="4" height="40" />
+      <text class="tool-h" x="14" y="18">axe-core</text>
+      <text class="tool-d" x="14" y="32">Deque Systems</text>
+
+      <rect class="teal-bar" x="186" y="0" width="120" height="40" rx="2" />
+      <text class="badge" x="246" y="24" text-anchor="middle">라이브러리</text>
+
+      <rect class="card" x="312" y="0" width="220" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="326" y="18">CI/CD 통합 용이</text>
+      <text class="tool-d" x="326" y="32">0 false positive 정책</text>
+
+      <rect class="card" x="538" y="0" width="222" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="552" y="18">동적 콘텐츠 부분 커버</text>
+      <text class="tool-d" x="552" y="32">시각적 검증 불가</text>
+    </g>
+
+    <!-- Lighthouse -->
+    <g transform="translate(40, 158)">
+      <rect class="card" x="0" y="0" width="180" height="40" rx="2" stroke-width="0.5" />
+      <rect class="blue-bar" x="0" y="0" width="4" height="40" />
+      <text class="tool-h" x="14" y="18">Lighthouse</text>
+      <text class="tool-d" x="14" y="32">Google · Chrome 내장</text>
+
+      <rect class="blue-bar" x="186" y="0" width="120" height="40" rx="2" />
+      <text class="badge" x="246" y="24" text-anchor="middle">브라우저</text>
+
+      <rect class="card" x="312" y="0" width="220" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="326" y="18">설치 불필요</text>
+      <text class="tool-d" x="326" y="32">성능·SEO와 함께 점검</text>
+
+      <rect class="card" x="538" y="0" width="222" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="552" y="18">axe 기반 (범위 동일)</text>
+      <text class="tool-d" x="552" y="32">CI 통합은 추가 설정</text>
+    </g>
+
+    <!-- pa11y -->
+    <g transform="translate(40, 204)">
+      <rect class="card" x="0" y="0" width="180" height="40" rx="2" stroke-width="0.5" />
+      <rect class="amber-bar" x="0" y="0" width="4" height="40" />
+      <text class="tool-h" x="14" y="18">pa11y</text>
+      <text class="tool-d" x="14" y="32">CLI 도구</text>
+
+      <rect class="amber-bar" x="186" y="0" width="120" height="40" rx="2" />
+      <text class="badge" x="246" y="24" text-anchor="middle">CLI</text>
+
+      <rect class="card" x="312" y="0" width="220" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="326" y="18">CI 파이프라인 통합</text>
+      <text class="tool-d" x="326" y="32">HTML CodeSniffer 기반</text>
+
+      <rect class="card" x="538" y="0" width="222" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="552" y="18">설정 복잡</text>
+      <text class="tool-d" x="552" y="32">규칙 커스터마이즈 부담</text>
+    </g>
+
+    <!-- Storybook -->
+    <g transform="translate(40, 250)">
+      <rect class="card" x="0" y="0" width="180" height="40" rx="2" stroke-width="0.5" />
+      <rect class="purple-bar" x="0" y="0" width="4" height="40" />
+      <text class="tool-h" x="14" y="18">Storybook a11y</text>
+      <text class="tool-d" x="14" y="32">애드온</text>
+
+      <rect class="purple-bar" x="186" y="0" width="120" height="40" rx="2" />
+      <text class="badge" x="246" y="24" text-anchor="middle">개발 도구</text>
+
+      <rect class="card" x="312" y="0" width="220" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="326" y="18">컴포넌트 단위 실시간</text>
+      <text class="tool-d" x="326" y="32">디자인 시스템 검증에 강함</text>
+
+      <rect class="card" x="538" y="0" width="222" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="552" y="18">전체 페이지 맥락 부재</text>
+      <text class="tool-d" x="552" y="32">실제 데이터/상태 한계</text>
+    </g>
+
+    <!-- WAVE -->
+    <g transform="translate(40, 296)">
+      <rect class="card" x="0" y="0" width="180" height="40" rx="2" stroke-width="0.5" />
+      <rect class="rust-bar" x="0" y="0" width="4" height="40" />
+      <text class="tool-h" x="14" y="18">WAVE</text>
+      <text class="tool-d" x="14" y="32">WebAIM</text>
+
+      <rect class="rust-bar" x="186" y="0" width="120" height="40" rx="2" />
+      <text class="badge" x="246" y="24" text-anchor="middle">웹 확장</text>
+
+      <rect class="card" x="312" y="0" width="220" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="326" y="18">시각적 오버레이</text>
+      <text class="tool-d" x="326" y="32">초보자 친화적</text>
+
+      <rect class="card" x="538" y="0" width="222" height="40" rx="2" stroke-width="0.5" />
+      <text class="tool-d" x="552" y="18">자동화 어려움</text>
+      <text class="tool-d" x="552" y="32">수동 1회성 검사용</text>
+    </g>
+  </g>
+</svg>

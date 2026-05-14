@@ -1,0 +1,282 @@
+<svg width="100%" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>스크린리더 사용자의 탐색 흐름</title>
+  <desc>스크린리더 사용자가 페이지에 진입한 후 콘텐츠를 탐색하는 5단계 흐름. 위에서 아래로 읽지 않고 랜드마크와 헤딩으로 점프</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .step-n {
+      font: 700 14px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .step-t {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .step-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .key {
+      font: 500 10px/1 'JetBrains Mono', monospace;
+      fill: #5F5E5A;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1;
+      fill: none;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-dot {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-dot {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-dot {
+      fill: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-dot {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .pink-card {
+      fill: #FBEAF0;
+      stroke: #993556;
+    }
+
+    .pink-dot {
+      fill: #993556;
+    }
+
+    .pink-t {
+      fill: #72243E;
+    }
+
+    .key-chip {
+      fill: #FFFFFF;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .key {
+        fill: #B4B2A9;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-dot {
+        fill: #5DCAA5;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-dot {
+        fill: #FAC775;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-dot {
+        fill: #AFA9EC;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-dot {
+        fill: #F09595;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .pink-card {
+        fill: #4B1A2C;
+        stroke: #993556;
+      }
+
+      .pink-dot {
+        fill: #F09595;
+      }
+
+      .pink-t {
+        fill: #F5C0CF;
+      }
+
+      .key-chip {
+        fill: #1F1F1D;
+      }
+
+      .step-n {
+        fill: #1F1F1D;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-end-2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">스크린리더 사용자의 탐색 흐름</text>
+  <text class="caption" x="40" y="50">위에서 아래로가 아니라, 랜드마크·헤딩 단위로 점프합니다</text>
+
+  <!-- 5단계 -->
+  <g transform="translate(40, 88)">
+    <!-- Step 1 -->
+    <g>
+      <rect class="teal-card" x="0" y="0" width="128" height="160" rx="12" stroke-width="0.5" />
+      <circle class="teal-dot" cx="22" cy="22" r="14" />
+      <text class="step-n" x="22" y="27" text-anchor="middle">1</text>
+      <text class="step-t teal-t" x="14" y="62">페이지 진입</text>
+      <text class="step-d teal-t" x="14" y="82">제목(h1) 자동 읽기</text>
+      <rect class="key-chip" x="14" y="96" width="80" height="18" rx="4" stroke="#0F664A" stroke-width="0.5" />
+      <text class="key" x="22" y="108">자동</text>
+      <text class="step-d teal-t" x="14" y="134">페이지 정체성 파악</text>
+    </g>
+
+    <line x1="128" y1="80" x2="148" y2="80" class="arr" marker-end="url(#arr-end-2)" />
+
+    <!-- Step 2 -->
+    <g transform="translate(148, 0)">
+      <rect class="amber-card" x="0" y="0" width="128" height="160" rx="12" stroke-width="0.5" />
+      <circle class="amber-dot" cx="22" cy="22" r="14" />
+      <text class="step-n" x="22" y="27" text-anchor="middle">2</text>
+      <text class="step-t amber-t" x="14" y="62">랜드마크 점프</text>
+      <text class="step-d amber-t" x="14" y="82">nav · main · footer</text>
+      <rect class="key-chip" x="14" y="96" width="80" height="18" rx="4" stroke="#8F590F" stroke-width="0.5" />
+      <text class="key" x="22" y="108">D · R</text>
+      <text class="step-d amber-t" x="14" y="134">영역 단위로 이동</text>
+    </g>
+
+    <line x1="276" y1="80" x2="296" y2="80" class="arr" marker-end="url(#arr-end-2)" />
+
+    <!-- Step 3 -->
+    <g transform="translate(296, 0)">
+      <rect class="purple-card" x="0" y="0" width="128" height="160" rx="12" stroke-width="0.5" />
+      <circle class="purple-dot" cx="22" cy="22" r="14" />
+      <text class="step-n" x="22" y="27" text-anchor="middle">3</text>
+      <text class="step-t purple-t" x="14" y="62">헤딩 점프</text>
+      <text class="step-d purple-t" x="14" y="82">h1~h6 계층 탐색</text>
+      <rect class="key-chip" x="14" y="96" width="80" height="18" rx="4" stroke="#534AB7" stroke-width="0.5" />
+      <text class="key" x="22" y="108">H · 1~6</text>
+      <text class="step-d purple-t" x="14" y="134">전체 구조 파악</text>
+    </g>
+
+    <line x1="424" y1="80" x2="444" y2="80" class="arr" marker-end="url(#arr-end-2)" />
+
+    <!-- Step 4 -->
+    <g transform="translate(444, 0)">
+      <rect class="rust-card" x="0" y="0" width="128" height="160" rx="12" stroke-width="0.5" />
+      <circle class="rust-dot" cx="22" cy="22" r="14" />
+      <text class="step-n" x="22" y="27" text-anchor="middle">4</text>
+      <text class="step-t rust-t" x="14" y="62">링크·버튼 목록</text>
+      <text class="step-d rust-t" x="14" y="82">기능 단위 검색</text>
+      <rect class="key-chip" x="14" y="96" width="80" height="18" rx="4" stroke="#993C1D" stroke-width="0.5" />
+      <text class="key" x="22" y="108">K · B</text>
+      <text class="step-d rust-t" x="14" y="134">원하는 액션 도달</text>
+    </g>
+
+    <line x1="572" y1="80" x2="592" y2="80" class="arr" marker-end="url(#arr-end-2)" />
+
+    <!-- Step 5 -->
+    <g transform="translate(592, 0)">
+      <rect class="pink-card" x="0" y="0" width="128" height="160" rx="12" stroke-width="0.5" />
+      <circle class="pink-dot" cx="22" cy="22" r="14" />
+      <text class="step-n" x="22" y="27" text-anchor="middle">5</text>
+      <text class="step-t pink-t" x="14" y="62">폼 탐색</text>
+      <text class="step-d pink-t" x="14" y="82">필드 순차</text>
+      <rect class="key-chip" x="14" y="96" width="80" height="18" rx="4" stroke="#993556" stroke-width="0.5" />
+      <text class="key" x="22" y="108">F · Tab</text>
+      <text class="step-d pink-t" x="14" y="134">입력 수행</text>
+    </g>
+  </g>
+
+  <text class="caption" x="40" y="280">단축키 표기 (NVDA 기준): D=랜드마크, R=영역, H=헤딩, K=링크, B=버튼, F=폼 필드</text>
+</svg>
