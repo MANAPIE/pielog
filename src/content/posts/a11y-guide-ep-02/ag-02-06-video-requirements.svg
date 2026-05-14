@@ -1,0 +1,366 @@
+<svg width="100%" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>영상 접근성 요구사항 등급별 매트릭스</title>
+  <desc>자막, 오디오 디스크립션, 수어 통역, 텍스트 대본 네 가지 영상 접근성 요소를 WCAG A·AA·AAA 등급별로 요구 수준을 비교한 표</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 13px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .row-t {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .row-en {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+    }
+
+    .row-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .cell-h {
+      font: 700 12px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .cell-d {
+      font: 400 10px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .note {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .teal-sub {
+      fill: #0F6E56;
+    }
+
+    .teal-fill {
+      fill: #0F664A;
+    }
+
+    .teal-dim {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-sub {
+      fill: #854F0B;
+    }
+
+    .amber-fill {
+      fill: #8F590F;
+    }
+
+    .amber-dim {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-sub {
+      fill: #993C1D;
+    }
+
+    .rust-fill {
+      fill: #993C1D;
+    }
+
+    .rust-dim {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .blue-sub {
+      fill: #185FA5;
+    }
+
+    .blue-fill {
+      fill: #185FA5;
+    }
+
+    .blue-dim {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .empty-cell {
+      fill: #F1EFE8;
+      stroke: #D3D1C7;
+    }
+
+    .empty-t {
+      fill: #6F6E66;
+    }
+
+    .on-fill {
+      fill: #FFFFFF;
+    }
+
+    .col-h-t {
+      fill: #2C2C2A;
+    }
+
+    .note-t {
+      fill: #5F5E5A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .col-h-t {
+        fill: #E8E6DE;
+      }
+
+      .note-t {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .teal-sub {
+        fill: #5DCAA5;
+      }
+
+      .teal-fill {
+        fill: #0F6E56;
+      }
+
+      .teal-dim {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .amber-sub {
+        fill: #FAC775;
+      }
+
+      .amber-fill {
+        fill: #854F0B;
+      }
+
+      .amber-dim {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+
+      .rust-sub {
+        fill: #F09595;
+      }
+
+      .rust-fill {
+        fill: #993C1D;
+      }
+
+      .rust-dim {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .blue-sub {
+        fill: #5DA0E1;
+      }
+
+      .blue-fill {
+        fill: #185FA5;
+      }
+
+      .blue-dim {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .empty-cell {
+        fill: #232624;
+        stroke: #444441;
+      }
+
+      .empty-t {
+        fill: #B4B2A9;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">영상 접근성 요구사항 등급별 매트릭스</text>
+  <text class="caption" x="40" y="50">자막은 모든 등급에서 필수 · 수어 통역은 AAA에서만 요구</text>
+
+  <!-- 컬럼 헤더 -->
+  <text class="col-h col-h-t" x="376" y="98" text-anchor="middle">Level A</text>
+  <text class="col-h col-h-t" x="472" y="98" text-anchor="middle">Level AA</text>
+  <text class="col-h col-h-t" x="568" y="98" text-anchor="middle">Level AAA</text>
+  <text class="col-h col-h-t" x="682" y="98" text-anchor="middle">비고</text>
+
+  <!-- Row 1: 자막 -->
+  <g transform="translate(40, 116)">
+    <rect class="teal-card" x="0" y="0" width="280" height="44" rx="6" stroke-width="0.5" />
+    <text class="row-t teal-t" x="14" y="18">자막</text>
+    <text class="row-en teal-sub" x="48" y="18">Captions</text>
+    <text class="row-d teal-sub" x="14" y="34">사전 녹화 + 실시간 음성·소리</text>
+
+    <rect class="teal-fill" x="296" y="0" width="80" height="44" rx="6" />
+    <text class="cell-h on-fill" x="336" y="21" text-anchor="middle">필수</text>
+    <text class="cell-d on-fill" x="336" y="35" text-anchor="middle" opacity="0.85">Required</text>
+
+    <rect class="teal-fill" x="392" y="0" width="80" height="44" rx="6" />
+    <text class="cell-h on-fill" x="432" y="21" text-anchor="middle">필수</text>
+    <text class="cell-d on-fill" x="432" y="35" text-anchor="middle" opacity="0.85">Required</text>
+
+    <rect class="teal-fill" x="488" y="0" width="80" height="44" rx="6" />
+    <text class="cell-h on-fill" x="528" y="21" text-anchor="middle">필수</text>
+    <text class="cell-d on-fill" x="528" y="35" text-anchor="middle" opacity="0.85">Required</text>
+
+    <text class="note note-t" x="604" y="21">기본 중의 기본</text>
+    <text class="note note-t" x="604" y="35">모든 영상의 의무</text>
+  </g>
+
+  <!-- Row 2: 오디오 디스크립션 -->
+  <g transform="translate(40, 172)">
+    <rect class="amber-card" x="0" y="0" width="280" height="44" rx="6" stroke-width="0.5" />
+    <text class="row-t amber-t" x="14" y="18">오디오 디스크립션</text>
+    <text class="row-en amber-sub" x="146" y="18">Audio Description</text>
+    <text class="row-d amber-sub" x="14" y="34">영상의 시각 정보를 음성 해설</text>
+
+    <rect class="amber-dim" x="296" y="0" width="80" height="44" rx="6" stroke-width="0.5" />
+    <text class="cell-h amber-t" x="336" y="21" text-anchor="middle">대안</text>
+    <text class="cell-d amber-sub" x="336" y="35" text-anchor="middle">Alternative</text>
+
+    <rect class="amber-fill" x="392" y="0" width="80" height="44" rx="6" />
+    <text class="cell-h on-fill" x="432" y="21" text-anchor="middle">필수</text>
+    <text class="cell-d on-fill" x="432" y="35" text-anchor="middle" opacity="0.85">Required</text>
+
+    <rect class="amber-fill" x="488" y="0" width="80" height="44" rx="6" />
+    <text class="cell-h on-fill" x="528" y="21" text-anchor="middle">확장 필수</text>
+    <text class="cell-d on-fill" x="528" y="35" text-anchor="middle" opacity="0.85">Extended</text>
+
+    <text class="note note-t" x="604" y="21">시각 정보를</text>
+    <text class="note note-t" x="604" y="35">음성으로 변환</text>
+  </g>
+
+  <!-- Row 3: 수어 통역 -->
+  <g transform="translate(40, 228)">
+    <rect class="rust-card" x="0" y="0" width="280" height="44" rx="6" stroke-width="0.5" />
+    <text class="row-t rust-t" x="14" y="18">수어 통역</text>
+    <text class="row-en rust-sub" x="80" y="18">Sign Language</text>
+    <text class="row-d rust-sub" x="14" y="34">사전 녹화 영상에 통역사 삽입</text>
+
+    <rect class="empty-cell" x="296" y="0" width="80" height="44" rx="6" stroke-width="0.5" />
+    <text class="cell-h empty-t" x="336" y="25" text-anchor="middle">—</text>
+
+    <rect class="empty-cell" x="392" y="0" width="80" height="44" rx="6" stroke-width="0.5" />
+    <text class="cell-h empty-t" x="432" y="25" text-anchor="middle">—</text>
+
+    <rect class="rust-fill" x="488" y="0" width="80" height="44" rx="6" />
+    <text class="cell-h on-fill" x="528" y="21" text-anchor="middle">필수</text>
+    <text class="cell-d on-fill" x="528" y="35" text-anchor="middle" opacity="0.85">Required</text>
+
+    <text class="note note-t" x="604" y="21">공공 영상에서</text>
+    <text class="note note-t" x="604" y="35">권장 수준</text>
+  </g>
+
+  <!-- Row 4: 텍스트 대본 -->
+  <g transform="translate(40, 284)">
+    <rect class="blue-card" x="0" y="0" width="280" height="44" rx="6" stroke-width="0.5" />
+    <text class="row-t blue-t" x="14" y="18">텍스트 대본</text>
+    <text class="row-en blue-sub" x="96" y="18">Transcript</text>
+    <text class="row-d blue-sub" x="14" y="34">전체 내용을 텍스트로 풀어 제공</text>
+
+    <rect class="blue-dim" x="296" y="0" width="80" height="44" rx="6" stroke-width="0.5" />
+    <text class="cell-h blue-t" x="336" y="21" text-anchor="middle">대안</text>
+    <text class="cell-d blue-sub" x="336" y="35" text-anchor="middle">Alternative</text>
+
+    <rect class="blue-dim" x="392" y="0" width="80" height="44" rx="6" stroke-width="0.5" />
+    <text class="cell-h blue-t" x="432" y="21" text-anchor="middle">대안</text>
+    <text class="cell-d blue-sub" x="432" y="35" text-anchor="middle">Alternative</text>
+
+    <rect class="blue-fill" x="488" y="0" width="80" height="44" rx="6" />
+    <text class="cell-h on-fill" x="528" y="21" text-anchor="middle">필수</text>
+    <text class="cell-d on-fill" x="528" y="35" text-anchor="middle" opacity="0.85">Required</text>
+
+    <text class="note note-t" x="604" y="21">SEO에도 유리</text>
+    <text class="note note-t" x="604" y="35">검색 색인 가능</text>
+  </g>
+</svg>

@@ -1,0 +1,152 @@
+<svg width="100%" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>내비게이션 패턴별 접근성 트레이드오프</title>
+  <desc>6가지 주요 내비게이션 패턴(탑 내비, 햄버거, 메가메뉴, 탭, 사이드바, 하단 탭바)의 장점과 접근성 리스크, 대응 방안을 비교한 표</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .h-col {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      fill: #6F6E66;
+    }
+
+    .pat-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .pat-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .body-d {
+      fill: #5F5E5A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption,
+      .h-col {
+        fill: #B4B2A9;
+      }
+
+      .body-d {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">내비게이션 패턴별 접근성 트레이드오프</text>
+  <text class="caption" x="40" y="50">패턴 선택 자체가 접근성 비용 함수를 결정합니다</text>
+
+  <!-- 컬럼 헤더 -->
+  <text class="h-col" x="56" y="84">패턴</text>
+  <text class="h-col" x="216" y="84">장점</text>
+  <text class="h-col" x="380" y="84">접근성 리스크</text>
+  <text class="h-col" x="560" y="84">대응 방안</text>
+
+  <!-- Row 1: 탑 내비 -->
+  <g transform="translate(40, 92)">
+    <rect class="teal-card" x="0" y="0" width="160" height="50" rx="8" stroke-width="0.5" />
+    <text class="pat-h teal-t" x="14" y="22">탑 내비게이션</text>
+    <text class="pat-d teal-t" x="14" y="38">상단 가로 메뉴</text>
+    <text class="pat-d body-d" x="172" y="22">익숙한 패턴</text>
+    <text class="pat-d body-d" x="172" y="38">스캔 쉬움</text>
+    <text class="pat-d body-d" x="336" y="22">항목 많으면 키보드 탐색</text>
+    <text class="pat-d body-d" x="336" y="38">시간 증가</text>
+    <text class="pat-d body-d" x="520" y="22">Skip Navigation 링크</text>
+    <text class="pat-d body-d" x="520" y="38">main 랜드마크 점프</text>
+  </g>
+
+  <!-- Row 2: 햄버거 -->
+  <g transform="translate(40, 148)">
+    <rect class="teal-card" x="0" y="0" width="160" height="50" rx="8" stroke-width="0.5" />
+    <text class="pat-h teal-t" x="14" y="22">햄버거 메뉴</text>
+    <text class="pat-d teal-t" x="14" y="38">아이콘 토글</text>
+    <text class="pat-d body-d" x="172" y="22">공간 절약</text>
+    <text class="pat-d body-d" x="172" y="38">모바일 친화적</text>
+    <text class="pat-d body-d" x="336" y="22">숨김 상태가 스크린리더에</text>
+    <text class="pat-d body-d" x="336" y="38">노출 안 될 수 있음</text>
+    <text class="pat-d body-d" x="520" y="22">aria-expanded 토글</text>
+    <text class="pat-d body-d" x="520" y="38">포커스 관리 필수</text>
+  </g>
+
+  <!-- Row 3: 메가 메뉴 -->
+  <g transform="translate(40, 204)">
+    <rect class="teal-card" x="0" y="0" width="160" height="50" rx="8" stroke-width="0.5" />
+    <text class="pat-h teal-t" x="14" y="22">메가 메뉴</text>
+    <text class="pat-d teal-t" x="14" y="38">대형 드롭다운</text>
+    <text class="pat-d body-d" x="172" y="22">많은 정보 노출</text>
+    <text class="pat-d body-d" x="172" y="38">계층 구조 표현</text>
+    <text class="pat-d body-d" x="336" y="22">키보드 트랩 위험</text>
+    <text class="pat-d body-d" x="336" y="38">포커스 순서 복잡</text>
+    <text class="pat-d body-d" x="520" y="22">ESC로 닫기</text>
+    <text class="pat-d body-d" x="520" y="38">화살표 키 탐색</text>
+  </g>
+
+  <!-- Row 4: 탭 -->
+  <g transform="translate(40, 260)">
+    <rect class="teal-card" x="0" y="0" width="160" height="50" rx="8" stroke-width="0.5" />
+    <text class="pat-h teal-t" x="14" y="22">탭 내비게이션</text>
+    <text class="pat-d teal-t" x="14" y="38">콘텐츠 전환</text>
+    <text class="pat-d body-d" x="172" y="22">콘텐츠 그룹핑</text>
+    <text class="pat-d body-d" x="172" y="38">한 화면에 압축</text>
+    <text class="pat-d body-d" x="336" y="22">탭-패널 관계가</text>
+    <text class="pat-d body-d" x="336" y="38">스크린리더에 전달 안 됨</text>
+    <text class="pat-d body-d" x="520" y="22">role="tablist" 패턴</text>
+    <text class="pat-d body-d" x="520" y="38">aria-selected · controls</text>
+  </g>
+
+  <!-- Row 5: 사이드바 -->
+  <g transform="translate(40, 316)">
+    <rect class="teal-card" x="0" y="0" width="160" height="50" rx="8" stroke-width="0.5" />
+    <text class="pat-h teal-t" x="14" y="22">사이드바</text>
+    <text class="pat-d teal-t" x="14" y="38">좌/우측 고정</text>
+    <text class="pat-d body-d" x="172" y="22">항상 접근 가능</text>
+    <text class="pat-d body-d" x="172" y="38">깊은 IA 적합</text>
+    <text class="pat-d body-d" x="336" y="22">메인 콘텐츠 도달까지</text>
+    <text class="pat-d body-d" x="336" y="38">탐색 길어짐</text>
+    <text class="pat-d body-d" x="520" y="22">nav 랜드마크 명시</text>
+    <text class="pat-d body-d" x="520" y="38">Skip to main 링크</text>
+  </g>
+
+  <!-- Row 6: 하단 탭바 -->
+  <g transform="translate(40, 372)">
+    <rect class="teal-card" x="0" y="0" width="160" height="50" rx="8" stroke-width="0.5" />
+    <text class="pat-h teal-t" x="14" y="22">하단 탭바 (모바일)</text>
+    <text class="pat-d teal-t" x="14" y="38">엄지 영역 접근</text>
+    <text class="pat-d body-d" x="172" y="22">엄지 접근 용이</text>
+    <text class="pat-d body-d" x="172" y="38">모바일 표준</text>
+    <text class="pat-d body-d" x="336" y="22">현재 위치 정보가</text>
+    <text class="pat-d body-d" x="336" y="38">스크린리더에 전달 안 됨</text>
+    <text class="pat-d body-d" x="520" y="22">aria-current="page"</text>
+    <text class="pat-d body-d" x="520" y="38">활성 탭 표시</text>
+  </g>
+</svg>
