@@ -1,0 +1,242 @@
+<svg width="100%" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>W3C ARIA 5대 규칙</title>
+  <desc>W3C가 정의한 ARIA 사용의 다섯 가지 핵심 원칙. 네이티브 우선, 의미 변경 금지, 키보드 필수, presentation 금지, 접근 가능한 이름</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .num {
+      font: 700 22px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .rule-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .rule-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #5F5E5A;
+    }
+
+    .ex-l {
+      font: 400 11px/1.5 'JetBrains Mono', monospace;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .ex-card {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-num {
+      fill: #185FA5;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-num {
+      fill: #534AB7;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-num {
+      fill: #8F590F;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-num {
+      fill: #993C1D;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-num {
+      fill: #0F664A;
+    }
+
+    .ex-bad {
+      fill: #993C1D;
+    }
+
+    .ex-good {
+      fill: #0F664A;
+    }
+
+    .ex-amber {
+      fill: #633806;
+    }
+
+    .ex-teal {
+      fill: #085041;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .rule-h {
+        fill: #E8E6DE;
+      }
+
+      .rule-d,
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .ex-card {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-num {
+        fill: #185FA5;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-num {
+        fill: #534AB7;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-num {
+        fill: #854F0B;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .rust-num {
+        fill: #993C1D;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-num {
+        fill: #0F6E56;
+      }
+
+      .ex-bad {
+        fill: #F09595;
+      }
+
+      .ex-good {
+        fill: #5DCAA5;
+      }
+
+      .ex-amber {
+        fill: #FAC775;
+      }
+
+      .ex-teal {
+        fill: #9FE1CB;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">W3C ARIA 5대 규칙</text>
+  <text class="caption" x="40" y="50">W3C가 정의한 ARIA 사용의 핵심 원칙</text>
+
+  <!-- Rule 1 -->
+  <g transform="translate(40, 76)">
+    <rect class="blue-card" x="0" y="0" width="720" height="74" rx="12" stroke-width="0.5" />
+    <circle class="blue-num" cx="36" cy="37" r="22" />
+    <text class="num" x="36" y="45" text-anchor="middle">1</text>
+    <text class="rule-h" x="76" y="34">네이티브 HTML이 있으면 ARIA를 쓰지 마라</text>
+    <text class="rule-d" x="76" y="52">&lt;button&gt;이 있는데 &lt;div role="button"&gt;을 쓸 이유 없다</text>
+    <rect class="ex-card" x="510" y="18" width="200" height="40" rx="6" stroke-width="0.5" />
+    <text class="ex-l ex-bad" x="520" y="34">✗ &lt;div role="button"&gt;</text>
+    <text class="ex-l ex-good" x="520" y="50">✓ &lt;button&gt;</text>
+  </g>
+
+  <!-- Rule 2 -->
+  <g transform="translate(40, 158)">
+    <rect class="purple-card" x="0" y="0" width="720" height="74" rx="12" stroke-width="0.5" />
+    <circle class="purple-num" cx="36" cy="37" r="22" />
+    <text class="num" x="36" y="45" text-anchor="middle">2</text>
+    <text class="rule-h" x="76" y="34">네이티브 의미를 변경하지 마라</text>
+    <text class="rule-d" x="76" y="52">&lt;h2 role="tab"&gt;처럼 시맨틱 요소의 역할을 덮어쓰지 않는다</text>
+    <rect class="ex-card" x="510" y="18" width="200" height="40" rx="6" stroke-width="0.5" />
+    <text class="ex-l ex-bad" x="520" y="34">✗ &lt;h2 role="tab"&gt;</text>
+    <text class="ex-l ex-good" x="520" y="50">✓ &lt;div role="tab"&gt;&lt;h2&gt;</text>
+  </g>
+
+  <!-- Rule 3 -->
+  <g transform="translate(40, 240)">
+    <rect class="amber-card" x="0" y="0" width="720" height="74" rx="12" stroke-width="0.5" />
+    <circle class="amber-num" cx="36" cy="37" r="22" />
+    <text class="num" x="36" y="45" text-anchor="middle">3</text>
+    <text class="rule-h" x="76" y="34">모든 ARIA 위젯은 키보드 조작 가능해야 한다</text>
+    <text class="rule-d" x="76" y="52">role="button"을 붙였으면 Enter/Space 처리 필수</text>
+    <rect class="ex-card" x="510" y="18" width="200" height="40" rx="6" stroke-width="0.5" />
+    <text class="ex-l ex-amber" x="520" y="34">role 부여 →</text>
+    <text class="ex-l ex-amber" x="520" y="50">+ keydown 핸들러</text>
+  </g>
+
+  <!-- Rule 4 -->
+  <g transform="translate(40, 322)">
+    <rect class="rust-card" x="0" y="0" width="720" height="74" rx="12" stroke-width="0.5" />
+    <circle class="rust-num" cx="36" cy="37" r="22" />
+    <text class="num" x="36" y="45" text-anchor="middle">4</text>
+    <text class="rule-h" x="76" y="34">포커스 가능 요소에 role="presentation/none" 쓰지 마라</text>
+    <text class="rule-d" x="76" y="52">접근성 트리에서 사라져 보조기기가 무시 → 사용 불가</text>
+    <rect class="ex-card" x="510" y="18" width="200" height="40" rx="6" stroke-width="0.5" />
+    <text class="ex-l ex-bad" x="520" y="34">✗ &lt;button role="none"&gt;</text>
+    <text class="ex-l ex-good" x="520" y="50">✓ 장식 div에만</text>
+  </g>
+
+  <!-- Rule 5 -->
+  <g transform="translate(40, 404)">
+    <rect class="teal-card" x="0" y="0" width="720" height="74" rx="12" stroke-width="0.5" />
+    <circle class="teal-num" cx="36" cy="37" r="22" />
+    <text class="num" x="36" y="45" text-anchor="middle">5</text>
+    <text class="rule-h" x="76" y="34">모든 인터랙티브 요소에 접근 가능한 이름이 있어야 한다</text>
+    <text class="rule-d" x="76" y="52">aria-label, aria-labelledby, 또는 보이는 텍스트로 이름 제공</text>
+    <rect class="ex-card" x="510" y="18" width="200" height="40" rx="6" stroke-width="0.5" />
+    <text class="ex-l ex-teal" x="520" y="34">aria-label="검색"</text>
+    <text class="ex-l ex-teal" x="520" y="50">또는 텍스트 노드</text>
+  </g>
+</svg>

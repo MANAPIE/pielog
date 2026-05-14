@@ -1,0 +1,352 @@
+<svg width="100%" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>모달 포커스 트랩 흐름</title>
+  <desc>모달이 열리고 닫히는 과정에서 포커스가 어떻게 이동하는지 4단계로 보여주는 다이어그램. 열기 버튼 클릭, 모달 첫 요소로 이동, 내부 순환, Esc로 닫고 트리거로 복귀</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .step-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .step-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .step-mono {
+      font: 400 11px/1.4 'JetBrains Mono', monospace;
+    }
+
+    .btn {
+      font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .btn-on-dark {
+      font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .focus-l {
+      font: 600 10px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .order-l {
+      font: 500 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .dim-l {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.7;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-stroke {
+      stroke: #185FA5;
+      fill: none;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-stroke {
+      stroke: #0F664A;
+      fill: none;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-stroke {
+      stroke: #534AB7;
+      fill: none;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .inner-page {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .neutral-btn {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .dim {
+      fill: #2C2C2A;
+      opacity: 0.3;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .step-d,
+      .btn {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .order-l {
+        fill: #E8E6DE;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-stroke {
+        stroke: #185FA5;
+        fill: none;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-stroke {
+        stroke: #0F6E56;
+        fill: none;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-stroke {
+        stroke: #534AB7;
+        fill: none;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .inner-page {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .neutral-btn {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .dim {
+        fill: #000000;
+        opacity: 0.5;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-modal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">모달 포커스 트랩 — 4단계 흐름</text>
+  <text class="caption" x="40" y="50">모달이 열리면 포커스는 모달 내부에 갇히고, 닫히면 원래 트리거로 복귀합니다</text>
+
+  <!-- Step 1: 열기 -->
+  <g transform="translate(40, 76)">
+    <rect class="blue-card" x="0" y="0" width="350" height="170" rx="12" stroke-width="0.5" />
+    <rect class="blue-head" x="0" y="0" width="350" height="32" rx="12" />
+    <rect class="blue-head" x="0" y="20" width="350" height="12" />
+    <text class="step-h" x="14" y="22">1. 트리거 클릭 — 포커스 저장</text>
+
+    <!-- 페이지 -->
+    <rect class="inner-page" x="20" y="50" width="310" height="100" rx="8" stroke-width="0.5" />
+    <text class="step-d" x="34" y="74">…페이지 내용…</text>
+    <!-- 트리거 버튼 with focus ring -->
+    <g transform="translate(-20, 0)">
+      <rect class="blue-head" x="142" y="92" width="116" height="36" rx="6" />
+      <rect class="blue-stroke" x="138" y="88" width="124" height="44" rx="8" stroke-width="2.5" />
+      <text class="focus-l" x="200" y="115" text-anchor="middle">⌨ 설정 열기</text>
+    </g>
+
+    <text class="step-mono blue-t" x="20" y="164">previouslyFocused = activeElement</text>
+  </g>
+
+  <!-- Step 2: 모달 첫 요소로 이동 -->
+  <g transform="translate(410, 76)">
+    <rect class="teal-card" x="0" y="0" width="350" height="170" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="350" height="32" rx="12" />
+    <rect class="teal-head" x="0" y="20" width="350" height="12" />
+    <text class="step-h" x="14" y="22">2. 모달 첫 요소로 포커스 이동</text>
+
+    <!-- 배경 dim -->
+    <rect class="dim" x="20" y="50" width="310" height="100" rx="8" />
+    <text class="dim-l" x="30" y="70">aria-hidden="true" (배경)</text>
+
+    <!-- 모달 -->
+    <rect class="inner-page" x="50" y="76" width="250" height="60" rx="8" stroke-width="0.8" />
+    <text class="step-d" x="62" y="94">설정 (h2)</text>
+    <!-- 첫 버튼 with focus -->
+    <rect class="teal-head" x="62" y="100" width="48" height="26" rx="4" />
+    <rect class="teal-stroke" x="58" y="96" width="56" height="34" rx="6" stroke-width="2.5" />
+    <text class="focus-l" x="86" y="117" text-anchor="middle">⌨ X</text>
+    <rect class="neutral-btn" x="180" y="100" width="50" height="26" rx="4" />
+    <text class="btn" x="205" y="117" text-anchor="middle">취소</text>
+    <rect class="blue-head" x="240" y="100" width="50" height="26" rx="4" />
+    <text class="btn-on-dark" x="265" y="117" text-anchor="middle">확인</text>
+  </g>
+
+  <!-- Step 3: 내부 순환 -->
+  <g transform="translate(40, 264)">
+    <rect class="amber-card" x="0" y="0" width="350" height="170" rx="12" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="350" height="32" rx="12" />
+    <rect class="amber-head" x="0" y="20" width="350" height="12" />
+    <text class="step-h" x="14" y="22">3. Tab으로 모달 내부 순환 (트랩)</text>
+
+    <!-- 순환 시각화 -->
+    <g transform="translate(40, 50)">
+      <!-- 닫기 X -->
+      <rect class="amber-head" x="0" y="20" width="60" height="36" rx="6" />
+      <text class="focus-l" x="30" y="42" text-anchor="middle">X 닫기</text>
+      <text class="order-l" x="30" y="76" text-anchor="middle">①</text>
+
+      <line x1="60" y1="38" x2="98" y2="38" class="arr" marker-end="url(#arr-modal)" />
+
+      <rect class="neutral-btn" x="100" y="20" width="60" height="36" rx="6" />
+      <text class="btn" x="130" y="42" text-anchor="middle">취소</text>
+      <text class="order-l" x="130" y="76" text-anchor="middle">②</text>
+
+      <line x1="160" y1="38" x2="198" y2="38" class="arr" marker-end="url(#arr-modal)" />
+
+      <rect class="neutral-btn" x="200" y="20" width="60" height="36" rx="6" />
+      <text class="btn" x="230" y="42" text-anchor="middle">확인</text>
+      <text class="order-l" x="230" y="76" text-anchor="middle">③</text>
+
+      <!-- 순환 화살표 -->
+      <path d="M 230 60 Q 260 90, 200 90 L 60 90 Q 0 90, 30 60" class="arr" marker-end="url(#arr-modal)" />
+      <text class="step-mono amber-t" x="145" y="106" text-anchor="middle">Tab → 처음으로</text>
+    </g>
+  </g>
+
+  <!-- Step 4: 닫고 복귀 -->
+  <g transform="translate(410, 264)">
+    <rect class="purple-card" x="0" y="0" width="350" height="170" rx="12" stroke-width="0.5" />
+    <rect class="purple-head" x="0" y="0" width="350" height="32" rx="12" />
+    <rect class="purple-head" x="0" y="20" width="350" height="12" />
+    <text class="step-h" x="14" y="22">4. Esc — 트리거로 포커스 복귀</text>
+
+    <!-- 페이지 -->
+    <rect class="inner-page" x="20" y="50" width="310" height="100" rx="8" stroke-width="0.5" />
+    <text class="step-d" x="34" y="74">모달 닫힘 · aria-hidden 제거</text>
+    <!-- 트리거에 다시 포커스 -->
+    <g transform="translate(-20, 0)">
+      <rect class="blue-head" x="142" y="92" width="116" height="36" rx="6" />
+      <rect class="purple-stroke" x="138" y="88" width="124" height="44" rx="8" stroke-width="2.5" />
+      <text class="focus-l" x="200" y="115" text-anchor="middle">⌨ 설정 열기</text>
+    </g>
+
+    <text class="step-mono purple-t" x="20" y="164">previouslyFocused.focus()</text>
+  </g>
+</svg>

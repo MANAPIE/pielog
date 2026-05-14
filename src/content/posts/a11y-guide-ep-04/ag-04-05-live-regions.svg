@@ -1,0 +1,283 @@
+<svg width="100%" viewBox="0 0 800 410" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>라이브 리전 종류별 사용 시점 매트릭스</title>
+  <desc>aria-live polite assertive, role status alert log timer 등 라이브 리전 종류별 동작과 적절한 사용 시점을 정리한 카드</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .row-h {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+    }
+
+    .lvl-l {
+      font: 700 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .row-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .row-ex {
+      font: 400 11px/1.4 'JetBrains Mono', monospace;
+      fill: #5F5E5A;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .hd {
+      fill: #2C2C2A;
+    }
+
+    .cell {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .bar-teal {
+      fill: #0F664A;
+    }
+
+    .bar-rust {
+      fill: #993C1D;
+    }
+
+    .bar-blue {
+      fill: #185FA5;
+    }
+
+    .bar-amber {
+      fill: #8F590F;
+    }
+
+    .bar-purple {
+      fill: #534AB7;
+    }
+
+    .lvl-low {
+      fill: #0F664A;
+    }
+
+    .lvl-high {
+      fill: #993C1D;
+    }
+
+    .lvl-amber {
+      fill: #8F590F;
+    }
+
+    .lvl-neutral {
+      fill: #6F6E66;
+    }
+
+    .tx-teal {
+      fill: #085041;
+    }
+
+    .tx-rust {
+      fill: #712B13;
+    }
+
+    .tx-blue {
+      fill: #0C447C;
+    }
+
+    .tx-amber {
+      fill: #633806;
+    }
+
+    .tx-purple {
+      fill: #3C3489;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .row-d {
+        fill: #E8E6DE;
+      }
+
+      .row-ex,
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .hd {
+        fill: #444441;
+      }
+
+      .cell {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .bar-teal {
+        fill: #0F6E56;
+      }
+
+      .bar-rust {
+        fill: #993C1D;
+      }
+
+      .bar-blue {
+        fill: #185FA5;
+      }
+
+      .bar-amber {
+        fill: #854F0B;
+      }
+
+      .bar-purple {
+        fill: #534AB7;
+      }
+
+      .lvl-low {
+        fill: #0F6E56;
+      }
+
+      .lvl-high {
+        fill: #993C1D;
+      }
+
+      .lvl-amber {
+        fill: #854F0B;
+      }
+
+      .lvl-neutral {
+        fill: #444441;
+      }
+
+      .tx-teal {
+        fill: #9FE1CB;
+      }
+
+      .tx-rust {
+        fill: #F5BFB1;
+      }
+
+      .tx-blue {
+        fill: #B6D5F3;
+      }
+
+      .tx-amber {
+        fill: #FAC775;
+      }
+
+      .tx-purple {
+        fill: #CECBF6;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">라이브 리전 — 종류와 사용 시점</text>
+  <text class="caption" x="40" y="50">동적으로 변경되는 콘텐츠를 스크린리더에 알리는 메커니즘</text>
+
+  <!-- 헤더 -->
+  <g transform="translate(40, 76)">
+    <rect class="hd" x="0" y="0" width="200" height="30" rx="2" />
+    <text class="row-h" x="14" y="20">속성 / 역할</text>
+    <rect class="hd" x="206" y="0" width="80" height="30" rx="2" />
+    <text class="row-h" x="246" y="20" text-anchor="middle">긴급도</text>
+    <rect class="hd" x="292" y="0" width="468" height="30" rx="2" />
+    <text class="row-h" x="306" y="20">사용 시점</text>
+  </g>
+
+  <!-- Row 1: polite -->
+  <g transform="translate(40, 112)">
+    <rect class="cell" x="0" y="0" width="200" height="44" rx="2" stroke-width="0.5" />
+    <rect class="bar-teal" x="0" y="0" width="4" height="44" />
+    <text class="row-ex tx-teal" x="14" y="18">aria-live="polite"</text>
+    <text class="row-d" x="14" y="34">정중한 알림</text>
+
+    <rect class="lvl-low" x="206" y="0" width="80" height="44" rx="2" />
+    <text class="lvl-l" x="246" y="27" text-anchor="middle">낮음</text>
+
+    <rect class="cell" x="292" y="0" width="468" height="44" rx="2" stroke-width="0.5" />
+    <text class="row-d" x="306" y="18">장바구니 업데이트 · 검색 결과 표시 · 폼 자동 저장 완료</text>
+    <text class="row-ex" x="306" y="34">사용자가 현재 읽고 있던 것을 끝낸 후 알림</text>
+  </g>
+
+  <!-- Row 2: assertive -->
+  <g transform="translate(40, 160)">
+    <rect class="cell" x="0" y="0" width="200" height="44" rx="2" stroke-width="0.5" />
+    <rect class="bar-rust" x="0" y="0" width="4" height="44" />
+    <text class="row-ex tx-rust" x="14" y="18">aria-live="assertive"</text>
+    <text class="row-d" x="14" y="34">긴급 알림</text>
+
+    <rect class="lvl-high" x="206" y="0" width="80" height="44" rx="2" />
+    <text class="lvl-l" x="246" y="27" text-anchor="middle">높음</text>
+
+    <rect class="cell" x="292" y="0" width="468" height="44" rx="2" stroke-width="0.5" />
+    <text class="row-d" x="306" y="18">세션 만료 · 결제 실패 · 시스템 에러</text>
+    <text class="row-ex" x="306" y="34">즉시 읽기를 중단하고 알림 — 남용 시 사용자 경험 저해</text>
+  </g>
+
+  <!-- Row 3: role="status" -->
+  <g transform="translate(40, 208)">
+    <rect class="cell" x="0" y="0" width="200" height="44" rx="2" stroke-width="0.5" />
+    <rect class="bar-blue" x="0" y="0" width="4" height="44" />
+    <text class="row-ex tx-blue" x="14" y="18">role="status"</text>
+    <text class="row-d" x="14" y="34">상태 (polite 등가)</text>
+
+    <rect class="lvl-low" x="206" y="0" width="80" height="44" rx="2" />
+    <text class="lvl-l" x="246" y="27" text-anchor="middle">낮음</text>
+
+    <rect class="cell" x="292" y="0" width="468" height="44" rx="2" stroke-width="0.5" />
+    <text class="row-d" x="306" y="18">검색 결과 수 · 로딩 진행률 · 입력 글자 수</text>
+    <text class="row-ex" x="306" y="34">의미가 명확한 시맨틱 — 4.1.3 충족</text>
+  </g>
+
+  <!-- Row 4: role="alert" -->
+  <g transform="translate(40, 256)">
+    <rect class="cell" x="0" y="0" width="200" height="44" rx="2" stroke-width="0.5" />
+    <rect class="bar-rust" x="0" y="0" width="4" height="44" />
+    <text class="row-ex tx-rust" x="14" y="18">role="alert"</text>
+    <text class="row-d" x="14" y="34">경고 (assertive 등가)</text>
+
+    <rect class="lvl-high" x="206" y="0" width="80" height="44" rx="2" />
+    <text class="lvl-l" x="246" y="27" text-anchor="middle">높음</text>
+
+    <rect class="cell" x="292" y="0" width="468" height="44" rx="2" stroke-width="0.5" />
+    <text class="row-d" x="306" y="18">폼 검증 에러 · 시스템 경고 · 토스트 에러</text>
+    <text class="row-ex" x="306" y="34">동적으로 추가될 때만 알림 — 페이지 로드 시 이미 있으면 무시</text>
+  </g>
+
+  <!-- Row 5: role="log" -->
+  <g transform="translate(40, 304)">
+    <rect class="cell" x="0" y="0" width="200" height="44" rx="2" stroke-width="0.5" />
+    <rect class="bar-amber" x="0" y="0" width="4" height="44" />
+    <text class="row-ex tx-amber" x="14" y="18">role="log"</text>
+    <text class="row-d" x="14" y="34">로그 · 추가 콘텐츠</text>
+
+    <rect class="lvl-amber" x="206" y="0" width="80" height="44" rx="2" />
+    <text class="lvl-l" x="246" y="27" text-anchor="middle">낮음</text>
+
+    <rect class="cell" x="292" y="0" width="468" height="44" rx="2" stroke-width="0.5" />
+    <text class="row-d" x="306" y="18">채팅 메시지 · 활동 로그 · 알림 피드</text>
+    <text class="row-ex" x="306" y="34">새 항목이 추가될 때마다 알림 (오래된 항목은 무시)</text>
+  </g>
+
+  <!-- Row 6: role="timer" -->
+  <g transform="translate(40, 352)">
+    <rect class="cell" x="0" y="0" width="200" height="44" rx="2" stroke-width="0.5" />
+    <rect class="bar-purple" x="0" y="0" width="4" height="44" />
+    <text class="row-ex tx-purple" x="14" y="18">role="timer"</text>
+    <text class="row-d" x="14" y="34">타이머</text>
+
+    <rect class="lvl-neutral" x="206" y="0" width="80" height="44" rx="2" />
+    <text class="lvl-l" x="246" y="27" text-anchor="middle">선택</text>
+
+    <rect class="cell" x="292" y="0" width="468" height="44" rx="2" stroke-width="0.5" />
+    <text class="row-d" x="306" y="18">카운트다운 · 남은 시간 · 세션 만료 안내</text>
+    <text class="row-ex" x="306" y="34">기본은 알리지 않음 — aria-live와 함께 사용</text>
+  </g>
+</svg>
