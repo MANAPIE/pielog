@@ -1,0 +1,227 @@
+<svg width="100%" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>네이티브, 하이브리드, 웹뷰 전용 아키텍처의 접근성 비교</title>
+  <desc>세 가지 모바일 아키텍처(네이티브, 네이티브 셸 안에 WebView, 웹뷰 전용)에서 접근성 품질과 주의점을 시각화</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .arch-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .layer-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .layer-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .quality {
+      font: 700 24px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .quality-l {
+      font: 600 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .note {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-inner {
+      fill: #085041;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-inner {
+      fill: #633806;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-inner {
+      fill: #0C447C;
+    }
+
+    .web-stub {
+      fill: #FFFFFF;
+      stroke: #FAEEDA;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .note {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-inner {
+        fill: #085041;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-inner {
+        fill: #633806;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-inner {
+        fill: #0C447C;
+      }
+
+      .web-stub {
+        fill: #1F1F1D;
+        stroke: #854F0B;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">모바일 아키텍처별 접근성 품질</text>
+  <text class="caption" x="40" y="50">네이티브가 최고, 웹뷰 전용은 웹 표준 준수, 하이브리드 경계가 가장 위험</text>
+
+  <!-- 1. 네이티브 -->
+  <g transform="translate(40, 80)">
+    <rect class="teal-card" x="0" y="0" width="240" height="220" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="240" height="36" rx="12" />
+    <rect class="teal-head" x="0" y="24" width="240" height="12" />
+    <text class="arch-h" x="14" y="26">네이티브</text>
+
+    <!-- 단일 레이어 -->
+    <rect class="teal-inner" x="20" y="56" width="200" height="146" rx="10" />
+    <text class="layer-h" x="120" y="98" text-anchor="middle">UIKit / SwiftUI</text>
+    <text class="layer-h" x="120" y="118" text-anchor="middle">Compose / View</text>
+    <text class="layer-d" x="120" y="148" text-anchor="middle">접근성 API 직접 사용</text>
+    <text class="layer-d" x="120" y="166" text-anchor="middle">OS와 통합 최고 수준</text>
+  </g>
+
+  <!-- 2. 하이브리드 -->
+  <g transform="translate(290, 80)">
+    <rect class="amber-card" x="0" y="0" width="240" height="220" rx="12" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="240" height="36" rx="12" />
+    <rect class="amber-head" x="0" y="24" width="240" height="12" />
+    <text class="arch-h" x="14" y="26">하이브리드</text>
+
+    <!-- 네이티브 셸 -->
+    <rect class="amber-inner" x="20" y="56" width="200" height="146" rx="10" />
+    <text class="layer-h" x="30" y="80">네이티브 셸</text>
+    <text class="layer-d" x="30" y="98">OS 접근성 API</text>
+
+    <!-- WebView 내부 -->
+    <rect class="web-stub" x="40" y="116" width="160" height="74" rx="6" stroke-width="2" stroke-dasharray="4 2" />
+    <text class="note amber-t" x="120" y="142" text-anchor="middle">WebView</text>
+    <text class="note amber-t" x="120" y="160" text-anchor="middle" font-size="11">웹 접근성 트리</text>
+    <text class="note amber-t" x="120" y="176" text-anchor="middle" font-size="11">별도 필요</text>
+  </g>
+
+  <!-- 3. 웹뷰 전용 -->
+  <g transform="translate(540, 80)">
+    <rect class="blue-card" x="0" y="0" width="220" height="220" rx="12" stroke-width="0.5" />
+    <rect class="blue-head" x="0" y="0" width="220" height="36" rx="12" />
+    <rect class="blue-head" x="0" y="24" width="220" height="12" />
+    <text class="arch-h" x="14" y="26">웹뷰 전용 (PWA 등)</text>
+
+    <!-- 단일 WebView -->
+    <rect class="blue-inner" x="20" y="56" width="180" height="146" rx="10" />
+    <text class="layer-h" x="110" y="98" text-anchor="middle">WebView 전체</text>
+    <text class="layer-d" x="110" y="128" text-anchor="middle">웹 표준 그대로</text>
+    <text class="layer-d" x="110" y="146" text-anchor="middle">시맨틱 HTML + ARIA</text>
+    <text class="layer-d" x="110" y="170" text-anchor="middle">OS 통합 제한적</text>
+  </g>
+
+  <!-- 품질 행 -->
+  <g transform="translate(40, 316)">
+    <text class="note" x="0" y="20">접근성 품질</text>
+    <rect class="teal-head" x="110" y="0" width="170" height="38" rx="6" />
+    <text class="quality" x="120" y="27">★★★★★</text>
+    <text class="quality-l" x="270" y="24" text-anchor="end">최상</text>
+
+    <rect class="amber-head" x="290" y="0" width="200" height="38" rx="6" />
+    <text class="quality" x="300" y="27">★★★</text>
+    <text class="quality-l" x="480" y="24" text-anchor="end">경계 주의</text>
+
+    <rect class="blue-head" x="500" y="0" width="220" height="38" rx="6" />
+    <text class="quality" x="510" y="27">★★★★</text>
+    <text class="quality-l" x="710" y="24" text-anchor="end">웹 수준</text>
+  </g>
+
+  <text class="caption" x="40" y="380">하이브리드의 함정은 네이티브-WebView 전환 시점입니다. 모달이 WebView 안에서 열리는데 포커스는 네이티브에 남는 등 포커스 유실이
+    빈번합니다.</text>
+  <text class="caption" x="40" y="398">WebView에서 네이티브로 결과를 보낼 때 UIAccessibility.post 또는 AccessibilityManager로 명시적 알림이
+    필요합니다.</text>
+</svg>

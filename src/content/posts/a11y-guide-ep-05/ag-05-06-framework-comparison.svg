@@ -1,0 +1,210 @@
+<svg width="100%" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>React, Vue, Flutter 프레임워크별 접근성 패턴 비교</title>
+  <desc>세 프레임워크의 린트/도구, 헤드리스 라이브러리, 시맨틱 API, 모달 패턴을 가로 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .fr-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .row-h {
+      font: 600 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .row-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .mono {
+      font: 400 11px/1.4 'JetBrains Mono', monospace;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .neutral-card {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .beige-head {
+      fill: #6F6E66;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .row-d {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .neutral-card {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .beige-head {
+        fill: #444441;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">프레임워크별 접근성 도구·패턴</text>
+  <text class="caption" x="40" y="50">린트 → 헤드리스 라이브러리 → 시맨틱 API → 모달 4단계 비교</text>
+
+  <!-- 컬럼 헤더 -->
+  <g transform="translate(40, 76)">
+    <rect class="beige-head" x="0" y="0" width="200" height="36" rx="6" />
+    <text class="fr-h" x="100" y="22" text-anchor="middle">영역</text>
+    <rect class="blue-head" x="206" y="0" width="180" height="36" rx="6" />
+    <text class="fr-h" x="296" y="22" text-anchor="middle">React</text>
+    <rect class="teal-head" x="392" y="0" width="180" height="36" rx="6" />
+    <text class="fr-h" x="482" y="22" text-anchor="middle">Vue</text>
+    <rect class="purple-head" x="578" y="0" width="182" height="36" rx="6" />
+    <text class="fr-h" x="669" y="22" text-anchor="middle">Flutter</text>
+  </g>
+
+  <!-- Row 1: 린트 -->
+  <g transform="translate(40, 124)">
+    <rect class="beige-head" x="0" y="0" width="200" height="68" rx="6" />
+    <text class="row-h" x="14" y="28">린트 / 정적 분석</text>
+    <text class="row-h" x="14" y="48" opacity="0.7" font-size="11">컴파일 시점 검출</text>
+
+    <rect class="neutral-card" x="206" y="0" width="180" height="68" rx="6" stroke-width="0.5" />
+    <text class="mono blue-t" x="220" y="20">eslint-plugin-jsx-a11y</text>
+    <text class="row-d" x="220" y="38" font-size="11">click-events-have-</text>
+    <text class="row-d" x="220" y="52" font-size="11">key-events 등</text>
+
+    <rect class="neutral-card" x="392" y="0" width="180" height="68" rx="6" stroke-width="0.5" />
+    <text class="mono teal-t" x="406" y="20">eslint-plugin-vuejs-a11y</text>
+    <text class="row-d" x="406" y="38" font-size="11">img-redundant-alt 등</text>
+
+    <rect class="neutral-card" x="578" y="0" width="182" height="68" rx="6" stroke-width="0.5" />
+    <text class="mono purple-t" x="592" y="20">dart analyze</text>
+    <text class="row-d" x="592" y="38" font-size="11">Semantics 누락은</text>
+    <text class="row-d" x="592" y="52" font-size="11">런타임 테스트로</text>
+  </g>
+
+  <!-- Row 2: 헤드리스 라이브러리 -->
+  <g transform="translate(40, 204)">
+    <rect class="beige-head" x="0" y="0" width="200" height="68" rx="6" />
+    <text class="row-h" x="14" y="28">헤드리스 라이브러리</text>
+    <text class="row-h" x="14" y="48" opacity="0.7" font-size="11">접근성 내장 컴포넌트</text>
+
+    <rect class="neutral-card" x="206" y="0" width="180" height="68" rx="6" stroke-width="0.5" />
+    <text class="row-d" x="220" y="20">· React Aria (Adobe)</text>
+    <text class="row-d" x="220" y="38">· Radix UI</text>
+    <text class="row-d" x="220" y="56">· Headless UI</text>
+
+    <rect class="neutral-card" x="392" y="0" width="180" height="68" rx="6" stroke-width="0.5" />
+    <text class="row-d" x="406" y="20">· Headless UI Vue</text>
+    <text class="row-d" x="406" y="38">· Ark UI (멀티 FW)</text>
+    <text class="row-d" x="406" y="56">· Reka UI</text>
+
+    <rect class="neutral-card" x="578" y="0" width="182" height="68" rx="6" stroke-width="0.5" />
+    <text class="row-d" x="592" y="20">· Material 위젯 내장</text>
+    <text class="row-d" x="592" y="38">· Cupertino 위젯 내장</text>
+    <text class="row-d" x="592" y="56" font-size="11">표준 위젯이 대부분 처리</text>
+  </g>
+
+  <!-- Row 3: 시맨틱 API -->
+  <g transform="translate(40, 284)">
+    <rect class="beige-head" x="0" y="0" width="200" height="56" rx="6" />
+    <text class="row-h" x="14" y="24">시맨틱 API</text>
+    <text class="row-h" x="14" y="44" opacity="0.7" font-size="11">접근 가능한 이름 부여</text>
+
+    <rect class="neutral-card" x="206" y="0" width="180" height="56" rx="6" stroke-width="0.5" />
+    <text class="mono blue-t" x="220" y="22">aria-label="..."</text>
+    <text class="row-d" x="220" y="40" font-size="11">JSX 속성으로 직접 전달</text>
+
+    <rect class="neutral-card" x="392" y="0" width="180" height="56" rx="6" stroke-width="0.5" />
+    <text class="mono teal-t" x="406" y="22">:aria-label="..."</text>
+    <text class="row-d" x="406" y="40" font-size="11">동적 바인딩 지원</text>
+
+    <rect class="neutral-card" x="578" y="0" width="182" height="56" rx="6" stroke-width="0.5" />
+    <text class="mono purple-t" x="592" y="22">Semantics(label: ...)</text>
+    <text class="row-d" x="592" y="40" font-size="11">위젯 트리에서 정의</text>
+  </g>
+
+  <!-- Row 4: 모달 -->
+  <g transform="translate(40, 352)">
+    <rect class="beige-head" x="0" y="0" width="200" height="56" rx="6" />
+    <text class="row-h" x="14" y="24">모달 / 다이얼로그</text>
+    <text class="row-h" x="14" y="44" opacity="0.7" font-size="11">포커스 트랩 + ESC</text>
+
+    <rect class="neutral-card" x="206" y="0" width="180" height="56" rx="6" stroke-width="0.5" />
+    <text class="row-d" x="220" y="22">Radix Dialog</text>
+    <text class="row-d" x="220" y="40" font-size="11">트랩·ESC·focus 자동</text>
+
+    <rect class="neutral-card" x="392" y="0" width="180" height="56" rx="6" stroke-width="0.5" />
+    <text class="row-d" x="406" y="22">Headless UI Dialog</text>
+    <text class="row-d" x="406" y="40" font-size="11">트랩·ESC 자동</text>
+
+    <rect class="neutral-card" x="578" y="0" width="182" height="56" rx="6" stroke-width="0.5" />
+    <text class="row-d" x="592" y="22">showDialog / AlertDialog</text>
+    <text class="row-d" x="592" y="40" font-size="11">플랫폼 표준 동작</text>
+  </g>
+</svg>

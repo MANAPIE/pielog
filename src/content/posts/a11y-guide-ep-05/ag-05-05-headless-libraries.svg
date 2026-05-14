@@ -1,0 +1,268 @@
+<svg width="100%" viewBox="0 0 800 410" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>헤드리스 UI 라이브러리 선택 가이드</title>
+  <desc>React Aria, Radix UI, Headless UI, Ark UI 네 가지 헤드리스 라이브러리의 강점과 특징을 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .lib-h {
+      font: 700 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .lib-by {
+      font: 400 11px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .feat-h {
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      fill: #6F6E66;
+    }
+
+    .feat-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .star {
+      font: 700 12px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-star {
+      fill: #185FA5;
+    }
+
+    .purple-card {
+      fill: #EEEDFE;
+      stroke: #534AB7;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-star {
+      fill: #534AB7;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-star {
+      fill: #0F664A;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-star {
+      fill: #8F590F;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .feat-d {
+        fill: #E8E6DE;
+      }
+
+      .feat-h,
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-star {
+        fill: #5DA0E1;
+      }
+
+      .purple-card {
+        fill: #26215C;
+        stroke: #534AB7;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-star {
+        fill: #AFA9EC;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-star {
+        fill: #5DCAA5;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-star {
+        fill: #FAC775;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">헤드리스 UI 라이브러리 — 선택 가이드</text>
+  <text class="caption" x="40" y="50">접근성이 이미 내장된 컴포넌트를 받아 와서 스타일만 입히는 방식</text>
+
+  <!-- React Aria -->
+  <g transform="translate(40, 76)">
+    <rect class="blue-card" x="0" y="0" width="170" height="315" rx="12" stroke-width="0.5" />
+    <rect class="blue-head" x="0" y="0" width="170" height="56" rx="12" />
+    <rect class="blue-head" x="0" y="44" width="170" height="12" />
+    <text class="lib-h" x="14" y="25">React Aria</text>
+    <text class="lib-by" x="14" y="43">by Adobe</text>
+
+    <text class="feat-h" x="14" y="78">프레임워크</text>
+    <text class="feat-d" x="14" y="94">React 전용</text>
+
+    <text class="feat-h" x="14" y="118">접근성 수준</text>
+    <text class="star blue-star" x="14" y="134">★★★★★</text>
+
+    <text class="feat-h" x="14" y="158">강점</text>
+    <text class="feat-d" x="14" y="174">· Adobe 디자인팀</text>
+    <text class="feat-d" x="14" y="190">· i18n + RTL 자동</text>
+    <text class="feat-d" x="14" y="206">· 마우스/터치/키보드</text>
+    <text class="feat-d" x="14" y="222"> 통합 처리</text>
+
+    <text class="feat-h" x="14" y="246">스타일</text>
+    <text class="feat-d" x="14" y="262">전혀 없음 (Hook 기반)</text>
+
+    <text class="feat-h" x="14" y="282">추천</text>
+    <text class="feat-d" x="14" y="298" font-size="11">완전 커스텀 디자인</text>
+  </g>
+
+  <!-- Radix UI -->
+  <g transform="translate(225, 76)">
+    <rect class="purple-card" x="0" y="0" width="170" height="315" rx="12" stroke-width="0.5" />
+    <rect class="purple-head" x="0" y="0" width="170" height="56" rx="12" />
+    <rect class="purple-head" x="0" y="44" width="170" height="12" />
+    <text class="lib-h" x="14" y="25">Radix UI</text>
+    <text class="lib-by" x="14" y="43">by WorkOS</text>
+
+    <text class="feat-h" x="14" y="78">프레임워크</text>
+    <text class="feat-d" x="14" y="94">React 전용</text>
+
+    <text class="feat-h" x="14" y="118">접근성 수준</text>
+    <text class="star purple-star" x="14" y="134">★★★★★</text>
+
+    <text class="feat-h" x="14" y="158">강점</text>
+    <text class="feat-d" x="14" y="174">· asChild 패턴</text>
+    <text class="feat-d" x="14" y="190">· shadcn/ui 기반</text>
+    <text class="feat-d" x="14" y="206">· 컴포넌트 단위 설치</text>
+
+    <text class="feat-h" x="14" y="230">스타일</text>
+    <text class="feat-d" x="14" y="246">기본 없음 (Primitives)</text>
+    <text class="feat-d" x="14" y="262">Themes 별도 제공</text>
+
+    <text class="feat-h" x="14" y="282">추천</text>
+    <text class="feat-d" x="14" y="298" font-size="11">shadcn/ui 사용 시</text>
+  </g>
+
+  <!-- Headless UI -->
+  <g transform="translate(410, 76)">
+    <rect class="teal-card" x="0" y="0" width="170" height="315" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="170" height="56" rx="12" />
+    <rect class="teal-head" x="0" y="44" width="170" height="12" />
+    <text class="lib-h" x="14" y="25">Headless UI</text>
+    <text class="lib-by" x="14" y="43">by Tailwind Labs</text>
+
+    <text class="feat-h" x="14" y="78">프레임워크</text>
+    <text class="feat-d" x="14" y="94">React + Vue</text>
+
+    <text class="feat-h" x="14" y="118">접근성 수준</text>
+    <text class="star teal-star" x="14" y="134">★★★★</text>
+
+    <text class="feat-h" x="14" y="158">강점</text>
+    <text class="feat-d" x="14" y="174">· Tailwind와 통합</text>
+    <text class="feat-d" x="14" y="190">· 학습 곡선 낮음</text>
+    <text class="feat-d" x="14" y="206">· 가벼움</text>
+
+    <text class="feat-h" x="14" y="230">컴포넌트 수</text>
+    <text class="feat-d" x="14" y="246">제한적 (10여 개)</text>
+
+    <text class="feat-h" x="14" y="270">추천</text>
+    <text class="feat-d" x="14" y="286" font-size="11">Tailwind 프로젝트</text>
+    <text class="feat-d" x="14" y="300" font-size="11">기본 패턴만 필요</text>
+  </g>
+
+  <!-- Ark UI -->
+  <g transform="translate(595, 76)">
+    <rect class="amber-card" x="0" y="0" width="170" height="315" rx="12" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="170" height="56" rx="12" />
+    <rect class="amber-head" x="0" y="44" width="170" height="12" />
+    <text class="lib-h" x="14" y="25">Ark UI</text>
+    <text class="lib-by" x="14" y="43">by Chakra UI</text>
+
+    <text class="feat-h" x="14" y="78">프레임워크</text>
+    <text class="feat-d" x="14" y="94">React + Vue + Solid</text>
+
+    <text class="feat-h" x="14" y="118">접근성 수준</text>
+    <text class="star amber-star" x="14" y="134">★★★★★</text>
+
+    <text class="feat-h" x="14" y="158">강점</text>
+    <text class="feat-d" x="14" y="174">· State Machine 기반</text>
+    <text class="feat-d" x="14" y="190">· 멀티 프레임워크</text>
+    <text class="feat-d" x="14" y="206">· Park UI와 연계</text>
+
+    <text class="feat-h" x="14" y="230">스타일</text>
+    <text class="feat-d" x="14" y="246">기본 없음 (헤드리스)</text>
+
+    <text class="feat-h" x="14" y="270">추천</text>
+    <text class="feat-d" x="14" y="286" font-size="11">멀티 프레임워크</text>
+    <text class="feat-d" x="14" y="300" font-size="11">디자인 시스템 구축</text>
+  </g>
+</svg>

@@ -1,0 +1,209 @@
+<svg width="100%" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>iOS와 Android 접근성 API 비교</title>
+  <desc>iOS SwiftUI의 accessibilityLabel·Hint·Value 등과 Android Jetpack Compose의
+    semantics·contentDescription·stateDescription을 매핑하여 비교</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .plat-h {
+      font: 600 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .plat-d {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .row-h {
+      font: 600 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .row-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #5F5E5A;
+    }
+
+    .mono {
+      font: 400 11px/1.4 'JetBrains Mono', monospace;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .neutral-card {
+      fill: #FFFFFF;
+      stroke: #D3D1C7;
+    }
+
+    .blue-card {
+      fill: #E6F1FB;
+      stroke: #185FA5;
+    }
+
+    .blue-head {
+      fill: #185FA5;
+    }
+
+    .blue-t {
+      fill: #0C447C;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .row-h {
+        fill: #E8E6DE;
+      }
+
+      .row-d {
+        fill: #B4B2A9;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .neutral-card {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .blue-card {
+        fill: #0C2742;
+        stroke: #185FA5;
+      }
+
+      .blue-head {
+        fill: #185FA5;
+      }
+
+      .blue-t {
+        fill: #B6D5F3;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+    }
+  </style>
+
+  <g transform="translate(-20, 0)">
+    <text class="title" x="40" y="32">iOS vs Android — 접근성 API 매핑</text>
+    <text class="caption" x="40" y="50">웹의 ARIA가 모바일 네이티브에서는 어떤 형태가 되는가</text>
+
+    <!-- 컬럼 헤더 -->
+    <g transform="translate(40, 76)">
+      <rect class="blue-head" x="240" y="0" width="260" height="36" rx="6" />
+      <text class="plat-h" x="254" y="22">iOS — SwiftUI</text>
+      <text class="plat-d" x="490" y="22" text-anchor="end">VoiceOver</text>
+      <rect class="teal-head" x="510" y="0" width="250" height="36" rx="6" />
+      <text class="plat-h" x="524" y="22">Android — Compose</text>
+      <text class="plat-d" x="750" y="22" text-anchor="end">TalkBack</text>
+    </g>
+
+    <!-- Row 1: 레이블 -->
+    <g transform="translate(40, 124)">
+      <rect class="neutral-card" x="0" y="0" width="220" height="56" rx="6" stroke-width="0.5" />
+      <text class="row-h" x="14" y="22">접근 가능한 이름</text>
+      <text class="row-d" x="14" y="40">웹 aria-label 대응</text>
+
+      <rect class="blue-card" x="240" y="0" width="260" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono blue-t" x="254" y="22">.accessibilityLabel("장바구니")</text>
+      <text class="row-d blue-t" x="254" y="40">Image, Button 등에 적용</text>
+
+      <rect class="teal-card" x="510" y="0" width="250" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono teal-t" x="524" y="22">contentDescription = "장바구니"</text>
+      <text class="row-d teal-t" x="524" y="40">Icon 등에 적용</text>
+    </g>
+
+    <!-- Row 2: 힌트 -->
+    <g transform="translate(40, 192)">
+      <rect class="neutral-card" x="0" y="0" width="220" height="56" rx="6" stroke-width="0.5" />
+      <text class="row-h" x="14" y="22">힌트 / 추가 설명</text>
+      <text class="row-d" x="14" y="40">웹 aria-describedby 대응</text>
+
+      <rect class="blue-card" x="240" y="0" width="260" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono blue-t" x="254" y="22">.accessibilityHint("...상품 제거")</text>
+      <text class="row-d blue-t" x="254" y="40">VoiceOver 이름 후 추가 설명</text>
+
+      <rect class="teal-card" x="510" y="0" width="250" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono teal-t" x="524" y="22">semantics { onClick(label = ...)}</text>
+      <text class="row-d teal-t" x="524" y="40">액션 레이블로 힌트 제공</text>
+    </g>
+
+    <!-- Row 3: 상태/값 -->
+    <g transform="translate(40, 260)">
+      <rect class="neutral-card" x="0" y="0" width="220" height="56" rx="6" stroke-width="0.5" />
+      <text class="row-h" x="14" y="22">상태 / 값</text>
+      <text class="row-d" x="14" y="40">웹 aria-pressed, aria-checked</text>
+
+      <rect class="blue-card" x="240" y="0" width="260" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono blue-t" x="254" y="22">.accessibilityValue("50퍼센트")</text>
+      <text class="row-d blue-t" x="254" y="40">슬라이더 등 값 표현</text>
+
+      <rect class="teal-card" x="510" y="0" width="250" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono teal-t" x="524" y="22">stateDescription = "활성화됨"</text>
+      <text class="row-d teal-t" x="524" y="40">Switch, ToggleButton 등</text>
+    </g>
+
+    <!-- Row 4: 그룹화 -->
+    <g transform="translate(40, 328)">
+      <rect class="neutral-card" x="0" y="0" width="220" height="56" rx="6" stroke-width="0.5" />
+      <text class="row-h" x="14" y="22">요소 그룹화</text>
+      <text class="row-d" x="14" y="40">한 번에 읽기</text>
+
+      <rect class="blue-card" x="240" y="0" width="260" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono blue-t" x="254" y="22">.accessibilityElement(.combine)</text>
+      <text class="row-d blue-t" x="254" y="40">VStack 자식들을 하나로 묶음</text>
+
+      <rect class="teal-card" x="510" y="0" width="250" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono teal-t" x="524" y="22">semantics(mergeDescendants=true)</text>
+      <text class="row-d teal-t" x="524" y="40">Row/Column 자식들 병합</text>
+    </g>
+
+    <!-- Row 5: 알림 -->
+    <g transform="translate(40, 396)">
+      <rect class="neutral-card" x="0" y="0" width="220" height="56" rx="6" stroke-width="0.5" />
+      <text class="row-h" x="14" y="22">동적 알림</text>
+      <text class="row-d" x="14" y="40">웹 aria-live 대응</text>
+
+      <rect class="blue-card" x="240" y="0" width="260" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono blue-t" x="254" y="22">UIAccessibility.post(.announcement)</text>
+      <text class="row-d blue-t" x="254" y="40">전역 알림 (앱 어디서나)</text>
+
+      <rect class="teal-card" x="510" y="0" width="250" height="56" rx="6" stroke-width="0.5" />
+      <text class="mono teal-t" x="524" y="22">AccessibilityManager.send(...)</text>
+      <text class="row-d teal-t" x="524" y="40">TYPE_ANNOUNCEMENT 이벤트</text>
+    </g>
+  </g>
+</svg>
