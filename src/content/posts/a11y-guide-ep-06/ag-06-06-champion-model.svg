@@ -1,0 +1,251 @@
+<svg width="100%" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>접근성 챔피언 모델 — 조직 구조</title>
+  <desc>전사 접근성 리드 아래 기획, 디자인, 개발, QA 각 팀의 챔피언이 있는 분산 모델 조직도</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .lead-h {
+      font: 700 14px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .lead-d {
+      font: 400 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .team-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .item {
+      font: 400 11px/1.5 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-dasharray: 4 2;
+    }
+
+    .baseline {
+      stroke: #6F6E66;
+      stroke-width: 1;
+      stroke-dasharray: 2 2;
+    }
+
+    .lead-bg {
+      fill: #185FA5;
+    }
+
+    .teal-card {
+      fill: #FFFFFF;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .purple-card {
+      fill: #FFFFFF;
+      stroke: #534AB7;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    .purple-t {
+      fill: #3C3489;
+    }
+
+    .amber-card {
+      fill: #FFFFFF;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .rust-card {
+      fill: #FFFFFF;
+      stroke: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .baseline {
+        stroke: #B4B2A9;
+      }
+
+      .lead-bg {
+        fill: #185FA5;
+      }
+
+      .teal-card {
+        fill: #1F1F1D;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .purple-card {
+        fill: #1F1F1D;
+        stroke: #534AB7;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .purple-t {
+        fill: #CECBF6;
+      }
+
+      .amber-card {
+        fill: #1F1F1D;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .rust-card {
+        fill: #1F1F1D;
+        stroke: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-t {
+        fill: #F5BFB1;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">접근성 챔피언 모델</text>
+  <text class="caption" x="40" y="50">중앙 리드 + 팀별 챔피언 분산 구조. 모든 팀이 접근성 책임을 분담합니다</text>
+
+  <!-- 접근성 리드 -->
+  <g transform="translate(240, 76)">
+    <rect class="lead-bg" x="0" y="0" width="320" height="100" rx="12" />
+    <text class="lead-h" x="20" y="28">접근성 리드 (전사)</text>
+    <text class="lead-d" x="20" y="48">· 표준 · 정책 수립</text>
+    <text class="lead-d" x="20" y="64">· 교육 프로그램 운영</text>
+    <text class="lead-d" x="20" y="80">· 외부 심사 대응</text>
+  </g>
+
+  <!-- 연결선 (4팀 중앙으로 분기) -->
+  <line x1="115" y1="220" x2="115" y2="240" class="arr" />
+  <line x1="305" y1="220" x2="305" y2="240" class="arr" />
+  <line x1="495" y1="220" x2="495" y2="240" class="arr" />
+  <line x1="685" y1="220" x2="685" y2="240" class="arr" />
+  <line x1="115" y1="220" x2="685" y2="220" class="baseline" />
+  <line x1="400" y1="176" x2="400" y2="220" class="arr" />
+
+  <!-- 기획팀 -->
+  <g transform="translate(30, 240)">
+    <rect class="teal-card" x="0" y="0" width="170" height="180" rx="10" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="170" height="36" rx="10" />
+    <rect class="teal-head" x="0" y="24" width="170" height="12" />
+    <text class="team-h" x="14" y="22">기획팀 챔피언</text>
+
+    <text class="item teal-t" x="14" y="60">· 요구사항 명세에 접근성 포함</text>
+    <text class="item teal-t" x="14" y="85">· 콘텐츠 가이드라인 적용</text>
+    <text class="item teal-t" x="14" y="110">· 인수 조건 작성</text>
+    <text class="item teal-t" x="14" y="135">· 이해관계자 설득</text>
+  </g>
+
+  <!-- 디자인팀 -->
+  <g transform="translate(220, 240)">
+    <rect class="purple-card" x="0" y="0" width="170" height="180" rx="10" stroke-width="0.5" />
+    <rect class="purple-head" x="0" y="0" width="170" height="36" rx="10" />
+    <rect class="purple-head" x="0" y="24" width="170" height="12" />
+    <text class="team-h" x="14" y="22">디자인팀 챔피언</text>
+
+    <text class="item purple-t" x="14" y="60">· 디자인 시스템 접근성 유지</text>
+    <text class="item purple-t" x="14" y="85">· 어노테이션 프로세스 운영</text>
+    <text class="item purple-t" x="14" y="110">· 컬러 토큰 검증</text>
+    <text class="item purple-t" x="14" y="135">· 핸드오프 표준</text>
+  </g>
+
+  <!-- 개발팀 -->
+  <g transform="translate(410, 240)">
+    <rect class="amber-card" x="0" y="0" width="170" height="180" rx="10" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="170" height="36" rx="10" />
+    <rect class="amber-head" x="0" y="24" width="170" height="12" />
+    <text class="team-h" x="14" y="22">개발팀 챔피언</text>
+
+    <text class="item amber-t" x="14" y="60">· 코드 리뷰 시 접근성 점검</text>
+    <text class="item amber-t" x="14" y="85">· 자동화 테스트 운영</text>
+    <text class="item amber-t" x="14" y="110">· 헤드리스 라이브러리 도입 결정</text>
+    <text class="item amber-t" x="14" y="135">· 린트 규칙 관리</text>
+  </g>
+
+  <!-- QA팀 -->
+  <g transform="translate(600, 240)">
+    <rect class="rust-card" x="0" y="0" width="170" height="180" rx="10" stroke-width="0.5" />
+    <rect class="rust-head" x="0" y="0" width="170" height="36" rx="10" />
+    <rect class="rust-head" x="0" y="24" width="170" height="12" />
+    <text class="team-h" x="14" y="22">QA팀 챔피언</text>
+
+    <text class="item rust-t" x="14" y="60">· 보조기기 테스트 수행</text>
+    <text class="item rust-t" x="14" y="85">· 이슈 분류·추적</text>
+    <text class="item rust-t" x="14" y="110">· 우선순위 평가</text>
+    <text class="item rust-t" x="14" y="135">· 회귀 방지</text>
+    <text class="item rust-t" x="14" y="160">· 사용자 테스트</text>
+  </g>
+</svg>

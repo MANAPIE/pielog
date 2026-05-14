@@ -1,0 +1,275 @@
+<svg width="100%" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>접근성 이슈 우선순위 계산</title>
+  <desc>심각도 × 빈도 × 영향범위 세 축으로 이슈 우선순위를 계산하는 프레임워크와 점수 예시</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .axis-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .axis-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .lvl-h {
+      font: 700 16px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .lvl-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .ex-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .ex-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .score {
+      font: 700 18px/1 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .formula {
+      font: 700 18px/1 'JetBrains Mono', monospace;
+      fill: #2C2C2A;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .formula-bg {
+      fill: #F1EFE8;
+      stroke: #6F6E66;
+    }
+
+    .lvl-chip {
+      fill: #FFFFFF;
+    }
+
+    .rust-axis {
+      fill: #993C1D;
+    }
+
+    .rust-head {
+      fill: #993C1D;
+    }
+
+    .rust-card {
+      fill: #FAECE7;
+      stroke: #993C1D;
+    }
+
+    .rust-t {
+      fill: #712B13;
+    }
+
+    .rust-t2 {
+      fill: #712B13;
+    }
+
+    .amber-axis {
+      fill: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .amber-t2 {
+      fill: #633806;
+    }
+
+    .purple-axis {
+      fill: #534AB7;
+    }
+
+    .purple-head {
+      fill: #534AB7;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .formula {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .formula-bg {
+        fill: #232624;
+        stroke: #444441;
+      }
+
+      .lvl-chip {
+        fill: #E8E6DE;
+      }
+
+      .rust-axis {
+        fill: #993C1D;
+      }
+
+      .rust-head {
+        fill: #993C1D;
+      }
+
+      .rust-card {
+        fill: #3F1A0C;
+        stroke: #993C1D;
+      }
+
+      .amber-axis {
+        fill: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .purple-axis {
+        fill: #534AB7;
+      }
+
+      .purple-head {
+        fill: #534AB7;
+      }
+
+      .rust-t2 {
+        fill: #F5BFB1;
+      }
+
+      .amber-t2 {
+        fill: #FAC775;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">접근성 이슈 우선순위 계산</text>
+  <text class="caption" x="40" y="50">발견된 이슈를 어떤 순서로 수정할지 — 세 축의 곱으로 결정</text>
+
+  <!-- 공식 -->
+  <g transform="translate(40, 76)">
+    <rect class="formula-bg" x="0" y="0" width="720" height="40" rx="8" stroke-width="0.5" />
+    <text class="formula" x="360" y="26" text-anchor="middle">우선순위 = 심각도 × 빈도 × 영향범위</text>
+  </g>
+
+  <!-- 심각도 -->
+  <g transform="translate(40, 134)">
+    <rect class="rust-axis" x="0" y="0" width="232" height="160" rx="10" />
+    <text class="axis-h" x="14" y="22">심각도 (Severity)</text>
+    <text class="axis-d" x="14" y="38">기능에 미치는 영향</text>
+
+    <g transform="translate(14, 51)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h rust-t" x="18" y="16" text-anchor="middle">4</text>
+      <text class="lvl-d" x="46" y="16">차단 — 사용 완전 불가</text>
+    </g>
+    <g transform="translate(14, 77)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h rust-t" x="18" y="16" text-anchor="middle">3</text>
+      <text class="lvl-d" x="46" y="16">심각 — 매우 어려움</text>
+    </g>
+    <g transform="translate(14, 103)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h rust-t" x="18" y="16" text-anchor="middle">2</text>
+      <text class="lvl-d" x="46" y="16">보통 — 우회 가능</text>
+    </g>
+    <g transform="translate(14, 129)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h rust-t" x="18" y="16" text-anchor="middle">1</text>
+      <text class="lvl-d" x="46" y="16">경미 — 경험 저하</text>
+    </g>
+  </g>
+
+  <!-- 빈도 -->
+  <g transform="translate(284, 134)">
+    <rect class="amber-axis" x="0" y="0" width="232" height="160" rx="10" />
+    <text class="axis-h" x="14" y="22">빈도 (Frequency)</text>
+    <text class="axis-d" x="14" y="38">얼마나 자주 마주치는가</text>
+
+    <g transform="translate(14, 51)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h amber-t" x="18" y="16" text-anchor="middle">3</text>
+      <text class="lvl-d" x="46" y="16">높음 — 핵심 플로우</text>
+    </g>
+    <g transform="translate(14, 77)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h amber-t" x="18" y="16" text-anchor="middle">2</text>
+      <text class="lvl-d" x="46" y="16">보통 — 주요 기능</text>
+    </g>
+    <g transform="translate(14, 103)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h amber-t" x="18" y="16" text-anchor="middle">1</text>
+      <text class="lvl-d" x="46" y="16">낮음 — 부가 기능</text>
+    </g>
+  </g>
+
+  <!-- 영향범위 -->
+  <g transform="translate(528, 134)">
+    <rect class="purple-axis" x="0" y="0" width="232" height="160" rx="10" />
+    <text class="axis-h" x="14" y="22">영향범위 (Impact)</text>
+    <text class="axis-d" x="14" y="38">몇 명에게 영향을 주는가</text>
+
+    <g transform="translate(14, 51)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h purple-head" x="18" y="16" text-anchor="middle">3</text>
+      <text class="lvl-d" x="46" y="16">넓음 — 다수 장애 유형</text>
+    </g>
+    <g transform="translate(14, 77)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h purple-head" x="18" y="16" text-anchor="middle">2</text>
+      <text class="lvl-d" x="46" y="16">보통 — 특정 유형</text>
+    </g>
+    <g transform="translate(14, 102)">
+      <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
+      <text class="lvl-h purple-head" x="18" y="16" text-anchor="middle">1</text>
+      <text class="lvl-d" x="46" y="16">좁음 — 매우 특수 상황</text>
+    </g>
+  </g>
+
+  <!-- 예시 1: 즉시 수정 -->
+  <g transform="translate(40, 312)">
+    <rect class="rust-card" x="0" y="0" width="360" height="44" rx="8" stroke-width="0.5" />
+    <text class="ex-h rust-t2" x="14" y="19">키보드로 메인 메뉴 접근 불가</text>
+    <text class="ex-d rust-t2" x="14" y="34">심각도 4 × 빈도 3 × 범위 3 =</text>
+    <text class="score rust-t2" x="250" y="30">36</text>
+    <text class="ex-d rust-t2" x="282" y="34">→ 즉시 수정</text>
+  </g>
+
+  <!-- 예시 2: 낮은 우선 -->
+  <g transform="translate(420, 312)">
+    <rect class="amber-card" x="0" y="0" width="340" height="44" rx="8" stroke-width="0.5" />
+    <text class="ex-h amber-t2" x="14" y="19">장식 이미지 alt 누락</text>
+    <text class="ex-d amber-t2" x="14" y="34">심각도 1 × 빈도 2 × 범위 1 =</text>
+    <text class="score amber-t2" x="256" y="30">2</text>
+    <text class="ex-d amber-t2" x="277" y="34">→ 백로그</text>
+  </g>
+</svg>

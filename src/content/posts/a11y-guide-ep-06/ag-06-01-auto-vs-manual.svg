@@ -1,0 +1,142 @@
+<svg width="100%" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>접근성 이슈 발견 범위 — 자동화 도구의 한계</title>
+  <desc>전체 접근성 이슈 중 자동화 도구가 발견 가능한 비율은 30~40%, 나머지 60~70%는 수동 테스트와 보조기기 실사용 테스트가 필요함을 시각화</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .col-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .stat {
+      font: 700 36px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .stat-l {
+      font: 500 12px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .item-h {
+      font: 600 12px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .item-d {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .teal-card {
+      fill: #E1F5EE;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .amber-card {
+      fill: #FAEEDA;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .title {
+        fill: #E8E6DE;
+      }
+
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .teal-card {
+        fill: #04342C;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .amber-card {
+        fill: #412402;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+    }
+  </style>
+
+  <text class="title" x="40" y="32">자동화 vs 수동 — 발견 가능 이슈 범위</text>
+  <text class="caption" x="40" y="50">자동화 도구만 통과해도 접근성 문제의 60~70%는 남아 있습니다</text>
+
+  <!-- 자동 발견 -->
+  <g transform="translate(40, 76)">
+    <rect class="teal-card" x="0" y="0" width="280" height="260" rx="12" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="280" height="36" rx="12" />
+    <rect class="teal-head" x="0" y="24" width="280" height="12" />
+    <text class="col-h" x="14" y="24">자동화 도구 발견 가능</text>
+
+    <rect class="teal-head" x="40" y="56" width="200" height="80" rx="8" />
+    <text class="stat" x="140" y="100" text-anchor="middle">30~40%</text>
+    <text class="stat-l" x="140" y="124" text-anchor="middle">전체 접근성 이슈 중</text>
+
+    <text class="item-h teal-t" x="20" y="160">검출 가능</text>
+    <text class="item-d teal-t" x="20" y="180">· alt 누락 / 비어 있는 button</text>
+    <text class="item-d teal-t" x="20" y="196">· label 미연결</text>
+    <text class="item-d teal-t" x="20" y="212">· 대비비 (단순 색 조합)</text>
+    <text class="item-d teal-t" x="20" y="228">· 헤딩 계층 비정상</text>
+    <text class="item-d teal-t" x="20" y="244">· ARIA 문법 오류</text>
+  </g>
+
+  <!-- 수동 필요 -->
+  <g transform="translate(340, 76)">
+    <rect class="amber-card" x="0" y="0" width="420" height="260" rx="12" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="420" height="36" rx="12" />
+    <rect class="amber-head" x="0" y="24" width="420" height="12" />
+    <text class="col-h" x="14" y="24">수동·실사용 테스트 필요</text>
+
+    <rect class="amber-head" x="40" y="56" width="340" height="80" rx="8" />
+    <text class="stat" x="210" y="100" text-anchor="middle">60~70%</text>
+    <text class="stat-l" x="210" y="124" text-anchor="middle">"의미"와 "흐름"의 문제</text>
+
+    <text class="item-h amber-t" x="20" y="160">검출 불가</text>
+    <text class="item-d amber-t" x="20" y="180">· alt가 적절한 내용을 담고 있는가</text>
+    <text class="item-d amber-t" x="20" y="196">· 키보드 순서가 논리적인가</text>
+    <text class="item-d amber-t" x="20" y="212">· 스크린리더로 흐름 이해 가능한가</text>
+    <text class="item-d amber-t" x="20" y="228">· 콘텐츠 표현이 차별적이지 않은가</text>
+    <text class="item-d amber-t" x="20" y="244">· 인지 부하가 과도하지 않은가</text>
+  </g>
+</svg>

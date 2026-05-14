@@ -1,0 +1,216 @@
+<svg width="100%" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>한국 웹 접근성 WA 마크 인증 프로세스 6단계</title>
+  <desc>WA 인증 신청부터 사전 검토, 전문가 심사, 결과 통보, 인증서 발급, 사후 관리까지 6단계 흐름도</desc>
+  <style>
+    .title {
+      font: 600 16px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .step-h {
+      font: 600 13px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .step-num {
+      font: 700 14px/1 'Pretendard Variable', system-ui, sans-serif;
+      fill: #FFFFFF;
+    }
+
+    .item-d {
+      font: 400 11px/1.5 'Pretendard Variable', system-ui, sans-serif;
+      fill: #2C2C2A;
+    }
+
+    .meta {
+      font: 500 11px/1 'JetBrains Mono', monospace;
+      fill: #6F6E66;
+    }
+
+    .caption {
+      font: 400 11px/1.4 'Pretendard Variable', system-ui, sans-serif;
+      fill: #6F6E66;
+    }
+
+    .arr {
+      stroke: #6F6E66;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .amber-card {
+      fill: #FFFFFF;
+      stroke: #8F590F;
+    }
+
+    .amber-head {
+      fill: #8F590F;
+    }
+
+    .amber-t {
+      fill: #633806;
+    }
+
+    .teal-card {
+      fill: #FFFFFF;
+      stroke: #0F664A;
+    }
+
+    .teal-head {
+      fill: #0F664A;
+    }
+
+    .teal-t {
+      fill: #085041;
+    }
+
+    .neutral-card {
+      fill: #FFFFFF;
+      stroke: #6F6E66;
+    }
+
+    .neutral-head {
+      fill: #6F6E66;
+    }
+
+    .neutral-t {
+      fill: #2C2C2A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      .title,
+      .item-d {
+        fill: #E8E6DE;
+      }
+
+      .meta,
+      .caption {
+        fill: #B4B2A9;
+      }
+
+      .arr {
+        stroke: #B4B2A9;
+      }
+
+      .amber-card {
+        fill: #1F1F1D;
+        stroke: #854F0B;
+      }
+
+      .amber-head {
+        fill: #854F0B;
+      }
+
+      .amber-t {
+        fill: #FAC775;
+      }
+
+      .teal-card {
+        fill: #1F1F1D;
+        stroke: #0F6E56;
+      }
+
+      .teal-head {
+        fill: #0F6E56;
+      }
+
+      .teal-t {
+        fill: #9FE1CB;
+      }
+
+      .neutral-card {
+        fill: #1F1F1D;
+        stroke: #444441;
+      }
+
+      .neutral-head {
+        fill: #444441;
+      }
+
+      .neutral-t {
+        fill: #E8E6DE;
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr-wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="32">한국 WA 마크 인증 프로세스</text>
+  <text class="caption" x="40" y="50">신청부터 발급, 사후 관리까지의 표준 흐름. 유효기간 1년</text>
+
+  <!-- Step 1: 신청 -->
+  <g transform="translate(40, 80)">
+    <rect class="amber-card" x="0" y="0" width="720" height="50" rx="10" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="60" height="50" rx="10" />
+    <rect class="amber-head" x="48" y="0" width="12" height="50" />
+    <text class="step-num" x="30" y="30" text-anchor="middle">1</text>
+    <text class="step-h amber-t" x="74" y="22">신청</text>
+    <text class="item-d" x="74" y="40">심사 기관에 인증 신청서 + 사이트 정보 제출</text>
+    <text class="meta" x="700" y="29" text-anchor="end">D+0</text>
+  </g>
+  <line x1="70" y1="130" x2="70" y2="142" class="arr" marker-end="url(#arr-wa)" />
+
+  <!-- Step 2: 사전 검토 -->
+  <g transform="translate(40, 144)">
+    <rect class="amber-card" x="0" y="0" width="720" height="50" rx="10" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="60" height="50" rx="10" />
+    <rect class="amber-head" x="48" y="0" width="12" height="50" />
+    <text class="step-num" x="30" y="30" text-anchor="middle">2</text>
+    <text class="step-h amber-t" x="74" y="22">사전 검토</text>
+    <text class="item-d" x="74" y="40">심사원이 기본적인 접근성 수준 확인 · 명백한 부적합 시 보완 요청</text>
+    <text class="meta" x="700" y="29" text-anchor="end">D+3~7</text>
+  </g>
+  <line x1="70" y1="194" x2="70" y2="206" class="arr" marker-end="url(#arr-wa)" />
+
+  <!-- Step 3: 전문가 심사 -->
+  <g transform="translate(40, 208)">
+    <rect class="amber-card" x="0" y="0" width="720" height="70" rx="10" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="60" height="70" rx="10" />
+    <rect class="amber-head" x="48" y="0" width="12" height="70" />
+    <text class="step-num" x="30" y="40" text-anchor="middle">3</text>
+    <text class="step-h amber-t" x="74" y="22">전문가 심사 (핵심)</text>
+    <text class="item-d" x="74" y="42">KWCAG 2.2 기준 24개 검사항목 · 자동 + 수동 테스트 병행</text>
+    <text class="item-d" x="74" y="60">보조기기 실제 테스트 포함 (스크린리더, 키보드 등)</text>
+    <text class="meta" x="700" y="38" text-anchor="end">D+10~20</text>
+  </g>
+  <line x1="70" y1="278" x2="70" y2="290" class="arr" marker-end="url(#arr-wa)" />
+
+  <!-- Step 4: 결과 통보 -->
+  <g transform="translate(40, 292)">
+    <rect class="amber-card" x="0" y="0" width="720" height="50" rx="10" stroke-width="0.5" />
+    <rect class="amber-head" x="0" y="0" width="60" height="50" rx="10" />
+    <rect class="amber-head" x="48" y="0" width="12" height="50" />
+    <text class="step-num" x="30" y="30" text-anchor="middle">4</text>
+    <text class="step-h amber-t" x="74" y="22">심사 결과 통보</text>
+    <text class="item-d" x="74" y="40">적합 / 부적합 + 항목별 상세 리포트 · 부적합 시 보완 기간 부여</text>
+    <text class="meta" x="700" y="29" text-anchor="end">D+25</text>
+  </g>
+  <line x1="70" y1="342" x2="70" y2="354" class="arr" marker-end="url(#arr-wa)" />
+
+  <!-- Step 5: 발급 -->
+  <g transform="translate(40, 356)">
+    <rect class="teal-card" x="0" y="0" width="720" height="50" rx="10" stroke-width="0.5" />
+    <rect class="teal-head" x="0" y="0" width="60" height="50" rx="10" />
+    <rect class="teal-head" x="48" y="0" width="12" height="50" />
+    <text class="step-num" x="30" y="30" text-anchor="middle">5</text>
+    <text class="step-h teal-t" x="74" y="22">인증서 발급 (적합 시)</text>
+    <text class="item-d" x="74" y="40">유효기간 1년 · WA 마크 사용 가능</text>
+    <text class="meta" x="700" y="29" text-anchor="end">D+30</text>
+  </g>
+  <line x1="70" y1="406" x2="70" y2="418" class="arr" marker-end="url(#arr-wa)" />
+
+  <!-- Step 6: 사후 관리 -->
+  <g transform="translate(40, 420)">
+    <rect class="neutral-card" x="0" y="0" width="720" height="36" rx="10" stroke-width="0.5" />
+    <rect class="neutral-head" x="0" y="0" width="60" height="36" rx="10" />
+    <rect class="neutral-head" x="48" y="0" width="12" height="36" />
+    <text class="step-num" x="30" y="23" text-anchor="middle">6</text>
+    <text class="step-h neutral-t" x="74" y="22">사후 관리 · 연 1회 사후 심사 · 중대 변경 시 재심사</text>
+  </g>
+</svg>
