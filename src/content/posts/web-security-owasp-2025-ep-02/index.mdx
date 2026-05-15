@@ -30,7 +30,7 @@ draft: false
 
 시작은 프레임부터 잡는 게 좋습니다. 데이터 보호는 한 곳만 잘한다고 되는 일이 아니라 **여러 레이어의 합**입니다.
 
-![데이터 보호의 다층 방어 구조](sec-02-01-data-protection-layers.svg)
+![데이터 보호의 다층 방어 구조를 양파처럼 동심으로 그린 다이어그램. 가장 바깥 호박색 영역이 LAYER 4 TRANSPORT 전송 보안(HTTPS/TLS·HSTS·TLS 1.2+·인증서 관리·CAA 레코드), 그 안쪽 녹색이 LAYER 3 APPLICATION 보안 헤더·CORS·CSP(XSS 2차 방어선), 다시 안쪽 보라가 LAYER 2 STORAGE 저장 암호화(비밀번호는 bcrypt/argon2, 민감정보는 AES-GCM), 가장 안쪽 파랑이 LAYER 1 KEY MANAGEMENT 키 관리(KMS·Vault·키 로테이션·최소 권한)이며, 중심에 빨간색 YOUR DATA 박스가 놓여 있다. 하단 캡션은 "완벽한 암호화 알고리즘보다 중요한 것은 키가 어디에 있느냐"라는 원칙을 적어둔다.](sec-02-01-data-protection-layers.svg)
 
 가장 안쪽에 데이터가 있고, 그 주변으로 네 개의 동심원이 있습니다. 키 관리, 저장 암호화, 애플리케이션 레이어(보안 헤더·CORS), 전송 보안. 각 레이어는 서로 다른 공격 시나리오를 막습니다.
 
@@ -118,7 +118,7 @@ dig CAA example.com
 
 보안 헤더는 **"브라우저야, 이 페이지는 이렇게 보호해줘"** 라고 명시적으로 지시하는 HTTP 응답 헤더들입니다. 설정하지 않으면 브라우저는 안전한 기본값을 자동으로 적용하지 않습니다.
 
-![보안 헤더가 막는 공격들](sec-02-03-security-headers-map.svg)
+![보안 헤더와 각자 방어하는 공격을 좌우 매칭으로 보여주는 표. 왼쪽 녹색 열은 DEFENSE 헤더, 오른쪽 적색 열은 ATTACK 방어 대상 공격으로, 각 행은 화살표로 연결된다. 1행 Strict-Transport-Security(HSTS) → SSL Stripping/MITM. 2행 Content-Security-Policy(default-src 'self'; script-src 'self' 'nonce-...') → XSS(인라인·외부 스크립트 차단, 2차 방어선). 3행 X-Frame-Options/frame-ancestors(DENY 또는 'none') → Clickjacking(투명 iframe 위에 가짜 버튼). 4행 X-Content-Type-Options: nosniff → MIME Sniffing Attack(이미지로 위장된 HTML이 스크립트로 실행). 5행 Referrer-Policy(strict-origin-when-cross-origin) → Token Leak via Referer. 6행 Permissions-Policy(camera·microphone·geolocation 차단) → 악성 기능 호출·권한 오용. 헤더별로 막는 공격 시나리오가 짧게 설명되어 있다.](sec-02-03-security-headers-map.svg)
 
 각 헤더가 막는 공격이 다릅니다. 하나씩 보겠습니다.
 
@@ -198,7 +198,7 @@ curl -sI https://example.com | grep -iE 'server|x-powered-by'
 
 저장 보안으로 넘어가기 전에, 자주 헷갈리는 세 가지 개념을 정리합니다. 이 구분을 명확히 해두면 이후 결정이 쉬워집니다.
 
-![해시, 암호화, HMAC의 차이](sec-02-02-hash-vs-encryption.svg)
+![해시·암호화·HMAC 세 개념을 3열로 나란히 비교한 다이어그램. 왼쪽 파란 열 ONE-WAY 해시는 "password123" 입력 → SHA-256 → ef92b77…b48a4f 같은 복원 불가 출력. 대표 알고리즘은 SHA-256/SHA-3(범용)과 bcrypt/argon2(비밀번호), 주 용도는 비밀번호 저장·파일 무결성·블록체인. 흔한 실수로 비밀번호에 SHA-256 사용, salt 없는 해시가 적색으로 강조된다. 가운데 보라 열 TWO-WAY 암호화는 "주민번호" 입력 → AES-GCM + 키 → 3f2a9c…(키로 복원 가능)의 양방향 변환. 대표 알고리즘은 AES-GCM(대칭)·RSA-OAEP(비대칭), 주 용도는 주민번호·카드번호 저장·TLS 세션·파일 백업. 흔한 실수는 키를 DB 옆에 함께 저장, AES-ECB/CBC 사용. 오른쪽 녹색 열 INTEGRITY HMAC은 메시지+키 입력 → HMAC-SHA256 → bf4c8a…(서명) 출력으로 위변조 탐지용. 대표 알고리즘 HMAC-SHA256·Ed25519, 주 용도는 JWT 서명·웹훅 검증·API 요청 서명. 흔한 실수는 짧은 시크릿과 timing attack 비교 미사용.](sec-02-02-hash-vs-encryption.svg)
 
 ### 해시: 복원 불가능한 단방향 변환
 
@@ -240,7 +240,7 @@ HMAC은 메시지와 비밀키로 "서명"을 만드는 방식입니다. 메시�
 
 ep.01에서도 다뤘지만 다시 강조합니다. **비밀번호에 SHA-256을 쓰지 마세요.** 
 
-![빠른 해시와 느린 해시의 GPU 공격 저항성 비교](sec-02-04-bcrypt-slowness.svg)
+![SHA-256과 bcrypt/argon2를 좌우로 비교해 GPU 무차별 대입 공격 시간을 보여주는 다이어그램. 왼쪽 적색 열 FAST HASH는 SHA-256으로 비밀번호 저장에 부적합. 해시 1개 계산은 ~0.000001초(1마이크로초), 현대 GPU 초당 ~100억 hashes/s, 1억 개 후보 brute force가 ~0.01초에 끝나 DB 유출되면 사실상 전부 깨진다. 오른쪽 녹색 열 SLOW HASH는 bcrypt/argon2로 의도적으로 느림. 해시 1개 계산(cost=12)은 ~0.25초로 SHA-256 대비 25만 배 느리고, 현대 GPU 초당 ~40,000 hashes/s, 1억 개 후보 brute force는 ~42분 걸려 긴 비밀번호면 사실상 불가능. 동일한 DB 유출 상황에서 두 해시의 저항성 차이를 정량적으로 보여준다.](sec-02-04-bcrypt-slowness.svg)
 
 SHA-256은 속도 최적화된 해시입니다. 현대 GPU는 초당 **100억 개 이상의 SHA-256 해시**를 계산할 수 있습니다. DB가 유출됐을 때 공격자는 1억 개 비밀번호 후보를 **0.01초**에 전부 해시해서 비교할 수 있습니다. 사실상 해시가 걸려 있어도 평문 저장과 비슷한 상태입니다.
 
@@ -332,7 +332,7 @@ window.crypto.getRandomValues(arr);   // ✓ OK
 
 2025년판에서 A02가 2위로 올라온 가장 큰 이유가 이 영역입니다. 코드는 멀쩡한데 설정 한 줄로 전체를 노출하는 사고가 가장 자주 발생합니다.
 
-![자주 발생하는 클라우드 설정 오류 유형](sec-02-05-cloud-misconfig.svg)
+![자주 발생하는 클라우드 설정 오류 6가지를 2행 3열 카드로 정리한 다이어그램. 1번 STORAGE — S3 버킷 Public 노출(AuthenticatedUsers 권한은 사실상 AWS 계정 있는 모든 사람을 의미). 2번 AUTH — 기본 계정·기본 비밀번호(Jenkins admin/admin, MongoDB 인증 없음, Redis 노출). 3번 NETWORK — 관리 포트 인터넷 노출(SSH 22, DB 3306/5432, Redis 6379, Elasticsearch 9200을 0.0.0.0으로 바인딩). 4번 APPLICATION — DEBUG 모드 프로덕션(DEBUG=True, APP_DEBUG=true가 스택 트레이스·DB 경로·내부 경로 노출). 5번 ENDPOINT — 관리·디버그 엔드포인트 노출(/debug, /metrics, /.git, /actuator/env). 6번 IAM — IAM 와일드카드 정책(Action: "*", Resource: "*"가 한 경로 침해 시 전체 계정 장악으로 이어짐). 각 카드는 적색 톤이고 해당 검증 명령어 또는 예시가 적혀 있으며, 하단 캡션은 IaC 스캐너(Checkov·tfsec·Trivy)로 PR 단계 자동 차단이 기본이라고 알린다.](sec-02-05-cloud-misconfig.svg)
 
 ### 대표 유형들
 

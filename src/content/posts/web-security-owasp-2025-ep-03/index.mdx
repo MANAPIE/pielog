@@ -28,7 +28,7 @@ A05는 외부에서 들어온 입력이 신뢰 영역 안에서 코드처럼 해
 
 코드를 짤 때 "이 변수는 안전하다"라고 가정하는 순간이 있습니다. 그 가정이 어디서부터 시작되는지 의식적으로 그어보는 것이 신뢰 경계입니다.
 
-![신뢰 경계 다이어그램](sec-03-01-trust-boundary.svg)
+![신뢰 경계 다이어그램. 왼쪽 빨강 영역(UNTRUSTED·바깥세상)에는 사용자 입력, HTTP body/header/cookie, 업로드 파일, URL 파라미터, 외부 API 응답, CDN 스크립트, 메시지 큐 페이로드, 역직렬화 데이터가 들어있고 "악의적이거나 변조됐을 수 있다"고 가정. 중앙 노란 박스(TRUST BOUNDARY)에서 VALIDATE·SANITIZE·ESCAPE·VERIFY(HMAC/SIG) 네 가지 검증을 통과한 입력만 안쪽으로 전달. 오른쪽 초록 영역(TRUSTED·내 시스템)에는 애플리케이션 메모리, DB 쿼리 실행기, 템플릿 엔진, 파일 시스템, 시스템 명령, 역직렬화, 클라우드 자격증명, 빌드 아티팩트가 위치](sec-03-01-trust-boundary.svg)
 
 **신뢰할 수 없는 영역(Untrusted)**에서 들어오는 모든 것은 일단 의심합니다. 사용자가 입력한 폼 값, HTTP body·header·cookie, 업로드된 파일, URL 파라미터, 외부 API의 응답, CDN에서 불러온 스크립트, 메시지 큐 페이로드. 전부 "악의적이거나 변조됐을 수 있다"고 가정합니다.
 
@@ -58,7 +58,7 @@ A05는 외부에서 들어온 입력이 신뢰 영역 안에서 코드처럼 해
 
 SQL Injection은 인젝션의 원형입니다. 여기를 제대로 이해하면 다른 인젝션도 같은 패턴으로 풀립니다.
 
-![SQL Injection - String concat과 Prepared Statement 비교](sec-03-02-sql-injection.svg)
+![SQL Injection 좌우 비교. 상단 공통 입력은 악의적 페이로드 `email = "' OR '1'='1' --"`. 왼쪽 빨강(STRING CONCAT·취약) 패널에서는 코드가 `db.query("SELECT * FROM users WHERE email = '" + email + "'")`로 문자열 연결하므로, DB가 받는 최종 쿼리는 `WHERE email = '' OR '1'='1' --`가 되어 모든 사용자가 반환되고 데이터와 코드의 경계가 무너짐. 오른쪽 초록(PREPARED STATEMENT·안전) 패널에서는 코드가 `db.query("SELECT * FROM users WHERE email = ?", [email])`로 작성되어, DB가 쿼리 구조(`WHERE = ?`)와 데이터(`'' OR '1'='1' --`)를 분리해서 받기 때문에 일치하는 사용자가 없음](sec-03-02-sql-injection.svg)
 
 문자열 연결로 쿼리를 만들면 무엇이 문제인가? **데이터와 코드의 경계가 무너지기 때문**입니다.
 
@@ -90,7 +90,7 @@ db.query("SELECT * FROM users WHERE email = ?", [email]);
 
 XSS(Cross-Site Scripting)는 브라우저에서 악성 스크립트가 실행되는 문제입니다. 서버 사이드 인젝션이 DB·OS를 노린다면, XSS는 사용자의 브라우저를 노립니다.
 
-![XSS의 세 가지 유형](sec-03-03-xss-types.svg)
+![XSS의 세 가지 유형을 3개 행으로 비교. 1행 빨강(Stored·심각도 HIGH): 공격자(A)가 DB에 악성 스크립트를 저장하면, 페이지 로드 시 자동 실행되어 피해자 다수(V)에게 전달. 댓글·게시판·프로필 같은 사용자 입력 저장 영역에서 발생. 2행 노랑(Reflected·심각도 MEDIUM·피싱 결합): 공격자가 악성 URL을 피해자에게 전송하면 서버가 그대로 응답에 포함해 피해자 1인에게 반사. 검색 결과나 에러 페이지에서 자주 발생. 3행 파랑(DOM-Based·심각도 MEDIUM·클라이언트 사이드): 공격자가 URL fragment(#)에 페이로드를 심으면 JS가 innerHTML로 삽입해 실행. 서버 로그에 흔적이 남지 않음](sec-03-03-xss-types.svg)
 
 **Stored XSS**가 가장 위험합니다. 악성 스크립트가 DB에 저장되어, 그 페이지를 보는 **모든 방문자가 영향**을 받습니다. 댓글, 게시판, 프로필 등 사용자 입력이 저장되어 다시 출력되는 곳이 표적입니다.
 
@@ -309,7 +309,7 @@ A03(Software Supply Chain Failures)이 "공급망 전체"를 본다면, A08은 *
 
 A08의 대표적이고 기술적인 케이스가 **insecure deserialization**입니다.
 
-![JSON과 Pickle의 차이](sec-03-04-deserialization.svg)
+![역직렬화 좌우 비교. 왼쪽 초록(SAFE·DATA ONLY) JSON 파싱: 입력 `{"name":"Alice","age":30}`을 `JSON.parse(input)`으로 처리하면 결과는 메소드 없이 데이터만 가진 단순 객체로 복원되어 코드 실행 경로가 없음 — 외부 입력에 권장. 오른쪽 빨강(DANGEROUS·CODE EXECUTION) Pickle·Java OIS·PHP unserialize: 조작된 페이로드(`cos system (S'rm -rf /' tR.`)를 `pickle.loads(input)`으로 처리하면 객체 복원 과정에서 `os.system("rm -rf /")` 같은 임의 코드가 실행되어 서버 RCE로 직결 — 외부 입력에 절대 사용 금지](sec-03-04-deserialization.svg)
 
 핵심은 **JSON은 데이터만, Pickle/Java 직렬화는 코드까지 복원한다**는 점입니다.
 
@@ -348,7 +348,7 @@ if hmac.compare_digest(signature, expected):  # timing attack 방지 비교
 
 CDN에서 불러오는 외부 스크립트는 **SRI(Subresource Integrity)** 로 보호합니다.
 
-![SRI를 통한 공급망 변조 방어](sec-03-05-sri-defense.svg)
+![SRI 적용 전후 시나리오 비교. 위쪽 빨강(NO SRI): 우리 사이트→CDN(원래 신뢰)→CDN 침해(악성 스크립트 주입)→사용자 브라우저가 검증 없이 그대로 실행. 코드는 `<script src="https://cdn.example.com/lib.js"></script>` 한 줄. 아래쪽 초록(WITH SRI): 우리 사이트→침해된 CDN→브라우저가 응답을 받은 뒤 SRI 해시를 비교→불일치하면 실행 거부 및 에러 출력. 코드에 `integrity="sha384-..."`와 `crossorigin="anonymous"` 속성이 추가됨](sec-03-05-sri-defense.svg)
 
 원리는 단순합니다. 스크립트의 해시를 HTML에 적어두면, 브라우저가 다운로드 후 해시를 검증합니다. 안 맞으면 실행을 거부합니다.
 
