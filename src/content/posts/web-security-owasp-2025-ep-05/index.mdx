@@ -49,7 +49,7 @@ A09의 핵심 질문은 두 가지입니다.
 
 로깅의 어려움은 양 끝의 함정 사이에 있습니다. **너무 적게 남기면** 사고 분석이 불가능하고, **너무 많이 남기면** 알림 피로와 비용 폭증으로 결국 무시됩니다. 그리고 **잘못 남기면** 로그 자체가 데이터 유출이 됩니다.
 
-![로깅의 양면 - 보안에 도움되는 로그와 위험한 로그](sec-05-01-logging-do-dont.svg)
+![로깅의 양면을 좌우로 비교. 왼쪽 초록(DO LOG·반드시 남길 것): 인증·인가 이벤트, 보안 결정, 입력 거부 사례, 에러 메시지(외부 응답에서는 제외), 요청 ID(trace ID), 소스 IP, User-Agent. 오른쪽 빨강(DON'T LOG·절대 남기지 말 것): 자격증명(평문/해시 비밀번호, API 키, JWT 전체, 세션·OAuth 토큰), 개인정보 PII(주민번호, 카드번호, 의료기록, 상세 주소), 암호화 키 자료(개인키, AES 키, 시크릿, CSRF nonce), 전체 요청 body, 사용자 응답에 노출되는 스택 트레이스. 하단에 "로그 마스킹 필터 적용" — password·token·authorization·ssn·credit_card·secret·key 필드를 자동 redact](sec-05-01-logging-do-dont.svg)
 
 #### 반드시 남겨야 할 것
 
@@ -134,7 +134,7 @@ const logger = pino({
 
 ### 탐지에서 대응까지의 시간
 
-![탐지부터 복구까지의 시간 흐름과 핵심 지표](sec-05-02-detection-timeline.svg)
+![가로 타임라인 위에 4개 단계 마커. ① 사고 발생(T=0, 빨강): 초기 침투 또는 이상 행동. ② 탐지(D, +MTTD 경과, 노랑): 알림 발생, SIEM·로그·온콜이 인지. ③ 대응 시작(R, +MTTR 경과, 파랑): 분석 시작, 차단·격리. ④ 복구(✓, +MTTR full, 초록): 정상 복구 + post-mortem 작성. 아래쪽 3개 박스에 핵심 지표 — MTTD(Mean Time to Detect, 사고 발생부터 탐지까지 평균, 목표 15분 미만), MTTR(Mean Time to Respond, 탐지부터 차단·격리까지 평균, 목표 1시간 미만), Dwell Time(공격자가 시스템 내 머문 총 시간, 2024년 업계 평균 약 10일)](sec-05-02-detection-timeline.svg)
 
 세 가지 핵심 지표가 있습니다.
 
@@ -148,7 +148,7 @@ const logger = pino({
 
 알림이 뜨면 무엇을 할 것인가? 이게 미리 정해져 있어야 합니다. 한밤중에 누군가 깨어나서 즉흥적으로 결정하지 않도록.
 
-![Incident Response Playbook의 단계](sec-05-05-incident-response-playbook.svg)
+![Incident Response Playbook 5단계. 1) DETECT·탐지(노랑): 알림 검증(false positive 여부), 심각도 분류(P0~P3), 사고 채널 개설(Slack 등). 2) CONTAIN·격리(빨강): 침해된 자격증명 즉시 폐기, 영향받은 시스템 네트워크 격리, 의심 IP·계정 차단(kill switch). 3) INVESTIGATE·분석(파랑): 침투 경로 추적(로그 분석), 영향 범위 확정(어떤 데이터·누가), 증거 보존(포렌식). 4) RECOVER·복구(보라): 클린 백업에서 복원, 자격증명·시크릿 전체 로테이션, 점진적 트래픽 복원과 모니터링 강화. 5) LEARN·학습(초록, 가로 폭 전체): Blameless post-mortem(시간선·근본 원인·영향·대응 평가), 재발 방지 액션 아이템 + 책임자 + 마감일, 알림 임계 조정·모니터링 갭 보완·Playbook 업데이트. 같은 사고가 두 번 일어나지 않도록 시스템화하는 것이 핵심](sec-05-05-incident-response-playbook.svg)
 
 표준 5단계입니다.
 
@@ -248,7 +248,7 @@ chronyc sources  # 또는 timedatectl
 
 이 카테고리의 핵심 결정.
 
-![Fail Closed vs Fail Open 결정 매트릭스](sec-05-03-fail-closed-vs-open.svg)
+![Fail Closed vs Fail Open 4시나리오 매트릭스. 헤더는 좌측 "FAIL CLOSED·의심되면 막는다"와 우측 "FAIL OPEN·의심되어도 통과시킨다". 시나리오 1 인증 서비스 장애(OAuth 응답 없음, 세션 DB 실패) — Closed: 로그인 거부·세션 만료(권장) / Open: 임시 통과는 인증 우회, 절대 금지. 시나리오 2 인가 서비스 장애(권한 정책 DB·ACL 캐시 만료) — Closed: 403 거부 또는 안전한 폴백(권장) / Open: 모든 요청 허용은 권한 상승 함정. 시나리오 3 결제 게이트웨이 장애(PG 응답 없음) — Closed: 결제 거부 + 안내, 매출 손실이 손해 위험보다 작음(권장) / Open: "결제 성공" 가정으로 무료 발송, 부정 사용 위험. 시나리오 4 Rate Limit 저장소 장애(Redis 응답 없음) — 컨텍스트에 따라 양쪽 다 합리적: 보수적은 모든 요청 거부(DDoS 방어 우선), 적극적은 통과 + 알림(가용성 우선)](sec-05-03-fail-closed-vs-open.svg)
 
 **Fail Closed**는 의심되면 막는다. 보안에 유리. 가용성 희생.
 **Fail Open**은 의심되어도 통과시킨다. 가용성에 유리. 보안 위험.
@@ -334,7 +334,7 @@ def retry_with_backoff(fn, max_retries=3):
 
 연쇄 장애를 끊는 패턴.
 
-![Circuit Breaker 상태 머신](sec-05-04-circuit-breaker.svg)
+![Circuit Breaker 3상태 머신. CLOSED·정상(좌상, 초록): 호출이 정상적으로 전달되고 실패 카운터를 모니터링 — 조건은 실패율이 임계값 미만. OPEN·차단(우상, 빨강): 호출하지 않고 즉시 에러 반환해 의존 서비스에 부하를 주지 않음 — 조건은 실패율이 임계값 초과. HALF-OPEN·시험(하중, 노랑): 소수 요청만 시도해 결과로 다음 상태 결정 — 조건은 OPEN 후 일정 시간 경과. 전이 화살표 — CLOSED→OPEN(실패율 임계 초과, 예: 10개 요청 중 50% 실패), OPEN→HALF-OPEN(타임아웃 30초), HALF-OPEN→CLOSED(성공으로 닫음), HALF-OPEN→OPEN(실패로 다시 열음)](sec-05-04-circuit-breaker.svg)
 
 세 상태가 있습니다.
 

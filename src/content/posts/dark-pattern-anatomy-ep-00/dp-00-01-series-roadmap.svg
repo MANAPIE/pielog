@@ -52,12 +52,12 @@
 
 <rect class="phase-bg" x="40" y="230" width="600" height="176" rx="12"/>
 <text class="th" x="60" y="254" dominant-baseline="central">3장. Deep dives</text>
-<g class="red"><rect x="60" y="266" width="185" height="30" rx="6"/><text class="ts" x="152" y="281" text-anchor="middle" dominant-baseline="central">5편. 가입 · 온보딩</text></g>
-<g class="red"><rect x="255" y="266" width="170" height="30" rx="6"/><text class="ts" x="340" y="281" text-anchor="middle" dominant-baseline="central">6편. 결제</text></g>
-<g class="red"><rect x="435" y="266" width="185" height="30" rx="6"/><text class="ts" x="527" y="281" text-anchor="middle" dominant-baseline="central">7편. 구독 · 해지</text></g>
-<g class="red"><rect x="60" y="310" width="270" height="30" rx="6"/><text class="ts" x="195" y="325" text-anchor="middle" dominant-baseline="central">8편. UI 조작</text></g>
-<g class="red"><rect x="350" y="310" width="270" height="30" rx="6"/><text class="ts" x="485" y="325" text-anchor="middle" dominant-baseline="central">9편. 언어 · 알림</text></g>
-<text class="ts" x="60" y="370" dominant-baseline="central">5~9편: 여정 단계별 패턴 카탈로그</text>
+<g class="red"><rect x="60" y="321" width="185" height="30" rx="6"/><text class="ts" x="152" y="336" text-anchor="middle" dominant-baseline="central">5편. 가입 · 온보딩</text></g>
+<g class="red"><rect x="255" y="321" width="170" height="30" rx="6"/><text class="ts" x="340" y="336" text-anchor="middle" dominant-baseline="central">6편. 결제</text></g>
+<g class="red"><rect x="435" y="321" width="185" height="30" rx="6"/><text class="ts" x="527" y="336" text-anchor="middle" dominant-baseline="central">7편. 구독 · 해지</text></g>
+<g class="red"><rect x="60" y="365" width="260" height="30" rx="6"/><text class="ts" x="195" y="380" text-anchor="middle" dominant-baseline="central">8편. UI 조작</text></g>
+<g class="red"><rect x="350" y="365" width="260" height="30" rx="6"/><text class="ts" x="485" y="380" text-anchor="middle" dominant-baseline="central">9편. 언어 · 알림</text></g>
+<text class="ts" x="60" y="285" dominant-baseline="central">5~9편: 여정 단계별 패턴 카탈로그</text>
 
 <line x1="340" y1="406" x2="340" y2="430" class="arr" marker-end="url(#arrow)"/>
 

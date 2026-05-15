@@ -32,7 +32,7 @@ draft: false
 
 이 카테고리의 핵심 질문은 **"내가 실행하는 코드 중 내가 직접 작성한 것은 몇 퍼센트인가?"** 입니다. 답은 보통 1~5%입니다. 나머지는 의존성, 베이스 이미지, 빌드 도구, CI 액션, CDN 스크립트의 조합입니다. 이 중 하나라도 변조되면 우리 시스템에 침투할 통로가 됩니다.
 
-![공급망 공격 경로](sec-04-01-supply-chain-vectors.svg)
+![공급망 공격 경로를 3단계 칼럼으로 정리. STAGE 1·SOURCE(의존성 패키지·npm/PyPI/Maven): 악성 패키지 등록(typosquatting), 유지보수자 침해(계정 탈취), Dependency Confusion(내부 이름을 public 등록), 간접 의존성 침해(transitive 깊은 곳), 알려진 CVE 미패치. STAGE 2·BUILD(CI/CD 파이프라인·GitHub Actions/Jenkins): 빌드 시스템 침투(SolarWinds 패턴), CI 시크릿 탈취, 악성 GitHub Action(태그 미고정), Install script 실행(npm postinstall), 베이스 이미지 변조. STAGE 3·DISTRIBUTE(CDN/자동 업데이트/사용자 환경): CDN 변조(Polyfill.io 패턴), 서명 없는 자동 업데이트, 레지스트리 침해. 마지막은 최종 표적인 "우리 서비스"로 화살표가 모임](sec-04-01-supply-chain-vectors.svg)
 
 공격은 세 단계 중 어느 곳에서나 시작될 수 있습니다.
 
@@ -74,7 +74,7 @@ poetry install --no-update
 
 **SBOM(Software Bill of Materials)** 은 우리 애플리케이션이 사용하는 모든 컴포넌트의 명세입니다. Log4Shell 같은 사건이 터졌을 때 "우리가 영향받는가"를 30분 안에 답할 수 있게 하는 도구입니다.
 
-![SBOM 생성과 활용 흐름](sec-04-02-sbom-flow.svg)
+![SBOM 운영 흐름을 3단계로 정리. STEP 1·GENERATE(생성): 빌드 시 자동 생성된 SBOM이 산출되며 도구로 Syft·CycloneDX 등을 사용. STEP 2·SCAN(스캔): Trivy로 SBOM·이미지·IaC를 통합 스캔(`trivy sbom sbom.json`)하고, Dependabot/Renovate가 PR을 자동 생성(`dependabot.yml`). STEP 3·RESPOND(대응): 긴급(CVSS 9+)은 24시간 내 패치 또는 우회 조치, 중요(CVSS 7~8.9)는 1주일 내, 일반은 정기 업데이트 사이클. 하단에 Log4Shell 사례 회고 — SBOM이 있는 조직은 30분, 없는 조직은 며칠이 걸렸다는 메시지](sec-04-02-sbom-flow.svg)
 
 ```bash
 # Syft — 컨테이너 이미지·디렉토리에서 SBOM 생성
@@ -101,7 +101,7 @@ cargo audit
 
 수동 업데이트는 작동하지 않습니다. 의존성이 수십·수백 개인 프로젝트에서 사람이 매주 outdated 목록을 보고 판단하는 것은 지속 가능하지 않습니다.
 
-![Dependabot/Renovate 워크플로우](sec-04-03-dependency-automation.svg)
+![의존성 자동화 4단계 가로 흐름. 1) 감지(Dependabot·Renovate가 신규 버전 또는 CVE 발표를 자동 감지) → 2) PR 자동 생성(변경 사항·Changelog·호환성 점수·취약점 ID·영향 범위 포함) → 3) 자동 테스트(CI가 unit·integration·e2e 전체 실행) → 4) 머지(Patch는 자동, 메이저는 수동). 3단계에서 두 갈래 분기 — 초록 "테스트 통과 → 머지"(패치/마이너 자동 머지 권장, 메이저는 수동 검토)와 빨강 "테스트 실패 → 정밀 검토"(Breaking change 가능성, 코드 수정 또는 버전 lock). 좌하단 파랑 박스에 "왜 자동화인가": CVE 공개부터 PR 생성·CI 검증까지 30분 이내 목표, MTTP(Mean Time to Patch)를 측정 지표로 삼을 것](sec-04-03-dependency-automation.svg)
 
 **Dependabot** (GitHub 내장)과 **Renovate** (오픈소스, 더 강력) 두 도구가 표준입니다. 설정 한 번 하면 이후로는 PR이 자동으로 올라옵니다.
 
@@ -314,7 +314,7 @@ OWASP의 정의를 가져오면: *"Insecure design is a broad category represent
 
 Microsoft가 만든 STRIDE는 위협을 6가지 범주로 봅니다.
 
-![STRIDE 위협 모델링 프레임워크](sec-04-04-stride-threat-modeling.svg)
+![STRIDE 위협 모델링을 표로 정리. 6개 행 각각 "위협 약자·깨지는 보안 속성·설계 시 던질 질문·대표 방어"의 4칼럼. S(Spoofing·신원 위조) — Authentication 침해, "이 요청자가 정말 그 사람인가?", MFA·JWT 서명 검증·mTLS·WebAuthn. T(Tampering·데이터 변조) — Integrity 침해, "변조되지 않았나?", HMAC·서명·DB 무결성 제약·Audit log. R(Repudiation·행위 부인) — Non-repudiation 침해, "누가 언제 무엇을 했는지 증명 가능?", Append-only audit log·서명된 트랜잭션. I(Information Disclosure·정보 노출) — Confidentiality 침해, "노출되면 안 되는 데이터가 새지 않나?", 암호화·접근 제어·최소 권한·로그 마스킹. D(Denial of Service·가용성 침해) — Availability 침해, "누가 일부러 망가뜨려 멈출 수 있나?", Rate limit·CDN·WAF·Circuit breaker·Timeout. E(Elevation of Privilege·권한 상승) — Authorization 침해, "낮은 권한이 높은 권한 행세를 할 수 있나?", RBAC·최소 권한·JWT claim 검증·정책 엔진](sec-04-04-stride-threat-modeling.svg)
 
 각 글자가 깨뜨리는 보안 속성과 짝을 이룹니다.
 
@@ -375,7 +375,7 @@ ep.01의 IDOR 예시를 다시 보면: 애플리케이션 권한 체크 → DB �
 
 설계 결함이 가장 많이 나타나는 영역. **자동 스캐너로는 절대 잡히지 않는** 영역이기도 합니다.
 
-![비즈니스 로직 악용 패턴](sec-04-05-business-logic-exploit.svg)
+![비즈니스 로직 악용 4패턴 2×2 그리드. 1) RACE CONDITION(동시 요청 경쟁 조건): 같은 쿠폰을 동시에 50번 사용 요청하면 잔액 체크와 차감 사이의 틈에서 한도를 초과 — 방어는 DB 트랜잭션+락(SELECT FOR UPDATE)·멱등키. 2) NEGATIVE/OVERFLOW(음수·오버플로우 입력): 환불 금액에 -100을 넣으면 +100이 더해지거나 수량에 큰 수로 정수 오버플로우 — 방어는 입력 범위 검증(min/max)·서명 정수 경계 체크. 3) STEP SKIPPING(단계 우회): 결제 페이지를 건너뛰고 "결제 완료" 콜백 URL을 직접 호출해 무료 구매 — 방어는 서버 측 상태 머신·각 단계 전제 조건 검증·서명된 토큰. 4) REPLAY/STACKING(재사용·중첩 적용): 중첩 불가 쿠폰 두 개를 UI 검증만 있을 때 동시 적용하거나 일회성 토큰 재사용 — 방어는 서버 측 정책 검증·사용된 토큰 DB 기록과 재사용 차단](sec-04-05-business-logic-exploit.svg)
 
 #### 패턴 1: Race Condition
 
