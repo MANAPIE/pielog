@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 760" role="img" aria-labelledby="title desc">
+  <title id="title">ROAS와 MER, 같은 매출의 두 시선</title>
+  <desc id="desc">ROAS는 각 광고 매니저가 자기 광고에 귀속된 매출만 본다. MER은 모든 매출과 모든 마케팅 비용을 본다. 합산이 어긋나는 구조를 시각화.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-faint: #b3b3b0;
+      --c-card: #ffffff;
+      --c-card-stroke: #d4d4d0;
+      --c-meta: #2d4a3e;
+      --c-google: #c97f4a;
+      --c-kakao: #6b6b6b;
+      --c-organic: #4a4a4a;
+      --c-overlap-stroke: #c97f4a;
+      --c-mer: #1a1a1a;
+      --c-formula-bg: #ede9df;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-faint: #4a4a47;
+        --c-card: #1a1a18;
+        --c-card-stroke: #3a3a37;
+        --c-meta: #7fb09a;
+        --c-google: #e09a6a;
+        --c-kakao: #999996;
+        --c-organic: #b3b3b0;
+        --c-overlap-stroke: #e09a6a;
+        --c-mer: #ededea;
+        --c-formula-bg: #1f1d18;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .panel-title { font: 600 13px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .label { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .num { font: 700 14px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .num-small { font: 500 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); }
+    .formula-text { font: 600 12px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .divider { stroke: var(--c-faint); stroke-width: 0.5; stroke-dasharray: 3 4; }
+    .annotation { font: 400 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); font-style: italic; }
+    .meta-fill { fill: var(--c-meta); opacity: 0.6; }
+    .google-fill { fill: var(--c-google); opacity: 0.6; }
+    .kakao-fill { fill: var(--c-kakao); opacity: 0.5; }
+    .organic-fill { fill: var(--c-organic); opacity: 0.2; }
+    .mer-rect { fill: none; stroke: var(--c-mer); stroke-width: 2; }
+  </style>
+  <rect class="bg" width="600" height="760"/>
+
+  <text class="title" x="40" y="36">같은 매출, 두 가지 시선</text>
+  <text class="sub" x="40" y="54">ROAS는 매체별로 매출을 따로 본다. MER은 모든 매출과 모든 비용을 통째로 본다.</text>
+
+  <!-- 상단: ROAS 시선 (매체별 분리) -->
+  <g transform="translate(40, 96)">
+    <text class="panel-title" x="0" y="0">ROAS 시선 — 매체 보고서</text>
+    <text class="sub" x="0" y="18">각 매체가 자기 광고에 귀속한 매출만 카운트</text>
+
+    <!-- Meta -->
+    <g transform="translate(0, 40)">
+      <rect class="meta-fill" x="0" y="0" width="240" height="36" rx="2"/>
+      <text class="label" x="12" y="22" style="fill: white;">Meta · ROAS 380%</text>
+      <text class="num-small" x="260" y="22">광고비 4,000,000 · 매출 15,200,000</text>
+    </g>
+
+    <!-- Google -->
+    <g transform="translate(0, 84)">
+      <rect class="google-fill" x="0" y="0" width="200" height="36" rx="2"/>
+      <text class="label" x="12" y="22" style="fill: white;">Google · ROAS 460%</text>
+      <text class="num-small" x="260" y="22">광고비 3,000,000 · 매출 13,800,000</text>
+    </g>
+
+    <!-- Kakao -->
+    <g transform="translate(0, 128)">
+      <rect class="kakao-fill" x="0" y="0" width="268" height="36" rx="2"/>
+      <text class="label" x="12" y="22" style="fill: white;">Kakao · ROAS 320%</text>
+      <text class="num-small" x="288" y="22">광고비 5,400,000 · 매출 17,280,000</text>
+    </g>
+
+    <!-- 합계 라인 -->
+    <line class="divider" x1="0" y1="184" x2="520" y2="184"/>
+    <g transform="translate(0, 206)">
+      <text class="label" x="0" y="0">단순 합산</text>
+      <text class="num" x="0" y="22">광고비 12,400,000</text>
+      <text class="num" x="200" y="22">매출 46,280,000</text>
+      <text class="num" x="400" y="22" style="fill: var(--c-google);">합산 ROAS 373%</text>
+    </g>
+  </g>
+
+  <!-- 중앙 구분선 -->
+  <line class="divider" x1="40" y1="370" x2="560" y2="370"/>
+
+  <!-- 하단: MER 시선 (통합) -->
+  <g transform="translate(40, 400)">
+    <text class="panel-title" x="0" y="0">MER 시선 — 회사 손익</text>
+    <text class="sub" x="0" y="18">매체 어트리뷰션과 상관없이 발생한 전체 매출</text>
+
+    <!-- 전체 매출 박스 (MER) -->
+    <g transform="translate(0, 40)">
+      <rect class="mer-rect" x="0" y="0" width="520" height="180" rx="2"/>
+
+      <!-- 내부 영역: 광고 귀속 매출 (메타+구글+카카오 매출 합) -->
+      <rect class="meta-fill" x="8" y="8" width="160" height="50" rx="1"/>
+      <rect class="google-fill" x="172" y="8" width="140" height="50" rx="1"/>
+      <rect class="kakao-fill" x="316" y="8" width="196" height="50" rx="1"/>
+
+      <text class="num-small" x="16" y="32" style="fill: white;">Meta</text>
+      <text class="num-small" x="16" y="48" style="fill: white;">15.2M</text>
+      <text class="num-small" x="180" y="32" style="fill: white;">Google</text>
+      <text class="num-small" x="180" y="48" style="fill: white;">13.8M</text>
+      <text class="num-small" x="324" y="32" style="fill: white;">Kakao</text>
+      <text class="num-small" x="324" y="48" style="fill: white;">17.3M</text>
+
+      <!-- 어트리뷰션 중복 영역 -->
+      <rect class="overlap-stroke" x="8" y="66" width="504" height="40" rx="1"
+        fill="var(--c-overlap-stroke)" fill-opacity="0.18" stroke="var(--c-overlap-stroke)" stroke-width="1" stroke-dasharray="3 2"/>
+      <text class="num-small" x="16" y="82" style="fill: var(--c-fg);">중복 어트리뷰션</text>
+      <text class="num-small" x="16" y="98" style="fill: var(--c-fg);">−6,000,000 · 동일 유저 여러 매체 클릭</text>
+
+      <!-- 오가닉 -->
+      <rect class="organic-fill" x="8" y="114" width="504" height="56" rx="1"/>
+      <text class="num-small" x="16" y="132" style="fill: var(--c-fg);">Organic / Direct</text>
+      <text class="num-small" x="16" y="148" style="fill: var(--c-fg);">10,000,000 · 검색·추천·재방문</text>
+    </g>
+
+    <!-- 합계 -->
+    <line class="divider" x1="0" y1="240" x2="520" y2="240"/>
+    <g transform="translate(0, 262)">
+      <text class="label" x="0" y="0">통합 손익</text>
+      <text class="num" x="0" y="22">마케팅 비용 12,400,000 + 도구·인건비 7,600,000 = 20,000,000</text>
+      <text class="num" x="0" y="42">총 매출 50,280,000</text>
+      <text class="num" x="0" y="62" style="fill: var(--c-meta);">MER 2.5×</text>
+    </g>
+  </g>
+
+  <!-- 하단 해설 -->
+  <g transform="translate(40, 740)">
+    <text class="annotation">ROAS 합산 373%와 MER 252% 사이의 격차 — 어트리뷰션 중복과 오가닉 매출이 만든 차이.</text>
+  </g>
+</svg>

@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 676" role="img" aria-labelledby="title desc">
+  <title id="title">ROAS 대시보드의 시선</title>
+  <desc id="desc">광고 매니저 대시보드에서 ROAS, 광고비, 매출, 손익분기 라인이 함께 보이는 구조.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-faint: #b3b3b0;
+      --c-card: #ffffff;
+      --c-card-stroke: #d4d4d0;
+      --c-accent: #2d4a3e;
+      --c-accent-bg: #e3ede7;
+      --c-warn: #c97f4a;
+      --c-warn-bg: #f8efe6;
+      --c-cost: #6b6b6b;
+      --c-revenue: #2d4a3e;
+      --c-breakeven: #c97f4a;
+      --c-grid: #ede9df;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-faint: #4a4a47;
+        --c-card: #1a1a18;
+        --c-card-stroke: #3a3a37;
+        --c-accent: #7fb09a;
+        --c-accent-bg: #1f2a26;
+        --c-warn: #e09a6a;
+        --c-warn-bg: #2a1f15;
+        --c-cost: #999996;
+        --c-revenue: #7fb09a;
+        --c-breakeven: #e09a6a;
+        --c-grid: #2a2823;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .card { fill: var(--c-card); stroke: var(--c-card-stroke); stroke-width: 1; }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .kpi-label { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); letter-spacing: 0.03em; }
+    .kpi-num { font: 700 28px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .kpi-unit { font: 500 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .kpi-num-good { font: 700 28px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-accent); }
+    .kpi-num-warn { font: 700 28px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-warn); }
+    .grid-line { stroke: var(--c-grid); stroke-width: 1; }
+    .axis-label { font: 400 9px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); }
+    .legend-text { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .legend-text-bold { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .breakeven-line { stroke: var(--c-breakeven); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+    .breakeven-label { font: 600 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-breakeven); }
+  </style>
+  <rect class="bg" width="600" height="676"/>
+
+  <text class="title" x="40" y="36">광고 매니저 KPI 카드의 풍경</text>
+  <text class="sub" x="40" y="54">같은 캠페인의 다섯 칸 — 광고비, 매출, ROAS, 손익분기, CVR</text>
+
+  <!-- KPI 카드 4개 (2x2) -->
+  <g transform="translate(40, 76)">
+    <!-- 광고비 -->
+    <rect class="card" x="0" y="0" width="252" height="100" rx="2"/>
+    <text class="kpi-label" x="16" y="28">광고비</text>
+    <text class="kpi-num" x="16" y="62">12,400,000</text>
+    <text class="kpi-unit" x="16" y="80">원 · 지난 30일</text>
+
+    <!-- 매출 -->
+    <rect class="card" x="268" y="0" width="252" height="100" rx="2"/>
+    <text class="kpi-label" x="284" y="28">광고 매출</text>
+    <text class="kpi-num" x="284" y="62">52,080,000</text>
+    <text class="kpi-unit" x="284" y="80">원 · 어트리뷰션 매출</text>
+
+    <!-- ROAS -->
+    <rect class="card" x="0" y="116" width="252" height="100" rx="2"/>
+    <text class="kpi-label" x="16" y="144">ROAS</text>
+    <text class="kpi-num-good" x="16" y="178">420%</text>
+    <text class="kpi-unit" x="16" y="196">매출 ÷ 광고비 × 100</text>
+
+    <!-- 손익분기 -->
+    <rect class="card" x="268" y="116" width="252" height="100" rx="2"/>
+    <text class="kpi-label" x="284" y="144">손익분기 ROAS</text>
+    <text class="kpi-num-warn" x="284" y="178">350%</text>
+    <text class="kpi-unit" x="284" y="196">마진율 기준 (28.6%)</text>
+  </g>
+
+  <!-- 트렌드 차트 -->
+  <g transform="translate(40, 320)">
+    <rect class="card" x="0" y="0" width="520" height="216" rx="2"/>
+    <text class="kpi-label" x="16" y="28">일별 ROAS 추이 — 30일</text>
+
+    <!-- 차트 영역 -->
+    <g transform="translate(40, 48)">
+      <!-- Y축 그리드 -->
+      <line class="grid-line" x1="0" y1="0" x2="460" y2="0"/>
+      <line class="grid-line" x1="0" y1="40" x2="460" y2="40"/>
+      <line class="grid-line" x1="0" y1="80" x2="460" y2="80"/>
+      <line class="grid-line" x1="0" y1="120" x2="460" y2="120"/>
+
+      <text class="axis-label" x="-6" y="3" text-anchor="end">600%</text>
+      <text class="axis-label" x="-6" y="43" text-anchor="end">450%</text>
+      <text class="axis-label" x="-6" y="83" text-anchor="end">300%</text>
+      <text class="axis-label" x="-6" y="123" text-anchor="end">150%</text>
+
+      <!-- 손익분기 라인 -->
+      <line class="breakeven-line" x1="0" y1="60" x2="460" y2="60"/>
+      <text class="breakeven-label" x="392" y="56">손익분기 350%</text>
+
+      <!-- ROAS 라인 (가상의 데이터) -->
+      <polyline points="0,90 20,75 39,70 59,65 79,55 99,58 118,50 138,45 158,52 177,40 197,35 217,42 237,38 256,28 276,32 296,25 315,30 335,22 355,28 375,20 394,18 414,25 434,22 460,15"
+        fill="none" stroke="var(--c-revenue)" stroke-width="2"/>
+
+      <!-- 데이터 포인트들 -->
+      <g fill="var(--c-revenue)">
+        <circle cx="0" cy="90" r="2"/>
+        <circle cx="99" cy="58" r="2"/>
+        <circle cx="197" cy="35" r="2"/>
+        <circle cx="296" cy="25" r="2"/>
+        <circle cx="394" cy="18" r="2"/>
+        <circle cx="460" cy="15" r="2"/>
+      </g>
+
+      <!-- X축 -->
+      <line x1="0" y1="130" x2="460" y2="130" stroke="var(--c-faint)" stroke-width="1"/>
+      <text class="axis-label" x="0" y="146">1일</text>
+      <text class="axis-label" x="99" y="146">7일</text>
+      <text class="axis-label" x="197" y="146">14일</text>
+      <text class="axis-label" x="296" y="146">21일</text>
+      <text class="axis-label" x="460" y="146" text-anchor="end">30일</text>
+    </g>
+  </g>
+
+  <!-- 해설 박스 -->
+  <g transform="translate(40, 552)">
+    <rect class="card" x="0" y="0" width="520" height="100" rx="2"/>
+    <text class="legend-text-bold" x="16" y="26">읽는 법</text>
+    <text class="legend-text" x="16" y="48">  · ROAS 420%가 손익분기 350%보다 위 → 광고 자체는 흑자</text>
+    <text class="legend-text" x="16" y="66">  · 30일 추이를 보면 상승세 → 캠페인 학습이 자리 잡는 중</text>
+    <text class="legend-text" x="16" y="84">  · 손익분기는 마진율의 역수 → 1 ÷ 0.286 = 3.5×</text>
+    <text class="legend-text" x="310" y="48">  · 그러나 ROAS는</text>
+    <text class="legend-text" x="316" y="66">    어트리뷰션 매출만 본다 → 다음 도식 참고</text>
+  </g>
+</svg>
