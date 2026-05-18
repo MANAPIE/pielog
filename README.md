@@ -2,7 +2,7 @@
 
 MANAPIE's personal tech blog — thoughts & experiments.
 
-**[blog.manapie.me](https://blog.manapie.me)**
+**[pielog.me](https://pielog.me)**
 
 ## Tech Stack
 
