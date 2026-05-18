@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 740" role="img" aria-labelledby="title desc">
+  <title id="title">트래킹 인프라의 흐름</title>
+  <desc id="desc">사용자 행동이 클라이언트, 우리 서버, 데이터 웨어하우스, 광고 매체까지 흘러가는 두 가지 경로.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-card: #ffffff; --c-card-stroke: #d4d4d0;
+      --c-client: #2d4a3e; --c-client-bg: #e3ede7;
+      --c-server: #c97f4a; --c-server-bg: #f8efe6;
+      --c-storage: #6b6b6b; --c-storage-bg: #ede9df;
+      --c-arrow-good: #2d4a3e;
+      --c-arrow-bad: #c97f4a;
+      --c-divider: #b3b3b0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-card: #1a1a18; --c-card-stroke: #3a3a37;
+        --c-client: #7fb09a; --c-client-bg: #1f2a26;
+        --c-server: #e09a6a; --c-server-bg: #2a1f15;
+        --c-storage: #999996; --c-storage-bg: #2a2823;
+        --c-arrow-good: #7fb09a;
+        --c-arrow-bad: #e09a6a;
+        --c-divider: #4a4a47;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .node-client { fill: var(--c-client-bg); stroke: var(--c-client); stroke-width: 1.25; }
+    .node-server { fill: var(--c-server-bg); stroke: var(--c-server); stroke-width: 1.25; }
+    .node-storage { fill: var(--c-storage-bg); stroke: var(--c-storage); stroke-width: 1; }
+    .node-label { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .node-sub { font: 400 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .arrow-bad { stroke: var(--c-arrow-bad); stroke-width: 1.25; fill: none; stroke-dasharray: 4 3; }
+    .arrow-good { stroke: var(--c-arrow-good); stroke-width: 1.5; fill: none; }
+    .arrow-label-bad { font: 500 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-arrow-bad); }
+    .arrow-label-good { font: 500 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-arrow-good); }
+    .path-title { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .anno { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .divider { stroke: var(--c-divider); stroke-width: 0.5; stroke-dasharray: 3 3; }
+  </style>
+  <rect class="bg" width="600" height="740"/>
+
+  <text class="title" x="40" y="36">두 가지 트래킹 경로</text>
+  <text class="sub" x="40" y="54">같은 사용자 행동, 두 가지 길. 위가 전통적</text>
+  <text class="sub" x="40" y="70">클라이언트 사이드, 아래가 서버사이드.</text>
+
+  <!-- 1. 클라이언트 사이드 경로 (위) -->
+  <g transform="translate(40, 96)">
+    <text class="path-title" x="0" y="0">① 클라이언트 사이드 — 픽셀·태그 (정확도 70~80%)</text>
+
+    <!-- Browser/App -->
+    <g transform="translate(190, 20)">
+      <rect class="node-client" x="0" y="0" width="140" height="68" rx="3"/>
+      <text class="node-label" x="70" y="28" text-anchor="middle">브라우저 · 앱</text>
+      <text class="node-sub" x="70" y="48" text-anchor="middle">사용자 디바이스</text>
+    </g>
+
+    <!-- Arrow 1: pixel direct → 광고 매체 (왼쪽 아래) -->
+    <g transform="translate(0, 0)">
+      <path class="arrow-bad" d="M 250 88 L 250 110 L 110 110 L 110 132"/>
+      <path d="M 106 126 L 110 136 L 114 126 Z" fill="var(--c-arrow-bad)"/>
+      <text class="arrow-label-bad" x="111" y="106">픽셀 신호 · 차단 영향 큼</text>
+    </g>
+
+    <!-- Arrow 2: SDK 신호 → 분석 도구 (오른쪽 아래) -->
+    <g transform="translate(0, 0)">
+      <path class="arrow-bad" d="M 270 88 L 270 110 L 410 110 L 410 132"/>
+      <path d="M 406 126 L 410 136 L 414 126 Z" fill="var(--c-arrow-bad)"/>
+      <text class="arrow-label-bad" x="284" y="106">SDK 신호 (GA4·Amplitude)</text>
+    </g>
+
+    <!-- 광고 매체 -->
+    <g transform="translate(40, 132)">
+      <rect class="node-storage" x="0" y="0" width="140" height="68" rx="3"/>
+      <text class="node-label" x="70" y="28" text-anchor="middle">광고 매체</text>
+      <text class="node-sub" x="70" y="48" text-anchor="middle">Meta · Google · Kakao</text>
+    </g>
+
+    <!-- 분석 도구 -->
+    <g transform="translate(340, 132)">
+      <rect class="node-storage" x="0" y="0" width="140" height="68" rx="3"/>
+      <text class="node-label" x="70" y="28" text-anchor="middle">분석 도구</text>
+      <text class="node-sub" x="70" y="48" text-anchor="middle">GA4 · Amplitude</text>
+    </g>
+  </g>
+
+  <!-- 구분선 -->
+  <line class="divider" x1="40" y1="364" x2="560" y2="364"/>
+
+  <!-- 2. 서버사이드 경로 (아래) -->
+  <g transform="translate(40, 388)">
+    <text class="path-title" x="0" y="0">② 서버사이드 — Conversion API (정확도 90%+)</text>
+
+    <!-- Browser/App -->
+    <g transform="translate(190, 20)">
+      <rect class="node-client" x="0" y="0" width="140" height="68" rx="3"/>
+      <text class="node-label" x="70" y="28" text-anchor="middle">브라우저 · 앱</text>
+      <text class="node-sub" x="70" y="48" text-anchor="middle">사용자 디바이스</text>
+    </g>
+
+    <!-- Arrow to our server -->
+    <g transform="translate(0, 0)">
+      <path class="arrow-good" d="M 260 88 L 260 116"/>
+      <path d="M 256 110 L 260 120 L 264 110 Z" fill="var(--c-arrow-good)"/>
+      <text class="arrow-label-good" x="272" y="106">이벤트</text>
+    </g>
+
+    <!-- Our Server -->
+    <g transform="translate(190, 120)">
+      <rect class="node-server" x="0" y="0" width="140" height="68" rx="3"/>
+      <text class="node-label" x="70" y="28" text-anchor="middle">우리 서버</text>
+      <text class="node-sub" x="70" y="48" text-anchor="middle">centi-api</text>
+    </g>
+
+    <!-- Arrow to 광고 매체 (CAPI) — 오른쪽 위 -->
+    <g transform="translate(0, 0)">
+      <path class="arrow-good" d="M 330 144 L 380 144 L 380 110"/>
+      <path d="M 376 116 L 380 106 L 384 116 Z" fill="var(--c-arrow-good)"/>
+      <text class="arrow-label-good" x="340" y="138">CAPI</text>
+      <text class="arrow-label-good" x="340" y="170">해시 식별자</text>
+      <text class="arrow-label-good" x="340" y="184">+ 이벤트</text>
+    </g>
+
+    <!-- 광고 매체 -->
+    <g transform="translate(340, 22)">
+      <rect class="node-storage" x="0" y="0" width="140" height="68" rx="3"/>
+      <text class="node-label" x="70" y="28" text-anchor="middle">광고 매체</text>
+      <text class="node-sub" x="70" y="48" text-anchor="middle">Meta · Google · Kakao</text>
+    </g>
+
+    <!-- Arrow to Data Warehouse — 아래로 -->
+    <g transform="translate(0, 0)">
+      <path class="arrow-good" d="M 260 188 L 260 216"/>
+      <path d="M 256 210 L 260 220 L 264 210 Z" fill="var(--c-arrow-good)"/>
+    </g>
+
+    <!-- Data Warehouse -->
+    <g transform="translate(40, 220)">
+      <rect class="node-storage" x="0" y="0" width="200" height="68" rx="3"/>
+      <text class="node-label" x="100" y="28" text-anchor="middle">데이터 웨어하우스</text>
+      <text class="node-sub" x="100" y="48" text-anchor="middle">BigQuery · Snowflake</text>
+    </g>
+
+    <!-- Arrow to BI -->
+    <g transform="translate(0, 0)">
+      <path class="arrow-good" d="M 240 254 L 280 254"/>
+      <path d="M 274 250 L 284 254 L 274 258 Z" fill="var(--c-arrow-good)"/>
+    </g>
+
+    <!-- 분석 도구 (BI/Amplitude) -->
+    <g transform="translate(284, 220)">
+      <rect class="node-storage" x="0" y="0" width="196" height="68" rx="3"/>
+      <text class="node-label" x="98" y="28" text-anchor="middle">분석 · BI</text>
+      <text class="node-sub" x="98" y="48" text-anchor="middle">Amplitude · 자체 BI</text>
+    </g>
+  </g>
+
+  <!-- 하단 결론 -->
+  <g transform="translate(40, 700)">
+    <text class="anno">서버사이드 도입의 ROI는 광고 월비 1억 이상부터 명확.</text>
+    <text class="anno" x="0" y="16">두 경로 병행이 2026년 표준.</text>
+  </g>
+</svg>
