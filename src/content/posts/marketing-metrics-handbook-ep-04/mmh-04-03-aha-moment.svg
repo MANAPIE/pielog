@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 510" role="img" aria-labelledby="title desc">
+  <title id="title">Aha Moment의 정량 정의</title>
+  <desc id="desc">행동 후보들의 D30 잔존율 격차로 Aha Moment를 찾는 분석.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-card: #ffffff; --c-card-stroke: #d4d4d0;
+      --c-with: #2d4a3e; --c-without: #b3b3b0;
+      --c-aha: #c97f4a; --c-aha-bg: #f8efe6;
+      --c-grid: #ede9df;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-card: #1a1a18; --c-card-stroke: #3a3a37;
+        --c-with: #7fb09a; --c-without: #4a4a47;
+        --c-aha: #e09a6a; --c-aha-bg: #2a1f15;
+        --c-grid: #2a2823;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .axis-label { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .behavior-label { font: 500 11px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+    .num-with { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-with); }
+    .num-without { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); }
+    .grid-line { stroke: var(--c-grid); stroke-width: 1; }
+    .legend-text { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .aha-label { font: 700 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-aha); letter-spacing: 0.05em; }
+    .anno { font: 400 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); font-style: italic; }
+  </style>
+  <rect class="bg" width="600" height="510"/>
+
+  <text class="title" x="40" y="36">행동별 D30 잔존율 격차로 Aha Moment 찾기</text>
+  <text class="sub" x="40" y="54">D7 안에 그 행동을 한 사용자(■)와 안 한 사용자(■)의 D30 잔존율 비교</text>
+
+  <!-- 차트 영역: Y축 x=72, 플롯 480 wide, 그룹 간격 96 -->
+  <g transform="translate(72, 96)">
+    <!-- X축 -->
+    <line x1="0" y1="0" x2="0" y2="280" stroke="var(--c-faint)" stroke-width="1"/>
+
+    <!-- 격자선과 라벨 -->
+    <line class="grid-line" x1="0" y1="0" x2="480" y2="0"/>
+    <line class="grid-line" x1="0" y1="56" x2="480" y2="56"/>
+    <line class="grid-line" x1="0" y1="112" x2="480" y2="112"/>
+    <line class="grid-line" x1="0" y1="168" x2="480" y2="168"/>
+    <line class="grid-line" x1="0" y1="224" x2="480" y2="224"/>
+    <line class="grid-line" x1="0" y1="280" x2="480" y2="280"/>
+
+    <text class="axis-label" x="-12" y="4" text-anchor="end">100%</text>
+    <text class="axis-label" x="-12" y="60" text-anchor="end">80%</text>
+    <text class="axis-label" x="-12" y="116" text-anchor="end">60%</text>
+    <text class="axis-label" x="-12" y="172" text-anchor="end">40%</text>
+    <text class="axis-label" x="-12" y="228" text-anchor="end">20%</text>
+    <text class="axis-label" x="-12" y="284" text-anchor="end">0%</text>
+
+    <!-- 행동들 -->
+    <!-- 1. 카드 분류 결과 확인 (Aha 후보 - 가장 큰 격차) -->
+    <g transform="translate(48, 0)">
+      <rect fill="var(--c-aha-bg)" x="-28" y="0" width="72" height="280" rx="2"/>
+      <text class="aha-label" x="8" y="-12" text-anchor="middle">AHA</text>
+
+      <!-- with: 81% -->
+      <rect fill="var(--c-with)" x="-14" y="53" width="22" height="227"/>
+      <text class="num-with" x="-3" y="46" text-anchor="middle">81%</text>
+
+      <!-- without: 14% -->
+      <rect fill="var(--c-without)" x="14" y="240" width="22" height="40"/>
+      <text class="num-without" x="25" y="234" text-anchor="middle">14%</text>
+
+      <text class="behavior-label" x="8" y="304" text-anchor="middle">카드 분류</text>
+      <text class="behavior-label" x="8" y="318" text-anchor="middle">결과 확인</text>
+    </g>
+
+    <!-- 2. 예산 알림 1회 받음 -->
+    <g transform="translate(144, 0)">
+      <rect fill="var(--c-with)" x="-14" y="98" width="22" height="182"/>
+      <text class="num-with" x="-3" y="91" text-anchor="middle">65%</text>
+
+      <rect fill="var(--c-without)" x="14" y="184" width="22" height="96"/>
+      <text class="num-without" x="25" y="178" text-anchor="middle">34%</text>
+
+      <text class="behavior-label" x="8" y="304" text-anchor="middle">예산 알림</text>
+      <text class="behavior-label" x="8" y="318" text-anchor="middle">1회 받음</text>
+    </g>
+
+    <!-- 3. 전월 비교 확인 -->
+    <g transform="translate(240, 0)">
+      <rect fill="var(--c-with)" x="-14" y="112" width="22" height="168"/>
+      <text class="num-with" x="-3" y="105" text-anchor="middle">60%</text>
+
+      <rect fill="var(--c-without)" x="14" y="174" width="22" height="106"/>
+      <text class="num-without" x="25" y="168" text-anchor="middle">38%</text>
+
+      <text class="behavior-label" x="8" y="304" text-anchor="middle">전월 비교</text>
+      <text class="behavior-label" x="8" y="318" text-anchor="middle">확인</text>
+    </g>
+
+    <!-- 4. 가족 초대 -->
+    <g transform="translate(336, 0)">
+      <rect fill="var(--c-with)" x="-14" y="84" width="22" height="196"/>
+      <text class="num-with" x="-3" y="78" text-anchor="middle">70%</text>
+
+      <rect fill="var(--c-without)" x="14" y="156" width="22" height="124"/>
+      <text class="num-without" x="25" y="150" text-anchor="middle">44%</text>
+
+      <text class="behavior-label" x="8" y="304" text-anchor="middle">가족 초대</text>
+      <text class="behavior-label" x="8" y="318" text-anchor="middle">1명</text>
+    </g>
+
+    <!-- 5. 마이페이지 방문 -->
+    <g transform="translate(432, 0)">
+      <rect fill="var(--c-with)" x="-14" y="154" width="22" height="126"/>
+      <text class="num-with" x="-3" y="148" text-anchor="middle">45%</text>
+
+      <rect fill="var(--c-without)" x="14" y="160" width="22" height="120"/>
+      <text class="num-without" x="25" y="154" text-anchor="middle">43%</text>
+
+      <text class="behavior-label" x="8" y="304" text-anchor="middle">마이페이지</text>
+      <text class="behavior-label" x="8" y="318" text-anchor="middle">방문</text>
+    </g>
+  </g>
+
+  <!-- 범례 -->
+  <g transform="translate(72, 444)">
+    <rect fill="var(--c-with)" x="0" y="0" width="14" height="14" rx="1"/>
+    <text class="legend-text" x="22" y="11">행동 한 사용자</text>
+
+    <rect fill="var(--c-without)" x="160" y="0" width="14" height="14" rx="1"/>
+    <text class="legend-text" x="182" y="11">행동 안 한 사용자</text>
+  </g>
+
+  <!-- 결론 -->
+  <g transform="translate(40, 482)">
+    <text class="anno" x="0" y="0">카드 분류 결과 확인의 격차 67%p — 다른 행동들의 격차</text>
+    <text class="anno" x="0" y="16">31%p, 22%p, 26%p, 2%p와 비교해 명확한 Aha 후보.</text>
+  </g>
+</svg>
