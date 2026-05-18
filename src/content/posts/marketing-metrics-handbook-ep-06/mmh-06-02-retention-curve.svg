@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 510" role="img" aria-labelledby="title desc">
+  <title id="title">리텐션 곡선의 세 가지 모양</title>
+  <desc id="desc">PMF가 있는 곡선(평탄화), PMF가 없는 곡선(0에 수렴), 개선된 곡선(평탄화 위치 상승) 세 가지 비교.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-grid: #ede9df; --c-axis: #b3b3b0;
+      --c-good: #2d4a3e; --c-bad: #c97f4a; --c-improved: #d99a4a;
+      --c-asymptote: #c97f4a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-grid: #2a2823; --c-axis: #4a4a47;
+        --c-good: #7fb09a; --c-bad: #e09a6a; --c-improved: #d4a560;
+        --c-asymptote: #e09a6a;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .axis-line { stroke: var(--c-axis); stroke-width: 1; }
+    .axis-label { font: 400 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); }
+    .grid-line { stroke: var(--c-grid); stroke-width: 0.75; }
+    .curve { fill: none; stroke-width: 2.5; }
+    .curve-good { stroke: var(--c-good); }
+    .curve-bad { stroke: var(--c-bad); stroke-dasharray: 5 3; }
+    .curve-improved { stroke: var(--c-improved); }
+    .asymptote { stroke: var(--c-asymptote); stroke-width: 1; stroke-dasharray: 4 3; fill: none; }
+    .legend-bold { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .legend-text { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .label-line { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-asymptote); font-style: italic; }
+  </style>
+  <rect class="bg" width="600" height="510"/>
+
+  <text class="title" x="40" y="36">리텐션 곡선의 세 가지 모양</text>
+  <text class="sub" x="40" y="54">평탄화 위치가 PMF의 신호. 어디서 멈추는가가 곡선의 결론.</text>
+
+  <!-- 차트 영역: Y축 라벨 x=72, 플롯 480 wide -->
+  <g transform="translate(72, 96)">
+    <!-- Y축 격자 -->
+    <line class="grid-line" x1="0" y1="0" x2="480" y2="0"/>
+    <line class="grid-line" x1="0" y1="50" x2="480" y2="50"/>
+    <line class="grid-line" x1="0" y1="100" x2="480" y2="100"/>
+    <line class="grid-line" x1="0" y1="150" x2="480" y2="150"/>
+    <line class="grid-line" x1="0" y1="200" x2="480" y2="200"/>
+    <line class="grid-line" x1="0" y1="250" x2="480" y2="250"/>
+
+    <!-- Y축 라벨 -->
+    <text class="axis-label" x="-8" y="3" text-anchor="end">100%</text>
+    <text class="axis-label" x="-8" y="53" text-anchor="end">80%</text>
+    <text class="axis-label" x="-8" y="103" text-anchor="end">60%</text>
+    <text class="axis-label" x="-8" y="153" text-anchor="end">40%</text>
+    <text class="axis-label" x="-8" y="203" text-anchor="end">20%</text>
+    <text class="axis-label" x="-8" y="253" text-anchor="end">0%</text>
+
+    <!-- X축 -->
+    <line class="axis-line" x1="0" y1="250" x2="480" y2="250"/>
+    <text class="axis-label" x="0" y="270">D0</text>
+    <text class="axis-label" x="80" y="270">D1</text>
+    <text class="axis-label" x="160" y="270">D7</text>
+    <text class="axis-label" x="240" y="270">D14</text>
+    <text class="axis-label" x="320" y="270">D30</text>
+    <text class="axis-label" x="400" y="270">D60</text>
+    <text class="axis-label" x="480" y="270" text-anchor="end">D90</text>
+
+    <!-- PMF 곡선 (좋음) - 평탄화 -->
+    <!-- 100→64→41→35→32→30→29 -->
+    <!-- Y mapping: 100%=0, 0%=250 -> y = 250 - (v * 2.5) -->
+    <path class="curve curve-good" d="M 0 0 L 80 90 L 160 148 L 240 162 L 320 170 L 400 175 L 480 178"/>
+
+    <!-- PMF 없는 곡선 (나쁨) - 0으로 수렴 -->
+    <!-- 100→55→25→12→5→2→1 -->
+    <path class="curve curve-bad" d="M 0 0 L 80 112 L 160 188 L 240 220 L 320 238 L 400 245 L 480 248"/>
+
+    <!-- 개선된 곡선 (희미) -->
+    <!-- 100→72→55→48→45→43→42 -->
+    <path class="curve curve-improved" d="M 0 0 L 80 70 L 160 112 L 240 130 L 320 138 L 400 142 L 480 145"/>
+
+    <!-- 평탄화 라인 (PMF) -->
+    <line class="asymptote" x1="320" y1="170" x2="480" y2="170"/>
+    <text class="label-line" x="200" y="188">평탄화 30% — PMF 신호</text>
+
+    <line class="asymptote" x1="320" y1="138" x2="480" y2="138"/>
+    <text class="label-line" x="252" y="128">개선 후 42%</text>
+  </g>
+
+  <!-- 범례: 세로 스택 -->
+  <g transform="translate(72, 396)">
+    <!-- PMF 있음 -->
+    <line x1="0" y1="8" x2="32" y2="8" stroke="var(--c-good)" stroke-width="2.5"/>
+    <text class="legend-bold" x="42" y="12">PMF가 있는 곡선</text>
+    <text class="legend-text" x="200" y="12">D30 이후 평탄. 30% 고정 사용자.</text>
+
+    <!-- 개선된 곡선 -->
+    <line x1="0" y1="36" x2="32" y2="36" stroke="var(--c-improved)" stroke-width="2.5"/>
+    <text class="legend-bold" x="42" y="40">개선된 곡선</text>
+    <text class="legend-text" x="200" y="40">온보딩 개선 후. 평탄화 42%로 상승.</text>
+
+    <!-- PMF 없음 -->
+    <line x1="0" y1="64" x2="32" y2="64" stroke="var(--c-bad)" stroke-width="2.5" stroke-dasharray="5 3"/>
+    <text class="legend-bold" x="42" y="68">PMF 없는 곡선</text>
+    <text class="legend-text" x="200" y="68">0에 가깝게 수렴. 광고비로만 유지.</text>
+  </g>
+
+  <!-- 결론 -->
+  <g transform="translate(40, 480)">
+    <text class="legend-text" x="0" y="0">곡선이 떨어지는 속도가 아니라 어디에서 멈추는가가 핵심.</text>
+    <text class="legend-text" x="0" y="16">절대값이 아니라 모양을 읽는다.</text>
+  </g>
+</svg>

@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">ep.06 — 코호트와 리텐션 곡선</title>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-accent: #c97f4a;
+      --c-accent-2: #2d4a3e;
+      --c-accent-3: #d9a47e;
+      --c-num: #c97f4a;
+      --c-dot: #1a1a1a;
+      --c-line: #6b6b6b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-accent: #e09a6a;
+        --c-accent-2: #7fb09a;
+        --c-accent-3: #d4a560;
+        --c-num: #e09a6a;
+        --c-dot: #ededea;
+        --c-line: #4a4a47;
+      }
+    }
+  </style>
+  <defs>
+    <pattern id="dotgrid06" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
+    </pattern>
+    <radialGradient id="rg06a" cx="25%" cy="80%" r="60%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg06b" cx="80%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="var(--c-bg)"/>
+  <rect width="1200" height="630" fill="url(#dotgrid06)"/>
+  <rect width="1200" height="630" fill="url(#rg06a)"/>
+  <rect width="1200" height="630" fill="url(#rg06b)"/>
+
+  <!-- 화면 밖 큰 도형 -->
+  <rect x="-150" y="-80" width="280" height="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4" transform="rotate(12 -10 60)"/>
+  <circle cx="1280" cy="600" r="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- 메타포 전체를 중심 기준으로 확대 -->
+  <g transform="translate(600, 315) scale(1.1) translate(-600, -315)">
+  <!-- 메인 메타포: 코호트 히트맵 그리드 (살짝 회전) -->
+  <g transform="translate(260, 130) rotate(-3)">
+    <!-- 8행 x 8열 셀, 셀 크기 70x40, 간격 4 -->
+    <!-- 히트맵 패턴: 좌상단이 진하고 우측·하단으로 갈수록 옅어짐 -->
+
+    <!-- 행 1 (가장 진한) -->
+    <g>
+      <rect x="0" y="0" width="70" height="40" fill="var(--c-accent-2)" rx="2"/>
+      <rect x="74" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.78" rx="2"/>
+      <rect x="148" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.58" rx="2"/>
+      <rect x="222" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.45" rx="2"/>
+      <rect x="296" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.36" rx="2"/>
+      <rect x="370" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.30" rx="2"/>
+      <rect x="444" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.26" rx="2"/>
+      <rect x="518" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.22" rx="2"/>
+    </g>
+
+    <!-- 행 2 -->
+    <g transform="translate(0, 44)">
+      <rect x="0" y="0" width="70" height="40" fill="var(--c-accent-2)" rx="2"/>
+      <rect x="74" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.82" rx="2"/>
+      <rect x="148" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.62" rx="2"/>
+      <rect x="222" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.48" rx="2"/>
+      <rect x="296" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.38" rx="2"/>
+      <rect x="370" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.32" rx="2"/>
+      <rect x="444" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.28" rx="2"/>
+    </g>
+
+    <!-- 행 3 -->
+    <g transform="translate(0, 88)">
+      <rect x="0" y="0" width="70" height="40" fill="var(--c-accent-2)" rx="2"/>
+      <rect x="74" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.85" rx="2"/>
+      <rect x="148" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.65" rx="2"/>
+      <rect x="222" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.52" rx="2"/>
+      <rect x="296" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.42" rx="2"/>
+      <rect x="370" y="0" width="70" height="40" fill="var(--c-accent-2)" fill-opacity="0.36" rx="2"/>
+    </g>
+
+    <!-- 행 4 (변경점 - 강조됨, 색상 변화) -->
+    <g transform="translate(0, 132)">
+      <rect x="0" y="0" width="70" height="40" fill="var(--c-accent)" rx="2"/>
+      <rect x="74" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.88" rx="2"/>
+      <rect x="148" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.72" rx="2"/>
+      <rect x="222" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.60" rx="2"/>
+      <rect x="296" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.50" rx="2"/>
+    </g>
+
+    <!-- 행 5 -->
+    <g transform="translate(0, 176)">
+      <rect x="0" y="0" width="70" height="40" fill="var(--c-accent)" rx="2"/>
+      <rect x="74" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.90" rx="2"/>
+      <rect x="148" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.75" rx="2"/>
+      <rect x="222" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.62" rx="2"/>
+    </g>
+
+    <!-- 행 6 -->
+    <g transform="translate(0, 220)">
+      <rect x="0" y="0" width="70" height="40" fill="var(--c-accent)" rx="2"/>
+      <rect x="74" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.92" rx="2"/>
+      <rect x="148" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.78" rx="2"/>
+    </g>
+
+    <!-- 행 7 -->
+    <g transform="translate(0, 264)">
+      <rect x="0" y="0" width="70" height="40" fill="var(--c-accent)" rx="2"/>
+      <rect x="74" y="0" width="70" height="40" fill="var(--c-accent)" fill-opacity="0.95" rx="2"/>
+    </g>
+
+    <!-- 행 8 -->
+    <g transform="translate(0, 308)">
+      <rect x="0" y="0" width="70" height="40" fill="var(--c-accent)" rx="2"/>
+    </g>
+
+    <!-- 변경점 표시: 4행 위에 점선 화살표 -->
+    <g transform="translate(-30, 152)">
+      <path d="M 0 0 L -28 0 L -28 30" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <path d="M -32 24 L -28 34 L -24 24 Z" fill="var(--c-accent)"/>
+    </g>
+  </g>
+
+  <!-- 우측에 리텐션 곡선 (작은 차트) -->
+  <g transform="translate(840, 250)">
+    <line x1="0" y1="180" x2="280" y2="180" stroke="var(--c-fg)" stroke-width="1" stroke-opacity="0.4"/>
+
+    <!-- PMF 곡선 -->
+    <path d="M 0 0 L 40 60 L 80 100 L 130 130 L 180 145 L 230 152 L 280 156"
+      fill="none" stroke="var(--c-accent-2)" stroke-width="3"/>
+
+    <!-- PMF 평탄화 선 -->
+    <line x1="130" y1="130" x2="280" y2="130" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 2"/>
+
+    <!-- 도트 표시 -->
+    <circle cx="80" cy="100" r="5" fill="var(--c-accent-2)"/>
+    <circle cx="180" cy="145" r="5" fill="var(--c-accent-2)"/>
+
+    <!-- 포커스 링 -->
+    <circle cx="180" cy="145" r="20" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  </g>
+
+  <!-- 회전된 사각형 (장식) -->
+  <rect x="160" y="490" width="22" height="22" fill="none" stroke="var(--c-accent)" stroke-width="1.5" transform="rotate(15 171 501)"/>
+  <rect x="1020" y="160" width="22" height="22" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" transform="rotate(-12 1031 171)"/>
+
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text x="1144" y="600" text-anchor="end"
+    font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+    font-size="220" font-weight="700"
+    fill="var(--c-num)" fill-opacity="0.18"
+    letter-spacing="-0.04em">06</text>
+</svg>

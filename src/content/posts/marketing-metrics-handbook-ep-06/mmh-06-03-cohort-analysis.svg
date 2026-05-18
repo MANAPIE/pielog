@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 540" role="img" aria-labelledby="title desc">
+  <title id="title">코호트 분석 히트맵</title>
+  <desc id="desc">가입 주차를 행으로, 경과 주차를 열로 한 코호트 표. 셀의 진하기가 잔존율.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-grid: #ede9df;
+      --c-cell-0: #ede9df; --c-cell-100: #2d4a3e;
+      --c-anno: #c97f4a; --c-anno-bg: #f8efe6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-grid: #2a2823;
+        --c-cell-0: #2a2823; --c-cell-100: #7fb09a;
+        --c-anno: #e09a6a; --c-anno-bg: #2a1f15;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .label { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .header-label { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); letter-spacing: 0.04em; }
+    .cell-text { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; }
+    .cell-light { fill: var(--c-fg); }
+    .cell-dark { fill: white; }
+    .anno-line { stroke: var(--c-anno); stroke-width: 1.25; fill: none; stroke-dasharray: 3 2; }
+    .anno-text { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-anno); }
+    .anno-sub { font: 400 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+  </style>
+  <rect class="bg" width="600" height="540"/>
+
+  <text class="title" x="40" y="36">가입 주차별 잔존율 — 8주 분석</text>
+  <text class="sub" x="40" y="54">행: 가입 주차 · 열: 가입 후 경과 주차 · 셀: 그 시점에 활성인 비율</text>
+
+  <!-- 헤더 (경과 주차) -->
+  <!-- 라벨 컬럼 x=40..124 (84) · 셀 9개 x=124.., 셀폭 44 -->
+  <g transform="translate(146, 100)">
+    <text class="header-label" x="0" y="0" text-anchor="middle">W0</text>
+    <text class="header-label" x="44" y="0" text-anchor="middle">W1</text>
+    <text class="header-label" x="88" y="0" text-anchor="middle">W2</text>
+    <text class="header-label" x="132" y="0" text-anchor="middle">W3</text>
+    <text class="header-label" x="176" y="0" text-anchor="middle">W4</text>
+    <text class="header-label" x="220" y="0" text-anchor="middle">W5</text>
+    <text class="header-label" x="264" y="0" text-anchor="middle">W6</text>
+    <text class="header-label" x="308" y="0" text-anchor="middle">W7</text>
+    <text class="header-label" x="352" y="0" text-anchor="middle">W8</text>
+  </g>
+
+  <!-- 좌측 코호트 라벨 + 행 · 행 높이 38, 셀 32 -->
+
+  <!-- W1 코호트 -->
+  <g transform="translate(40, 116)">
+    <text class="label" x="0" y="20">2026 W14</text>
+    <g transform="translate(84, 0)">
+      <rect fill="var(--c-cell-100)" x="0" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-dark" x="20" y="20" text-anchor="middle">100</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.52" x="44" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="64" y="20" text-anchor="middle">52</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.38" x="88" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="108" y="20" text-anchor="middle">38</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.32" x="132" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="152" y="20" text-anchor="middle">32</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.28" x="176" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="196" y="20" text-anchor="middle">28</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.27" x="220" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="240" y="20" text-anchor="middle">27</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.26" x="264" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="284" y="20" text-anchor="middle">26</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.25" x="308" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="328" y="20" text-anchor="middle">25</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.25" x="352" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="372" y="20" text-anchor="middle">25</text>
+    </g>
+  </g>
+
+  <!-- W2 코호트 -->
+  <g transform="translate(40, 154)">
+    <text class="label" x="0" y="20">2026 W15</text>
+    <g transform="translate(84, 0)">
+      <rect fill="var(--c-cell-100)" x="0" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-dark" x="20" y="20" text-anchor="middle">100</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.55" x="44" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="64" y="20" text-anchor="middle">55</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.41" x="88" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="108" y="20" text-anchor="middle">41</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.34" x="132" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="152" y="20" text-anchor="middle">34</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.30" x="176" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="196" y="20" text-anchor="middle">30</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.28" x="220" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="240" y="20" text-anchor="middle">28</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.27" x="264" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="284" y="20" text-anchor="middle">27</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.26" x="308" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="328" y="20" text-anchor="middle">26</text>
+    </g>
+  </g>
+
+  <!-- W3 코호트 -->
+  <g transform="translate(40, 192)">
+    <text class="label" x="0" y="20">2026 W16</text>
+    <g transform="translate(84, 0)">
+      <rect fill="var(--c-cell-100)" x="0" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-dark" x="20" y="20" text-anchor="middle">100</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.58" x="44" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="64" y="20" text-anchor="middle">58</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.43" x="88" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="108" y="20" text-anchor="middle">43</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.36" x="132" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="152" y="20" text-anchor="middle">36</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.32" x="176" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="196" y="20" text-anchor="middle">32</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.30" x="220" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="240" y="20" text-anchor="middle">30</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.28" x="264" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="284" y="20" text-anchor="middle">28</text>
+    </g>
+  </g>
+
+  <!-- W4 코호트 - 카카오 로그인 도입 (개선 시점) -->
+  <g transform="translate(40, 230)">
+    <text class="label" x="0" y="20" style="font-weight: 600; fill: var(--c-anno);">2026 W17</text>
+    <g transform="translate(84, 0)">
+      <rect fill="var(--c-cell-100)" x="0" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-dark" x="20" y="20" text-anchor="middle">100</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.68" x="44" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="64" y="20" text-anchor="middle">68</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.52" x="88" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="108" y="20" text-anchor="middle">52</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.44" x="132" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="152" y="20" text-anchor="middle">44</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.40" x="176" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="196" y="20" text-anchor="middle">40</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.38" x="220" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="240" y="20" text-anchor="middle">38</text>
+    </g>
+  </g>
+
+  <!-- W5 코호트 -->
+  <g transform="translate(40, 268)">
+    <text class="label" x="0" y="20" style="font-weight: 600; fill: var(--c-anno);">2026 W18</text>
+    <g transform="translate(84, 0)">
+      <rect fill="var(--c-cell-100)" x="0" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-dark" x="20" y="20" text-anchor="middle">100</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.71" x="44" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="64" y="20" text-anchor="middle">71</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.55" x="88" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="108" y="20" text-anchor="middle">55</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.47" x="132" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="152" y="20" text-anchor="middle">47</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.42" x="176" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="196" y="20" text-anchor="middle">42</text>
+    </g>
+  </g>
+
+  <!-- W6 코호트 -->
+  <g transform="translate(40, 306)">
+    <text class="label" x="0" y="20" style="font-weight: 600; fill: var(--c-anno);">2026 W19</text>
+    <g transform="translate(84, 0)">
+      <rect fill="var(--c-cell-100)" x="0" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-dark" x="20" y="20" text-anchor="middle">100</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.72" x="44" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="64" y="20" text-anchor="middle">72</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.56" x="88" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="108" y="20" text-anchor="middle">56</text>
+      <rect fill="var(--c-cell-100)" fill-opacity="0.48" x="132" y="0" width="40" height="32" rx="2"/>
+      <text class="cell-text cell-light" x="152" y="20" text-anchor="middle">48</text>
+    </g>
+  </g>
+
+  <!-- 변경점 주석: W17 코호트 (행 y=230..262) 오른쪽 -->
+  <g transform="translate(388, 230)">
+    <path class="anno-line" d="M 0 16 L 18 16"/>
+    <text class="anno-text" x="24" y="20">W17부터 카카오 로그인 도입</text>
+  </g>
+
+  <!-- 색상 범례 -->
+  <g transform="translate(40, 408)">
+    <text class="label" x="0" y="12">잔존율</text>
+    <rect fill="var(--c-cell-100)" fill-opacity="0.1" x="60" y="0" width="32" height="16"/>
+    <rect fill="var(--c-cell-100)" fill-opacity="0.25" x="92" y="0" width="32" height="16"/>
+    <rect fill="var(--c-cell-100)" fill-opacity="0.4" x="124" y="0" width="32" height="16"/>
+    <rect fill="var(--c-cell-100)" fill-opacity="0.6" x="156" y="0" width="32" height="16"/>
+    <rect fill="var(--c-cell-100)" fill-opacity="0.8" x="188" y="0" width="32" height="16"/>
+    <rect fill="var(--c-cell-100)" x="220" y="0" width="32" height="16"/>
+    <text class="anno-sub" x="62" y="32">0%</text>
+    <text class="anno-sub" x="245" y="32">100%</text>
+  </g>
+
+  <!-- 결론 -->
+  <g transform="translate(40, 470)">
+    <text class="anno-sub" x="0" y="0">W4 코호트부터 W2 잔존율이 38 → 52로 14%p 상승.</text>
+    <text class="anno-sub" x="0" y="18">카카오 로그인 도입의 효과가 코호트 표에 그대로 보인다.</text>
+  </g>
+</svg>
