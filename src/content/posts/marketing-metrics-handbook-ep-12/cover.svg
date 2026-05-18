@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">ep.12 — 어트리뷰션과 도구 지도</title>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-accent: #c97f4a;
+      --c-accent-2: #2d4a3e;
+      --c-accent-3: #d9a47e;
+      --c-num: #c97f4a;
+      --c-dot: #1a1a1a;
+      --c-line: #6b6b6b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-accent: #e09a6a;
+        --c-accent-2: #7fb09a;
+        --c-accent-3: #d4a560;
+        --c-num: #e09a6a;
+        --c-dot: #ededea;
+        --c-line: #4a4a47;
+      }
+    }
+  </style>
+  <defs>
+    <pattern id="dotgrid12" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
+    </pattern>
+    <radialGradient id="rg12a" cx="78%" cy="22%" r="60%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg12b" cx="22%" cy="78%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="var(--c-bg)"/>
+  <rect width="1200" height="630" fill="url(#dotgrid12)"/>
+  <rect width="1200" height="630" fill="url(#rg12a)"/>
+  <rect width="1200" height="630" fill="url(#rg12b)"/>
+
+  <!-- 화면 밖 큰 도형 -->
+  <rect x="-200" y="-100" width="320" height="320" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4" transform="rotate(-10 -40 60)"/>
+  <circle cx="1280" cy="640" r="320" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- 메인 메타포: 여러 광고 채널 → 한 사용자 (어트리뷰션 모델) -->
+  <g transform="translate(168, 26) scale(1.15)">
+    <!-- 좌측: 광고 채널 3개 (시작점) -->
+    <!-- 채널 1: 페이스북 (도트 무리) -->
+    <g transform="translate(0, 40)">
+      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <g transform="translate(50, 30)" fill="var(--c-accent)">
+        <circle cx="-18" cy="-8" r="3.5"/>
+        <circle cx="-6" cy="-4" r="3.5"/>
+        <circle cx="6" cy="-10" r="3.5"/>
+        <circle cx="18" cy="-2" r="3.5"/>
+        <circle cx="-12" cy="8" r="3.5"/>
+        <circle cx="0" cy="6" r="3.5"/>
+        <circle cx="14" cy="10" r="3.5"/>
+      </g>
+    </g>
+
+    <!-- 채널 2: 구글 (미니 바) -->
+    <g transform="translate(0, 180)">
+      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <g transform="translate(28, 18)" fill="var(--c-accent-2)">
+        <rect x="0" y="14" width="6" height="20"/>
+        <rect x="10" y="8" width="6" height="26"/>
+        <rect x="20" y="2" width="6" height="32"/>
+        <rect x="30" y="10" width="6" height="24"/>
+        <rect x="40" y="16" width="6" height="18"/>
+      </g>
+    </g>
+
+    <!-- 채널 3: 인스타그램 (별) -->
+    <g transform="translate(0, 320)">
+      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <g transform="translate(50, 30) scale(0.7)">
+        <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z" fill="var(--c-accent-3)"/>
+      </g>
+    </g>
+
+    <!-- 중앙: 어트리뷰션 모델 노드 (분배기) -->
+    <g transform="translate(380, 200)">
+      <!-- 큰 원 -->
+      <circle cx="0" cy="0" r="60" fill="var(--c-accent)" fill-opacity="0.18" stroke="var(--c-accent)" stroke-width="2"/>
+      <!-- 내부: 가중치 분배 시각화 (작은 부채꼴들) -->
+      <g>
+        <!-- 32% 부채 -->
+        <path d="M 0 0 L 0 -50 A 50 50 0 0 1 47 -15 Z" fill="var(--c-accent)" fill-opacity="0.7"/>
+        <!-- 28% 부채 -->
+        <path d="M 0 0 L 47 -15 A 50 50 0 0 1 42 27 Z" fill="var(--c-accent-2)" fill-opacity="0.7"/>
+        <!-- 40% 부채 -->
+        <path d="M 0 0 L 42 27 A 50 50 0 1 1 0 -50 Z" fill="var(--c-accent-3)" fill-opacity="0.7"/>
+
+        <!-- 중심점 -->
+        <circle cx="0" cy="0" r="6" fill="var(--c-fg)"/>
+      </g>
+    </g>
+
+    <!-- 우측: 가입 사용자 (한 명) -->
+    <g transform="translate(680, 200)">
+      <!-- 더 큰 사용자 노드 -->
+      <circle cx="0" cy="0" r="44" fill="var(--c-accent-2)" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <!-- 안에 체크 표시 -->
+      <path d="M -16 0 L -4 12 L 16 -12" fill="none" stroke="var(--c-bg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 화살표: 채널 → 어트리뷰션 노드 -->
+    <g stroke="var(--c-fg)" stroke-width="1.5" stroke-opacity="0.6" fill="none">
+      <!-- 채널 1 (페북) → 분배기 -->
+      <path d="M 100 70 L 320 180" stroke-dasharray="4 3"/>
+      <!-- 채널 2 (구글) → 분배기 -->
+      <path d="M 100 210 L 320 200" stroke-dasharray="4 3"/>
+      <!-- 채널 3 (인스타) → 분배기 -->
+      <path d="M 100 350 L 320 220" stroke-dasharray="4 3"/>
+    </g>
+
+    <!-- 화살표: 분배기 → 사용자 -->
+    <g stroke="var(--c-accent)" stroke-width="2.5" fill="var(--c-accent)">
+      <line x1="440" y1="200" x2="630" y2="200"/>
+      <path d="M 624 192 L 638 200 L 624 208 Z"/>
+    </g>
+
+    <!-- 화살표 위에 작은 도트 (가중치 흐름) -->
+    <g fill="var(--c-accent)">
+      <circle cx="490" cy="200" r="3"/>
+      <circle cx="540" cy="200" r="4"/>
+      <circle cx="590" cy="200" r="5"/>
+    </g>
+
+    <!-- 포커스 링 (분배기 강조) -->
+    <circle cx="380" cy="200" r="80" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- 회전된 사각형 -->
+    <rect x="-30" y="430" width="22" height="22" fill="none" stroke="var(--c-accent)" stroke-width="1.5" transform="rotate(15 -19 441)"/>
+    <rect x="760" y="40" width="22" height="22" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" transform="rotate(-12 771 51)"/>
+
+    <!-- 추가 도트 무리 (시리즈 마지막 - 풍성하게) -->
+    <g transform="translate(200, 460)" fill="var(--c-accent)">
+      <circle cx="0" cy="0" r="3"/>
+      <circle cx="14" cy="-4" r="3"/>
+      <circle cx="8" cy="10" r="3"/>
+      <circle cx="-10" cy="6" r="3"/>
+    </g>
+    <g transform="translate(560, 60)" fill="var(--c-accent-2)">
+      <circle cx="0" cy="0" r="3"/>
+      <circle cx="14" cy="-4" r="3"/>
+      <circle cx="6" cy="10" r="3"/>
+    </g>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text x="1144" y="600" text-anchor="end"
+    font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+    font-size="220" font-weight="700"
+    fill="var(--c-num)" fill-opacity="0.18"
+    letter-spacing="-0.04em">12</text>
+</svg>
