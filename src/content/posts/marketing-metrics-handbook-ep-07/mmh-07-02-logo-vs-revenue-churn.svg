@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 760" role="img" aria-labelledby="title desc">
+  <title id="title">고객 수 이탈과 매출 이탈의 차이</title>
+  <desc id="desc">같은 이탈 사건이라도 고객 수 단위와 매출 단위로 보면 다른 그림이 그려진다.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-card: #ffffff; --c-card-stroke: #d4d4d0;
+      --c-active: #2d4a3e; --c-active-bg: #e3ede7;
+      --c-churn: #c97f4a; --c-churn-bg: #f8efe6;
+      --c-expansion: #4a7e5e;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-card: #1a1a18; --c-card-stroke: #3a3a37;
+        --c-active: #7fb09a; --c-active-bg: #1f2a26;
+        --c-churn: #e09a6a; --c-churn-bg: #2a1f15;
+        --c-expansion: #9bc4ad;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .panel-title { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .num-big { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .num-churn { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-churn); }
+    .num-active { font: 700 16px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-active); }
+    .label-bold { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .label-muted { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .stat-label { font: 500 10px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); letter-spacing: 0.05em; }
+    .divider { stroke: var(--c-faint); stroke-width: 0.5; stroke-dasharray: 3 4; }
+    .formula-bg { fill: var(--c-active-bg); stroke: var(--c-active); stroke-width: 1; }
+    .formula-text { font: 600 12px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+  </style>
+  <rect class="bg" width="600" height="760"/>
+
+  <text class="title" x="40" y="36">100명의 고객, 그러나 두 가지 시선</text>
+  <text class="sub" x="40" y="54">같은 분기, 같은 이탈. 단위를 바꾸면 다른 회사처럼 보인다.</text>
+
+  <!-- 상단: Logo Churn -->
+  <g transform="translate(40, 96)">
+    <text class="panel-title" x="0" y="0">고객 수 단위 — Logo Churn</text>
+    <text class="sub" x="0" y="18">모든 고객 동일 가중</text>
+
+    <!-- 시각화: 100명의 점 (10x10, 20px pitch) -->
+    <g transform="translate(0, 40)">
+      <g fill="var(--c-active)">
+        <circle cx="0" cy="0" r="5"/><circle cx="20" cy="0" r="5"/><circle cx="40" cy="0" r="5"/><circle cx="60" cy="0" r="5"/><circle cx="80" cy="0" r="5"/><circle cx="100" cy="0" r="5"/><circle cx="120" cy="0" r="5"/><circle cx="140" cy="0" r="5"/><circle cx="160" cy="0" r="5"/><circle cx="180" cy="0" r="5"/>
+        <circle cx="0" cy="20" r="5"/><circle cx="20" cy="20" r="5"/><circle cx="40" cy="20" r="5"/><circle cx="60" cy="20" r="5"/><circle cx="80" cy="20" r="5"/><circle cx="100" cy="20" r="5"/><circle cx="120" cy="20" r="5"/><circle cx="140" cy="20" r="5"/><circle cx="160" cy="20" r="5"/><circle cx="180" cy="20" r="5"/>
+        <circle cx="0" cy="40" r="5"/><circle cx="20" cy="40" r="5"/><circle cx="40" cy="40" r="5"/><circle cx="60" cy="40" r="5"/><circle cx="80" cy="40" r="5"/><circle cx="100" cy="40" r="5"/><circle cx="120" cy="40" r="5"/><circle cx="140" cy="40" r="5"/><circle cx="160" cy="40" r="5"/><circle cx="180" cy="40" r="5"/>
+        <circle cx="0" cy="60" r="5"/><circle cx="20" cy="60" r="5"/><circle cx="40" cy="60" r="5"/><circle cx="60" cy="60" r="5"/><circle cx="80" cy="60" r="5"/><circle cx="100" cy="60" r="5"/><circle cx="120" cy="60" r="5"/><circle cx="140" cy="60" r="5"/><circle cx="160" cy="60" r="5"/><circle cx="180" cy="60" r="5"/>
+        <circle cx="0" cy="80" r="5"/><circle cx="20" cy="80" r="5"/><circle cx="40" cy="80" r="5"/><circle cx="60" cy="80" r="5"/><circle cx="80" cy="80" r="5"/><circle cx="100" cy="80" r="5"/><circle cx="120" cy="80" r="5"/><circle cx="140" cy="80" r="5"/><circle cx="160" cy="80" r="5"/><circle cx="180" cy="80" r="5"/>
+        <circle cx="0" cy="100" r="5"/><circle cx="20" cy="100" r="5"/><circle cx="40" cy="100" r="5"/><circle cx="60" cy="100" r="5"/><circle cx="80" cy="100" r="5"/><circle cx="100" cy="100" r="5"/><circle cx="120" cy="100" r="5"/><circle cx="140" cy="100" r="5"/><circle cx="160" cy="100" r="5"/><circle cx="180" cy="100" r="5"/>
+        <circle cx="0" cy="120" r="5"/><circle cx="20" cy="120" r="5"/><circle cx="40" cy="120" r="5"/><circle cx="60" cy="120" r="5"/><circle cx="80" cy="120" r="5"/><circle cx="100" cy="120" r="5"/><circle cx="120" cy="120" r="5"/><circle cx="140" cy="120" r="5"/><circle cx="160" cy="120" r="5"/><circle cx="180" cy="120" r="5"/>
+        <circle cx="0" cy="140" r="5"/><circle cx="20" cy="140" r="5"/><circle cx="40" cy="140" r="5"/><circle cx="60" cy="140" r="5"/><circle cx="80" cy="140" r="5"/><circle cx="100" cy="140" r="5"/><circle cx="120" cy="140" r="5"/><circle cx="140" cy="140" r="5"/><circle cx="160" cy="140" r="5"/><circle cx="180" cy="140" r="5"/>
+        <circle cx="0" cy="160" r="5"/><circle cx="20" cy="160" r="5"/><circle cx="40" cy="160" r="5"/><circle cx="60" cy="160" r="5"/><circle cx="80" cy="160" r="5"/><circle cx="100" cy="160" r="5"/><circle cx="120" cy="160" r="5"/><circle cx="140" cy="160" r="5"/><circle cx="160" cy="160" r="5"/><circle cx="180" cy="160" r="5"/>
+      </g>
+      <g fill="var(--c-churn)">
+        <circle cx="0" cy="180" r="5"/><circle cx="20" cy="180" r="5"/><circle cx="40" cy="180" r="5"/><circle cx="60" cy="180" r="5"/><circle cx="80" cy="180" r="5"/><circle cx="100" cy="180" r="5"/><circle cx="120" cy="180" r="5"/><circle cx="140" cy="180" r="5"/><circle cx="160" cy="180" r="5"/><circle cx="180" cy="180" r="5"/>
+      </g>
+    </g>
+
+    <!-- 결과 (점 그리드 우측) -->
+    <g transform="translate(280, 110)">
+      <text class="stat-label" x="0" y="0">LOGO CHURN</text>
+      <text class="num-churn" x="0" y="32">10.0%</text>
+      <text class="label-muted" x="0" y="54">100명 중 10명 이탈</text>
+    </g>
+  </g>
+
+  <!-- 구분선 -->
+  <line class="divider" x1="40" y1="356" x2="560" y2="356"/>
+
+  <!-- 하단: Revenue Churn -->
+  <g transform="translate(40, 388)">
+    <text class="panel-title" x="0" y="0">매출 단위 — Revenue Churn</text>
+    <text class="sub" x="0" y="18">큰 고객은 큰 무게</text>
+
+    <!-- 시각화: 매출 막대 -->
+    <g transform="translate(0, 40)">
+      <!-- 대형 고객 5명 (각 100만원) -->
+      <rect fill="var(--c-active)" x="0" y="0" width="60" height="40" rx="2"/>
+      <text class="num-active" x="30" y="25" text-anchor="middle" style="fill: white;">100만</text>
+      <rect fill="var(--c-active)" x="65" y="0" width="60" height="40" rx="2"/>
+      <text class="num-active" x="95" y="25" text-anchor="middle" style="fill: white;">100만</text>
+      <rect fill="var(--c-active)" x="130" y="0" width="60" height="40" rx="2"/>
+      <text class="num-active" x="160" y="25" text-anchor="middle" style="fill: white;">100만</text>
+      <rect fill="var(--c-active)" x="195" y="0" width="60" height="40" rx="2"/>
+      <text class="num-active" x="225" y="25" text-anchor="middle" style="fill: white;">100만</text>
+      <rect fill="var(--c-active)" x="260" y="0" width="60" height="40" rx="2"/>
+      <text class="num-active" x="290" y="25" text-anchor="middle" style="fill: white;">100만</text>
+
+      <text class="label-muted" x="0" y="58">대형 5명 · 합 500만원</text>
+
+      <!-- 중형 고객 35명 (각 10만원) 7x5 -->
+      <g transform="translate(0, 80)">
+        <g fill="var(--c-active)">
+          <rect x="0" y="0" width="14" height="14" rx="1"/>
+          <rect x="18" y="0" width="14" height="14" rx="1"/>
+          <rect x="36" y="0" width="14" height="14" rx="1"/>
+          <rect x="54" y="0" width="14" height="14" rx="1"/>
+          <rect x="72" y="0" width="14" height="14" rx="1"/>
+          <rect x="90" y="0" width="14" height="14" rx="1"/>
+          <rect x="108" y="0" width="14" height="14" rx="1"/>
+
+          <rect x="0" y="18" width="14" height="14" rx="1"/>
+          <rect x="18" y="18" width="14" height="14" rx="1"/>
+          <rect x="36" y="18" width="14" height="14" rx="1"/>
+          <rect x="54" y="18" width="14" height="14" rx="1"/>
+          <rect x="72" y="18" width="14" height="14" rx="1"/>
+          <rect x="90" y="18" width="14" height="14" rx="1"/>
+          <rect x="108" y="18" width="14" height="14" rx="1"/>
+
+          <rect x="0" y="36" width="14" height="14" rx="1"/>
+          <rect x="18" y="36" width="14" height="14" rx="1"/>
+          <rect x="36" y="36" width="14" height="14" rx="1"/>
+          <rect x="54" y="36" width="14" height="14" rx="1"/>
+          <rect x="72" y="36" width="14" height="14" rx="1"/>
+          <rect x="90" y="36" width="14" height="14" rx="1"/>
+          <rect x="108" y="36" width="14" height="14" rx="1"/>
+
+          <rect x="0" y="54" width="14" height="14" rx="1"/>
+          <rect x="18" y="54" width="14" height="14" rx="1"/>
+          <rect x="36" y="54" width="14" height="14" rx="1"/>
+          <rect x="54" y="54" width="14" height="14" rx="1"/>
+          <rect x="72" y="54" width="14" height="14" rx="1"/>
+          <rect x="90" y="54" width="14" height="14" rx="1"/>
+          <rect x="108" y="54" width="14" height="14" rx="1"/>
+
+          <rect x="0" y="72" width="14" height="14" rx="1"/>
+          <rect x="18" y="72" width="14" height="14" rx="1"/>
+          <rect x="36" y="72" width="14" height="14" rx="1"/>
+          <rect x="54" y="72" width="14" height="14" rx="1"/>
+          <rect x="72" y="72" width="14" height="14" rx="1"/>
+          <rect x="90" y="72" width="14" height="14" rx="1"/>
+          <rect x="108" y="72" width="14" height="14" rx="1"/>
+        </g>
+        <text class="label-muted" x="130" y="48">중형 35명 · 합 350만</text>
+        <text class="label-muted" x="130" y="68">소형 60명 · 합 120만</text>
+        <text class="label-muted" x="130" y="84">(생략, 점 60개)</text>
+      </g>
+    </g>
+
+    <!-- 이탈한 10명의 구성 -->
+    <g transform="translate(0, 230)">
+      <text class="stat-label" x="0" y="0">이탈 10명의 매출 구성</text>
+      <text class="label-bold" x="0" y="20">대형 0명 · 중형 2명 · 소형 8명</text>
+      <text class="label-muted" x="0" y="36">= 20만 + 16만 = 36만원</text>
+    </g>
+
+    <!-- 결과 -->
+    <g transform="translate(280, 230)">
+      <text class="stat-label" x="0" y="0">REVENUE CHURN</text>
+      <text class="num-churn" x="0" y="28">3.7%</text>
+      <text class="label-muted" x="0" y="48">970만 중 36만 손실</text>
+    </g>
+  </g>
+
+  <!-- 하단 공식 박스 -->
+  <g transform="translate(40, 686)">
+    <rect class="formula-bg" width="520" height="50" rx="2"/>
+    <text class="formula-text" x="16" y="22">Logo 10.0% ≠ Revenue 3.7%</text>
+    <text class="formula-text" x="16" y="40">떠난 고객이 평균보다 작았다는 진단. 두 수치를 항상 함께.</text>
+  </g>
+</svg>
