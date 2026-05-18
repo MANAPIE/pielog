@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" role="img" aria-labelledby="title desc">
+  <title id="title">ep.10에서 다루는 단계</title>
+  <desc id="desc">측정 인프라 - 실험 부분이 강조된 작은 퍼널 지도.</desc>
+  <style>
+    :root {
+      --c-bg:#fafaf7; --c-fg:#1a1a1a; --c-muted:#6b6b6b; --c-faint:#d4d4d0;
+      --c-card:#ffffff; --c-card-stroke:#d4d4d0;
+      --c-active:#c97f4a; --c-active-bg:#f8efe6; --c-active-fg:#5a3520;
+      --c-infra:#ede9df; --c-num:#c97f4a;
+      --c-infra-active:#f8efe6; --c-infra-active-fg:#c97f4a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg:#0f0f0e; --c-fg:#ededea; --c-muted:#999996; --c-faint:#3a3a37;
+        --c-card:#1a1a18; --c-card-stroke:#3a3a37;
+        --c-active:#e09a6a; --c-active-bg:#2a1f15; --c-active-fg:#f0c8a0;
+        --c-infra:#1f1d18; --c-num:#e09a6a;
+        --c-infra-active:#2a1f15; --c-infra-active-fg:#e09a6a;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .card { fill: var(--c-card); stroke: var(--c-card-stroke); stroke-width: 1; }
+    .card-active { fill: var(--c-active-bg); stroke: var(--c-active); stroke-width: 1.5; }
+    .ep { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); }
+    .label { font: 600 16px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-muted); }
+    .label-active { font: 700 16px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-active-fg); }
+    .metrics { font: 400 13px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-active-fg); }
+    .infra-band { fill: var(--c-infra); }
+    .infra-title { font: 700 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); letter-spacing: 0.04em; }
+    .infra-label { font: 500 12px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-muted); }
+    .item { fill: var(--c-card); stroke: var(--c-card-stroke); stroke-width: 1; }
+    .item-active { fill: var(--c-active-bg); stroke: var(--c-active); stroke-width: 1.5; }
+    .item-ep { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); }
+    .item-topic { font: 700 14px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-muted); }
+    .item-topic-active { font: 700 14px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-active-fg); }
+    .item-metrics { font: 400 11px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-muted); }
+    .item-metrics-active { font: 400 11px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-active-fg); }
+    .arrow { fill: var(--c-faint); }
+    .focus-tag { font: 700 13px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-active); letter-spacing: 0.04em; }
+  </style>
+  <rect class="bg" width="600" height="700"/>
+
+  <text class="focus-tag" x="40" y="36">FOCUS — 측정 인프라 · 실험</text>
+
+  <g>
+    <rect class="card" x="40" y="56" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="82">ep.01 — 02</text>
+    <text class="label" x="60" y="104">획득</text>
+  </g>
+  <path class="arrow" d="M 294 121 L 306 121 L 300 129 Z"/>
+
+  <g>
+    <rect class="card" x="40" y="132" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="158">ep.03 — 04</text>
+    <text class="label" x="60" y="180">활성화</text>
+  </g>
+  <path class="arrow" d="M 294 197 L 306 197 L 300 205 Z"/>
+
+  <g>
+    <rect class="card" x="40" y="208" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="234">ep.05 — 07</text>
+    <text class="label" x="60" y="256">유지</text>
+  </g>
+  <path class="arrow" d="M 294 273 L 306 273 L 300 281 Z"/>
+
+  <g>
+    <rect class="card" x="40" y="284" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="310">ep.08</text>
+    <text class="label" x="60" y="332">수익</text>
+  </g>
+  <path class="arrow" d="M 294 349 L 306 349 L 300 357 Z"/>
+
+  <g>
+    <rect class="card" x="40" y="360" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="386">ep.09</text>
+    <text class="label" x="60" y="408">추천</text>
+  </g>
+
+  <rect class="infra-band" x="40" y="434" width="520" height="230" rx="3"/>
+  <text class="infra-title" x="60" y="464">측정 인프라 · MEASUREMENT LAYER</text>
+
+  <g>
+    <rect class="item-active" x="56" y="478" width="488" height="50" rx="3"/>
+    <text class="item-ep" x="76" y="498">ep.10</text>
+    <text class="item-topic-active" x="120" y="498">실험</text>
+    <text class="item-metrics-active" x="76" y="516">A/B · p-value · MDE</text>
+  </g>
+
+  <g>
+    <rect class="item" x="56" y="538" width="488" height="50" rx="3"/>
+    <text class="item-ep" x="76" y="558">ep.11</text>
+    <text class="item-topic" x="120" y="558">트래킹</text>
+    <text class="item-metrics" x="76" y="576">UTM · Event · Pixel · CAPI</text>
+  </g>
+
+  <g>
+    <rect class="item" x="56" y="598" width="488" height="50" rx="3"/>
+    <text class="item-ep" x="76" y="618">ep.12</text>
+    <text class="item-topic" x="120" y="618">어트리뷰션</text>
+    <text class="item-metrics" x="76" y="636">Last-touch · Data-driven · GA4 · Amplitude</text>
+  </g>
+
+  <text class="infra-label" x="40" y="686">측정 인프라는 다섯 단계 전체에서 작동합니다.</text>
+</svg>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">ep.07 — 이탈(Churn)</title>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-accent: #c97f4a;
+      --c-accent-2: #2d4a3e;
+      --c-accent-3: #d9a47e;
+      --c-num: #c97f4a;
+      --c-dot: #1a1a1a;
+      --c-line: #6b6b6b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-accent: #e09a6a;
+        --c-accent-2: #7fb09a;
+        --c-accent-3: #d4a560;
+        --c-num: #e09a6a;
+        --c-dot: #ededea;
+        --c-line: #4a4a47;
+      }
+    }
+  </style>
+  <defs>
+    <pattern id="dotgrid07" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
+    </pattern>
+    <radialGradient id="rg07a" cx="20%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg07b" cx="82%" cy="78%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="var(--c-bg)"/>
+  <rect width="1200" height="630" fill="url(#dotgrid07)"/>
+  <rect width="1200" height="630" fill="url(#rg07a)"/>
+  <rect width="1200" height="630" fill="url(#rg07b)"/>
+
+  <!-- 화면 밖 큰 도형 -->
+  <circle cx="-120" cy="320" r="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="1000" y="-80" width="320" height="320" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4" transform="rotate(-8 1160 80)"/>
+
+  <!-- 메인 메타포: 매출 막대 + 일부 막대가 잘려나가는 (이탈) -->
+  <g transform="translate(129, 21) scale(1.22)">
+    <!-- 베이스라인 -->
+    <line x1="0" y1="380" x2="760" y2="380" stroke="var(--c-fg)" stroke-width="1.5" stroke-opacity="0.5"/>
+
+    <!-- 막대 7개 (월별 매출) -->
+    <!-- 막대 너비 80, 간격 30 -->
+
+    <!-- 막대 1: 안정 -->
+    <rect x="0" y="200" width="80" height="180" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+
+    <!-- 막대 2: 안정 -->
+    <rect x="110" y="200" width="80" height="180" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+
+    <!-- 막대 3: 안정 -->
+    <rect x="220" y="200" width="80" height="180" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+
+    <!-- 막대 4: 일부 잘림 (Churn 시작) -->
+    <rect x="330" y="200" width="80" height="180" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+    <rect x="330" y="200" width="80" height="40" fill="var(--c-accent)"/>
+    <!-- 떨어지는 화살표 (잘린 부분) -->
+    <g transform="translate(370, 240)">
+      <path d="M 0 0 L 0 60" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="4 3"/>
+      <path d="M -8 52 L 0 64 L 8 52" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 막대 5: 더 잘림 -->
+    <rect x="440" y="220" width="80" height="160" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+    <rect x="440" y="220" width="80" height="60" fill="var(--c-accent)"/>
+    <g transform="translate(480, 280)">
+      <path d="M 0 0 L 0 70" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="4 3"/>
+      <path d="M -8 62 L 0 74 L 8 62" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 막대 6: 많이 잘림 -->
+    <rect x="550" y="250" width="80" height="130" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+    <rect x="550" y="250" width="80" height="80" fill="var(--c-accent)"/>
+
+    <!-- 막대 7: 작아진 -->
+    <rect x="660" y="280" width="80" height="100" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+
+    <!-- 떠나는 도트 (사용자) -->
+    <g fill="var(--c-fg)" opacity="0.5">
+      <circle cx="380" cy="120" r="4"/>
+      <circle cx="396" cy="106" r="4"/>
+      <circle cx="408" cy="124" r="4"/>
+
+      <circle cx="490" cy="140" r="4"/>
+      <circle cx="506" cy="126" r="4"/>
+      <circle cx="518" cy="146" r="4"/>
+      <circle cx="478" cy="120" r="4"/>
+
+      <circle cx="600" cy="180" r="4"/>
+      <circle cx="612" cy="166" r="4"/>
+      <circle cx="624" cy="186" r="4"/>
+      <circle cx="588" cy="160" r="4"/>
+      <circle cx="608" cy="200" r="4"/>
+    </g>
+
+    <!-- 포커스 링 (Churn 시작점 강조) -->
+    <circle cx="370" cy="240" r="30" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 2"/>
+
+    <!-- 회전된 사각형들 -->
+    <rect x="-30" y="80" width="22" height="22" fill="none" stroke="var(--c-accent)" stroke-width="1.5" transform="rotate(15 -19 91)"/>
+    <rect x="780" y="380" width="22" height="22" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" transform="rotate(-12 791 391)"/>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text x="1144" y="600" text-anchor="end"
+    font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+    font-size="220" font-weight="700"
+    fill="var(--c-num)" fill-opacity="0.18"
+    letter-spacing="-0.04em">07</text>
+</svg>

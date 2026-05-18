@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 552" role="img" aria-labelledby="title desc">
+  <title id="title">NPS의 분포와 분류</title>
+  <desc id="desc">0~10 응답을 Detractor, Passive, Promoter 세 그룹으로 나눠 NPS를 계산하는 구조.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-grid: #ede9df;
+      --c-detractor: #c97f4a;
+      --c-passive: #d4d4d0;
+      --c-promoter: #2d4a3e;
+      --c-accent: #c97f4a; --c-accent-bg: #f8efe6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-grid: #2a2823;
+        --c-detractor: #e09a6a;
+        --c-passive: #4a4a47;
+        --c-promoter: #7fb09a;
+        --c-accent: #e09a6a; --c-accent-bg: #2a1f15;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .scale-num { font: 600 14px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .scale-label { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: white; letter-spacing: 0.06em; }
+    .scale-sub { font: 500 10px ui-sans-serif, system-ui, sans-serif; fill: white; opacity: 0.9; }
+    .group-num { font: 700 32px ui-monospace, "SF Mono", Menlo, monospace; }
+    .group-label { font: 600 12px ui-sans-serif, system-ui, sans-serif; }
+    .group-num-d { fill: var(--c-detractor); }
+    .group-num-p { fill: var(--c-fg); }
+    .group-num-pm { fill: var(--c-promoter); }
+    .formula-bg { fill: var(--c-accent-bg); stroke: var(--c-accent); stroke-width: 1; }
+    .formula-text { font: 600 13px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .nps-result { font: 700 32px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-accent); }
+    .anno { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+  </style>
+  <rect class="bg" width="600" height="552"/>
+
+  <text class="title" x="40" y="36">질문 한 줄, 세 가지 응답 그룹</text>
+  <text class="sub" x="40" y="54">"이 서비스를 친구에게 추천할 의향이 얼마나 되시나요?"</text>
+  <text class="sub" x="40" y="70">0(전혀) ~ 10(매우)</text>
+
+  <!-- 척도 시각화 (0~10 점수 막대) -->
+  <g transform="translate(40, 112)">
+    <!-- 0~6 Detractor -->
+    <g>
+      <rect fill="var(--c-detractor)" x="0" y="0" width="324" height="60" rx="2"/>
+      <!-- 각 숫자 0~6 -->
+      <text class="scale-num" x="23" y="38" text-anchor="middle" style="fill: white;">0</text>
+      <text class="scale-num" x="69" y="38" text-anchor="middle" style="fill: white;">1</text>
+      <text class="scale-num" x="116" y="38" text-anchor="middle" style="fill: white;">2</text>
+      <text class="scale-num" x="162" y="38" text-anchor="middle" style="fill: white;">3</text>
+      <text class="scale-num" x="208" y="38" text-anchor="middle" style="fill: white;">4</text>
+      <text class="scale-num" x="254" y="38" text-anchor="middle" style="fill: white;">5</text>
+      <text class="scale-num" x="301" y="38" text-anchor="middle" style="fill: white;">6</text>
+
+      <text class="scale-label" x="162" y="-12" text-anchor="middle" style="fill: var(--c-detractor);">DETRACTOR</text>
+      <text class="scale-sub" x="162" y="76" text-anchor="middle" style="fill: var(--c-detractor); opacity: 1;">불만 또는 무관심</text>
+    </g>
+
+    <!-- 7~8 Passive -->
+    <g transform="translate(330, 0)">
+      <rect fill="var(--c-passive)" x="0" y="0" width="92" height="60" rx="2"/>
+      <text class="scale-num" x="23" y="38" text-anchor="middle" style="fill: var(--c-fg);">7</text>
+      <text class="scale-num" x="69" y="38" text-anchor="middle" style="fill: var(--c-fg);">8</text>
+
+      <text class="scale-label" x="46" y="-12" text-anchor="middle" style="fill: var(--c-muted);">PASSIVE</text>
+      <text class="scale-sub" x="46" y="76" text-anchor="middle" style="fill: var(--c-muted); opacity: 1;">중립 (계산 제외)</text>
+    </g>
+
+    <!-- 9~10 Promoter -->
+    <g transform="translate(428, 0)">
+      <rect fill="var(--c-promoter)" x="0" y="0" width="92" height="60" rx="2"/>
+      <text class="scale-num" x="23" y="38" text-anchor="middle" style="fill: white;">9</text>
+      <text class="scale-num" x="69" y="38" text-anchor="middle" style="fill: white;">10</text>
+
+      <text class="scale-label" x="46" y="-12" text-anchor="middle" style="fill: var(--c-promoter);">PROMOTER</text>
+      <text class="scale-sub" x="46" y="76" text-anchor="middle" style="fill: var(--c-promoter); opacity: 1;">적극 추천</text>
+    </g>
+  </g>
+
+  <!-- 비율 막대 (응답 분포) -->
+  <g transform="translate(40, 252)">
+    <text class="sub" x="0" y="-6">실제 응답 분포 — 센티 D30 사용자</text>
+
+    <!-- 분포 막대: 너비 520 -->
+    <!-- Detractor 12%, Passive 34%, Promoter 54% -->
+    <rect fill="var(--c-detractor)" x="0" y="0" width="62" height="40" rx="2"/>
+    <text class="scale-sub" x="31" y="25" text-anchor="middle">12%</text>
+
+    <rect fill="var(--c-passive)" x="65" y="0" width="177" height="40" rx="2"/>
+    <text class="scale-sub" x="153" y="25" text-anchor="middle" style="fill: var(--c-fg); opacity: 1;">34%</text>
+
+    <rect fill="var(--c-promoter)" x="245" y="0" width="275" height="40" rx="2"/>
+    <text class="scale-sub" x="382" y="25" text-anchor="middle">54%</text>
+  </g>
+
+  <!-- 그룹별 % 표시 (큰 숫자) -->
+  <g transform="translate(40, 348)">
+    <text class="group-num group-num-d" x="0" y="0">12%</text>
+    <text class="group-label" x="0" y="18" style="fill: var(--c-detractor);">Detractor</text>
+
+    <text class="group-num group-num-p" x="190" y="0">34%</text>
+    <text class="group-label" x="190" y="18" style="fill: var(--c-muted);">Passive</text>
+
+    <text class="group-num group-num-pm" x="380" y="0">54%</text>
+    <text class="group-label" x="380" y="18" style="fill: var(--c-promoter);">Promoter</text>
+  </g>
+
+  <!-- NPS 계산 공식 -->
+  <g transform="translate(40, 408)">
+    <rect class="formula-bg" width="520" height="140" rx="2"/>
+    <text class="formula-text" x="20" y="36">NPS = % Promoter − % Detractor</text>
+    <text class="formula-text" x="20" y="62">= 54 − 12 =</text>
+    <text class="nps-result" x="160" y="70">+ 42</text>
+    <text class="anno" x="20" y="104">Passive 34%는 계산에서 제외. 이들을 9~10점으로</text>
+    <text class="anno" x="20" y="120">옮기는 것이 NPS 개선의 가장 큰 레버.</text>
+  </g>
+</svg>

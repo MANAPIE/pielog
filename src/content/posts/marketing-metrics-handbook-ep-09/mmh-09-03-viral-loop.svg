@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 692" role="img" aria-labelledby="title desc">
+  <title id="title">바이럴 루프와 K-factor</title>
+  <desc id="desc">한 사용자가 초대를 보내고, 일부가 가입해 다시 초대를 보내는 순환 구조와 K값 계산.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-card: #ffffff; --c-card-stroke: #d4d4d0;
+      --c-user: #2d4a3e; --c-user-bg: #e3ede7;
+      --c-arrow: #c97f4a;
+      --c-grid: #ede9df;
+      --c-accent: #c97f4a; --c-accent-bg: #f8efe6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-card: #1a1a18; --c-card-stroke: #3a3a37;
+        --c-user: #7fb09a; --c-user-bg: #1f2a26;
+        --c-arrow: #e09a6a;
+        --c-grid: #2a2823;
+        --c-accent: #e09a6a; --c-accent-bg: #2a1f15;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .stage-title { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .stage-num { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .stage-label { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .arrow-label { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-arrow); }
+    .arrow-sub { font: 500 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .user-card { fill: var(--c-user-bg); stroke: var(--c-user); stroke-width: 1; }
+    .formula-bg { fill: var(--c-accent-bg); stroke: var(--c-accent); stroke-width: 1; }
+    .formula-text { font: 600 12px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .anno { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .anno-bold { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .k-num { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-accent); }
+  </style>
+  <rect class="bg" width="600" height="692"/>
+
+  <text class="title" x="40" y="36">바이럴 루프의 한 사이클</text>
+  <text class="sub" x="40" y="54">기존 사용자 100명에서 출발해 한 라운드 돌고</text>
+  <text class="sub" x="40" y="70">신규 32명이 합류하는 과정.</text>
+
+  <!-- 3 stage 박스 (세로 스택) + 화살표 -->
+  <!-- Stage 1: 기존 사용자 100명 -->
+  <g transform="translate(150, 96)">
+    <rect class="user-card" x="0" y="0" width="300" height="84" rx="3"/>
+    <text class="stage-title" x="150" y="30" text-anchor="middle">기존 사용자</text>
+    <text class="stage-num" x="150" y="62" text-anchor="middle">100</text>
+    <text class="stage-label" x="232" y="62">명</text>
+  </g>
+
+  <!-- Arrow 1: i = 0.8 -->
+  <g transform="translate(300, 180)">
+    <line x1="0" y1="0" x2="0" y2="44" stroke="var(--c-arrow)" stroke-width="1.5"/>
+    <path d="M -4 38 L 0 48 L 4 38 Z" fill="var(--c-arrow)"/>
+    <text class="arrow-label" x="16" y="20" text-anchor="start">×i = 0.8</text>
+    <text class="arrow-sub" x="16" y="36" text-anchor="start">초대 보낸 비율</text>
+  </g>
+
+  <!-- Stage 2: 초대 80건 -->
+  <g transform="translate(150, 228)">
+    <rect class="user-card" x="0" y="0" width="300" height="84" rx="3"/>
+    <text class="stage-title" x="150" y="30" text-anchor="middle">초대장 발송</text>
+    <text class="stage-num" x="150" y="62" text-anchor="middle">80</text>
+    <text class="stage-label" x="232" y="62">건</text>
+  </g>
+
+  <!-- Arrow 2: c = 0.40 -->
+  <g transform="translate(300, 312)">
+    <line x1="0" y1="0" x2="0" y2="44" stroke="var(--c-arrow)" stroke-width="1.5"/>
+    <path d="M -4 38 L 0 48 L 4 38 Z" fill="var(--c-arrow)"/>
+    <text class="arrow-label" x="16" y="20" text-anchor="start">×c = 0.40</text>
+    <text class="arrow-sub" x="16" y="36" text-anchor="start">초대 수락률</text>
+  </g>
+
+  <!-- Stage 3: 32명 신규 -->
+  <g transform="translate(150, 360)">
+    <rect class="user-card" x="0" y="0" width="300" height="84" rx="3" style="stroke: var(--c-accent); stroke-width: 1.5;"/>
+    <text class="stage-title" x="150" y="30" text-anchor="middle" style="fill: var(--c-accent);">신규 가입자</text>
+    <text class="stage-num" x="150" y="62" text-anchor="middle" style="fill: var(--c-accent);">32</text>
+    <text class="stage-label" x="232" y="62">명</text>
+  </g>
+
+  <!-- Loop arrow (피드백) — Stage3 우측에서 위로 돌아 Stage1 우측으로 -->
+  <g>
+    <path d="M 450 402 L 510 402 Q 540 402 540 372 L 540 168 Q 540 138 510 138 L 450 138"
+      fill="none" stroke="var(--c-arrow)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <path d="M 456 134 L 446 138 L 456 142 Z" fill="var(--c-arrow)"/>
+    <text class="arrow-label" x="556" y="266" text-anchor="middle" transform="rotate(90 556 266)">다음 라운드 — 100 + 32 = 132명이 다시 시작</text>
+  </g>
+
+  <!-- K-factor 공식 박스 -->
+  <g transform="translate(40, 472)">
+    <rect class="formula-bg" width="520" height="116" rx="3"/>
+    <text class="anno-bold" x="20" y="28">K-factor (= Viral Coefficient)</text>
+    <text class="formula-text" x="20" y="56">K = i × c = 0.8 × 0.40 = </text>
+    <text class="k-num" x="232" y="62">0.32</text>
+    <text class="anno" x="20" y="84">한 사용자가 평균 0.32명의 신규 사용자를 데려옴 — 사용자</text>
+    <text class="anno" x="20" y="100">100명당 신규 32명. K &lt; 1.0 이므로 광고와 병행해야 함.</text>
+  </g>
+
+  <!-- 라운드별 누적 (작은 시각화) -->
+  <g transform="translate(40, 612)">
+    <text class="anno-bold" x="0" y="0">광고 없이 5라운드 시뮬레이션</text>
+    <text class="anno" x="0" y="20">100 → 132 → 174 → 230 → 304 → 401 (K=0.32 가정, 라운드 = 한 분기 정도)</text>
+    <text class="anno" x="0" y="40" style="font-style: italic;">매 라운드 32% 추가. 광고 없이도 자라지만 폭발적이지는 않음.</text>
+    <text class="anno" x="0" y="56" style="font-style: italic;">K가 1.0을 넘으면 지수 성장.</text>
+  </g>
+</svg>

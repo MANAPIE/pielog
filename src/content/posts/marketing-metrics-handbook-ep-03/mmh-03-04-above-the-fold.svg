@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 748" role="img" aria-labelledby="title desc">
+  <title id="title">모바일 Above-the-fold 구성</title>
+  <desc id="desc">스크롤 없이 보이는 첫 화면에 들어가야 할 다섯 요소.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-faint: #b3b3b0;
+      --c-screen: #ffffff;
+      --c-screen-stroke: #1a1a1a;
+      --c-content: #ede9df;
+      --c-cta: #2d4a3e;
+      --c-cta-fg: #ffffff;
+      --c-fold-line: #c97f4a;
+      --c-anno: #2d4a3e;
+      --c-tag: #c97f4a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-faint: #4a4a47;
+        --c-screen: #1a1a18;
+        --c-screen-stroke: #ededea;
+        --c-content: #2a2823;
+        --c-cta: #7fb09a;
+        --c-cta-fg: #0f0f0e;
+        --c-fold-line: #e09a6a;
+        --c-anno: #7fb09a;
+        --c-tag: #e09a6a;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .screen { fill: var(--c-screen); stroke: var(--c-screen-stroke); stroke-width: 1.5; }
+    .content { fill: var(--c-content); }
+    .cta-fill { fill: var(--c-cta); }
+    .cta-text { font: 600 12px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-cta-fg); }
+    .text-line { stroke: var(--c-faint); stroke-width: 3; fill: none; }
+    .headline { font: 700 16px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+    .subtext { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .trust { font: 500 9px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .fold-line { stroke: var(--c-fold-line); stroke-width: 1.5; stroke-dasharray: 6 4; fill: none; }
+    .fold-label { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fold-line); letter-spacing: 0.05em; }
+    .anno-line { stroke: var(--c-anno); stroke-width: 1; fill: none; }
+    .anno-text { font: 500 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-anno); }
+    .anno-sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .tag { font: 600 10px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-tag); }
+    .star { fill: var(--c-tag); }
+  </style>
+  <rect class="bg" width="600" height="748"/>
+
+  <text class="title" x="40" y="36">ATF의 다섯 요소</text>
+
+  <!-- 폰 화면 (상단 중앙) -->
+  <g transform="translate(190, 60)">
+    <rect class="screen" x="0" y="0" width="220" height="380" rx="14"/>
+
+    <!-- 상단 상태바 영역 -->
+    <rect class="content" x="14" y="12" width="192" height="20" rx="2"/>
+
+    <!-- 헤드라인 -->
+    <text class="headline" x="20" y="64">한 달 지출,</text>
+    <text class="headline" x="20" y="84">한 화면에서.</text>
+
+    <!-- 서브 카피 -->
+    <text class="subtext" x="20" y="110">카드 자동 분류 · 무료 시작</text>
+
+    <!-- 메인 이미지 영역 (모목업) -->
+    <rect class="content" x="20" y="126" width="180" height="120" rx="4"/>
+    <!-- 더미 차트 표현 -->
+    <circle cx="110" cy="186" r="40" fill="none" stroke="var(--c-faint)" stroke-width="6"/>
+    <circle cx="110" cy="186" r="40" fill="none" stroke="var(--c-cta)" stroke-width="6"
+      stroke-dasharray="160 100" transform="rotate(-90 110 186)"/>
+    <text class="subtext" x="110" y="190" text-anchor="middle">68%</text>
+
+    <!-- CTA -->
+    <rect class="cta-fill" x="20" y="262" width="180" height="44" rx="8"/>
+    <text class="cta-text" x="110" y="288" text-anchor="middle">카카오로 시작하기</text>
+
+    <!-- 신뢰 요소 -->
+    <g transform="translate(20, 326)">
+      <g fill="var(--c-tag)">
+        <polygon points="0,4 1.5,1.5 4,1 1.5,-1 0,-4 -1.5,-1 -4,1 -1.5,1.5" transform="translate(4,0)"/>
+        <polygon points="0,4 1.5,1.5 4,1 1.5,-1 0,-4 -1.5,-1 -4,1 -1.5,1.5" transform="translate(16,0)"/>
+        <polygon points="0,4 1.5,1.5 4,1 1.5,-1 0,-4 -1.5,-1 -4,1 -1.5,1.5" transform="translate(28,0)"/>
+        <polygon points="0,4 1.5,1.5 4,1 1.5,-1 0,-4 -1.5,-1 -4,1 -1.5,1.5" transform="translate(40,0)"/>
+        <polygon points="0,4 1.5,1.5 4,1 1.5,-1 0,-4 -1.5,-1 -4,1 -1.5,1.5" transform="translate(52,0)"/>
+      </g>
+      <text class="trust" x="62" y="3">4.8 · 12만 명이 쓰는 중</text>
+    </g>
+
+    <!-- ATF 경계선 (모목 화면 안에서) -->
+    <line class="fold-line" x1="-10" y1="362" x2="230" y2="362"/>
+    <text class="fold-label" x="-10" y="378">─ FOLD</text>
+  </g>
+
+  <!-- 주석 (폰 아래, 세로 스택) -->
+  <g transform="translate(40, 484)">
+    <!-- 1. 헤드라인 -->
+    <g transform="translate(0, 0)">
+      <text class="tag" x="0" y="0">01</text>
+      <text class="anno-text" x="28" y="0">헤드라인</text>
+      <text class="anno-sub" x="28" y="16">가치 약속 한 줄. 광고 카피와 단어 일치.</text>
+    </g>
+
+    <!-- 2. 서브 카피 -->
+    <g transform="translate(0, 56)">
+      <text class="tag" x="0" y="0">02</text>
+      <text class="anno-text" x="28" y="0">서브 카피</text>
+      <text class="anno-sub" x="28" y="16">차별점 + 진입 장벽 해소(무료/간편)</text>
+    </g>
+
+    <!-- 3. 메인 시각 -->
+    <g transform="translate(0, 112)">
+      <text class="tag" x="0" y="0">03</text>
+      <text class="anno-text" x="28" y="0">메인 시각</text>
+      <text class="anno-sub" x="28" y="16">제품 결과 화면 또는 시연. 추상 일러스트보다 결과 캡처가 강력.</text>
+    </g>
+
+    <!-- 4. CTA -->
+    <g transform="translate(0, 168)">
+      <text class="tag" x="0" y="0">04</text>
+      <text class="anno-text" x="28" y="0">CTA</text>
+      <text class="anno-sub" x="28" y="16">한 개의 주요 액션. 두 개 이상이면 결정이 미뤄진다.</text>
+    </g>
+
+    <!-- 5. 신뢰 요소 -->
+    <g transform="translate(0, 224)">
+      <text class="tag" x="0" y="0">05</text>
+      <text class="anno-text" x="28" y="0">신뢰 요소</text>
+      <text class="anno-sub" x="28" y="16">별점 · 사용자 수 · 보안 마크 · 미디어 언급. 한 줄.</text>
+    </g>
+  </g>
+</svg>

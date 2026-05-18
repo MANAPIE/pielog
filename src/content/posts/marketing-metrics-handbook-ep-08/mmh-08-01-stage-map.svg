@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 516" role="img" aria-labelledby="title desc">
+  <title id="title">ep.08에서 다루는 단계</title>
+  <desc id="desc">수익 단계가 강조된 작은 퍼널 지도.</desc>
+  <style>
+    :root {
+      --c-bg:#fafaf7; --c-fg:#1a1a1a; --c-muted:#6b6b6b; --c-faint:#d4d4d0;
+      --c-card:#ffffff; --c-card-stroke:#d4d4d0;
+      --c-active:#c97f4a; --c-active-bg:#f8efe6; --c-active-fg:#5a3520;
+      --c-infra:#ede9df; --c-num:#c97f4a;
+      --c-infra-active:#f8efe6; --c-infra-active-fg:#c97f4a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg:#0f0f0e; --c-fg:#ededea; --c-muted:#999996; --c-faint:#3a3a37;
+        --c-card:#1a1a18; --c-card-stroke:#3a3a37;
+        --c-active:#e09a6a; --c-active-bg:#2a1f15; --c-active-fg:#f0c8a0;
+        --c-infra:#1f1d18; --c-num:#e09a6a;
+        --c-infra-active:#2a1f15; --c-infra-active-fg:#e09a6a;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .card { fill: var(--c-card); stroke: var(--c-card-stroke); stroke-width: 1; }
+    .card-active { fill: var(--c-active-bg); stroke: var(--c-active); stroke-width: 1.5; }
+    .ep { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); }
+    .label { font: 600 16px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-muted); }
+    .label-active { font: 700 16px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-active-fg); }
+    .metrics { font: 400 13px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-active-fg); }
+    .infra-band { fill: var(--c-infra); }
+    .infra-band-active { fill: var(--c-infra-active); stroke: var(--c-active); stroke-width: 1.5; }
+    .infra-title { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); letter-spacing: 0.04em; }
+    .infra-title-active { font: 700 13px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-infra-active-fg); }
+    .infra-label { font: 500 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .infra-metrics { font: 400 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-infra-active-fg); }
+    .arrow { fill: var(--c-faint); }
+    .focus-tag { font: 700 13px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-active); letter-spacing: 0.04em; }
+  </style>
+  <rect class="bg" width="600" height="516"/>
+
+  <text class="focus-tag" x="40" y="36">FOCUS — 수익 · 단위경제</text>
+
+  <g>
+    <rect class="card" x="40" y="56" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="82">ep.01 — 02</text>
+    <text class="label" x="60" y="104">획득</text>
+  </g>
+  <path class="arrow" d="M 294 121 L 306 121 L 300 129 Z"/>
+
+  <g>
+    <rect class="card" x="40" y="132" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="158">ep.03 — 04</text>
+    <text class="label" x="60" y="180">활성화</text>
+  </g>
+  <path class="arrow" d="M 294 197 L 306 197 L 300 205 Z"/>
+
+  <g>
+    <rect class="card" x="40" y="208" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="234">ep.05 — 07</text>
+    <text class="label" x="60" y="256">유지</text>
+  </g>
+  <path class="arrow" d="M 294 273 L 306 273 L 300 281 Z"/>
+
+  <g>
+    <rect class="card-active" x="40" y="284" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="310">ep.08</text>
+    <text class="label-active" x="60" y="332">수익</text>
+    <text class="metrics" x="540" y="332" text-anchor="end">LTV · CAC · MRR · LTV:CAC</text>
+  </g>
+  <path class="arrow" d="M 294 349 L 306 349 L 300 357 Z"/>
+
+  <g>
+    <rect class="card" x="40" y="360" width="520" height="62" rx="3"/>
+    <text class="ep" x="60" y="386">ep.09</text>
+    <text class="label" x="60" y="408">추천</text>
+  </g>
+
+  <rect class="infra-band" x="40" y="436" width="520" height="56" rx="3"/>
+  <text class="infra-title" x="60" y="461">측정 인프라 · MEASUREMENT LAYER</text>
+  <text class="infra-label" x="60" y="480">ep.10 실험 · ep.11 트래킹 · ep.12 어트리뷰션</text>
+</svg>

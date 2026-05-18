@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 692" role="img" aria-labelledby="title desc">
+  <title id="title">임프레션, 도달, 빈도의 관계</title>
+  <desc id="desc">같은 노출 데이터를 세 각도에서 본다. 임프레션은 총 노출, 도달은 고유 사용자 수, 빈도는 1인당 평균 노출 횟수.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-faint: #b3b3b0;
+      --c-user-bg: #ede9df;
+      --c-user-stroke: #6b6b6b;
+      --c-eye: #c97f4a;
+      --c-line: #1a1a1a;
+      --c-card: #ffffff;
+      --c-card-stroke: #1a1a1a;
+      --c-formula-bg: #f8efe6;
+      --c-formula-stroke: #c97f4a;
+      --c-formula-fg: #5a3520;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-faint: #4a4a47;
+        --c-user-bg: #2a2823;
+        --c-user-stroke: #999996;
+        --c-eye: #e09a6a;
+        --c-line: #ededea;
+        --c-card: #1a1a18;
+        --c-card-stroke: #ededea;
+        --c-formula-bg: #2a1f15;
+        --c-formula-stroke: #e09a6a;
+        --c-formula-fg: #f0c8a0;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .label { font: 600 12px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+    .num { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .num-unit { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .user-circle { fill: var(--c-user-bg); stroke: var(--c-user-stroke); stroke-width: 1; }
+    .eye-dot { fill: var(--c-eye); }
+    .formula { fill: var(--c-formula-bg); stroke: var(--c-formula-stroke); stroke-width: 1; }
+    .formula-text { font: 600 13px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-formula-fg); }
+    .divider { stroke: var(--c-faint); stroke-width: 0.5; stroke-dasharray: 3 4; }
+  </style>
+  <rect class="bg" width="600" height="692"/>
+
+  <text class="title" x="40" y="36">같은 데이터, 세 각도</text>
+  <text class="sub" x="40" y="56">임프레션 1,800만 · Reach 720만 · Frequency 2.5의 관계</text>
+
+  <!-- 1행: Reach -->
+  <g transform="translate(40, 90)">
+    <text class="label" x="0" y="0">Reach</text>
+    <text class="sub" x="60" y="0">고유 사용자 수</text>
+
+    <!-- 사람 아이콘 격자 5x4 = 20명 -->
+    <g transform="translate(0, 24)">
+      <circle class="user-circle" cx="12" cy="12" r="10"/>
+      <circle class="user-circle" cx="40" cy="12" r="10"/>
+      <circle class="user-circle" cx="68" cy="12" r="10"/>
+      <circle class="user-circle" cx="96" cy="12" r="10"/>
+      <circle class="user-circle" cx="124" cy="12" r="10"/>
+
+      <circle class="user-circle" cx="12" cy="40" r="10"/>
+      <circle class="user-circle" cx="40" cy="40" r="10"/>
+      <circle class="user-circle" cx="68" cy="40" r="10"/>
+      <circle class="user-circle" cx="96" cy="40" r="10"/>
+      <circle class="user-circle" cx="124" cy="40" r="10"/>
+
+      <circle class="user-circle" cx="12" cy="68" r="10"/>
+      <circle class="user-circle" cx="40" cy="68" r="10"/>
+      <circle class="user-circle" cx="68" cy="68" r="10"/>
+      <circle class="user-circle" cx="96" cy="68" r="10"/>
+      <circle class="user-circle" cx="124" cy="68" r="10"/>
+
+      <circle class="user-circle" cx="12" cy="96" r="10"/>
+      <circle class="user-circle" cx="40" cy="96" r="10"/>
+      <circle class="user-circle" cx="68" cy="96" r="10"/>
+      <circle class="user-circle" cx="96" cy="96" r="10"/>
+      <circle class="user-circle" cx="124" cy="96" r="10"/>
+    </g>
+
+    <text class="num" x="320" y="64">7,200,000</text>
+    <text class="num-unit" x="320" y="84">사람</text>
+  </g>
+
+  <line class="divider" x1="40" y1="260" x2="560" y2="260"/>
+
+  <!-- 2행: Frequency -->
+  <g transform="translate(40, 300)">
+    <text class="label" x="0" y="0">Frequency</text>
+    <text class="sub" x="86" y="0">1인당 평균 노출</text>
+
+    <!-- 한 사람 + 광고 2.5번 -->
+    <g transform="translate(0, 24)">
+      <circle class="user-circle" cx="24" cy="40" r="18"/>
+
+      <!-- 보고 있는 광고들 -->
+      <circle class="eye-dot" cx="80" cy="16" r="6"/>
+      <circle class="eye-dot" cx="110" cy="40" r="6"/>
+      <circle class="eye-dot" cx="80" cy="64" r="6" opacity="0.5"/>
+
+      <!-- 시선 라인 -->
+      <line x1="40" y1="34" x2="74" y2="20" stroke="var(--c-faint)" stroke-width="1"/>
+      <line x1="42" y1="40" x2="104" y2="40" stroke="var(--c-faint)" stroke-width="1"/>
+      <line x1="40" y1="46" x2="74" y2="60" stroke="var(--c-faint)" stroke-width="1" stroke-dasharray="2 2"/>
+    </g>
+
+    <text class="num" x="320" y="64">2.5</text>
+    <text class="num-unit" x="320" y="84">회 / 사람</text>
+  </g>
+
+  <line class="divider" x1="40" y1="430" x2="560" y2="430"/>
+
+  <!-- 3행: Impression -->
+  <g transform="translate(40, 470)">
+    <text class="label" x="0" y="0">Impression</text>
+    <text class="sub" x="92" y="0">총 노출 횟수</text>
+
+    <!-- 광고 슬롯 격자 (많이) -->
+    <g transform="translate(0, 24)">
+      <g fill="var(--c-eye)">
+        <rect x="0" y="0" width="14" height="14" rx="1"/>
+        <rect x="20" y="0" width="14" height="14" rx="1"/>
+        <rect x="40" y="0" width="14" height="14" rx="1"/>
+        <rect x="60" y="0" width="14" height="14" rx="1"/>
+        <rect x="80" y="0" width="14" height="14" rx="1"/>
+        <rect x="100" y="0" width="14" height="14" rx="1"/>
+        <rect x="120" y="0" width="14" height="14" rx="1"/>
+        <rect x="140" y="0" width="14" height="14" rx="1"/>
+        <rect x="160" y="0" width="14" height="14" rx="1"/>
+
+        <rect x="0" y="20" width="14" height="14" rx="1"/>
+        <rect x="20" y="20" width="14" height="14" rx="1"/>
+        <rect x="40" y="20" width="14" height="14" rx="1"/>
+        <rect x="60" y="20" width="14" height="14" rx="1"/>
+        <rect x="80" y="20" width="14" height="14" rx="1"/>
+        <rect x="100" y="20" width="14" height="14" rx="1"/>
+        <rect x="120" y="20" width="14" height="14" rx="1"/>
+        <rect x="140" y="20" width="14" height="14" rx="1"/>
+        <rect x="160" y="20" width="14" height="14" rx="1"/>
+
+        <rect x="0" y="40" width="14" height="14" rx="1"/>
+        <rect x="20" y="40" width="14" height="14" rx="1"/>
+        <rect x="40" y="40" width="14" height="14" rx="1"/>
+        <rect x="60" y="40" width="14" height="14" rx="1"/>
+        <rect x="80" y="40" width="14" height="14" rx="1"/>
+        <rect x="100" y="40" width="14" height="14" rx="1"/>
+        <rect x="120" y="40" width="14" height="14" rx="1"/>
+        <rect x="140" y="40" width="14" height="14" rx="1"/>
+        <rect x="160" y="40" width="14" height="14" rx="1"/>
+
+        <rect x="0" y="60" width="14" height="14" rx="1"/>
+        <rect x="20" y="60" width="14" height="14" rx="1"/>
+        <rect x="40" y="60" width="14" height="14" rx="1"/>
+        <rect x="60" y="60" width="14" height="14" rx="1"/>
+        <rect x="80" y="60" width="14" height="14" rx="1"/>
+        <rect x="100" y="60" width="14" height="14" rx="1"/>
+        <rect x="120" y="60" width="14" height="14" rx="1"/>
+        <rect x="140" y="60" width="14" height="14" rx="1"/>
+        <rect x="160" y="60" width="14" height="14" rx="1"/>
+
+        <rect x="0" y="80" width="14" height="14" rx="1"/>
+        <rect x="20" y="80" width="14" height="14" rx="1"/>
+        <rect x="40" y="80" width="14" height="14" rx="1"/>
+        <rect x="60" y="80" width="14" height="14" rx="1"/>
+        <rect x="80" y="80" width="14" height="14" rx="1"/>
+        <rect x="100" y="80" width="14" height="14" rx="1"/>
+        <rect x="120" y="80" width="14" height="14" rx="1"/>
+        <rect x="140" y="80" width="14" height="14" rx="1"/>
+        <rect x="160" y="80" width="14" height="14" rx="1"/>
+      </g>
+    </g>
+
+    <text class="num" x="320" y="56">18,000,000</text>
+    <text class="num-unit" x="320" y="76">노출</text>
+  </g>
+
+  <line class="divider" x1="40" y1="600" x2="560" y2="600"/>
+
+  <!-- 공식 -->
+  <g transform="translate(40, 624)">
+    <rect class="formula" width="520" height="44" rx="2"/>
+    <text class="formula-text" x="20" y="28">Impression = Reach × Frequency  →  18M = 7.2M × 2.5</text>
+  </g>
+</svg>

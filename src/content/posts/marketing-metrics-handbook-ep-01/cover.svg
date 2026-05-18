@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">ep.01 — 광고 비용</title>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-accent: #c97f4a;
+      --c-accent-2: #2d4a3e;
+      --c-accent-3: #d9a47e;
+      --c-num: #c97f4a;
+      --c-dot: #1a1a1a;
+      --c-line: #6b6b6b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-accent: #e09a6a;
+        --c-accent-2: #7fb09a;
+        --c-accent-3: #d4a560;
+        --c-num: #e09a6a;
+        --c-dot: #ededea;
+        --c-line: #4a4a47;
+      }
+    }
+  </style>
+  <defs>
+    <pattern id="dotgrid01" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
+    </pattern>
+    <radialGradient id="rg01a" cx="80%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg01b" cx="15%" cy="85%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="var(--c-bg)"/>
+  <rect width="1200" height="630" fill="url(#dotgrid01)"/>
+  <rect width="1200" height="630" fill="url(#rg01a)"/>
+  <rect width="1200" height="630" fill="url(#rg01b)"/>
+
+  <!-- 화면 밖 큰 도형 -->
+  <rect x="-120" y="-80" width="280" height="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.45" transform="rotate(-6 20 60)"/>
+  <circle cx="1280" cy="640" r="320" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- 메인 메타포: 광고 슬롯 그리드 (4x3) -->
+  <!-- 각 슬롯은 광고 한 장이고, 일부에 도트(impression)와 클릭 표시 -->
+  <g transform="translate(165, 124) scale(1.5)">
+    <!-- 슬롯 크기 130x110, 간격 20 -->
+
+    <!-- 첫째 줄 -->
+    <g>
+      <!-- 슬롯 1: 도트 무리 (impression) -->
+      <rect x="0" y="0" width="130" height="110" fill="none" stroke="var(--c-fg)" stroke-width="1.5"/>
+      <g transform="translate(65, 55)">
+        <circle cx="-20" cy="-15" r="3.5" fill="var(--c-accent)"/>
+        <circle cx="-5" cy="-10" r="3.5" fill="var(--c-accent)"/>
+        <circle cx="15" cy="-18" r="3.5" fill="var(--c-accent)"/>
+        <circle cx="-25" cy="5" r="3.5" fill="var(--c-accent)"/>
+        <circle cx="10" cy="0" r="3.5" fill="var(--c-accent)"/>
+        <circle cx="-10" cy="18" r="3.5" fill="var(--c-accent)"/>
+        <circle cx="20" cy="15" r="3.5" fill="var(--c-accent)"/>
+      </g>
+
+      <!-- 슬롯 2: 미니 바 묶음 -->
+      <rect x="150" y="0" width="130" height="110" fill="none" stroke="var(--c-fg)" stroke-width="1.5"/>
+      <g transform="translate(170, 30)">
+        <rect x="0" y="30" width="10" height="40" fill="var(--c-accent-2)"/>
+        <rect x="18" y="15" width="10" height="55" fill="var(--c-accent-2)"/>
+        <rect x="36" y="40" width="10" height="30" fill="var(--c-accent-2)"/>
+        <rect x="54" y="10" width="10" height="60" fill="var(--c-accent-2)"/>
+        <rect x="72" y="25" width="10" height="45" fill="var(--c-accent-2)"/>
+      </g>
+
+      <!-- 슬롯 3: 점선 외곽 + 화살표 (CPC 클릭) -->
+      <rect x="300" y="0" width="130" height="110" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <g transform="translate(365, 55)">
+        <path d="M -22 0 L 20 0" stroke="var(--c-accent)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 12 -8 L 24 0 L 12 8" fill="none" stroke="var(--c-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <!-- 슬롯 4: 동심원 (Reach) -->
+      <rect x="450" y="0" width="130" height="110" fill="none" stroke="var(--c-fg)" stroke-width="1.5"/>
+      <g transform="translate(515, 55)">
+        <circle cx="0" cy="0" r="38" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="24" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="10" fill="var(--c-accent-2)"/>
+      </g>
+    </g>
+
+    <!-- 둘째 줄 (살짝 회전, 의도적 겹침) -->
+    <g transform="translate(70, 144) rotate(-3)">
+      <!-- 슬롯 5: 체크 표시 (CPA 액션) -->
+      <rect x="0" y="0" width="130" height="110" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
+      <g transform="translate(65, 55)">
+        <path d="M -22 0 L -6 18 L 22 -18" fill="none" stroke="var(--c-accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <!-- 슬롯 6: 도트 그리드 (CPM 표시) -->
+      <rect x="150" y="0" width="130" height="110" fill="none" stroke="var(--c-fg)" stroke-width="1.5"/>
+      <g transform="translate(168, 18)">
+        <g fill="var(--c-accent-3)">
+          <circle cx="6" cy="6" r="2.5"/><circle cx="22" cy="6" r="2.5"/><circle cx="38" cy="6" r="2.5"/><circle cx="54" cy="6" r="2.5"/><circle cx="70" cy="6" r="2.5"/><circle cx="86" cy="6" r="2.5"/>
+          <circle cx="6" cy="22" r="2.5"/><circle cx="22" cy="22" r="2.5"/><circle cx="38" cy="22" r="2.5"/><circle cx="54" cy="22" r="2.5"/><circle cx="70" cy="22" r="2.5"/><circle cx="86" cy="22" r="2.5"/>
+          <circle cx="6" cy="38" r="2.5"/><circle cx="22" cy="38" r="2.5"/><circle cx="38" cy="38" r="2.5"/><circle cx="54" cy="38" r="2.5"/><circle cx="70" cy="38" r="2.5"/><circle cx="86" cy="38" r="2.5"/>
+          <circle cx="6" cy="54" r="2.5"/><circle cx="22" cy="54" r="2.5"/><circle cx="38" cy="54" r="2.5"/><circle cx="54" cy="54" r="2.5"/><circle cx="70" cy="54" r="2.5"/><circle cx="86" cy="54" r="2.5"/>
+          <circle cx="6" cy="70" r="2.5"/><circle cx="22" cy="70" r="2.5"/><circle cx="38" cy="70" r="2.5"/><circle cx="54" cy="70" r="2.5"/><circle cx="70" cy="70" r="2.5"/><circle cx="86" cy="70" r="2.5"/>
+        </g>
+      </g>
+
+      <!-- 슬롯 7: 포커스 링 -->
+      <rect x="300" y="0" width="130" height="110" fill="none" stroke="var(--c-fg)" stroke-width="1.5"/>
+      <g transform="translate(365, 55)">
+        <circle cx="0" cy="0" r="30" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="4 3"/>
+        <circle cx="0" cy="0" r="8" fill="var(--c-accent)"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text x="1144" y="600" text-anchor="end"
+    font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+    font-size="220" font-weight="700"
+    fill="var(--c-num)" fill-opacity="0.18"
+    letter-spacing="-0.04em">01</text>
+</svg>

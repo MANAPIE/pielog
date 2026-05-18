@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" role="img" aria-labelledby="title desc">
+  <title id="title">파워 유저 곡선 — L28 분포</title>
+  <desc id="desc">28일 중 활성 일수를 X축에, 사용자 수를 Y축에 그린 히스토그램. U자형(스마일) 분포는 건강한 신호.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-grid: #ede9df; --c-axis: #b3b3b0;
+      --c-bar-light: #c97f4a; --c-bar-mid: #d9a47e; --c-bar-heavy: #2d4a3e;
+      --c-band-light: #f8efe6; --c-band-heavy: #e3ede7;
+      --c-anno: #c97f4a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-grid: #2a2823; --c-axis: #4a4a47;
+        --c-bar-light: #e09a6a; --c-bar-mid: #c08660; --c-bar-heavy: #7fb09a;
+        --c-band-light: #2a1f15; --c-band-heavy: #1f2a26;
+        --c-anno: #e09a6a;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .axis-line { stroke: var(--c-axis); stroke-width: 1; }
+    .axis-label { font: 400 10px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); }
+    .grid-line { stroke: var(--c-grid); stroke-width: 0.75; }
+    .band-light { fill: var(--c-band-light); }
+    .band-heavy { fill: var(--c-band-heavy); }
+    .band-label { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-anno); letter-spacing: 0.05em; }
+    .band-sub { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); letter-spacing: 0.03em; }
+    .legend-text { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+  </style>
+  <rect class="bg" width="600" height="460"/>
+
+  <text class="title" x="40" y="36">L28 분포 — 파워 유저 곡선</text>
+  <text class="sub" x="40" y="54">지난 28일 중 활성 일수의 분포. U자형이 일반 사용</text>
+  <text class="sub" x="40" y="70">패턴, 좌측 편향이면 라이트 유저만 많음.</text>
+
+  <!-- 차트 · 플롯 영역 x=40..544 (504 wide), 28 bars pitch 18 -->
+  <g transform="translate(40, 108)">
+    <!-- 배경 밴드: LIGHT 7칸(0..126), MID 12칸(126..342), HEAVY 9칸(342..504) -->
+    <rect class="band-light" x="0" y="0" width="126" height="220" rx="2"/>
+    <text class="band-label" x="63" y="-8" text-anchor="middle">LIGHT</text>
+    <text class="band-sub" x="63" y="250" text-anchor="middle">1~7일</text>
+
+    <rect fill="var(--c-grid)" fill-opacity="0.6" x="126" y="0" width="216" height="220" rx="2"/>
+    <text class="band-sub" x="234" y="-8" text-anchor="middle" style="fill: var(--c-muted);">MID</text>
+    <text class="band-sub" x="234" y="250" text-anchor="middle" style="fill: var(--c-muted);">8~19일</text>
+
+    <rect class="band-heavy" x="342" y="0" width="162" height="220" rx="2"/>
+    <text class="band-label" x="423" y="-8" text-anchor="middle" style="fill: var(--c-bar-heavy);">HEAVY</text>
+    <text class="band-sub" x="423" y="250" text-anchor="middle">20~28일</text>
+
+    <!-- Y축 격자 -->
+    <line class="grid-line" x1="0" y1="0" x2="504" y2="0"/>
+    <line class="grid-line" x1="0" y1="55" x2="504" y2="55"/>
+    <line class="grid-line" x1="0" y1="110" x2="504" y2="110"/>
+    <line class="grid-line" x1="0" y1="165" x2="504" y2="165"/>
+    <line class="grid-line" x1="0" y1="220" x2="504" y2="220"/>
+
+    <text class="axis-label" x="-8" y="3" text-anchor="end">120K</text>
+    <text class="axis-label" x="-8" y="58" text-anchor="end">90K</text>
+    <text class="axis-label" x="-8" y="113" text-anchor="end">60K</text>
+    <text class="axis-label" x="-8" y="168" text-anchor="end">30K</text>
+    <text class="axis-label" x="-8" y="223" text-anchor="end">0</text>
+
+    <!-- X축 -->
+    <line class="axis-line" x1="0" y1="220" x2="504" y2="220"/>
+
+    <!-- 막대 28개 · bar width 15, pitch 18, offset 1.5 -->
+    <g fill="var(--c-bar-light)">
+      <rect x="1.5" y="22" width="15" height="198"/>
+      <rect x="19.5" y="46" width="15" height="174"/>
+      <rect x="37.5" y="70" width="15" height="150"/>
+      <rect x="55.5" y="100" width="15" height="120"/>
+      <rect x="73.5" y="125" width="15" height="95"/>
+      <rect x="91.5" y="140" width="15" height="80"/>
+      <rect x="109.5" y="155" width="15" height="65"/>
+    </g>
+
+    <g fill="var(--c-bar-mid)">
+      <rect x="127.5" y="170" width="15" height="50"/>
+      <rect x="145.5" y="180" width="15" height="40"/>
+      <rect x="163.5" y="188" width="15" height="32"/>
+      <rect x="181.5" y="192" width="15" height="28"/>
+      <rect x="199.5" y="194" width="15" height="26"/>
+      <rect x="217.5" y="196" width="15" height="24"/>
+      <rect x="235.5" y="196" width="15" height="24"/>
+      <rect x="253.5" y="194" width="15" height="26"/>
+      <rect x="271.5" y="190" width="15" height="30"/>
+      <rect x="289.5" y="186" width="15" height="34"/>
+      <rect x="307.5" y="180" width="15" height="40"/>
+      <rect x="325.5" y="173" width="15" height="47"/>
+    </g>
+
+    <g fill="var(--c-bar-heavy)">
+      <rect x="343.5" y="162" width="15" height="58"/>
+      <rect x="361.5" y="148" width="15" height="72"/>
+      <rect x="379.5" y="135" width="15" height="85"/>
+      <rect x="397.5" y="118" width="15" height="102"/>
+      <rect x="415.5" y="105" width="15" height="115"/>
+      <rect x="433.5" y="90" width="15" height="130"/>
+      <rect x="451.5" y="75" width="15" height="145"/>
+      <rect x="469.5" y="58" width="15" height="162"/>
+      <rect x="487.5" y="36" width="15" height="184"/>
+    </g>
+
+    <!-- X축 라벨 -->
+    <text class="axis-label" x="9" y="234">1</text>
+    <text class="axis-label" x="63" y="234">4</text>
+    <text class="axis-label" x="117" y="234">7</text>
+    <text class="axis-label" x="207" y="234">12</text>
+    <text class="axis-label" x="297" y="234">17</text>
+    <text class="axis-label" x="387" y="234">22</text>
+    <text class="axis-label" x="492" y="234">28</text>
+    <text class="axis-label" x="235" y="267" text-anchor="middle">28일 중 활성 일수</text>
+  </g>
+
+  <!-- 결론 박스 -->
+  <g transform="translate(40, 412)">
+    <text class="legend-text" x="0" y="0">U자형 분포 — 좌측 봉우리(가입 직후 1~3일 보고 떠난 사용자)와</text>
+    <text class="legend-text" x="0" y="16">우측 봉우리(매일 들어오는 파워 유저)가 공존하는 자연 패턴. 전략의</text>
+    <text class="legend-text" x="0" y="32">핵심: 가운데(미드) 사용자를 우측으로 끌어올리거나, 좌측 봉우리를 줄이거나.</text>
+  </g>
+</svg>

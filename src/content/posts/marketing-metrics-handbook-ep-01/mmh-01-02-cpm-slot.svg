@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 720" role="img" aria-labelledby="title desc">
+  <title id="title">CPM 광고 슬롯의 위치</title>
+  <desc id="desc">모바일 화면 안에서 CPM 단가가 발생하는 광고 슬롯들과 뷰어블 임프레션의 조건을 시각화.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-screen: #ffffff;
+      --c-screen-stroke: #1a1a1a;
+      --c-content: #ede9df;
+      --c-ad-bg: #f8efe6;
+      --c-ad-stroke: #c97f4a;
+      --c-ad-fg: #5a3520;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-faint: #b3b3b0;
+      --c-viewport: #2d4a3e;
+      --c-anno: #2d4a3e;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-screen: #1a1a18;
+        --c-screen-stroke: #ededea;
+        --c-content: #2a2823;
+        --c-ad-bg: #2a1f15;
+        --c-ad-stroke: #e09a6a;
+        --c-ad-fg: #f0c8a0;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-faint: #4a4a47;
+        --c-viewport: #7fb09a;
+        --c-anno: #7fb09a;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .screen { fill: var(--c-screen); stroke: var(--c-screen-stroke); stroke-width: 1.5; }
+    .content { fill: var(--c-content); }
+    .ad { fill: var(--c-ad-bg); stroke: var(--c-ad-stroke); stroke-width: 1.5; }
+    .ad-label { font: 600 9px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-ad-fg); letter-spacing: 0.1em; }
+    .ad-content { font: 500 11px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-ad-fg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .anno { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-anno); }
+    .anno-bold { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-anno); }
+    .muted { font: 400 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .anno-line { stroke: var(--c-anno); stroke-width: 1; fill: none; }
+    .anno-dash { stroke: var(--c-anno); stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+    .viewport-line { stroke: var(--c-viewport); stroke-width: 1.5; stroke-dasharray: 4 3; fill: none; }
+    .placeholder-line { stroke: var(--c-faint); stroke-width: 4; }
+    .marker { fill: var(--c-anno); }
+    .marker-num { font: 700 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-screen); }
+  </style>
+  <rect class="bg" width="600" height="720"/>
+
+  <text class="title" x="40" y="36">광고가 발화하는 자리</text>
+  <text class="muted" x="40" y="54">모바일 피드에서 노출 단가(CPM)가 발생하는 슬롯</text>
+
+  <!-- 폰 화면 (상단 중앙) -->
+  <g transform="translate(200, 78)">
+    <rect class="screen" x="0" y="0" width="200" height="340" rx="14"/>
+
+    <!-- 상단 영역 -->
+    <rect class="content" x="14" y="20" width="172" height="36" rx="2"/>
+    <rect class="placeholder-line" x="22" y="34" width="80" height="3"/>
+    <rect class="placeholder-line" x="22" y="44" width="120" height="3"/>
+
+    <!-- 광고 슬롯 1 (Top banner) -->
+    <rect class="ad" x="14" y="68" width="172" height="56" rx="2"/>
+    <text class="ad-label" x="22" y="84">AD · 광고</text>
+    <text class="ad-content" x="22" y="104">한 달 지출, 한 화면에서</text>
+    <text class="muted" x="22" y="118" style="font-size: 9px;">센티 — 무료 가입</text>
+    <circle class="marker" cx="170" cy="88" r="9"/>
+    <text class="marker-num" x="170" y="92" text-anchor="middle">1</text>
+
+    <!-- 콘텐츠 placeholder -->
+    <rect class="content" x="14" y="136" width="172" height="56" rx="2"/>
+    <rect class="placeholder-line" x="22" y="152" width="100" height="3"/>
+    <rect class="placeholder-line" x="22" y="162" width="140" height="3"/>
+    <rect class="placeholder-line" x="22" y="172" width="80" height="3"/>
+
+    <!-- 광고 슬롯 2 (Inline feed) -->
+    <rect class="ad" x="14" y="204" width="172" height="56" rx="2"/>
+    <text class="ad-label" x="22" y="220">AD · 스폰서드</text>
+    <text class="ad-content" x="22" y="240">카드값 자동 분류</text>
+    <circle class="marker" cx="170" cy="224" r="9"/>
+    <text class="marker-num" x="170" y="228" text-anchor="middle">2</text>
+
+    <!-- 하단 콘텐츠 -->
+    <rect class="content" x="14" y="272" width="172" height="50" rx="2"/>
+    <rect class="placeholder-line" x="22" y="288" width="100" height="3"/>
+    <rect class="placeholder-line" x="22" y="298" width="120" height="3"/>
+  </g>
+
+  <!-- 뷰포트 가이드 라인 -->
+  <line class="viewport-line" x1="180" y1="78" x2="180" y2="418"/>
+  <text class="anno" x="164" y="248" text-anchor="middle" transform="rotate(-90 164 248)">VIEWPORT 영역</text>
+
+  <!-- 주석: AD 1 (하단 스택) -->
+  <circle class="marker" cx="49" cy="491" r="9"/>
+  <text class="marker-num" x="49" y="495" text-anchor="middle">1</text>
+  <text class="anno-bold" x="68" y="496">상단 배너 · Above-the-fold</text>
+  <text class="anno" x="68" y="514">시인성 높음. 뷰어블 임프레션 발화 확률 ↑</text>
+  <text class="muted" x="68" y="530">CPM 약 8,000~12,000원 (피드 광고 평균)</text>
+
+  <!-- 주석: AD 2 -->
+  <circle class="marker" cx="49" cy="579" r="9"/>
+  <text class="marker-num" x="49" y="583" text-anchor="middle">2</text>
+  <text class="anno-bold" x="68" y="584">인피드 광고 · 스크롤 노출</text>
+  <text class="anno" x="68" y="602">사용자가 스크롤해야 보임</text>
+  <text class="muted" x="68" y="618">뷰어블 임프레션 ≠ Served Impression</text>
+
+  <!-- 뷰어블 임프레션 정의 박스 -->
+  <g transform="translate(40, 636)">
+    <rect fill="none" stroke="var(--c-anno)" stroke-width="1" stroke-dasharray="3 3" x="0" y="0" width="520" height="60" rx="2"/>
+    <text class="anno-bold" x="16" y="24">IAB 표준 — Viewable Impression</text>
+    <text class="anno" x="16" y="44">광고 영역의 50% 이상이 뷰포트에 1초 이상 머물러야 카운트</text>
+  </g>
+</svg>

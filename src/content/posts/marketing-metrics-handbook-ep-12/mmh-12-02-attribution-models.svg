@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 768" role="img" aria-labelledby="title desc">
+  <title id="title">어트리뷰션 모델 6종 — 같은 경로, 다른 공로</title>
+  <desc id="desc">페이스북→구글→인스타→가입 경로에 대해 여섯 가지 모델이 어떻게 공로를 다르게 분배하는가.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-card: #ffffff; --c-card-stroke: #d4d4d0;
+      --c-fb: #c97f4a; --c-google: #2d4a3e; --c-ig: #6b8aa8;
+      --c-grid: #ede9df;
+      --c-accent: #c97f4a; --c-accent-bg: #f8efe6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-card: #1a1a18; --c-card-stroke: #3a3a37;
+        --c-fb: #e09a6a; --c-google: #7fb09a; --c-ig: #8eafd0;
+        --c-grid: #2a2823;
+        --c-accent: #e09a6a; --c-accent-bg: #2a1f15;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .scenario-bg { fill: var(--c-accent-bg); stroke: var(--c-accent); stroke-width: 1; }
+    .scenario-text { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .model-name { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .model-desc { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .bar-text { font: 700 11px ui-monospace, "SF Mono", Menlo, monospace; fill: white; }
+    .bar-text-dark { font: 700 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .channel-label { font: 600 11px ui-sans-serif, system-ui, sans-serif; }
+    .legend-text { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+  </style>
+  <rect class="bg" width="600" height="768"/>
+
+  <text class="title" x="40" y="36">한 가입자, 세 광고, 여섯 가지 답</text>
+  <text class="sub" x="40" y="54">같은 사용자가 페이스북→구글→인스타그램을 거쳐 가입했을</text>
+  <text class="sub" x="40" y="70">때, 모델마다 공로 분배가 달라진다.</text>
+
+  <!-- 시나리오 박스 -->
+  <g transform="translate(40, 88)">
+    <rect class="scenario-bg" width="520" height="60" rx="2"/>
+    <text class="scenario-text" x="20" y="19">사용자 경로: 페이스북 (3주 전) → 구글 (1주 전) →</text>
+    <text class="scenario-text" x="20" y="34">인스타그램 (1일 전) → 가입</text>
+    <text class="scenario-text" x="20" y="49" style="fill: var(--c-muted); font-size: 11px;">한 사용자 × 한 가입, 1.0의 공로를 어떻게 나눌 것인가</text>
+  </g>
+
+  <!-- 범례 -->
+  <g transform="translate(40, 168)">
+    <rect fill="var(--c-fb)" x="0" y="0" width="12" height="12" rx="2"/>
+    <text class="legend-text" x="18" y="10">페이스북 (첫 접점)</text>
+    <rect fill="var(--c-google)" x="0" y="22" width="12" height="12" rx="2"/>
+    <text class="legend-text" x="18" y="32">구글 (중간)</text>
+    <rect fill="var(--c-ig)" x="260" y="0" width="12" height="12" rx="2"/>
+    <text class="legend-text" x="278" y="10">인스타그램 (마지막)</text>
+  </g>
+
+  <!-- 6개 모델 시각화 — 각 행: 이름·설명 위, 막대(폭 520) 아래 -->
+
+  <!-- 1. First-touch: 100/0/0 -->
+  <g transform="translate(40, 222)">
+    <text class="model-name" x="0" y="0">First-touch</text>
+    <text class="model-desc" x="100" y="0">첫 접점에 100%</text>
+    <rect fill="var(--c-fb)" x="0" y="12" width="520" height="30" rx="2"/>
+    <text class="bar-text" x="260" y="32" text-anchor="middle">100%  ·  0  ·  0</text>
+  </g>
+
+  <!-- 2. Last-touch: 0/0/100 -->
+  <g transform="translate(40, 296)">
+    <text class="model-name" x="0" y="0">Last-touch</text>
+    <text class="model-desc" x="100" y="0">마지막 접점에 100%</text>
+    <rect fill="var(--c-ig)" x="0" y="12" width="520" height="30" rx="2"/>
+    <text class="bar-text" x="260" y="32" text-anchor="middle">0  ·  0  ·  100%</text>
+  </g>
+
+  <!-- 3. Linear: 33/33/33 -->
+  <g transform="translate(40, 370)">
+    <text class="model-name" x="0" y="0">Linear</text>
+    <text class="model-desc" x="100" y="0">모든 접점 동일</text>
+    <rect fill="var(--c-fb)" x="0" y="12" width="173" height="30" rx="2"/>
+    <text class="bar-text" x="86" y="32" text-anchor="middle">33%</text>
+    <rect fill="var(--c-google)" x="174" y="12" width="173" height="30"/>
+    <text class="bar-text" x="260" y="32" text-anchor="middle">33%</text>
+    <rect fill="var(--c-ig)" x="348" y="12" width="172" height="30" rx="2"/>
+    <text class="bar-text" x="434" y="32" text-anchor="middle">33%</text>
+  </g>
+
+  <!-- 4. Time-decay: 15/30/55 -->
+  <g transform="translate(40, 444)">
+    <text class="model-name" x="0" y="0">Time-decay</text>
+    <text class="model-desc" x="100" y="0">최근일수록 큰 가중치</text>
+    <rect fill="var(--c-fb)" x="0" y="12" width="78" height="30" rx="2"/>
+    <text class="bar-text" x="39" y="32" text-anchor="middle">15%</text>
+    <rect fill="var(--c-google)" x="79" y="12" width="156" height="30"/>
+    <text class="bar-text" x="157" y="32" text-anchor="middle">30%</text>
+    <rect fill="var(--c-ig)" x="236" y="12" width="284" height="30" rx="2"/>
+    <text class="bar-text" x="378" y="32" text-anchor="middle">55%</text>
+  </g>
+
+  <!-- 5. Position-based: 40/20/40 -->
+  <g transform="translate(40, 518)">
+    <text class="model-name" x="0" y="0">Position-based</text>
+    <text class="model-desc" x="110" y="0">첫·마지막 강조 (U자형)</text>
+    <rect fill="var(--c-fb)" x="0" y="12" width="208" height="30" rx="2"/>
+    <text class="bar-text" x="104" y="32" text-anchor="middle">40%</text>
+    <rect fill="var(--c-google)" x="209" y="12" width="104" height="30"/>
+    <text class="bar-text" x="261" y="32" text-anchor="middle">20%</text>
+    <rect fill="var(--c-ig)" x="314" y="12" width="206" height="30" rx="2"/>
+    <text class="bar-text" x="417" y="32" text-anchor="middle">40%</text>
+  </g>
+
+  <!-- 6. Data-driven: 32/28/40 (예시) -->
+  <g transform="translate(40, 592)">
+    <text class="model-name" x="0" y="0" style="fill: var(--c-accent);">Data-driven</text>
+    <text class="model-desc" x="100" y="0">ML이 데이터로 학습</text>
+    <rect fill="var(--c-fb)" x="0" y="12" width="166" height="30" rx="2"/>
+    <text class="bar-text" x="83" y="32" text-anchor="middle">32%</text>
+    <rect fill="var(--c-google)" x="167" y="12" width="146" height="30"/>
+    <text class="bar-text" x="240" y="32" text-anchor="middle">28%</text>
+    <rect fill="var(--c-ig)" x="314" y="12" width="206" height="30" rx="2"/>
+    <text class="bar-text" x="417" y="32" text-anchor="middle">40%</text>
+  </g>
+
+  <!-- 결론 -->
+  <g transform="translate(40, 668)">
+    <text class="model-name">같은 데이터, 여섯 가지 결론</text>
+    <text class="sub" x="0" y="22">First-touch는 페이스북에 100%, Last-touch는 인스타그램에 100%.</text>
+    <text class="sub" x="0" y="38">어느 모델을 쓰느냐가 광고비를 어디에 더 쓸지를 바꾼다.</text>
+    <text class="sub" x="0" y="58">2024년 이후 GA4 기본은 Data-driven. 그러나 모든 모델의 정확도는</text>
+    <text class="sub" x="0" y="74">결국 Incrementality 테스트로만 검증됩니다.</text>
+  </g>
+</svg>

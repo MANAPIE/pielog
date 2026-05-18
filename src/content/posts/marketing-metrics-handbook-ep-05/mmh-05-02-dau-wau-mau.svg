@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 626" role="img" aria-labelledby="title desc">
+  <title id="title">DAU, WAU, MAU의 관계와 Stickiness</title>
+  <desc id="desc">월간 사용자 안에 주간 사용자가, 그 안에 일간 사용자가 포함되는 동심원 구조와 Stickiness 비율.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-card: #ffffff; --c-card-stroke: #d4d4d0;
+      --c-mau: #ede9df; --c-mau-stroke: #b3b3b0;
+      --c-wau: #d9d4c2; --c-wau-stroke: #999689;
+      --c-dau: #2d4a3e; --c-dau-stroke: #2d4a3e;
+      --c-accent: #c97f4a; --c-accent-bg: #f8efe6;
+      --c-line: #1a1a1a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-card: #1a1a18; --c-card-stroke: #3a3a37;
+        --c-mau: #2a2823; --c-mau-stroke: #4a4a47;
+        --c-wau: #3a362e; --c-wau-stroke: #6a665c;
+        --c-dau: #7fb09a; --c-dau-stroke: #7fb09a;
+        --c-accent: #e09a6a; --c-accent-bg: #2a1f15;
+        --c-line: #ededea;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .mau-circle { fill: var(--c-mau); stroke: var(--c-mau-stroke); stroke-width: 1; }
+    .wau-circle { fill: var(--c-wau); stroke: var(--c-wau-stroke); stroke-width: 1; }
+    .dau-circle { fill: var(--c-dau); }
+    .label-mau { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .label-wau { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .label-dau { font: 700 14px ui-sans-serif, system-ui, sans-serif; fill: white; }
+    .num-big { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .num-dau { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; fill: white; }
+    .ratio { font: 700 13px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-accent); }
+    .ratio-label { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .formula-bg { fill: var(--c-accent-bg); stroke: var(--c-accent); stroke-width: 1; }
+    .formula-text { font: 600 12px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .anno-line { stroke: var(--c-accent); stroke-width: 1; fill: none; stroke-dasharray: 3 2; }
+  </style>
+  <rect class="bg" width="600" height="626"/>
+
+  <text class="title" x="40" y="36">월·주·일 활성 사용자의 포함 관계</text>
+  <text class="sub" x="40" y="54">같은 사용자 데이터의 세 시간창. 안쪽일수록 자주 들어오는 사람.</text>
+
+  <!-- 동심원: 중심 x=300, MAU r=140 -->
+  <g transform="translate(300, 230)">
+    <!-- MAU 원 (가장 큰) -->
+    <circle class="mau-circle" cx="0" cy="0" r="140"/>
+    <text class="label-mau" x="-122" y="-112">MAU</text>
+    <text class="num-big" x="-122" y="-90" style="fill: var(--c-muted);">920,000</text>
+
+    <!-- WAU 원 -->
+    <circle class="wau-circle" cx="0" cy="0" r="84"/>
+    <text class="label-wau" x="-64" y="-68">WAU</text>
+    <text class="num-big" x="-64" y="-46">320,000</text>
+
+    <!-- DAU 원 (가장 작은, 채워진) -->
+    <circle class="dau-circle" cx="0" cy="0" r="40"/>
+    <text class="label-dau" x="0" y="-7" text-anchor="middle">DAU</text>
+    <text class="num-dau" x="0" y="17" text-anchor="middle">89K</text>
+  </g>
+
+  <!-- 비율 주석: 동심원 아래 가로 3열 -->
+  <g transform="translate(40, 408)">
+    <!-- DAU/MAU -->
+    <text class="ratio-label" x="0" y="0">DAU ÷ MAU</text>
+    <text class="ratio" x="0" y="22">Stickiness 9.7%</text>
+    <text class="sub" x="0" y="44">한 달 안에 들어온</text>
+    <text class="sub" x="0" y="60">사람의 10%가 아무</text>
+    <text class="sub" x="0" y="76">날에나 들어와 있다는 뜻.</text>
+
+    <!-- DAU/WAU -->
+    <text class="ratio-label" x="180" y="0">DAU ÷ WAU</text>
+    <text class="ratio" x="180" y="22">27.8%</text>
+    <text class="sub" x="180" y="44">일주일에 한 번이라도</text>
+    <text class="sub" x="180" y="60">온 사람 중 28%가</text>
+    <text class="sub" x="180" y="76">매일 들어옴.</text>
+
+    <!-- WAU/MAU -->
+    <text class="ratio-label" x="360" y="0">WAU ÷ MAU</text>
+    <text class="ratio" x="360" y="22">34.8%</text>
+    <text class="sub" x="360" y="44">한 달 안에 온 사람의</text>
+    <text class="sub" x="360" y="60">35%가 일주일에 한 번</text>
+    <text class="sub" x="360" y="76">이상 다시 옴.</text>
+  </g>
+
+  <!-- 하단 공식 박스 -->
+  <g transform="translate(40, 526)">
+    <rect class="formula-bg" width="520" height="64" rx="2"/>
+    <text class="formula-text" x="20" y="25">Stickiness = DAU ÷ MAU</text>
+    <text class="formula-text" x="20" y="47">메신저 60~80% · 음악·동영상 30~50% · 가계부·금융 8~15%</text>
+  </g>
+</svg>
