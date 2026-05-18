@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">ep.09 — 만족과 추천</title>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-accent: #c97f4a;
+      --c-accent-2: #2d4a3e;
+      --c-accent-3: #d9a47e;
+      --c-num: #c97f4a;
+      --c-dot: #1a1a1a;
+      --c-line: #6b6b6b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-accent: #e09a6a;
+        --c-accent-2: #7fb09a;
+        --c-accent-3: #d4a560;
+        --c-num: #e09a6a;
+        --c-dot: #ededea;
+        --c-line: #4a4a47;
+      }
+    }
+  </style>
+  <defs>
+    <pattern id="dotgrid09" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
+    </pattern>
+    <radialGradient id="rg09a" cx="22%" cy="78%" r="60%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg09b" cx="80%" cy="22%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="var(--c-bg)"/>
+  <rect width="1200" height="630" fill="url(#dotgrid09)"/>
+  <rect width="1200" height="630" fill="url(#rg09a)"/>
+  <rect width="1200" height="630" fill="url(#rg09b)"/>
+
+  <!-- 화면 밖 큰 도형 -->
+  <circle cx="1280" cy="120" r="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="-180" y="450" width="300" height="300" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4" transform="rotate(-10 -30 600)"/>
+
+  <!-- 메인 메타포: 바이럴 루프 (노드 네트워크) -->
+  <g transform="translate(600, 320) scale(1.16)">
+    <!-- 중심 노드 (Promoter) -->
+    <circle cx="0" cy="0" r="42" fill="var(--c-accent-2)" stroke="var(--c-accent-2)" stroke-width="2"/>
+    <!-- 중심에 별 모양 (별점 - NPS 9-10) -->
+    <g transform="translate(0, 0) scale(0.9)">
+      <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z"
+        fill="var(--c-bg)"/>
+    </g>
+
+    <!-- 외곽 노드 6개 (Promoter가 데려온 사용자들) -->
+    <!-- 60도 간격으로 배치, 반지름 200 -->
+
+    <!-- 1. 위 -->
+    <g transform="translate(0, -200)">
+      <circle cx="0" cy="0" r="24" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <g transform="scale(0.5)">
+        <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z" fill="var(--c-bg)"/>
+      </g>
+    </g>
+
+    <!-- 2. 우상 -->
+    <g transform="translate(173, -100)">
+      <circle cx="0" cy="0" r="24" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <g transform="scale(0.5)">
+        <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z" fill="var(--c-bg)"/>
+      </g>
+    </g>
+
+    <!-- 3. 우하 -->
+    <g transform="translate(173, 100)">
+      <circle cx="0" cy="0" r="24" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <g transform="scale(0.5)">
+        <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z" fill="var(--c-bg)"/>
+      </g>
+    </g>
+
+    <!-- 4. 아래 -->
+    <g transform="translate(0, 200)">
+      <circle cx="0" cy="0" r="24" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="1.5"/>
+      <g transform="scale(0.5)">
+        <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z" fill="var(--c-bg)"/>
+      </g>
+    </g>
+
+    <!-- 5. 좌하 -->
+    <g transform="translate(-173, 100)">
+      <circle cx="0" cy="0" r="24" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <g transform="scale(0.5)">
+        <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z" fill="var(--c-bg)"/>
+      </g>
+    </g>
+
+    <!-- 6. 좌상 -->
+    <g transform="translate(-173, -100)">
+      <circle cx="0" cy="0" r="24" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <g transform="scale(0.5)">
+        <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z" fill="var(--c-bg)"/>
+      </g>
+    </g>
+
+    <!-- 중심에서 외곽으로 연결선 -->
+    <g stroke="var(--c-fg)" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="4 3" fill="none">
+      <line x1="0" y1="-42" x2="0" y2="-176"/>
+      <line x1="36" y1="-21" x2="149" y2="-87"/>
+      <line x1="36" y1="21" x2="149" y2="87"/>
+      <line x1="0" y1="42" x2="0" y2="176"/>
+      <line x1="-36" y1="21" x2="-149" y2="87"/>
+      <line x1="-36" y1="-21" x2="-149" y2="-87"/>
+    </g>
+
+    <!-- 2차 노드들 (외곽 노드가 다시 데려온 사용자, 작은 점) -->
+    <g fill="var(--c-fg)" opacity="0.4">
+      <!-- 1번 노드 외곽 -->
+      <circle cx="-26" cy="-264" r="4"/>
+      <circle cx="26" cy="-264" r="4"/>
+
+      <!-- 2번 노드 외곽 -->
+      <circle cx="220" cy="-160" r="4"/>
+      <circle cx="220" cy="-130" r="4"/>
+
+      <!-- 3번 노드 외곽 -->
+      <circle cx="220" cy="160" r="4"/>
+      <circle cx="220" cy="130" r="4"/>
+
+      <!-- 4번 노드 외곽 -->
+      <circle cx="-26" cy="264" r="4"/>
+      <circle cx="26" cy="264" r="4"/>
+
+      <!-- 5번 노드 외곽 -->
+      <circle cx="-220" cy="160" r="4"/>
+      <circle cx="-220" cy="130" r="4"/>
+
+      <!-- 6번 노드 외곽 -->
+      <circle cx="-220" cy="-160" r="4"/>
+      <circle cx="-220" cy="-130" r="4"/>
+    </g>
+
+    <!-- 포커스 링 (중심 강조) -->
+    <circle cx="0" cy="0" r="60" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- 회전된 사각형 -->
+    <rect x="-310" y="-260" width="22" height="22" fill="none" stroke="var(--c-accent)" stroke-width="1.5" transform="rotate(15 -299 -249)"/>
+    <rect x="290" y="240" width="22" height="22" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" transform="rotate(-12 301 251)"/>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text x="1144" y="600" text-anchor="end"
+    font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+    font-size="220" font-weight="700"
+    fill="var(--c-num)" fill-opacity="0.18"
+    letter-spacing="-0.04em">09</text>
+</svg>
