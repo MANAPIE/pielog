@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 560" role="img" aria-labelledby="title desc">
+  <title id="title">A/B 테스트 결과 분포와 p-value</title>
+  <desc id="desc">두 그룹의 결과 분포가 겹치는 정도가 p-value의 의미.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-grid: #ede9df; --c-axis: #b3b3b0;
+      --c-a: #6b6b6b; --c-a-fill: #b3b3b0;
+      --c-b: #2d4a3e; --c-b-fill: #2d4a3e;
+      --c-overlap: #c97f4a;
+      --c-accent-bg: #f8efe6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-grid: #2a2823; --c-axis: #4a4a47;
+        --c-a: #999996; --c-a-fill: #6a6a67;
+        --c-b: #7fb09a; --c-b-fill: #7fb09a;
+        --c-overlap: #e09a6a;
+        --c-accent-bg: #2a1f15;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .axis-line { stroke: var(--c-axis); stroke-width: 1; }
+    .axis-label { font: 400 10px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); }
+    .grid-line { stroke: var(--c-grid); stroke-width: 0.75; }
+    .label-a { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-a); }
+    .label-b { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-b); }
+    .mean-line { stroke-width: 1.25; stroke-dasharray: 4 3; fill: none; }
+    .num { font: 700 14px ui-monospace, "SF Mono", Menlo, monospace; }
+    .anno { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .stat-bg { fill: var(--c-accent-bg); stroke: var(--c-overlap); stroke-width: 1; }
+    .stat-num { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-overlap); }
+    .stat-label { font: 500 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); letter-spacing: 0.05em; }
+  </style>
+  <rect class="bg" width="600" height="560"/>
+
+  <text class="title" x="40" y="36">두 분포가 얼마나 겹치는가</text>
+  <text class="sub" x="40" y="54">A군과 B군의 CVR 분포. 겹치는 영역이 작을수록</text>
+  <text class="sub" x="40" y="70">차이가 우연이 아닐 확률 높음.</text>
+
+  <!-- 차트 영역 — 폭 520 -->
+  <g transform="translate(40, 112)">
+    <!-- 격자 -->
+    <line class="grid-line" x1="0" y1="0" x2="520" y2="0"/>
+    <line class="grid-line" x1="0" y1="60" x2="520" y2="60"/>
+    <line class="grid-line" x1="0" y1="120" x2="520" y2="120"/>
+    <line class="grid-line" x1="0" y1="180" x2="520" y2="180"/>
+
+    <!-- X축 -->
+    <line class="axis-line" x1="0" y1="180" x2="520" y2="180"/>
+
+    <!-- X축 라벨 (CVR%) — 7.5%~10.5%, 1% = 173.3px -->
+    <text class="axis-label" x="0" y="200">7.5%</text>
+    <text class="axis-label" x="87" y="200">8.0%</text>
+    <text class="axis-label" x="173" y="200">8.5%</text>
+    <text class="axis-label" x="260" y="200">9.0%</text>
+    <text class="axis-label" x="347" y="200">9.5%</text>
+    <text class="axis-label" x="433" y="200">10.0%</text>
+    <text class="axis-label" x="520" y="200" text-anchor="end">10.5%</text>
+
+    <!-- A 분포 (평균 8.4%, σ=0.3%) -->
+    <!-- 평균 8.4% → (8.4-7.5)*173.3 = 156px, 너비 ±0.6% → ±104px -->
+    <path fill="var(--c-a-fill)" fill-opacity="0.5" d="M 52 180 Q 78 168 104 130 Q 130 60 156 30 Q 182 60 208 130 Q 234 168 260 180 Z"/>
+
+    <!-- B 분포 (평균 9.8%, σ=0.3%) -->
+    <!-- 9.8% → (9.8-7.5)*173.3 = 399px -->
+    <path fill="var(--c-b-fill)" fill-opacity="0.55" d="M 295 180 Q 321 168 347 130 Q 373 60 399 30 Q 425 60 451 130 Q 477 168 503 180 Z"/>
+
+    <!-- Overlap area (겹치는 영역) -->
+    <path fill="var(--c-overlap)" fill-opacity="0.35" d="M 260 180 Q 272 175 283 175 Q 294 175 295 180 Z"/>
+
+    <!-- 평균 점선 -->
+    <line class="mean-line" stroke="var(--c-a)" x1="156" y1="30" x2="156" y2="180"/>
+    <line class="mean-line" stroke="var(--c-b)" x1="399" y1="30" x2="399" y2="180"/>
+
+    <!-- 평균 라벨 -->
+    <text class="label-a" x="156" y="18" text-anchor="middle">A 8.4%</text>
+    <text class="label-b" x="399" y="18" text-anchor="middle">B 9.8%</text>
+
+    <!-- 차이 표시 -->
+    <g transform="translate(0, 220)">
+      <line x1="156" y1="0" x2="399" y2="0" stroke="var(--c-overlap)" stroke-width="1"/>
+      <line x1="156" y1="-4" x2="156" y2="4" stroke="var(--c-overlap)" stroke-width="1"/>
+      <line x1="399" y1="-4" x2="399" y2="4" stroke="var(--c-overlap)" stroke-width="1"/>
+      <text class="label-a" x="277" y="-6" text-anchor="middle" style="fill: var(--c-overlap);">+1.4%p 차이</text>
+    </g>
+  </g>
+
+  <!-- 통계 박스 4개 — 2×2 그리드 -->
+  <g transform="translate(40, 372)">
+    <rect class="stat-bg" x="0" y="0" width="254" height="84" rx="2"/>
+    <text class="stat-label" x="14" y="22">P-VALUE</text>
+    <text class="stat-num" x="14" y="58">0.03</text>
+    <text class="anno" x="14" y="74">우연일 확률 3%</text>
+
+    <rect class="stat-bg" x="266" y="0" width="254" height="84" rx="2"/>
+    <text class="stat-label" x="280" y="22">95% CI (B − A)</text>
+    <text class="stat-num" x="280" y="58" style="font-size: 16px;">+0.4 ~ +2.4%p</text>
+    <text class="anno" x="280" y="74">0 포함 안 함 → 유의</text>
+
+    <rect class="stat-bg" x="0" y="96" width="254" height="84" rx="2"/>
+    <text class="stat-label" x="14" y="118">SAMPLE SIZE</text>
+    <text class="stat-num" x="14" y="154">12,400×2</text>
+    <text class="anno" x="14" y="170">그룹당 표본</text>
+
+    <rect class="stat-bg" x="266" y="96" width="254" height="84" rx="2"/>
+    <text class="stat-label" x="280" y="118">상대 변화</text>
+    <text class="stat-num" x="280" y="154">+16.7%</text>
+    <text class="anno" x="280" y="170">9.8/8.4 − 1</text>
+  </g>
+</svg>
