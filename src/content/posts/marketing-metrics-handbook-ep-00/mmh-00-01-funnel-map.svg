@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1180" role="img" aria-labelledby="title desc">
+  <title id="title">마케팅 지표 시리즈 전체 퍼널 지도</title>
+  <desc id="desc">획득, 활성화, 유지, 수익, 추천 다섯 단계와 그 위에 측정 인프라 레이어가 얹힌 전체 지도입니다.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-faint: #b3b3b0;
+      --c-line: #1a1a1a;
+      --c-card: #ffffff;
+      --c-card-stroke: #1a1a1a;
+      --c-accent: #2d4a3e;
+      --c-accent-2: #c97f4a;
+      --c-infra-bg: #ede9df;
+      --c-infra-fg: #4a4a4a;
+      --c-num: #c97f4a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-faint: #4a4a47;
+        --c-line: #ededea;
+        --c-card: #1a1a18;
+        --c-card-stroke: #ededea;
+        --c-accent: #7fb09a;
+        --c-accent-2: #e09a6a;
+        --c-infra-bg: #1f1d18;
+        --c-infra-fg: #b3b3b0;
+        --c-num: #e09a6a;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .card { fill: var(--c-card); stroke: var(--c-card-stroke); stroke-width: 1.5; }
+    .card-accent { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 2; }
+    .stage-title { font: 600 18px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+    .stage-en { font: 500 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); letter-spacing: 0.05em; }
+    .ep-num { font: 700 13px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); }
+    .term { font: 400 12px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-muted); }
+    .arrow { fill: var(--c-faint); }
+    .arrow-label { font: 400 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); font-style: italic; }
+    .infra-band { fill: var(--c-infra-bg); }
+    .infra-title { font: 600 13px ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill: var(--c-infra-fg); letter-spacing: 0.02em; }
+    .infra-term { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-infra-fg); }
+    .axis-label { font: 500 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .divider { stroke: var(--c-faint); stroke-width: 0.5; stroke-dasharray: 3 4; }
+    .funnel-shape { fill: none; stroke: var(--c-faint); stroke-width: 0.75; stroke-dasharray: 2 3; }
+  </style>
+
+  <rect class="bg" x="0" y="0" width="600" height="1180"/>
+
+  <!-- 상단 축 라벨 -->
+  <text class="axis-label" x="40" y="48">USER JOURNEY</text>
+  <line class="divider" x1="40" y1="60" x2="560" y2="60"/>
+  <text class="arrow-label" x="40" y="86">시간 흐름 ↓</text>
+
+  <!-- 퍼널 음영: 5단계가 좁아지는 흐름 (세로) -->
+  <path class="funnel-shape" d="M 60 104 L 540 104 L 510 1024 L 90 1024 Z"/>
+
+  <!-- ============ 5단계 카드 (세로 스택) ============ -->
+
+  <!-- 1. 획득 -->
+  <g transform="translate(40, 104)">
+    <rect class="card-accent" x="0" y="0" width="520" height="170" rx="2"/>
+    <text class="ep-num" x="20" y="32">ep.01 — 02</text>
+    <text class="stage-title" x="20" y="60">획득</text>
+    <text class="stage-en" x="70" y="60">ACQUISITION</text>
+    <line class="divider" x1="20" y1="76" x2="500" y2="76"/>
+    <text class="term" x="20" y="100">CPM · CPC · CPA</text>
+    <text class="term" x="200" y="100">CPI · CPV · CPL</text>
+    <text class="term" x="380" y="100">Impression · Reach</text>
+    <text class="term" x="20" y="124">Frequency</text>
+    <text class="term" x="200" y="124" style="font-weight: 500; fill: var(--c-fg);">ROAS · ROI · MER</text>
+    <text class="term" x="380" y="124">Blended CAC</text>
+  </g>
+
+  <!-- 화살표 1→2 -->
+  <g transform="translate(300, 286)">
+    <path class="arrow" d="M -5 0 L 5 0 L 0 14 Z"/>
+  </g>
+
+  <!-- 2. 활성화 -->
+  <g transform="translate(40, 310)">
+    <rect class="card" x="0" y="0" width="520" height="170" rx="2"/>
+    <text class="ep-num" x="20" y="32">ep.03 — 04</text>
+    <text class="stage-title" x="20" y="60">활성화</text>
+    <text class="stage-en" x="86" y="60">ACTIVATION</text>
+    <line class="divider" x1="20" y1="76" x2="500" y2="76"/>
+    <text class="term" x="20" y="100">CTR · CVR</text>
+    <text class="term" x="200" y="100">Bounce · Scroll Depth</text>
+    <text class="term" x="20" y="124">Sign-up Rate</text>
+    <text class="term" x="200" y="124" style="font-weight: 500; fill: var(--c-fg);">Activation Rate</text>
+    <text class="term" x="20" y="148">Time-to-Value · Aha</text>
+  </g>
+
+  <!-- 화살표 2→3 -->
+  <g transform="translate(300, 492)">
+    <path class="arrow" d="M -5 0 L 5 0 L 0 14 Z"/>
+  </g>
+
+  <!-- 3. 유지 -->
+  <g transform="translate(40, 516)">
+    <rect class="card" x="0" y="0" width="520" height="146" rx="2"/>
+    <text class="ep-num" x="20" y="32">ep.05 — 07</text>
+    <text class="stage-title" x="20" y="60">유지</text>
+    <text class="stage-en" x="66" y="60">RETENTION</text>
+    <line class="divider" x1="20" y1="76" x2="500" y2="76"/>
+    <text class="term" x="20" y="100">DAU · WAU · MAU</text>
+    <text class="term" x="200" y="100">Stickiness · Session</text>
+    <text class="term" x="380" y="100">Cohort · N-day</text>
+    <text class="term" x="20" y="124" style="font-weight: 500; fill: var(--c-fg);">Churn · NRR · GRR</text>
+  </g>
+
+  <!-- 화살표 3→4 -->
+  <g transform="translate(300, 674)">
+    <path class="arrow" d="M -5 0 L 5 0 L 0 14 Z"/>
+  </g>
+
+  <!-- 4. 수익 -->
+  <g transform="translate(40, 698)">
+    <rect class="card" x="0" y="0" width="520" height="146" rx="2"/>
+    <text class="ep-num" x="20" y="32">ep.08</text>
+    <text class="stage-title" x="20" y="60">수익</text>
+    <text class="stage-en" x="66" y="60">REVENUE</text>
+    <line class="divider" x1="20" y1="76" x2="500" y2="76"/>
+    <text class="term" x="20" y="100" style="font-weight: 500; fill: var(--c-fg);">MRR · ARR · LTV</text>
+    <text class="term" x="200" y="100">CAC · LTV:CAC</text>
+    <text class="term" x="380" y="100">ARPU · Payback</text>
+  </g>
+
+  <!-- 화살표 4→5 -->
+  <g transform="translate(300, 856)">
+    <path class="arrow" d="M -5 0 L 5 0 L 0 14 Z"/>
+  </g>
+
+  <!-- 5. 추천 -->
+  <g transform="translate(40, 880)">
+    <rect class="card" x="0" y="0" width="520" height="124" rx="2"/>
+    <text class="ep-num" x="20" y="32">ep.09</text>
+    <text class="stage-title" x="20" y="60">추천</text>
+    <text class="stage-en" x="66" y="60">REFERRAL</text>
+    <line class="divider" x1="20" y1="76" x2="500" y2="76"/>
+    <text class="term" x="20" y="100">NPS · CSAT</text>
+    <text class="term" x="200" y="100">K-factor</text>
+  </g>
+
+  <!-- 추천 → 획득 순환 화살표 (오른쪽 여백으로 우회) -->
+  <path d="M 560 942 Q 590 942 590 540 Q 590 188 562 188" fill="none" stroke="var(--c-faint)" stroke-width="0.75" stroke-dasharray="3 3"/>
+  <path class="arrow" d="M 570 192 L 560 188 L 568 181 Z" transform="rotate(15 562 188)"/>
+  <text class="arrow-label" x="574" y="565" text-anchor="middle" transform="rotate(90 574 565)">추천이 다시 획득으로 — Viral loop</text>
+
+  <!-- ============ 인프라 레이어 (하단) ============ -->
+
+  <text class="axis-label" x="40" y="1042">MEASUREMENT LAYER</text>
+  <line class="divider" x1="40" y1="1054" x2="560" y2="1054"/>
+
+  <rect class="infra-band" x="40" y="1070" width="520" height="68" rx="2"/>
+
+  <!-- 인프라: ep.10 실험 -->
+  <g transform="translate(58, 1090)">
+    <text class="ep-num" x="0" y="0">ep.10</text>
+    <text class="infra-title" x="0" y="20">실험과 통계</text>
+    <text class="infra-term" x="0" y="38">A/B · MDE · p-value</text>
+  </g>
+
+  <line class="divider" x1="190" y1="1080" x2="190" y2="1128"/>
+
+  <!-- 인프라: ep.11 트래킹 -->
+  <g transform="translate(208, 1090)">
+    <text class="ep-num" x="0" y="0">ep.11</text>
+    <text class="infra-title" x="0" y="20">트래킹과 데이터 수집</text>
+    <text class="infra-term" x="0" y="38">UTM · Event · Pixel</text>
+  </g>
+
+  <line class="divider" x1="372" y1="1080" x2="372" y2="1128"/>
+
+  <!-- 인프라: ep.12 어트리뷰션 -->
+  <g transform="translate(390, 1090)">
+    <text class="ep-num" x="0" y="0">ep.12</text>
+    <text class="infra-title" x="0" y="20">어트리뷰션과 도구 지도</text>
+    <text class="infra-term" x="0" y="38">First/Last/Multi-touch · GA4</text>
+  </g>
+
+  <!-- 인프라가 5단계 모두를 가로지른다는 점선 연결 -->
+  <line x1="300" y1="1004" x2="300" y2="1070" stroke="var(--c-faint)" stroke-width="0.5" stroke-dasharray="2 4"/>
+
+  <!-- 하단 캡션 -->
+  <text class="arrow-label" x="40" y="1162">측정 인프라는 다섯 단계 모두에서 작동한다. 별도 회차로 묶었을 뿐.</text>
+</svg>
