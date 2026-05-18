@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 720" role="img" aria-labelledby="title desc">
+  <title id="title">CTR과 CVR의 직렬 깔때기</title>
+  <desc id="desc">광고 노출에서 클릭, 진입, 전환까지의 비율이 직렬로 곱해지는 구조.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-faint: #b3b3b0;
+      --c-card: #ffffff;
+      --c-stage-1: #2d4a3e;
+      --c-stage-2: #4a6b5c;
+      --c-stage-3: #6b8b7e;
+      --c-stage-4: #c97f4a;
+      --c-arrow: #6b6b6b;
+      --c-rate: #c97f4a;
+      --c-formula-bg: #ede9df;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-faint: #4a4a47;
+        --c-card: #1a1a18;
+        --c-stage-1: #7fb09a;
+        --c-stage-2: #6b9682;
+        --c-stage-3: #5a7d6c;
+        --c-stage-4: #e09a6a;
+        --c-arrow: #999996;
+        --c-rate: #e09a6a;
+        --c-formula-bg: #1f1d18;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .stage-label { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: white; }
+    .stage-num { font: 700 18px ui-monospace, "SF Mono", Menlo, monospace; fill: white; }
+    .stage-unit { font: 500 10px ui-sans-serif, system-ui, sans-serif; fill: white; opacity: 0.85; }
+    .rate-label { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-rate); letter-spacing: 0.05em; }
+    .rate-name { font: 500 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .formula { fill: var(--c-formula-bg); }
+    .formula-text { font: 600 12px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .anno { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); font-style: italic; }
+  </style>
+  <rect class="bg" width="600" height="720"/>
+
+  <text class="title" x="40" y="36">노출에서 가입까지 — 직렬로 곱해지는 비율</text>
+  <text class="anno" x="40" y="56">광고 100,000회 노출에서 시작한 깔때기. 두 단계의 비율이 차례로 곱해진다.</text>
+
+  <!-- 깔때기 형태로 4단계 (세로 적층, 폭이 점점 좁아짐) -->
+  <g transform="translate(40, 84)">
+    <!-- 노출 -->
+    <g transform="translate(0, 0)">
+      <rect fill="var(--c-stage-1)" x="0" y="0" width="520" height="92" rx="2"/>
+      <text class="stage-label" x="20" y="32">노출</text>
+      <text class="stage-num" x="20" y="64">100,000</text>
+      <text class="stage-unit" x="120" y="64">impressions</text>
+    </g>
+
+    <!-- → CTR -->
+    <g transform="translate(260, 110)">
+      <text class="rate-label" x="56" y="4" text-anchor="start">CTR 1.2%</text>
+      <text class="rate-name" x="140" y="4" text-anchor="start">클릭률</text>
+      <path d="M 0 -8 L 0 22" stroke="var(--c-arrow)" stroke-width="1.5" fill="none"/>
+      <path d="M -5 14 L 0 24 L 5 14 Z" fill="var(--c-arrow)"/>
+    </g>
+
+    <!-- 클릭 -->
+    <g transform="translate(40, 144)">
+      <rect fill="var(--c-stage-2)" x="0" y="0" width="440" height="82" rx="2"/>
+      <text class="stage-label" x="20" y="30">클릭</text>
+      <text class="stage-num" x="20" y="58">1,200</text>
+      <text class="stage-unit" x="110" y="58">clicks</text>
+    </g>
+
+    <!-- → 페이지 진입률 -->
+    <g transform="translate(260, 244)">
+      <text class="rate-label" x="56" y="4" text-anchor="start">진입률 85%</text>
+      <text class="rate-name" x="148" y="4" text-anchor="start">로딩 성공</text>
+      <path d="M 0 -8 L 0 22" stroke="var(--c-arrow)" stroke-width="1.5" fill="none"/>
+      <path d="M -5 14 L 0 24 L 5 14 Z" fill="var(--c-arrow)"/>
+    </g>
+
+    <!-- 페이지 진입 -->
+    <g transform="translate(80, 278)">
+      <rect fill="var(--c-stage-3)" x="0" y="0" width="360" height="72" rx="2"/>
+      <text class="stage-label" x="20" y="28">진입</text>
+      <text class="stage-num" x="20" y="54">1,020</text>
+      <text class="stage-unit" x="110" y="54">page views</text>
+    </g>
+
+    <!-- → CVR -->
+    <g transform="translate(260, 368)">
+      <text class="rate-label" x="56" y="4" text-anchor="start">CVR 4.7%</text>
+      <text class="rate-name" x="136" y="4" text-anchor="start">전환율</text>
+      <path d="M 0 -8 L 0 22" stroke="var(--c-arrow)" stroke-width="1.5" fill="none"/>
+      <path d="M -5 14 L 0 24 L 5 14 Z" fill="var(--c-arrow)"/>
+    </g>
+
+    <!-- 가입 -->
+    <g transform="translate(120, 402)">
+      <rect fill="var(--c-stage-4)" x="0" y="0" width="280" height="62" rx="2"/>
+      <text class="stage-label" x="20" y="26">가입</text>
+      <text class="stage-num" x="20" y="50">48</text>
+      <text class="stage-unit" x="70" y="50">sign-ups</text>
+    </g>
+  </g>
+
+  <!-- 공식 박스 -->
+  <g transform="translate(40, 580)">
+    <rect class="formula" width="520" height="112" rx="2"/>
+    <text class="formula-text" x="20" y="32">전체 효율 = CTR × 진입률 × CVR</text>
+    <text class="formula-text" x="20" y="54">= 1.2% × 85% × 4.7% ≈ 0.048%</text>
+    <text class="anno" x="20" y="78">→ 100,000 × 0.048% = 48 가입자</text>
+    <text class="anno" x="20" y="98">→ 한 단계가 절반으로 떨어지면 최종 가입자도 절반. 어느 단계를 고치느냐가 모든 것을 바꾼다.</text>
+  </g>
+</svg>

@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1330" role="img" aria-labelledby="title desc">
+  <title id="title">히트맵과 클릭맵</title>
+  <desc id="desc">같은 페이지에 호버 히트맵, 클릭맵, 스크롤 히트맵 세 종류를 비교.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-faint: #b3b3b0;
+      --c-screen: #ffffff;
+      --c-screen-stroke: #1a1a1a;
+      --c-content: #ede9df;
+      --c-hot: #c97f4a;
+      --c-warm: #d9a47e;
+      --c-cool: #2d4a3e;
+      --c-icon: #6b6b6b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-faint: #4a4a47;
+        --c-screen: #1a1a18;
+        --c-screen-stroke: #ededea;
+        --c-content: #2a2823;
+        --c-hot: #e09a6a;
+        --c-warm: #c08660;
+        --c-cool: #7fb09a;
+        --c-icon: #999996;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .panel-title { font: 600 13px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .panel-sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .screen { fill: var(--c-screen); stroke: var(--c-screen-stroke); stroke-width: 1.25; }
+    .content { fill: var(--c-content); }
+    .line { stroke: var(--c-faint); stroke-width: 3; }
+    .legend-text { font: 400 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .legend-bold { font: 600 10px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+  </style>
+  <rect class="bg" width="600" height="1330"/>
+
+  <text class="title" x="40" y="36">같은 페이지, 세 가지 히트맵</text>
+
+  <!-- 1. Hover Heatmap -->
+  <g transform="translate(40, 80)">
+    <text class="panel-title" x="0" y="0">호버 히트맵</text>
+    <text class="panel-sub" x="0" y="18">마우스가 머문 시간</text>
+
+    <!-- 폰 화면 -->
+    <rect class="screen" x="0" y="36" width="180" height="320" rx="10"/>
+
+    <!-- 콘텐츠 라인 -->
+    <rect class="line" x="14" y="60" width="100" height="3"/>
+    <rect class="line" x="14" y="74" width="140" height="3"/>
+
+    <!-- Hero -->
+    <rect class="content" x="14" y="98" width="152" height="60" rx="2"/>
+    <rect class="line" x="22" y="118" width="80" height="3"/>
+    <rect class="line" x="22" y="130" width="120" height="3"/>
+
+    <!-- 호버 영역들 (블러 효과) -->
+    <circle cx="90" cy="220" r="44" fill="var(--c-hot)" opacity="0.5" filter="url(#blur1)"/>
+    <circle cx="50" cy="252" r="22" fill="var(--c-warm)" opacity="0.5" filter="url(#blur1)"/>
+    <circle cx="130" cy="280" r="26" fill="var(--c-warm)" opacity="0.4" filter="url(#blur1)"/>
+
+    <!-- CTA 영역 표시 -->
+    <rect x="34" y="200" width="112" height="36" fill="none" stroke="var(--c-icon)" stroke-width="0.75" stroke-dasharray="3 2" rx="4"/>
+    <text class="legend-text" x="40" y="222">CTA 버튼</text>
+
+    <!-- 추가 콘텐츠 -->
+    <rect class="line" x="14" y="316" width="100" height="3"/>
+    <rect class="line" x="14" y="328" width="140" height="3"/>
+
+    <!-- 해설 (폰 우측) -->
+    <text class="legend-text" x="210" y="200">호버가 CTA 위쪽</text>
+    <text class="legend-text" x="210" y="214">텍스트에 몰림</text>
+    <text class="legend-text" x="210" y="232">→ 사용자가 망설인 신호</text>
+  </g>
+
+  <!-- 2. Click Map -->
+  <g transform="translate(40, 500)">
+    <text class="panel-title" x="0" y="0">클릭맵</text>
+    <text class="panel-sub" x="0" y="18">탭이 발생한 좌표</text>
+
+    <rect class="screen" x="0" y="36" width="180" height="320" rx="10"/>
+
+    <rect class="line" x="14" y="60" width="100" height="3"/>
+    <rect class="line" x="14" y="74" width="140" height="3"/>
+
+    <rect class="content" x="14" y="98" width="152" height="60" rx="2"/>
+    <rect class="line" x="22" y="118" width="80" height="3"/>
+    <rect class="line" x="22" y="130" width="120" height="3"/>
+
+    <!-- 클릭 점들 -->
+    <g fill="var(--c-hot)">
+      <!-- CTA에 집중 -->
+      <circle cx="78" cy="218" r="4"/>
+      <circle cx="92" cy="220" r="4"/>
+      <circle cx="84" cy="222" r="4"/>
+      <circle cx="100" cy="216" r="3"/>
+      <circle cx="74" cy="224" r="3"/>
+      <circle cx="106" cy="220" r="3"/>
+      <circle cx="88" cy="226" r="3"/>
+
+      <!-- 비클릭 영역에 클릭 (이상 신호) -->
+      <circle cx="40" cy="128" r="3" opacity="0.85"/>
+      <circle cx="44" cy="132" r="3" opacity="0.85"/>
+      <circle cx="38" cy="124" r="2" opacity="0.7"/>
+
+      <!-- Hero 이미지 영역 -->
+      <circle cx="142" cy="138" r="3" opacity="0.85"/>
+      <circle cx="146" cy="142" r="3" opacity="0.85"/>
+      <circle cx="138" cy="134" r="2" opacity="0.7"/>
+    </g>
+
+    <!-- CTA -->
+    <rect x="34" y="200" width="112" height="36" fill="none" stroke="var(--c-icon)" stroke-width="0.75" stroke-dasharray="3 2" rx="4"/>
+    <text class="legend-text" x="40" y="222">CTA 버튼</text>
+
+    <rect class="line" x="14" y="316" width="100" height="3"/>
+    <rect class="line" x="14" y="328" width="140" height="3"/>
+
+    <!-- 해설 (폰 우측) -->
+    <text class="legend-text" x="210" y="200">CTA 외 좌측 텍스트·</text>
+    <text class="legend-text" x="210" y="214">이미지에도 클릭</text>
+    <text class="legend-text" x="210" y="232">→ 클릭 가능하다고</text>
+    <text class="legend-text" x="210" y="246">   기대한 영역</text>
+  </g>
+
+  <!-- 3. Scroll Heatmap -->
+  <g transform="translate(40, 920)">
+    <text class="panel-title" x="0" y="0">스크롤 히트맵</text>
+    <text class="panel-sub" x="0" y="18">도달한 깊이</text>
+
+    <rect class="screen" x="0" y="36" width="180" height="320" rx="10"/>
+
+    <!-- 스크롤 레이어 (위쪽이 따뜻하고 아래로 갈수록 차가워짐) -->
+    <rect x="2" y="38" width="176" height="80" fill="var(--c-hot)" opacity="0.45"/>
+    <rect x="2" y="118" width="176" height="80" fill="var(--c-hot)" opacity="0.30"/>
+    <rect x="2" y="198" width="176" height="80" fill="var(--c-warm)" opacity="0.25"/>
+    <rect x="2" y="278" width="176" height="76" fill="var(--c-cool)" opacity="0.15"/>
+
+    <!-- 콘텐츠 위에 라인들 -->
+    <rect class="line" x="14" y="60" width="100" height="3"/>
+    <rect class="line" x="14" y="74" width="140" height="3"/>
+
+    <rect class="content" x="14" y="98" width="152" height="60" rx="2"/>
+    <rect class="line" x="22" y="118" width="80" height="3"/>
+    <rect class="line" x="22" y="130" width="120" height="3"/>
+
+    <rect x="34" y="200" width="112" height="36" fill="none" stroke="var(--c-icon)" stroke-width="0.75" stroke-dasharray="3 2" rx="4"/>
+    <text class="legend-text" x="40" y="222">CTA 버튼</text>
+
+    <rect class="line" x="14" y="316" width="100" height="3"/>
+    <rect class="line" x="14" y="328" width="140" height="3"/>
+
+    <!-- 깊이 표시 -->
+    <text class="legend-bold" x="190" y="80">25%</text>
+    <text class="legend-text" x="190" y="92">94%</text>
+    <text class="legend-bold" x="190" y="158">50%</text>
+    <text class="legend-text" x="190" y="170">62%</text>
+    <text class="legend-bold" x="190" y="238">75%</text>
+    <text class="legend-text" x="190" y="250">31%</text>
+    <text class="legend-bold" x="190" y="320">100%</text>
+    <text class="legend-text" x="190" y="332">14%</text>
+
+    <!-- 해설 (폰 우측) -->
+    <text class="legend-text" x="250" y="200">100% 도달 14%</text>
+    <text class="legend-text" x="250" y="214">— 후기 섹션이 묻힘</text>
+    <text class="legend-text" x="250" y="232">→ 핵심 메시지를 상단으로</text>
+  </g>
+
+  <defs>
+    <filter id="blur1" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- 하단 범례 -->
+  <g transform="translate(40, 1306)">
+    <text class="legend-text">히트맵은 가설을 확인하는 도구. 정량 지표(CVR, Bounce)와 함께 봐야 의미가 있다.</text>
+  </g>
+</svg>

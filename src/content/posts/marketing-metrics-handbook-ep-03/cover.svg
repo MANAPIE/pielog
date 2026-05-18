@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">ep.03 — 유입과 클릭</title>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-accent: #c97f4a;
+      --c-accent-2: #2d4a3e;
+      --c-accent-3: #d9a47e;
+      --c-num: #c97f4a;
+      --c-dot: #1a1a1a;
+      --c-line: #6b6b6b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-accent: #e09a6a;
+        --c-accent-2: #7fb09a;
+        --c-accent-3: #d4a560;
+        --c-num: #e09a6a;
+        --c-dot: #ededea;
+        --c-line: #4a4a47;
+      }
+    }
+  </style>
+  <defs>
+    <pattern id="dotgrid03" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
+    </pattern>
+    <radialGradient id="rg03a" cx="80%" cy="22%" r="60%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg03b" cx="18%" cy="82%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="var(--c-bg)"/>
+  <rect width="1200" height="630" fill="url(#dotgrid03)"/>
+  <rect width="1200" height="630" fill="url(#rg03a)"/>
+  <rect width="1200" height="630" fill="url(#rg03b)"/>
+
+  <!-- 화면 밖 큰 도형 -->
+  <circle cx="-100" cy="100" r="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="1020" y="500" width="320" height="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4" transform="rotate(-8 1180 640)"/>
+
+  <!-- 메인 메타포: 깔때기 + 화살표 떨어짐 (유입→클릭→이탈) -->
+  <g transform="translate(612, 442) scale(1.5)">
+    <!-- 깔때기 (수직 단계, 점점 좁아짐) -->
+    <!-- 단계 1: 노출 (넓은 사각형) -->
+    <rect x="-220" y="-200" width="440" height="60" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-fg)" stroke-width="1.5"/>
+    
+    <!-- 단계 2: 클릭 (중간) -->
+    <rect x="-140" y="-100" width="280" height="60" fill="var(--c-accent)" fill-opacity="0.7" stroke="var(--c-fg)" stroke-width="1.5"/>
+    
+    <!-- 단계 3: 전환 (가장 좁은) -->
+    <rect x="-70" y="0" width="140" height="60" fill="var(--c-accent-2)" stroke="var(--c-fg)" stroke-width="1.5"/>
+
+    <!-- 연결 화살표 -->
+    <path d="M 0 -140 L 0 -110" stroke="var(--c-fg)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M -6 -116 L 0 -106 L 6 -116" fill="none" stroke="var(--c-fg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M 0 -40 L 0 -10" stroke="var(--c-fg)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M -6 -16 L 0 -6 L 6 -16" fill="none" stroke="var(--c-fg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- 떠나는 화살표들 (이탈) -->
+    <!-- 1단계에서 빠지는 사용자 -->
+    <g transform="translate(-220, -170)">
+      <path d="M 0 0 L -50 30" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M -42 26 L -54 34 L -46 22 Z" fill="var(--c-muted)" opacity="0.6"/>
+    </g>
+    <g transform="translate(220, -170)">
+      <path d="M 0 0 L 50 30" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M 42 26 L 54 34 L 46 22 Z" fill="var(--c-muted)" opacity="0.6"/>
+    </g>
+
+    <!-- 2단계에서 빠지는 사용자 -->
+    <g transform="translate(-140, -70)">
+      <path d="M 0 0 L -40 25" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M -32 22 L -44 30 L -36 18 Z" fill="var(--c-muted)" opacity="0.5"/>
+    </g>
+    <g transform="translate(140, -70)">
+      <path d="M 0 0 L 40 25" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M 32 22 L 44 30 L 36 18 Z" fill="var(--c-muted)" opacity="0.5"/>
+    </g>
+
+    <!-- 도트 무리 (노출 표현, 첫 단계 위에) -->
+    <g transform="translate(-180, -240)" fill="var(--c-accent)">
+      <circle cx="0" cy="0" r="3"/>
+      <circle cx="14" cy="-4" r="3"/>
+      <circle cx="8" cy="10" r="3"/>
+    </g>
+    <g transform="translate(160, -250)" fill="var(--c-accent)">
+      <circle cx="0" cy="0" r="3"/>
+      <circle cx="14" cy="-4" r="3"/>
+      <circle cx="-8" cy="6" r="3"/>
+    </g>
+
+    <!-- 미니 클릭 표시 (마우스 커서 같은 점선 원) -->
+    <g transform="translate(120, -70)">
+      <circle cx="0" cy="0" r="14" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <circle cx="0" cy="0" r="4" fill="var(--c-accent)"/>
+    </g>
+
+    <!-- 체크 표시 (전환) -->
+    <g transform="translate(0, 30)">
+      <path d="M -16 0 L -4 12 L 16 -12" fill="none" stroke="var(--c-bg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 회전된 사각형 (장식) -->
+    <rect x="240" y="-180" width="22" height="22" fill="none" stroke="var(--c-accent)" stroke-width="1.5" transform="rotate(15 251 -169)"/>
+    <rect x="-280" y="20" width="20" height="20" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" transform="rotate(-10 -270 30)"/>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text x="1144" y="600" text-anchor="end"
+    font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+    font-size="220" font-weight="700"
+    fill="var(--c-num)" fill-opacity="0.18"
+    letter-spacing="-0.04em">03</text>
+</svg>
