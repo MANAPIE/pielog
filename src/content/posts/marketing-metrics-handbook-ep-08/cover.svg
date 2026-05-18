@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">ep.08 — 수익과 단위경제</title>
+  <style>
+    :root {
+      --c-bg: #fafaf7;
+      --c-fg: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-accent: #c97f4a;
+      --c-accent-2: #2d4a3e;
+      --c-accent-3: #d9a47e;
+      --c-num: #c97f4a;
+      --c-dot: #1a1a1a;
+      --c-line: #6b6b6b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e;
+        --c-fg: #ededea;
+        --c-muted: #999996;
+        --c-accent: #e09a6a;
+        --c-accent-2: #7fb09a;
+        --c-accent-3: #d4a560;
+        --c-num: #e09a6a;
+        --c-dot: #ededea;
+        --c-line: #4a4a47;
+      }
+    }
+  </style>
+  <defs>
+    <pattern id="dotgrid08" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
+    </pattern>
+    <radialGradient id="rg08a" cx="80%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg08b" cx="18%" cy="82%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="var(--c-bg)"/>
+  <rect width="1200" height="630" fill="url(#dotgrid08)"/>
+  <rect width="1200" height="630" fill="url(#rg08a)"/>
+  <rect width="1200" height="630" fill="url(#rg08b)"/>
+
+  <!-- 화면 밖 큰 도형 -->
+  <rect x="-180" y="-100" width="320" height="320" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4" transform="rotate(8 -20 60)"/>
+  <circle cx="1280" cy="600" r="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- 메인 메타포: 누적 매출 곡선 (마이너스에서 시작 → 회수 지점 → 누적 이익) -->
+  <g transform="translate(97, 77) scale(1.08)">
+    <!-- 0 라인 (X축) -->
+    <line x1="0" y1="250" x2="920" y2="250" stroke="var(--c-fg)" stroke-width="1.5"/>
+
+    <!-- 손실 영역 (옅게) -->
+    <rect x="0" y="250" width="920" height="100" fill="var(--c-accent)" fill-opacity="0.10"/>
+
+    <!-- 누적 매출 곡선 -->
+    <path d="M 0 340 L 80 320 L 160 300 L 240 280 L 320 260 L 400 240 L 480 220 L 560 200 L 640 180 L 720 165 L 800 150 L 880 135 L 920 130"
+      fill="none" stroke="var(--c-accent-2)" stroke-width="3.5"/>
+
+    <!-- CAC 라인 (시작점 - 마이너스) -->
+    <line x1="0" y1="340" x2="0" y2="250" stroke="var(--c-accent)" stroke-width="2"/>
+    <circle cx="0" cy="340" r="6" fill="var(--c-accent)"/>
+
+    <!-- Payback 회수 지점 (0과 교차) -->
+    <circle cx="400" cy="240" r="9" fill="var(--c-accent)"/>
+    <!-- 포커스 링 -->
+    <circle cx="400" cy="240" r="28" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <!-- 수직 점선 -->
+    <line x1="400" y1="80" x2="400" y2="250" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- LTV 끝 지점 -->
+    <circle cx="880" cy="135" r="7" fill="var(--c-accent-2)"/>
+    <line x1="880" y1="80" x2="880" y2="135" stroke="var(--c-accent-2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- 곡선 위에 도트 (각 월 표시) -->
+    <g fill="var(--c-accent-2)">
+      <circle cx="160" cy="300" r="4"/>
+      <circle cx="240" cy="280" r="4"/>
+      <circle cx="560" cy="200" r="4"/>
+      <circle cx="720" cy="165" r="4"/>
+    </g>
+
+    <!-- 미니 바 묶음 (매월 ARPU 표시) - 좌하단 -->
+    <g transform="translate(50, 380)" fill="var(--c-accent-3)">
+      <rect x="0" y="0" width="8" height="20"/>
+      <rect x="12" y="0" width="8" height="20"/>
+      <rect x="24" y="0" width="8" height="20"/>
+      <rect x="36" y="0" width="8" height="20"/>
+      <rect x="48" y="0" width="8" height="20"/>
+    </g>
+
+    <!-- 도트 무리 (수익 영역) -->
+    <g transform="translate(720, 100)" fill="var(--c-accent-2)" opacity="0.6">
+      <circle cx="0" cy="0" r="3"/>
+      <circle cx="14" cy="-6" r="3"/>
+      <circle cx="8" cy="10" r="3"/>
+    </g>
+
+    <!-- 회전된 사각형 -->
+    <rect x="-30" y="40" width="24" height="24" fill="none" stroke="var(--c-accent)" stroke-width="1.5" transform="rotate(15 -18 52)"/>
+    <rect x="940" y="200" width="22" height="22" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" transform="rotate(-12 951 211)"/>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text x="1144" y="600" text-anchor="end"
+    font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+    font-size="220" font-weight="700"
+    fill="var(--c-num)" fill-opacity="0.18"
+    letter-spacing="-0.04em">08</text>
+</svg>

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 470" role="img" aria-labelledby="title desc">
+  <title id="title">LTV와 CAC의 관계</title>
+  <desc id="desc">누적 매출 곡선과 CAC 라인이 만나는 회수 지점, 그리고 평균 유지 기간까지의 LTV.</desc>
+  <style>
+    :root {
+      --c-bg: #fafaf7; --c-fg: #1a1a1a; --c-muted: #6b6b6b; --c-faint: #b3b3b0;
+      --c-grid: #ede9df; --c-axis: #b3b3b0;
+      --c-revenue: #2d4a3e; --c-revenue-fill: #2d4a3e;
+      --c-cac: #c97f4a; --c-cac-bg: #f8efe6;
+      --c-payback: #c97f4a;
+      --c-profit-bg: #e3ede7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #0f0f0e; --c-fg: #ededea; --c-muted: #999996; --c-faint: #4a4a47;
+        --c-grid: #2a2823; --c-axis: #4a4a47;
+        --c-revenue: #7fb09a; --c-revenue-fill: #7fb09a;
+        --c-cac: #e09a6a; --c-cac-bg: #2a1f15;
+        --c-payback: #e09a6a;
+        --c-profit-bg: #1f2a26;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .title { font: 600 14px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .sub { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .axis-line { stroke: var(--c-axis); stroke-width: 1; }
+    .axis-label { font: 400 10px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-muted); }
+    .grid-line { stroke: var(--c-grid); stroke-width: 0.75; }
+    .revenue-line { fill: none; stroke: var(--c-revenue); stroke-width: 2.5; }
+    .cac-line { stroke: var(--c-cac); stroke-width: 1.5; stroke-dasharray: 5 3; fill: none; }
+    .payback-line { stroke: var(--c-payback); stroke-width: 1; stroke-dasharray: 3 2; fill: none; }
+    .label-bold { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-fg); }
+    .label-cac { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-cac); }
+    .label-rev { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: var(--c-revenue); }
+    .num-big { font: 700 14px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-fg); }
+    .anno { font: 400 11px ui-sans-serif, system-ui, sans-serif; fill: var(--c-muted); }
+    .profit-band { fill: var(--c-profit-bg); }
+    .loss-band { fill: var(--c-cac-bg); }
+  </style>
+  <rect class="bg" width="600" height="470"/>
+
+  <text class="title" x="40" y="36">한 사용자의 누적 매출 — CAC, Payback, LTV</text>
+  <text class="sub" x="40" y="54">CAC를 마이너스로 보고 시작해 매월 ARPU만큼 회복. 회수 지점이 Payback.</text>
+
+  <!-- 차트 영역 · 플롯 폭 520 (x=60..580 화면) -->
+  <g transform="translate(60, 100)">
+    <!-- 손익 밴드 -->
+    <rect class="loss-band" x="0" y="160" width="520" height="60"/>
+    <rect class="profit-band" x="0" y="0" width="520" height="160"/>
+
+    <!-- 0 라인 -->
+    <line class="axis-line" x1="0" y1="160" x2="520" y2="160" stroke-width="1.5"/>
+
+    <!-- Y축 격자 -->
+    <line class="grid-line" x1="0" y1="0" x2="520" y2="0"/>
+    <line class="grid-line" x1="0" y1="40" x2="520" y2="40"/>
+    <line class="grid-line" x1="0" y1="80" x2="520" y2="80"/>
+    <line class="grid-line" x1="0" y1="120" x2="520" y2="120"/>
+    <line class="grid-line" x1="0" y1="200" x2="520" y2="200"/>
+
+    <!-- Y축 라벨 -->
+    <text class="axis-label" x="-8" y="4" text-anchor="end">+80,000</text>
+    <text class="axis-label" x="-8" y="44" text-anchor="end">+60,000</text>
+    <text class="axis-label" x="-8" y="84" text-anchor="end">+40,000</text>
+    <text class="axis-label" x="-8" y="124" text-anchor="end">+20,000</text>
+    <text class="axis-label" x="-8" y="164" text-anchor="end">0원</text>
+    <text class="axis-label" x="-8" y="204" text-anchor="end">−24,000</text>
+
+    <!-- X축 라벨 (월) · 스케일 ×0.8125 -->
+    <text class="axis-label" x="0" y="240">M0</text>
+    <text class="axis-label" x="34" y="240">M1</text>
+    <text class="axis-label" x="103" y="240">M3</text>
+    <text class="axis-label" x="180" y="240">M5</text>
+    <text class="axis-label" x="241" y="240">M7</text>
+    <text class="axis-label" x="347" y="240">M10</text>
+    <text class="axis-label" x="451" y="240">M13</text>
+    <text class="axis-label" x="520" y="240" text-anchor="end">M15</text>
+
+    <!-- 누적 매출 곡선 · M0 -24,000(y=200) ~ M15 +66,000(y=65) -->
+    <path class="revenue-line" d="M 0 200 L 34 191 L 69 182 L 103 173 L 138 164 L 172 155 L 206 146 L 241 137 L 275 128 L 310 119 L 345 110 L 379 101 L 414 92 L 448 83 L 483 74 L 520 65"/>
+
+    <!-- CAC 라인 (출발점) -->
+    <line class="cac-line" x1="0" y1="200" x2="520" y2="200"/>
+    <text class="label-cac" x="0" y="216">CAC −24,000원 (출발점)</text>
+
+    <!-- Payback 수직선 · M5.3 → x=225×0.8125≈183 -->
+    <line class="payback-line" x1="183" y1="0" x2="183" y2="200"/>
+    <text class="label-bold" x="188" y="-4" style="fill: var(--c-payback);">Payback 5.3개월</text>
+
+    <!-- LTV 지점 표시 · M14.7 → x=600×0.8125=488, 곡선상 y≈74 -->
+    <line class="payback-line" x1="488" y1="0" x2="488" y2="160"/>
+    <circle cx="483" cy="74" r="5" fill="var(--c-revenue)"/>
+    <text class="label-rev" x="378" y="56">LTV ≈ +66,000원</text>
+    <text class="anno" x="378" y="72">평균 유지 14.7개월 시점</text>
+
+    <!-- 손익 영역 라벨 -->
+    <text class="anno" x="14" y="186" style="font-style: italic;">손실 영역</text>
+    <text class="anno" x="14" y="20" style="font-style: italic;">순이익 영역</text>
+  </g>
+
+  <!-- 하단 결론 -->
+  <g transform="translate(40, 388)">
+    <text class="label-bold" x="0" y="0">단위경제 평가</text>
+    <text class="anno" x="0" y="22">LTV ÷ CAC = 66,000 ÷ 24,000 = <tspan style="font-weight: 700; fill: var(--c-revenue);">2.76배</tspan></text>
+    <text class="anno" x="0" y="40">Payback 5.3개월 → 회수 후 9.4개월의 순이익 기간 (평균 유지 14.7개월 기준)</text>
+    <text class="anno" x="0" y="58">건강한 범위. 광고 단가 인상이 있어도 3.0배 이상 유지하는 것이 목표.</text>
+  </g>
+</svg>
