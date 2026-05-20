@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.00 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6;
+      --c-fg: #15182A;
+      --c-muted: #5E627A;
+      --c-accent: #2C3D8E;
+      --c-accent-2: #A88656;
+      --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30);
+      --c-line: rgba(44, 61, 142, 0.22);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A;
+        --c-fg: #ECEEF6;
+        --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC;
+        --c-accent-2: #D6BA82;
+        --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24);
+        --c-line: rgba(160, 176, 236, 0.22);
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+    .line-stroke { stroke: var(--c-line); fill: none; stroke-width: 1.5; }
+    .accent-stroke { stroke: var(--c-accent); fill: none; }
+    .accent-fill { fill: var(--c-accent); }
+    .accent-2-fill { fill: var(--c-accent-2); }
+    .accent-3-fill { fill: var(--c-accent-3); }
+    .muted-stroke { stroke: var(--c-muted); fill: none; }
+  </style>
+
+  <defs>
+    <pattern id="dotGrid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA" cx="15%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="88%" cy="82%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 배경 레이어 1: 베이스 -->
+  <rect class="bg" width="1200" height="630"/>
+  <!-- 배경 레이어 1: 도트 그리드 -->
+  <rect width="1200" height="630" fill="url(#dotGrid)"/>
+  <!-- 배경 레이어 2: 라디얼 그라디언트 -->
+  <rect width="1200" height="630" fill="url(#glowA)"/>
+  <rect width="1200" height="630" fill="url(#glowB)"/>
+
+  <!-- 배경 레이어 3: 화면 밖으로 빠지는 큰 무채색 stroke 도형 -->
+  <!-- 거대한 원 (좌상단 모서리에서 빠져나감) -->
+  <circle cx="-80" cy="-40" r="380" class="line-stroke" stroke-width="1.5" transform="rotate(-8 -80 -40)"/>
+  <!-- 거대한 사각형 (우하단으로 빠짐, 회전) -->
+  <rect x="820" y="380" width="520" height="520" class="line-stroke" stroke-width="1.5" transform="rotate(11 1080 640)"/>
+
+  <!-- 포그라운드: 네 분면 좌표계 메타포 -->
+  <!-- 좌표 축 (살짝 회전) -->
+  <g transform="translate(600 315) rotate(-3)">
+    <!-- 가로축 -->
+    <line x1="-360" y1="0" x2="360" y2="0" class="accent-stroke" stroke-width="2.2"/>
+    <!-- 세로축 -->
+    <line x1="0" y1="-220" x2="0" y2="220" class="accent-stroke" stroke-width="2.2"/>
+    <!-- 화살촉 (가로축 끝) -->
+    <polygon points="360,0 348,-7 348,7" class="accent-fill"/>
+    <!-- 화살촉 (세로축 위) -->
+    <polygon points="0,-220 -7,-208 7,-208" class="accent-fill"/>
+
+    <!-- 분면 1: 좌상 (학습 + 실용 → 튜토리얼) -->
+    <g transform="translate(-200 -130)">
+      <!-- 동심원 (포커스링) -->
+      <circle cx="0" cy="0" r="42" class="accent-stroke" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.7"/>
+      <circle cx="0" cy="0" r="22" class="accent-fill" opacity="0.85"/>
+      <circle cx="0" cy="0" r="8" fill="var(--c-bg)"/>
+    </g>
+
+    <!-- 분면 2: 우상 (작업 + 실용 → 하우투) -->
+    <g transform="translate(180 -110) rotate(8)">
+      <!-- 미니 바 묶음 -->
+      <rect x="-30" y="-30" width="10" height="60" class="accent-2-fill"/>
+      <rect x="-14" y="-18" width="10" height="48" class="accent-2-fill" opacity="0.75"/>
+      <rect x="2" y="-38" width="10" height="68" class="accent-2-fill" opacity="0.9"/>
+      <rect x="18" y="-22" width="10" height="52" class="accent-2-fill" opacity="0.6"/>
+    </g>
+
+    <!-- 분면 3: 좌하 (학습 + 이론 → 익스플레네이션) -->
+    <g transform="translate(-220 130) rotate(-6)">
+      <!-- 회전된 사각형 + 작은 점 -->
+      <rect x="-26" y="-26" width="52" height="52" class="line-stroke" stroke-width="1.5" transform="rotate(20)"/>
+      <rect x="-14" y="-14" width="28" height="28" class="accent-3-fill" transform="rotate(20)" opacity="0.85"/>
+      <!-- 작은 점 3개 무리 -->
+      <circle cx="40" cy="-30" r="3" class="accent-3-fill"/>
+      <circle cx="48" cy="-22" r="2" class="accent-3-fill"/>
+      <circle cx="35" cy="-22" r="2" class="accent-3-fill"/>
+    </g>
+
+    <!-- 분면 4: 우하 (작업 + 이론 → 레퍼런스) -->
+    <g transform="translate(190 130)">
+      <!-- 미니 라인 묶음 (레퍼런스 = 목록) -->
+      <line x1="-30" y1="-22" x2="32" y2="-22" class="muted-stroke" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="-30" y1="-10" x2="20" y2="-10" class="muted-stroke" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="-30" y1="2" x2="28" y2="2" class="muted-stroke" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="-30" y1="14" x2="12" y2="14" class="muted-stroke" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="-30" y1="26" x2="24" y2="26" class="muted-stroke" stroke-width="2.2" stroke-linecap="round"/>
+      <!-- 작은 인디케이터 -->
+      <circle cx="-36" cy="-22" r="2.5" class="accent-fill"/>
+      <circle cx="-36" cy="2" r="2.5" class="accent-fill"/>
+      <circle cx="-36" cy="26" r="2.5" class="accent-fill"/>
+    </g>
+
+    <!-- 원점 마커 -->
+    <circle cx="0" cy="0" r="6" class="accent-fill"/>
+    <circle cx="0" cy="0" r="2.5" fill="var(--c-bg)"/>
+  </g>
+
+  <!-- 떠다니는 디테일들 -->
+  <!-- 점선 화살표 (분면을 잇는 흐름) -->
+  <path d="M 380 200 Q 600 140 820 220" class="line-stroke" stroke-dasharray="4 6" opacity="0.5"/>
+  <!-- 체크 마크 -->
+  <g transform="translate(950 180) rotate(8)">
+    <polyline points="0,0 8,10 22,-8" class="accent-stroke" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <!-- 좌하단 점 무리 -->
+  <g transform="translate(130 510)">
+    <circle cx="0" cy="0" r="3" class="accent-fill"/>
+    <circle cx="10" cy="6" r="2" class="accent-fill" opacity="0.7"/>
+    <circle cx="-7" cy="9" r="2.5" class="accent-fill" opacity="0.85"/>
+    <circle cx="4" cy="-8" r="2" class="accent-fill" opacity="0.6"/>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">00</text>
+</svg>

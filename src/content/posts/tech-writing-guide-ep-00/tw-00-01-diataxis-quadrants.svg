@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" role="img" aria-labelledby="title-tw-00-01">
+  <title id="title-tw-00-01">Diátaxis 네 분면 다이어그램</title>
+  <style>
+    svg {
+      --c-bg: transparent;
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .axis-label { font-size: 13px; fill: var(--c-muted); font-weight: 500; }
+    .axis-tag { font-size: 12px; fill: var(--c-muted); }
+    .card { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .card-title { font-size: 16px; font-weight: 700; }
+    .card-sub { font-size: 12px; fill: var(--c-muted); }
+    .card-meta { font-size: 11px; fill: var(--c-muted); }
+    .axis-line { stroke: var(--c-line); stroke-width: 1.5; fill: none; }
+    .axis-arrow { fill: var(--c-muted); }
+  </style>
+
+  <!-- 가로축 -->
+  <line x1="60" y1="450" x2="640" y2="450" class="axis-line"/>
+  <polygon points="640,450 630,446 630,454" class="axis-arrow"/>
+  <text class="axis-tag" x="60" y="475" text-anchor="start">실용(action)</text>
+  <text class="axis-tag" x="640" y="475" text-anchor="end">이론(cognition)</text>
+  <text class="axis-label" x="350" y="500" text-anchor="middle">— 글이 다루는 것 —</text>
+
+  <!-- 세로축 -->
+  <line x1="350" y1="450" x2="350" y2="50" class="axis-line"/>
+  <polygon points="350,50 346,60 354,60" class="axis-arrow"/>
+  <text class="axis-tag" x="355" y="55" text-anchor="start">학습(study)</text>
+  <text class="axis-tag" x="355" y="445" text-anchor="start">작업(work)</text>
+  <text class="axis-label" x="20" y="250" text-anchor="middle" transform="rotate(-90 20 250)">— 독자가 하려는 것 —</text>
+
+  <!-- 분면 1: 좌상 - 튜토리얼 (학습 + 실용) -->
+  <g transform="translate(80 80)">
+    <rect class="card" x="0" y="0" width="240" height="150" rx="6"/>
+    <circle cx="24" cy="28" r="10" fill="var(--c-accent)"/>
+    <text class="card-title" x="44" y="33">튜토리얼</text>
+    <text class="card-sub" x="44" y="50">Tutorial</text>
+    <text class="card-meta" x="20" y="80">독자: 처음 온 사람</text>
+    <text class="card-meta" x="20" y="100">의도: 손을 잡고 만들어보기</text>
+    <text class="card-meta" x="20" y="120">비유: 첫 수영 강습</text>
+  </g>
+
+  <!-- 분면 2: 우상 - 익스플레네이션 (학습 + 이론) -->
+  <g transform="translate(380 80)">
+    <rect class="card" x="0" y="0" width="240" height="150" rx="6"/>
+    <circle cx="24" cy="28" r="10" fill="var(--c-accent-3)"/>
+    <text class="card-title" x="44" y="33">익스플레네이션</text>
+    <text class="card-sub" x="44" y="50">Explanation</text>
+    <text class="card-meta" x="20" y="80">독자: 이해하고 싶은 사람</text>
+    <text class="card-meta" x="20" y="100">의도: 맥락과 이유를 알기</text>
+    <text class="card-meta" x="20" y="120">비유: 학회 발표나 에세이</text>
+  </g>
+
+  <!-- 분면 3: 좌하 - 하우투 (작업 + 실용) -->
+  <g transform="translate(80 270)">
+    <rect class="card" x="0" y="0" width="240" height="150" rx="6"/>
+    <circle cx="24" cy="28" r="10" fill="var(--c-accent-2)"/>
+    <text class="card-title" x="44" y="33">하우투 가이드</text>
+    <text class="card-sub" x="44" y="50">How-to Guide</text>
+    <text class="card-meta" x="20" y="80">독자: 목적이 있는 사람</text>
+    <text class="card-meta" x="20" y="100">의도: 정해진 일을 해내기</text>
+    <text class="card-meta" x="20" y="120">비유: 요리 레시피</text>
+  </g>
+
+  <!-- 분면 4: 우하 - 레퍼런스 (작업 + 이론) -->
+  <g transform="translate(380 270)">
+    <rect class="card" x="0" y="0" width="240" height="150" rx="6"/>
+    <circle cx="24" cy="28" r="10" fill="var(--c-muted)"/>
+    <text class="card-title" x="44" y="33">레퍼런스</text>
+    <text class="card-sub" x="44" y="50">Reference</text>
+    <text class="card-meta" x="20" y="80">독자: 작업 중인 사람</text>
+    <text class="card-meta" x="20" y="100">의도: 정확한 사실을 찾기</text>
+    <text class="card-meta" x="20" y="120">비유: 사전</text>
+  </g>
+</svg>
