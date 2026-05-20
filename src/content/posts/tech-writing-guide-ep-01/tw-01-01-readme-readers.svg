@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img" aria-labelledby="title-tw-01-01">
+  <title id="title-tw-01-01">README를 여는 세 유형의 독자</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .card {
+      fill: var(--c-card-bg);
+      stroke: var(--c-line);
+      stroke-width: 1;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      fill: var(--c-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .card-q {
+      font-size: 12px;
+      fill: var(--c-muted);
+    }
+
+    .card-time {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .ring {
+      fill: none;
+      stroke-width: 2;
+    }
+  </style>
+
+  <!-- 카드 1: 평가자 -->
+  <g transform="translate(30 50)">
+    <rect class="card" x="0" y="0" width="200" height="300" rx="8" />
+    <circle cx="100" cy="50" r="22" class="ring" stroke="var(--c-accent)" />
+    <circle cx="100" cy="50" r="10" fill="var(--c-accent)" />
+    <text class="card-tag" x="100" y="92" text-anchor="middle">EVALUATOR</text>
+    <text class="card-title" x="100" y="115" text-anchor="middle">평가자</text>
+    <text class="card-time" x="100" y="138" text-anchor="middle" fill="var(--c-accent)">머무는 시간: 30초</text>
+    <text class="card-q" x="100" y="170" text-anchor="middle">이게 뭐야?</text>
+    <text class="card-q" x="100" y="190" text-anchor="middle">내 문제를 해결해줘?</text>
+    <text class="card-q" x="100" y="210" text-anchor="middle">활발히 관리되나?</text>
+    <text class="card-q" x="100" y="245" text-anchor="middle" font-style="italic">→ 한 줄 소개,</text>
+    <text class="card-q" x="100" y="263" text-anchor="middle" font-style="italic">배지, 스크린샷</text>
+  </g>
+
+  <!-- 카드 2: 사용자 -->
+  <g transform="translate(250 50)">
+    <rect class="card" x="0" y="0" width="200" height="300" rx="8" />
+    <circle cx="100" cy="50" r="22" class="ring" stroke="var(--c-accent-2)" />
+    <rect x="88" y="38" width="24" height="24" fill="var(--c-accent-2)" rx="2" />
+    <text class="card-tag" x="100" y="92" text-anchor="middle">USER</text>
+    <text class="card-title" x="100" y="115" text-anchor="middle">사용자</text>
+    <text class="card-time" x="100" y="138" text-anchor="middle" fill="var(--c-accent-2)">머무는 시간: 5분</text>
+    <text class="card-q" x="100" y="170" text-anchor="middle">어떻게 설치하지?</text>
+    <text class="card-q" x="100" y="190" text-anchor="middle">기본 사용법은?</text>
+    <text class="card-q" x="100" y="210" text-anchor="middle">막히면 어디로 가지?</text>
+    <text class="card-q" x="100" y="245" text-anchor="middle" font-style="italic">→ Quick Start,</text>
+    <text class="card-q" x="100" y="263" text-anchor="middle" font-style="italic">예시 코드, 링크</text>
+  </g>
+
+  <!-- 카드 3: 기여자 -->
+  <g transform="translate(470 50)">
+    <rect class="card" x="0" y="0" width="200" height="300" rx="8" />
+    <circle cx="100" cy="50" r="22" class="ring" stroke="var(--c-accent-3)" />
+    <polygon points="100,32 116,60 84,60" fill="var(--c-accent-3)" />
+    <text class="card-tag" x="100" y="92" text-anchor="middle">CONTRIBUTOR</text>
+    <text class="card-title" x="100" y="115" text-anchor="middle">기여자</text>
+    <text class="card-time" x="100" y="138" text-anchor="middle" fill="var(--c-accent-3)">머무는 시간: 30분+</text>
+    <text class="card-q" x="100" y="170" text-anchor="middle">어떻게 개발하지?</text>
+    <text class="card-q" x="100" y="190" text-anchor="middle">테스트는 어떻게?</text>
+    <text class="card-q" x="100" y="210" text-anchor="middle">PR 보내려면?</text>
+    <text class="card-q" x="100" y="245" text-anchor="middle" font-style="italic">→ CONTRIBUTING.md,</text>
+    <text class="card-q" x="100" y="263" text-anchor="middle" font-style="italic">개발 환경 가이드</text>
+  </g>
+</svg>

@@ -1,0 +1,317 @@
+---
+title: "프로젝트의 첫인상, README - 개발자를 위한 기술문서 입문 ep.01"
+description: "거의 모든 프로젝트의 입구이지만 거의 모든 README가 비슷한 실패를 반복합니다. 5분 안에 무엇을, 그 너머는 어디로 보낼지를 다룹니다."
+summary: "README는 한 글이 아니라 여러 글의 시작점입니다. 평가자·사용자·기여자라는 세 유형의 독자를 30초·5분·30분이라는 시간 축으로 갈라보고, Hero / Quick Start / Deep 세 구간으로 골격을 잡습니다. 좋은 예와 나쁜 예, 그리고 체크리스트까지."
+date: 2026-05-20
+tags: [series, develop, frontend, backend, infra, devops, ai, readme, documentation, open-source]
+thumbnail: ./cover.svg
+draft: false
+---
+
+![](./cover.svg)
+
+README는 거의 모든 프로젝트의 입구입니다. 그래서 거의 모든 README가 비슷한 실패를 반복합니다.
+
+가장 흔한 실패는 README를 *한 글*로 보는 것입니다. 처음 본 사람부터 매일 쓰는 사람, 기여하려는 사람까지 한 페이지에 다 담으려 합니다. 결과는 둘 중 하나입니다. 너무 짧아서 아무것도 못 하거나, 너무 길어서 아무도 안 읽거나.
+
+이번 편의 관점은 단순합니다. **README는 한 글이 아니라 여러 글의 시작점입니다.** 그리고 그 시작점은 시간 축으로 설계되어야 합니다.
+
+---
+
+## 누가 README를 여는가
+
+먼저 독자가 누구인지부터 봅니다. README를 여는 사람은 대략 세 유형입니다.
+
+![README를 여는 세 유형의 독자 카드 다이어그램. 첫째 카드는 평가자(EVALUATOR), 푸른색 원 아이콘, 머무는 시간 30초. 묻는 질문은 "이게 뭐야?", "내 문제를 해결해줘?", "활발히 관리되나?". 필요한 것은 한 줄 소개, 배지, 스크린샷. 둘째 카드는 사용자(USER), 황토색 사각형 아이콘, 머무는 시간 5분. 묻는 질문은 "어떻게 설치하지?", "기본 사용법은?", "막히면 어디로 가지?". 필요한 것은 Quick Start, 예시 코드, 링크. 셋째 카드는 기여자(CONTRIBUTOR), 적색 삼각형 아이콘, 머무는 시간 30분 이상. 묻는 질문은 "어떻게 개발하지?", "테스트는 어떻게?", "PR 보내려면?". 필요한 것은 CONTRIBUTING.md, 개발 환경 가이드.](./tw-01-01-readme-readers.svg)
+
+이 셋은 같은 README를 봐도 보는 깊이가 다릅니다. 평가자는 스크롤을 한 번도 안 합니다. 사용자는 Quick Start까지 봅니다. 기여자는 끝까지 봅니다.
+
+여기서 결정적인 사실 하나가 따라옵니다. **위에서 아래로 갈수록, 머무는 사람이 줄어듭니다.** 그러니까 위쪽에는 모두에게 필요한 것, 아래쪽에는 소수에게만 필요한 것을 둬야 합니다. 너무 당연한 말 같지만, 많은 README가 이걸 거꾸로 합니다. 위쪽에 설치 절차의 OS별 분기를 펼쳐놓고, 아래쪽에 "이 프로젝트는 X를 합니다"가 등장하는 식으로요.
+
+---
+
+## 시간 축으로 다시 그린 README
+
+위 세 독자를 시간 축에 얹으면 README의 골격이 자연스럽게 나옵니다.
+
+![README의 표준 골격을 세 구간으로 나눈 다이어그램. 첫 구간 HERO는 평가자를 위한 30초. 프로젝트 이름과 한 줄 소개("X를 위한 Y" 형식), 배지와 스크린샷, 데모 링크가 들어간다. 둘째 구간 QUICK START는 사용자를 위한 5분. 설치(한두 줄의 명령어와 전제 조건), 최소한의 사용 예(복사-붙여넣기로 동작하는 진짜 쓸 만한 예), 결과 확인(성공 신호의 명시), 다음으로 갈 곳(상세 문서·예제·FAQ 링크)으로 구성. 셋째 구간 DEEP은 선택, 기여자와 운영자를 위한 영역. 기여 방법(CONTRIBUTING.md로 분리하고 링크), 라이선스·변경 이력·보안(각각 LICENSE, CHANGELOG.md, SECURITY.md로 분리), 크레딧과 후원이 들어간다.](./tw-01-02-readme-structure.svg)
+
+각 구간을 차례로 풀어봅니다.
+
+## Hero: 30초 안에 평가받는 곳
+
+여기서 두 가지를 답해야 합니다. *이게 뭔지*, 그리고 *왜 내가 봐야 하는지*. 답이 못 나오면 평가자는 떠납니다.
+
+### 한 줄 소개
+
+"X를 위한 Y" 형식이 가장 강합니다. 비교 가능한 다른 도구를 언급하면 더 명료해집니다.
+
+```markdown
+# Caddy
+
+a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go
+```
+
+이 한 문장 안에 *무엇인지(웹 서버)*, *무엇이 특별한지(자동 HTTPS, 엔터프라이즈)*, *무엇으로 만들어졌는지(Go)* 가 다 들어 있습니다. 추측을 강요하지 않습니다.
+
+위 한 줄은 GitHub 저장소의 *About* 영역에 박혀 있는 문장이고, README 본문이 펼쳐졌을 때는 다음처럼 보입니다.
+
+![GitHub의 caddyserver/caddy 저장소 README 첫 화면 캡처. 다크 테마 페이지의 README 탭이 활성화돼 있고, 본문 중앙에 둥근 자물쇠 아이콘과 흰색 "caddy" 워드마크가 큼지막하게 놓여 있다. 그 아래 작은 라벨로 "a ZeroSSL project"가 붙고, 구분선 아래로 "Every site on HTTPS"라는 부제와 "Caddy is an extensible server platform that uses TLS by default."라는 한 줄 소개가 이어진다. 그 밑에는 Releases · Documentation · Get Help 세 링크가 가로로 놓이고, Tests passing, openssl best practices in progress 98%, godoc reference, Follow @caddyserver, community forum, used by 162 projects, OSS hosting by cloudsmith 같은 다양한 색의 shield 배지가 두 줄로 늘어선다. 화면 하단에는 "Powered by CertMagic" 로고와 "Special thanks to:" 영역, warp 코딩 에이전트 스폰서 카드가 시작된다.](./tw-01-03-caddy-readme.png)
+
+본문 안에서도 같은 원리가 반복됩니다. 로고로 *무엇인지*, "Every site on HTTPS"로 *무엇이 특별한지*, 배지 묶음으로 *활발한지*를 한 화면에 다 보여줍니다. 평가자는 스크롤하지 않고도 답을 모읍니다.
+
+반대 예도 봅니다.
+
+```markdown
+# my-cool-project
+
+A delightful framework for the modern web. 🚀
+```
+
+여기엔 정보가 거의 없습니다. "delightful", "modern"은 모든 프로젝트가 자기를 그렇게 부릅니다. 평가자는 다음 페이지로 떠납니다.
+
+### 배지
+
+평가자에게 "활발히 관리되나"의 신호입니다. 빌드 상태, 최신 버전, 다운로드 수, 라이선스. 다만 줄 단위로 늘어선 배지의 행렬은 오히려 신뢰를 떨어뜨립니다. 의미 있는 서너 개만 남깁니다.
+
+### 스크린샷 · 데모 GIF
+
+시각적 산출물이 있는 프로젝트에서 가장 강력한 무기입니다. 백 줄의 설명보다 한 장의 GIF가 빠릅니다. 다만 GIF는 무겁고 끔찍하게 깨질 수 있으니 용량과 프레임을 의식해야 합니다.
+
+여기서 흔히 쓰이는 도구 몇 가지를 짚어둡니다.
+
+- **배지**: [shields.io](https://shields.io)가 사실상 표준입니다. 빌드(GitHub Actions·CircleCI 상태), 버전(npm·PyPI), 다운로드 수, 라이선스, 코드 커버리지 정도가 의미 있는 후보입니다. 줄을 채우려고 8개 이상 늘어놓는 순간 신뢰가 오히려 깎입니다.
+- **터미널 데모**: 동영상보다 가벼운 선택지가 있습니다. [asciinema](https://asciinema.org)는 텍스트 기반 녹화라 GIF보다 가볍고 복사가 가능합니다. 정적 산출물이 필요하면 [VHS](https://github.com/charmbracelet/vhs)가 `.tape` 스크립트에서 결정론적 GIF를 뽑아줍니다.
+- **다이어그램 인라인**: GitHub의 마크다운은 ```` ```mermaid ```` 코드 블록을 그대로 렌더링합니다. README에 작은 시퀀스·플로우차트 한 장을 박아둘 수 있는 가장 싼 방법입니다.
+- **링크 자체로 신뢰**: "활발한 프로젝트"라는 막연한 표현보다, 최근 release 페이지·CHANGELOG 링크 한 줄이 평가자에게 더 직접적인 신호입니다.
+
+---
+
+## Quick Start: 5분 안에 성공시키는 곳
+
+이 구간의 목표는 단 하나입니다. **사용자가 무언가 작동하는 결과를 얻게 하는 것.** 그 결과의 정의가 명확할수록 README는 좋아집니다.
+
+표준 골격은 *설치 → 사용 예 → 결과 확인 → 다음 링크*입니다. 한 덩어리씩 봅니다.
+
+설치는 한두 줄로 끝나야 합니다.
+
+```bash
+# 한 줄 설치를 권장합니다
+brew install caddy
+```
+
+전제 조건이 있다면 명시합니다. "Python 3.10 이상", "Node 18+", "Docker 필요" 같은 것. 전제가 흐릿하면 사용자는 빈 에러 메시지 앞에서 멈춥니다.
+
+사용 예는 *복사해서 그대로 동작하는 것*이어야 합니다. 아래 두 예를 비교해봅니다.
+
+```python
+# 약한 예: 추상화된 일반론
+from mylib import Client
+client = Client(...)
+result = client.do_something(...)
+```
+
+```python
+# 강한 예: 실제로 돌아가는 코드
+from mylib import Client
+
+client = Client(api_key="YOUR_API_KEY")
+result = client.translate("안녕하세요", target_lang="en")
+print(result)
+# → "Hello"
+```
+
+두 번째는 그대로 돌립니다. 첫 번째는 다시 검색하게 만듭니다. *실제로 돌아가는 코드*가 README가 줄 수 있는 가장 큰 선물입니다.
+
+결과 확인은 자주 잊히는 단계입니다. "이걸 보면 성공한 것이다"를 명시해주면 사용자는 자기가 어디까지 왔는지 압니다. 기대 출력, 스크린샷, 예상 응답 코드. 무엇이든 좋습니다.
+
+다음 링크는 README의 *출구*입니다. 여기서 사용자는 더 깊은 문서로 가거나, 예제 모음으로 가거나, FAQ로 갑니다. README의 임무는 여기까지입니다.
+
+### Quick Start의 모범 — 짧지만 결과까지 데려가는 README들
+
+좋은 Quick Start는 신기할 정도로 짧습니다. 몇 가지 공개 사례가 같은 패턴을 공유합니다.
+
+**ripgrep**의 README는 한 단락짜리 소개로 출발합니다. *무엇인지(line-oriented search tool)*, *어떤 가정을 따르는지(.gitignore 존중, 숨김·바이너리 파일 자동 제외)*, *어떤 도구의 친척인지(The Silver Searcher · ack · grep)*가 한 호흡에 다 들어갑니다. 그 아래는 곧장 *Documentation quick links*입니다 — Installation, User Guide, FAQ, Regex syntax 등 사용자가 그다음에 갈 만한 곳을 글머리표 한 묶음으로 늘어놓습니다. 페이지를 조금만 내리면 실제 터미널에서 `rg`를 돌린 출력이 곧바로 박혀 있습니다.
+
+![GitHub의 BurntSushi/ripgrep 저장소 README 첫 화면 캡처. 다크 테마에서 "ripgrep (rg)" 제목 아래 한 단락이 펼쳐진다. 본문은 "ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern. By default, ripgrep will respect gitignore rules and automatically skip hidden files/directories and binary files."로 시작해, 마지막에 "ripgrep is similar to other popular search tools like The Silver Searcher, ack and grep."이라는 비교 문장으로 닫힌다. 그 아래로 ci passing, Crates.io, in repositories 46 같은 shield 배지가 한 줄로 놓이고, "Dual-licensed under MIT or the UNLICENSE." 안내, CHANGELOG 링크, 그리고 Installation · User Guide · Frequently Asked Questions · Regex syntax · Configuration files · Shell completions · Building · Translations로 이어지는 Documentation quick links 글머리표 목록이 차례로 보인다. 화면 하단에는 "Screenshot of search results" 소제목과 함께 실제 터미널에서 rg -i rustacean을 실행해 src/doc/book 안의 매치를 색상으로 표시한 캡처가 시작된다.](./tw-01-04-ripgrep-readme.png)
+
+평가자는 첫 단락에서 *왜 이걸 써야 하는지*를, quick links에서 *어디로 갈지*를, 그리고 곧 이어지는 캡처에서 *결과가 어떻게 보이는지*를 1분 안에 모두 얻습니다.
+
+**fzf**는 더 단순합니다. 흰 카드 안의 워드마크, "command-line fuzzy finder"라는 한 줄 부제, 그리고 의미 있는 배지 몇 개. 그게 첫 화면의 전부입니다. *시각적 산출물이 있는 도구가 군더더기 없이 자신을 소개한다*는 것이 어떤 모양인지를 그대로 보여줍니다.
+
+![GitHub의 junegunn/fzf 저장소 README 첫 화면 캡처. 흰 배경의 둥근 사각형 카드 안에 빨간 꺾쇠와 민트색 "fzf" 워드마크가 그림자와 함께 박혀 있고, 그 아래 "command-line fuzzy finder"라는 한 줄 부제가 가로로 길게 놓인다. 카드 바로 아래에는 build passing, tag v0.72.0, license MIT, contributors 396, sponsors 71, stars 80k 같은 shield 배지가 한 줄로 늘어서 있고, 본문 하단에는 fzf 로고가 인쇄된 머그컵 두 개를 찍은 사진이 시작된다.](./tw-01-05-fzf-readme.png)
+
+**jq**는 한 단락에 "X를 위한 Y"와 비교군을 동시에 넣은 모범입니다. "jq is a lightweight and flexible command-line JSON processor akin to sed, awk, grep, and friends for JSON data. It's written in portable C and has zero runtime dependencies, allowing you to easily slice, filter, map, and transform structured data." 여기에 *무엇인지(JSON 프로세서)*, *어떤 도구의 친척인지(sed/awk/grep)*, *무엇으로 만들어졌고 무엇이 좋은지(portable C, zero runtime dependencies)* 가 다 들어갑니다. 그 아래는 곧바로 실행이 가능한 설치 방법입니다.
+
+![GitHub의 jqlang/jq 저장소 README 첫 화면 캡처. 다크 테마에서 "jq"라는 큰 제목 아래 한 단락이 펼쳐진다. 본문은 "jq is a lightweight and flexible command-line JSON processor akin to sed, awk, grep, and friends for JSON data. It's written in portable C and has zero runtime dependencies, allowing you to easily slice, filter, map, and transform structured data."로 채워져 있다. 곧바로 Documentation 섹션이 이어져 Official Documentation jqlang.org와 Try jq Online play.jqlang.org 두 링크가 글머리표로 놓이고, 그 아래로 Installation - Prebuilt Binaries - Docker Image - Run with Docker 헤더가 차례로 등장한다. Docker 섹션에는 "Example: Extracting the version from a package.json file" 설명과 함께 docker run --rm -i ghcr.io/jqlang/jq:latest < package.json '.version' 그리고 마운트 볼륨을 쓰는 변형 명령 두 개가 코드 블록으로 박혀 있다.](./tw-01-06-jq-readme.png)
+
+이 셋의 공통점은 모두 *첫 화면에서 평가자의 질문에 답한다*는 것입니다. 무엇인지, 누구와 비교되는지, 어디로 가야 결과를 보는지. 사용자가 "그래서 어떻게 생긴 건데?"라고 묻기 전에, README가 먼저 보여줍니다.
+
+---
+
+## Deep: 기여자와 운영자를 위한 곳
+
+여기는 *선택* 구간입니다. 분량이 늘면 별도 파일로 빠지는 것을 기본으로 합니다.
+
+```text
+프로젝트/
+├── README.md           ← 시작점
+├── CONTRIBUTING.md     ← 기여 가이드
+├── CHANGELOG.md        ← 변경 이력
+├── LICENSE             ← 라이선스
+├── SECURITY.md         ← 보안 정책·취약점 신고
+└── docs/               ← 그 외 모든 상세 문서
+    ├── architecture.md
+    ├── api-reference.md
+    └── ...
+```
+
+README 자체는 이 파일들로 가는 *링크 허브* 역할만 합니다. 모든 내용을 README에 욱여넣지 않습니다. 분리는 양이 많아서가 아니라, 독자가 달라서입니다.
+
+---
+
+## 자주 나오는 안티패턴
+
+다섯 가지만 짚어둡니다. 다 한 번씩은 경험한 것들입니다.
+
+1. **자기소개로 시작하기** - "이 프로젝트는 제가 OOO를 공부하면서 시작했는데..."로 출발하는 README는 평가자에게 도달하지 못합니다. 동기는 *글의 마지막*에 둡니다. 첫 줄에는 "이것이 무엇인지"가 와야 합니다.
+2. **모든 기능을 다 나열하기** - Feature 리스트가 30개를 넘는 순간 아무도 안 읽습니다. "주요 기능" 5~7개로 압축하고, 전체 목록은 별도 문서로 옮깁니다.
+3. **설치 후 사용 예가 없음** - 가장 흔하고 가장 치명적인 실패입니다. 설치만 시켜놓고 "이제 알아서 잘 쓰세요"가 됩니다. 사용 예는 *반드시* 있어야 합니다.
+4. **TODO와 로드맵으로 끝나기** - "아직 미구현" 항목으로 채워진 README는 신뢰를 잃습니다. 로드맵은 별도 문서 또는 GitHub Issues로 옮깁니다.
+5. **스크린샷이 깨져 있음** - 가장 사소해 보이지만 가장 빠르게 신뢰를 무너뜨립니다. 외부 이미지 호스팅 대신 저장소 안에 두는 것을 기본으로 합니다.
+
+### 짧은 시나리오 — `mlpipe`의 README가 평가자를 잃은 30초
+
+가상의 ML 파이프라인 OSS `mlpipe`를 떠올려봅니다. 메인테이너는 1년을 들여 만들었고, 처음으로 GitHub에 공개했습니다.
+
+README 첫 화면은 이렇게 시작합니다.
+
+> # mlpipe
+>
+> mlpipe는 제가 대학원 시절 데이터 전처리 자동화에 대한 고민에서 출발한 프로젝트입니다. 처음에는 단순한 스크립트였지만, 점차 컴포넌트가 추가되며…
+
+여기서 한 평가자가 30초 뒤 탭을 닫습니다. 그가 알고 싶었던 건 *이게 무엇이고, 내 파이프라인을 대체할 수 있는가*였습니다. 그 답을 얻기까지 그는 두 단락을 스크롤해야 했고, 그동안 *이 라이브러리가 활발히 유지되는지조차* 알 수 없었습니다.
+
+같은 프로젝트를 다음처럼 다시 쓰면 평가자는 30초 안에 결정을 내릴 수 있습니다.
+
+> # mlpipe
+>
+> *PyTorch 학습 파이프라인을 위한 선언적 DAG 러너.* Airflow보다 가볍고, 학습/평가/추론을 같은 그래프로 표현합니다.
+>
+> ![CI](https://img.shields.io/badge/CI-passing-brightgreen) ![PyPI v0.4.2](https://img.shields.io/badge/PyPI-v0.4.2-blue) ![MIT](https://img.shields.io/badge/license-MIT-green)
+>
+> ```bash
+> pip install mlpipe
+> ```
+>
+> ```python
+> from mlpipe import pipeline
+>
+> @pipeline
+> def train(): ...
+> ```
+
+같은 1년의 작업이지만, 평가자의 30초가 *떠나는 30초*에서 *남는 30초*로 바뀌었습니다. 동기와 서사는 글의 끝, 또는 별도 *Why mlpipe* 문서로 빠질 자리입니다.
+
+---
+
+## 템플릿
+
+복사해서 시작점으로 쓸 수 있는 골격입니다.
+
+````markdown
+# 프로젝트 이름
+
+> 한 줄 소개. "X를 위한 Y" 형식 권장.
+
+[배지들: 빌드, 버전, 라이선스]
+
+![데모 스크린샷 또는 GIF](docs/demo.gif)
+
+## 특징
+
+- 핵심 기능 1
+- 핵심 기능 2
+- 핵심 기능 3
+  *(5~7개를 넘기지 않습니다)*
+
+## 설치
+
+```bash
+# 권장 설치 방법
+[설치 명령어]
+```
+
+**전제 조건**: [필요한 도구 · 버전]
+
+## 사용 예
+
+```[언어]
+[복사-붙여넣기로 동작하는 최소 예]
+```
+
+기대 출력:
+
+```
+[예상 결과]
+```
+
+## 더 알아보기
+
+- [상세 문서](./docs/)
+- [예제 모음](./examples/)
+- [FAQ](./docs/faq.md)
+
+## 기여
+
+기여 가이드는 [CONTRIBUTING.md](./CONTRIBUTING.md)를 참고해주세요.
+
+## 라이선스
+
+[라이선스 이름](./LICENSE)
+````
+
+이 골격이 모든 프로젝트에 맞진 않습니다. 라이브러리, CLI 도구, 웹 서비스마다 강조점이 다릅니다. 다만 *Hero → Quick Start → Deep*이라는 시간 축은 어떤 경우에도 유효합니다.
+
+---
+
+## 좋은 README는 보통 짧다
+
+긴 README가 좋은 README는 아닙니다. 좋은 README는 *시작점이 명확하고, 출구가 분명한* 글입니다.
+
+분량이 늘기 시작하면 가장 먼저 의심해야 할 건 "이게 정말 README에 있어야 하는가"입니다. 아키텍처 설명은 ep.05에서 다룰 다른 글입니다. API 레퍼런스는 ep.04에서 다룰 다른 글입니다. 기여 방법은 CONTRIBUTING.md로 빠집니다.
+
+README에는 *시작*만 남깁니다. 깊이는 다른 글이 책임집니다.
+
+---
+
+## 체크리스트
+
+README를 다 썼다고 생각될 때 마지막으로 짚어봅니다.
+
+- [ ] 첫 줄을 30초 동안 본 사람이 "무엇을 하는 프로젝트인지" 답할 수 있는가
+- [ ] 한 줄 소개는 비교 가능한 다른 도구를 떠올리게 하는가
+- [ ] 스크린샷 또는 데모가 있는가 (해당되는 프로젝트라면)
+- [ ] 설치 명령어가 한두 줄로 끝나는가
+- [ ] 사용 예가 *그대로 복사해서 동작하는* 코드인가
+- [ ] "성공한 것"이 어떻게 보이는지 명시되어 있는가
+- [ ] 다음으로 갈 링크가 분명한가
+- [ ] 기여 방법 · 변경 이력 · 라이선스는 별도 파일로 분리되어 있는가
+- [ ] 외부 이미지 링크가 깨질 위험은 없는가
+- [ ] 6개월 뒤에도 이 내용이 유효할 것인가
+
+---
+
+## 참고 자료
+
+- Make a README. *Make a README.* https://www.makeareadme.com
+- GitHub. (2024). *About READMEs.* https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
+- The Good Docs Project. *README template.* https://www.thegooddocsproject.dev/template/readme
+
+---
+
+## 다음 편 예고
+
+> [ep.02 - 처음 온 사람을 데려가는 길, 튜토리얼](/tech-writing-guide-ep-02)
+
+다음 편은 튜토리얼입니다. 가장 많이 쓰이고, 가장 자주 망가지는 문서. 튜토리얼의 가장 흔한 실수는 "설명을 하려 든다"는 것입니다. 설명이 아니라 *경험*을 설계한다는 게 무엇인지, 그리고 학습자의 자리에 서 본다는 게 어떤 글쓰기인지를 다뤄봅니다.

@@ -520,6 +520,16 @@ h3.section-kicker {
         margin: 1.5rem auto !important;
     }
 
+    p:has(img + img) {
+        text-align: left;
+
+        >img {
+            display: inline-block;
+            margin: 0.25rem 0.25rem 0.25rem 0 !important;
+            vertical-align: middle;
+        }
+    }
+
     &>p:nth-child(1)>img {
         margin-top: -0.5rem !important;
     }
