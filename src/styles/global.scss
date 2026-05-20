@@ -302,6 +302,182 @@ h3.section-kicker {
 }
 
 /* ========================
+   Post Card Wide (가로 카드 / /posts)
+   ======================== */
+.post-list-wide {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.post-card-wide {
+    a {
+        display: flex;
+        align-items: stretch;
+        gap: 18px;
+        background: $color-bg;
+        border: 1px solid $color-border;
+        box-shadow: 0px 4px 20px var(--color-shadow);
+        color: $color-text;
+        text-decoration: none;
+        transition:
+            box-shadow 0.15s ease,
+            border-color 0.15s ease,
+            transform 0.15s ease;
+
+        &:hover {
+            border-color: $color-accent;
+            box-shadow: 0px 6px 22px var(--color-shadow-hover);
+            transform: translateY(-2px);
+            color: $color-text;
+        }
+    }
+
+    .post-card-wide-thumbnail {
+        flex: 0 0 auto;
+        width: 200px;
+        align-self: stretch;
+        object-fit: cover;
+        display: block;
+    }
+
+    .post-card-wide-meta {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .post-card-tags {
+        font-size: 0.75rem;
+        line-height: 1.8;
+        max-height: calc(1.8em + 7px); /* 1 line: tag height (1.8em line-height + 2px border + 6px mb) */
+        overflow: hidden;
+    }
+
+    .post-card-wide-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: $color-text;
+        margin-bottom: 4px;
+    }
+
+    .post-card-wide-summary {
+        font-size: 0.6875rem;
+        color: $color-primary;
+        flex: 1 1 auto;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .post-card-wide-button {
+        font-size: 0.6875rem;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        margin-top: 10px;
+    }
+
+    @media (max-width: #{$bp-mobile - 1}) {
+        a {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .post-card-wide-thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+    }
+}
+
+/* ========================
+   Pagination (/posts)
+   ======================== */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 32px 0 8px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.8125rem;
+
+    a,
+    span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        height: 32px;
+        padding: 0 10px;
+        border: 1px solid $color-border;
+        background: $color-bg;
+        color: $color-text;
+        text-decoration: none;
+        transition:
+            border-color 0.15s ease,
+            color 0.15s ease,
+            background-color 0.15s ease;
+    }
+
+    a:hover {
+        border-color: $color-accent;
+        color: $color-accent;
+        background: $color-surface;
+        text-decoration: none;
+    }
+
+    .pagination-current {
+        border-color: $color-accent;
+        color: $color-accent;
+        background: $color-surface;
+        font-weight: bold;
+    }
+
+    .pagination-ellipsis {
+        border: none;
+        background: transparent;
+        color: $color-text-muted;
+        min-width: 0;
+        padding: 0 4px;
+    }
+
+    .pagination-disabled {
+        color: $color-text-muted;
+        opacity: 0.4;
+    }
+
+    .pagination-step {
+        border: none;
+        background: transparent;
+        padding: 0 10px;
+
+        &:hover {
+            background: transparent;
+            color: $color-accent;
+        }
+    }
+}
+
+/* tag overflow marker (1-line clamp for post-card-wide tags) */
+.post-card-tags .tag-overflow {
+    background: transparent;
+    border: none;
+    color: $color-text-muted;
+    padding: 1px 4px;
+
+    &::before {
+        content: none;
+    }
+}
+
+/* ========================
    Post Detail (글 상세)
    ======================== */
 .post-header {

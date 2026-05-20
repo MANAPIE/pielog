@@ -4,6 +4,7 @@ import ThemeToggle from "./ThemeToggle.astro";
 import SearchBox from "./Search.astro";
 
 const posts = await getCollection("posts", ({ data }) => !data.draft);
+const postCount = posts.length;
 const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
   post.data.tags?.forEach((tag) => {
     acc[tag] = (acc[tag] ?? 0) + 1;
@@ -88,6 +89,12 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
         <a href="/tags/cover">
           Series cover
           <span title="Post counts">{tagCounts["cover"] ?? 0}</span>
+        </a>
+      </li>
+      <li>
+        <a href="/posts">
+          All posts
+          <span title="Post counts">{postCount}</span>
         </a>
       </li>
     </ul>
