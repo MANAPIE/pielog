@@ -3,7 +3,7 @@ title: "한 달간 1분 30초마다 죽고 있었던 서버"
 description: "산발적인 503의 진짜 원인은 PM2도 OOM도 MongoDB도 아닌, SELinux와 systemd PIDFile의 충돌이었습니다. 28,163번의 재시작을 추적한 기록."
 summary: "Next.js 서비스에서 시간을 두고 접속하면 가끔 503이 떨어지던 문제를 추적했습니다. 처음에는 MongoDB 유휴 커넥션을 의심해 옵션을 다듬었고, 다음으로 OOM을 의심했지만 둘 다 원인이 아니었습니다. 진짜 원인은 PM2 데몬 자체가 systemd에 의해 통째로 강제 종료되고 있다는 사실이었고, 그 뿌리에는 SELinux의 사용자 홈 파일 접근 차단이 있었습니다."
 date: 2026-04-28
-tags: ["develop", "infra", "devops", "gce", "centos", "selinux", "pm2", "systemd"]
+tags: ["experience", "develop", "infra", "devops", "gce", "centos", "selinux", "pm2", "systemd"]
 draft: false
 ---
 

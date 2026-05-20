@@ -78,17 +78,23 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
           </li>
         </ul>
       </li>
+      <li>
+        <a href="/tags/experience">
+          Experience
+          <span title="Post counts">{tagCounts["experience"] ?? 0}</span>
+        </a>
+      </li>
+      <li>
+        <a href="/tags/cover">
+          Series cover
+          <span title="Post counts">{tagCounts["cover"] ?? 0}</span>
+        </a>
+      </li>
     </ul>
   </nav>
 
   <nav class="sidebar-categories" aria-label="사이트">
     <ul class="category-tree">
-      <li>
-        <a href="/tags/cover">
-          시리즈 모아보기
-          <span title="Post counts">{tagCounts["cover"] ?? 0}</span>
-        </a>
-      </li>
       <li>
         <a href="/about">About</a>
       </li>
