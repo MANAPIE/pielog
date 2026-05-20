@@ -27,6 +27,13 @@ const featuredCandidates = sortedPosts
 		summary: p.data.summary,
 		description: p.data.description,
 	}));
+
+const experiencePosts = sortedPosts.filter((p) =>
+	p.data.tags?.includes("experience"),
+);
+const knowledgePosts = sortedPosts.filter((p) =>
+	p.data.tags?.includes("series"),
+);
 ---
 
 <BaseLayout
@@ -36,19 +43,103 @@ const featuredCandidates = sortedPosts
 >
 	<h1 class="sr-only">PIElog — MANAPIE의 글과 실험</h1>
 	<FeaturedPost candidates={featuredCandidates} />
-	<h2 class="section-kicker">// all posts · {sortedPosts.length}_</h2>
+	<h2 class="section-kicker">// experiences · {experiencePosts.length}_</h2>
 	<section class="post-list">
 		{
-			sortedPosts.map((post) => (
-				<PostCard
-					title={post.data.title}
-					slug={post.id}
-					thumbnail={post.data.thumbnail}
-					tags={post.data.tags}
-					summary={post.data.summary}
-				/>
-			))
+			experiencePosts
+				.slice(0, 15)
+				.map((post) => (
+					<PostCard
+						title={post.data.title}
+						slug={post.id}
+						thumbnail={post.data.thumbnail}
+						tags={post.data.tags}
+						summary={post.data.summary}
+					/>
+				))
 		}
 	</section>
+	<h2 class="section-kicker section-kicker--spaced">
+		// knowledge · {knowledgePosts.length}_
+	</h2>
+	<section class="post-list">
+		{
+			knowledgePosts
+				.slice(0, 45)
+				.map((post) => (
+					<PostCard
+						title={post.data.title}
+						slug={post.id}
+						thumbnail={post.data.thumbnail}
+						tags={post.data.tags}
+						summary={post.data.summary}
+					/>
+				))
+		}
+	</section>
+	<a class="all-posts-cta" href="/posts/">
+		<span class="all-posts-cta-kicker">// see all posts_</span>
+		<span class="all-posts-cta-label">{sortedPosts.length} posts <span class="all-posts-cta-arrow">→</span></span>
+	</a>
 	<AsideHomepage slot="aside" />
 </BaseLayout>
+
+<style lang="scss">
+	@use "../styles/_variables.scss" as *;
+
+	.section-kicker--spaced {
+		margin-top: 40px;
+	}
+
+	.all-posts-cta {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: calc((100% - 2 * 26px) / 3);
+		margin-left: auto;
+		margin-top: 24px;
+		padding: 14px;
+		background: $color-bg;
+		border: 1px solid $color-border;
+		box-shadow: 0px 4px 20px var(--color-shadow);
+		color: $color-text;
+		text-decoration: none;
+		font-family: ui-monospace, "SF Mono", Menlo, monospace;
+		transition:
+			box-shadow 0.15s ease,
+			border-color 0.15s ease,
+			transform 0.15s ease,
+			color 0.15s ease;
+
+		&:hover {
+			border-color: $color-accent;
+			box-shadow: 0px 6px 22px var(--color-shadow-hover);
+			transform: translateY(-2px);
+			color: $color-accent;
+			text-decoration: none;
+		}
+
+		@media (max-width: #{$bp-narrow - 1}) {
+			width: calc((100% - 26px) / 2);
+		}
+
+		@media (max-width: #{$bp-mobile - 1}) {
+			width: 100%;
+		}
+	}
+
+	.all-posts-cta-kicker {
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		color: $color-text-muted;
+	}
+
+	.all-posts-cta-label {
+		font-size: 0.9375rem;
+		font-weight: bold;
+	}
+
+	.all-posts-cta-arrow {
+		margin-left: 6px;
+	}
+</style>

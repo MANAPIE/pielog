@@ -1,0 +1,59 @@
+---
+export const prerender = true;
+
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCardWide from "../../components/PostCardWide.astro";
+import Pagination from "../../components/Pagination.astro";
+import AsideHomepage from "../../components/AsideHomepage.astro";
+
+export async function getStaticPaths() {
+	const PAGE_SIZE = 50;
+	const posts = await getCollection("posts", ({ data }) => !data.draft);
+	const sortedPosts = posts.sort((a, b) => {
+		const dateDiff = b.data.date.getTime() - a.data.date.getTime();
+		if (dateDiff !== 0) return dateDiff;
+		return b.id.localeCompare(a.id);
+	});
+	const totalPages = Math.max(1, Math.ceil(sortedPosts.length / PAGE_SIZE));
+	return Array.from({ length: totalPages }, (_, i) => {
+		const page = i + 1;
+		const start = i * PAGE_SIZE;
+		return {
+			params: { page: page === 1 ? undefined : String(page) },
+			props: {
+				posts: sortedPosts.slice(start, start + PAGE_SIZE),
+				currentPage: page,
+				totalPages,
+				totalPosts: sortedPosts.length,
+			},
+		};
+	});
+}
+
+const { posts: pagePosts, currentPage, totalPages, totalPosts } = Astro.props;
+const pageSuffix = currentPage > 1 ? ` · page ${currentPage}` : "";
+---
+
+<BaseLayout
+	title={`All posts${currentPage > 1 ? ` (page ${currentPage})` : ""} - PIElog`}
+	description="PIElog 전체 글 목록"
+	pageType="home"
+>
+	<h1 class="section-kicker">// all posts · {totalPosts}_{pageSuffix}</h1>
+	<section class="post-list-wide">
+		{
+			pagePosts.map((post) => (
+				<PostCardWide
+					title={post.data.title}
+					slug={post.id}
+					thumbnail={post.data.thumbnail}
+					tags={post.data.tags}
+					summary={post.data.summary}
+				/>
+			))
+		}
+	</section>
+	{totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/posts" />}
+	<AsideHomepage slot="aside" />
+</BaseLayout>

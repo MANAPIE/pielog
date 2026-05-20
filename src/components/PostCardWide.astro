@@ -1,0 +1,78 @@
+---
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    title: string;
+    slug: string;
+    thumbnail?: ImageMetadata;
+    tags?: string[];
+    summary?: string;
+}
+const { title, slug, thumbnail, tags, summary } = Astro.props;
+---
+
+<div class="post-card-wide">
+    <a href={`/${slug}/`}>
+        {
+            thumbnail && (
+                <img
+                    class="post-card-wide-thumbnail"
+                    src={thumbnail.src}
+                    alt={title}
+                />
+            )
+        }
+        <div class="post-card-wide-meta">
+            {
+                tags && tags.length > 0 && (
+                    <ul class="post-card-tags">
+                        {tags.map((tag) => (
+                            <li>{tag}</li>
+                        ))}
+                    </ul>
+                )
+            }
+            <h3 class="post-card-wide-title">{title}</h3>
+            {summary && <p class="post-card-wide-summary">{summary}</p>}
+            <p class="post-card-wide-button">read →</p>
+        </div>
+    </a>
+</div>
+
+<script>
+    function applyTagOverflow() {
+        document
+            .querySelectorAll<HTMLUListElement>(".post-card-wide .post-card-tags")
+            .forEach((ul) => {
+                ul.querySelector(".tag-overflow")?.remove();
+                const items = Array.from(ul.children) as HTMLElement[];
+                items.forEach((li) => {
+                    li.style.display = "";
+                });
+                const first = items[0];
+                if (!first) return;
+                const lineTop = first.offsetTop;
+                let hiddenAny = false;
+                items.forEach((li) => {
+                    if (li.offsetTop > lineTop) {
+                        li.style.display = "none";
+                        hiddenAny = true;
+                    }
+                });
+                if (hiddenAny) {
+                    const marker = document.createElement("li");
+                    marker.className = "tag-overflow";
+                    marker.textContent = "…";
+                    marker.setAttribute("aria-hidden", "true");
+                    ul.appendChild(marker);
+                }
+            });
+    }
+
+    applyTagOverflow();
+    let resizeTimer: number | undefined;
+    window.addEventListener("resize", () => {
+        if (resizeTimer) window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(applyTagOverflow, 150);
+    });
+</script>

@@ -1,0 +1,53 @@
+---
+interface Props {
+    currentPage: number;
+    totalPages: number;
+    baseUrl: string;
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+const hrefFor = (page: number) => (page === 1 ? `${baseUrl}/` : `${baseUrl}/${page}/`);
+
+const pages: (number | "…")[] = [];
+if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) pages.push(i);
+} else {
+    const window = new Set<number>([1, totalPages, currentPage, currentPage - 1, currentPage + 1]);
+    const sorted = [...window].filter((n) => n >= 1 && n <= totalPages).sort((a, b) => a - b);
+    let prev = 0;
+    for (const n of sorted) {
+        if (n - prev > 1) pages.push("…");
+        pages.push(n);
+        prev = n;
+    }
+}
+---
+
+<nav class="pagination" aria-label="페이지 네비게이션">
+    {
+        currentPage > 1 ? (
+            <a class="pagination-step" href={hrefFor(currentPage - 1)} rel="prev" aria-label="이전 페이지">← prev</a>
+        ) : (
+            <span class="pagination-step pagination-disabled" aria-hidden="true">← prev</span>
+        )
+    }
+    {
+        pages.map((p) =>
+            p === "…" ? (
+                <span class="pagination-ellipsis" aria-hidden="true">…</span>
+            ) : p === currentPage ? (
+                <span class="pagination-current" aria-current="page">{p}</span>
+            ) : (
+                <a href={hrefFor(p)}>{p}</a>
+            ),
+        )
+    }
+    {
+        currentPage < totalPages ? (
+            <a class="pagination-step" href={hrefFor(currentPage + 1)} rel="next" aria-label="다음 페이지">next →</a>
+        ) : (
+            <span class="pagination-step pagination-disabled" aria-hidden="true">next →</span>
+        )
+    }
+</nav>
