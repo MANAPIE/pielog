@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" role="img" aria-labelledby="title-tw-04-03">
+  <title id="title-tw-04-03">레퍼런스 도구 체인 매트릭스</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+      --c-row-bg: rgba(45, 62, 120, 0.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+        --c-row-bg: rgba(143, 163, 232, 0.10);
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .card { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .row-bg { fill: var(--c-row-bg); stroke: none; }
+    .col-head { font-size: 13px; font-weight: 700; fill: var(--c-accent); }
+    .row-head { font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.5px; }
+    .row-head-sub { font-size: 10px; fill: var(--c-muted); }
+    .cell-main { font-size: 12px; font-weight: 600; }
+    .cell-sub { font-size: 10px; fill: var(--c-muted); }
+    .axis-label { font-size: 11px; fill: var(--c-muted); font-weight: 600; letter-spacing: 0.5px; }
+    .note { font-size: 11px; fill: var(--c-muted); font-style: italic; }
+  </style>
+
+  <!-- 상단 라벨 -->
+  <text class="axis-label" x="20" y="28">언어·생태계별 레퍼런스 자동화 체인</text>
+
+  <!-- 표 본체 -->
+  <g transform="translate(20 50)">
+    <!-- 행 배경 (행 1, 행 3) -->
+    <rect class="row-bg" x="120" y="40" width="660" height="110" rx="4"/>
+    <rect class="row-bg" x="120" y="260" width="660" height="110" rx="4"/>
+
+    <!-- 컬럼 헤더 -->
+    <text class="col-head" x="180" y="30" text-anchor="middle">Python</text>
+    <text class="col-head" x="312" y="30" text-anchor="middle">TypeScript</text>
+    <text class="col-head" x="444" y="30" text-anchor="middle">Rust</text>
+    <text class="col-head" x="576" y="30" text-anchor="middle">Go</text>
+    <text class="col-head" x="708" y="30" text-anchor="middle">REST API</text>
+
+    <!-- 컬럼 구분선 -->
+    <line x1="246" y1="10" x2="246" y2="380" stroke="var(--c-line)" stroke-width="1"/>
+    <line x1="378" y1="10" x2="378" y2="380" stroke="var(--c-line)" stroke-width="1"/>
+    <line x1="510" y1="10" x2="510" y2="380" stroke="var(--c-line)" stroke-width="1"/>
+    <line x1="642" y1="10" x2="642" y2="380" stroke="var(--c-line)" stroke-width="1"/>
+    <line x1="120" y1="10" x2="120" y2="380" stroke="var(--c-line)" stroke-width="1"/>
+
+    <!-- 행 1: docstring 표준 (Y=40) -->
+    <text class="row-head" x="20" y="80">01</text>
+    <text class="row-head" x="20" y="96">DOCSTRING</text>
+    <text class="row-head" x="20" y="110">표준</text>
+    <text class="row-head-sub" x="20" y="128">코드 안의</text>
+    <text class="row-head-sub" x="20" y="140">주석 형식</text>
+
+    <text class="cell-main" x="185" y="80" text-anchor="middle">Google /</text>
+    <text class="cell-main" x="185" y="96" text-anchor="middle">NumPy style</text>
+    <text class="cell-sub" x="185" y="116" text-anchor="middle">PEP 257 기반</text>
+    <text class="cell-sub" x="185" y="130" text-anchor="middle">팀이 둘 중 하나</text>
+
+    <text class="cell-main" x="312" y="80" text-anchor="middle">JSDoc</text>
+    <text class="cell-sub" x="312" y="100" text-anchor="middle">@param @returns</text>
+    <text class="cell-sub" x="312" y="114" text-anchor="middle">@throws @example</text>
+
+    <text class="cell-main" x="444" y="80" text-anchor="middle">/// + Markdown</text>
+    <text class="cell-sub" x="444" y="100" text-anchor="middle">언어 표준 내장</text>
+    <text class="cell-sub" x="444" y="114" text-anchor="middle"># Examples 블록</text>
+
+    <text class="cell-main" x="576" y="80" text-anchor="middle">godoc 주석</text>
+    <text class="cell-sub" x="576" y="100" text-anchor="middle">함수 앞 // 주석</text>
+    <text class="cell-sub" x="576" y="114" text-anchor="middle">Example 함수</text>
+
+    <text class="cell-main" x="708" y="80" text-anchor="middle">OpenAPI YAML</text>
+    <text class="cell-sub" x="708" y="100" text-anchor="middle">description</text>
+    <text class="cell-sub" x="708" y="114" text-anchor="middle">summary, example</text>
+
+    <!-- 행 2: 자동 생성기 (Y=150) -->
+    <text class="row-head" x="20" y="190">02</text>
+    <text class="row-head" x="20" y="206">GENERATOR</text>
+    <text class="row-head" x="20" y="220">자동 생성기</text>
+    <text class="row-head-sub" x="20" y="238">주석을 HTML</text>
+    <text class="row-head-sub" x="20" y="250">또는 SDK로</text>
+
+    <text class="cell-main" x="185" y="190" text-anchor="middle">Sphinx + autodoc</text>
+    <text class="cell-sub" x="185" y="210" text-anchor="middle">또는 MkDocs +</text>
+    <text class="cell-sub" x="185" y="224" text-anchor="middle">mkdocstrings</text>
+
+    <text class="cell-main" x="312" y="190" text-anchor="middle">TypeDoc</text>
+    <text class="cell-sub" x="312" y="210" text-anchor="middle">타입 정보 +</text>
+    <text class="cell-sub" x="312" y="224" text-anchor="middle">JSDoc 결합</text>
+
+    <text class="cell-main" x="444" y="190" text-anchor="middle">rustdoc</text>
+    <text class="cell-sub" x="444" y="210" text-anchor="middle">cargo doc 기본</text>
+    <text class="cell-sub" x="444" y="224" text-anchor="middle">예제까지 테스트</text>
+
+    <text class="cell-main" x="576" y="190" text-anchor="middle">godoc</text>
+    <text class="cell-sub" x="576" y="210" text-anchor="middle">go doc CLI +</text>
+    <text class="cell-sub" x="576" y="224" text-anchor="middle">공식 사이트 빌더</text>
+
+    <text class="cell-main" x="708" y="190" text-anchor="middle">openapi-generator</text>
+    <text class="cell-sub" x="708" y="210" text-anchor="middle">SDK · 모킹 ·</text>
+    <text class="cell-sub" x="708" y="224" text-anchor="middle">스펙 페이지까지</text>
+
+    <!-- 행 3: 호스팅 (Y=260) -->
+    <text class="row-head" x="20" y="300">03</text>
+    <text class="row-head" x="20" y="316">HOSTING</text>
+    <text class="row-head" x="20" y="330">호스팅·사이트</text>
+    <text class="row-head-sub" x="20" y="348">독자가 보는</text>
+    <text class="row-head-sub" x="20" y="360">최종 페이지</text>
+
+    <text class="cell-main" x="185" y="300" text-anchor="middle">Read the Docs</text>
+    <text class="cell-sub" x="185" y="320" text-anchor="middle">또는 자체 정적</text>
+    <text class="cell-sub" x="185" y="334" text-anchor="middle">호스팅</text>
+
+    <text class="cell-main" x="312" y="300" text-anchor="middle">Docusaurus</text>
+    <text class="cell-sub" x="312" y="320" text-anchor="middle">Nextra, VitePress</text>
+    <text class="cell-sub" x="312" y="334" text-anchor="middle">+ TypeDoc 플러그인</text>
+
+    <text class="cell-main" x="444" y="300" text-anchor="middle">docs.rs</text>
+    <text class="cell-sub" x="444" y="320" text-anchor="middle">crates.io 등록 시</text>
+    <text class="cell-sub" x="444" y="334" text-anchor="middle">자동 배포</text>
+
+    <text class="cell-main" x="576" y="300" text-anchor="middle">pkg.go.dev</text>
+    <text class="cell-sub" x="576" y="320" text-anchor="middle">공식 인덱스</text>
+    <text class="cell-sub" x="576" y="334" text-anchor="middle">module 게시 시</text>
+
+    <text class="cell-main" x="708" y="300" text-anchor="middle">Swagger UI /</text>
+    <text class="cell-sub" x="708" y="320" text-anchor="middle">Redoc / Scalar</text>
+    <text class="cell-sub" x="708" y="334" text-anchor="middle">셋 중 선택</text>
+  </g>
+
+  <!-- 하단 노트 -->
+  <text class="note" x="40" y="455">한 칸이라도 비면 다음 칸이 따라오지 않는다 — 표준을 따르는 게 자동화의 입장권.</text>
+</svg>
