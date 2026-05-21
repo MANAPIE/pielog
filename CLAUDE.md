@@ -31,7 +31,63 @@ Only `src/pages/api/*` (two routes) actually runs as serverless functions. Treat
 - Schema: [src/content.config.ts](src/content.config.ts)
   - `thumbnail` / `cover` / `ogImage` use Astro's `image()` helper → must be **relative paths to files co-located in the post directory**. External URLs and `public/` paths are rejected.
   - `draft: true` is hidden by every page via `({ data }) => !data.draft`. Apply the same filter on any new page that lists posts.
-- MDX uses Shiki `github-dark` for syntax highlighting ([astro.config.mjs:17](astro.config.mjs#L17)).
+- MDX uses Shiki `github-dark` for syntax highlighting ([astro.config.mjs:43](astro.config.mjs#L43)).
+
+## MDX content features
+
+The post body is `.mdx`, so the full MDX feature set is available. The pieces actually wired up in this project:
+
+### Mermaid diagrams
+
+`astro-mermaid` is registered first in `integrations` ([astro.config.mjs:33](astro.config.mjs#L33)). Any ```` ```mermaid ```` code block is rendered to SVG at runtime, client-side.
+
+```mdx
+```mermaid
+flowchart LR
+    A --> B
+```
+```
+
+- `theme: 'default'` + `autoTheme: true` — the integration watches `data-theme` on `<html>` and re-renders the diagram on theme toggle.
+- Supported: `flowchart`, `sequenceDiagram`, `stateDiagram-v2`, `erDiagram`, `C4Context`, and the rest of Mermaid's core types.
+- **`C4Container` and `C4Component` are experimental in Mermaid** and will sometimes fail to render. For L2/L3 diagrams, fall back to a plain `flowchart` with a `subgraph` boundary — ep-05 does this.
+- To show Mermaid syntax *without* rendering it (a reference card, a source-code accordion), use the `text` language tag, not `mermaid`.
+
+### `<details>`/`<summary>` accordion
+
+Plain HTML works inside MDX. The project styles `<details>` *only inside `.markdown-body`* ([global.scss:609](src/styles/global.scss#L609)) — bordered card with a custom `▸` marker that rotates on open, dark-mode aware via `_variables.scss` CSS variables. Use it for collapsible content like a diagram's source code:
+
+```mdx
+<details>
+<summary>Mermaid source code</summary>
+
+```text
+flowchart LR
+    A --> B
+```
+
+</details>
+```
+
+Blank lines around the inner fenced block are required so the markdown parser sees them.
+
+### Heading anchors
+
+- `.md` files support `## Heading {#custom-id}` via the [`remarkHeadingIds`](astro.config.mjs#L11) plugin. **`.mdx` files do NOT** — MDX's JSX parser eats `{...}` as an expression and fails before any remark plugin runs.
+- Astro auto-generates a slug from heading text on every page, including `.mdx`. Korean works: `### 시스템 다이어그램` → `#시스템-다이어그램`. Link in-page anchors with `[label](#섹션-제목)`.
+
+### React component hydration
+
+`import` a component at the top of the MDX file and render it with an Astro hydration directive — `client:load`, `client:visible`, `client:idle`. Currently used only by [CodePlayground](src/components/interactive/CodePlayground.tsx) in the `astro-vercel-implementation` post — see *Interactive components* below for the security caveat.
+
+### Image alt convention
+
+- The first `cover` / `thumbnail` image at the top of a post is decorative: write `![]()` with empty alt.
+- Diagrams, charts, and any image that carries information get **rich descriptive alt** (full sentence summary of what the diagram shows). See memory `feedback_cover_alt`.
+
+### Code highlighting
+
+Shiki `github-dark` is the only theme ([astro.config.mjs:43](astro.config.mjs#L43)). Use a language tag (`python`, `typescript`, `yaml`, `text`, etc.). `mermaid` is special — it goes to the diagram renderer, not Shiki.
 
 ## Layout hierarchy
 
@@ -119,7 +175,7 @@ So a 404 on `/screen-spec-ep-09` naturally suggests other `screen-spec-ep-*` pos
 
 ## Interactive components
 
-[src/components/interactive/CodePlayground.tsx](src/components/interactive/CodePlayground.tsx) executes user code via `new Function('console', code)` with a mock `console`. It's a sandbox in name only — **the code still runs in page context** with full DOM/window access. Used inside MDX with hydration directives (`client:visible`, etc.).
+[src/components/interactive/CodePlayground.tsx](src/components/interactive/CodePlayground.tsx) executes user code via `new Function('console', code)` with a mock `console`. It's a sandbox in name only — **the code still runs in page context** with full DOM/window access. Used inside MDX with hydration directives (`client:visible`, etc.) — see *MDX content features* above for the import pattern.
 
 ## Environment variables
 
