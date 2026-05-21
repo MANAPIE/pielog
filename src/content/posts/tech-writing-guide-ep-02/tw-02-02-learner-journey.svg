@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" role="img" aria-labelledby="title-tw-02-02">
+  <title id="title-tw-02-02">튜토리얼의 학습자 여정</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .step-card { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .step-num { font-size: 13px; font-weight: 700; font-family: 'Georgia', serif; }
+    .step-title { font-size: 13px; font-weight: 700; }
+    .step-desc { font-size: 11px; fill: var(--c-muted); }
+    .arrow { stroke: var(--c-muted); fill: none; stroke-width: 1.5; marker-end: url(#arrowhead); }
+    .danger-line { stroke: var(--c-accent-3); stroke-dasharray: 4 4; stroke-width: 1.5; fill: none; }
+    .danger-text { font-size: 11px; fill: var(--c-accent-3); font-style: italic; }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <polygon points="0,0 0,10 9,5" fill="var(--c-muted)"/>
+    </marker>
+  </defs>
+
+  <!-- Step 1: 진입 -->
+  <g transform="translate(30 80)">
+    <rect class="step-card" x="0" y="0" width="120" height="100" rx="6"/>
+    <text class="step-num" x="14" y="24" fill="var(--c-accent)">01</text>
+    <text class="step-title" x="14" y="46">진입</text>
+    <text class="step-desc" x="14" y="66">왜 이걸</text>
+    <text class="step-desc" x="14" y="80">해보는가</text>
+  </g>
+
+  <!-- Step 2: 환경 -->
+  <g transform="translate(180 80)">
+    <rect class="step-card" x="0" y="0" width="120" height="100" rx="6"/>
+    <text class="step-num" x="14" y="24" fill="var(--c-accent)">02</text>
+    <text class="step-title" x="14" y="46">환경</text>
+    <text class="step-desc" x="14" y="66">설치, 첫</text>
+    <text class="step-desc" x="14" y="80">실행 확인</text>
+  </g>
+
+  <!-- Step 3: 작은 성공 -->
+  <g transform="translate(330 80)">
+    <rect class="step-card" x="0" y="0" width="120" height="100" rx="6"/>
+    <text class="step-num" x="14" y="24" fill="var(--c-accent-2)">03</text>
+    <text class="step-title" x="14" y="46">작은 성공</text>
+    <text class="step-desc" x="14" y="66">10분 안에</text>
+    <text class="step-desc" x="14" y="80">동작 확인</text>
+  </g>
+
+  <!-- Step 4: 확장 -->
+  <g transform="translate(480 80)">
+    <rect class="step-card" x="0" y="0" width="120" height="100" rx="6"/>
+    <text class="step-num" x="14" y="24" fill="var(--c-accent-2)">04</text>
+    <text class="step-title" x="14" y="46">확장</text>
+    <text class="step-desc" x="14" y="66">개념을 하나씩</text>
+    <text class="step-desc" x="14" y="80">덧붙임</text>
+  </g>
+
+  <!-- Step 5: 산출물 -->
+  <g transform="translate(285 220)">
+    <rect class="step-card" x="0" y="0" width="190" height="100" rx="6" stroke="var(--c-accent)" stroke-width="2"/>
+    <text class="step-num" x="14" y="24" fill="var(--c-accent)">05</text>
+    <text class="step-title" x="14" y="46">완성된 결과물</text>
+    <text class="step-desc" x="14" y="66">"내가 만들었다"는 산출물.</text>
+    <text class="step-desc" x="14" y="80">기억은 여기서 만들어진다.</text>
+  </g>
+
+  <!-- 화살표들 (가로) -->
+  <line class="arrow" x1="150" y1="130" x2="180" y2="130"/>
+  <line class="arrow" x1="300" y1="130" x2="330" y2="130"/>
+  <line class="arrow" x1="450" y1="130" x2="480" y2="130"/>
+
+  <!-- 화살표 (4에서 5로) -->
+  <path class="arrow" d="M 540 180 Q 540 220 475 240"/>
+
+  <!-- 위험 신호: 분기 만들지 말 것 -->
+  <g transform="translate(30 270)">
+    <text class="danger-text" x="0" y="-2">금지 1: 단계별 분기 ("Mac이면 X, Windows면 Y")</text>
+    <text class="danger-text" x="0" y="18">금지 2: 옵션 설명 ("이 플래그는 …")</text>
+    <text class="danger-text" x="0" y="38">금지 3: 추가 학습 거리 ("관심이 있다면 …")</text>
+  </g>
+
+  <!-- 라벨 -->
+  <text class="step-desc" x="30" y="55" fill="var(--c-muted)" font-weight="600" letter-spacing="0.5px">학습자 여정 ──────────────────────────────────────────→</text>
+</svg>
