@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 445" role="img" aria-labelledby="title-tw-09-01">
+  <title id="title-tw-09-01">세 인접 문서의 위치</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .col {
+      fill: var(--c-card-bg);
+      stroke: var(--c-line);
+      stroke-width: 1;
+    }
+
+    .col-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    .col-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .row-label {
+      font-size: 10px;
+      font-weight: 700;
+      fill: var(--c-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .row-value {
+      font-size: 12px;
+    }
+
+    .divider {
+      stroke: var(--c-line);
+      stroke-width: 0.5;
+    }
+
+    .near {
+      font-size: 11px;
+      fill: var(--c-muted);
+      font-style: italic;
+    }
+  </style>
+
+  <!-- 시리즈 바깥 표시 -->
+  <text class="near" x="350" y="24" text-anchor="middle">— 본 시리즈는 내부 개발 협업의 글에 집중했습니다 —</text>
+  <text class="near" x="350" y="42" text-anchor="middle">이 셋은 그 바깥에 자리한 문서들입니다</text>
+
+  <!-- 1. 사용자 매뉴얼 -->
+  <g transform="translate(20 80)">
+    <rect class="col" x="0" y="-5" width="210" height="340" rx="6" />
+    <circle cx="30" cy="30" r="12" fill="var(--c-accent)" />
+    <text class="col-tag" x="50" y="24" fill="var(--c-accent)">USER MANUAL</text>
+    <text class="col-title" x="50" y="42">사용자 매뉴얼</text>
+    <g transform="translate(0 5)">
+      <line class="divider" x1="14" y1="58" x2="196" y2="58" />
+
+      <text class="row-label" x="14" y="74">독자</text>
+      <text class="row-value" x="14" y="92">비개발자 최종 사용자</text>
+      <line class="divider" x1="14" y1="123" x2="196" y2="123" />
+
+      <text class="row-label" x="14" y="139">분면</text>
+      <text class="row-value" x="14" y="157">How-to의 확장</text>
+      <line class="divider" x1="14" y1="188" x2="196" y2="188" />
+
+      <text class="row-label" x="14" y="204">표현</text>
+      <text class="row-value" x="14" y="222">전문용어 최소화·UI 라벨</text>
+      <text class="row-value" x="14" y="240">스크린샷·GIF 필수</text>
+      <line class="divider" x1="14" y1="253" x2="196" y2="253" />
+
+      <text class="row-label" x="14" y="269">유지비용</text>
+      <text class="row-value" x="14" y="287">매우 높음 (UI 바뀌면)</text>
+    </g>
+  </g>
+
+  <!-- 2. 디자인 문서 -->
+  <g transform="translate(245 80)">
+    <rect class="col" x="0" y="-5" width="210" height="340" rx="6" />
+    <rect x="18" y="18" width="24" height="24" rx="3" fill="var(--c-accent-2)" />
+    <text class="col-tag" x="50" y="24" fill="var(--c-accent-2)">DESIGN DOC</text>
+    <text class="col-title" x="50" y="42">디자인 문서</text>
+
+    <g transform="translate(0 5)">
+      <line class="divider" x1="14" y1="58" x2="196" y2="58" />
+
+      <text class="row-label" x="14" y="74">독자</text>
+      <text class="row-value" x="14" y="92">동료 엔지니어</text>
+      <line class="divider" x1="14" y1="123" x2="196" y2="123" />
+
+      <text class="row-label" x="14" y="139">분면</text>
+      <text class="row-value" x="14" y="157">Explanation의 일종</text>
+      <text class="row-value" x="14" y="175">결정 직전의 글</text>
+      <line class="divider" x1="14" y1="188" x2="196" y2="188" />
+
+      <text class="row-label" x="14" y="204">RFC와 차이</text>
+      <text class="row-value" x="14" y="222">더 좁은 범위</text>
+      <text class="row-value" x="14" y="240">팀 내 합의용</text>
+      <line class="divider" x1="14" y1="253" x2="196" y2="253" />
+
+      <text class="row-label" x="14" y="269">수명</text>
+      <text class="row-value" x="14" y="287">구현 후 <tspan font-weight="700">역할 종료</tspan></text>
+      <text class="row-value" x="14" y="305">필요 시 ADR로 박제</text>
+    </g>
+  </g>
+
+  <!-- 3. 보안 문서 -->
+  <g transform="translate(470 80)">
+    <rect class="col" x="0" y="-5" width="210" height="340" rx="6" />
+    <polygon points="30,18 44,42 16,42" fill="var(--c-accent-3)" />
+    <text class="col-tag" x="50" y="24" fill="var(--c-accent-3)">SECURITY DOC</text>
+    <text class="col-title" x="50" y="42">보안 문서</text>
+    <g transform="translate(0 5)">
+      <line class="divider" x1="14" y1="58" x2="196" y2="58" />
+
+      <text class="row-label" x="14" y="74">독자</text>
+      <text class="row-value" x="14" y="92">내부: 개발자·SRE</text>
+      <text class="row-value" x="14" y="110">외부: 보안 연구자</text>
+      <line class="divider" x1="14" y1="123" x2="196" y2="123" />
+
+      <text class="row-label" x="14" y="139">분면</text>
+      <text class="row-value" x="14" y="157">Reference + Explanation</text>
+      <line class="divider" x1="14" y1="188" x2="196" y2="188" />
+
+      <text class="row-label" x="14" y="204">하위 종류</text>
+      <text class="row-value" x="14" y="222">Threat Model · 보안 가이드라인</text>
+      <text class="row-value" x="14" y="240">Disclosure Policy</text>
+      <line class="divider" x1="14" y1="253" x2="196" y2="253" />
+
+      <text class="row-label" x="14" y="269">핵심 긴장</text>
+      <text class="row-value" x="14" y="287">공개할 것과</text>
+      <text class="row-value" x="14" y="305">공개 안 할 것의 경계</text>
+    </g>
+  </g>
+</svg>
