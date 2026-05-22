@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" role="img" aria-labelledby="title-tw-08-03">
+  <title id="title-tw-08-03">Conventional Commits에서 출발하는 자동화 체인</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .card {
+      fill: var(--c-card-bg);
+      stroke: var(--c-line);
+      stroke-width: 1;
+    }
+
+    .card-num {
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--c-accent);
+      letter-spacing: 0.5px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .card-body {
+      font-size: 11px;
+      fill: var(--c-fg);
+    }
+
+    .card-sub {
+      font-size: 10px;
+      fill: var(--c-muted);
+    }
+
+    .code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10px;
+      fill: var(--c-accent);
+    }
+
+    .note {
+      font-size: 11px;
+      fill: var(--c-muted);
+      font-style: italic;
+    }
+
+    .arrow {
+      stroke: var(--c-muted);
+      stroke-width: 2;
+      fill: none;
+    }
+  </style>
+
+  <!-- 상단 라벨 -->
+  <text class="card-sub" x="20" y="28">한 커밋의 type 한 글자가 다섯 단계의 결과를 바꾼다.</text>
+
+  <!-- 카드 5개 -->
+  <g transform="translate(20 50)">
+    <!-- Card 1: COMMIT -->
+    <rect class="card" x="0" y="0" width="136" height="200" rx="6" />
+    <text class="card-num" x="14" y="22">01</text>
+    <text class="card-title" x="14" y="44">COMMIT</text>
+    <text class="card-sub" x="14" y="62">개발자가 작성</text>
+
+    <text class="code" x="14" y="92">feat(payment):</text>
+    <text class="code" x="14" y="106"> add</text>
+    <text class="code" x="14" y="120"> idempotency</text>
+    <text class="code" x="14" y="134"> key</text>
+
+    <text class="card-sub" x="14" y="166">type: feat</text>
+    <text class="card-sub" x="14" y="180">scope: payment</text>
+
+    <!-- Card 2: LINT -->
+    <g transform="translate(156 0)">
+      <rect class="card" x="0" y="0" width="136" height="200" rx="6" />
+      <text class="card-num" x="14" y="22">02</text>
+      <text class="card-title" x="14" y="44">LINT</text>
+      <text class="card-sub" x="14" y="62">commitlint</text>
+      <text class="card-sub" x="14" y="76">pre-commit hook</text>
+
+      <text class="card-body" x="14" y="106">형식 검사</text>
+      <text class="card-body" x="14" y="124">type · scope ·</text>
+      <text class="card-body" x="14" y="138">길이 · 본문</text>
+
+      <text class="card-sub" x="14" y="170">어긋나면</text>
+      <text class="card-sub" x="14" y="184">커밋 거부</text>
+    </g>
+
+    <!-- Card 3: RELEASE -->
+    <g transform="translate(312 0)">
+      <rect class="card" x="0" y="0" width="136" height="200" rx="6" />
+      <text class="card-num" x="14" y="22">03</text>
+      <text class="card-title" x="14" y="44">RELEASE</text>
+      <text class="card-sub" x="14" y="62">semantic-release</text>
+      <text class="card-sub" x="14" y="76">release-please</text>
+
+      <text class="card-body" x="14" y="106">type 분석 →</text>
+      <text class="card-body" x="14" y="124">버전 자동 결정</text>
+
+      <text class="card-sub" x="14" y="148">feat: minor</text>
+      <text class="card-sub" x="14" y="162">fix: patch</text>
+      <text class="card-sub" x="14" y="176">BREAKING: major</text>
+    </g>
+
+    <!-- Card 4: CHANGELOG -->
+    <g transform="translate(468 0)">
+      <rect class="card" x="0" y="0" width="136" height="200" rx="6" />
+      <text class="card-num" x="14" y="22">04</text>
+      <text class="card-title" x="14" y="44">CHANGELOG</text>
+      <text class="card-sub" x="14" y="62">자동 생성</text>
+
+      <text class="card-body" x="14" y="92">## Features</text>
+      <text class="card-body" x="14" y="108">· payment:</text>
+      <text class="card-body" x="14" y="122"> add idem...</text>
+
+      <text class="card-body" x="14" y="148">## Bug Fixes</text>
+      <text class="card-body" x="14" y="164">· auth: ...</text>
+
+      <text class="card-sub" x="14" y="186">PR · 기여자 링크</text>
+    </g>
+
+    <!-- Card 5: PUBLISH -->
+    <g transform="translate(624 0)">
+      <rect class="card" x="0" y="0" width="136" height="200" rx="6" />
+      <text class="card-num" x="14" y="22">05</text>
+      <text class="card-title" x="14" y="44">PUBLISH</text>
+      <text class="card-sub" x="14" y="62">배포 트리거</text>
+
+      <text class="card-body" x="14" y="92">git tag</text>
+      <text class="card-body" x="14" y="108">v1.4.0</text>
+
+      <text class="card-body" x="14" y="138">GitHub Release</text>
+
+      <text class="card-body" x="14" y="168">npm publish</text>
+      <text class="card-body" x="14" y="184">docker push</text>
+    </g>
+  </g>
+
+  <!-- 화살표 (카드 사이) -->
+  <g>
+    <line class="arrow" x1="156" y1="150" x2="176" y2="150" />
+    <polygon points="176,150 170,146 170,154" fill="var(--c-muted)" />
+
+    <line class="arrow" x1="312" y1="150" x2="332" y2="150" />
+    <polygon points="332,150 326,146 326,154" fill="var(--c-muted)" />
+
+    <line class="arrow" x1="468" y1="150" x2="488" y2="150" />
+    <polygon points="488,150 482,146 482,154" fill="var(--c-muted)" />
+
+    <line class="arrow" x1="624" y1="150" x2="644" y2="150" />
+    <polygon points="644,150 638,146 638,154" fill="var(--c-muted)" />
+  </g>
+
+  <!-- 하단 노트 -->
+  <text class="note" x="20" y="280">체인의 가장 약한 고리는 사람 — commitlint가 강제력을 가져야 하는 이유.</text>
+</svg>
