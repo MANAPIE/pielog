@@ -1,0 +1,542 @@
+---
+title: "의사결정의 기록, ADR과 RFC - 개발자를 위한 기술문서 입문 ep.06"
+description: "같은 의사결정이지만 위치가 다른 두 문서. ADR은 이미 한 결정을 박제하고, RFC는 아직 안 한 결정을 제안합니다."
+summary: "팀의 큰 결정은 어딘가에 적혀야 합니다. 결정 *전*의 글은 RFC, 결정 *후*의 글은 ADR입니다. 둘은 같은 주제를 다루지만 톤·구조·수명이 다릅니다. 이번 편은 ADR과 RFC의 위치 차이, 각자의 템플릿, 그리고 ADR의 상태 머신을 다룹니다."
+date: 2026-05-20
+tags: [series, develop, frontend, backend, infra, devops, ai, adr, rfc, decision-record, architecture]
+thumbnail: ./cover.svg
+draft: false
+---
+
+![](./cover.svg)
+
+팀의 큰 결정은 어딘가에 적혀야 합니다.
+
+슬랙 스레드 어딘가, 회의록 한 줄, 누군가의 노션 페이지에 적혀 있다면 그건 *없는 것*에 가깝습니다. 6개월 뒤 그 결정을 다시 봐야 할 때, 아무도 못 찾기 때문입니다. *왜 그때 그렇게 결정했는가*가 사라지면 미래의 결정도 흔들립니다.
+
+이 글이 다루는 두 문서, **ADR(Architecture Decision Record)** 과 **RFC(Request for Comments)** 는 의사결정의 휘발에 대한 해결책입니다. 다만 *결정의 어느 시점*에 쓰느냐가 다릅니다.
+
+---
+
+## 결정의 시간선 위에서 본 두 문서
+
+같은 의사결정을 두 시점에서 바라봅니다.
+
+![ADR과 RFC의 위치 차이를 보여주는 다이어그램. 위쪽에 의사결정의 시간선이 가로로 그려져 있고 세 개의 점이 있다. 왼쪽 점은 빨간색 "제안" 단계로 "RFC가 사는 자리"라는 라벨이 붙어 있다. 가운데 점은 회색 "결정" 단계. 오른쪽 점은 파란색 "박제" 단계로 "ADR이 사는 자리"라는 라벨이 붙어 있다. 아래쪽에는 두 컬럼이 나란히 비교된다. 왼쪽 RFC(Request for Comments) 카드: 시점은 결정 전, 아직 안 정해진 일. 목적은 동료에게 의견과 동의를 구하는 것. 톤은 "제안합니다"로 열려 있고 설득적. 상태는 Draft → Reviewing → Accepted/Rejected. 수명은 결정이 끝나면 역할 종료. 오른쪽 ADR(Architecture Decision Record) 카드: 시점은 결정 후, 이미 정해진 일의 기록. 목적은 왜를 미래에게 남기는 것. 톤은 "결정했습니다"로 단정적이고 간결. 상태는 Accepted, Deprecated, Superseded. 수명은 불변이며 새 결정이 나오면 대체만 됨.](./tw-06-01-adr-vs-rfc.svg)
+
+이런 차이가 있기 때문에 글을 쓸 때는 다음과 같은 주의사항이 있습니다.
+
+- **RFC를 쓸 때 ADR처럼 쓰지 않습니다.** 단정적인 톤으로 "이렇게 결정합니다"라고 쓰면 동료는 *논의가 끝났다*고 오해합니다.
+- **ADR을 쓸 때 RFC처럼 쓰지 않습니다.** "이런저런 옵션을 검토 중인데…"로 시작하면 미래의 독자는 *결정이 정말 났는지* 헷갈립니다.
+
+두 글은 *연결*되어 있을 때 가장 강합니다. RFC에서 논의가 끝나면 그 결과를 ADR로 박제합니다. 작성자는 같을 수도 있고 다를 수도 있습니다.
+
+---
+
+## ADR을 쓰는 자리
+
+ADR은 *큰 결정*을 위한 글입니다. "큰"의 기준은 두 가지로 잡으면 무난합니다.
+
+- **되돌리기 비용이 큰 결정** - 데이터베이스 선택, 인증 방식, 통신 프로토콜.
+- **다른 결정에 영향을 미치는 결정** - "마이크로서비스로 간다"는 그다음 100개의 결정을 따라가게 만듭니다.
+
+작은 결정에는 ADR이 과합니다. "이 변수명을 X로 할까 Y로 할까"는 코드 리뷰에서 끝냅시다. 잘못 적용된 ADR은 *기록의 인플레이션*을 만들고, 그러면 진짜 중요한 ADR이 묻힙니다.
+
+### ADR의 표준 템플릿
+
+ADR의 가장 단순하고 널리 쓰이는 형식은 Michael Nygard의 다섯 섹션 템플릿입니다.
+
+```markdown
+# ADR-NNN: [결정의 제목]
+
+**Status**: Accepted
+**Date**: 2026-05-20
+**Deciders**: [이름들]
+
+## Context
+
+[이 결정이 필요한 상황. 어떤 문제가 있었고, 어떤 제약이 있었나.]
+
+## Decision
+
+[무엇을 결정했는가. 단정적이고 짧게.]
+
+## Consequences
+
+[이 결정이 가져오는 것들 — 좋은 것, 나쁜 것, 무엇이 더 쉬워지고
+무엇이 더 어려워지는가.]
+```
+
+이 셋이 핵심입니다. 그리고 두 가지를 더 적을 수 있습니다.
+
+```markdown
+## Alternatives Considered
+
+검토한 다른 길들 — 그리고 왜 선택하지 않았는가.
+
+- **[대안 A]**: 장점은 …, 그러나 …
+- **[대안 B]**: 장점은 …, 그러나 …
+
+## References
+
+- [관련 RFC]
+- [관련 ADR]
+- [외부 자료]
+```
+
+특히 *Alternatives Considered*는 빠뜨리기 쉽지만 가장 가치 있는 섹션입니다. 미래의 독자가 "왜 X를 안 했지?"라고 물을 때 답이 됩니다. 그 답이 없으면 누군가 다시 X를 검토하느라 시간을 씁니다.
+
+#### ADR 표준 모음과 도구
+
+Michael Nygard 템플릿은 가장 단순한 시작점이지만, 같은 문제를 좀 다르게 푼 표준들이 있습니다. 팀이 셋 중 하나를 골라 *그것만 쓰기로* 약속하는 게 가장 좋습니다.
+
+- **Nygard ADR**: Context / Decision / Consequences 셋이 핵심. 위에서 본 형식. 한 페이지로 끝나는 경량 결정에 어울립니다.
+- **MADR(Markdown ADR)**: `adr.github.io` 커뮤니티에서 다듬은 형식. Status·Context·Decision Drivers·Considered Options(각각의 장단)·Decision Outcome·Pros and Cons로 더 구조화되어 있습니다. 비교 검토가 핵심인 결정에 어울립니다.
+- **Y-statements**: "In the context of X, facing Y, we decided for Z, to achieve W, accepting that V." 한 문장 ADR. 작은 결정을 *기록은 남기되 본격적인 ADR까지는 좀 과한* 자리에 좋습니다.
+
+도구는 가벼울수록 좋습니다. 자주 쓰이는 둘:
+
+- **`adr-tools` CLI**: `adr new "Use PostgreSQL"` 한 줄이면 자동 번호 매김·템플릿 채움·Supersede 링크까지 처리합니다. shell 스크립트 한 묶음이라 의존성이 없습니다.
+- **`log4brains`**: 같은 디렉터리를 정적 사이트로 빌드해주는 도구로 팀이 수십 개 이상의 ADR을 쌓기 시작하면 인덱스·검색이 필요해지는데, 그때 어울립니다.
+
+도구가 무엇이든 디렉터리 컨벤션은 거의 같습니다.
+
+```text
+docs/adr/
+├── 0001-record-architecture-decisions.md   ← 첫 ADR은 보통 "ADR을 쓰기로 결정함"
+├── 0007-use-event-sourcing.md
+├── 0012-use-postgresql.md
+└── 0027-shard-postgresql-by-tenant.md
+```
+
+첫 번째 ADR이 *ADR을 쓰기로 한 결정*이라는 메타 ADR이라는 점이 재밌습니다. 이게 있어야 *왜 우리가 이걸 쓰는가*의 출발점이 명시적이 됩니다.
+
+### ADR의 상태 머신
+
+ADR은 *살아 있는 문서*가 아닙니다. *기록*입니다. 한 번 Accepted된 ADR은 내용을 수정하지 않습니다. 상황이 바뀌면 새 ADR을 씁니다.
+
+![ADR의 상태 머신 다이어그램. 다섯 가지 상태가 표시된다. Proposed(초안 상태, 검토를 기다림), Accepted(결정이 확정됨, 기본 상태, 불변), Rejected(제안되었지만 받아들여지지 않음), Deprecated(더 이상 유효하지 않음, 대체할 ADR 없음), Superseded(새 ADR이 대체함, ADR-XXX로 링크). 상태 전이는 Proposed → Accepted(승인) 또는 Proposed → Rejected(기각). Accepted에서 Deprecated(폐기)로 또는 Superseded(대체됨)로 갈 수 있다. 다이어그램 아래 핵심 원칙: 한 번 Accepted된 ADR은 내용을 수정하지 않는다. 상황이 바뀌면 새 ADR을 쓰고 옛 ADR을 Superseded로 표시한다. "왜 그때 그렇게 결정했나"가 사라지면 미래의 결정도 흔들린다.](./tw-06-02-adr-lifecycle.svg)
+
+**Superseded**는 특히 중요합니다. ADR-024가 ADR-007을 대체했다면, ADR-007의 상태를 `Superseded by ADR-024`로 바꾸고 링크합니다. ADR-007을 *지우지 않습니다*. 옛 결정의 *맥락*이 새 결정의 *근거*이기 때문입니다.
+
+#### 짧은 시나리오 — ADR-012가 ADR-027에 의해 일부 Supersede되는 흐름
+
+위에서 본 *좋은 ADR-012*(PostgreSQL 채택)의 2년 뒤를 상상해봅니다. 당시 *부정* 섹션에 적었던 "100M row 이후 파티셔닝 또는 read replica 필요"가 실제로 다가왔습니다. 트래픽이 늘면서 단일 DB가 한계에 닿습니다.
+
+팀은 ADR-012를 *수정하지 않고* 새 ADR을 씁니다.
+
+![ADR-012가 ADR-027에 의해 Supersede되는 흐름 다이어그램. 위쪽 카드는 ADR-012 "주 데이터베이스로 PostgreSQL 채택", 날짜 2024-03-14, 상태가 "Accepted"에서 "Superseded by ADR-027 (partial)"로 변경됨을 화살표로 표시. 카드 안에 핵심 메모: "단일 인스턴스" 가정 부분만 대체됨, 결제 도메인 = PostgreSQL이라는 큰 결정 자체는 유효. 가운데 굵은 화살표 "supersedes (partial)"가 위에서 아래로 연결. 아래쪽 카드는 ADR-027 "tenant 단위 PostgreSQL 샤딩", 날짜 2026-04-20, 상태 "Accepted". 카드 안에 핵심 메모: ADR-012의 결정을 부정하지 않음, "100M row 이후" 조건이 충족되어 다음 단계로 감, Vitess 도입, tenant_id 기반 라우팅. 양쪽 카드 모두 References 섹션에 상대 ADR 링크가 있음을 점선으로 강조. 다이어그램 하단 노트: 옛 ADR을 지우지 않는다 — 옛 결정의 맥락이 새 결정의 근거다.](./tw-06-03-adr-supersede-chain.svg)
+
+ADR-027의 본문 첫머리에 ADR-012가 명시적으로 등장합니다.
+
+```markdown
+# ADR-027: tenant 단위 PostgreSQL 샤딩
+
+**Status**: Accepted
+**Date**: 2026-04-20
+**Supersedes (partial)**: ADR-012의 *단일 인스턴스* 가정 부분만
+
+## Context
+
+ADR-012(2024-03-14)에서 *재검토 조건*으로 명시했던 "100M row 이후 파티셔닝 또는 read replica 필요"가 도달했습니다. 현재 195M row, 쓰기 QPS 12k…
+```
+
+그리고 옛 ADR-012의 상단 상태 라벨이 바뀝니다.
+
+```markdown
+# ADR-012: 주 데이터베이스로 PostgreSQL 채택
+
+**Status**: Superseded by ADR-027 (partial)
+**Date**: 2024-03-14
+```
+
+본문은 *손대지 않습니다*. 왜냐하면 ADR-012의 *Context*와 *Alternatives Considered*가 ADR-027의 출발점이기 때문입니다. *2년 전 우리가 무엇을 고려했는가*가 사라지면, 새 결정도 자기 뿌리를 잃습니다.
+
+여기서 *partial* 표기가 작은 디테일이지만 중요합니다. ADR-012의 *PostgreSQL을 쓴다*는 큰 결정은 여전히 유효하고, *단일 인스턴스* 가정만 대체된 것이기 때문입니다. 한 ADR이 다른 ADR을 *어느 부분만* 대체하는지가 명시되어 있어야 미래에 또 다른 ADR이 들어올 때 정확히 어디를 다시 봐야 하는지 알 수 있습니다.
+
+### 좋은 ADR과 나쁜 ADR
+
+같은 결정을 두 방식으로 써본 짧은 예시입니다.
+
+**나쁜 ADR**
+
+```markdown
+# ADR-012: PostgreSQL 사용
+
+## Context
+데이터베이스가 필요했습니다.
+
+## Decision
+PostgreSQL을 사용합니다.
+
+## Consequences
+좋습니다.
+```
+
+문제: 미래의 독자에게 *아무것도* 알려주지 않습니다. 왜 PostgreSQL인지, 다른 옵션은 무엇이었는지, 어떤 비용을 받아들였는지 알 수 없습니다.
+
+**좋은 ADR**
+
+```markdown
+# ADR-012: 주 데이터베이스로 PostgreSQL 채택
+
+**Status**: Accepted
+**Date**: 2024-03-14
+
+## Context
+
+신규 결제 서비스를 시작하며 주 데이터베이스를 선택해야 합니다. 요구사항:
+
+- 강한 일관성(strong consistency) — 결제 도메인 특성
+- 트랜잭션 지원 (멀티 테이블)
+- 200 GB 초기 데이터, 연간 5배 성장 예상
+- 팀 보유 운영 경험
+
+## Decision
+
+주 데이터베이스로 **PostgreSQL 16**을 채택합니다. AWS RDS Multi-AZ 구성.
+
+## Alternatives Considered
+
+- **MySQL 8**: 팀에 운영 경험이 더 풍부했으나, JSON 처리와 트랜잭션 격리
+  유연성에서 PostgreSQL이 우위였습니다.
+- **DynamoDB**: 운영 부담은 낮지만, 결제 도메인의 멀티 테이블 트랜잭션
+  요구를 만족하기 어렵습니다.
+- **CockroachDB**: 분산 일관성이 매력적이나, 초기 데이터 규모에 비해
+  과한 복잡도였습니다.
+
+## Consequences
+
+긍정:
+- 풍부한 SQL 표현력으로 도메인 모델링 용이
+- pgvector·확장으로 향후 검색 기능 확장 가능
+
+부정:
+- 수평 확장 한계 — 100M row 이후 파티셔닝 또는 read replica 필요
+- 팀 내 PostgreSQL 운영 경험 축적 필요 (3개월 학습 기간 산정)
+
+## References
+
+- [RFC-008: 결제 서비스 데이터 모델 검토](./rfc/008-payment-data-model.md)
+- AWS RDS 비용 분석: [내부 링크]
+```
+
+이 ADR이 좋은 이유는 미래에 *어떤 조건이 바뀌면 다시 봐야 하는지*를 알려주기 때문입니다. "100M row 이후"라는 신호가 명시되어 있습니다.
+
+---
+
+## RFC를 쓰는 자리
+
+RFC는 *결정 전*의 글입니다. 무엇이 결정되지 않았는지가 중요하고, 무엇을 동료에게 묻는지가 중요합니다.
+
+RFC가 쓰이는 흔한 상황은 다음 같습니다.
+
+- **여러 팀에 영향을 미치는 결정.** 한 팀이 정하면 안 되는 문제.
+- **트레이드오프가 복잡한 결정.** 명백한 답이 없고 여러 옵션이 비등한 경우.
+- **변경의 비용이 큰 결정.** 한 번 시작하면 되돌리기 어려운 일.
+
+작은 결정에 RFC를 쓰면 *결정의 속도*가 떨어집니다. PR 리뷰에서 끝낼 일에 RFC를 쓰지 않습니다.
+
+### RFC의 표준 템플릿
+
+RFC는 ADR보다 길어지는 게 자연스럽습니다. 결정 전에는 *논증할 거리*가 많기 때문입니다.
+
+```markdown
+# RFC-NNN: [제안의 제목]
+
+**Status**: Draft
+**Author**: [이름]
+**Created**: 2026-05-20
+**Reviewers**: [이름들]
+
+## Summary
+
+[한 문단으로 무엇을 제안하는가.]
+
+## Motivation
+
+[왜 이 변경이 필요한가. 어떤 문제를 풀려는가. 풀지 않으면
+어떤 결과가 오는가.]
+
+## Proposal
+
+[제안의 상세 내용. 다이어그램·코드 스니펫 환영.]
+
+### 핵심 변경
+### 영향받는 시스템
+### 마이그레이션 경로
+
+## Alternatives
+
+검토했지만 채택하지 않은 길들.
+
+## Drawbacks
+
+이 제안의 단점·비용·위험. *자신의 제안을 비판하는 섹션.*
+
+## Unresolved Questions
+
+아직 답이 없는 질문들. 리뷰어에게 *명시적으로* 묻는 자리.
+
+## Timeline
+
+- Draft 공개: [날짜]
+- 리뷰 마감: [날짜]
+- 결정 목표: [날짜]
+```
+
+RFC에서 가장 자주 빠뜨리는 섹션은 **Drawbacks**와 **Unresolved Questions**입니다. 둘 다 *작성자가 자신의 제안을 약하게 보여주는* 섹션이라 본능적으로 회피하게 됩니다. 그러나 이 두 섹션이 빠지면 RFC는 *선전물*이 됩니다. 동료는 비판하기 어려워지고, 제안은 검토되지 못한 채 통과됩니다.
+
+좋은 RFC는 *자신을 가장 잘 공격하는 글*입니다.
+
+### RFC의 흐름
+
+RFC는 단순히 문서가 아니라 *프로세스*입니다. 다음 흐름을 따르는 경우가 많습니다.
+
+1. **Draft**: 작성자가 초안을 공개. 이때는 *말이 안 되는 곳*도 그대로 둠. 동료의 시각이 필요.
+2. **Reviewing**: 리뷰어들이 코멘트. 작성자는 코멘트에 답하며 본문 수정.
+3. **Final Comment Period (FCP)**: "이의 없으면 N일 후 확정"이라는 마감.
+4. **Accepted / Rejected**: 결과 확정. Accepted이면 *ADR로 박제*되거나 구현 작업으로 연결.
+
+이 흐름이 *명시적으로* 적혀 있을수록 좋습니다. 끝나지 않은 RFC가 회사 한구석에 쌓이지 않게.
+
+#### 공개 RFC 프로세스 — 세 곳의 실제 운영
+
+규모가 큰 오픈소스 프로젝트의 공개 RFC를 보면 위의 흐름이 실제로 어떻게 운영되는지 가늠하기 좋습니다. 세 곳이 각자 다른 강점을 가집니다.
+
+- **Rust RFC** ([`rust-lang/rfcs`](https://github.com/rust-lang/rfcs) 저장소): PR 한 개가 곧 한 RFC입니다. 토론은 PR 코멘트에서, 결정은 *팀 회의*에서 합니다. 핵심 제도는 **Final Comment Period(FCP)** 로, 팀이 "이 PR을 merge / close 하려 한다"고 선언하면 10 영업일의 마지막 코멘트 기간이 시작됩니다. 그 안에 *새로운 결정적 반대*가 없으면 자동으로 결론으로 갑니다. 끝나지 않는 토론을 마무리하는 장치입니다.
+- **Python PEP**(Python Enhancement Proposals): 별도 저장소([`python/peps`](https://github.com/python/peps), 렌더링은 [peps.python.org](https://peps.python.org/))에 텍스트 파일로 누적됩니다. 상태 필드가 `Draft / Active / Final / Rejected / Withdrawn / Superseded`로 RFC보다 더 길게 사는 *살아있는 문서* 성격을 갖습니다. *[PEP 1](https://peps.python.org/pep-0001/)* 이 메타 — "PEP를 어떻게 쓰는가"라는 점이 ADR과 똑같습니다.
+- **Kubernetes KEP**(Kubernetes Enhancement Proposals, [`kubernetes/enhancements`](https://github.com/kubernetes/enhancements) 저장소): RFC를 *기능별*로 더 무겁게 만든 형식. *알파 → 베타 → GA*의 출시 단계마다 별도 섹션을 요구합니다. 단순히 *결정*만 적는 게 아니라 *언제 사용자에게 안전하게 노출할 것인가*의 일정을 글에 내장한 것입니다.
+
+세 사례의 공통점은 *마감과 상태를 글이 직접 책임진다*는 점입니다. 사내 RFC도 이 셋 중 하나의 무게에 맞춰 고르면 됩니다. 한 팀의 결정 → Rust 스타일, 언어/플랫폼 전체의 진화 → PEP 스타일, 출시 단계 관리가 필요한 기능 → KEP 스타일.
+
+위 세 곳이 *프로세스가 어떻게 운영되는가*를 보여줬다면, *그 프로세스의 산물인 한 편의 글*이 어떻게 채워지는지는 뒤 [실제로 볼 수 있는 ADR과 RFC](#실제로-볼-수-있는-adr과-rfc) 절에서 다른 프로젝트들의 사례로 모아뒀습니다.
+
+---
+
+## 같은 결정의 RFC와 ADR — 짝지은 예
+
+같은 결정의 두 시점을 짧게 비교합니다.
+
+### RFC 발췌 (결정 전)
+
+```markdown
+# RFC-008: 결제 서비스 데이터 모델 검토
+
+**Status**: Reviewing
+
+## Motivation
+
+신규 결제 서비스를 시작하며 데이터 모델과 저장소를 정해야 합니다.
+저장소 선택은 향후 운영 비용과 확장 경로에 큰 영향을 미칩니다.
+
+## Proposal
+
+PostgreSQL을 주 저장소로 사용하는 방향을 제안합니다. 근거:
+- ACID 트랜잭션 — 결제 도메인의 핵심 요구
+- 팀 내 운영 경험 축적 가능
+- ...
+
+## Alternatives
+
+- **MySQL**: ...
+- **DynamoDB**: ...
+- **CockroachDB**: ...
+
+## Drawbacks
+
+- 수평 확장 한계 — N개월 후 검토 필요
+- 단일 인스턴스 의존도
+
+## Unresolved Questions
+
+1. read replica를 처음부터 둘 것인가, 트래픽 증가 후 둘 것인가?
+2. 백업 RPO/RTO 목표는?
+3. 멀티 리전 요구는 언제 발생할 것인가?
+
+## Timeline
+
+- Draft 공개: 2024-03-01
+- 리뷰 마감: 2024-03-10
+- 결정 목표: 2024-03-14
+```
+
+### 같은 사안의 ADR (결정 후)
+
+위에서 보여드린 *좋은 ADR-012*가 바로 이 RFC의 결과물입니다. RFC의 *Motivation*과 *Alternatives*가 ADR의 *Context*와 *Alternatives Considered*로 정제되었습니다. *Unresolved Questions*는 답이 정해진 채로 ADR의 본문에 반영되거나, 별도 follow-up으로 빠집니다.
+
+두 글은 자연스럽게 *연결*되어야 합니다. ADR의 References에 RFC를 링크하고, RFC가 Accepted 상태로 가면 본문 상단에 ADR 링크를 추가합니다.
+
+---
+
+## 실제로 볼 수 있는 ADR과 RFC
+
+### 공개 ADR
+
+- **[Arachne Framework — Architecture Decision Records](https://github.com/arachne-framework/architecture)** (Clojure 웹 프레임워크).
+  17개의 결정이 번호순으로 쌓여 있고, **ADR-001이 "Use ADRs"** — 본문에서 언급한 "첫 ADR이 메타 ADR"임을 보여줍니다. 가장 단순한 디렉터리 컨벤션(`NNN-슬러그.md`)을 지키면서 Nygard 다섯 섹션을 일관되게 따릅니다. *설정 → 설정 업데이트 → 추가 검증 → 영구 설정*으로 이어지는 ADR 체인은 *한 결정이 다음 결정으로 어떻게 자라는지*를 보여줍니다.
+
+- **[Backstage — Architecture Decisions](https://github.com/backstage/backstage/tree/master/docs/architecture-decisions)** (Spotify의 오픈소스 개발자 포털).
+  디렉터리에 `adr-template.md`를 둬서 *새 ADR을 쓰는 사람이 곧바로 복사*할 수 있게 했습니다. 여기서는 *"Default Export를 피한다"(ADR-003)*, *"React.FC를 피한다"(ADR-006)*, *"Luxon을 날짜 라이브러리로 쓴다"(ADR-010)* 같은 *코드 스타일에 가까운 결정*까지 ADR로 박제합니다. 큰 결정에만 쓰지 않고 *코드베이스 전체에 강제되는 약속*은 PR 리뷰가 아니라 ADR로 남긴다는 운영 방식입니다. 한 팀이 ADR 입자를 어디까지 가져갈지 결정할 때 좋은 비교 대상입니다.
+
+### 공개 RFC
+
+위 [공개 RFC 프로세스](#공개-rfc-프로세스--세-곳의-실제-운영) 절에서 Rust·Python·Kubernetes의 *프로세스*는 이미 봤습니다. 여기서는 *다른 세 커뮤니티*의 개별 RFC 한 편씩을 골라, 본문의 RFC 일곱 섹션이 실제로 어떻게 채워지는지를 봅니다.
+
+- **[Vue RFC #13 — Composition API](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0013-composition-api.md)** (2019-07 active, Vue 3에 도입).
+  *Drawbacks*가 가장 솔직한 RFC 중 하나입니다. "ref 사용의 인지 부담", "사용자 책임이 늘어남" 같은 *자기 제안의 약점*이 본문 안에 적혀 있고, *Comparisons* 섹션에서 React Hooks·Svelte의 같은 문제 해법과 직접 비교합니다. 이 RFC가 공개되자 커뮤니티 반발이 거셌고, 그 결과 *대안 검토*(Class API 등)와 *Adoption Strategy*가 본문에 추가되며 RFC 자체가 여러 번 다시 쓰였습니다. *RFC가 토론을 거치며 자라는 글*임을 가장 강하게 보여줍니다.
+
+- **[Apache Kafka KIP-500 — Replace ZooKeeper with a Self-Managed Metadata Quorum](https://cwiki.apache.org/confluence/display/KAFKA/KIP-500%3A+Replace+ZooKeeper+with+a+Self-Managed+Metadata+Quorum)** (2020-07 Accepted).
+  대형 인프라 결정의 RFC가 어떻게 *후속 결정의 출발점*이 되는지의 볼 수 있습니다. *Motivation*에서 ZooKeeper와 컨트롤러 상태 불일치 등 세 가지 구체적 문제를 짚고, *Proposed Changes*에서 Raft 기반 컨트롤러 쿼럼으로의 전환을 그립니다. *Migration Strategy*에 "bridge release" 단계를 명시한 게 본문의 *재검토 조건을 글 안에 박는다*는 원칙과 같은 결입니다. KIP-500은 그 뒤 *후속 KIP 8건*으로 쪼개져 *한 결정이 결정 체인을 낳는다*는 점을 인프라 도메인에서 보여줍니다.
+
+- **[React RFC #188 — Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md)** (2020-12 공개).
+  본문에서 *자주 빠뜨린다*고 한 *Drawbacks*와 *Unresolved Questions*가 가장 강하게 살아 있는 예시입니다. Motivation은 *Zero-Bundle-Size*, *No Client-Server Waterfalls* 등 여섯 개의 구체적 문제를 나열하고, Drawbacks에는 "*서버 컴포넌트의 제약이 모든 사용자에게 직관적이지 않을 수 있다*"라는 솔직한 라인이 들어갑니다. Unresolved Questions에는 라우팅·번들러 협업·페이지네이션·뮤테이션 등 *RFC 시점에 답이 없던* 항목이 나열되는데, 그 목록이 곧 그 뒤 몇 년의 작업 백로그가 됐습니다. *RFC가 미래의 일을 명시적으로 남기는 장치*라는 것을 잘 보여줍니다.
+
+다섯 글의 공통점은 두 가지입니다. **(1) 한 결정이 그 자체로 끝나지 않고 다른 결정으로 *링크됩니다*.** Arachne의 ADR들은 서로 참조하고, Vue Composition API RFC는 커뮤니티 토론을 거치며 본문이 다시 쓰였고, KIP-500은 후속 KIP 8건으로 쪼개졌습니다. **(2) *자기 결정의 약점*이 본문 안에 솔직하게 적혀 있습니다.** Drawbacks·Unresolved·Alternatives Considered가 *글자만 채우는 섹션*이 아니라 *실제 내용*으로 살아 있습니다. 사내에서 ADR/RFC를 시작할 때 이 다섯 글을 옆에 켜두면, 자기 글이 *어디서 얕은지*가 빨리 보입니다.
+
+---
+
+## 운영에서 자주 망가지는 지점
+
+1. **ADR을 수정한다.**<br />가장 흔한 실수입니다. 결정이 바뀌었다고 옛 ADR을 고치면 *기록의 의미*가 사라집니다. 새 ADR을 쓰고 옛 것을 Superseded로 표시합니다.
+
+2. **ADR을 너무 자주 쓴다.**<br />모든 변경에 ADR을 만들면 진짜 중요한 결정이 묻힙니다. *되돌리기 비용이 큰 결정*에만 씁니다.
+
+3. **ADR을 너무 안 쓴다.**<br />"다들 알겠지"는 6개월 안에 거짓이 됩니다. 큰 결정은 *반드시* 기록합니다.
+
+4. **RFC가 결정 없이 휘발된다.**<br />마감이 없는 RFC는 영영 Draft에 머무릅니다. Timeline 섹션이 *명시적*이어야 합니다.
+
+5. **RFC가 ADR로 이어지지 않는다.**<br />Accepted RFC가 *문서로만 남고* 구현·박제로 이어지지 않으면 그 결정은 *없는 것*입니다.
+
+6. **둘 다 검색되지 않는다.**<br />ADR/RFC 폴더를 만들고 끝나면 안 됩니다. *번호와 인덱스*가 있고, *주제 태그*로 찾을 수 있어야 합니다.
+
+---
+
+## 어디에 어떻게 저장할 것인가
+
+ADR과 RFC 모두 *코드와 같은 저장소*에 두는 것을 권장합니다. 이유는 다음과 같습니다.
+
+- 코드 변경과 함께 결정 변경이 PR로 리뷰됨
+- 코드의 어떤 부분이 어떤 ADR에 의해 만들어졌는지 git blame과 가까운 거리에서 확인 가능
+- 별도 도구의 인증·접근권한 문제 회피
+
+대표적인 구조는 다음 같습니다.
+
+```text
+docs/
+├── adr/
+│   ├── README.md           ← 인덱스
+│   ├── 0001-adr-process.md
+│   ├── 0007-...md          ← Superseded
+│   ├── 0012-postgresql.md
+│   └── 0024-...md          ← supersedes 0007
+└── rfc/
+    ├── README.md
+    ├── 0008-payment-data-model.md
+    └── ...
+```
+
+`adr-tools`나 `log4brains` 같은 도구도 있지만, 가장 중요한 건 *팀이 실제로 쓰는지*입니다. 도구가 너무 무거우면 안 씁니다.
+
+---
+
+## 템플릿 모음
+
+복사해서 시작점으로 쓰는 두 골격을 다시 정리합니다.
+
+### ADR
+
+```markdown
+# ADR-NNN: [결정의 제목]
+
+**Status**: Proposed | Accepted | Deprecated | Superseded by ADR-XXX
+**Date**: YYYY-MM-DD
+**Deciders**: [이름들]
+
+## Context
+[상황·문제·제약]
+
+## Decision
+[결정. 단정적으로.]
+
+## Alternatives Considered
+- **[대안 A]**: ... 왜 선택 안 함.
+- **[대안 B]**: ...
+
+## Consequences
+[긍정/부정 결과. 무엇이 더 쉬워지고 어려워지는가.]
+
+## References
+- [관련 RFC·ADR·외부 자료]
+```
+
+### RFC
+
+```markdown
+# RFC-NNN: [제안의 제목]
+
+**Status**: Draft | Reviewing | FCP | Accepted | Rejected
+**Author**: [이름]
+**Created**: YYYY-MM-DD
+**Reviewers**: [이름들]
+
+## Summary
+[한 문단 요약]
+
+## Motivation
+[왜 이 변경이 필요한가]
+
+## Proposal
+[제안의 상세]
+
+## Alternatives
+[검토하고 채택하지 않은 길]
+
+## Drawbacks
+[자기 제안의 비판]
+
+## Unresolved Questions
+[리뷰어에게 묻는 것]
+
+## Timeline
+- Draft 공개: ...
+- 리뷰 마감: ...
+- 결정 목표: ...
+```
+
+---
+
+## 체크리스트
+
+**ADR**
+- [ ] 결정의 *Context*가 충분히 적혀 있는가
+- [ ] *Decision*이 단정적이고 짧은가
+- [ ] *Alternatives Considered*가 있는가 (그리고 왜 안 골랐는지)
+- [ ] *Consequences*에 *부정적인 것*도 있는가
+- [ ] 한 번 Accepted된 후 *수정되지 않았는가*
+- [ ] 번호와 인덱스로 검색 가능한가
+
+**RFC**
+- [ ] *Motivation*이 한 단락 안에 명확한가
+- [ ] *Drawbacks*에 자기 제안의 약점이 솔직하게 있는가
+- [ ] *Unresolved Questions*에 리뷰어에게 묻는 것이 명시되어 있는가
+- [ ] *Timeline*이 있는가 (특히 마감)
+- [ ] Accepted 후 *ADR로 이어졌는가*
+
+---
+
+## 참고 자료
+
+- Nygard, M. (2011). *Documenting Architecture Decisions.* https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions
+- adr.github.io. *Architectural Decision Records.* https://adr.github.io
+- Rust Project. *RFC process.* https://github.com/rust-lang/rfcs
+- ThoughtWorks. *Lightweight Architecture Decision Records.* https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records
+- Kruchten, P., Capilla, R., & Dueñas, J. C. (2009). *The Decision View's Role in Software Architecture Practice.* IEEE Software.
+
+---
+
+## 다음 편 예고
+
+> [ep.07 - 운영의 언어, 런북과 포스트모템](/tech-writing-guide-ep-07)
+
+다음 편은 운영 문서입니다. 새벽 3시에 호출된 사람을 위한 *런북*, 그리고 실패에서 조직이 배우게 하는 *포스트모템*. 둘 다 감정을 빼고 사실을 남기는 글쓰기입니다. 비난 없는 회고가 어떻게 가능한지도 살펴봅니다.

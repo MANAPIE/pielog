@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.06 ADR과 RFC 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+      --c-card: #FBF8F1;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+        --c-card: #232326;
+      }
+    }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotGrid06" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA06" cx="30%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB06" cx="75%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect fill="var(--c-bg)" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotGrid06)"/>
+  <rect width="1200" height="630" fill="url(#glowA06)"/>
+  <rect width="1200" height="630" fill="url(#glowB06)"/>
+
+  <!-- 배경 -->
+  <rect x="1000" y="400" width="500" height="500" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(-10 1250 650)"/>
+  <circle cx="-80" cy="100" r="380" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
+
+  <!-- 시간선 (가로) -->
+  <line x1="120" y1="320" x2="1080" y2="320" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.6"/>
+  <polygon points="1080,320 1066,313 1066,327" fill="var(--c-muted)" opacity="0.7"/>
+
+  <!-- 시간선 위 점 1: RFC (제안) -->
+  <g transform="translate(320 320)">
+    <!-- 라벨 위 (모자이크) -->
+    <g transform="translate(-32 -116)">
+      <rect x="0" y="0" width="14" height="6" rx="1" fill="var(--c-muted)"/>
+      <rect x="18" y="0" width="8" height="6" rx="1" fill="var(--c-muted)"/>
+      <rect x="30" y="0" width="34" height="6" rx="1" fill="var(--c-muted)"/>
+    </g>
+    <!-- 도장 (점선 원, RFC 풍) -->
+    <circle cx="0" cy="0" r="68" fill="var(--c-accent-3)" fill-opacity="0.12" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="6 4"/>
+    <!-- 도장 내부 모자이크 -->
+    <g transform="translate(-24 -6)">
+      <rect x="0" y="0" width="14" height="12" rx="2" fill="var(--c-accent-3)"/>
+      <rect x="18" y="0" width="10" height="12" rx="2" fill="var(--c-accent-3)"/>
+      <rect x="32" y="0" width="16" height="12" rx="2" fill="var(--c-accent-3)"/>
+    </g>
+    <!-- 시간선 점 -->
+    <circle cx="0" cy="80" r="8" fill="var(--c-accent-3)"/>
+  </g>
+
+  <!-- 시간선 위 점 2: 결정 (가운데) -->
+  <g transform="translate(600 320)">
+    <circle cx="0" cy="0" r="10" fill="var(--c-muted)"/>
+    <circle cx="0" cy="0" r="4" fill="var(--c-bg)"/>
+    <g transform="translate(-26 26)">
+      <rect x="0" y="0" width="12" height="5" rx="1" fill="var(--c-muted)"/>
+      <rect x="15" y="0" width="6" height="5" rx="1" fill="var(--c-muted)"/>
+      <rect x="24" y="0" width="28" height="5" rx="1" fill="var(--c-muted)"/>
+    </g>
+  </g>
+
+  <!-- 시간선 위 점 3: ADR (박제) -->
+  <g transform="translate(880 320)">
+    <g transform="translate(-30 -116)">
+      <rect x="0" y="0" width="12" height="6" rx="1" fill="var(--c-muted)"/>
+      <rect x="16" y="0" width="8" height="6" rx="1" fill="var(--c-muted)"/>
+      <rect x="28" y="0" width="32" height="6" rx="1" fill="var(--c-muted)"/>
+    </g>
+    <!-- 사각 도장 (ADR 풍, 단단한 가두리) -->
+    <rect x="-72" y="-72" width="144" height="144" rx="6" fill="var(--c-accent)" fill-opacity="0.15"
+          stroke="var(--c-accent)" stroke-width="3" transform="rotate(-6)"/>
+    <rect x="-58" y="-58" width="116" height="116" rx="3" fill="none"
+          stroke="var(--c-accent)" stroke-width="1.2" transform="rotate(-6)" opacity="0.65"/>
+    <!-- 도장 내부 모자이크 -->
+    <g transform="rotate(-6) translate(-30 -8)">
+      <rect x="0" y="0" width="16" height="14" rx="2" fill="var(--c-accent)"/>
+      <rect x="20" y="0" width="12" height="14" rx="2" fill="var(--c-accent)"/>
+      <rect x="36" y="0" width="22" height="14" rx="2" fill="var(--c-accent)"/>
+    </g>
+    <!-- 시간선 점 -->
+    <circle cx="0" cy="80" r="8" fill="var(--c-accent)"/>
+  </g>
+
+  <!-- RFC → ADR 연결 점선 -->
+  <path d="M 320 240 Q 600 140 880 250" stroke="var(--c-muted)" stroke-width="1.2" fill="none" stroke-dasharray="2 5" opacity="0.5"/>
+
+  <!-- 디테일: ADR 번호 카드 -->
+  <g transform="translate(180 480) rotate(-7)">
+    <rect x="0" y="0" width="120" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+    <g transform="translate(14 17)">
+      <rect x="0" y="0" width="20" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="24" y="0" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="34" y="0" width="22" height="6" rx="1" fill="var(--c-accent)"/>
+    </g>
+  </g>
+
+  <g transform="translate(990 460) rotate(6)">
+    <rect x="0" y="0" width="120" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+    <g transform="translate(14 17)">
+      <rect x="0" y="0" width="20" height="6" rx="1" fill="var(--c-accent-3)"/>
+      <rect x="24" y="0" width="6" height="6" rx="1" fill="var(--c-accent-3)"/>
+      <rect x="34" y="0" width="22" height="6" rx="1" fill="var(--c-accent-3)"/>
+    </g>
+  </g>
+
+  <!-- 디테일: 작은 체크리스트 (Alternatives 느낌) -->
+  <g transform="translate(100 200) rotate(-4)" opacity="0.7">
+    <rect x="0" y="0" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+    <line x1="14" y1="3" x2="56" y2="3" stroke="var(--c-muted)" stroke-width="1.2"/>
+    <rect x="0" y="14" width="6" height="6" rx="1" fill="var(--c-muted)" opacity="0.4"/>
+    <line x1="14" y1="17" x2="44" y2="17" stroke="var(--c-muted)" stroke-width="1.2" opacity="0.5"/>
+    <rect x="0" y="28" width="6" height="6" rx="1" fill="var(--c-muted)" opacity="0.4"/>
+    <line x1="14" y1="31" x2="50" y2="31" stroke="var(--c-muted)" stroke-width="1.2" opacity="0.5"/>
+  </g>
+
+  <!-- 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">06</text>
+</svg>
