@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" role="img" aria-labelledby="title-tw-03-02">
+  <title id="title-tw-03-02">하우투에서 분기를 다루는 세 가지 방식</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .card { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .label-good { font-size: 11px; font-weight: 700; fill: var(--c-accent); letter-spacing: 0.5px; }
+    .label-bad { font-size: 11px; font-weight: 700; fill: var(--c-accent-3); letter-spacing: 0.5px; }
+    .pattern-title { font-size: 14px; font-weight: 700; }
+    .pattern-desc { font-size: 11px; fill: var(--c-muted); }
+    .node { fill: var(--c-card-bg); stroke: var(--c-accent-2); stroke-width: 1.5; }
+    .node-text { font-size: 10px; }
+    .branch { stroke: var(--c-accent-2); fill: none; stroke-width: 1.5; }
+    .branch-bad { stroke: var(--c-accent-3); fill: none; stroke-width: 1.5; stroke-dasharray: 3 3; }
+  </style>
+
+  <!-- 패턴 1: 초기에 분기 후 합류 -->
+  <g transform="translate(20 30)">
+    <text class="label-good" x="0" y="0">PATTERN 1 · OK</text>
+    <text class="pattern-title" x="0" y="20">초기에 분기, 곧 합류</text>
+    <text class="pattern-desc" x="0" y="38">"OS별 설치"처럼 한 번만 갈라지고</text>
+    <text class="pattern-desc" x="0" y="52">다음 단계부터 같은 길로 합쳐진다.</text>
+
+    <!-- 노드들 -->
+  <g transform="translate(0 30)">
+    <rect class="node" x="0" y="70" width="60" height="28" rx="3"/>
+    <text class="node-text" x="30" y="88" text-anchor="middle">시작</text>
+
+    <rect class="node" x="80" y="50" width="60" height="28" rx="3"/>
+    <text class="node-text" x="110" y="68" text-anchor="middle">Mac</text>
+
+    <rect class="node" x="80" y="90" width="60" height="28" rx="3"/>
+    <text class="node-text" x="110" y="108" text-anchor="middle">Windows</text>
+
+    <rect class="node" x="160" y="70" width="60" height="28" rx="3"/>
+    <text class="node-text" x="190" y="88" text-anchor="middle">합류</text>
+
+    <rect class="node" x="240" y="70" width="60" height="28" rx="3"/>
+    <text class="node-text" x="270" y="88" text-anchor="middle">검증</text>
+
+    <!-- 연결선 -->
+    <path class="branch" d="M 60 84 L 80 64"/>
+    <path class="branch" d="M 60 84 L 80 104"/>
+    <path class="branch" d="M 140 64 L 160 84"/>
+    <path class="branch" d="M 140 104 L 160 84"/>
+    <line class="branch" x1="220" y1="84" x2="240" y2="84"/>
+    </g>
+  </g>
+
+  <!-- 패턴 2: 글을 통째로 분기 -->
+  <g transform="translate(380 30)">
+    <text class="label-good" x="0" y="0">PATTERN 2 · OK</text>
+    <text class="pattern-title" x="0" y="20">아예 글을 둘로 분리</text>
+    <text class="pattern-desc" x="0" y="38">분기가 처음부터 끝까지 갈라지면</text>
+    <text class="pattern-desc" x="0" y="52">아예 두 개의 하우투로 나눈다.</text>
+
+  <g transform="translate(0 30)">
+    <rect class="node" x="0" y="70" width="80" height="28" rx="3"/>
+    <text class="node-text" x="40" y="88" text-anchor="middle">진입 페이지</text>
+
+    <rect class="node" x="120" y="50" width="100" height="28" rx="3" stroke="var(--c-accent)" stroke-width="1.5"/>
+    <text class="node-text" x="170" y="68" text-anchor="middle">Mac 하우투</text>
+
+    <rect class="node" x="120" y="90" width="100" height="28" rx="3" stroke="var(--c-accent)" stroke-width="1.5"/>
+    <text class="node-text" x="170" y="108" text-anchor="middle">Windows 하우투</text>
+
+    <path class="branch" d="M 80 84 L 120 64"/>
+    <path class="branch" d="M 80 84 L 120 104"/>
+    </g>
+  </g>
+
+  <!-- 패턴 3: 단계마다 분기 -->
+  <g transform="translate(20 240)">
+    <text class="label-bad" x="0" y="0">PATTERN 3 · 금지</text>
+    <text class="pattern-title" x="0" y="20">단계마다 분기, 합류, 재분기</text>
+    <text class="pattern-desc" x="0" y="38">매 단계마다 OS·환경·버전을 분기한다.</text>
+    <text class="pattern-desc" x="0" y="52">독자는 매번 어느 경로인지 확인하며 멈춘다.</text>
+
+  <g transform="translate(0 30)">
+    <rect class="node" x="0" y="70" width="50" height="24" rx="3" stroke="var(--c-accent-3)"/>
+    <text class="node-text" x="25" y="86" text-anchor="middle">시작</text>
+
+    <rect class="node" x="70" y="50" width="50" height="24" rx="3" stroke="var(--c-accent-3)"/>
+    <text class="node-text" x="95" y="66" text-anchor="middle">A</text>
+    <rect class="node" x="70" y="90" width="50" height="24" rx="3" stroke="var(--c-accent-3)"/>
+    <text class="node-text" x="95" y="106" text-anchor="middle">B</text>
+
+    <rect class="node" x="140" y="50" width="50" height="24" rx="3" stroke="var(--c-accent-3)"/>
+    <text class="node-text" x="165" y="66" text-anchor="middle">A1</text>
+    <rect class="node" x="140" y="90" width="50" height="24" rx="3" stroke="var(--c-accent-3)"/>
+    <text class="node-text" x="165" y="106" text-anchor="middle">B1</text>
+
+    <rect class="node" x="210" y="40" width="50" height="24" rx="3" stroke="var(--c-accent-3)"/>
+    <text class="node-text" x="235" y="56" text-anchor="middle">A1a</text>
+    <rect class="node" x="210" y="70" width="50" height="24" rx="3" stroke="var(--c-accent-3)"/>
+    <text class="node-text" x="235" y="86" text-anchor="middle">A1b</text>
+    <rect class="node" x="210" y="100" width="50" height="24" rx="3" stroke="var(--c-accent-3)"/>
+    <text class="node-text" x="235" y="116" text-anchor="middle">B1a</text>
+
+    <path class="branch-bad" d="M 50 82 L 70 62"/>
+    <path class="branch-bad" d="M 50 82 L 70 102"/>
+    <path class="branch-bad" d="M 120 62 L 140 62"/>
+    <path class="branch-bad" d="M 120 102 L 140 102"/>
+    <path class="branch-bad" d="M 190 62 L 210 52"/>
+    <path class="branch-bad" d="M 190 62 L 210 82"/>
+    <path class="branch-bad" d="M 190 102 L 210 112"/>
+    </g>
+  </g>
+
+  <!-- 설명 박스 -->
+  <g transform="translate(380 240)">
+    <text class="label-bad" x="0" y="0">왜 금지인가</text>
+    <text class="pattern-desc" x="0" y="20">독자는 자기 위치를 매번 재확인해야 한다.</text>
+    <text class="pattern-desc" x="0" y="36">"이게 내 경로 맞나" 점검 비용이 작업 비용을</text>
+    <text class="pattern-desc" x="0" y="52">넘어선다. 글의 분량은 늘지만 도달은 떨어진다.</text>
+
+    <text class="label-good" x="0" y="90">해결</text>
+    <text class="pattern-desc" x="0" y="110">분기가 N개 단계로 펼쳐지면 → PATTERN 2로 분리.</text>
+    <text class="pattern-desc" x="0" y="126">분기가 한 단계에서만 일어나면 → PATTERN 1로 합류.</text>
+    <text class="pattern-desc" x="0" y="142">분기가 정말 산재해야 한다면 → 그건 하우투가 아니라</text>
+    <text class="pattern-desc" x="0" y="158">레퍼런스에 가까운 글일 수 있다.</text>
+  </g>
+</svg>

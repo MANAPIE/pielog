@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.07 런북과 포스트모템 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+      --c-card: #FBF8F1;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+        --c-card: #232326;
+      }
+    }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotGrid07" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA07" cx="20%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB07" cx="85%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect fill="var(--c-bg)" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotGrid07)"/>
+  <rect width="1200" height="630" fill="url(#glowA07)"/>
+  <rect width="1200" height="630" fill="url(#glowB07)"/>
+
+  <!-- 배경 -->
+  <rect x="-180" y="400" width="500" height="500" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(-12 70 650)"/>
+  <circle cx="1320" cy="-100" r="380" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
+
+  <!-- 메인 메타포 1: 응급 신호 (좌측 - 동심 펄스) -->
+  <g transform="translate(280 280)">
+    <!-- 가장 바깥 펄스 (옅음) -->
+    <circle cx="0" cy="0" r="130" stroke="var(--c-accent-3)" stroke-width="1.5" fill="none" opacity="0.20" stroke-dasharray="5 7"/>
+    <circle cx="0" cy="0" r="100" stroke="var(--c-accent-3)" stroke-width="1.5" fill="none" opacity="0.32"/>
+    <circle cx="0" cy="0" r="72" stroke="var(--c-accent-3)" stroke-width="2" fill="var(--c-accent-3)" fill-opacity="0.10"/>
+    <!-- 중심 신호 점 -->
+    <circle cx="0" cy="0" r="34" fill="var(--c-accent-3)"/>
+    <!-- 느낌표 모양 (긴급) -->
+    <rect x="-3" y="-18" width="6" height="22" rx="2" fill="var(--c-bg)"/>
+    <circle cx="0" cy="12" r="3.5" fill="var(--c-bg)"/>
+  </g>
+
+  <!-- 라벨 (모자이크) -->
+  <g transform="translate(232 444)">
+    <rect x="0" y="0" width="20" height="6" rx="1" fill="var(--c-accent-3)"/>
+    <rect x="24" y="0" width="6" height="6" rx="1" fill="var(--c-accent-3)"/>
+    <rect x="36" y="0" width="28" height="6" rx="1" fill="var(--c-accent-3)"/>
+    <rect x="68" y="0" width="6" height="6" rx="1" fill="var(--c-accent-3)" opacity="0.6"/>
+    <rect x="78" y="0" width="18" height="6" rx="1" fill="var(--c-accent-3)"/>
+  </g>
+
+  <!-- 메인 메타포 2: 타임라인 (우측, 세로 타임라인 + 다섯 점) -->
+  <g transform="translate(800 130)">
+    <!-- 세로 타임라인 -->
+    <line x1="0" y1="0" x2="0" y2="280" stroke="var(--c-muted)" stroke-width="2"/>
+
+    <!-- 점 1: 배포 -->
+    <g transform="translate(0 20)">
+      <circle cx="0" cy="0" r="7" fill="var(--c-accent)"/>
+      <g transform="translate(-42 1)">
+        <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-accent)"/>
+        <rect x="12" y="0" width="4" height="5" rx="1" fill="var(--c-accent)"/>
+        <rect x="18" y="0" width="10" height="5" rx="1" fill="var(--c-accent)"/>
+      </g>
+      <rect x="16" y="-7" width="180" height="14" rx="2" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+      <line x1="22" y1="0" x2="180" y2="0" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.7"/>
+    </g>
+
+    <!-- 점 2: 알람 (빨간) -->
+    <g transform="translate(0 80)">
+      <circle cx="0" cy="0" r="9" fill="var(--c-accent-3)"/>
+      <circle cx="0" cy="0" r="14" fill="var(--c-accent-3)" fill-opacity="0" stroke="var(--c-accent-3)" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.6"/>
+      <g transform="translate(-42 1)">
+        <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-accent-3)"/>
+        <rect x="12" y="0" width="4" height="5" rx="1" fill="var(--c-accent-3)"/>
+        <rect x="18" y="0" width="10" height="5" rx="1" fill="var(--c-accent-3)"/>
+      </g>
+      <rect x="16" y="-7" width="180" height="14" rx="2" fill="var(--c-card)" stroke="var(--c-accent-3)" stroke-width="1"/>
+      <line x1="22" y1="0" x2="160" y2="0" stroke="var(--c-accent-3)" stroke-width="1.5" opacity="0.85"/>
+    </g>
+
+    <!-- 점 3: 진단 -->
+    <g transform="translate(0 140)">
+      <circle cx="0" cy="0" r="7" fill="var(--c-muted)"/>
+      <g transform="translate(-42 1)">
+        <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-muted)"/>
+        <rect x="12" y="0" width="4" height="5" rx="1" fill="var(--c-muted)"/>
+        <rect x="18" y="0" width="10" height="5" rx="1" fill="var(--c-muted)"/>
+      </g>
+      <rect x="16" y="-7" width="180" height="14" rx="2" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+      <line x1="22" y1="0" x2="140" y2="0" stroke="var(--c-muted)" stroke-width="1.5" opacity="0.7"/>
+    </g>
+
+    <!-- 점 4: 완화 (황토) -->
+    <g transform="translate(0 200)">
+      <circle cx="0" cy="0" r="7" fill="var(--c-accent-2)"/>
+      <g transform="translate(-42 1)">
+        <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="12" y="0" width="4" height="5" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="18" y="0" width="10" height="5" rx="1" fill="var(--c-accent-2)"/>
+      </g>
+      <rect x="16" y="-7" width="180" height="14" rx="2" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+      <line x1="22" y1="0" x2="170" y2="0" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.85"/>
+    </g>
+
+    <!-- 점 5: 회복 -->
+    <g transform="translate(0 260)">
+      <circle cx="0" cy="0" r="9" fill="var(--c-accent)"/>
+      <circle cx="0" cy="0" r="13" fill="none" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.6"/>
+      <g transform="translate(-42 1)">
+        <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-accent)"/>
+        <rect x="12" y="0" width="4" height="5" rx="1" fill="var(--c-accent)"/>
+        <rect x="18" y="0" width="10" height="5" rx="1" fill="var(--c-accent)"/>
+      </g>
+      <rect x="16" y="-7" width="180" height="14" rx="2" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+      <line x1="22" y1="0" x2="180" y2="0" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+    </g>
+  </g>
+
+  <!-- 라벨 (모자이크) -->
+  <g transform="translate(840 444)">
+    <rect x="0" y="0" width="26" height="6" rx="1" fill="var(--c-accent)"/>
+    <rect x="30" y="0" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+    <rect x="42" y="0" width="14" height="6" rx="1" fill="var(--c-accent)"/>
+    <rect x="60" y="0" width="6" height="6" rx="1" fill="var(--c-accent)" opacity="0.6"/>
+    <rect x="70" y="0" width="32" height="6" rx="1" fill="var(--c-accent)"/>
+    <rect x="106" y="0" width="14" height="6" rx="1" fill="var(--c-accent)"/>
+  </g>
+
+  <!-- 연결: 응급 신호 → 타임라인 (점선) -->
+  <path d="M 420 280 Q 600 200 770 200" stroke="var(--c-muted)" stroke-width="1.2" fill="none" stroke-dasharray="2 5" opacity="0.4"/>
+
+  <!-- 디테일: 작은 5whys 카드 -->
+  <g transform="translate(120 130) rotate(-6)" opacity="0.85">
+    <rect x="0" y="0" width="140" height="22" rx="3" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+    <g transform="translate(10 9)">
+      <rect x="0" y="0" width="6" height="5" rx="1" fill="var(--c-accent-3)"/>
+      <rect x="9" y="0" width="22" height="5" rx="1" fill="var(--c-accent-3)"/>
+    </g>
+  </g>
+
+  <!-- 디테일: 작은 점 무리 -->
+  <g transform="translate(530 510)" opacity="0.7">
+    <circle cx="0" cy="0" r="3" fill="var(--c-accent-3)"/>
+    <circle cx="14" cy="6" r="2.5" fill="var(--c-accent-3)" opacity="0.7"/>
+    <circle cx="-8" cy="10" r="2" fill="var(--c-accent-3)" opacity="0.85"/>
+  </g>
+
+  <!-- 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">07</text>
+</svg>

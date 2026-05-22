@@ -1,0 +1,371 @@
+---
+title: "매일 쓰는 협업의 글, PR · 커밋 · 온보딩 - 개발자를 위한 기술문서 입문 ep.08"
+description: "의식하지 않으면 형편없이 쓰이지만 의식하면 협업의 비용을 절반으로 줄이는 글들. 좋은 커밋·PR·온보딩 문서를 다룹니다."
+summary: "기술문서라고 하면 큰 글을 떠올리지만, 개발자가 가장 자주 쓰는 글은 커밋 메시지와 PR 설명입니다. 거기에 온보딩 문서가 더해지면, 팀의 일상이 만들어집니다. 이번 편은 좋은 커밋의 골격, 리뷰가 즐거워지는 PR, 그리고 첫 주를 단축시키는 온보딩을 다룹니다."
+date: 2026-05-21
+tags: [series, develop, frontend, backend, infra, devops, ai, commit, pull-request, onboarding, code-review]
+thumbnail: ./cover.svg
+draft: false
+---
+
+![](./cover.svg)
+
+기술문서라고 하면 큰 글을 떠올리기 쉽지만, 개발자가 가장 자주 쓰는 글은 *커밋 메시지*와 *PR 설명*입니다. 매일, 때로는 하루에 여러 번 씁니다.
+
+거기에 *온보딩 문서*가 더해지면, 팀의 일상이 만들어집니다. 새 동료가 들어왔을 때 첫 주를 어떻게 보내느냐가 그 사람의 향후 6개월을 결정합니다.
+
+이번 편은 가장 자주 쓰는 세 가지 글입니다. 의식하지 않으면 형편없이 쓰이지만, 의식하면 협업의 비용을 *절반*으로 줄이는 글들.
+
+---
+
+## 커밋 메시지: 가장 짧은 기술문서
+
+커밋 메시지는 한 줄짜리 글이 될 수도 있고, 수십 줄짜리 글이 될 수도 있습니다. 그러나 모든 커밋이 답해야 하는 것은 같습니다.
+
+- **무엇을** 바꿨는가
+- **왜** 바꿨는가
+
+이 둘 중 *왜*가 더 중요합니다. *무엇*은 diff가 보여주지만, *왜*는 사람만 쓸 수 있기 때문입니다.
+
+### 좋은 커밋 메시지의 구조
+
+널리 받아들여진 형식은 다음 셋으로 나뉩니다.
+
+![좋은 커밋 메시지의 구조 다이어그램. 왼쪽 컬럼은 STRUCTURE. 상단 제목 영역에 "feat(payment): add idempotency key"가 표시되고 그 아래 주석: 제목(50자 이내), type(scope): summary 형식, 동사 원형으로 시작(add/fix/refactor), 끝에 마침표 없음, 첫 글자 소문자. 그 아래 점선으로 blank line 표시. 본문 영역에는 Why: Duplicate POST /charge requests caused double-charging in 0.3% of retry scenarios (incident #1247). What: Accept Idempotency-Key header... 본문 주석: (한 줄 72자), 왜(Why) — 변경이 필요한 이유, 무엇(What) — 어떻게 푸는가, 대안 — 왜 다른 방법은 안 했는지. 다시 점선 빈 줄. 푸터 영역에는 Refs: #1247, Co-authored-by:... 오른쪽 컬럼은 BAD vs GOOD 비교. BAD 카드(빨간 테두리): "fix bug", "update", "WIP", ".", "final final v2", "최종 수정" 같은 무의미한 메시지들. GOOD 카드(파란 테두리): "refactor(payment): extract retry policy into separate module" 제목과 함께 Why: Retry logic was duplicated in 3 services. Centralizing enables consistent backoff. What: New: RetryPolicy class, Tests added for backoff, No behavior change. Refs: ADR-024.](./tw-08-01-commit-anatomy.svg)
+
+세 부분을 각각 짚습니다.
+
+#### 제목 (50자 이내)
+
+`type(scope): summary` 형식이 가장 널리 쓰입니다. **Conventional Commits(컨벤셔널 커밋)** 라고 부르는 표준이 있고, 자동 changelog 생성과 호환됩니다.
+
+```text
+feat(payment): add idempotency key support
+fix(auth): handle expired refresh token correctly
+refactor(api): extract pagination helper
+docs(readme): update install instructions
+chore(deps): bump express to 4.18
+```
+
+`type`은 `feat`, `fix`, `refactor`, `docs`, `test`, `chore`, `perf` 등이 많이 쓰입니다. `scope`은 변경이 일어난 모듈/도메인. *팀의 합의*에 따라 자유롭게 사용합니다.
+
+제목 작성의 다섯 가지 규칙:
+
+- **동사 원형으로 시작**: `add`, `fix`, `refactor` (과거형 `added`, `fixed`보다 권장)
+- **첫 글자 소문자**: `add idempotency key` (Add 아님)
+- **끝에 마침표 없음**
+- **50자 이내** (GitHub의 줄임 표시 기준)
+- **무엇을 했는지, 명사가 아니라 행동으로** ("payment fix" 아니라 "fix payment bug")
+
+#### 본문 (선택, 한 줄 72자)
+
+제목과 본문 사이에 *빈 줄*이 필요합니다 (도구가 제목과 본문을 가르는 신호).
+
+본문에서 가장 중요한 건 **Why**입니다. *무엇을 했는지*는 diff에 있습니다. *왜* 그래야 했는지는 미래의 독자가 알 수 없습니다.
+
+```text
+Why:
+Duplicate POST /charge requests caused double-charging
+in 0.3% of retry scenarios (see incident #1247).
+Client retries on network errors are common.
+
+What:
+Accept Idempotency-Key header on POST /charge.
+Same key within 24h returns the cached result.
+Key TTL: 24 hours in Redis.
+
+Alternatives:
+Considered DB-based uniqueness constraint, but
+that requires an extra round-trip on every request.
+```
+
+`Why` / `What` / `Alternatives` 같은 키워드를 쓰는 건 권장사항일 뿐입니다.
+
+#### 푸터 (선택)
+
+이슈 번호, co-author, breaking change 등을 적습니다.
+
+팀 컨벤션에 따라 이슈 번호는 제목에 적기도 합니다. Bitbucket에서는 이슈 번호를 통해 Jira와 연결시켜줍니다.
+
+```text
+Refs: #1247
+Co-authored-by: 김OO <kim@example.com>
+BREAKING CHANGE: POST /charge now requires Idempotency-Key header
+```
+
+`BREAKING CHANGE:` 라벨은 semantic versioning과 자동 changelog에서 의미가 있습니다.
+
+#### Conventional Commits에서 출발하는 자동화 체인
+
+Conventional Commits를 *형식*만 따르는 데서 멈추는 건 시간 낭비입니다. *형식이 자동화의 기초*가 됩니다. 한 커밋이 발행되면 다음이 자동으로 따라옵니다.
+
+![커밋에서 출발하는 자동화 체인 다이어그램. 왼쪽에서 오른쪽으로 다섯 단계가 화살표로 이어진다. 1단계 COMMIT: 개발자가 git commit -m "feat(payment): add idempotency key" 작성. 2단계 commitlint(pre-commit hook): 커밋이 Conventional Commits 형식을 따르는지 검사. 어긋나면 거부. 3단계 release(예: semantic-release, release-please): main으로 머지되면 커밋 타입을 분석 — feat이면 minor bump, fix면 patch bump, BREAKING CHANGE이면 major bump. 4단계 CHANGELOG: 같은 도구가 CHANGELOG.md를 자동 갱신. type별로 섹션이 나뉘고 PR 번호·기여자가 따라붙음. 5단계 PUBLISH: git tag와 GitHub Release가 생성되고, npm publish 또는 docker push가 트리거. 다이어그램 하단 노트: 한 커밋의 type 한 글자가 다섯 단계의 결과를 바꾼다. 그래서 컨벤션을 강제하는 게 사소해 보여도 중요하다.](./tw-08-03-commit-automation-chain.svg)
+
+각 단계의 도구를 짧게 설명하면:
+
+- **commitlint** (`@commitlint/cli` + `husky` 또는 `lefthook`): pre-commit hook에서 커밋 메시지를 검사. `npx commitlint --edit $1` 한 줄로 형식 어긋난 커밋을 *애초에 만들 수 없게* 막습니다.
+- **semantic-release** / **release-please** / **changesets**: main으로 머지된 커밋의 타입을 모아 *자동으로* 버전을 올립니다. 사람이 *다음 버전이 0.5.0인지 0.4.3인지* 결정하지 않습니다 — 커밋이 결정합니다.
+- **자동 CHANGELOG**: 같은 도구가 type별로 섹션을 나눈 CHANGELOG.md를 생성합니다. `### Features` 아래 `feat`, `### Bug Fixes` 아래 `fix`. 사람이 받아쓸 필요가 없습니다.
+- **git tag + GitHub Release + 배포**: 새 버전이 결정되면 그대로 태그가 박히고 Release 노트가 발행되며, 후속 워크플로(npm publish, Docker push, Helm chart 업로드)가 자동으로 돕니다.
+
+이 체인이 한 번 걸리면 *커밋 메시지를 잘 쓰는 일*이 단순한 매너에서 *배포의 정확성*으로 의미가 바뀝니다. 같은 이유로 *체인의 가장 약한 고리*는 사람이고, 그게 commitlint가 강제력이 있어야 하는 이유입니다.
+
+### 커밋 메시지가 자주 망가지는 지점
+
+1. **`fix`, `update`, `WIP` 같은 한 단어**<br />*내용이 없는 커밋 메시지*는 git blame을 무용지물로 만듭니다.
+2. **제목이 너무 길거나 두 가지를 묶는다.**<br />"add X and fix Y"는 *두 커밋으로 분리*해야 할 신호입니다.
+3. **본문이 *무엇*만 있고 *왜*가 없다.**<br />"Added Idempotency-Key header" 같은 본문은 diff와 동어반복입니다.
+4. **작업 도중의 흔적이 그대로 남는다.**<br />`WIP`, `fix typo`, `try again` 같은 커밋이 다수 머지되면 히스토리가 *읽을 수 없는* 상태가 됩니다. 머지 전 `git rebase -i`로 정리하는 습관을 권장.
+5. **한국어와 영어가 섞인다.**<br />한 저장소 안에서는 *언어 일관성*을 잡습니다.
+
+---
+
+## PR: 리뷰가 즐거워지는 글쓰기
+
+PR(Pull Request)은 코드 변경과 *그것을 설명하는 글*의 패키지입니다. 리뷰어의 첫 번째 행동은 코드를 보는 게 아닙니다. *PR 설명을 읽는 것*입니다.
+
+PR 설명이 좋으면 리뷰어는 *어디를 어떻게 봐야 할지*를 알고 들어갑니다. PR 설명이 비어 있으면 리뷰어는 *코드만 보고 추측*합니다. 추측은 자주 틀립니다.
+
+### PR의 골격
+
+좋은 PR 설명은 다음 흐름을 따릅니다.
+
+![PR 설명의 골격 다이어그램. PR 본문에 들어가야 할 다섯 영역을 위에서 아래로 나열한다. TITLE — [type] 한 줄로 무엇을 하는 PR인지, 영문/한글 일관성 유지. WHY · 이 PR이 필요한 이유 — 어떤 문제/요구가 있었나, 관련 이슈·ADR·인시던트 링크. WHAT · 무엇을 했는가 — 변경의 핵심을 문장으로, 파일 목록은 git이 보여준다. HOW TO TEST · 리뷰어 시점의 검증 — 로컬에서 어떻게 돌려보는지, 자동 테스트 외의 수동 검증 절차. SCREENSHOTS · UI 변경이면 필수.](./tw-08-02-pr-skeleton.svg)
+
+다섯 가지가 필요합니다.
+
+**Title**: 커밋의 제목과 같은 규칙을 적습니다. PR 하나에 커밋이 여럿일 때, PR 제목이 *대표 한 줄*입니다.
+
+**Why**: 이 변경이 *왜 필요한가* 적습니다. 이슈 번호, 관련 ADR, 디자인 문서 링크. 한 단락이면 충분합니다. 큰 변경이면 더 길어집니다.
+
+**What**: 변경의 *핵심*을 문장으로 적습니다. 파일 목록과 diff는 git이 보여주므로 적지 않습니다. 대신 *어떤 결정을 했는지, 왜 그렇게 풀었는지*를 적습니다.
+
+**How to Test**: 가장 자주 빠뜨리지만 가장 가치 있는 항목니다. 리뷰어는 *어떻게 검증할지*를 모르면 *심증으로만* 승인합니다. 작성자가 *수동 검증 절차*를 명시하면 리뷰는 깊어집니다.
+
+````markdown
+## How to Test
+
+1. PR 브랜치 체크아웃
+2. `make setup && make run`
+3. 다음 curl 실행:
+   ```
+   curl -X POST http://localhost:3000/charge \
+     -H "Idempotency-Key: test-1" \
+     -d '{"amount": 100}'
+   ```
+4. 같은 명령을 한 번 더 실행
+5. 두 번째 응답이 첫 번째와 동일하고, DB에 새 행이 추가되지 않았는지 확인
+````
+
+**Screenshots**: UI 변경이면 *필수*입니다. before/after 둘 다.
+
+### 좋은 PR과 나쁜 PR
+
+**나쁜 PR**
+
+```markdown
+title: 결제 수정
+
+설명:
+결제 관련 버그를 수정했습니다.
+리뷰 부탁드립니다.
+```
+
+리뷰어는 *무엇이 버그였는지*, *어떻게 고쳤는지*, *어디를 봐야 하는지*를 다 짐작해야 합니다.
+
+**좋은 PR**
+
+```markdown
+title: fix(payment): prevent double-charge on retry
+
+## Why
+인시던트 #1247에서, 클라이언트의 네트워크 재시도가 같은 결제를
+2번 발생시키는 케이스가 발견됨. 약 0.3%의 결제 트래픽에 영향.
+
+## What
+- POST /charge에 Idempotency-Key 헤더 지원 추가
+- 24시간 TTL의 Redis 캐시 사용
+- 같은 키로 들어온 두 번째 요청은 첫 결과를 그대로 반환
+
+ADR-031을 참고했습니다.
+
+## How to Test
+1. PR 브랜치 체크아웃 후 `make run`
+2. 같은 Idempotency-Key로 두 번 POST 요청
+3. 두 응답이 동일하고 DB에 결제 행이 1개만 생긴 것 확인
+
+## Screenshots
+N/A — 백엔드 변경만
+
+## Risks
+- Redis 다운 시 idempotency가 일시적으로 무효화됨
+  → 모니터링 알람 추가 (별도 PR로 분리)
+```
+
+리뷰어는 *어디를 봐야 하는지*, *무엇을 검증해야 하는지*를 알고 들어갑니다.
+
+### PR이 자주 망가지는 지점
+
+1. **너무 크다.**<br />1000줄짜리 PR은 *제대로 리뷰되지 않습니다*. 사람의 주의력이 그만큼 안 됩니다. 가능하면 *목적별*로 분리합니다.
+2. **설명이 비어 있거나 한 줄이다.**<br />작성자에게 5분, 리뷰어에게 30분을 절약시키는 거래입니다. 본인이 *지금* 알고 있는 맥락을 5분만 적어둡니다.
+3. **머지 후 본문을 안 손본다.**<br />리뷰 중 결정 사항이 변경되면 *PR 설명도 갱신*해야 합니다. 머지 후엔 그 글이 *영구 기록*이 됩니다.
+4. **자동 테스트만 있고 수동 검증이 없다.**<br />UI 변경, 외부 API 호출, 운영 환경 의존 같은 건 자동 테스트로 다 잡히지 않습니다.
+5. **머지 시점에 커밋이 정리되지 않는다.**<br />`Squash and merge`, `Rebase and merge` 중 팀 컨벤션을 정해서 일관되게 적용합니다.
+
+### PR 템플릿
+
+저장소 루트에 `.github/PULL_REQUEST_TEMPLATE.md`로 두면 새 PR을 열 때 자동으로 채워집니다.
+
+```markdown
+## Why
+<!-- 이 변경이 필요한 이유. 관련 이슈/ADR 링크. -->
+
+## What
+<!-- 변경의 핵심. 어떤 결정을 했고 왜 그렇게 풀었는지. -->
+
+## How to Test
+<!-- 리뷰어가 로컬에서 검증할 수 있는 절차. -->
+
+## Screenshots
+<!-- UI 변경이면 before/after. -->
+
+## Risks
+<!-- 알려진 위험·롤백 방법·후속 작업. -->
+
+## Checklist
+- [ ] 테스트 추가/갱신
+- [ ] 문서 갱신 (README, 관련 가이드)
+- [ ] BREAKING CHANGE라면 CHANGELOG 갱신
+```
+
+#### PR 주변의 GitHub 자동화
+
+PR 템플릿 한 장만 두는 데서 멈추지 않으면 다음 도구들이 *리뷰 비용*을 한 번 더 깎아줍니다.
+
+- **`.github/CODEOWNERS`**: 디렉터리·파일 패턴별로 리뷰 책임자를 매핑합니다. `payment/ @payment-team`, `infra/ @platform-team` 같은 한 줄. 작성자가 *누구에게 PR을 보내야 하나*를 결정하지 않습니다 — GitHub이 결정합니다.
+- **자동 라벨링**: `actions/labeler`(파일 경로 기반) 또는 `release-drafter`(릴리즈 노트 초안 생성)로 PR에 라벨이 자동으로 붙습니다. *어느 영역의 변경인지*가 한눈에 보입니다.
+- **PR 사이즈 경고**: `actions/size-label` 같은 액션이 `size/XS`~`size/XXL` 라벨을 붙여 *1000줄 PR*에 visual 경고를 줍니다. 분리해야 할 PR을 *코드 리뷰 전*에 알아챕니다.
+- **머지 큐**: GitHub의 *merge queue* 기능을 켜면 동시 머지 충돌이 줄어들고, 머지 직전에 한 번 더 CI가 돕니다. 작성자가 "rebase 해주세요" 댓글을 받지 않게 됩니다.
+- **드래프트 PR**: 작은 디테일이지만 *Draft* 상태로 PR을 열어두면 CI는 돌지만 리뷰어를 자동 호출하지 않습니다. *너무 일찍 리뷰가 요청되는* 흔한 마찰을 줄여줍니다.
+
+이 도구들의 공통점은 *작성자·리뷰어·메인테이너 사이의 마찰*을 *글이 아닌 자동화*로 푼다는 것입니다. 매일 쓰는 PR 한 장의 비용이 그만큼 줄어듭니다.
+
+---
+
+## 온보딩 문서: 첫 주를 위한 글
+
+새 동료의 첫 주는 *팀의 거울*입니다. 잘 정리되어 있으면 새 사람은 첫 주에 첫 PR을 머지합니다. 정리가 안 되어 있으면 첫 PR까지 한 달이 걸립니다. 그 차이의 대부분이 *문서*에서 옵니다.
+
+### 첫 주에 필요한 글의 종류
+
+- **환영 페이지**: 팀, 미션, 주요 채널, 정기 회의. 가벼운 인사 톤.
+- **환경 설치 가이드**: *한 줄에 끝나는* 것이 이상입니다. `make setup` 또는 `./bootstrap.sh`. 거기에 새 사람이 *반드시* 막힐 곳들의 트러블슈팅.
+- **시스템 개요**: [ep.05](/tech-writing-guide-ep-05)에서 다룬 *익스플레네이션*에 해당. 큰 그림 1장, 주요 서비스 5~10개. 더 깊이 들어가려면 *링크*로.
+- **ADR 인덱스**: 큰 결정의 모음. 새 사람은 모든 ADR을 읽지 않습니다. *지금 받은 팀의 핵심 결정 3~5개*만 권장합니다.
+- **용어집**: 팀 내부에서 쓰는 약어, 도메인 용어, 코드네임. *외부에서 들으면 모를* 것만 적습니다.
+- **First Issue 가이드**: "이 라벨이 붙은 이슈는 새 사람이 시작하기 좋다"는 표식. GitHub의 `good first issue` 라벨이 표준.
+
+### 좋은 온보딩의 첫 주 로드맵
+
+![온보딩 첫 주 로드맵 다이어그램. Day별로 가능해져야 하는 일을 카드 한 장에 정리한다. Day 1 계정·접근 권한 — GitHub, Slack, 메일, 1Password, VPN, 첫 commit(이름 한 줄 추가 PR). Day 2 개발 환경 — make setup 한 줄로 끝나야 함, 테스트 한 번 실행 빨간 줄 없이 통과. Day 3-4 시스템 이해 — 아키텍처 문서 + 주요 ADR 3~5개 읽기, 핵심 흐름 1개 직접 따라가기(로그, 트레이스). Day 5 실제 변경 — good-first-issue 라벨 이슈 1건 시작, PR 올리고 리뷰 받기, 머지까지. 하단 노트: 막힘이 발생한 곳이 온보딩 문서의 다음 갱신 지점. 새 사람이 손보고 PR.](./tw-08-04-onboarding-roadmap.svg)
+
+다섯 일자에 *무엇이 가능해져야 하는지*가 명시되어 있어야 합니다.
+
+- **Day 1**: 계정 · 접근 권한 · 첫 commit (자기 이름 한 줄 추가 PR이라도)
+- **Day 2**: 개발 환경 · 테스트 한 번 통과
+- **Day 3-4**: 시스템 이해 · ADR 3~5개 · 핵심 흐름 1개 따라가보기
+- **Day 5**: good-first-issue 1건 시작 · PR · 머지
+
+이 로드맵은 *팀 사정에 맞게* 변형합니다. 데이터팀이면 *첫 쿼리*, 디자인엔지니어 팀이면 *컴포넌트 1개 PR* 같은 식으로.
+
+#### 짧은 시나리오 — Day 3-4의 *핵심 흐름 1개* 따라가기
+
+추상적으로 "시스템을 이해한다"는 말은 새 사람을 멈춰 세웁니다. 좋은 온보딩 로드맵은 *따라갈 흐름 하나*를 구체적으로 지정합니다. PayLite 팀이 새 동료 *유진*에게 부여한 Day 3-4의 과제는 다음 한 줄입니다.
+
+> **사용자 로그인 한 번의 요청이 어떻게 흐르는지 처음부터 끝까지 추적해보기.**
+
+유진은 다음 경로를 따라갑니다.
+
+1. **요청의 시작**: 자기 노트북에서 로그인 폼을 띄우고 개발자 도구의 Network 탭에서 `POST /api/auth/login` 요청을 캡처. *진짜 흐름을 자기 손으로 만든 데서 출발*.
+2. **엣지 통과**: 사내 *OpenTelemetry*로 들어간 trace ID를 복사해 *Jaeger* UI에 붙여 넣습니다. nginx → API gateway → auth service까지의 스팬이 한 화면에 펼쳐집니다. 각 스팬의 시간이 *어디서 가장 오래 걸리는가*를 봅니다.
+3. **auth service 내부**: 같은 trace ID로 Datadog 로그 검색. 토큰 검증·DB 조회·세션 발급의 세 로그 라인을 찾아봅니다.
+4. **DB까지**: `SELECT pg_stat_activity` 또는 *pgBadger* 같은 도구로 자기 trace 시각에 DB가 어떤 쿼리를 받았는지 확인합니다.
+5. **응답이 돌아오는 길**: 다시 trace를 역으로 따라 클라이언트까지 200 OK 응답이 어떻게 돌아왔는지 확인합니다.
+
+이 한 흐름을 직접 따라가면 *시스템 다이어그램으로만 본 박스와 화살표*가 *진짜 존재하는 서비스와 로그*로 바뀝니다. Day 5의 첫 PR이 들어가는 *진짜 자리*를 유진은 이미 알게 됩니다. 그리고 막힌 곳 — 예를 들면 *Jaeger에 staging 환경 trace가 안 보임* — 이 발견되면, 그게 유진의 첫 PR이 됩니다. 온보딩 문서의 "trace 검색은 production 기본, staging은 X 설정 필요" 한 줄이 그렇게 채워집니다.
+
+핵심은 *흐름을 한 개로 좁힌다*는 것입니다. 모든 서비스를 다 이해할 필요는 없습니다. *진짜 사용자 행동 한 번*을 끝까지 따라가는 경험이, 다음 100번의 디버깅의 출발점이 됩니다.
+
+### 온보딩 문서가 자주 망가지는 지점
+
+1. **한 사람이 한 번 쓰고 끝**<br />6개월 뒤엔 도구가 바뀌고 절차가 바뀝니다. **새 사람이 막힌 곳을 새 사람이 고치는 PR을 올리는 것**을 *온보딩의 마지막 과제*로 두면 문서는 자연 갱신됩니다.
+2. **외부 의존 도구의 설치 절차가 없다.**<br />"Docker를 설치한다"는 한 줄로 끝나지 않습니다. *어떤 버전*, *어디서*, *Mac/Linux 차이*. 또는 *왜 우리가 그 도구를 쓰는지*까지.
+3. **"선임에게 물어보세요"가 곳곳에.**<br />이건 *온보딩 문서가 비어 있다는 신호*입니다. 동료에게 같은 질문을 두 번 하기 전에 *답을 문서로 옮깁니다*.
+4. **너무 많다.**<br />첫 주에 50페이지의 문서를 받으면 *아무도 안 읽습니다*. *진입* 문서와 *심화* 문서를 분리합니다. 진입은 5페이지 안에.
+5. **권한이 없는 링크가 섞여 있다.**<br />"이 노션 페이지 참고"인데 새 사람이 권한이 없으면 *온보딩의 첫 좌절*이 됩니다.
+
+### 온보딩 문서의 미니멈 세트
+
+```text
+docs/onboarding/
+├── README.md              ← 환영 + 첫 주 로드맵
+├── setup.md               ← 개발 환경 설치
+├── system-overview.md     ← 큰 그림
+├── glossary.md            ← 약어와 도메인 용어
+└── first-week-checklist.md ← Day 1~5의 체크리스트
+```
+
+복잡한 조직이라면 `team/`, `process/`, `culture/` 같은 하위 폴더가 더 생기지만, 처음엔 위 다섯 파일이면 충분합니다.
+
+---
+
+## 매일 쓰는 글의 공통 원칙
+
+세 문서를 관통하는 원칙 셋을 정리합니다.
+
+1. **미래의 독자에게 5분의 친절을 베푼다.**<br />지금 5분을 쓰면, 미래의 누군가가 30분을 안 씁니다. 작성자에게 가장 짧은 협업, 독자에게 가장 긴 협업의 비용 차이.
+2. ** *왜*가 *무엇*보다 가치 있다.**<br />diff·코드·이름은 컴퓨터도 보여주지만, *왜*는 사람만 쓸 수 있습니다. 매일 쓰는 글은 *왜의 보존*에 책임이 있습니다.
+3. **문서는 PR로 갱신된다.**<br />새 사람이 막혔다면 그건 문서를 갱신할 자리입니다. 인시던트가 터졌다면 그건 런북을 보강할 자리입니다. 매일 쓰는 글일수록 매일 갱신됩니다.
+
+---
+
+## 체크리스트
+
+**커밋 메시지**
+- [ ] 제목이 *동사 원형*으로 시작하고 50자 이내인가
+- [ ] *왜*가 본문에 있는가 (사소한 커밋이 아니라면)
+- [ ] `WIP`, `fix`, `update` 같은 *의미 없는 한 단어* 메시지가 아닌가
+- [ ] 한 커밋이 *하나의 변경*에 집중하는가
+- [ ] 팀의 컨벤션 (Conventional Commits 등)을 따르는가
+
+**PR**
+- [ ] 설명에 *Why·What·How to Test*가 있는가
+- [ ] UI 변경이면 *스크린샷*이 있는가
+- [ ] *너무 크지* 않은가 (1000줄 넘으면 분리 검토)
+- [ ] 리뷰 중 변경된 결정이 *PR 설명에도 반영*되었는가
+- [ ] PR 템플릿이 저장소에 있는가
+
+**온보딩**
+- [ ] 첫 주 *로드맵*이 있는가
+- [ ] *Day 1의 첫 commit*이 가능한 작은 과제가 준비되어 있는가
+- [ ] 환경 설치가 *한 줄 명령*에 가까운가
+- [ ] *good first issue* 라벨이 운영되고 있는가
+- [ ] 새 사람의 *막힘이 문서 갱신 PR로 이어지는가*
+
+---
+
+## 참고 자료
+
+- Conventional Commits. *Conventional Commits Specification.* https://www.conventionalcommits.org
+- Tpope. *A Note About Git Commit Messages.* https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+- Chris Beams. *How to Write a Git Commit Message.* https://cbea.ms/git-commit/
+- GitHub. *About pull requests.* https://docs.github.com/en/pull-requests
+- The Pragmatic Engineer. *Onboarding software engineers.* https://newsletter.pragmaticengineer.com/
+
+---
+
+## 다음 편 예고
+
+> [ep.09 - 본 시리즈 바깥의 인접 문서들 (부록)](/tech-writing-guide-ep-09)
+
+마지막 편은 부록입니다. 본 시리즈가 다룬 *내부 개발 협업의 글* 바깥에 자리한 세 문서를 가볍게 살펴봅니다. 비개발자가 읽는 사용자 매뉴얼, 구현 직전의 디자인 문서, 그리고 공개와 비공개 사이의 보안 문서. 각자의 위치를 짚어두며 시리즈를 마칩니다.

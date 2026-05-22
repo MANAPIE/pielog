@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.03 하우투 가이드 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+      }
+    }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotGrid03" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA03" cx="25%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB03" cx="80%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect fill="var(--c-bg)" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotGrid03)"/>
+  <rect width="1200" height="630" fill="url(#glowA03)"/>
+  <rect width="1200" height="630" fill="url(#glowB03)"/>
+
+  <!-- 배경 -->
+  <rect x="-200" y="350" width="500" height="500" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(11 50 600)"/>
+  <circle cx="1280" cy="-80" r="380" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
+
+  <!-- 메인 메타포: 결정 트리 (분기와 합류) -->
+  <g transform="translate(120 80)">
+    <!-- 시작 노드 -->
+    <g transform="translate(0 200) rotate(-3)">
+      <rect x="-50" y="-32" width="100" height="64" rx="8" fill="var(--c-accent)" fill-opacity="0.20" stroke="var(--c-accent)" stroke-width="2"/>
+      <g transform="translate(-16 -3)">
+        <rect x="0" y="0" width="10" height="6" rx="1" fill="var(--c-accent)"/>
+        <rect x="12" y="0" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+        <rect x="20" y="0" width="12" height="6" rx="1" fill="var(--c-accent)"/>
+      </g>
+    </g>
+
+    <!-- 분기 화살표 → 위 -->
+    <path d="M 50 192 Q 150 140 230 110" stroke="var(--c-muted)" stroke-width="2" fill="none"/>
+    <polygon points="230,110 220,105 222,116" fill="var(--c-muted)" transform="rotate(-22 226 110)"/>
+    <!-- 분기 화살표 → 아래 -->
+    <path d="M 50 232 Q 150 290 230 320" stroke="var(--c-muted)" stroke-width="2" fill="none"/>
+    <polygon points="230,320 220,316 222,325" fill="var(--c-muted)" transform="rotate(20 226 320)"/>
+
+    <!-- 위 가지: 노드 2A -->
+    <g transform="translate(280 95) rotate(4)">
+      <rect x="-46" y="-30" width="92" height="60" rx="8" fill="var(--c-accent-2)" fill-opacity="0.20" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <g transform="translate(-16 -3)">
+        <rect x="0" y="0" width="8" height="6" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="10" y="0" width="10" height="6" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="22" y="0" width="10" height="6" rx="1" fill="var(--c-accent-2)"/>
+      </g>
+    </g>
+
+    <!-- 아래 가지: 노드 2B -->
+    <g transform="translate(280 340) rotate(-5)">
+      <rect x="-46" y="-30" width="92" height="60" rx="8" fill="var(--c-accent-2)" fill-opacity="0.20" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <g transform="translate(-16 -3)">
+        <rect x="0" y="0" width="6" height="6" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="8" y="0" width="12" height="6" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="22" y="0" width="10" height="6" rx="1" fill="var(--c-accent-2)"/>
+      </g>
+    </g>
+
+    <!-- 합류 → 노드 3 -->
+    <path d="M 330 100 Q 460 200 540 215" stroke="var(--c-muted)" stroke-width="2" fill="none" stroke-dasharray="0"/>
+    <path d="M 330 335 Q 460 250 540 235" stroke="var(--c-muted)" stroke-width="2" fill="none" stroke-dasharray="0"/>
+    <polygon points="540,220 528,214 530,228" fill="var(--c-muted)"/>
+
+    <!-- 노드 3 (큰 검증) -->
+    <g transform="translate(610 222) rotate(2)">
+      <rect x="-52" y="-34" width="104" height="68" rx="8" fill="var(--c-accent)" fill-opacity="0.22" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <g transform="translate(-18 -3)">
+        <rect x="0" y="0" width="12" height="6" rx="1" fill="var(--c-accent)"/>
+        <rect x="14" y="0" width="8" height="6" rx="1" fill="var(--c-accent)"/>
+        <rect x="24" y="0" width="12" height="6" rx="1" fill="var(--c-accent)"/>
+      </g>
+    </g>
+
+    <!-- → 검증 체크 -->
+    <path d="M 666 226 L 740 235" stroke="var(--c-muted)" stroke-width="2" fill="none"/>
+    <polygon points="740,235 728,229 730,242" fill="var(--c-muted)"/>
+
+    <!-- 검증 (체크) -->
+    <g transform="translate(800 235) rotate(-4)">
+      <circle cx="0" cy="0" r="34" fill="var(--c-accent-3)" fill-opacity="0.18" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+      <polyline points="-14,2 -3,12 16,-10" stroke="var(--c-accent-3)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- 디테일: 분기 라벨 (yes/no 점) -->
+  <g transform="translate(280 200)">
+    <circle cx="0" cy="0" r="4" fill="var(--c-accent-2)"/>
+    <circle cx="14" cy="6" r="3" fill="var(--c-accent-2)" opacity="0.7"/>
+  </g>
+
+  <!-- 디테일: 작은 가지 그룹 (배경) -->
+  <g transform="translate(180 480) rotate(-10)" opacity="0.55">
+    <line x1="0" y1="0" x2="60" y2="-20" stroke="var(--c-line)" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="60" y2="20" stroke="var(--c-line)" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="4" fill="var(--c-muted)"/>
+    <circle cx="60" cy="-20" r="3" fill="var(--c-muted)"/>
+    <circle cx="60" cy="20" r="3" fill="var(--c-muted)"/>
+  </g>
+
+  <!-- 디테일: 체크리스트 라인 -->
+  <g transform="translate(950 100) rotate(6)" opacity="0.75">
+    <rect x="0" y="0" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+    <line x1="14" y1="3" x2="56" y2="3" stroke="var(--c-muted)" stroke-width="1.5"/>
+    <rect x="0" y="14" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+    <line x1="14" y1="17" x2="50" y2="17" stroke="var(--c-muted)" stroke-width="1.5"/>
+    <rect x="0" y="28" width="6" height="6" rx="1" stroke="var(--c-muted)" stroke-width="1" fill="none"/>
+    <line x1="14" y1="31" x2="44" y2="31" stroke="var(--c-muted)" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">03</text>
+</svg>

@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" role="img" aria-labelledby="title-tw-05-02">
+  <title id="title-tw-05-02">다이어그램 종류별 쓰임</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .card {
+      fill: var(--c-card-bg);
+      stroke: var(--c-line);
+      stroke-width: 1;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .card-q {
+      font-size: 11px;
+      fill: var(--c-muted);
+      font-style: italic;
+    }
+
+    .card-desc {
+      font-size: 11px;
+      fill: var(--c-muted);
+    }
+
+    .preview {
+      stroke: var(--c-accent);
+      fill: none;
+      stroke-width: 1.2;
+    }
+
+    .preview-2 {
+      stroke: var(--c-accent-2);
+      fill: none;
+      stroke-width: 1.2;
+    }
+
+    .preview-fill {
+      fill: var(--c-accent);
+    }
+
+    .preview-fill-2 {
+      fill: var(--c-accent-2);
+    }
+  </style>
+
+  <!-- 1. 컨텍스트/컨테이너 -->
+  <g transform="translate(20 20)">
+    <rect class="card" x="0" y="0" width="210" height="170" rx="6" />
+    <text class="card-title" x="14" y="24">시스템 다이어그램</text>
+    <text class="card-q" x="14" y="42">"무엇이 무엇과 통신하나"</text>
+
+    <!-- mini preview: boxes with arrows -->
+    <g transform="translate(14 60)">
+      <rect class="preview" x="0" y="0" width="40" height="22" rx="2" />
+      <rect class="preview" x="70" y="0" width="40" height="22" rx="2" />
+      <rect class="preview" x="140" y="0" width="40" height="22" rx="2" />
+      <line class="preview" x1="40" y1="11" x2="70" y2="11" />
+      <line class="preview" x1="110" y1="11" x2="140" y2="11" />
+      <rect class="preview" x="35" y="55" width="50" height="22" rx="2" />
+      <rect class="preview" x="105" y="55" width="50" height="22" rx="2" />
+      <line class="preview" x1="20" y1="22" x2="55" y2="55" />
+      <line class="preview" x1="160" y1="22" x2="135" y2="55" />
+    </g>
+
+    <text class="card-desc" x="14" y="160">박스와 화살표. C4 L1·L2.</text>
+  </g>
+
+  <!-- 2. 시퀀스 -->
+  <g transform="translate(245 20)">
+    <rect class="card" x="0" y="0" width="210" height="170" rx="6" />
+    <text class="card-title" x="14" y="24">시퀀스 다이어그램</text>
+    <text class="card-q" x="14" y="42">"시간 순으로 무엇이 일어나나"</text>
+
+    <g transform="translate(14 60)">
+      <!-- 액터 박스 3개 -->
+      <rect class="preview" x="0" y="0" width="40" height="14" rx="2" />
+      <rect class="preview" x="70" y="0" width="40" height="14" rx="2" />
+      <rect class="preview" x="140" y="0" width="40" height="14" rx="2" />
+      <!-- 라이프라인 -->
+      <line class="preview" x1="20" y1="14" x2="20" y2="80" stroke-dasharray="2 2" />
+      <line class="preview" x1="90" y1="14" x2="90" y2="80" stroke-dasharray="2 2" />
+      <line class="preview" x1="160" y1="14" x2="160" y2="80" stroke-dasharray="2 2" />
+      <!-- 메시지 -->
+      <line class="preview" x1="20" y1="28" x2="90" y2="28" />
+      <polygon class="preview-fill" points="90,28 86,25 86,31" />
+      <line class="preview" x1="90" y1="46" x2="160" y2="46" />
+      <polygon class="preview-fill" points="160,46 156,43 156,49" />
+      <line class="preview-2" x1="160" y1="64" x2="20" y2="64" stroke-dasharray="3 3" />
+      <polygon class="preview-fill-2" points="20,64 24,61 24,67" />
+    </g>
+
+    <text class="card-desc" x="14" y="160">인증·결제·호출 흐름.</text>
+  </g>
+
+  <!-- 3. 데이터 흐름 -->
+  <g transform="translate(470 20)">
+    <rect class="card" x="0" y="0" width="210" height="170" rx="6" />
+    <text class="card-title" x="14" y="24">데이터 흐름</text>
+    <text class="card-q" x="14" y="42">"데이터가 어디로 흐르나"</text>
+
+    <g transform="translate(14 60)">
+      <!-- source -->
+      <ellipse class="preview" cx="20" cy="20" rx="18" ry="14" />
+      <!-- pipeline boxes -->
+      <rect class="preview-2" x="55" y="8" width="40" height="22" rx="2" fill="var(--c-accent-2)" fill-opacity="0.2" />
+      <rect class="preview-2" x="110" y="8" width="40" height="22" rx="2" fill="var(--c-accent-2)" fill-opacity="0.2" />
+      <!-- sink -->
+      <rect class="preview" x="165" y="6" width="18" height="28" />
+      <!-- arrows -->
+      <line class="preview" x1="38" y1="20" x2="55" y2="20" />
+      <line class="preview" x1="95" y1="20" x2="110" y2="20" />
+      <line class="preview" x1="150" y1="20" x2="165" y2="20" />
+
+      <text class="card-desc" x="0" y="60" font-size="9">source → transform → sink</text>
+    </g>
+
+    <text class="card-desc" x="14" y="160">ETL·이벤트·로그 파이프라인.</text>
+  </g>
+
+  <!-- 4. 상태 머신 -->
+  <g transform="translate(20 200)">
+    <rect class="card" x="0" y="0" width="210" height="170" rx="6" />
+    <text class="card-title" x="14" y="24">상태 머신</text>
+    <text class="card-q" x="14" y="42">"어떤 상태가 어떤 상태로 가나"</text>
+
+    <g transform="translate(14 60)">
+      <circle class="preview" cx="20" cy="20" r="14" />
+      <circle class="preview" cx="100" cy="20" r="14" />
+      <circle class="preview" cx="100" cy="70" r="14" />
+      <circle class="preview" cx="180" cy="70" r="14" fill="var(--c-accent)" fill-opacity="0.3" />
+      <line class="preview" x1="34" y1="20" x2="86" y2="20" />
+      <polygon class="preview-fill" points="86,20 82,17 82,23" />
+      <line class="preview" x1="100" y1="34" x2="100" y2="56" />
+      <polygon class="preview-fill" points="100,56 97,52 103,52" />
+      <line class="preview" x1="114" y1="70" x2="166" y2="70" />
+      <polygon class="preview-fill" points="166,70 162,67 162,73" />
+    </g>
+
+    <text class="card-desc" x="14" y="160">주문·결제·잡 라이프사이클.</text>
+  </g>
+
+  <!-- 5. ER 다이어그램 -->
+  <g transform="translate(245 200)">
+    <rect class="card" x="0" y="0" width="210" height="170" rx="6" />
+    <text class="card-title" x="14" y="24">ER 다이어그램</text>
+    <text class="card-q" x="14" y="42">"데이터는 어떻게 관계 맺나"</text>
+
+    <g transform="translate(14 60)">
+      <rect class="preview" x="0" y="0" width="60" height="40" rx="2" />
+      <line class="preview" x1="0" y1="14" x2="60" y2="14" />
+      <rect class="preview" x="90" y="0" width="60" height="40" rx="2" />
+      <line class="preview" x1="90" y1="14" x2="150" y2="14" />
+      <line class="preview" x1="60" y1="20" x2="90" y2="20" />
+      <text class="card-desc" x="64" y="16" font-size="9">1—N</text>
+
+      <rect class="preview" x="40" y="55" width="60" height="30" rx="2" />
+      <line class="preview" x1="30" y1="40" x2="60" y2="55" />
+    </g>
+
+    <text class="card-desc" x="14" y="160">DB 스키마. 도메인 모델.</text>
+  </g>
+
+  <!-- 6. 디렉터리·계층 -->
+  <g transform="translate(470 200)">
+    <rect class="card" x="0" y="0" width="210" height="170" rx="6" />
+    <text class="card-title" x="14" y="24">계층 다이어그램</text>
+    <text class="card-q" x="14" y="42">"무엇이 무엇 위에 쌓이나"</text>
+
+    <g transform="translate(14 60)">
+      <rect class="preview" x="0" y="0" width="180" height="18" rx="2" />
+      <text class="card-desc" x="6" y="13" font-size="9">Presentation</text>
+      <rect class="preview" x="0" y="22" width="180" height="18" rx="2" />
+      <text class="card-desc" x="6" y="35" font-size="9">Application</text>
+      <rect class="preview" x="0" y="44" width="180" height="18" rx="2" />
+      <text class="card-desc" x="6" y="57" font-size="9">Domain</text>
+      <rect class="preview" x="0" y="66" width="180" height="18" rx="2" />
+      <text class="card-desc" x="6" y="79" font-size="9">Infrastructure</text>
+    </g>
+
+    <text class="card-desc" x="14" y="160">레이어드·헥사고날·클린 아키.</text>
+  </g>
+
+  <!-- 사용 가이드 -->
+  <g transform="translate(20 390)">
+    <rect class="card" x="0" y="0" width="660" height="150" rx="6" />
+    <text class="card-title" x="20" y="30" fill="var(--c-accent)">선택 가이드</text>
+
+    <text class="card-desc" x="20" y="58">"무엇이 무엇과 통신하나" → 시스템 다이어그램 (C4)</text>
+    <text class="card-desc" x="20" y="78">"시간 순으로 무엇이 일어나나" → 시퀀스</text>
+    <text class="card-desc" x="20" y="98">"데이터가 어디로 흐르나" → 데이터 흐름</text>
+    <text class="card-desc" x="350" y="58">"상태가 어떻게 변하나" → 상태 머신</text>
+    <text class="card-desc" x="350" y="78">"엔티티가 어떻게 관계 맺나" → ER</text>
+    <text class="card-desc" x="350" y="98">"무엇이 무엇 위에 쌓이나" → 계층</text>
+
+    <text class="card-q" x="20" y="130">한 다이어그램에 한 질문. 두 질문에 답하려 하면 둘 다 약해진다.</text>
+  </g>
+</svg>

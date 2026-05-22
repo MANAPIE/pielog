@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 365" role="img" aria-labelledby="title-tw-08-04">
+  <title id="title-tw-08-04">온보딩 첫 주 로드맵</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .card {
+      fill: var(--c-card-bg);
+      stroke: var(--c-line);
+      stroke-width: 1;
+    }
+
+    .day-label {
+      font-size: 13px;
+      font-weight: 700;
+      fill: var(--c-accent-2);
+      font-family: 'Georgia', serif;
+    }
+
+    .day-title {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .day-task {
+      font-size: 11px;
+      fill: var(--c-muted);
+    }
+  </style>
+
+  <g transform="translate(20 20)">
+    <rect class="card" x="0" y="0" width="660" height="325" rx="6" />
+
+    <!-- Day 1 -->
+    <g transform="translate(20 20)">
+      <text class="day-label" x="0" y="14">Day 1</text>
+      <text class="day-title" x="80" y="14">계정·접근 권한</text>
+      <text class="day-task" x="80" y="32">— GitHub, Slack, 메일, 1Password, VPN</text>
+      <text class="day-task" x="80" y="46">— 첫 commit (이름 한 줄 추가 PR)</text>
+    </g>
+    <line x1="20" y1="78" x2="640" y2="78" stroke="var(--c-line)" stroke-width="0.5" />
+
+    <!-- Day 2 -->
+    <g transform="translate(20 86)">
+      <text class="day-label" x="0" y="14">Day 2</text>
+      <text class="day-title" x="80" y="14">개발 환경</text>
+      <text class="day-task" x="80" y="32">— make setup 한 줄로 끝나야 함</text>
+      <text class="day-task" x="80" y="46">— 테스트 한 번 실행, 빨간 줄 없이 통과</text>
+    </g>
+    <line x1="20" y1="144" x2="640" y2="144" stroke="var(--c-line)" stroke-width="0.5" />
+
+    <!-- Day 3-4 -->
+    <g transform="translate(20 152)">
+      <text class="day-label" x="0" y="14">Day 3-4</text>
+      <text class="day-title" x="80" y="14">시스템 이해</text>
+      <text class="day-task" x="80" y="32">— 아키텍처 문서 + 주요 ADR 3~5개 읽기</text>
+      <text class="day-task" x="80" y="46">— 핵심 흐름 1개 직접 따라가기 (로그, 트레이스)</text>
+    </g>
+    <line x1="20" y1="210" x2="640" y2="210" stroke="var(--c-line)" stroke-width="0.5" />
+
+    <!-- Day 5 -->
+    <g transform="translate(20 218)">
+      <text class="day-label" x="0" y="14">Day 5</text>
+      <text class="day-title" x="80" y="14">실제 변경</text>
+      <text class="day-task" x="80" y="32">— good-first-issue 라벨 이슈 1건 시작</text>
+      <text class="day-task" x="80" y="46">— PR 올리고 리뷰 받기. 머지까지.</text>
+    </g>
+    <line x1="20" y1="276" x2="640" y2="276" stroke="var(--c-line)" stroke-width="0.5" />
+
+    <!-- 마지막 -->
+    <g transform="translate(20 286)">
+      <text class="day-task" x="0" y="14" font-style="italic">— 막힘이 발생한 곳이 <tspan font-weight="700">온보딩 문서의 다음 갱신 지점
+        </tspan>. 새 사람이 손보고 PR.</text>
+    </g>
+  </g>
+</svg>

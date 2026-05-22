@@ -1,0 +1,193 @@
+---
+title: "왜, 무엇을, 어떻게 - 개발자를 위한 기술문서 입문 ep.00"
+description: "구현은 잘하지만 문서는 처음인 개발자를 위한 기술문서 입문 시리즈. 여덟 가지 종류와 그것을 관통하는 네 분면의 지도."
+summary: "기술문서를 안 써본 개발자가 가장 자주 겪는 문제는 형식이 아니라 의도입니다. 이 시리즈는 Diátaxis 프레임워크로 문서의 좌표를 잡고, 실무에서 실제로 마주치는 여덟 가지 산출물을 한 편씩 다룹니다. ep.00은 그 지도를 펴 보이는 편입니다."
+date: 2026-05-20
+tags: [series, cover, develop, frontend, backend, infra, devops, ai, technical-writing, documentation, diataxis]
+thumbnail: ./cover.svg
+draft: false
+---
+
+![](./cover.svg)
+
+구현은 끝났습니다. 그런데 어디서부터 써야 할지 모르겠습니다.
+
+기술문서를 안 써본 개발자가 가장 먼저 부딪치는 벽은 형식이 아닙니다. 누구에게, 왜, 무엇을 쓰는지가 흐릿한 채로 키보드 앞에 앉기 때문입니다. **README(리드미)** 를 쓰려다 API 레퍼런스가 끼어듭니다. 튜토리얼을 쓰려다 아키텍처 설명이 들어옵니다. 그렇게 문서는 어디에도 닿지 못한 채 길어집니다.
+
+이 시리즈는 그 혼란에 좌표계를 하나 깔아주려 합니다. 그리고 그 위에서 실무에서 자주 쓰게 되는 여덟 가지 문서를 한 편씩 짚습니다.
+
+---
+
+## 문서를 왜 쓰는가
+
+문서를 쓰지 않으면 어떤 일이 벌어지는지부터 보겠습니다.
+
+- 석 달 뒤 자기가 짠 코드를 자기가 못 읽습니다.
+- 동료는 같은 질문을 반복합니다.
+- 새 사람이 합류하면 팀 전체의 속도가 멈춥니다.
+- 코드 리뷰가 결정의 토론장이 되고, 같은 논쟁이 분기마다 돌아옵니다.
+- 가장 중요한 결정의 맥락은 슬랙 스크롤 어딘가에서 휘발됩니다.
+
+문서는 미래의 자신, 동료, 후임자에게 보내는 비동기 메시지입니다. 쓰지 않는다는 건 그 사람들에게 매번 자신의 시간을 내주겠다고 약속하는 셈입니다. 그리고 그 약속은 대개 지켜지지 않습니다.
+
+코드와 문서의 관계는 비대칭입니다. 코드를 쓰는 시간은 한 번이지만, 코드를 읽는 시간은 여러 번입니다. 문서는 그 여러 번의 읽기를 효율화하는 도구입니다. 단순히 "남에게 친절을 베푸는 일"이 아니라, 시스템의 총 비용을 낮추는 엔지니어링 행위입니다.
+
+---
+
+## 무엇이 문서를 어렵게 만드는가
+
+문서가 어려운 건 글솜씨가 부족해서가 아닙니다. 다음의 몇 가지 패턴이 반복되기 때문입니다.
+
+### 한 문서에 모든 걸 담으려는 욕심
+
+처음 보는 사람을 위한 설명, 매일 쓰는 사람을 위한 레퍼런스, 결정의 배경, 트러블슈팅까지 한 곳에 욱여넣으면 누구를 위한 글인지 알 수 없게 됩니다. 글이 길어질수록 모든 독자가 동시에 떨어집니다.
+
+### 독자를 상상하지 않은 글
+
+"이 정도는 다 알겠지"라는 가정은 문서를 짧게 만들어주지 않습니다. 그저 독자를 떨어뜨릴 뿐입니다. 반대로 "처음 보는 사람도 다 알 수 있게"라는 가정은 글을 지루하게 만듭니다. 독자가 누구인지를 먼저 정해야 그 가정의 균형이 잡힙니다.
+
+### 형식을 빌릴 곳이 없음
+
+빈 페이지 앞에서 막막한 건 글이 어려워서가 아닙니다. 어떤 모양으로 시작해야 할지 모르기 때문입니다. 좋은 형식은 글을 대신 써주지는 않지만 시작점을 만들어줍니다. 이 시리즈가 각 편마다 템플릿을 제시하는 이유입니다.
+
+### 유지보수를 고려하지 않은 한 번의 노력
+
+한 달 뒤 거짓말이 되어 있는 문서는, 처음부터 없는 것보다 나쁩니다. 잘못된 정보를 믿게 만들기 때문입니다. 어떤 문서를 쓸지 결정할 때 "어떻게 유지할 것인가"까지 같이 결정해야 합니다.
+
+---
+
+## Diátaxis: 문서를 네 분면으로 나누기
+
+여기서부터가 시리즈의 출발점입니다. **다이아탁시스(Diátaxis)** 는 모든 기술문서를 두 축으로 나눌 수 있다고 봅니다.
+
+- **세로축**: 독자가 무엇을 하려는가 — *학습(study)* vs *작업(work)*
+- **가로축**: 글이 다루는 것 — *실용(action)* vs *이론(cognition)*
+
+이 두 축이 만들어내는 네 분면이 각각 다른 종류의 문서입니다.
+
+![Diátaxis 네 분면 다이어그램. 세로축은 학습-작업, 가로축은 실용-이론. 좌상단(학습+실용)은 튜토리얼(Tutorial)로 처음 온 사람을 손 잡고 만들어보게 하는 글이며 비유는 첫 수영 강습. 우상단(학습+이론)은 익스플레네이션(Explanation)으로 이해하고 싶은 사람에게 맥락과 이유를 전하는 글이며 비유는 학회 발표나 에세이. 좌하단(작업+실용)은 하우투 가이드(How-to Guide)로 목적이 있는 사람이 정해진 일을 해내도록 돕는 글이며 비유는 요리 레시피. 우하단(작업+이론)은 레퍼런스(Reference)로 작업 중인 사람이 정확한 사실을 찾도록 하는 글이며 비유는 사전.](./tw-00-01-diataxis-quadrants.svg)
+
+이 넷은 같은 주제를 다루더라도 톤, 분량, 깊이, 구조가 모두 다릅니다. 같은 "데이터베이스 마이그레이션"이라도 튜토리얼이면 처음부터 끝까지 손을 잡고 따라가게 만듭니다. 하우투면 "프로덕션 환경에서 안전하게 옮기는 법"으로 좁힙니다. 레퍼런스면 옵션과 플래그를 빠짐없이 정리합니다. 익스플레네이션이면 "왜 우리는 expand-and-contract 방식을 택했는가"를 다룹니다.
+
+문서가 모호해지는 가장 큰 이유는 분면이 섞여서입니다. 한 글에 두 분면을 욱여넣을 때 독자는 길을 잃습니다. 글을 쓰기 전 "이 글은 네 분면 중 어디인가"를 한 문장으로 답할 수 있어야 합니다.
+
+### 공개 문서 사이트는 분면을 물리적으로 분리한다
+
+이 분면이 추상적으로 느껴진다면, 잘 정돈된 공개 문서 사이트 몇 곳의 내비게이션 구조를 떠올려보면 좋습니다.
+
+**Django**는 문서 랜딩 첫 화면에 "How the documentation is organized"라는 블록을 두고, 전체 문서를 *Tutorials · Topic guides · Reference guides · How-to guides* 네 묶음으로 잘라 소개합니다. 처음 온 사람은 Tutorials, 옵션을 찾는 사람은 Reference, 일하는 사람은 How-to로 따로 흘러갑니다. 같은 ORM이라도 어느 묶음에 들어 있느냐에 따라 톤이 바뀝니다.
+
+![Django 문서 랜딩 페이지 캡처. 화면 중앙 본문 영역에 'How the documentation is organized' 섹션이 펼쳐져 있고, 그 아래로 Tutorials, Topic guides, Reference guides, How-to guides 네 묶음이 글머리 항목으로 차례로 나열돼 있다. Tutorials는 처음 온 사람을 단계별로 손 잡고 웹 애플리케이션을 만들게 한다고 설명하고, Topic guides는 주요 주제와 개념을 비교적 높은 수준에서 다루며 배경 지식을 제공한다고 적혀 있다. Reference guides는 Django의 API와 내부 동작에 대한 기술 레퍼런스를 담고, How-to guides는 목적이 있는 사람이 정해진 문제를 해결하도록 단계별 절차를 알려주는 레시피라고 설명한다. 본문 아래로 The model layer, The view layer 같은 다른 주요 섹션 헤더가 이어지고, 우측에는 'You are here'와 'Getting help', FAQ 안내, 문서 다운로드 링크 등이 담긴 사이드바가 자리한다.](./tw-00-02-django-doc-categories.png)
+
+**Stripe**는 가이드와 레퍼런스를 별도 페이지로 갈라둡니다. 가이드 랜딩(`docs.stripe.com/`)은 상단에 *Get started · Payments · Revenue · Platforms and marketplaces · Money management · Developer resources* 탭을 두고, 같은 페이지의 "Browse by product"에서 *Payments / Revenue / Money management / Prebuilt components* 네 묶음으로 제품을 분류합니다. 가이드는 사용 사례를 따라 서사로 흐릅니다.
+
+![Stripe 문서 랜딩 페이지 캡처. 상단에는 Get started, Payments, Revenue, Platforms and marketplaces, Money management, Developer resources의 여섯 개 탭이 가로로 배치돼 있다. 그 아래로 'Browse by product' 섹션이 있고, Payments 그룹에는 Payments(Online payments), Managed Payments, Terminal, Connect, Radar, Climate, Identity, Financial Connections, Crypto가 카드 형태로 나열돼 있다. Revenue 그룹에는 Billing, Tax, Revenue Recognition, Sigma, Data Pipeline, Atlas가 묶여 있고, Money management 그룹에는 Issuing, Treasury, Capital이, Prebuilt components 그룹에는 Payment Links, Checkout, Elements가 묶여 있다.](./tw-00-03-stripe-docs-landing.png)
+
+반면 `docs.stripe.com/api`는 좌측에 자원을 종류별·알파벳 순으로 늘어놓은 별도의 레퍼런스 페이지입니다. 색인의 톤이지 서사의 톤이 아닙니다.
+
+![Stripe API Reference 페이지 캡처. 좌측 사이드바에 General(Introduction, Authentication, Errors, Expanding Responses, Idempotent requests, Metadata, Pagination, Request IDs 등)과 Core Resources(Accounts, Account Links, Account Tokens, Balance, Balance Transactions, Charges, Customers, Customer Session, Disputes, Events, Files, File Links, Mandates, Payment Intents, Persons 등) 같은 자원 그룹이 트리 형태로 늘어서 있다. 본문 우측은 API Reference의 인트로 문구와 BASE URL, CLIENT LIBRARIES 정보를 담은 색인형 레이아웃이다.](./tw-00-04-stripe-api-reference.png)
+
+**Kubernetes**는 좌측 사이드바에 *Getting started · Concepts · Tasks · Tutorials · Reference · Contribute*를 두어 다이아탁시스 네 분면(Concepts=Explanation, Tasks=How-to)을 거의 그대로 노출합니다. 본문에는 같은 분류를 "Understand Kubernetes · Try Kubernetes · Learn how to use Kubernetes · Look up reference information" 같은 사용자 언어 카드로 다시 한 번 비춥니다. 같은 "Pod" 키워드가 네 곳에 다 등장하지만, 깊이와 목적이 다릅니다.
+
+![Kubernetes 문서 홈 화면 캡처. 좌측 사이드바에는 Documentation 아래로 Available Documentation Versions, Getting started, Concepts, Tasks, Tutorials, Reference, Contribute가 세로로 나열돼 있다. 본문에는 'Understand Kubernetes'와 'Try Kubernetes' 두 개의 카드가 나란히 보이며, 각각 Concepts와 Tutorials로 이어지는 링크들을 담고 있다. 카드 하단에는 'View Concepts', 'View Tutorials' 같은 버튼이 붙어 있다.](./tw-00-05-kubernetes-docs-home.png)
+
+규모가 작은 프로젝트라도 이 분리를 흉내 낼 수는 있습니다. 디렉터리 한 단계로도 충분합니다.
+
+```text
+docs/
+├── tutorial/          ← 처음 온 사람용, 손 잡고 따라가게
+├── how-to/            ← 목적별 절차
+├── reference/         ← 옵션·플래그·스펙
+└── explanation/       ← 왜 이렇게 설계했는가
+```
+
+이렇게 자리만 잡아둬도 새 글을 쓸 때 "이건 어느 폴더?"라는 질문이 분면을 강제로 결정하게 합니다.
+
+---
+
+## 산출물로 본 여덟 가지 문서
+
+이론은 이론이고, 실무에선 산출물 단위로 글을 씁니다. **README**를 쓰고, **ADR(Architecture Decision Record)** 을 쓰고, **포스트모템**을 씁니다. 그래서 이 시리즈는 분면 위에 산출물을 얹는 식으로 구성합니다.
+
+| 편 | 산출물 | 주된 분면 | 한 줄로 |
+| --- | --- | --- | --- |
+| [ep.01](/tech-writing-guide-ep-01) | **README** | Tutorial + How-to | 프로젝트의 첫인상, 그리고 5분 안에 무엇을 줄 것인가 |
+| [ep.02](/tech-writing-guide-ep-02) | **튜토리얼** | Tutorial | 처음 온 사람을 결과까지 데려가는 길 |
+| [ep.03](/tech-writing-guide-ep-03) | **하우투 가이드** | How-to | 한 가지 목적을 달성하는 절차의 글 |
+| [ep.04](/tech-writing-guide-ep-04) | **레퍼런스 · API 문서** | Reference | 정확한 사실의 색인 |
+| [ep.05](/tech-writing-guide-ep-05) | **아키텍처 · 개념 설명** | Explanation | 왜 이렇게 만들었는가 |
+| [ep.06](/tech-writing-guide-ep-06) | **ADR과 RFC** | Explanation | 의사결정의 기록, 그리고 제안 |
+| [ep.07](/tech-writing-guide-ep-07) | **런북 · 포스트모템** | How-to + Explanation | 운영의 언어, 실패에서 배우는 언어 |
+| [ep.08](/tech-writing-guide-ep-08) | **PR · 커밋 · 온보딩** | 혼합 | 매일 쓰는 협업의 글 |
+| [ep.09](/tech-writing-guide-ep-09) | **부록 — 사용자 매뉴얼·디자인 문서·보안 문서** | 혼합 | 본 시리즈 바깥의 인접 문서들 |
+
+- [ep.01 README](/tech-writing-guide-ep-01) - 거의 모든 프로젝트의 입구입니다. 5분 안에 무엇을 알려야 하고, 그 5분 너머는 어디로 보낼지 정합니다. README가 사실 하나의 글이 아니라 *여러 글의 시작점*이라는 관점을 다룹니다.
+- [ep.02 튜토리얼](/tech-writing-guide-ep-02) - 학습자의 자리에서 글을 다시 봅니다. 튜토리얼의 가장 흔한 실수는 "설명을 하려 든다"는 것입니다. 튜토리얼은 설명이 아니라 *경험*을 설계하는 글입니다.
+- [ep.03 하우투 가이드](/tech-writing-guide-ep-03) - 목적 달성형 문서의 패턴을 다룹니다. 전제, 단계, 검증으로 이어지는 단순한 골격이 왜 무너지기 쉬운지, 어떻게 단단하게 만들지를 봅니다.
+- [ep.04 레퍼런스 · API 문서](/tech-writing-guide-ep-04) - *완전성*과 *일관성*의 글입니다. docstring(독스트링) 부터 OpenAPI까지, 사람이 쓰는 것과 자동 생성하는 것의 경계를 짚습니다.
+- [ep.05 아키텍처 · 개념 설명](/tech-writing-guide-ep-05) - "왜"의 글입니다. 어떻게 그렸느냐가 아니라 무엇을 보여주려 했느냐로 다이어그램을 봅니다. C4 모델과 다이어그램 종류별 쓰임도 정리합니다.
+- [ep.06 ADR과 RFC](/tech-writing-guide-ep-06) - 의사결정을 문서로 박제하는 법입니다. ADR과 RFC의 위치 차이, 그리고 *이미 결정한 것*과 *아직 결정 안 한 것*을 다르게 쓰는 법을 다룹니다.
+- [ep.07 런북 · 포스트모템](/tech-writing-guide-ep-07) - 운영의 언어입니다. 새벽 3시에 호출된 사람을 위한 글과, 실패에서 조직이 배우게 하는 글. 둘 다 *감정을 빼고 사실을 남기는* 글쓰기입니다.
+- [ep.08 PR · 커밋 · 온보딩](/tech-writing-guide-ep-08) - 가장 자주 쓰지만 가장 적게 의식하는 글들입니다. 좋은 커밋 메시지, 리뷰가 즐거워지는 PR, 첫 주를 단축시키는 온보딩 문서.
+- [ep.09 부록](/tech-writing-guide-ep-09) - 본 시리즈 바깥의 인접 문서를 가볍게 다룹니다. 사용자 매뉴얼(User Manual), 디자인 문서(Design Doc), 보안 문서. 각자의 자리를 짚어두는 정도로 마무리합니다.
+
+---
+
+## 시리즈를 관통하는 다섯 가지 원칙
+
+각 편에서 반복적으로 돌아올 원칙을 미리 적어둡니다. 외울 필요는 없습니다. 글을 쓰다 막힐 때 한 번씩 꺼내 보면 됩니다.
+
+**1. 독자를 정하고 시작하라.**
+
+"누가, 무엇을 알고 있고, 무엇을 하려고 이 문서를 여는가." 한 문장으로 답할 수 없으면 글이 아직 시작되지 않은 것입니다. "이 정도는 다들 알겠지"라는 한 문장은 신입에겐 진입 장벽이 되고, 시니어에겐 굳이 읽을 이유를 없애 둘 다 떨어뜨립니다.
+
+**2. 한 문서, 한 의도.**
+
+튜토리얼 안에 레퍼런스를 욱여넣지 않습니다. 필요하면 분리하고 링크로 잇습니다. 한 페이지에 설치 가이드와 트러블슈팅과 아키텍처가 섞인 README는, 검색에서 걸려도 *어디가 답인지 찾기 전에* 닫힙니다.
+
+**3. 예시가 추상보다 강하다.**
+
+"X를 하면 됩니다"보다 "다음과 같이 하면 됩니다 + 코드 / 스크린샷"이 항상 낫습니다. "Authorization 헤더를 붙이세요"라는 한 줄보다 `curl -H "Authorization: Bearer sk_test_..."` 한 줄이 5분의 시간을 절약합니다. 막힐 때마다 예시로 도망쳐도 좋습니다.
+
+**4. 유지보수 비용까지 설계하라.**
+
+한 번 잘 쓰는 것보다, 6개월 뒤에도 거짓말이 되어 있지 않을 형태로 쓰는 게 더 중요합니다. 본문에 버전 번호가 박힌 가이드는 다음 메이저 릴리스에 통째로 거짓말이 됩니다. 자주 바뀌는 값은 `<버전>`처럼 슬롯으로 비워두거나 코드에서 자동 생성되는 자리에 두고, 잘 안 바뀌는 결정은 ADR로 박제합니다.
+
+**5. 안 쓰는 것도 선택지다.**
+
+모든 함수에 docstring이 필요하지 않고, 모든 PR이 장문의 설명을 요구하지도 않습니다. 내부 도구의 30번째 헬퍼 함수에 한 문단의 docstring을 다는 일은, 보통 잘못된 우선순위입니다. 문서는 비용입니다. 비용을 치를 가치가 있는 곳에만 씁니다.
+
+---
+
+## 이 시리즈를 어떻게 읽으면 좋은가
+
+처음부터 순서대로 읽지 않아도 됩니다. 다음과 같이 골라 읽어도 됩니다.
+
+예를 들어,
+
+- **오늘 당장 README를 쓰는 중이라면** → [ep.01](/tech-writing-guide-ep-01)부터
+- **온콜에 들어가게 되어 런북이 필요하다면** → [ep.07](/tech-writing-guide-ep-07)
+- **팀에서 큰 결정을 앞두고 있다면** → [ep.06](/tech-writing-guide-ep-06) (ADR & RFC)
+- **API를 만들고 문서가 필요하다면** → [ep.04](/tech-writing-guide-ep-04)
+- **사용자에게 보낼 매뉴얼을 쓰거나, 보안 가이드가 필요하다면** → [ep.09](/tech-writing-guide-ep-09) (부록)
+- **그냥 문서라는 게 뭔지 한번 정리하고 싶다면** → 이번 편을 다시 읽고 [ep.05](/tech-writing-guide-ep-05)로
+
+각 편에는 그 종류에 맞는 템플릿, 좋은 예와 나쁜 예, 그리고 마지막에 체크리스트가 들어갑니다. 글을 쓰다 막힐 때 해당 편의 체크리스트만 다시 봐도 충분할 만큼은 담아보려 합니다.
+
+---
+
+## 참고 자료
+
+- Procida, D. *Diátaxis: A systematic framework for technical documentation authoring.* https://diataxis.fr
+- Bloch, J. R., Lambourne, J., & Bhatti, D. (2021). *Docs for Developers: An Engineer's Field Guide to Technical Writing.* Apress.
+- Google. *Technical Writing Courses for Engineers.* https://developers.google.com/tech-writing
+- Write the Docs Community. *Documentation Guide.* https://www.writethedocs.org/guide/
+- The Good Docs Project. *Templates for documentation.* https://www.thegooddocsproject.dev/
+
+---
+
+## 다음 편 예고
+
+> [ep.01 - 프로젝트의 첫인상, README](/tech-writing-guide-ep-01)
+
+다음 편은 README입니다. 거의 모든 프로젝트의 입구이지만, 거의 모든 README가 비슷한 실패를 반복합니다. 누군가가 5분 안에 무엇을 알아야 하고, 그 5분 너머는 어디로 보내야 하는가. README가 사실 한 글이 아니라 *여러 글의 시작점*이라는 관점에서 다시 짚어봅니다.

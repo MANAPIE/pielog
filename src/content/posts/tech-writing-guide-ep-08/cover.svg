@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.08 PR 커밋 온보딩 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+      --c-card: #FBF8F1;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+        --c-card: #232326;
+      }
+    }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotGrid08" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA08" cx="20%" cy="60%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB08" cx="80%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="var(--c-accent-2)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect fill="var(--c-bg)" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotGrid08)"/>
+  <rect width="1200" height="630" fill="url(#glowA08)"/>
+  <rect width="1200" height="630" fill="url(#glowB08)"/>
+
+  <!-- 배경 -->
+  <rect x="-200" y="-150" width="500" height="500" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(-9 50 100)"/>
+  <ellipse cx="1200" cy="600" rx="380" ry="280" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(6 1200 600)"/>
+
+  <!-- 메인 메타포: git 그래프 (main + feature 브랜치 + 머지) -->
+  <g transform="translate(0 100)">
+    <!-- main 라인 (수평) -->
+    <line x1="120" y1="200" x2="1080" y2="200" stroke="var(--c-accent)" stroke-width="3"/>
+
+    <!-- feature 브랜치 (위로 갈라졌다가 다시 머지) -->
+    <path d="M 280 200 Q 320 130 380 100 L 720 100 Q 780 130 820 200"
+          stroke="var(--c-accent-2)" stroke-width="3" fill="none"/>
+
+    <!-- 두 번째 feature 브랜치 (아래) -->
+    <path d="M 460 200 Q 500 270 560 300 L 660 300 Q 720 270 760 200"
+          stroke="var(--c-accent-3)" stroke-width="2.5" fill="none" opacity="0.85"/>
+
+    <!-- main 위 커밋 점들 -->
+    <g>
+      <circle cx="180" cy="200" r="10" fill="var(--c-accent)"/>
+      <g transform="translate(168 230)">
+        <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-muted)"/>
+        <rect x="13" y="0" width="6" height="5" rx="1" fill="var(--c-muted)"/>
+      </g>
+
+      <circle cx="280" cy="200" r="9" fill="var(--c-accent)"/>
+
+      <circle cx="460" cy="200" r="9" fill="var(--c-accent)"/>
+
+      <circle cx="820" cy="200" r="14" fill="var(--c-accent)" stroke="var(--c-bg)" stroke-width="3"/>
+      <circle cx="820" cy="200" r="14" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
+      <g transform="translate(806 230)">
+        <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-muted)"/>
+        <rect x="13" y="0" width="6" height="5" rx="1" fill="var(--c-muted)"/>
+        <rect x="22" y="0" width="6" height="5" rx="1" fill="var(--c-muted)"/>
+      </g>
+
+      <circle cx="980" cy="200" r="9" fill="var(--c-accent)"/>
+      <g transform="translate(968 230)">
+        <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-muted)"/>
+        <rect x="13" y="0" width="14" height="5" rx="1" fill="var(--c-muted)"/>
+      </g>
+    </g>
+
+    <!-- feature 위쪽 커밋 -->
+    <g>
+      <circle cx="440" cy="100" r="9" fill="var(--c-accent-2)"/>
+      <circle cx="560" cy="100" r="9" fill="var(--c-accent-2)"/>
+      <circle cx="680" cy="100" r="9" fill="var(--c-accent-2)"/>
+
+      <!-- 가지 라벨 -->
+      <rect x="358" y="58" width="170" height="22" rx="3" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1"/>
+      <g transform="translate(368 66)">
+        <rect x="0" y="0" width="22" height="5" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="26" y="0" width="6" height="5" rx="1" fill="var(--c-accent-2)" opacity="0.6"/>
+        <rect x="36" y="0" width="48" height="5" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="88" y="0" width="6" height="5" rx="1" fill="var(--c-accent-2)"/>
+        <rect x="98" y="0" width="14" height="5" rx="1" fill="var(--c-accent-2)"/>
+      </g>
+    </g>
+
+    <!-- feature 아래쪽 커밋 -->
+    <g>
+      <circle cx="580" cy="300" r="8" fill="var(--c-accent-3)"/>
+      <circle cx="640" cy="300" r="8" fill="var(--c-accent-3)"/>
+      <rect x="500" y="320" width="170" height="22" rx="3" fill="var(--c-card)" stroke="var(--c-accent-3)" stroke-width="1"/>
+      <g transform="translate(510 328)">
+        <rect x="0" y="0" width="18" height="5" rx="1" fill="var(--c-accent-3)"/>
+        <rect x="22" y="0" width="6" height="5" rx="1" fill="var(--c-accent-3)" opacity="0.6"/>
+        <rect x="32" y="0" width="22" height="5" rx="1" fill="var(--c-accent-3)"/>
+        <rect x="58" y="0" width="6" height="5" rx="1" fill="var(--c-accent-3)"/>
+        <rect x="68" y="0" width="28" height="5" rx="1" fill="var(--c-accent-3)"/>
+      </g>
+    </g>
+
+    <!-- main 라벨 -->
+    <rect x="100" y="180" width="62" height="22" rx="3" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1"/>
+    <g transform="translate(111 188)">
+      <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-accent)"/>
+      <rect x="13" y="0" width="6" height="5" rx="1" fill="var(--c-accent)"/>
+      <rect x="22" y="0" width="14" height="5" rx="1" fill="var(--c-accent)"/>
+    </g>
+  </g>
+
+  <!-- 디테일: PR 카드 -->
+  <g transform="translate(880 90) rotate(6)">
+    <rect x="0" y="0" width="200" height="80" rx="6" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1.2"/>
+    <g transform="translate(14 14)">
+      <rect x="0" y="0" width="14" height="5" rx="1" fill="var(--c-accent)"/>
+      <rect x="18" y="0" width="6" height="5" rx="1" fill="var(--c-accent)" opacity="0.6"/>
+      <rect x="28" y="0" width="30" height="5" rx="1" fill="var(--c-accent)"/>
+    </g>
+    <line x1="14" y1="34" x2="180" y2="34" stroke="var(--c-muted)" stroke-width="1.2" opacity="0.7"/>
+    <line x1="14" y1="46" x2="160" y2="46" stroke="var(--c-muted)" stroke-width="1.2" opacity="0.7"/>
+    <line x1="14" y1="58" x2="170" y2="58" stroke="var(--c-muted)" stroke-width="1.2" opacity="0.7"/>
+    <polyline points="14,70 22,76 36,64" stroke="var(--c-accent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(44 67)">
+      <rect x="0" y="0" width="14" height="5" rx="1" fill="var(--c-accent)"/>
+      <rect x="17" y="0" width="22" height="5" rx="1" fill="var(--c-accent)"/>
+    </g>
+  </g>
+
+  <!-- 디테일: 커밋 메시지 미리보기 카드 -->
+  <g transform="translate(100 470) rotate(-4)">
+    <rect x="0" y="0" width="240" height="60" rx="6" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1.2"/>
+    <g transform="translate(14 14)">
+      <rect x="0" y="0" width="22" height="5" rx="1" fill="var(--c-accent-2)"/>
+      <rect x="26" y="0" width="6" height="5" rx="1" fill="var(--c-accent-2)" opacity="0.6"/>
+      <rect x="36" y="0" width="42" height="5" rx="1" fill="var(--c-accent-2)"/>
+      <rect x="82" y="0" width="6" height="5" rx="1" fill="var(--c-accent-2)" opacity="0.6"/>
+    </g>
+    <g transform="translate(14 30)">
+      <rect x="0" y="0" width="14" height="5" rx="1" fill="var(--c-muted)"/>
+      <rect x="17" y="0" width="48" height="5" rx="1" fill="var(--c-muted)"/>
+      <rect x="68" y="0" width="20" height="5" rx="1" fill="var(--c-muted)"/>
+    </g>
+    <line x1="14" y1="50" x2="200" y2="50" stroke="var(--c-muted)" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  <!-- 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">08</text>
+</svg>

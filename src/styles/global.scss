@@ -520,6 +520,16 @@ h3.section-kicker {
         margin: 1.5rem auto !important;
     }
 
+    p:has(img + img) {
+        text-align: left;
+
+        >img {
+            display: inline-block;
+            margin: 0.25rem 0.25rem 0.25rem 0 !important;
+            vertical-align: middle;
+        }
+    }
+
     &>p:nth-child(1)>img {
         margin-top: -0.5rem !important;
     }
@@ -593,6 +603,62 @@ h3.section-kicker {
         font-family: 'SF Mono', 'Fira Code', monospace;
         font-size: 0.875rem;
         white-space: pre-wrap;
+    }
+}
+
+/* ========================
+   Post body — <details> accordion (Mermaid source, etc.)
+   ======================== */
+.markdown-body details {
+    margin: 0.75rem 0 1.5rem;
+    border: 1px solid $color-border;
+    border-radius: 6px;
+    background: $color-surface;
+    overflow: hidden;
+
+    > summary {
+        cursor: pointer;
+        padding: 0.5rem 0.875rem;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: $color-text-muted;
+        user-select: none;
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::before {
+            content: "▸";
+            display: inline-block;
+            margin-right: 0.5rem;
+            transition: transform 0.15s ease;
+            color: $color-accent;
+        }
+
+        &:hover {
+            color: $color-text;
+        }
+    }
+
+    &[open] > summary {
+        border-bottom: 1px solid $color-border;
+
+        &::before {
+            transform: rotate(90deg);
+        }
+    }
+
+    > *:not(summary) {
+        margin: 0 !important;
+    }
+
+    pre {
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border: 0 !important;
     }
 }
 

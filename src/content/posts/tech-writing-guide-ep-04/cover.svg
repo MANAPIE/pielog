@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.04 레퍼런스 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+      --c-card: #FBF8F1;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+        --c-card: #232326;
+      }
+    }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+    .card-fill { fill: var(--c-card); }
+    .card-stroke { stroke: var(--c-line); stroke-width: 1.2; fill: none; }
+    .card-line { stroke: var(--c-muted); stroke-width: 1; opacity: 0.7; }
+  </style>
+  <defs>
+    <pattern id="dotGrid04" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA04" cx="80%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB04" cx="15%" cy="85%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="var(--c-accent-2)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect fill="var(--c-bg)" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotGrid04)"/>
+  <rect width="1200" height="630" fill="url(#glowA04)"/>
+  <rect width="1200" height="630" fill="url(#glowB04)"/>
+
+  <!-- 배경 -->
+  <rect x="900" y="-200" width="500" height="500" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(-10 1150 50)"/>
+  <ellipse cx="100" cy="660" rx="380" ry="280" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(-6 100 660)"/>
+
+  <!-- 메인 메타포: 색인 카드 그리드 (3×3, 약간씩 회전) -->
+  <g transform="translate(160 80)">
+    <!-- Row 1 -->
+    <g transform="translate(0 0) rotate(-5)">
+      <rect class="card-fill" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect x="14" y="14" width="40" height="6" rx="2" fill="var(--c-accent)"/>
+      <line class="card-line" x1="14" y1="36" x2="160" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="140" y2="50"/>
+      <line class="card-line" x1="14" y1="64" x2="150" y2="64"/>
+      <line class="card-line" x1="14" y1="88" x2="80" y2="88"/>
+    </g>
+
+    <g transform="translate(220 -10) rotate(3)">
+      <rect class="card-fill" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect x="14" y="14" width="50" height="6" rx="2" fill="var(--c-accent-2)"/>
+      <line class="card-line" x1="14" y1="36" x2="160" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="120" y2="50"/>
+      <line class="card-line" x1="14" y1="64" x2="150" y2="64"/>
+      <line class="card-line" x1="14" y1="78" x2="130" y2="78"/>
+    </g>
+
+    <g transform="translate(450 5) rotate(-2)">
+      <rect class="card-fill" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect x="14" y="14" width="36" height="6" rx="2" fill="var(--c-accent-3)"/>
+      <line class="card-line" x1="14" y1="36" x2="150" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="160" y2="50"/>
+      <line class="card-line" x1="14" y1="64" x2="120" y2="64"/>
+      <line class="card-line" x1="14" y1="88" x2="100" y2="88"/>
+    </g>
+
+    <g transform="translate(680 -8) rotate(5)">
+      <rect class="card-fill" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect x="14" y="14" width="44" height="6" rx="2" fill="var(--c-accent)"/>
+      <line class="card-line" x1="14" y1="36" x2="160" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="140" y2="50"/>
+      <line class="card-line" x1="14" y1="64" x2="150" y2="64"/>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(110 170) rotate(4)">
+      <rect class="card-fill" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect x="14" y="14" width="56" height="6" rx="2" fill="var(--c-accent-2)"/>
+      <line class="card-line" x1="14" y1="36" x2="160" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="140" y2="50"/>
+      <line class="card-line" x1="14" y1="64" x2="120" y2="64"/>
+      <line class="card-line" x1="14" y1="78" x2="150" y2="78"/>
+      <line class="card-line" x1="14" y1="92" x2="90" y2="92"/>
+    </g>
+
+    <!-- 강조 카드 (중앙, 약간 크고 진하게) -->
+    <g transform="translate(340 160) rotate(-3)">
+      <rect class="card-fill" x="0" y="0" width="200" height="138" rx="6"/>
+      <rect x="0" y="0" width="200" height="138" rx="6" stroke="var(--c-accent)" stroke-width="2.5" fill="none"/>
+      <rect x="14" y="14" width="60" height="8" rx="2" fill="var(--c-accent)"/>
+      <line x1="14" y1="40" x2="180" y2="40" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+      <line x1="14" y1="56" x2="160" y2="56" stroke="var(--c-muted)" stroke-width="1.2"/>
+      <line x1="14" y1="70" x2="170" y2="70" stroke="var(--c-muted)" stroke-width="1.2"/>
+      <line x1="14" y1="86" x2="140" y2="86" stroke="var(--c-muted)" stroke-width="1.2"/>
+      <line x1="14" y1="110" x2="120" y2="110" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+    </g>
+
+    <g transform="translate(580 175) rotate(2)">
+      <rect class="card-fill" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="120" rx="6"/>
+      <rect x="14" y="14" width="38" height="6" rx="2" fill="var(--c-accent-3)"/>
+      <line class="card-line" x1="14" y1="36" x2="160" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="150" y2="50"/>
+      <line class="card-line" x1="14" y1="64" x2="130" y2="64"/>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(40 340) rotate(-4)">
+      <rect class="card-fill" x="0" y="0" width="180" height="110" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="110" rx="6"/>
+      <rect x="14" y="14" width="44" height="6" rx="2" fill="var(--c-accent)"/>
+      <line class="card-line" x1="14" y1="36" x2="150" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="160" y2="50"/>
+      <line class="card-line" x1="14" y1="64" x2="120" y2="64"/>
+    </g>
+
+    <g transform="translate(260 360) rotate(6)">
+      <rect class="card-fill" x="0" y="0" width="180" height="110" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="110" rx="6"/>
+      <rect x="14" y="14" width="50" height="6" rx="2" fill="var(--c-accent-2)"/>
+      <line class="card-line" x1="14" y1="36" x2="140" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="160" y2="50"/>
+    </g>
+
+    <g transform="translate(490 350) rotate(-3)">
+      <rect class="card-fill" x="0" y="0" width="180" height="110" rx="6"/>
+      <rect class="card-stroke" x="0" y="0" width="180" height="110" rx="6"/>
+      <rect x="14" y="14" width="40" height="6" rx="2" fill="var(--c-accent-3)"/>
+      <line class="card-line" x1="14" y1="36" x2="160" y2="36"/>
+      <line class="card-line" x1="14" y1="50" x2="130" y2="50"/>
+      <line class="card-line" x1="14" y1="64" x2="150" y2="64"/>
+    </g>
+  </g>
+
+  <!-- 디테일: 알파벳 탭 (색인 느낌) -->
+  <g transform="translate(60 100) rotate(-6)" opacity="0.85">
+    <rect x="0" y="0" width="60" height="22" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/>
+    <rect x="0" y="28" width="60" height="22" rx="3" fill="var(--c-muted)" fill-opacity="0.55"/>
+    <rect x="0" y="56" width="60" height="22" rx="3" fill="var(--c-muted)" fill-opacity="0.35"/>
+  </g>
+
+  <!-- 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">04</text>
+</svg>

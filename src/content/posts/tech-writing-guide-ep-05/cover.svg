@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.05 아키텍처 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+      }
+    }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotGrid05" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA05" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB05" cx="90%" cy="10%" r="50%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect fill="var(--c-bg)" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotGrid05)"/>
+  <rect width="1200" height="630" fill="url(#glowA05)"/>
+  <rect width="1200" height="630" fill="url(#glowB05)"/>
+
+  <!-- 배경 -->
+  <rect x="-200" y="-150" width="500" height="500" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(8 50 100)"/>
+  <circle cx="1320" cy="700" r="380" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
+
+  <!-- 메인 메타포: 네 층의 동심 사각형 (C4 줌) -->
+  <g transform="translate(600 315) rotate(-4)">
+    <!-- L1 (가장 바깥) -->
+    <rect x="-380" y="-220" width="760" height="440" rx="8"
+          stroke="var(--c-accent)" stroke-width="2" fill="none" stroke-dasharray="6 6" opacity="0.65"/>
+    <g transform="translate(-368 -208)" opacity="0.7">
+      <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-accent)"/>
+      <rect x="13" y="0" width="6" height="5" rx="1" fill="var(--c-accent)"/>
+      <rect x="22" y="0" width="28" height="5" rx="1" fill="var(--c-accent)"/>
+    </g>
+
+    <!-- L2 -->
+    <rect x="-280" y="-160" width="560" height="320" rx="8"
+          stroke="var(--c-accent)" stroke-width="2" fill="var(--c-accent)" fill-opacity="0.05"/>
+    <g transform="translate(-268 -148)" opacity="0.8">
+      <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-accent)"/>
+      <rect x="13" y="0" width="6" height="5" rx="1" fill="var(--c-accent)"/>
+      <rect x="22" y="0" width="36" height="5" rx="1" fill="var(--c-accent)"/>
+    </g>
+
+    <!-- L3 -->
+    <rect x="-180" y="-100" width="360" height="200" rx="8"
+          stroke="var(--c-accent-2)" stroke-width="2.5" fill="var(--c-accent-2)" fill-opacity="0.10"/>
+    <g transform="translate(-168 -88)">
+      <rect x="0" y="0" width="10" height="5" rx="1" fill="var(--c-accent-2)"/>
+      <rect x="13" y="0" width="6" height="5" rx="1" fill="var(--c-accent-2)"/>
+      <rect x="22" y="0" width="38" height="5" rx="1" fill="var(--c-accent-2)"/>
+    </g>
+
+    <!-- L4 (가장 안쪽) -->
+    <rect x="-80" y="-40" width="160" height="80" rx="6"
+          fill="var(--c-accent)" fill-opacity="0.30" stroke="var(--c-accent)" stroke-width="2"/>
+    <g transform="translate(-26 -2)">
+      <rect x="0" y="0" width="10" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="13" y="0" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="22" y="0" width="30" height="6" rx="1" fill="var(--c-accent)"/>
+    </g>
+  </g>
+
+  <!-- 디테일: 줌 인 화살표 (4개의 각도) -->
+  <g stroke="var(--c-muted)" stroke-width="1.5" fill="none" opacity="0.7">
+    <path d="M 250 130 L 290 170" />
+    <path d="M 950 130 L 910 170" />
+    <path d="M 250 500 L 290 460" />
+    <path d="M 950 500 L 910 460" />
+  </g>
+  <g fill="var(--c-muted)" opacity="0.7">
+    <polygon points="290,170 280,165 282,176"/>
+    <polygon points="910,170 920,165 918,176"/>
+    <polygon points="290,460 280,465 282,454"/>
+    <polygon points="910,460 920,465 918,454"/>
+  </g>
+
+  <!-- 디테일: 시퀀스 라인 (L3 안쪽에 컴포넌트 박스) -->
+  <g transform="translate(440 290)">
+    <rect x="0" y="0" width="40" height="20" rx="2" fill="var(--c-accent-2)" fill-opacity="0.35" stroke="var(--c-accent-2)" stroke-width="1"/>
+    <rect x="50" y="0" width="40" height="20" rx="2" fill="var(--c-accent-2)" fill-opacity="0.35" stroke="var(--c-accent-2)" stroke-width="1"/>
+    <line x1="40" y1="10" x2="50" y2="10" stroke="var(--c-accent-2)" stroke-width="1.2"/>
+  </g>
+
+  <g transform="translate(680 290)">
+    <rect x="0" y="0" width="40" height="20" rx="2" fill="var(--c-accent-2)" fill-opacity="0.35" stroke="var(--c-accent-2)" stroke-width="1"/>
+  </g>
+
+  <!-- 디테일: 작은 점 무리 (배경 정보 표시) -->
+  <g transform="translate(140 480)" opacity="0.7">
+    <circle cx="0" cy="0" r="3" fill="var(--c-accent-3)"/>
+    <circle cx="12" cy="5" r="2.5" fill="var(--c-accent-3)" opacity="0.75"/>
+    <circle cx="-8" cy="10" r="2" fill="var(--c-accent-3)" opacity="0.85"/>
+  </g>
+
+  <!-- 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">05</text>
+</svg>

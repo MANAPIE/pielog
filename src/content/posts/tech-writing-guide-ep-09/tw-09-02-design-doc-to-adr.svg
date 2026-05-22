@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" role="img" aria-labelledby="title-tw-09-02">
+  <title id="title-tw-09-02">디자인 문서에서 ADR로 이어지는 시간 축</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+      --c-archive-bg: rgba(107, 104, 98, 0.10);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+        --c-archive-bg: rgba(168, 163, 154, 0.12);
+      }
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .card {
+      fill: var(--c-card-bg);
+      stroke: var(--c-line);
+      stroke-width: 1;
+    }
+
+    .card-archive {
+      fill: var(--c-archive-bg);
+      stroke: var(--c-muted);
+      stroke-width: 1;
+      stroke-dasharray: 4 3;
+    }
+
+    .stage-num {
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--c-accent);
+      letter-spacing: 0.5px;
+    }
+
+    .stage-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .stage-date {
+      font-size: 10px;
+      fill: var(--c-muted);
+    }
+
+    .doc-title {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .doc-body {
+      font-size: 10px;
+      fill: var(--c-fg);
+    }
+
+    .doc-muted {
+      font-size: 10px;
+      fill: var(--c-muted);
+    }
+
+    .axis {
+      stroke: var(--c-muted);
+      stroke-width: 1.5;
+    }
+
+    .axis-label {
+      font-size: 11px;
+      fill: var(--c-muted);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .arrow-line {
+      stroke: var(--c-accent);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .note {
+      font-size: 11px;
+      fill: var(--c-muted);
+      font-style: italic;
+    }
+  </style>
+
+  <!-- 상단 라벨 -->
+  <text class="axis-label" x="20" y="28">시간 축 →</text>
+
+  <!-- 가로 시간 축 -->
+  <line class="axis" x1="20" y1="58" x2="740" y2="58" />
+  <circle cx="120" cy="58" r="5" fill="var(--c-accent)" />
+  <circle cx="380" cy="58" r="5" fill="var(--c-accent-2)" />
+  <circle cx="620" cy="58" r="5" fill="var(--c-accent)" />
+
+  <text class="stage-num" x="120" y="48" text-anchor="middle">01 PROPOSAL</text>
+  <text class="stage-num" x="380" y="48" text-anchor="middle">02 IMPLEMENT</text>
+  <text class="stage-num" x="620" y="48" text-anchor="middle">03 ARCHIVE + DECISION</text>
+
+  <text class="stage-date" x="120" y="80" text-anchor="middle">04-01 ~ 04-12</text>
+  <text class="stage-date" x="380" y="80" text-anchor="middle">04-15 ~ 04-26</text>
+  <text class="stage-date" x="620" y="80" text-anchor="middle">04-28 이후</text>
+
+  <!-- Stage 1: Design Doc card -->
+  <g transform="translate(30 100)">
+    <rect class="card" x="0" y="0" width="180" height="250" rx="6" />
+    <text class="doc-title" x="14" y="22">Design Doc</text>
+    <text class="doc-muted" x="14" y="38">"자동 환불 정책"</text>
+
+    <line x1="14" y1="50" x2="166" y2="50" stroke="var(--c-line)" />
+
+    <text class="doc-body" x="14" y="70">Background</text>
+    <text class="doc-muted" x="14" y="84">환불 = 결제의 8%</text>
+
+    <text class="doc-body" x="14" y="104">Goals · Non-Goals</text>
+    <text class="doc-muted" x="14" y="118">분쟁 처리는 별도</text>
+
+    <text class="doc-body" x="14" y="138">Design</text>
+    <text class="doc-muted" x="14" y="152">API + 큐 기반 처리</text>
+
+    <text class="doc-body" x="14" y="172">Alternatives</text>
+    <text class="doc-muted" x="14" y="186">동기 vs 비동기</text>
+
+    <text class="doc-body" x="14" y="206">Open Questions</text>
+    <text class="doc-muted" x="14" y="220">PG 응답 지연 시</text>
+
+    <text class="stage-date" x="14" y="234">Status: Approved</text>
+  </g>
+
+  <!-- Stage 2: Implementation (lighter card with PR refs) -->
+  <g transform="translate(290 100)">
+    <rect class="card" x="0" y="0" width="180" height="250" rx="6" />
+    <text class="doc-title" x="14" y="22">구현 1~2 스프린트</text>
+
+    <line x1="14" y1="36" x2="166" y2="36" stroke="var(--c-line)" />
+
+    <text class="doc-body" x="14" y="58">Design Doc은</text>
+    <text class="doc-body" x="14" y="72">작업 가이드로 사용</text>
+
+    <text class="doc-muted" x="14" y="96">· PR마다 링크</text>
+    <text class="doc-muted" x="14" y="110">· 막힘은 본문 갱신</text>
+
+    <line x1="14" y1="128" x2="166" y2="128" stroke="var(--c-line)" stroke-dasharray="3 3" />
+
+    <text class="doc-body" x="14" y="148">구현 중 새 결정</text>
+    <text class="doc-muted" x="14" y="166">· 재시도 정책 변경</text>
+    <text class="doc-muted" x="14" y="180">· 외부 의존성 추가</text>
+
+    <text class="doc-body" x="14" y="206">→ 별도 ADR-029</text>
+    <text class="doc-muted" x="14" y="220">결제 도메인 전반</text>
+    <text class="doc-muted" x="14" y="234">영향이라 박제</text>
+  </g>
+
+  <!-- Stage 3: ADR + Archive -->
+  <g transform="translate(550 100)">
+    <!-- ADR card (front) -->
+    <rect class="card" x="0" y="0" width="180" height="140" rx="6" />
+    <text class="doc-title" x="14" y="22">ADR-031</text>
+    <text class="doc-muted" x="14" y="38">"자동 환불 정책 채택"</text>
+
+    <line x1="14" y1="50" x2="166" y2="50" stroke="var(--c-line)" />
+
+    <text class="doc-body" x="14" y="70">Status: Accepted</text>
+    <text class="doc-body" x="14" y="86">단정적 톤</text>
+
+    <text class="doc-muted" x="14" y="110">References:</text>
+    <text class="doc-muted" x="14" y="124">Design Doc (archive)</text>
+
+    <!-- Archived Design Doc (below, dashed) -->
+    <rect class="card-archive" x="0" y="165" width="180" height="85" rx="6" />
+    <text class="doc-title" x="14" y="187">Design Doc (archive)</text>
+    <text class="doc-muted" x="14" y="203">Status: Implemented</text>
+    <text class="doc-muted" x="14" y="217">docs/design/archive/</text>
+    <text class="doc-muted" x="14" y="235">참고용으로만 보존</text>
+  </g>
+
+  <!-- 화살표 -->
+  <g>
+    <line class="arrow-line" x1="210" y1="220" x2="290" y2="220" />
+    <polygon points="290,220 282,215 282,225" fill="var(--c-accent)" />
+
+    <line class="arrow-line" x1="470" y1="220" x2="550" y2="220" />
+    <polygon points="550,220 542,215 542,225" fill="var(--c-accent)" />
+  </g>
+
+  <!-- 하단 노트 -->
+  <text class="note" x="20" y="385">디자인 문서는 결정의 <tspan font-weight="700">과정</tspan>, ADR은 결정의 <tspan font-weight="700">
+      결과</tspan>. 둘 다 필요하지만 수명이 다르다.</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="title-tw-03-01">
+  <title id="title-tw-03-01">하우투 가이드의 표준 골격</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+      --c-band: rgba(184, 146, 74, 0.08);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+        --c-band: rgba(230, 201, 138, 0.10);
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .band { fill: var(--c-band); }
+    .card { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .step-marker { font-size: 12px; font-weight: 700; font-family: 'Georgia', serif; fill: var(--c-accent-2); }
+    .step-title { font-size: 15px; font-weight: 700; }
+    .step-q { font-size: 12px; fill: var(--c-muted); font-style: italic; }
+    .step-detail { font-size: 11px; fill: var(--c-muted); }
+    .arrow { stroke: var(--c-accent-2); fill: none; stroke-width: 2; marker-end: url(#arr); }
+  </style>
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <polygon points="0,0 0,10 9,5" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 밴드 -->
+  <rect class="band" x="0" y="20" width="700" height="420" rx="4"/>
+
+  <!-- Step 1: 목적 -->
+  <g transform="translate(40 50)">
+    <rect class="card" x="0" y="0" width="280" height="80" rx="6"/>
+    <text class="step-marker" x="16" y="22">01 · GOAL</text>
+    <text class="step-title" x="16" y="42">목적</text>
+    <text class="step-q" x="16" y="60">"이 글을 다 따라가면 무엇을 해낸 것인가"</text>
+  </g>
+
+  <!-- Step 2: 전제 -->
+  <g transform="translate(380 50)">
+    <rect class="card" x="0" y="0" width="280" height="80" rx="6"/>
+    <text class="step-marker" x="16" y="22">02 · PREREQUISITE</text>
+    <text class="step-title" x="16" y="42">전제</text>
+    <text class="step-q" x="16" y="60">"무엇을 알고 있고, 무엇이 준비되어 있어야 하나"</text>
+  </g>
+
+  <!-- Step 3: 단계 -->
+  <g transform="translate(40 170)">
+    <rect class="card" x="0" y="0" width="620" height="110" rx="6"/>
+    <text class="step-marker" x="16" y="22">03 · STEPS</text>
+    <text class="step-title" x="16" y="42">단계</text>
+    <text class="step-q" x="16" y="60">"이 순서대로 하면 목적에 닿는다"</text>
+    <text class="step-detail" x="16" y="82">하나의 단계 = 하나의 동작. 단계 안에 *분기*가 있어도 됨.</text>
+    <text class="step-detail" x="16" y="96">번호 매기기. 그 단계에서 *왜* 이걸 하는지 한 줄.</text>
+  </g>
+
+  <!-- Step 4: 검증 -->
+  <g transform="translate(40 310)">
+    <rect class="card" x="0" y="0" width="280" height="80" rx="6"/>
+    <text class="step-marker" x="16" y="22">04 · VERIFICATION</text>
+    <text class="step-title" x="16" y="42">검증</text>
+    <text class="step-q" x="16" y="60">"제대로 됐는지 어떻게 확인하나"</text>
+  </g>
+
+  <!-- Step 5: 다음 행동 -->
+  <g transform="translate(380 310)">
+    <rect class="card" x="0" y="0" width="280" height="80" rx="6"/>
+    <text class="step-marker" x="16" y="22">05 · NEXT</text>
+    <text class="step-title" x="16" y="42">다음 행동</text>
+    <text class="step-q" x="16" y="60">"여기서 다음에 갈 곳, 또는 롤백 방법"</text>
+  </g>
+
+  <!-- 화살표 -->
+  <line class="arrow" x1="325" y1="90" x2="375" y2="90"/>
+  <line class="arrow" x1="520" y1="130" x2="520" y2="170"/>
+  <line class="arrow" x1="180" y1="280" x2="180" y2="310"/>
+  <line class="arrow" x1="325" y1="350" x2="375" y2="350"/>
+</svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title-tw-06-03">
+  <title id="title-tw-06-03">ADR-012가 ADR-027에 의해 부분 Supersede되는 흐름</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+      --c-old-bg: rgba(154, 59, 59, 0.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+        --c-old-bg: rgba(216, 120, 120, 0.10);
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .card { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .card-old { fill: var(--c-old-bg); stroke: var(--c-accent-3); stroke-width: 1; stroke-dasharray: none; }
+    .card-title { font-size: 14px; font-weight: 700; }
+    .card-meta { font-size: 11px; fill: var(--c-muted); }
+    .status-old { font-size: 11px; font-weight: 700; fill: var(--c-accent-3); }
+    .status-new { font-size: 11px; font-weight: 700; fill: var(--c-accent); }
+    .body { font-size: 11px; fill: var(--c-fg); }
+    .body-muted { font-size: 11px; fill: var(--c-muted); }
+    .arrow-label { font-size: 12px; font-weight: 700; fill: var(--c-accent-3); }
+    .note { font-size: 11px; fill: var(--c-muted); font-style: italic; }
+    .ref-line { stroke: var(--c-muted); stroke-dasharray: 3 3; fill: none; }
+  </style>
+
+  <!-- 상단 라벨 -->
+  <text class="card-meta" x="20" y="28">ADR 두 장이 시간 축에서 어떻게 연결되는가</text>
+
+  <!-- 옛 ADR (위쪽) -->
+  <g transform="translate(60 50)">
+    <rect class="card-old" x="0" y="0" width="600" height="150" rx="8"/>
+    <text class="card-title" x="20" y="28">ADR-012: 주 데이터베이스로 PostgreSQL 채택</text>
+    <text class="status-old" x="20" y="46">Status: Superseded by ADR-027 (partial)</text>
+    <text class="card-meta" x="20" y="64">Date: 2024-03-14</text>
+
+    <line x1="20" y1="76" x2="580" y2="76" stroke="var(--c-line)" stroke-width="1"/>
+
+    <text class="body" x="20" y="96">· 큰 결정 — 결제 도메인 = PostgreSQL — 은 여전히 유효</text>
+    <text class="body" x="20" y="114">· "단일 인스턴스" 가정 부분만 대체됨</text>
+    <text class="body-muted" x="20" y="130">· References: ADR-027</text>
+  </g>
+
+  <!-- 화살표 -->
+  <g>
+    <line x1="360" y1="210" x2="360" y2="300" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+    <polygon points="360,305 354,293 366,293" fill="var(--c-accent-3)"/>
+    <text class="arrow-label" x="375" y="258">supersedes (partial)</text>
+  </g>
+
+  <!-- 새 ADR (아래쪽) -->
+  <g transform="translate(60 310)">
+    <rect class="card" x="0" y="0" width="600" height="150" rx="8"/>
+    <text class="card-title" x="20" y="28">ADR-027: tenant 단위 PostgreSQL 샤딩</text>
+    <text class="status-new" x="20" y="46">Status: Accepted</text>
+    <text class="card-meta" x="20" y="64">Date: 2026-04-20</text>
+
+    <line x1="20" y1="76" x2="580" y2="76" stroke="var(--c-line)" stroke-width="1"/>
+
+    <text class="body" x="20" y="96">· ADR-012의 재검토 조건("100M row 이후") 도달</text>
+    <text class="body" x="20" y="114">· 현재 195M row, 쓰기 QPS 12k — Vitess 도입, tenant_id 라우팅</text>
+    <text class="body-muted" x="20" y="130">· References: ADR-012 (partial supersede)</text>
+  </g>
+
+  <!-- 양방향 참조 점선 (좌측 가장자리) -->
+  <path class="ref-line" d="M 50 120 Q 30 245 50 380"/>
+  <text class="note" x="20" y="250" transform="rotate(-90 20 250)" text-anchor="middle">양방향 link</text>
+
+  <!-- 하단 노트 -->
+  <text class="note" x="20" y="490">옛 ADR을 지우지 않는다 — 옛 결정의 맥락이 새 결정의 근거가 된다.</text>
+</svg>

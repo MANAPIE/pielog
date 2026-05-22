@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.02 튜토리얼 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+      }
+    }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotGrid02" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA02" cx="15%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent-2)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB02" cx="85%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect fill="var(--c-bg)" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotGrid02)"/>
+  <rect width="1200" height="630" fill="url(#glowA02)"/>
+  <rect width="1200" height="630" fill="url(#glowB02)"/>
+
+  <!-- 배경 무채색 stroke 도형 -->
+  <ellipse cx="-100" cy="700" rx="500" ry="380" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(8 -100 700)"/>
+  <rect x="1000" y="-180" width="420" height="420" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(12 1210 30)"/>
+
+  <!-- 메인 메타포: 출발 → 다섯 체크포인트 → 도착 (구부러진 길) -->
+  <g transform="translate(0 60)">
+    <!-- 길 (구부러진 패스) -->
+    <path d="M 130 420 Q 280 380 380 360 Q 540 340 600 310 Q 720 270 820 280 Q 960 290 1080 220"
+          stroke="var(--c-line)" stroke-width="2" fill="none" stroke-dasharray="6 6" opacity="0.6"/>
+
+    <!-- 출발점 (작은 원) -->
+    <g transform="translate(130 420)">
+      <circle cx="0" cy="0" r="16" stroke="var(--c-muted)" stroke-width="2" fill="var(--c-bg)"/>
+      <circle cx="0" cy="0" r="6" fill="var(--c-muted)"/>
+    </g>
+
+    <!-- 체크포인트 1: 작은 성공의 점 + 체크 -->
+    <g transform="translate(310 380) rotate(-4)">
+      <rect x="-22" y="-22" width="44" height="44" rx="8" fill="var(--c-accent)" fill-opacity="0.16" stroke="var(--c-accent)" stroke-width="2"/>
+      <polyline points="-10,2 -2,10 12,-8" stroke="var(--c-accent)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 체크포인트 2 -->
+    <g transform="translate(480 350) rotate(2)">
+      <rect x="-22" y="-22" width="44" height="44" rx="8" fill="var(--c-accent-2)" fill-opacity="0.18" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <polyline points="-10,2 -2,10 12,-8" stroke="var(--c-accent-2)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 체크포인트 3 (가운데 큰 것) -->
+    <g transform="translate(620 320) rotate(-6)">
+      <rect x="-30" y="-30" width="60" height="60" rx="10" fill="var(--c-accent)" fill-opacity="0.22" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <polyline points="-14,3 -3,13 16,-10" stroke="var(--c-accent)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 체크포인트 4 -->
+    <g transform="translate(790 290) rotate(5)">
+      <rect x="-22" y="-22" width="44" height="44" rx="8" fill="var(--c-accent-2)" fill-opacity="0.18" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <polyline points="-10,2 -2,10 12,-8" stroke="var(--c-accent-2)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 체크포인트 5 -->
+    <g transform="translate(940 270) rotate(-3)">
+      <rect x="-22" y="-22" width="44" height="44" rx="8" fill="var(--c-accent)" fill-opacity="0.16" stroke="var(--c-accent)" stroke-width="2"/>
+      <polyline points="-10,2 -2,10 12,-8" stroke="var(--c-accent)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 도착점 (깃발/별 모양) -->
+    <g transform="translate(1080 220) rotate(8)">
+      <polygon points="0,-26 7,-8 26,-8 11,4 17,22 0,12 -17,22 -11,4 -26,-8 -7,-8"
+               fill="var(--c-accent-3)" fill-opacity="0.85"/>
+    </g>
+  </g>
+
+  <!-- 디테일: 작은 화살표 (방향성) -->
+  <g transform="translate(220 460) rotate(-12)">
+    <polygon points="0,0 16,8 0,16" fill="var(--c-muted)" opacity="0.7"/>
+  </g>
+
+  <!-- 디테일: 점 무리 -->
+  <g transform="translate(160 200)">
+    <circle cx="0" cy="0" r="3" fill="var(--c-accent)"/>
+    <circle cx="14" cy="6" r="2.5" fill="var(--c-accent)" opacity="0.7"/>
+    <circle cx="-10" cy="12" r="2" fill="var(--c-accent)" opacity="0.85"/>
+  </g>
+
+  <!-- 디테일: 미니 진척도 바 -->
+  <g transform="translate(880 160) rotate(-6)">
+    <rect x="0" y="0" width="120" height="6" rx="3" fill="var(--c-line)"/>
+    <rect x="0" y="0" width="90" height="6" rx="3" fill="var(--c-accent)"/>
+  </g>
+
+  <!-- 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">02</text>
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.01 README 커버">
+  <style>
+    svg {
+      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
+      --c-num: rgba(44, 61, 142, 0.14);
+      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
+        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
+        --c-num: rgba(160, 176, 236, 0.18);
+        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+      }
+    }
+    .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotGrid01" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA01" cx="20%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB01" cx="85%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent-2)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect fill="var(--c-bg)" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotGrid01)"/>
+  <rect width="1200" height="630" fill="url(#glowA01)"/>
+  <rect width="1200" height="630" fill="url(#glowB01)"/>
+
+  <!-- 배경 무채색 stroke 도형 -->
+  <rect x="-180" y="-60" width="500" height="500" stroke="var(--c-line)" stroke-width="1.5" fill="none" transform="rotate(-9 70 190)"/>
+  <circle cx="1280" cy="660" r="380" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
+
+  <!-- 메인 메타포: 시간 축 위 세 동심원 (30초/5분/30분의 독자) -->
+  <g transform="translate(600 315)">
+    <!-- 가장 큰 동심원 (기여자, 30분+) -->
+    <g transform="rotate(-4)">
+      <circle cx="0" cy="0" r="220" stroke="var(--c-line)" stroke-width="1.5" fill="none" stroke-dasharray="3 5" opacity="0.8"/>
+      <circle cx="0" cy="0" r="220" stroke="var(--c-accent-3)" stroke-width="2" fill="none" stroke-dasharray="20 200" stroke-dashoffset="-30"/>
+    </g>
+    <!-- 중간 (사용자, 5분) -->
+    <g transform="rotate(8)">
+      <circle cx="0" cy="0" r="140" stroke="var(--c-accent-2)" stroke-width="2.5" fill="none"/>
+      <circle cx="0" cy="0" r="140" fill="var(--c-accent-2)" fill-opacity="0.08"/>
+    </g>
+    <!-- 가장 작은 (평가자, 30초) -->
+    <circle cx="0" cy="0" r="70" stroke="var(--c-accent)" stroke-width="3" fill="var(--c-accent)" fill-opacity="0.18"/>
+    <!-- 중심점 -->
+    <circle cx="0" cy="0" r="8" fill="var(--c-accent)"/>
+    <circle cx="0" cy="0" r="3" fill="var(--c-bg)"/>
+  </g>
+
+  <!-- 디테일: 입구를 가리키는 화살표 트라이앵글 -->
+  <g transform="translate(290 200) rotate(-15)">
+    <polygon points="0,0 24,12 0,24" fill="var(--c-accent)"/>
+  </g>
+
+  <!-- 디테일: 미니 바 묶음 (스크롤 위치 신호) -->
+  <g transform="translate(960 460) rotate(10)">
+    <rect x="0" y="-30" width="6" height="40" fill="var(--c-accent)" opacity="0.85"/>
+    <rect x="12" y="-22" width="6" height="32" fill="var(--c-accent)" opacity="0.7"/>
+    <rect x="24" y="-38" width="6" height="48" fill="var(--c-accent)" opacity="0.9"/>
+    <rect x="36" y="-18" width="6" height="28" fill="var(--c-accent)" opacity="0.55"/>
+  </g>
+
+  <!-- 디테일: 체크 표시 -->
+  <g transform="translate(220 470) rotate(-8)">
+    <polyline points="0,0 10,12 28,-12" stroke="var(--c-accent-2)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 디테일: 작은 점 무리 -->
+  <g transform="translate(980 180)">
+    <circle cx="0" cy="0" r="3" fill="var(--c-accent-3)"/>
+    <circle cx="12" cy="6" r="2.5" fill="var(--c-accent-3)" opacity="0.75"/>
+    <circle cx="-8" cy="10" r="2" fill="var(--c-accent-3)" opacity="0.85"/>
+    <circle cx="5" cy="-10" r="2.5" fill="var(--c-accent-3)" opacity="0.6"/>
+  </g>
+
+  <!-- 디테일: 점선 화살표 (입구→안쪽) -->
+  <path d="M 360 480 Q 480 380 540 340" stroke="var(--c-line)" stroke-width="1.5" fill="none" stroke-dasharray="4 6" opacity="0.6"/>
+
+  <!-- 시리즈 번호 -->
+  <text class="ep-number" x="1164" y="594" text-anchor="end">01</text>
+</svg>

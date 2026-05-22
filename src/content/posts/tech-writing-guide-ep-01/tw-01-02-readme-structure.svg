@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 720" role="img" aria-labelledby="title-tw-01-02">
+  <title id="title-tw-01-02">README 표준 골격</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+      --c-hero: rgba(45, 62, 120, 0.08);
+      --c-quick: rgba(184, 146, 74, 0.10);
+      --c-deep: rgba(154, 59, 59, 0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+        --c-hero: rgba(143, 163, 232, 0.14);
+        --c-quick: rgba(230, 201, 138, 0.14);
+        --c-deep: rgba(216, 120, 120, 0.14);
+      }
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .zone-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .zone-sub {
+      font-size: 11px;
+      fill: var(--c-muted);
+    }
+
+    .section {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .section-desc {
+      font-size: 11px;
+      fill: var(--c-muted);
+    }
+
+    .marker {
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--c-muted);
+      font-family: 'Georgia', serif;
+    }
+  </style>
+
+  <!-- ZONE 1: HERO (30초) -->
+  <g transform="translate(0 5)">
+    <rect x="40" y="20" width="620" height="167" rx="6" fill="var(--c-hero)" stroke="var(--c-accent)"
+      stroke-width="1.5" />
+    <text class="marker" x="55" y="42">01</text>
+    <text class="zone-title" x="85" y="42" fill="var(--c-accent)">HERO</text>
+    <text class="zone-sub" x="85" y="58">평가자를 위한 30초. 이게 뭔지를 단번에 전한다.</text>
+  </g>
+
+  <line x1="55" y1="78" x2="645" y2="78" stroke="var(--c-line)" stroke-width="0.5" />
+
+  <g transform="translate(55 102)">
+    <text class="section" x="0" y="0">프로젝트 이름과 한 줄 소개</text>
+    <text class="section-desc" x="0" y="18">"X를 위한 Y." 형식. 비교 가능한 다른 도구를 언급하면 더 명료해진다.</text>
+  </g>
+  <g transform="translate(55 148)">
+    <text class="section" x="0" y="0">배지 · 스크린샷 · 데모 링크</text>
+    <text class="section-desc" x="0" y="18">빌드 상태, 버전, 라이선스. UI라면 GIF 한 장이 백 마디보다 빠르다.</text>
+  </g>
+
+  <!-- ZONE 2: QUICK START (5분) -->
+  <g transform="translate(0 5)">
+    <rect x="40" y="207" width="620" height="259" rx="6" fill="var(--c-quick)" stroke="var(--c-accent-2)"
+      stroke-width="1.5" />
+    <text class="marker" x="55" y="229">02</text>
+    <text class="zone-title" x="85" y="229" fill="var(--c-accent-2)">QUICK START</text>
+    <text class="zone-sub" x="85" y="245">사용자를 위한 5분. 첫 성공 경험까지 데려간다.</text>
+  </g>
+
+  <line x1="55" y1="265" x2="645" y2="265" stroke="var(--c-line)" stroke-width="0.5" />
+
+  <g transform="translate(55 289)">
+    <text class="section" x="0" y="0">설치</text>
+    <text class="section-desc" x="0" y="18">한두 줄의 명령어. 전제 조건은 명시. OS별 차이도.</text>
+  </g>
+  <g transform="translate(55 335)">
+    <text class="section" x="0" y="0">최소한의 사용 예</text>
+    <text class="section-desc" x="0" y="18">복사-붙여넣기로 동작하는 코드. "Hello World"가 아닌 *진짜 쓸 만한* 예.</text>
+  </g>
+  <g transform="translate(55 381)">
+    <text class="section" x="0" y="0">결과 확인</text>
+    <text class="section-desc" x="0" y="18">"이걸 보면 성공한 것이다"를 명시. 스크린샷 또는 기대 출력.</text>
+  </g>
+  <g transform="translate(55 427)">
+    <text class="section" x="0" y="0">다음으로 갈 곳</text>
+    <text class="section-desc" x="0" y="18">상세 문서, 예제 모음, FAQ로 가는 링크. README는 여기서 끝난다.</text>
+  </g>
+
+  <!-- ZONE 3: DEEP (필요 시) -->
+  <g transform="translate(0 5)">
+    <rect x="40" y="486" width="620" height="213" rx="6" fill="var(--c-deep)" stroke="var(--c-accent-3)"
+      stroke-width="1.5" />
+    <text class="marker" x="55" y="508">03</text>
+    <text class="zone-title" x="85" y="508" fill="var(--c-accent-3)">DEEP (선택)</text>
+    <text class="zone-sub" x="85" y="524">기여자와 운영자를 위한. 분량이 늘면 별도 문서로 분리.</text>
+  </g>
+
+  <line x1="55" y1="544" x2="645" y2="544" stroke="var(--c-line)" stroke-width="0.5" />
+
+  <g transform="translate(55 568)">
+    <text class="section" x="0" y="0">기여 방법</text>
+    <text class="section-desc" x="0" y="18">CONTRIBUTING.md로 빼는 것이 정석. README에는 한 줄 링크만.</text>
+  </g>
+  <g transform="translate(55 614)">
+    <text class="section" x="0" y="0">라이선스 · 변경 이력 · 보안</text>
+    <text class="section-desc" x="0" y="18">각각 LICENSE, CHANGELOG.md, SECURITY.md로 분리하고 링크.</text>
+  </g>
+  <g transform="translate(55 660)">
+    <text class="section" x="0" y="0">크레딧 · 후원</text>
+    <text class="section-desc" x="0" y="18">기여자, 의존 프로젝트, 영감을 준 것. README 끝에 두는 게 자연스럽다.</text>
+  </g>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 580" role="img" aria-labelledby="title-tw-07-01">
+  <title id="title-tw-07-01">런북의 응급 카드 구조</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+      --c-alert: rgba(154, 59, 59, 0.10);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+        --c-alert: rgba(216, 120, 120, 0.14);
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .mono { font-family: 'Menlo', 'Consolas', monospace; }
+    .card { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .header { fill: var(--c-alert); stroke: var(--c-accent-3); stroke-width: 1.5; }
+    .tag { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; fill: var(--c-accent-3); }
+    .alert-title { font-size: 16px; font-weight: 700; }
+    .label { font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.5px; }
+    .text { font-size: 12px; }
+    .meta { font-size: 11px; fill: var(--c-muted); }
+    .step-num { font-size: 11px; font-weight: 700; fill: var(--c-accent); font-family: 'Georgia', serif; }
+  </style>
+
+  <!-- 헤더: 알람 카드 -->
+  <rect class="header" x="20" y="20" width="660" height="100" rx="6"/>
+  <text class="tag" x="40" y="46">ALERT</text>
+  <text class="alert-title" x="40" y="72">PaymentService — High 5xx error rate</text>
+  <text class="meta" x="40" y="94">Severity: SEV-2 · Triggers: error_rate &gt; 5% for 3min · On-call: payments team</text>
+
+  <!-- 1. 우선 행동 -->
+  <g transform="translate(20 140)">
+    <rect class="card" x="0" y="0" width="660" height="80" rx="6"/>
+    <text class="label" x="20" y="22">1. FIRST ACTION · 30초 안에</text>
+    <text class="text mono" x="20" y="44">— 트래픽이 정상보다 30% 이상 높으면 → 자동 스케일 그룹 +50% 즉시 트리거</text>
+    <text class="text mono" x="20" y="62">— 그렇지 않으면 → 다음 단계로</text>
+  </g>
+
+  <!-- 2. 진단 -->
+  <g transform="translate(20 235)">
+    <rect class="card" x="0" y="0" width="660" height="160" rx="6"/>
+    <text class="label" x="20" y="22">2. DIAGNOSE · 결정 트리</text>
+
+    <text class="step-num" x="20" y="48">Q1.</text>
+    <text class="text" x="50" y="48">에러가 특정 엔드포인트에 몰리는가?</text>
+    <text class="meta" x="50" y="65">→ YES: 해당 엔드포인트 deploy 이력 확인 (Q2)</text>
+    <text class="meta" x="50" y="80">→ NO: 인프라 이슈 가능성 (Q3)</text>
+
+    <text class="step-num" x="20" y="106">Q2.</text>
+    <text class="text" x="50" y="106">최근 1시간 내 배포가 있었는가?</text>
+    <text class="meta" x="50" y="123">→ YES: Mitigation A (롤백)</text>
+    <text class="meta" x="50" y="138">→ NO: Mitigation B (서킷 브레이커)</text>
+  </g>
+
+  <!-- 3. 완화 액션 -->
+  <g transform="translate(20 410)">
+    <rect class="card" x="0" y="0" width="320" height="150" rx="6"/>
+    <text class="label" x="20" y="22">3-A. MITIGATION · 롤백</text>
+    <rect x="20" y="34" width="280" height="60" rx="3" fill="var(--c-line)" fill-opacity="0.15"/>
+    <text class="text mono" x="30" y="54" font-size="11">kubectl rollout undo \</text>
+    <text class="text mono" x="30" y="70" font-size="11">  deployment/payment-service</text>
+    <text class="text mono" x="30" y="86" font-size="11">  --to-revision=PREV</text>
+    <text class="meta" x="20" y="118">검증: 5xx rate &lt; 1% within 5min</text>
+    <text class="meta" x="20" y="134">실패 시 → 3-B</text>
+  </g>
+
+  <g transform="translate(360 410)">
+    <rect class="card" x="0" y="0" width="320" height="150" rx="6"/>
+    <text class="label" x="20" y="22">3-B. MITIGATION · 서킷 브레이커</text>
+    <rect x="20" y="34" width="280" height="60" rx="3" fill="var(--c-line)" fill-opacity="0.15"/>
+    <text class="text mono" x="30" y="54" font-size="11">feature_flag set \</text>
+    <text class="text mono" x="30" y="70" font-size="11">  payment.circuit_open=true</text>
+    <text class="meta" x="20" y="118">검증: 의존 서비스 호출 차단 확인</text>
+    <text class="meta" x="20" y="134">실패 시 → 4. ESCALATE</text>
+  </g>
+</svg>

@@ -4,6 +4,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import vercel from '@astrojs/vercel';
+import mermaid from 'astro-mermaid';
 
 // Supports `## Heading {#custom-id}` syntax in Markdown headings.
 // Note: this only works for `.md` files — in `.mdx`, `{...}` is parsed as a
@@ -28,7 +29,12 @@ function remarkHeadingIds() {
 export default defineConfig({
   site: 'https://pielog.me',
   output: 'server',
-  integrations: [react(), sitemap(), mdx()],
+  integrations: [
+    mermaid({ theme: 'default', autoTheme: true }),
+    react(),
+    sitemap(),
+    mdx(),
+  ],
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),

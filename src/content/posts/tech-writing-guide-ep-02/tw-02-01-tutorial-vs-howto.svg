@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" role="img" aria-labelledby="title-tw-02-01">
+  <title id="title-tw-02-01">튜토리얼과 하우투의 차이</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .col { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .col-title { font-size: 18px; font-weight: 700; }
+    .col-sub { font-size: 12px; fill: var(--c-muted); font-style: italic; }
+    .row-label { font-size: 11px; font-weight: 600; fill: var(--c-muted); letter-spacing: 0.5px; }
+    .row-value { font-size: 13px; }
+    .divider { stroke: var(--c-line); stroke-width: 0.5; }
+  </style>
+
+  <!-- 튜토리얼 컬럼 -->
+  <g transform="translate(30 30)">
+    <rect class="col" x="0" y="0" width="310" height="400" rx="6"/>
+    <circle cx="40" cy="40" r="14" fill="var(--c-accent)"/>
+    <text class="col-title" x="65" y="45" fill="var(--c-accent)">튜토리얼</text>
+    <text class="col-sub" x="65" y="62">학습 + 실용</text>
+    <line class="divider" x1="20" y1="80" x2="290" y2="80"/>
+
+    <g transform="translate(20 100)">
+      <text class="row-label" x="0" y="0">독자</text>
+      <text class="row-value" x="0" y="18">처음 본 사람</text>
+    </g>
+    <line class="divider" x1="20" y1="140" x2="290" y2="140"/>
+
+    <g transform="translate(20 160)">
+      <text class="row-label" x="0" y="0">목표</text>
+      <text class="row-value" x="0" y="18">"무언가 만들어봤다"는 경험</text>
+    </g>
+    <line class="divider" x1="20" y1="200" x2="290" y2="200"/>
+
+    <g transform="translate(20 220)">
+      <text class="row-label" x="0" y="0">결과</text>
+      <text class="row-value" x="0" y="18">눈에 보이는 산출물</text>
+    </g>
+    <line class="divider" x1="20" y1="260" x2="290" y2="260"/>
+
+    <g transform="translate(20 280)">
+      <text class="row-label" x="0" y="0">분기</text>
+      <text class="row-value" x="0" y="18">없음. 한 길로 끝까지.</text>
+    </g>
+    <line class="divider" x1="20" y1="320" x2="290" y2="320"/>
+
+    <g transform="translate(20 340)">
+      <text class="row-label" x="0" y="0">화법</text>
+      <text class="row-value" x="0" y="18">"같이 해봅시다"</text>
+    </g>
+  </g>
+
+  <!-- 하우투 컬럼 -->
+  <g transform="translate(360 30)">
+    <rect class="col" x="0" y="0" width="310" height="400" rx="6"/>
+    <rect x="26" y="26" width="28" height="28" rx="3" fill="var(--c-accent-2)"/>
+    <text class="col-title" x="65" y="45" fill="var(--c-accent-2)">하우투 가이드</text>
+    <text class="col-sub" x="65" y="62">작업 + 실용</text>
+    <line class="divider" x1="20" y1="80" x2="290" y2="80"/>
+
+    <g transform="translate(20 100)">
+      <text class="row-label" x="0" y="0">독자</text>
+      <text class="row-value" x="0" y="18">목적이 있는 사람</text>
+    </g>
+    <line class="divider" x1="20" y1="140" x2="290" y2="140"/>
+
+    <g transform="translate(20 160)">
+      <text class="row-label" x="0" y="0">목표</text>
+      <text class="row-value" x="0" y="18">"이 일을 해냈다"는 완료</text>
+    </g>
+    <line class="divider" x1="20" y1="200" x2="290" y2="200"/>
+
+    <g transform="translate(20 220)">
+      <text class="row-label" x="0" y="0">결과</text>
+      <text class="row-value" x="0" y="18">문제 해결</text>
+    </g>
+    <line class="divider" x1="20" y1="260" x2="290" y2="260"/>
+
+    <g transform="translate(20 280)">
+      <text class="row-label" x="0" y="0">분기</text>
+      <text class="row-value" x="0" y="18">있음. 상황에 따라 갈라짐.</text>
+    </g>
+    <line class="divider" x1="20" y1="320" x2="290" y2="320"/>
+
+    <g transform="translate(20 340)">
+      <text class="row-label" x="0" y="0">화법</text>
+      <text class="row-value" x="0" y="18">"이렇게 하면 됩니다"</text>
+    </g>
+  </g>
+</svg>

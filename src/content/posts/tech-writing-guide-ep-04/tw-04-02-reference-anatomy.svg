@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" role="img" aria-labelledby="title-tw-04-02">
+  <title id="title-tw-04-02">좋은 레퍼런스 항목의 골격</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+      --c-code-bg: rgba(45, 62, 120, 0.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+        --c-code-bg: rgba(143, 163, 232, 0.10);
+      }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--c-fg); }
+    .mono { font-family: 'Menlo', 'Consolas', monospace; }
+    .block { fill: var(--c-card-bg); stroke: var(--c-line); stroke-width: 1; }
+    .code-block { fill: var(--c-code-bg); stroke: var(--c-line); stroke-width: 0.5; }
+    .label { font-size: 11px; font-weight: 700; fill: var(--c-accent); letter-spacing: 0.8px; }
+    .desc { font-size: 11px; fill: var(--c-muted); }
+    .annot { font-size: 11px; fill: var(--c-accent-2); font-style: italic; }
+    .code { font-size: 12px; }
+    .pointer { stroke: var(--c-accent-2); fill: none; stroke-width: 1; stroke-dasharray: 3 3; }
+  </style>
+
+  <!-- 좌측: 골격 -->
+  <g transform="translate(30 30)">
+    <rect class="block" x="0" y="0" width="320" height="540" rx="6"/>
+
+    <!-- 1. 시그니처 -->
+    <text class="label" x="20" y="30">1. 시그니처</text>
+    <rect class="code-block" x="20" y="40" width="280" height="70" rx="3"/>
+    <text class="code mono" x="32" y="58">translate(</text>
+    <text class="code mono" x="40" y="72">  text: str,</text>
+    <text class="code mono" x="40" y="86">  target_lang: str,</text>
+    <text class="code mono" x="40" y="100">) -&gt; str</text>
+
+    <!-- 2. 한 줄 요약 -->
+    <text class="label" x="20" y="140">2. 한 줄 요약</text>
+    <text class="desc" x="20" y="158">"무엇을 하는 함수인가" 한 문장.</text>
+    <text class="desc" x="20" y="174">동사로 시작. 부사·형용사 자제.</text>
+
+    <!-- 3. 파라미터 -->
+    <text class="label" x="20" y="210">3. 파라미터</text>
+    <text class="desc" x="20" y="228">각 파라미터마다:</text>
+    <text class="desc" x="30" y="244">- 이름</text>
+    <text class="desc" x="30" y="260">- 타입</text>
+    <text class="desc" x="30" y="276">- 의미·제약·기본값</text>
+    <text class="desc" x="30" y="292">- 예시 값</text>
+
+    <!-- 4. 반환값 -->
+    <text class="label" x="20" y="320">4. 반환값</text>
+    <text class="desc" x="20" y="338">타입과 의미.</text>
+    <text class="desc" x="20" y="354">실패 시 무엇이 오는가도.</text>
+
+    <!-- 5. 예외 -->
+    <text class="label" x="20" y="380">5. 예외 · 에러</text>
+    <text class="desc" x="20" y="398">어떤 조건에서</text>
+    <text class="desc" x="20" y="414">어떤 예외가 나는가.</text>
+
+    <!-- 6. 예시 -->
+    <text class="label" x="20" y="442">6. 예시</text>
+    <text class="desc" x="20" y="460">최소한의 호출 예와</text>
+    <text class="desc" x="20" y="476">기대 출력.</text>
+
+    <!-- 7. 관련 -->
+    <text class="label" x="20" y="504">7. 관련</text>
+    <text class="desc" x="20" y="522">관련된 다른 함수·문서로 가는 링크.</text>
+  </g>
+
+  <!-- 우측: 실제 예시 -->
+  <g transform="translate(380 30)">
+    <rect class="block" x="0" y="0" width="290" height="540" rx="6"/>
+    <text class="label" x="20" y="30">EXAMPLE</text>
+
+    <rect class="code-block" x="20" y="50" width="250" height="40" rx="3"/>
+    <text class="code mono" x="32" y="68">def translate(</text>
+    <text class="code mono" x="40" y="82">  text, target_lang) -&gt; str:</text>
+
+    <text class="desc" x="20" y="115">Translate text into the target language.</text>
+
+    <text class="annot" x="20" y="148">Args:</text>
+    <text class="desc" x="30" y="166" font-size="11">text (str): Source text. Max 5000 chars.</text>
+    <text class="desc" x="30" y="180" font-size="11">target_lang (str): BCP-47 code.</text>
+    <text class="desc" x="40" y="196" font-size="11">e.g. "en", "ko", "ja"</text>
+
+    <text class="annot" x="20" y="226">Returns:</text>
+    <text class="desc" x="30" y="244" font-size="11">str: Translated text.</text>
+
+    <text class="annot" x="20" y="274">Raises:</text>
+    <text class="desc" x="30" y="292" font-size="11">ValueError: If text exceeds 5000 chars.</text>
+    <text class="desc" x="30" y="306" font-size="11">RateLimitError: If quota exceeded.</text>
+
+    <text class="annot" x="20" y="336">Example:</text>
+    <rect class="code-block" x="20" y="346" width="250" height="60" rx="3"/>
+    <text class="code mono" x="32" y="364">&gt;&gt;&gt; translate(</text>
+    <text class="code mono" x="40" y="378">...   "안녕하세요", "en")</text>
+    <text class="code mono" x="32" y="396">'Hello'</text>
+
+    <text class="annot" x="20" y="434">See Also:</text>
+    <text class="desc" x="30" y="452" font-size="11">detect_language(): Auto-detect source.</text>
+
+    <text class="desc" x="20" y="495" fill="var(--c-muted)" font-style="italic">— 모든 항목이 같은 순서로,</text>
+    <text class="desc" x="20" y="509" fill="var(--c-muted)" font-style="italic">  같은 형식을 따라야 한다.</text>
+    <text class="desc" x="20" y="523" fill="var(--c-muted)" font-style="italic">  레퍼런스의 미덕은 일관성.</text>
+  </g>
+</svg>

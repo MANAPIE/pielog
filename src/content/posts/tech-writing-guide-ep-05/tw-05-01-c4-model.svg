@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" role="img" aria-labelledby="title-tw-05-01">
+  <title id="title-tw-05-01">C4 모델: 네 단계의 줌 레벨</title>
+  <style>
+    svg {
+      --c-fg: #1A1A1A;
+      --c-muted: #6B6862;
+      --c-accent: #2D3E78;
+      --c-accent-2: #B8924A;
+      --c-accent-3: #9A3B3B;
+      --c-line: rgba(0, 0, 0, 0.22);
+      --c-card-bg: #FBF8F1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-fg: #F5F1E8;
+        --c-muted: #A8A39A;
+        --c-accent: #8FA3E8;
+        --c-accent-2: #E6C98A;
+        --c-accent-3: #D87878;
+        --c-line: rgba(255, 255, 255, 0.20);
+        --c-card-bg: #232326;
+      }
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .level {
+      fill: var(--c-card-bg);
+      stroke: var(--c-line);
+      stroke-width: 1;
+    }
+
+    .level-num {
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Georgia', serif;
+      fill: var(--c-accent);
+    }
+
+    .level-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .level-sub {
+      font-size: 11px;
+      fill: var(--c-muted);
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .level-desc {
+      font-size: 11px;
+      fill: var(--c-muted);
+    }
+
+    .reader {
+      font-size: 10px;
+      fill: var(--c-accent-2);
+      font-style: italic;
+    }
+
+    .zoom-arrow {
+      stroke: var(--c-muted);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-dasharray: 4 4;
+    }
+  </style>
+
+  <!-- 줌 표시 (세로) -->
+  <text class="level-sub" x="80" y="40" text-anchor="end">SCOPE</text>
+  <text class="level-desc" x="80" y="58" text-anchor="end">넓게 본다</text>
+  <line x1="90" y1="20" x2="90" y2="420" stroke="var(--c-muted)" stroke-width="0.5" />
+  <text class="level-sub" x="80" y="385" text-anchor="end">DETAIL</text>
+  <text class="level-desc" x="80" y="403" text-anchor="end">좁고 깊게 본다</text>
+
+  <!-- Level 1: System Context -->
+  <g transform="translate(110 20)">
+    <rect class="level" x="0" y="0" width="560" height="80" rx="6" />
+    <text class="level-num" x="20" y="32">L1</text>
+    <text class="level-sub" x="50" y="22">CONTEXT</text>
+    <text class="level-title" x="50" y="42">시스템 컨텍스트</text>
+    <text class="level-desc" x="230" y="32">우리 시스템 + 외부 시스템 + 사용자.</text>
+    <text class="level-desc" x="230" y="50">"이 시스템은 무엇이며 누구를 위한 것인가."</text>
+    <text class="reader" x="50" y="65">독자: 경영진·새 합류자·외부 관계자</text>
+  </g>
+
+  <!-- 화살표 -->
+  <path class="zoom-arrow" d="M 390 105 L 390 125" />
+  <polygon points="390,130 385,120 395,120" fill="var(--c-muted)" />
+
+  <!-- Level 2: Container -->
+  <g transform="translate(110 140)">
+    <rect class="level" x="0" y="0" width="560" height="80" rx="6" />
+    <text class="level-num" x="20" y="32">L2</text>
+    <text class="level-sub" x="50" y="22">CONTAINER</text>
+    <text class="level-title" x="50" y="42">컨테이너</text>
+    <text class="level-desc" x="230" y="32">웹앱·모바일앱·API·DB·큐.</text>
+    <text class="level-desc" x="230" y="50">"내부적으로 어떤 배포 단위로 쪼개져 있는가."</text>
+    <text class="reader" x="50" y="65">독자: 개발자·운영자·DevOps</text>
+  </g>
+
+  <!-- 화살표 -->
+  <path class="zoom-arrow" d="M 390 225 L 390 245" />
+  <polygon points="390,250 385,240 395,240" fill="var(--c-muted)" />
+
+  <!-- Level 3: Component -->
+  <g transform="translate(110 260)">
+    <rect class="level" x="0" y="0" width="560" height="80" rx="6" />
+    <text class="level-num" x="20" y="32">L3</text>
+    <text class="level-sub" x="50" y="22">COMPONENT</text>
+    <text class="level-title" x="50" y="42">컴포넌트</text>
+    <text class="level-desc" x="230" y="32">한 컨테이너 내부의 모듈·서비스·계층.</text>
+    <text class="level-desc" x="230" y="50">"이 앱은 어떤 책임으로 나뉘어 있는가."</text>
+    <text class="reader" x="50" y="65">독자: 개발자 (그 시스템 담당)</text>
+  </g>
+
+  <!-- 화살표 -->
+  <path class="zoom-arrow" d="M 390 345 L 390 365" />
+  <polygon points="390,370 385,360 395,360" fill="var(--c-muted)" />
+
+  <!-- Level 4: Code (optional) -->
+  <g transform="translate(110 380)">
+    <rect class="level" x="0" y="0" width="560" height="40" rx="6" stroke-dasharray="4 4" />
+    <text class="level-num" x="20" y="25" fill="var(--c-muted)">L4</text>
+    <text class="level-sub" x="50" y="25">CODE (선택)</text>
+    <text class="level-desc" x="230" y="25">클래스 다이어그램·시퀀스. 보통 안 그린다 — 코드가 곧 진실.</text>
+  </g>
+</svg>
