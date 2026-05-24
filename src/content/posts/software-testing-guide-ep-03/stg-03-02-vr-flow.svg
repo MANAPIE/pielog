@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" role="img" aria-labelledby="title-stg03-02">
+  <title id="title-stg03-02">시각 회귀 테스트의 동작 메커니즘</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-pass-bg: #E0EBE5;
+      --c-pass: #5B8C7B;
+      --c-warn-bg: #F3EDDE;
+      --c-warn: #B8954C;
+      --c-arrow: #9CA9A4;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-pass-bg: #1F2D28;
+        --c-pass: #7FB5A0;
+        --c-warn-bg: #2D2820;
+        --c-warn: #D4B176;
+        --c-arrow: #5A6670;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .card { fill: var(--c-card-bg); stroke: var(--c-card-border); stroke-width: 1; }
+    .pass-card { fill: var(--c-pass-bg); stroke: var(--c-pass); stroke-width: 1.2; }
+    .warn-card { fill: var(--c-warn-bg); stroke: var(--c-warn); stroke-width: 1.2; }
+    .preview { fill: var(--c-bg); stroke: var(--c-card-border); stroke-width: 0.8; }
+    .preview-content { fill: var(--c-accent-3); opacity: 0.6; }
+    .label { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; }
+    .pass-label { fill: var(--c-pass); font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .warn-label { fill: var(--c-warn); font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .sub { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; }
+    .arrow { stroke: var(--c-arrow); stroke-width: 1.5; fill: none; }
+  </style>
+  <defs>
+    <marker id="arr03-02" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="var(--c-arrow)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="600" height="380"/>
+
+  <!-- 좌측: baseline -->
+  <text class="label" x="100" y="40" text-anchor="middle">baseline</text>
+  <text class="sub" x="100" y="56" text-anchor="middle">이전 버전</text>
+  <rect class="preview" x="40" y="70" width="120" height="80" rx="6"/>
+  <rect class="preview-content" x="52" y="84" width="60" height="8" rx="2"/>
+  <rect class="preview-content" x="52" y="98" width="90" height="6" rx="2"/>
+  <rect class="preview-content" x="52" y="110" width="40" height="20" rx="3" fill="var(--c-accent)" opacity="0.8"/>
+
+  <!-- 우측: PR -->
+  <text class="label" x="500" y="40" text-anchor="middle">PR 버전</text>
+  <text class="sub" x="500" y="56" text-anchor="middle">현재 변경</text>
+  <rect class="preview" x="440" y="70" width="120" height="80" rx="6"/>
+  <rect class="preview-content" x="452" y="84" width="60" height="8" rx="2"/>
+  <rect class="preview-content" x="452" y="98" width="90" height="6" rx="2"/>
+  <rect class="preview-content" x="452" y="110" width="40" height="20" rx="3" fill="var(--c-accent-2)" opacity="0.9"/>
+
+  <!-- 가운데: diff 비교 -->
+  <text class="label" x="300" y="40" text-anchor="middle">픽셀 비교</text>
+  <text class="sub" x="300" y="56" text-anchor="middle">diff 계산</text>
+  <rect class="card" x="220" y="70" width="160" height="80" rx="10"/>
+  <!-- diff 시각화 (붉은 점들) -->
+  <g opacity="0.85">
+    <rect x="232" y="84" width="60" height="8" rx="2" fill="var(--c-accent-3)" opacity="0.5"/>
+    <rect x="232" y="98" width="90" height="6" rx="2" fill="var(--c-accent-3)" opacity="0.5"/>
+    <rect x="232" y="110" width="40" height="20" rx="3" fill="var(--c-accent)" opacity="0.4"/>
+    <!-- diff 강조 -->
+    <rect x="232" y="110" width="40" height="20" rx="3" fill="none" stroke="var(--c-warn)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  </g>
+
+  <!-- 비교 화살표 -->
+  <line class="arrow" x1="162" y1="110" x2="218" y2="110" marker-end="url(#arr03-02)"/>
+  <line class="arrow" x1="438" y1="110" x2="382" y2="110" marker-end="url(#arr03-02)"/>
+
+  <!-- 분기: 차이 없음 vs 차이 있음 -->
+  <line class="arrow" x1="300" y1="155" x2="300" y2="195" marker-end="url(#arr03-02)"/>
+
+  <!-- 의사결정 노드 -->
+  <rect class="card" x="220" y="200" width="160" height="38" rx="8"/>
+  <text class="sub" x="300" y="223" text-anchor="middle">차이가 있는가?</text>
+
+  <!-- 두 분기 -->
+  <path class="arrow" d="M 245 240 Q 245 270 130 280" marker-end="url(#arr03-02)"/>
+  <path class="arrow" d="M 355 240 Q 355 270 470 280" marker-end="url(#arr03-02)"/>
+
+  <!-- 좌측 분기: 통과 -->
+  <rect class="pass-card" x="40" y="285" width="180" height="60" rx="10"/>
+  <circle cx="60" cy="305" r="5" fill="var(--c-pass)"/>
+  <text class="pass-label" x="74" y="309">차이 없음 · 자동 통과</text>
+  <text class="sub" x="50" y="328">PR 머지 가능</text>
+
+  <!-- 우측 분기: 검토 필요 -->
+  <rect class="warn-card" x="380" y="285" width="180" height="60" rx="10"/>
+  <circle cx="400" cy="305" r="5" fill="var(--c-warn)"/>
+  <text class="warn-label" x="414" y="309">차이 있음 · 리뷰 대기</text>
+  <text class="sub" x="390" y="328">의도한 변경인가 확인</text>
+
+  <!-- 하단 -->
+  <text class="sub" x="300" y="368" text-anchor="middle">의도한 변경이면 새 baseline 승인, 아니면 PR을 막습니다</text>
+</svg>
