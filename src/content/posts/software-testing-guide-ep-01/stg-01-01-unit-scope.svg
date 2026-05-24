@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" role="img" aria-labelledby="title-stg01-01">
+  <title id="title-stg01-01">단위 테스트가 다루는 범위와 외부 의존의 경계</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-inner-bg: #E8EEEB;
+      --c-outer-bg: #F5F2EC;
+      --c-outer-border: rgba(107, 114, 128, 0.3);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-inner-bg: #232A30;
+        --c-outer-bg: #1A1F25;
+        --c-outer-border: rgba(148, 163, 184, 0.3);
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .inner-region { fill: var(--c-inner-bg); stroke: var(--c-accent); stroke-width: 1.2; }
+    .outer-region { fill: var(--c-outer-bg); stroke: var(--c-outer-border); stroke-width: 1; stroke-dasharray: 4 3; }
+    .item-card { fill: var(--c-card-bg); stroke: var(--c-card-border); stroke-width: 1; }
+    .external-card { fill: var(--c-bg); stroke: var(--c-outer-border); stroke-width: 1; }
+    .region-label { fill: var(--c-accent-2); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; }
+    .outer-label { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .item-text { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 12px; }
+    .note { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-style: italic; }
+    @media (prefers-color-scheme: dark) {
+      .region-label { fill: var(--c-accent-2); }
+    }
+  </style>
+  <rect class="bg" width="600" height="380"/>
+
+  <!-- 외부 영역 (통합/E2E의 세계) -->
+  <rect class="outer-region" x="15" y="15" width="570" height="350" rx="14"/>
+  <text class="outer-label" x="30" y="38">통합 · E2E 테스트의 영역</text>
+
+  <!-- 내부 영역 (단위 테스트) -->
+  <rect class="inner-region" x="155" y="80" width="290" height="220" rx="12"/>
+  <text class="region-label" x="300" y="105" text-anchor="middle">단위 테스트의 영역</text>
+
+  <!-- 단위 테스트 내부의 3가지 검증 대상 -->
+  <rect class="item-card" x="175" y="125" width="250" height="42" rx="8"/>
+  <text class="item-text" x="300" y="150" text-anchor="middle">순수 함수</text>
+
+  <rect class="item-card" x="175" y="180" width="250" height="42" rx="8"/>
+  <text class="item-text" x="300" y="205" text-anchor="middle">클래스 · 모듈의 공개 인터페이스</text>
+
+  <rect class="item-card" x="175" y="235" width="250" height="42" rx="8"/>
+  <text class="item-text" x="300" y="260" text-anchor="middle">컴포넌트의 순수 로직</text>
+
+  <!-- 외부 의존 4개: 모서리 4곳 -->
+  <rect class="external-card" x="30" y="65" width="110" height="36" rx="8"/>
+  <text class="item-text" x="85" y="88" text-anchor="middle">데이터베이스</text>
+
+  <rect class="external-card" x="460" y="65" width="110" height="36" rx="8"/>
+  <text class="item-text" x="515" y="88" text-anchor="middle">네트워크 호출</text>
+
+  <rect class="external-card" x="30" y="278" width="110" height="36" rx="8"/>
+  <text class="item-text" x="85" y="301" text-anchor="middle">파일 시스템</text>
+
+  <rect class="external-card" x="460" y="278" width="110" height="36" rx="8"/>
+  <text class="item-text" x="515" y="301" text-anchor="middle">현재 시각</text>
+
+  <!-- 주석 -->
+  <text class="note" x="300" y="345" text-anchor="middle">외부 의존이 등장하는 순간, 그것은 더 이상 단위 테스트가 아닙니다</text>
+</svg>
