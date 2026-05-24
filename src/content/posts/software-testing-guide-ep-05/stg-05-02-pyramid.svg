@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" role="img" aria-labelledby="title-stg05-02">
+  <title id="title-stg05-02">테스트 피라미드의 모양</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-layer-unit: #B8CCC2;
+      --c-layer-int: #8AB3A0;
+      --c-layer-e2e: #5B8C7B;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-layer-unit: #4A6B5E;
+        --c-layer-int: #6A957F;
+        --c-layer-e2e: #7FB5A0;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .layer-unit { fill: var(--c-layer-unit); opacity: 0.85; }
+    .layer-int { fill: var(--c-layer-int); opacity: 0.9; }
+    .layer-e2e { fill: var(--c-layer-e2e); opacity: 0.95; }
+    .layer-label { fill: white; font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 500; }
+    .axis-label { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; }
+    .axis-strong { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .sub { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; }
+    .note { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-style: italic; }
+  </style>
+  <rect class="bg" width="600" height="380"/>
+
+  <!-- 피라미드: 3개 사다리꼴 레이어 -->
+  <!-- 단위 (가장 아래, 가장 넓음) -->
+  <polygon class="layer-unit" points="120,290 480,290 430,225 170,225"/>
+  <text class="layer-label" x="300" y="265" text-anchor="middle">단위 테스트 (Unit)</text>
+
+  <!-- 통합 (가운데) -->
+  <polygon class="layer-int" points="170,225 430,225 380,160 220,160"/>
+  <text class="layer-label" x="300" y="198" text-anchor="middle">통합 테스트 (Integration)</text>
+
+  <!-- E2E (가장 위, 가장 좁음) -->
+  <polygon class="layer-e2e" points="220,160 380,160 330,95 270,95"/>
+  <text class="layer-label" x="300" y="135" text-anchor="middle">E2E</text>
+
+  <!-- 좌측 축: 비용/속도 -->
+  <line x1="60" y1="95" x2="60" y2="290" stroke="var(--c-muted)" stroke-width="0.8"/>
+  <text class="axis-strong" x="50" y="105" text-anchor="end">↑</text>
+  <text class="axis-label" x="50" y="120" text-anchor="end">비싸고</text>
+  <text class="axis-label" x="50" y="134" text-anchor="end">느림</text>
+  <text class="axis-label" x="50" y="260" text-anchor="end">싸고</text>
+  <text class="axis-label" x="50" y="274" text-anchor="end">빠름</text>
+  <text class="axis-strong" x="50" y="288" text-anchor="end">↓</text>
+
+  <!-- 우측 축: 양 -->
+  <line x1="540" y1="95" x2="540" y2="290" stroke="var(--c-muted)" stroke-width="0.8"/>
+  <text class="axis-strong" x="550" y="105">↑</text>
+  <text class="axis-label" x="550" y="120">적게</text>
+  <text class="axis-label" x="550" y="260">많이</text>
+  <text class="axis-strong" x="550" y="288">↓</text>
+
+  <!-- 상단 라벨 -->
+  <text class="axis-strong" x="300" y="55" text-anchor="middle">테스트 피라미드</text>
+  <text class="sub" x="300" y="73" text-anchor="middle">아래로 갈수록 많이, 위로 갈수록 적게</text>
+
+  <!-- 하단 -->
+  <text class="note" x="300" y="335" text-anchor="middle">E2E는 핵심 시나리오에만 — 나머지는 아래 레이어로 내립니다</text>
+  <text class="note" x="300" y="355" text-anchor="middle">"피라미드가 뒤집히면 (E2E 多) 빌드 시간과 flakiness가 함께 늘어납니다"</text>
+</svg>
