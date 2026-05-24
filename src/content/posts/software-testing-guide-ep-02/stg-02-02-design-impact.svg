@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" role="img" aria-labelledby="title-stg02-02">
+  <title id="title-stg02-02">후행 테스트와 TDD가 만드는 코드 구조의 차이</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-warn: #B8954C;
+      --c-warn-bg: #F3EDDE;
+      --c-clean-bg: #E8EEEB;
+      --c-mock-bg: #EFE8E0;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-warn: #D4B176;
+        --c-warn-bg: #2D2820;
+        --c-clean-bg: #232A30;
+        --c-mock-bg: #2A2620;
+      }
+    }
+
+    .bg {
+      fill: var(--c-bg);
+    }
+
+    .col-title {
+      fill: var(--c-fg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .col-sub {
+      fill: var(--c-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+    }
+
+    .core {
+      fill: var(--c-card-bg);
+      stroke: var(--c-accent);
+      stroke-width: 1.2;
+    }
+
+    .clean-core {
+      fill: var(--c-clean-bg);
+      stroke: var(--c-accent);
+      stroke-width: 1.2;
+    }
+
+    .mock {
+      fill: var(--c-mock-bg);
+      stroke: var(--c-warn);
+      stroke-width: 1;
+      stroke-dasharray: 3 3;
+    }
+
+    .pure {
+      fill: var(--c-clean-bg);
+      stroke: var(--c-accent);
+      stroke-width: 1;
+    }
+
+    .item-text {
+      fill: var(--c-fg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+    }
+
+    .mock-text {
+      fill: var(--c-warn);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 10px;
+    }
+
+    .divider {
+      stroke: var(--c-card-border);
+      stroke-width: 1;
+      stroke-dasharray: 2 4;
+    }
+
+    .note {
+      fill: var(--c-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+      font-style: italic;
+    }
+  </style>
+  <rect class="bg" width="600" height="400" />
+
+  <!-- 가운데 구분선 -->
+  <line class="divider" x1="300" y1="30" x2="300" y2="370" />
+
+  <!-- 좌측: 후행 테스트 -->
+  <text class="col-title" x="150" y="40" text-anchor="middle">후행 테스트</text>
+  <text class="col-sub" x="150" y="58" text-anchor="middle">구현 → 테스트</text>
+
+  <!-- 핵심 큰 박스 (모든 게 뭉친 형태) -->
+  <rect class="core" x="35" y="90" width="230" height="200" rx="10" />
+  <text class="item-text" x="150" y="120" text-anchor="middle" font-weight="500">큰 함수 / 클래스</text>
+
+  <!-- 내부에 외부 의존이 박혀 있음 -->
+  <rect x="55" y="140" width="80" height="28" rx="4" fill="var(--c-bg)" stroke="var(--c-muted)" stroke-width="0.6" />
+  <text class="item-text" x="95" y="158" text-anchor="middle">DB 호출</text>
+  <rect x="165" y="140" width="80" height="28" rx="4" fill="var(--c-bg)" stroke="var(--c-muted)" stroke-width="0.6" />
+  <text class="item-text" x="205" y="158" text-anchor="middle">시간 의존</text>
+  <rect x="55" y="180" width="80" height="28" rx="4" fill="var(--c-bg)" stroke="var(--c-muted)" stroke-width="0.6" />
+  <text class="item-text" x="95" y="198" text-anchor="middle">전역 상태</text>
+  <rect x="165" y="180" width="80" height="28" rx="4" fill="var(--c-bg)" stroke="var(--c-muted)" stroke-width="0.6" />
+  <text class="item-text" x="205" y="198" text-anchor="middle">랜덤값</text>
+
+  <!-- mock과 setup이 둘러쌈 -->
+  <g transform="translate(3, 0)">
+    <rect class="mock" x="40" y="225" width="65" height="22" rx="4" />
+    <text class="mock-text" x="72" y="240" text-anchor="middle">mock A</text>
+    <rect class="mock" x="115" y="225" width="65" height="22" rx="4" />
+    <text class="mock-text" x="147" y="240" text-anchor="middle">mock B</text>
+    <rect class="mock" x="190" y="225" width="65" height="22" rx="4" />
+    <text class="mock-text" x="222" y="240" text-anchor="middle">mock C</text>
+    <rect class="mock" x="60" y="252" width="80" height="22" rx="4" />
+    <text class="mock-text" x="100" y="267" text-anchor="middle">setup helper</text>
+    <rect class="mock" x="155" y="252" width="80" height="22" rx="4" />
+    <text class="mock-text" x="195" y="267" text-anchor="middle">teardown</text>
+  </g>
+
+  <text class="note" x="150" y="320" text-anchor="middle">테스트하려고</text>
+  <text class="note" x="150" y="336" text-anchor="middle">mock과 setup이 늘어남</text>
+
+  <!-- 우측: TDD -->
+  <text class="col-title" x="450" y="40" text-anchor="middle">TDD</text>
+  <text class="col-sub" x="450" y="58" text-anchor="middle">테스트 → 구현</text>
+
+  <!-- 작은 순수 함수들이 분리됨 -->
+  <rect class="pure" x="335" y="90" width="110" height="48" rx="8" />
+  <text class="item-text" x="390" y="111" text-anchor="middle" font-weight="500">계산 함수 A</text>
+  <text class="item-text" x="390" y="127" text-anchor="middle" font-size="10">순수 · 입출력 명확</text>
+
+  <rect class="pure" x="455" y="90" width="110" height="48" rx="8" />
+  <text class="item-text" x="510" y="111" text-anchor="middle" font-weight="500">검증 함수 B</text>
+  <text class="item-text" x="510" y="127" text-anchor="middle" font-size="10">순수 · 입출력 명확</text>
+
+  <rect class="pure" x="335" y="148" width="110" height="48" rx="8" />
+  <text class="item-text" x="390" y="169" text-anchor="middle" font-weight="500">변환 함수 C</text>
+  <text class="item-text" x="390" y="185" text-anchor="middle" font-size="10">작은 단위</text>
+
+  <rect class="pure" x="455" y="148" width="110" height="48" rx="8" />
+  <text class="item-text" x="510" y="169" text-anchor="middle" font-weight="500">조립 함수 D</text>
+  <text class="item-text" x="510" y="185" text-anchor="middle" font-size="10">의존성 주입</text>
+
+  <!-- 외부 효과는 경계에 분리 -->
+  <rect class="clean-core" x="335" y="220" width="230" height="60" rx="10" />
+  <text class="item-text" x="450" y="244" text-anchor="middle" font-weight="500">외부 효과 어댑터</text>
+  <text class="item-text" x="450" y="264" text-anchor="middle" font-size="10">DB · 시간 · 랜덤은 경계로 밀어냄</text>
+
+  <text class="note" x="450" y="320" text-anchor="middle">테스트하기 쉬워서</text>
+  <text class="note" x="450" y="336" text-anchor="middle">자연스럽게 작은 단위가 됨</text>
+
+  <!-- 하단 요약 -->
+  <text class="col-sub" x="300" y="380" text-anchor="middle">같은 기능, 다른 모양 — 테스트를 먼저 쓰면 설계의 압력이 작동합니다</text>
+</svg>

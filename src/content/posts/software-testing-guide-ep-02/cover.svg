@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="TDD 편 커버">
+  <style>
+    :root {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-num: rgba(91, 140, 123, 0.16);
+      --c-dot: #5B8C7B;
+      --c-line: #C9D1CC;
+      --c-red: #B85450;
+      --c-blue: #5B7A8C;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-num: rgba(127, 181, 160, 0.18);
+        --c-dot: #7FB5A0;
+        --c-line: #3D434D;
+        --c-red: #D4807C;
+        --c-blue: #88A5BC;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .dot { fill: var(--c-dot); }
+    .line { stroke: var(--c-line); fill: none; }
+    .accent-fill { fill: var(--c-accent); }
+    .accent2-fill { fill: var(--c-accent-2); }
+    .accent3-fill { fill: var(--c-accent-3); }
+    .accent-stroke { stroke: var(--c-accent); fill: none; }
+    .accent2-stroke { stroke: var(--c-accent-2); fill: none; }
+    .red-fill { fill: var(--c-red); }
+    .blue-fill { fill: var(--c-blue); }
+    .num-text { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotgrid-02" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.1" class="dot" opacity="0.18"/>
+    </pattern>
+    <radialGradient id="rg-tl-02" cx="0" cy="0" r="0.55">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg-br-02" cx="1" cy="1" r="0.6">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotgrid-02)"/>
+  <rect width="1200" height="630" fill="url(#rg-tl-02)"/>
+  <rect width="1200" height="630" fill="url(#rg-br-02)"/>
+
+  <!-- 화면 밖 stroke 도형 -->
+  <circle cx="1280" cy="-100" r="380" class="line" stroke-width="1.5"/>
+  <rect x="-200" y="500" width="500" height="500" class="line" stroke-width="1.5" transform="rotate(-12 50 750)"/>
+
+  <!-- 포그라운드: 3개의 원이 순환 사이클을 이루는 메타포 (R-G-R) -->
+  <g transform="translate(500 315) scale(1.4) translate(-500 -315)">
+    <circle cx="500" cy="315" r="200" class="accent-stroke" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+    <!-- Red 원 (좌상단) -->
+    <g transform="translate(380 200)">
+      <circle r="44" class="red-fill" opacity="0.85"/>
+      <circle r="60" class="accent-stroke" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.5"/>
+    </g>
+
+    <!-- Green 원 (우상단) -->
+    <g transform="translate(620 200)">
+      <circle r="44" class="accent-fill" opacity="0.85"/>
+      <circle r="60" class="accent-stroke" stroke-width="1.2" opacity="0.55"/>
+      <polyline points="-14,2 -4,12 14,-8" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+
+    <!-- Refactor 원 (하단 가운데) -->
+    <g transform="translate(500 430)">
+      <circle r="44" class="blue-fill" opacity="0.85"/>
+      <circle r="60" class="accent-stroke" stroke-width="1.2" opacity="0.55"/>
+      <path d="M -16 -2 A 16 16 0 1 1 16 -2" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <polygon points="14,-8 22,-2 14,4" fill="white"/>
+    </g>
+
+    <!-- 화살표 (사이클 흐름) -->
+    <g class="accent2-stroke" stroke-width="2" fill="none" stroke-linecap="round">
+      <path d="M 425 226 Q 500 195 575 226" stroke-dasharray="0"/>
+      <polygon points="575,226 565,220 565,232" class="accent2-fill"/>
+
+      <path d="M 642 252 Q 645 350 555 410" stroke-dasharray="0"/>
+      <polygon points="555,410 565,400 568,412" class="accent2-fill"/>
+
+      <path d="M 445 410 Q 360 350 365 252" stroke-dasharray="0"/>
+      <polygon points="365,252 358,260 372,260" class="accent2-fill"/>
+    </g>
+  </g>
+
+  <!-- 우측 영역: 코드 라인 추상 (작은 막대들) -->
+  <g transform="translate(820 200)">
+    <rect x="0" y="0" width="120" height="6" class="accent3-fill" opacity="0.7" rx="3"/>
+    <rect x="0" y="16" width="90" height="6" class="accent3-fill" opacity="0.7" rx="3"/>
+    <rect x="0" y="32" width="140" height="6" class="accent-fill" opacity="0.8" rx="3"/>
+    <rect x="0" y="48" width="100" height="6" class="accent3-fill" opacity="0.7" rx="3"/>
+    <rect x="0" y="64" width="130" height="6" class="accent-fill" opacity="0.8" rx="3"/>
+    <rect x="0" y="80" width="70" height="6" class="accent3-fill" opacity="0.7" rx="3"/>
+    <rect x="0" y="96" width="110" height="6" class="accent-fill" opacity="0.8" rx="3"/>
+  </g>
+
+  <!-- 우하단 작은 동심원 -->
+  <g transform="translate(900 460)">
+    <circle r="28" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.55"/>
+    <circle r="14" class="accent2-fill" opacity="0.8"/>
+  </g>
+
+  <!-- 작은 점 무리 -->
+  <g class="accent2-fill" opacity="0.7">
+    <circle cx="150" cy="500" r="3"/>
+    <circle cx="166" cy="510" r="3"/>
+    <circle cx="134" cy="512" r="3"/>
+  </g>
+
+  <!-- 회전된 사각형 -->
+  <rect x="80" y="60" width="100" height="100" class="line" stroke-width="1.5" fill="none" transform="rotate(8 130 110)" opacity="0.6"/>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text class="num-text" x="1164" y="594" text-anchor="end">02</text>
+</svg>
