@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" role="img" aria-labelledby="title-stg00-01">
+  <title id="title-stg00-01">사용자 대상 소프트웨어 테스트를 정리하는 세 가지 축</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-divider: rgba(91, 140, 123, 0.3);
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-divider: rgba(127, 181, 160, 0.3);
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .frame { fill: none; stroke: var(--c-card-border); stroke-width: 1; }
+    .card { fill: var(--c-card-bg); stroke: var(--c-card-border); stroke-width: 1; }
+    .title { fill: var(--c-fg); font-family: system-ui, -apple-system, "Helvetica Neue", sans-serif; font-size: 15px; font-weight: 500; }
+    .subtitle { fill: var(--c-muted); font-family: system-ui, -apple-system, "Helvetica Neue", sans-serif; font-size: 12px; }
+    .axis-label { fill: var(--c-accent-2); font-family: system-ui, -apple-system, "Helvetica Neue", sans-serif; font-size: 14px; font-weight: 500; }
+    .item { fill: var(--c-fg); font-family: system-ui, -apple-system, "Helvetica Neue", sans-serif; font-size: 12px; }
+    @media (prefers-color-scheme: dark) {
+      .axis-label { fill: var(--c-accent-2); }
+    }
+    .divider { stroke: var(--c-divider); stroke-width: 0.6; }
+  </style>
+  <rect class="bg" width="600" height="360"/>
+  <rect class="frame" x="10" y="10" width="580" height="340" rx="16"/>
+  <text class="title" x="300" y="40" text-anchor="middle">사용자 대상 소프트웨어 테스트</text>
+  <text class="subtitle" x="300" y="60" text-anchor="middle">세 가지 축으로 정리</text>
+
+  <!-- Card 1: 범위 -->
+  <rect class="card" x="30" y="85" width="170" height="250" rx="12"/>
+  <text class="axis-label" x="115" y="112" text-anchor="middle">범위 (Level)</text>
+  <text class="subtitle" x="115" y="132" text-anchor="middle">얼마나 묶어서 보나</text>
+  <line class="divider" x1="50" y1="150" x2="180" y2="150"/>
+  <text class="item" x="115" y="178" text-anchor="middle">단위 (Unit)</text>
+  <text class="item" x="115" y="204" text-anchor="middle">통합 (Integration)</text>
+  <text class="item" x="115" y="230" text-anchor="middle">컴포넌트</text>
+  <text class="item" x="115" y="256" text-anchor="middle">E2E</text>
+
+  <!-- Card 2: 품질 속성 -->
+  <rect class="card" x="215" y="85" width="170" height="250" rx="12"/>
+  <text class="axis-label" x="300" y="112" text-anchor="middle">품질 속성 (What)</text>
+  <text class="subtitle" x="300" y="132" text-anchor="middle">무엇을 검증하나</text>
+  <line class="divider" x1="235" y1="150" x2="365" y2="150"/>
+  <text class="item" x="300" y="174" text-anchor="middle">기능 · 회귀</text>
+  <text class="item" x="300" y="196" text-anchor="middle">성능 · 부하</text>
+  <text class="item" x="300" y="218" text-anchor="middle">보안</text>
+  <text class="item" x="300" y="240" text-anchor="middle">접근성 · 사용성</text>
+  <text class="item" x="300" y="262" text-anchor="middle">호환성</text>
+
+  <!-- Card 3: 시점 -->
+  <rect class="card" x="400" y="85" width="170" height="250" rx="12"/>
+  <text class="axis-label" x="485" y="112" text-anchor="middle">시점 (When)</text>
+  <text class="subtitle" x="485" y="132" text-anchor="middle">언제 실행하나</text>
+  <line class="divider" x1="420" y1="150" x2="550" y2="150"/>
+  <text class="item" x="485" y="178" text-anchor="middle">개발 중 (로컬)</text>
+  <text class="item" x="485" y="204" text-anchor="middle">CI · PR</text>
+  <text class="item" x="485" y="230" text-anchor="middle">릴리스 전</text>
+  <text class="item" x="485" y="256" text-anchor="middle">운영 중 (모니터링)</text>
+</svg>
