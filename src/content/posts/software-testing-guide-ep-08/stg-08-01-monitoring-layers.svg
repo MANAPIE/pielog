@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" role="img" aria-labelledby="title-stg08-01">
+  <title id="title-stg08-01">운영 모니터링의 세 갈래</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-center-bg: #E8EEEB;
+      --c-arrow: #9CA9A4;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-center-bg: #232A30;
+        --c-arrow: #5A6670;
+      }
+    }
+
+    .bg {
+      fill: var(--c-bg);
+    }
+
+    .center {
+      fill: var(--c-center-bg);
+      stroke: var(--c-accent-2);
+      stroke-width: 1.4;
+    }
+
+    .layer-card {
+      fill: var(--c-card-bg);
+      stroke: var(--c-accent);
+      stroke-width: 1.2;
+    }
+
+    .label-center {
+      fill: var(--c-fg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .label-layer {
+      fill: var(--c-accent-2);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .question {
+      fill: var(--c-fg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    .body {
+      fill: var(--c-fg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+    }
+
+    .sub {
+      fill: var(--c-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 10px;
+    }
+
+    .arrow {
+      stroke: var(--c-arrow);
+      stroke-width: 1.2;
+      fill: none;
+      stroke-dasharray: 4 3;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .label-layer {
+        fill: var(--c-accent-2);
+      }
+    }
+  </style>
+  <defs>
+    <marker id="arr08-01" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="var(--c-arrow)" stroke-width="1.2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+  <rect class="bg" width="600" height="380" />
+  <g transform="translate(0, -20)">
+    <!-- 가운데: 운영 환경 -->
+    <g transform="translate(0, 15)">
+      <rect class="center" x="240" y="160" width="120" height="60" rx="14" />
+      <text class="label-center" x="300" y="186" text-anchor="middle">운영 환경</text>
+      <text class="sub" x="300" y="206" text-anchor="middle">진짜 사용자</text>
+    </g>
+
+    <!-- 좌측 위: 에러 추적 -->
+    <rect class="layer-card" x="30" y="50" width="200" height="110" rx="12" />
+    <text class="label-layer" x="130" y="80" text-anchor="middle">에러 추적</text>
+    <text class="question" x="130" y="100" text-anchor="middle">"무엇이 깨졌는가?"</text>
+    <line x1="50" y1="113" x2="210" y2="113" stroke="var(--c-card-border)" stroke-width="0.6" />
+    <text class="sub" x="130" y="130" text-anchor="middle">예외, 스택, breadcrumb</text>
+    <text class="sub" x="130" y="143" text-anchor="middle">Sentry · Datadog</text>
+
+    <!-- 우측 위: RUM -->
+    <rect class="layer-card" x="370" y="50" width="200" height="110" rx="12" />
+    <text class="label-layer" x="470" y="80" text-anchor="middle">실사용 관찰 (RUM)</text>
+    <text class="question" x="470" y="100" text-anchor="middle">"전체적으로 어떤 상태인가?"</text>
+    <line x1="390" y1="113" x2="550" y2="113" stroke="var(--c-card-border)" stroke-width="0.6" />
+    <text class="sub" x="470" y="130" text-anchor="middle">흐름, 성능, 퍼널, 이탈</text>
+    <text class="sub" x="470" y="143" text-anchor="middle">Sentry · Datadog · PostHog</text>
+
+    <!-- 하단: 합성 모니터링 -->
+    <rect class="layer-card" x="200" y="260" width="200" height="110" rx="12" />
+    <text class="label-layer" x="300" y="290" text-anchor="middle">합성 모니터링</text>
+    <text class="question" x="300" y="310" text-anchor="middle">"지금 살아 있는가?"</text>
+    <line x1="220" y1="323" x2="380" y2="323" stroke="var(--c-card-border)" stroke-width="0.6" />
+    <text class="sub" x="300" y="340" text-anchor="middle">주기적 시나리오 실행</text>
+    <text class="sub" x="300" y="353" text-anchor="middle">Checkly · Playwright</text>
+
+    <!-- 연결 화살표 (운영 환경 → 각 레이어): 허브 박스 가장자리에서 출발해 각 카드 가장자리에서 정확히 멈춤 -->
+    <line class="arrow" x1="250" y1="175" x2="215" y2="160" marker-end="url(#arr08-01)" />
+    <line class="arrow" x1="350" y1="175" x2="385" y2="160" marker-end="url(#arr08-01)" />
+    <line class="arrow" x1="300" y1="235" x2="300" y2="260" marker-end="url(#arr08-01)" />
+  </g>
+</svg>
