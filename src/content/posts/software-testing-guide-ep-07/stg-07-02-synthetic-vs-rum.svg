@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" role="img" aria-labelledby="title-stg07-02">
+  <title id="title-stg07-02">합성 측정과 실사용 측정의 비교</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-syn-bg: #E8EEEB;
+      --c-rum-bg: #EDE9E0;
+      --c-warm: #B8954C;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-syn-bg: #232A30;
+        --c-rum-bg: #2A2620;
+        --c-warm: #D4B176;
+      }
+    }
+
+    .bg {
+      fill: var(--c-bg);
+    }
+
+    .syn-card {
+      fill: var(--c-syn-bg);
+      stroke: var(--c-accent);
+      stroke-width: 1.3;
+    }
+
+    .rum-card {
+      fill: var(--c-rum-bg);
+      stroke: var(--c-warm);
+      stroke-width: 1.3;
+    }
+
+    .item-card {
+      fill: var(--c-bg);
+      stroke: var(--c-card-border);
+      stroke-width: 0.6;
+    }
+
+    .label-syn {
+      fill: var(--c-accent-2);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .label-rum {
+      fill: var(--c-warm);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .body {
+      fill: var(--c-fg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+    }
+
+    .strong {
+      fill: var(--c-fg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .sub {
+      fill: var(--c-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 10px;
+    }
+
+    .note {
+      fill: var(--c-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    .conn {
+      stroke: var(--c-muted);
+      stroke-width: 1;
+      stroke-dasharray: 3 3;
+      fill: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .label-syn {
+        fill: var(--c-accent-2);
+      }
+
+      .label-rum {
+        fill: var(--c-warm);
+      }
+    }
+  </style>
+  <rect class="bg" width="600" height="360" />
+
+  <!-- 상단 -->
+  <text class="sub" x="300" y="32" text-anchor="middle">두 종류의 측정이 서로의 약점을 보완합니다</text>
+
+  <!-- 좌측: 합성 -->
+  <rect class="syn-card" x="20" y="60" width="270" height="240" rx="14" />
+  <text class="label-syn" x="155" y="88" text-anchor="middle">합성 측정 (Synthetic)</text>
+  <text class="sub" x="155" y="105" text-anchor="middle">Lighthouse · WebPageTest</text>
+
+  <line x1="40" y1="120" x2="270" y2="120" stroke="var(--c-card-border)" stroke-width="0.6" />
+
+  <text class="strong" x="40" y="146">강점</text>
+  <rect class="item-card" x="40" y="155" width="230" height="26" rx="5" />
+  <text class="body" x="50" y="172">정해진 환경에서 반복 측정</text>
+  <rect class="item-card" x="40" y="185" width="230" height="26" rx="5" />
+  <text class="body" x="50" y="202">회귀를 깔끔하게 추적</text>
+  <rect class="item-card" x="40" y="215" width="230" height="26" rx="5" />
+  <text class="body" x="50" y="232">PR마다 자동 차단 가능</text>
+
+  <text class="sub" x="40" y="262">한계 — 실제 사용자 환경(느린 네트워크, 오래된 기기)</text>
+  <text class="sub" x="40" y="278">의 다양성은 잡지 못함</text>
+
+  <!-- 우측: RUM -->
+  <rect class="rum-card" x="310" y="60" width="270" height="240" rx="14" />
+  <text class="label-rum" x="445" y="88" text-anchor="middle">실사용 측정 (RUM)</text>
+  <text class="sub" x="445" y="105" text-anchor="middle">Sentry · Datadog · Vercel</text>
+
+  <line x1="330" y1="120" x2="560" y2="120" stroke="var(--c-card-border)" stroke-width="0.6" />
+
+  <text class="strong" x="330" y="146">강점</text>
+  <rect class="item-card" x="330" y="155" width="230" height="26" rx="5" />
+  <text class="body" x="340" y="172">진짜 사용자의 실제 환경</text>
+  <rect class="item-card" x="330" y="185" width="230" height="26" rx="5" />
+  <text class="body" x="340" y="202">다양한 디바이스·지역 분포</text>
+  <rect class="item-card" x="330" y="215" width="230" height="26" rx="5" />
+  <text class="body" x="340" y="232">운영 환경의 실태 반영</text>
+
+  <text class="sub" x="330" y="262">한계 — 변수가 많아 단일 PR의 영향을 분리하기 어려움</text>
+  <text class="sub" x="330" y="278">평균이 아닌 백분위로 봐야</text>
+
+  <!-- 가운데 연결 (보완 관계) -->
+  <line class="conn" x1="290" y1="180" x2="310" y2="180" />
+
+  <!-- 하단 -->
+  <text class="note" x="300" y="335" text-anchor="middle">합성으로 회귀를 막고, RUM으로 진실을 본다 — 두 축이 함께 있어야 합니다</text>
+</svg>
