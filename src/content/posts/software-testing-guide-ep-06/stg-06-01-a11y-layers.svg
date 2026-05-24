@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" role="img" aria-labelledby="title-stg06-01">
+  <title id="title-stg06-01">접근성 검증의 자동 레이어와 수동 레이어</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-auto-bg: #E8EEEB;
+      --c-manual-bg: #EDE9E0;
+      --c-warm: #B8954C;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-auto-bg: #232A30;
+        --c-manual-bg: #2A2620;
+        --c-warm: #D4B176;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .auto-card { fill: var(--c-auto-bg); stroke: var(--c-accent); stroke-width: 1.2; }
+    .manual-card { fill: var(--c-manual-bg); stroke: var(--c-warm); stroke-width: 1.2; }
+    .center { fill: var(--c-card-bg); stroke: var(--c-accent-2); stroke-width: 1.4; }
+    .item-card { fill: var(--c-bg); stroke: var(--c-card-border); stroke-width: 0.6; }
+    .label-auto { fill: var(--c-accent-2); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; }
+    .label-manual { fill: var(--c-warm); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; }
+    .label-center { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 500; }
+    .sub { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 10px; }
+    .item { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; }
+    .pct { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-style: italic; }
+    @media (prefers-color-scheme: dark) {
+      .label-auto { fill: var(--c-accent-2); }
+      .label-manual { fill: var(--c-warm); }
+    }
+  </style>
+  <rect class="bg" width="600" height="380"/>
+
+  <!-- 가운데: 접근성 -->
+  <rect class="center" x="240" y="160" width="120" height="60" rx="14"/>
+  <text class="label-center" x="300" y="195" text-anchor="middle">접근성</text>
+
+  <!-- 좌측: 자동 검사 -->
+  <rect class="auto-card" x="20" y="60" width="220" height="270" rx="14"/>
+  <text class="label-auto" x="130" y="90" text-anchor="middle">자동 검사 레이어</text>
+  <text class="sub" x="130" y="106" text-anchor="middle">axe-core · Lighthouse · Pa11y</text>
+
+  <rect class="item-card" x="40" y="120" width="180" height="32" rx="6"/>
+  <text class="item" x="130" y="140" text-anchor="middle">명도비</text>
+
+  <rect class="item-card" x="40" y="158" width="180" height="32" rx="6"/>
+  <text class="item" x="130" y="178" text-anchor="middle">대체 텍스트 누락</text>
+
+  <rect class="item-card" x="40" y="196" width="180" height="32" rx="6"/>
+  <text class="item" x="130" y="216" text-anchor="middle">ARIA 속성 오류</text>
+
+  <rect class="item-card" x="40" y="234" width="180" height="32" rx="6"/>
+  <text class="item" x="130" y="254" text-anchor="middle">헤딩 위계</text>
+
+  <rect class="item-card" x="40" y="272" width="180" height="32" rx="6"/>
+  <text class="item" x="130" y="292" text-anchor="middle">폼 레이블</text>
+
+  <text class="pct" x="130" y="320" text-anchor="middle">전체 이슈의 30~40%</text>
+
+  <!-- 우측: 수동 확인 -->
+  <rect class="manual-card" x="360" y="60" width="220" height="270" rx="14"/>
+  <text class="label-manual" x="470" y="90" text-anchor="middle">수동 확인 레이어</text>
+  <text class="sub" x="470" y="106" text-anchor="middle">사람이 직접 점검</text>
+
+  <rect class="item-card" x="380" y="120" width="180" height="32" rx="6"/>
+  <text class="item" x="470" y="140" text-anchor="middle">키보드 내비게이션</text>
+
+  <rect class="item-card" x="380" y="158" width="180" height="32" rx="6"/>
+  <text class="item" x="470" y="178" text-anchor="middle">스크린리더 의미</text>
+
+  <rect class="item-card" x="380" y="196" width="180" height="32" rx="6"/>
+  <text class="item" x="470" y="216" text-anchor="middle">포커스 가시성</text>
+
+  <rect class="item-card" x="380" y="234" width="180" height="32" rx="6"/>
+  <text class="item" x="470" y="254" text-anchor="middle">라벨과 동작 의도 일치</text>
+
+  <rect class="item-card" x="380" y="272" width="180" height="32" rx="6"/>
+  <text class="item" x="470" y="292" text-anchor="middle">텍스트 확대 200%</text>
+
+  <text class="pct" x="470" y="320" text-anchor="middle">나머지 60~70%</text>
+
+  <!-- 연결 라인 -->
+  <line x1="240" y1="190" x2="218" y2="190" stroke="var(--c-accent)" stroke-width="1.2"/>
+  <line x1="360" y1="190" x2="382" y2="190" stroke="var(--c-warm)" stroke-width="1.2"/>
+
+  <!-- 상단 -->
+  <text class="sub" x="300" y="40" text-anchor="middle">자동만으로는 부족합니다 — 두 레이어가 함께 작동해야 진짜 접근성이 됩니다</text>
+
+  <!-- 하단 -->
+  <text class="sub" x="300" y="362" text-anchor="middle">자동은 매 PR, 수동은 새 화면이나 큰 흐름 변경 시</text>
+</svg>

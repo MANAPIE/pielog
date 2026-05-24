@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="단위 테스트 편 커버">
+  <style>
+    :root {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-num: rgba(91, 140, 123, 0.16);
+      --c-dot: #5B8C7B;
+      --c-line: #C9D1CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-num: rgba(127, 181, 160, 0.18);
+        --c-dot: #7FB5A0;
+        --c-line: #3D434D;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .dot { fill: var(--c-dot); }
+    .line { stroke: var(--c-line); fill: none; }
+    .accent-fill { fill: var(--c-accent); }
+    .accent2-fill { fill: var(--c-accent-2); }
+    .accent3-fill { fill: var(--c-accent-3); }
+    .accent-stroke { stroke: var(--c-accent); fill: none; }
+    .accent2-stroke { stroke: var(--c-accent-2); fill: none; }
+    .num-text { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotgrid-01" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.1" class="dot" opacity="0.18"/>
+    </pattern>
+    <radialGradient id="rg-tl-01" cx="0" cy="0" r="0.55">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg-br-01" cx="1" cy="1" r="0.6">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotgrid-01)"/>
+  <rect width="1200" height="630" fill="url(#rg-tl-01)"/>
+  <rect width="1200" height="630" fill="url(#rg-br-01)"/>
+
+  <!-- 화면 밖 stroke 도형 -->
+  <rect x="1000" y="-150" width="380" height="380" class="line" stroke-width="1.5" transform="rotate(15 1190 40)"/>
+  <circle cx="-80" cy="720" r="320" class="line" stroke-width="1.5"/>
+
+  <!-- 포그라운드: 작은 단위 블록들이 격자처럼 (안전망 메타포) -->
+  <!-- 메인 블록 그룹 (살짝 회전된 격자) -->
+  <g transform="rotate(-6 480 315) translate(480 315) scale(1.5) translate(-480 -315)">
+    <!-- 행 1 -->
+    <rect x="280" y="190" width="60" height="60" class="accent-stroke" stroke-width="1.5" rx="6"/>
+    <rect x="360" y="190" width="60" height="60" class="accent-fill" opacity="0.85" rx="6"/>
+    <rect x="440" y="190" width="60" height="60" class="accent-stroke" stroke-width="1.5" rx="6"/>
+    <rect x="520" y="190" width="60" height="60" class="accent-stroke" stroke-width="1.5" stroke-dasharray="3 3" rx="6"/>
+    <rect x="600" y="190" width="60" height="60" class="accent3-fill" opacity="0.7" rx="6"/>
+    <!-- 행 2 -->
+    <rect x="280" y="270" width="60" height="60" class="accent3-fill" opacity="0.7" rx="6"/>
+    <rect x="360" y="270" width="60" height="60" class="accent-stroke" stroke-width="1.5" rx="6"/>
+    <rect x="440" y="270" width="60" height="60" class="accent2-fill" opacity="0.85" rx="6"/>
+    <rect x="520" y="270" width="60" height="60" class="accent-stroke" stroke-width="1.5" rx="6"/>
+    <rect x="600" y="270" width="60" height="60" class="accent-stroke" stroke-width="1.5" stroke-dasharray="3 3" rx="6"/>
+    <!-- 행 3 -->
+    <rect x="280" y="350" width="60" height="60" class="accent-stroke" stroke-width="1.5" stroke-dasharray="3 3" rx="6"/>
+    <rect x="360" y="350" width="60" height="60" class="accent-stroke" stroke-width="1.5" rx="6"/>
+    <rect x="440" y="350" width="60" height="60" class="accent-stroke" stroke-width="1.5" rx="6"/>
+    <rect x="520" y="350" width="60" height="60" class="accent-fill" opacity="0.85" rx="6"/>
+    <rect x="600" y="350" width="60" height="60" class="accent-stroke" stroke-width="1.5" rx="6"/>
+
+    <!-- 체크 표시 (통과한 단위들 위에) -->
+    <g stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <polyline points="376,222 386,232 404,212"/>
+      <polyline points="456,302 466,312 484,292"/>
+      <polyline points="536,382 546,392 564,372"/>
+    </g>
+  </g>
+
+  <!-- 우측 보조 요소: 작은 동심원 (포커스 링) -->
+  <g transform="translate(900 200)">
+    <circle r="38" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.55"/>
+    <circle r="22" class="accent-stroke" stroke-width="1.5" opacity="0.7"/>
+    <circle r="6" class="accent2-fill"/>
+  </g>
+
+  <!-- 우측 작은 점 무리 -->
+  <g class="accent2-fill" opacity="0.7">
+    <circle cx="940" cy="450" r="3"/>
+    <circle cx="956" cy="462" r="3"/>
+    <circle cx="924" cy="464" r="3"/>
+    <circle cx="940" cy="478" r="3"/>
+  </g>
+
+  <!-- 화살표 트라이앵글 (좌상단) -->
+  <polygon points="120,140 105,150 105,130" class="accent2-fill"/>
+  <line x1="105" y1="140" x2="160" y2="140" class="accent-stroke" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text class="num-text" x="1164" y="594" text-anchor="end">01</text>
+</svg>

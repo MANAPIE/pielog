@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" role="img" aria-labelledby="title-stg09-01">
+  <title id="title-stg09-01">테스트 피라미드와 테스팅 트로피의 비교</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-layer-unit: #B8CCC2;
+      --c-layer-int: #8AB3A0;
+      --c-layer-e2e: #5B8C7B;
+      --c-layer-static: #D5DDD5;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-layer-unit: #4A6B5E;
+        --c-layer-int: #6A957F;
+        --c-layer-e2e: #7FB5A0;
+        --c-layer-static: #3D4A48;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .layer-static { fill: var(--c-layer-static); opacity: 0.85; }
+    .layer-unit { fill: var(--c-layer-unit); opacity: 0.85; }
+    .layer-int { fill: var(--c-layer-int); opacity: 0.9; }
+    .layer-e2e { fill: var(--c-layer-e2e); opacity: 0.95; }
+    .layer-label { fill: white; font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .layer-label-dark { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .col-title { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 500; }
+    .col-sub { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; }
+    .note { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-style: italic; }
+  </style>
+  <rect class="bg" width="600" height="380"/>
+
+  <!-- 좌측: 피라미드 -->
+  <text class="col-title" x="155" y="40" text-anchor="middle">테스트 피라미드</text>
+  <text class="col-sub" x="155" y="58" text-anchor="middle">고전적 모양</text>
+
+  <polygon class="layer-unit" points="50,290 260,290 220,225 90,225"/>
+  <text class="layer-label" x="155" y="265" text-anchor="middle">단위 테스트</text>
+
+  <polygon class="layer-int" points="90,225 220,225 180,165 130,165"/>
+  <text class="layer-label" x="155" y="202" text-anchor="middle">통합</text>
+
+  <polygon class="layer-e2e" points="130,165 180,165 162,120 148,120"/>
+  <text class="layer-label" x="155" y="148" text-anchor="middle">E2E</text>
+
+  <!-- 우측: 트로피 -->
+  <text class="col-title" x="445" y="40" text-anchor="middle">테스팅 트로피</text>
+  <text class="col-sub" x="445" y="58" text-anchor="middle">Kent C. Dodds, 최근 해석</text>
+
+  <!-- 바닥: 정적 분석 (넓은 사다리꼴) -->
+  <polygon class="layer-static" points="340,290 550,290 530,265 360,265"/>
+  <text class="layer-label-dark" x="445" y="282" text-anchor="middle">정적 분석 (타입·린트)</text>
+
+  <!-- 그 위: 단위 (좁아짐) -->
+  <polygon class="layer-unit" points="380,265 510,265 395,230 495,230"/>
+  <text class="layer-label" x="445" y="252" text-anchor="middle">단위</text>
+
+  <!-- 통합 (가장 두꺼움) -->
+  <polygon class="layer-int" points="380,230 510,230 510,170 380,170"/>
+  <text class="layer-label" x="445" y="205" text-anchor="middle">통합 (가장 두꺼움)</text>
+
+  <!-- E2E (좁게, 작은 사다리꼴) -->
+  <polygon class="layer-e2e" points="395,170 495,170 470,130 420,130"/>
+  <text class="layer-label" x="445" y="155" text-anchor="middle">E2E</text>
+
+  <!-- 가운데 구분선 -->
+  <line x1="300" y1="80" x2="300" y2="320" stroke="var(--c-muted)" stroke-width="0.6" stroke-dasharray="3 4" opacity="0.5"/>
+
+  <!-- 하단 -->
+  <text class="note" x="300" y="345" text-anchor="middle">어느 모양을 따르든, 위로 갈수록 적게 둔다는 원칙은 같습니다</text>
+  <text class="note" x="300" y="362" text-anchor="middle">통합 테스트 도구가 좋아지면서 트로피 모양이 자주 선호됩니다</text>
+</svg>

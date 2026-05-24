@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" width="600" role="img" aria-labelledby="title-stg09-02">
+  <title id="title-stg09-02">팀 규모별 테스트 도입 로드맵</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-stage1: #E8EEEB;
+      --c-stage2: #D8E3DD;
+      --c-stage3: #C5D5CD;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-stage1: #232A30;
+        --c-stage2: #28333A;
+        --c-stage3: #2E3D44;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .stage1 { fill: var(--c-stage1); stroke: var(--c-accent); stroke-width: 1.2; }
+    .stage2 { fill: var(--c-stage2); stroke: var(--c-accent); stroke-width: 1.2; }
+    .stage3 { fill: var(--c-stage3); stroke: var(--c-accent); stroke-width: 1.2; }
+    .item-card { fill: var(--c-bg); stroke: var(--c-card-border); stroke-width: 0.6; }
+    .stage-label { fill: var(--c-accent-2); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; }
+    .stage-sub { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; }
+    .item { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; }
+    .arrow { stroke: var(--c-muted); stroke-width: 1.5; fill: none; }
+    .accumulated { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-style: italic; }
+    @media (prefers-color-scheme: dark) {
+      .stage-label { fill: var(--c-accent-2); }
+    }
+  </style>
+  <defs>
+    <marker id="arr09-02" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="var(--c-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="600" height="480"/>
+
+  <!-- 1단계 -->
+  <rect class="stage1" x="20" y="30" width="560" height="120" rx="14"/>
+  <text class="stage-label" x="40" y="56">1단계 · 1인 개발 / 사이드 프로젝트</text>
+  <text class="stage-sub" x="40" y="74">최소 안전망. 한 사람의 하루 작업으로 시작할 수 있다</text>
+  <rect class="item-card" x="40" y="90" width="170" height="40" rx="6"/>
+  <text class="item" x="125" y="113" text-anchor="middle">단위 테스트 (핵심 로직)</text>
+  <rect class="item-card" x="220" y="90" width="170" height="40" rx="6"/>
+  <text class="item" x="305" y="113" text-anchor="middle">E2E 핵심 시나리오 1~3개</text>
+  <rect class="item-card" x="400" y="90" width="160" height="40" rx="6"/>
+  <text class="item" x="480" y="113" text-anchor="middle">Sentry 에러 추적</text>
+
+  <!-- 화살표 -->
+  <line class="arrow" x1="300" y1="155" x2="300" y2="178" marker-end="url(#arr09-02)"/>
+
+  <!-- 2단계 -->
+  <rect class="stage2" x="20" y="185" width="560" height="155" rx="14"/>
+  <text class="stage-label" x="40" y="211">2단계 · 5~10명 팀, 운영 중인 제품</text>
+  <text class="stage-sub" x="40" y="229">디자인 시스템과 운영 모니터링이 채워진다</text>
+  <text class="accumulated" x="555" y="211" text-anchor="end">1단계 + 다음</text>
+  <rect class="item-card" x="40" y="245" width="170" height="38" rx="6"/>
+  <text class="item" x="125" y="267" text-anchor="middle">컴포넌트 테스트</text>
+  <rect class="item-card" x="220" y="245" width="170" height="38" rx="6"/>
+  <text class="item" x="305" y="267" text-anchor="middle">시각 회귀 (Chromatic)</text>
+  <rect class="item-card" x="400" y="245" width="160" height="38" rx="6"/>
+  <text class="item" x="480" y="267" text-anchor="middle">접근성 자동 검사</text>
+  <rect class="item-card" x="40" y="290" width="170" height="38" rx="6"/>
+  <text class="item" x="125" y="312" text-anchor="middle">성능 합성 측정</text>
+  <rect class="item-card" x="220" y="290" width="170" height="38" rx="6"/>
+  <text class="item" x="305" y="312" text-anchor="middle">RUM 도입</text>
+  <rect class="item-card" x="400" y="290" width="160" height="38" rx="6"/>
+  <text class="item" x="480" y="312" text-anchor="middle">합성 모니터링</text>
+
+  <!-- 화살표 -->
+  <line class="arrow" x1="300" y1="345" x2="300" y2="368" marker-end="url(#arr09-02)"/>
+
+  <!-- 3단계 -->
+  <rect class="stage3" x="20" y="375" width="560" height="90" rx="14"/>
+  <text class="stage-label" x="40" y="401">3단계 · 더 큰 조직, 높은 성숙도</text>
+  <text class="stage-sub" x="40" y="419">아래는 모든 팀에 필요한 것은 아니다</text>
+  <text class="accumulated" x="555" y="401" text-anchor="end">2단계 + 다음</text>
+  <rect class="item-card" x="40" y="432" width="125" height="22" rx="6"/>
+  <text class="item" x="102" y="447" text-anchor="middle">계약 테스트</text>
+  <rect class="item-card" x="175" y="432" width="125" height="22" rx="6"/>
+  <text class="item" x="237" y="447" text-anchor="middle">부하 테스트 정기화</text>
+  <rect class="item-card" x="310" y="432" width="125" height="22" rx="6"/>
+  <text class="item" x="372" y="447" text-anchor="middle">접근성 수동 정례화</text>
+  <rect class="item-card" x="445" y="432" width="115" height="22" rx="6"/>
+  <text class="item" x="502" y="447" text-anchor="middle">카오스 엔지니어링</text>
+</svg>

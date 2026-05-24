@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="운영 모니터링 편 커버">
+  <style>
+    :root {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-num: rgba(91, 140, 123, 0.16);
+      --c-dot: #5B8C7B;
+      --c-line: #C9D1CC;
+      --c-warn: #B8954C;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-num: rgba(127, 181, 160, 0.18);
+        --c-dot: #7FB5A0;
+        --c-line: #3D434D;
+        --c-warn: #D4B176;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .dot { fill: var(--c-dot); }
+    .line { stroke: var(--c-line); fill: none; }
+    .accent-fill { fill: var(--c-accent); }
+    .accent2-fill { fill: var(--c-accent-2); }
+    .accent3-fill { fill: var(--c-accent-3); }
+    .accent-stroke { stroke: var(--c-accent); fill: none; }
+    .accent2-stroke { stroke: var(--c-accent-2); fill: none; }
+    .warn-fill { fill: var(--c-warn); }
+    .num-text { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotgrid-08" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.1" class="dot" opacity="0.18"/>
+    </pattern>
+    <radialGradient id="rg-tl-08" cx="0" cy="0" r="0.55">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg-br-08" cx="1" cy="1" r="0.6">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+    <!-- 펄스 라디얼 그래디언트 (관찰 메타포) -->
+    <radialGradient id="pulse-08" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="var(--c-accent)" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotgrid-08)"/>
+  <rect width="1200" height="630" fill="url(#rg-tl-08)"/>
+  <rect width="1200" height="630" fill="url(#rg-br-08)"/>
+
+  <!-- 화면 밖 stroke 도형 -->
+  <rect x="-200" y="380" width="500" height="500" class="line" stroke-width="1.5" transform="rotate(-15 50 630)"/>
+  <circle cx="1300" cy="100" r="380" class="line" stroke-width="1.5"/>
+
+  <g transform="translate(600 315) scale(1.25) translate(-600 -315)">
+  <!-- 메인: 대시보드 추상화 (모니터링 메타포) -->
+  <g transform="translate(380 200)">
+    <!-- 대시보드 프레임 -->
+    <rect x="0" y="0" width="440" height="240" rx="14" class="accent-stroke" stroke-width="1.5" fill="var(--c-bg)"/>
+
+    <!-- 상단 헤더 라인 -->
+    <rect x="20" y="20" width="120" height="10" rx="3" class="accent3-fill" opacity="0.8"/>
+    <circle cx="410" cy="25" r="6" class="accent-fill"/>
+
+    <!-- 카드 1: 미니 차트 -->
+    <rect x="20" y="48" width="125" height="80" rx="8" class="accent3-fill" opacity="0.25"/>
+    <polyline points="32,108 50,98 68,104 86,88 104,92 122,80 136,86" stroke="var(--c-accent)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <g class="accent2-fill">
+      <circle cx="32" cy="108" r="2.5"/>
+      <circle cx="68" cy="104" r="2.5"/>
+      <circle cx="104" cy="92" r="2.5"/>
+      <circle cx="136" cy="86" r="2.5"/>
+    </g>
+
+    <!-- 카드 2: 큰 숫자 -->
+    <rect x="158" y="48" width="125" height="80" rx="8" class="accent3-fill" opacity="0.25"/>
+    <text x="220" y="92" text-anchor="middle" font-family="Helvetica Neue, Inter, system-ui, sans-serif" font-size="26" font-weight="600" fill="var(--c-accent-2)">99.8</text>
+    <rect x="180" y="106" width="80" height="6" rx="3" class="accent3-fill" opacity="0.7"/>
+
+    <!-- 카드 3: 분포 바 -->
+    <rect x="296" y="48" width="125" height="80" rx="8" class="accent3-fill" opacity="0.25"/>
+    <g transform="translate(310 64)">
+      <rect x="0" y="0" width="98" height="8" rx="4" fill="var(--c-accent-3)" opacity="0.5"/>
+      <rect x="0" y="0" width="78" height="8" rx="4" class="accent-fill"/>
+      <rect x="0" y="18" width="98" height="8" rx="4" fill="var(--c-accent-3)" opacity="0.5"/>
+      <rect x="0" y="18" width="58" height="8" rx="4" class="accent2-fill"/>
+      <rect x="0" y="36" width="98" height="8" rx="4" fill="var(--c-accent-3)" opacity="0.5"/>
+      <rect x="0" y="36" width="42" height="8" rx="4" class="warn-fill"/>
+    </g>
+
+    <!-- 하단: 로그 라인들 -->
+    <g transform="translate(20 148)">
+      <rect x="0" y="0" width="400" height="6" rx="3" class="accent3-fill" opacity="0.6"/>
+      <rect x="0" y="14" width="340" height="6" rx="3" class="accent3-fill" opacity="0.6"/>
+      <rect x="0" y="28" width="370" height="6" rx="3" class="accent3-fill" opacity="0.6"/>
+      <rect x="0" y="42" width="280" height="6" rx="3" class="accent3-fill" opacity="0.6"/>
+      <!-- 에러 라인 강조 -->
+      <rect x="0" y="56" width="320" height="6" rx="3" class="warn-fill" opacity="0.8"/>
+      <circle cx="-10" cy="59" r="3" class="warn-fill"/>
+      <rect x="0" y="70" width="350" height="6" rx="3" class="accent3-fill" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- 좌측: 펄스 메타포 (살아 있다는 신호) -->
+  <g transform="translate(190 290)">
+    <circle r="80" fill="url(#pulse-08)"/>
+    <circle r="42" class="accent-fill" opacity="0.85"/>
+    <circle r="56" class="accent-stroke" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.6"/>
+    <!-- 심박 라인 -->
+    <polyline points="-22,0 -10,0 -4,-14 4,12 10,-6 14,0 22,0" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 우상단 알림 점 -->
+  <g class="warn-fill" opacity="0.85">
+    <circle cx="990" cy="190" r="6"/>
+    <circle cx="990" cy="190" r="14" fill="none" stroke="var(--c-warn)" stroke-width="1.5" opacity="0.5"/>
+  </g>
+  </g>
+
+  <!-- 우상단 회전 사각형 -->
+  <rect x="980" y="80" width="100" height="100" class="line" stroke-width="1.5" fill="none" transform="rotate(10 1030 130)" opacity="0.6"/>
+
+  <!-- 좌상단 작은 점 무리 -->
+  <g class="accent2-fill" opacity="0.7">
+    <circle cx="160" cy="120" r="3"/>
+    <circle cx="176" cy="132" r="3"/>
+    <circle cx="144" cy="134" r="3"/>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text class="num-text" x="1164" y="594" text-anchor="end">08</text>
+</svg>

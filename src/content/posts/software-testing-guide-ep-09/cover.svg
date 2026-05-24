@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="전략 종합 편 커버">
+  <style>
+    :root {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-num: rgba(91, 140, 123, 0.16);
+      --c-dot: #5B8C7B;
+      --c-line: #C9D1CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-num: rgba(127, 181, 160, 0.18);
+        --c-dot: #7FB5A0;
+        --c-line: #3D434D;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .dot { fill: var(--c-dot); }
+    .line { stroke: var(--c-line); fill: none; }
+    .accent-fill { fill: var(--c-accent); }
+    .accent2-fill { fill: var(--c-accent-2); }
+    .accent3-fill { fill: var(--c-accent-3); }
+    .accent-stroke { stroke: var(--c-accent); fill: none; }
+    .accent2-stroke { stroke: var(--c-accent-2); fill: none; }
+    .num-text { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotgrid-09" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.1" class="dot" opacity="0.18"/>
+    </pattern>
+    <radialGradient id="rg-tl-09" cx="0" cy="0" r="0.55">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg-br-09" cx="1" cy="1" r="0.6">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotgrid-09)"/>
+  <rect width="1200" height="630" fill="url(#rg-tl-09)"/>
+  <rect width="1200" height="630" fill="url(#rg-br-09)"/>
+
+  <!-- 화면 밖 stroke 도형 -->
+  <circle cx="-100" cy="-100" r="380" class="line" stroke-width="1.5"/>
+  <rect x="950" y="450" width="500" height="500" class="line" stroke-width="1.5" transform="rotate(8 1200 700)"/>
+
+  <!-- 포그라운드: 시리즈의 9편이 한 자리에 모이는 메타포 -->
+  <g transform="translate(600 315) scale(1.45) translate(-500 -320)">
+  <!-- 큰 동심원 (집결의 메타포) -->
+  <g transform="translate(500 320)">
+    <circle r="180" class="accent-stroke" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.45"/>
+    <circle r="130" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.55"/>
+    <circle r="80" class="accent2-stroke" stroke-width="1.5" opacity="0.75"/>
+  </g>
+
+  <!-- 가운데 단단한 코어 (전략) -->
+  <g transform="translate(500 320)">
+    <circle r="50" class="accent-fill" opacity="0.95"/>
+    <!-- 가운데 별 모양 (집결, 통합 메타포) -->
+    <g transform="translate(0 0)" fill="white">
+      <polygon points="0,-22 6,-7 22,-7 9,4 14,20 0,11 -14,20 -9,4 -22,-7 -6,-7" opacity="0.95"/>
+    </g>
+  </g>
+
+  <!-- 9개의 작은 점들이 코어로 향하는 메타포 -->
+  <g class="accent2-fill">
+    <!-- 8 방향에 작은 원 -->
+    <circle cx="500" cy="140" r="9"/>
+    <circle cx="630" cy="190" r="8"/>
+    <circle cx="680" cy="320" r="9"/>
+    <circle cx="630" cy="450" r="8"/>
+    <circle cx="500" cy="500" r="9"/>
+    <circle cx="370" cy="450" r="8"/>
+    <circle cx="320" cy="320" r="9"/>
+    <circle cx="370" cy="190" r="8"/>
+  </g>
+
+  <!-- 작은 원들을 둘러싸는 옅은 동심원 -->
+  <g class="accent-stroke" stroke-width="1" opacity="0.5" fill="none">
+    <circle cx="500" cy="140" r="16"/>
+    <circle cx="630" cy="190" r="14"/>
+    <circle cx="680" cy="320" r="16"/>
+    <circle cx="630" cy="450" r="14"/>
+    <circle cx="500" cy="500" r="16"/>
+    <circle cx="370" cy="450" r="14"/>
+    <circle cx="320" cy="320" r="16"/>
+    <circle cx="370" cy="190" r="14"/>
+  </g>
+
+  <!-- 가는 연결선 (각 점 → 코어 방향) -->
+  <g class="accent-stroke" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.4" fill="none">
+    <line x1="500" y1="156" x2="500" y2="270"/>
+    <line x1="618" y1="200" x2="540" y2="285"/>
+    <line x1="664" y1="320" x2="550" y2="320"/>
+    <line x1="618" y1="440" x2="540" y2="355"/>
+    <line x1="500" y1="484" x2="500" y2="370"/>
+    <line x1="382" y1="440" x2="460" y2="355"/>
+    <line x1="336" y1="320" x2="450" y2="320"/>
+    <line x1="382" y1="200" x2="460" y2="285"/>
+  </g>
+  </g>
+
+  <!-- 상단 작은 점 무리 (시리즈 마무리 모티프) -->
+  <g class="accent2-fill" opacity="0.7">
+    <circle cx="180" cy="100" r="3"/>
+    <circle cx="196" cy="112" r="3"/>
+    <circle cx="164" cy="118" r="3"/>
+    <circle cx="180" cy="130" r="3"/>
+  </g>
+
+  <!-- 우상단 회전 사각형 -->
+  <rect x="980" y="80" width="120" height="120" class="line" stroke-width="1.5" fill="none" transform="rotate(-6 1040 140)" opacity="0.6"/>
+
+  <!-- 좌하단 미니 바 -->
+  <g transform="translate(120 510)">
+    <rect x="0" y="0" width="6" height="50" class="accent-fill" opacity="0.85"/>
+    <rect x="12" y="8" width="6" height="42" class="accent-fill" opacity="0.75"/>
+    <rect x="24" y="16" width="6" height="34" class="accent2-fill" opacity="0.85"/>
+    <rect x="36" y="22" width="6" height="28" class="accent3-fill" opacity="0.85"/>
+    <rect x="48" y="30" width="6" height="20" class="accent3-fill" opacity="0.7"/>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text class="num-text" x="1164" y="594" text-anchor="end">09</text>
+</svg>

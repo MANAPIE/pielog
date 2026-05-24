@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" role="img" aria-labelledby="title-stg01-02">
+  <title id="title-stg01-02">단위 테스트의 빨간불-초록불 사이클</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-green: #5B8C7B;
+      --c-green-bg: #E0EBE5;
+      --c-red: #B85450;
+      --c-red-bg: #F3E0DE;
+      --c-arrow: #9CA9A4;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-green: #7FB5A0;
+        --c-green-bg: #1F2D28;
+        --c-red: #D4807C;
+        --c-red-bg: #2D2120;
+        --c-arrow: #5A6670;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .card { fill: var(--c-card-bg); stroke: var(--c-card-border); stroke-width: 1; }
+    .card-green { fill: var(--c-green-bg); stroke: var(--c-green); stroke-width: 1.2; }
+    .card-red { fill: var(--c-red-bg); stroke: var(--c-red); stroke-width: 1.2; }
+    .label { fill: var(--c-fg); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; }
+    .label-green { fill: var(--c-green); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; }
+    .label-red { fill: var(--c-red); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; }
+    .sub { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; }
+    .arrow { stroke: var(--c-arrow); stroke-width: 1.5; fill: none; }
+    .note { fill: var(--c-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-style: italic; }
+  </style>
+  <defs>
+    <marker id="arr01-02" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="var(--c-arrow)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="600" height="340"/>
+
+  <!-- 1단계: 코드 변경 -->
+  <rect class="card" x="40" y="120" width="140" height="64" rx="10"/>
+  <text class="label" x="110" y="145" text-anchor="middle">코드 변경</text>
+  <text class="sub" x="110" y="165" text-anchor="middle">함수 수정 · 추가</text>
+
+  <line class="arrow" x1="182" y1="152" x2="218" y2="152" marker-end="url(#arr01-02)"/>
+
+  <!-- 2단계: 테스트 자동 실행 -->
+  <rect class="card" x="220" y="120" width="160" height="64" rx="10"/>
+  <text class="label" x="300" y="145" text-anchor="middle">테스트 러너 실행</text>
+  <text class="sub" x="300" y="165" text-anchor="middle">파일 저장 시 자동</text>
+
+  <!-- 3단계: 결과 분기 (두 박스) -->
+  <!-- 초록 박스 -->
+  <rect class="card-green" x="420" y="55" width="150" height="64" rx="10"/>
+  <circle cx="440" cy="87" r="6" fill="var(--c-green)"/>
+  <text class="label-green" x="460" y="82">통과</text>
+  <text class="sub" x="460" y="100">다음 변경으로</text>
+
+  <!-- 빨간 박스 -->
+  <rect class="card-red" x="420" y="185" width="150" height="64" rx="10"/>
+  <circle cx="440" cy="217" r="6" fill="var(--c-red)"/>
+  <text class="label-red" x="460" y="212">실패</text>
+  <text class="sub" x="460" y="230">즉시 수정</text>
+
+  <!-- 분기 화살표: 박스 2 오른쪽 끝에서 두 갈래로 분기 -->
+  <path class="arrow" d="M 380 152 C 402 152, 402 87, 418 87" marker-end="url(#arr01-02)"/>
+  <path class="arrow" d="M 380 152 C 402 152, 402 217, 418 217" marker-end="url(#arr01-02)"/>
+
+  <!-- 실패 → 다시 시작 (루프): 매끄러운 U자 곡선 -->
+  <path class="arrow" d="M 495 249 C 495 292, 110 292, 110 186" stroke-dasharray="4 3" marker-end="url(#arr01-02)"/>
+  <text class="sub" x="300" y="306" text-anchor="middle">실패한 테스트를 보고 다시 변경 → 사이클 반복</text>
+
+  <!-- 상단 강조 문구 -->
+  <text class="note" x="300" y="40" text-anchor="middle">이 사이클이 짧을수록 단위 테스트의 가치가 커집니다</text>
+</svg>

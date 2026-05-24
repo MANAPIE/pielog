@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="접근성 편 커버">
+  <style>
+    :root {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-num: rgba(91, 140, 123, 0.16);
+      --c-dot: #5B8C7B;
+      --c-line: #C9D1CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-num: rgba(127, 181, 160, 0.18);
+        --c-dot: #7FB5A0;
+        --c-line: #3D434D;
+      }
+    }
+    .bg { fill: var(--c-bg); }
+    .dot { fill: var(--c-dot); }
+    .line { stroke: var(--c-line); fill: none; }
+    .accent-fill { fill: var(--c-accent); }
+    .accent2-fill { fill: var(--c-accent-2); }
+    .accent3-fill { fill: var(--c-accent-3); }
+    .accent-stroke { stroke: var(--c-accent); fill: none; }
+    .accent2-stroke { stroke: var(--c-accent-2); fill: none; }
+    .num-text { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dotgrid-06" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.1" class="dot" opacity="0.18"/>
+    </pattern>
+    <radialGradient id="rg-tl-06" cx="0" cy="0" r="0.55">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rg-br-06" cx="1" cy="1" r="0.6">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dotgrid-06)"/>
+  <rect width="1200" height="630" fill="url(#rg-tl-06)"/>
+  <rect width="1200" height="630" fill="url(#rg-br-06)"/>
+
+  <!-- 화면 밖 stroke 도형 -->
+  <rect x="-150" y="450" width="500" height="500" class="line" stroke-width="1.5" transform="rotate(-8 100 700)"/>
+  <circle cx="1300" cy="-100" r="380" class="line" stroke-width="1.5"/>
+
+  <!-- 포그라운드: 여러 채널로 접근하는 메타포 — 화면을 둘러싼 keyboard/screen reader/eye 아이콘들이 화면으로 향함 -->
+  <g transform="translate(600 315) scale(1.25) translate(-600 -315)">
+  <!-- 가운데 화면 -->
+  <g transform="translate(500 240)">
+    <rect width="200" height="150" rx="12" class="accent-stroke" stroke-width="1.5" fill="var(--c-bg)"/>
+    <!-- 추상화된 컨텐츠 -->
+    <rect x="20" y="20" width="80" height="10" rx="2" class="accent3-fill" opacity="0.8"/>
+    <rect x="20" y="40" width="160" height="6" rx="2" class="accent3-fill" opacity="0.6"/>
+    <rect x="20" y="55" width="140" height="6" rx="2" class="accent3-fill" opacity="0.6"/>
+    <rect x="20" y="80" width="70" height="32" rx="4" class="accent-fill" opacity="0.85"/>
+    <rect x="100" y="80" width="70" height="32" rx="4" class="accent3-fill" opacity="0.7"/>
+    <!-- 포커스 링 (키보드 사용자 메타포) -->
+    <rect x="14" y="74" width="82" height="44" rx="6" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="3 2"/>
+  </g>
+
+  <!-- 좌측: 키보드 메타포 (작은 사각형 그리드) -->
+  <g transform="translate(190 270)">
+    <!-- 키보드 배경 -->
+    <rect x="0" y="0" width="170" height="80" rx="6" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.5"/>
+    <!-- 키들 -->
+    <g class="accent3-fill" opacity="0.85">
+      <rect x="10" y="10" width="20" height="20" rx="3"/>
+      <rect x="34" y="10" width="20" height="20" rx="3"/>
+      <rect x="58" y="10" width="20" height="20" rx="3"/>
+      <rect x="82" y="10" width="20" height="20" rx="3"/>
+      <rect x="106" y="10" width="20" height="20" rx="3"/>
+      <rect x="130" y="10" width="20" height="20" rx="3"/>
+      <rect x="10" y="34" width="20" height="20" rx="3"/>
+      <rect x="34" y="34" width="20" height="20" rx="3"/>
+      <rect x="58" y="34" width="20" height="20" rx="3"/>
+      <rect x="82" y="34" width="20" height="20" rx="3"/>
+      <rect x="106" y="34" width="20" height="20" rx="3"/>
+      <rect x="130" y="34" width="20" height="20" rx="3"/>
+    </g>
+    <!-- Tab 키 강조 -->
+    <rect x="10" y="58" width="44" height="14" rx="3" class="accent2-fill" opacity="0.9"/>
+  </g>
+
+  <!-- 화살표: 키보드 → 화면 -->
+  <g class="accent2-stroke" stroke-width="2" stroke-linecap="round" fill="none">
+    <line x1="370" y1="310" x2="490" y2="310" stroke-dasharray="4 4"/>
+    <polygon points="490,310 481,304 481,316" class="accent2-fill"/>
+  </g>
+
+  <!-- 우측: 스크린리더 메타포 (음파/스피커) -->
+  <g transform="translate(810 290)">
+    <!-- 스피커 도형 -->
+    <polygon points="0,0 0,40 20,40 50,60 50,-20 20,0" class="accent-fill" opacity="0.85"/>
+    <!-- 음파 -->
+    <path d="M 65 5 Q 78 20 65 35" stroke="var(--c-accent-2)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 80 -8 Q 100 20 80 48" stroke="var(--c-accent-2)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 95 -20 Q 122 20 95 60" stroke="var(--c-accent-2)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+  </g>
+
+  <!-- 화살표: 화면 → 스크린리더 -->
+  <g class="accent2-stroke" stroke-width="2" stroke-linecap="round" fill="none">
+    <line x1="710" y1="310" x2="800" y2="310" stroke-dasharray="4 4"/>
+    <polygon points="800,310 791,304 791,316" class="accent2-fill"/>
+  </g>
+
+  <!-- 상단: 시각 다양성 메타포 (3개의 동심원 다른 크기) -->
+  <g transform="translate(600 100)">
+    <circle cx="-40" cy="0" r="20" class="accent-stroke" stroke-width="1.5"/>
+    <circle cx="-40" cy="0" r="6" class="accent-fill"/>
+    <circle cx="0" cy="0" r="22" class="accent-stroke" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="10" class="accent2-fill" opacity="0.85"/>
+    <circle cx="40" cy="0" r="24" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 3"/>
+    <circle cx="40" cy="0" r="12" class="accent3-fill" opacity="0.7"/>
+  </g>
+  </g>
+
+  <!-- 좌상단 작은 점 무리 -->
+  <g class="accent2-fill" opacity="0.7">
+    <circle cx="150" cy="100" r="3"/>
+    <circle cx="166" cy="112" r="3"/>
+    <circle cx="134" cy="118" r="3"/>
+  </g>
+
+  <!-- 우상단 회전 사각형 -->
+  <rect x="1000" y="80" width="100" height="100" class="line" stroke-width="1.5" fill="none" transform="rotate(12 1050 130)" opacity="0.6"/>
+
+  <!-- 좌하단 미니 바 -->
+  <g transform="translate(150 510)">
+    <rect x="0" y="0" width="6" height="40" class="accent-fill" opacity="0.85"/>
+    <rect x="12" y="8" width="6" height="32" class="accent-fill" opacity="0.7"/>
+    <rect x="24" y="16" width="6" height="24" class="accent3-fill" opacity="0.85"/>
+  </g>
+
+  <!-- 우하단 시리즈 번호 -->
+  <text class="num-text" x="1164" y="594" text-anchor="end">06</text>
+</svg>

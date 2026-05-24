@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 370" width="600" role="img" aria-labelledby="title-stg08-02">
+  <title id="title-stg08-02">알림이 신호와 소음 사이에서 균형을 잡아야 함</title>
+  <style>
+    svg {
+      --c-bg: #FAFAF7;
+      --c-fg: #1F2A37;
+      --c-muted: #6B7280;
+      --c-accent: #5B8C7B;
+      --c-accent-2: #3D6B5B;
+      --c-accent-3: #B8CCC2;
+      --c-card-bg: #F2F0E9;
+      --c-card-border: rgba(91, 140, 123, 0.28);
+      --c-good-bg: #E0EBE5;
+      --c-good: #5B8C7B;
+      --c-warn: #B8954C;
+      --c-warn-bg: #F3EDDE;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --c-bg: #15191F;
+        --c-fg: #E6E8EB;
+        --c-muted: #94A3B8;
+        --c-accent: #7FB5A0;
+        --c-accent-2: #A8D0C0;
+        --c-accent-3: #4A6B5E;
+        --c-card-bg: #1F242C;
+        --c-card-border: rgba(127, 181, 160, 0.32);
+        --c-good-bg: #1F2D28;
+        --c-good: #7FB5A0;
+        --c-warn: #D4B176;
+        --c-warn-bg: #2D2820;
+      }
+    }
+
+    .bg {
+      fill: var(--c-bg);
+    }
+
+    .warn-card {
+      fill: var(--c-warn-bg);
+      stroke: var(--c-warn);
+      stroke-width: 1;
+    }
+
+    .good-card {
+      fill: var(--c-good-bg);
+      stroke: var(--c-good);
+      stroke-width: 1.3;
+    }
+
+    .axis-line {
+      stroke: var(--c-muted);
+      stroke-width: 1.5;
+    }
+
+    .label-good {
+      fill: var(--c-good);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .label-warn {
+      fill: var(--c-warn);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .body {
+      fill: var(--c-fg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+    }
+
+    .axis-label {
+      fill: var(--c-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+    }
+
+    .sub {
+      fill: var(--c-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 10px;
+    }
+
+    .note {
+      fill: var(--c-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .label-good {
+        fill: var(--c-good);
+      }
+
+      .label-warn {
+        fill: var(--c-warn);
+      }
+    }
+  </style>
+  <rect class="bg" width="600" height="370" />
+
+  <!-- 상단 라벨 -->
+  <text class="note" x="300" y="35" text-anchor="middle">알림은 사람이 봐야 의미가 있고, 사람은 너무 많으면 무시합니다</text>
+
+  <!-- 축 -->
+  <line class="axis-line" x1="50" y1="180" x2="550" y2="180" />
+  <text class="axis-label" x="55" y="170">적게</text>
+  <text class="axis-label" x="540" y="170" text-anchor="end">많이</text>
+  <text class="axis-label" x="300" y="220" text-anchor="middle">알림 빈도</text>
+
+  <g transform="translate(0, 110)">
+    <!-- 왼쪽 끝: 너무 적음 -->
+    <rect class="warn-card" x="40" y="85" width="140" height="80" rx="10" />
+    <text class="label-warn" x="110" y="108" text-anchor="middle">너무 적음</text>
+    <line x1="55" y1="118" x2="165" y2="118" stroke="var(--c-card-border)" stroke-width="0.6" />
+    <text class="body" x="110" y="135" text-anchor="middle">진짜 장애를</text>
+    <text class="body" x="110" y="150" text-anchor="middle">놓친다</text>
+    <g fill="var(--c-warn)" opacity="0.7">
+      <polygon points="110,75 102,85 118,85" />
+    </g>
+  </g>
+
+  <g transform="translate(0, -10)">
+    <!-- 가운데: 건강한 영역 -->
+    <rect class="good-card" x="200" y="75" width="200" height="100" rx="10" />
+    <text class="label-good" x="300" y="100" text-anchor="middle">건강한 영역</text>
+    <text class="body" x="300" y="125" text-anchor="middle">하루 1~2건 정도</text>
+    <line x1="220" y1="135" x2="380" y2="135" stroke="var(--c-good)" stroke-width="0.4" opacity="0.5" />
+    <text class="sub" x="300" y="153" text-anchor="middle">매번 사람이 보고</text>
+    <text class="sub" x="300" y="165" text-anchor="middle">행동으로 이어지는 수준</text>
+  </g>
+
+  <g transform="translate(0, 110)">
+    <!-- 오른쪽 끝: 너무 많음 -->
+    <rect class="warn-card" x="420" y="85" width="140" height="80" rx="10" />
+    <text class="label-warn" x="490" y="108" text-anchor="middle">너무 많음</text>
+    <line x1="435" y1="118" x2="545" y2="118" stroke="var(--c-card-border)" stroke-width="0.6" />
+    <text class="body" x="490" y="135" text-anchor="middle">알림 피로 →</text>
+    <text class="body" x="490" y="150" text-anchor="middle">모두 무시당함</text>
+    <g fill="var(--c-warn)" opacity="0.7">
+      <polygon points="490,75 482,85 498,85" />
+    </g>
+  </g>
+
+
+  <!-- 하단 -->
+  <g transform="translate(0, 55)">
+    <text class="sub" x="300" y="260" text-anchor="middle">알림이 너무 많으면 → 임계치를 더 좁히고, 그룹화를 늘립니다</text>
+    <text class="sub" x="300" y="278" text-anchor="middle">알림이 거의 없으면 → 임계치가 너무 느슨하거나 모니터링이 안 되고 있을 가능성</text>
+  </g>
+</svg>
