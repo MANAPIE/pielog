@@ -352,7 +352,8 @@ h3.section-kicker {
     .post-card-tags {
         font-size: 0.75rem;
         line-height: 1.8;
-        max-height: calc(1.8em + 7px); /* 1 line: tag height (1.8em line-height + 2px border + 6px mb) */
+        max-height: calc(1.8em + 7px);
+        /* 1 line: tag height (1.8em line-height + 2px border + 6px mb) */
         overflow: hidden;
     }
 
@@ -616,7 +617,7 @@ h3.section-kicker {
     background: $color-surface;
     overflow: hidden;
 
-    > summary {
+    >summary {
         cursor: pointer;
         padding: 0.5rem 0.875rem;
         font-family: ui-monospace, "SF Mono", Menlo, monospace;
@@ -643,7 +644,7 @@ h3.section-kicker {
         }
     }
 
-    &[open] > summary {
+    &[open]>summary {
         border-bottom: 1px solid $color-border;
 
         &::before {
@@ -651,14 +652,45 @@ h3.section-kicker {
         }
     }
 
-    > *:not(summary) {
-        margin: 0 !important;
+    // 열린 상태에서 패널 안쪽 기본 여백을 컨테이너 자체에 부여한다.
+    // summary는 좌우 가장자리까지 확장돼야 하므로 음수 마진으로 컨테이너 패딩을 상쇄.
+    &[open] {
+        padding: 0 1rem 1rem;
+
+        >summary {
+            margin: 0 -1rem 1rem;
+        }
     }
 
-    pre {
-        margin: 0 !important;
+    >*:not(summary) {
+        margin: 0;
+    }
+
+    > :is(h1, h2, h3, h4, h5, h6):first-of-type {
+        margin-top: 1.5em !important;
+    }
+
+    >*:not(summary)+*:not(pre) {
+        margin-top: 0.75em;
+    }
+
+    // 리스트는 불릿 마커가 들어갈 공간이 필요.
+    >ul,
+    >ol {
+        padding-left: 2.25rem;
+    }
+
+    // pre(코드 하이라이트)는 음수 마진으로 패널 좌우/하단 가장자리까지 확장.
+    // 코드만 단독으로 들어 있는 details(예: ep-05의 Mermaid 소스)에서 자연스럽게
+    // 풀-블리드 보이도록 설계 — pre가 마지막이 아닌 혼합 케이스에서는 좌우만 확장.
+    >pre {
+        margin: 0 -1rem !important;
         border-radius: 0 !important;
         border: 0 !important;
+    }
+
+    >pre:last-child {
+        margin-bottom: -1rem !important;
     }
 }
 
