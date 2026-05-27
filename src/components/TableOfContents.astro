@@ -71,17 +71,100 @@ for (const item of tocItems) {
 }
 
 <script>
-  const headings = document.querySelectorAll(
-    ".post-content h2, .post-content h3, .post-content h4",
-  );
   const tocNav = document.querySelector(".toc-tree") as HTMLElement | null;
-  const tocItems = document.querySelectorAll(".toc-tree li");
   const indicator = document.querySelector(
     ".toc-indicator",
   ) as HTMLElement | null;
   const asidePanel = document.querySelector(
     ".aside-panel",
   ) as HTMLElement | null;
+
+  // Mutable — refreshed after any DOM augmentation (e.g. when React-rendered
+  // charts mount their own <h3 id="…"> headings post-hydration).
+  let headings: NodeListOf<Element> = document.querySelectorAll(
+    ".post-content h2, .post-content h3, .post-content h4",
+  );
+  let tocItems: NodeListOf<Element> = document.querySelectorAll(".toc-tree li");
+
+  function refreshLists() {
+    headings = document.querySelectorAll(
+      ".post-content h2, .post-content h3, .post-content h4",
+    );
+    tocItems = document.querySelectorAll(".toc-tree li");
+  }
+
+  // Inject any post-content h3 that has an id but isn't yet in the TOC.
+  // Used for client-rendered headings (e.g. the chart gallery cards).
+  function augmentToc() {
+    if (!tocNav) return;
+    const rootUl = tocNav.querySelector(":scope > ul");
+    if (!rootUl) return;
+
+    const h2s = Array.from(
+      document.querySelectorAll(".post-content h2[id]"),
+    ) as HTMLElement[];
+    const h3s = Array.from(
+      document.querySelectorAll(".post-content h3[id]"),
+    ) as HTMLElement[];
+    if (!h3s.length || !h2s.length) return;
+
+    let mutated = false;
+    h3s.forEach((h3) => {
+      if (tocNav.querySelector(`a[href="#${CSS.escape(h3.id)}"]`)) return;
+
+      // The closest preceding h2 in document order is the parent section.
+      let parentH2: HTMLElement | null = null;
+      for (const h2 of h2s) {
+        if (
+          h2.compareDocumentPosition(h3) & Node.DOCUMENT_POSITION_FOLLOWING
+        ) {
+          parentH2 = h2;
+        }
+      }
+      if (!parentH2) return;
+
+      const h2Link = tocNav.querySelector(
+        `a[href="#${CSS.escape(parentH2.id)}"]`,
+      );
+      const h2Li = h2Link?.parentElement;
+      if (!h2Li) return;
+
+      let h3Ul = h2Li.querySelector(":scope > ul");
+      if (!h3Ul) {
+        h3Ul = document.createElement("ul");
+        h2Li.appendChild(h3Ul);
+      }
+
+      // Preserve document order: find an existing child whose linked heading
+      // appears later than this h3, and insert before it.
+      const newLi = document.createElement("li");
+      const newA = document.createElement("a");
+      newA.href = `#${h3.id}`;
+      newA.textContent = h3.textContent ?? h3.id;
+      newLi.appendChild(newA);
+
+      const existingLis = Array.from(h3Ul.children) as HTMLElement[];
+      let insertBefore: HTMLElement | null = null;
+      for (const li of existingLis) {
+        const a = li.querySelector("a");
+        if (!a) continue;
+        const targetId = a.getAttribute("href")?.slice(1);
+        if (!targetId) continue;
+        const target = document.getElementById(targetId);
+        if (
+          target &&
+          h3.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING
+        ) {
+          insertBefore = li;
+          break;
+        }
+      }
+      h3Ul.insertBefore(newLi, insertBefore);
+      mutated = true;
+    });
+
+    if (mutated) refreshLists();
+  }
 
   function moveIndicator(li: Element) {
     if (!indicator || !tocNav) return;
@@ -131,7 +214,7 @@ for (const item of tocItems) {
       .querySelectorAll(".toc-tree a[aria-current]")
       .forEach((a) => a.removeAttribute("aria-current"));
     const activeLink = document.querySelector(
-      `.toc-tree a[href="#${(current as HTMLElement).id}"]`,
+      `.toc-tree a[href="#${CSS.escape((current as HTMLElement).id)}"]`,
     );
     const activeLi = activeLink?.parentElement;
     if (activeLi && activeLink) {
@@ -141,13 +224,47 @@ for (const item of tocItems) {
     }
   }
 
+  // Initial pickup of any h3 already in the DOM (rare on first paint when
+  // charts use client:only, but cheap), then start the scroll spy.
+  augmentToc();
   if (headings.length > 0 && tocItems.length > 0) {
     window.addEventListener("scroll", setActive, { passive: true });
     setActive();
   }
+
+  // React-rendered chart cards mount h3 nodes after hydration. Watch for
+  // them and merge into the TOC as they appear.
+  const postContent = document.querySelector(".post-content");
+  if (postContent) {
+    let pending = false;
+    const scheduleAugment = () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        pending = false;
+        augmentToc();
+        setActive();
+      });
+    };
+    const mo = new MutationObserver((records) => {
+      for (const r of records) {
+        for (const n of Array.from(r.addedNodes)) {
+          if (
+            n.nodeType === 1 &&
+            ((n as Element).tagName === "H3" ||
+              (n as Element).querySelector?.("h3"))
+          ) {
+            scheduleAugment();
+            return;
+          }
+        }
+      }
+    });
+    mo.observe(postContent, { childList: true, subtree: true });
+  }
 </script>
 
-<style lang="scss">
+<style is:global lang="scss">
   @use "../styles/_variables.scss" as *;
 
   .toc-tree {
