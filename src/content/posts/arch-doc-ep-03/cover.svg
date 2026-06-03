@@ -1,0 +1,86 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="뷰와 C4 커버">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf; --c-dot:#1f1d14;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E; --c-num:#C29A1F;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a; --c-dot:#eae7dd;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A; --c-num:#D6B23A;
+      }
+    }
+    .bg{fill:var(--c-bg);}
+    .line{stroke:var(--c-line);fill:none;stroke-width:1.5;}
+    .num{fill:var(--c-num);}
+  </style>
+  <defs>
+    <pattern id="dots03" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA03" cx="84%" cy="18%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB03" cx="14%" cy="84%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="630"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#dots03)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowA03)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowB03)"/>
+
+  <!-- off-canvas strokes -->
+  <rect class="line" x="-150" y="380" width="460" height="460" rx="44" transform="rotate(-10 80 610)"/>
+  <circle class="line" cx="1120" cy="90" r="230" transform="rotate(8 1120 90)"/>
+
+  <!-- ===== metaphor: same system seen as several stacked translucent view-sheets ===== -->
+  <g>
+    <!-- back sheet (deployment) -->
+    <g transform="rotate(-9 500 330) translate(70 70)">
+      <rect x="360" y="170" width="300" height="320" rx="16" fill="var(--c-accent-2)" opacity="0.10" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <rect x="392" y="210" width="80" height="56" rx="8" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <rect x="500" y="210" width="80" height="56" rx="8" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <rect x="446" y="300" width="80" height="56" rx="8" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+    </g>
+    <!-- middle sheet (process) -->
+    <g transform="rotate(-4 500 330) translate(35 35)">
+      <rect x="360" y="170" width="300" height="320" rx="16" fill="var(--c-accent-3)" opacity="0.16" stroke="var(--c-accent-3)" stroke-width="2"/>
+      <circle cx="430" cy="250" r="22" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+      <circle cx="560" cy="250" r="22" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+      <line x1="452" y1="250" x2="538" y2="250" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+      <polygon points="538,250 524,244 524,256" fill="var(--c-accent-3)"/>
+      <circle cx="495" cy="360" r="22" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+    </g>
+    <!-- front sheet (logical) -->
+    <g>
+      <rect x="360" y="170" width="300" height="320" rx="16" fill="var(--c-bg)" opacity="0.92" stroke="var(--c-accent)" stroke-width="3"/>
+      <rect x="392" y="206" width="100" height="50" rx="8" fill="var(--c-accent)" opacity="0.85"/>
+      <rect x="528" y="206" width="100" height="50" rx="8" fill="var(--c-accent-3)"/>
+      <rect x="392" y="288" width="100" height="50" rx="8" fill="var(--c-accent-3)"/>
+      <rect x="528" y="288" width="100" height="50" rx="8" fill="var(--c-accent)" opacity="0.6"/>
+      <rect x="448" y="382" width="124" height="56" rx="8" fill="none" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <line x1="442" y1="256" x2="442" y2="288" stroke="var(--c-line)" stroke-width="2"/>
+      <line x1="578" y1="256" x2="578" y2="288" stroke="var(--c-line)" stroke-width="2"/>
+      <line x1="510" y1="338" x2="510" y2="382" stroke="var(--c-line)" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- detail vocab -->
+  <circle cx="930" cy="470" r="34" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="3 7" opacity="0.7"/>
+  <circle cx="930" cy="470" r="16" class="line" stroke="var(--c-accent-3)"/>
+  <g>
+    <rect x="900" y="150" width="16" height="44" rx="3" fill="var(--c-accent-3)"/>
+    <rect x="922" y="134" width="16" height="60" rx="3" fill="var(--c-accent)"/>
+    <rect x="944" y="166" width="16" height="28" rx="3" fill="var(--c-accent-3)"/>
+  </g>
+  <rect x="170" y="150" width="32" height="32" rx="6" fill="none" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(18 186 166)" opacity="0.8"/>
+  <circle cx="180" cy="470" r="4" fill="var(--c-accent)"/>
+  <circle cx="194" cy="470" r="4" fill="var(--c-accent)" opacity="0.6"/>
+  <circle cx="187" cy="483" r="4" fill="var(--c-accent)" opacity="0.4"/>
+
+  <text x="1150" y="600" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="232" font-weight="700" class="num" opacity="0.16">03</text>
+</svg>

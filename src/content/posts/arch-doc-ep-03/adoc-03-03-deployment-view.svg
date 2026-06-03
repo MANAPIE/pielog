@@ -1,0 +1,176 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="스폿의 배포(물리) 뷰">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .zone {
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--c-muted);
+    }
+
+    .name {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tech {
+      font-size: 9.5px;
+      fill: var(--c-muted);
+    }
+
+    .node {
+      fill: var(--c-bg);
+      stroke: var(--c-accent);
+      stroke-width: 1.6;
+    }
+
+    .ext {
+      fill: var(--c-bg);
+      stroke: var(--c-muted);
+      stroke-width: 1.6;
+    }
+
+    .net {
+      stroke: var(--c-accent);
+      stroke-width: 1.8;
+      fill: none;
+    }
+
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      fill: var(--c-bg);
+    }
+  </style>
+  <rect x="0" y="0" width="800" height="440" fill="var(--c-bg)" />
+
+  <!-- zones -->
+  <rect x="14" y="44" width="148" height="200" rx="12" fill="none" stroke="var(--c-line)" stroke-width="1.5"
+    stroke-dasharray="2 6" />
+  <text class="zone" x="26" y="62">클라이언트</text>
+  <rect x="186" y="30" width="430" height="380" rx="12" fill="none" stroke="var(--c-line)" stroke-width="1.5"
+    stroke-dasharray="2 6" />
+  <text class="zone" x="198" y="48">클라우드 · 관리형 인프라</text>
+  <rect x="638" y="44" width="150" height="300" rx="12" fill="none" stroke="var(--c-line)" stroke-width="1.5"
+    stroke-dasharray="2 6" />
+  <text class="zone" x="650" y="62">외부 SaaS</text>
+
+  <!-- arrows -->
+  <!-- device -> CDN -->
+  <path class="net" d="M150 110 L206 110" />
+  <polygon points="210,110 196,104 196,116" fill="var(--c-accent)" />
+  <!-- device -> LB -->
+  <path class="net" d="M150 150 L384 150 L384 92 L396 92" />
+  <polygon points="400,92 386,86 386,98" fill="var(--c-accent)" />
+  <!-- LB -> app server -->
+  <path class="net" d="M490 116 L490 140 L300 140 L300 156" />
+  <polygon points="300,160 294,146 306,146" fill="var(--c-accent)" />
+  <!-- app -> DB -->
+  <path class="net" d="M300 224 L300 272" />
+  <polygon points="300,276 294,262 306,262" fill="var(--c-accent)" />
+  <!-- app -> queue (async) -->
+  <path class="net" d="M406 205 L440 205 L440 302 L486 302" stroke-dasharray="6 4" stroke="var(--c-accent-2)" />
+  <polygon points="470,302 456,296 456,308" fill="var(--c-accent-2)" />
+  <!-- queue -> worker (async) -->
+  <path class="net" d="M520 276 L520 228" stroke-dasharray="6 4" stroke="var(--c-accent-2)" />
+  <polygon points="520,224 514,238 526,238" fill="var(--c-accent-2)" />
+  <!-- app -> maps (sync, right channel) -->
+  <path class="net" d="M340 224 L340 240 L620 240 L620 120 L646 120" />
+  <polygon points="650,120 636,114 636,126" fill="var(--c-accent)" />
+  <!-- worker -> LLM (async) -->
+  <path class="net" d="M608 200 L646 200" stroke-dasharray="6 4" stroke="var(--c-accent-2)" />
+  <polygon points="650,200 636,194 636,206" fill="var(--c-accent-2)" />
+  <!-- app -> OAuth (sync, right channel) -->
+  <path class="net" d="M370 224 L370 256 L632 256 L632 280 L646 280" />
+  <polygon points="650,280 636,274 636,286" fill="var(--c-accent)" />
+  <!-- app -> object storage (sync, left channel) -->
+  <path class="net" d="M206 192 L196 192 L196 369 L206 369" />
+  <polygon points="210,369 196,363 196,375" fill="var(--c-accent)" />
+  <!-- app -> cache (sync) -->
+  <path class="net" d="M390 224 L390 360 L470 360" />
+  <polygon points="474,360 460,354 460,366" fill="var(--c-accent)" />
+
+  <!-- client zone -->
+  <rect class="ext" x="26" y="86" width="124" height="120" rx="9" />
+  <text class="name" x="40" y="110">사용자 디바이스</text>
+  <rect x="40" y="124" width="96" height="64" rx="7" fill="none" stroke="var(--c-accent)" stroke-width="1.4" />
+  <text class="tech" x="50" y="150">브라우저</text>
+  <text class="tech" x="50" y="166">SPA 실행</text>
+
+  <!-- cloud zone -->
+  <!-- CDN -->
+  <rect class="node" x="206" y="86" width="160" height="48" rx="9" />
+  <text class="name" x="220" y="106">CDN</text>
+  <text class="tech" x="220" y="123">정적 자산(SPA)</text>
+  <!-- LB -->
+  <rect class="node" x="400" y="68" width="180" height="48" rx="9" />
+  <text class="name" x="414" y="88">로드 밸런서</text>
+  <text class="tech" x="414" y="105">HTTPS 종단</text>
+  <!-- app server xN -->
+  <rect class="node" x="206" y="160" width="200" height="64" rx="9" fill="var(--c-accent)" fill-opacity="0.10" />
+  <text class="name" x="220" y="184">앱 서버 · API 백엔드</text>
+  <text class="tech" x="220" y="202">오토스케일 그룹</text>
+  <rect x="358" y="168" width="40" height="18" rx="9" fill="var(--c-accent)" /><text class="badge" x="378" y="181"
+    text-anchor="middle">x N</text>
+  <!-- worker xN -->
+  <rect class="node" x="470" y="160" width="138" height="64" rx="9" />
+  <text class="name" x="484" y="184">요약 워커</text>
+  <text class="tech" x="484" y="202">큐 소비</text>
+  <rect x="560" y="168" width="40" height="18" rx="9" fill="var(--c-accent-2)" /><text class="badge" x="580" y="181"
+    text-anchor="middle">x N</text>
+  <!-- managed PostgreSQL -->
+  <rect class="node" x="206" y="276" width="160" height="52" rx="9" />
+  <text class="name" x="220" y="298">관리형 PostgreSQL</text>
+  <text class="tech" x="220" y="316">자동 백업·다중 AZ</text>
+  <!-- managed queue -->
+  <rect class="node" x="470" y="276" width="138" height="52" rx="9" />
+  <text class="name" x="484" y="298">관리형 큐</text>
+  <text class="tech" x="484" y="316">at-least-once</text>
+  <!-- object storage -->
+  <rect class="node" x="206" y="344" width="160" height="50" rx="9" />
+  <text class="name" x="220" y="366">오브젝트 스토리지</text>
+  <text class="tech" x="220" y="383">이미지(S3 호환)</text>
+  <!-- cache -->
+  <rect class="node" x="470" y="344" width="138" height="50" rx="9" />
+  <text class="name" x="484" y="366">캐시</text>
+  <text class="tech" x="484" y="383">지도 응답 캐싱</text>
+
+  <!-- external -->
+  <rect class="ext" x="650" y="96" width="126" height="48" rx="9" />
+  <text class="name" x="662" y="116">지도·장소 API</text>
+  <text class="tech" x="662" y="133">동기 · 핵심</text>
+  <rect class="ext" x="650" y="176" width="126" height="48" rx="9" />
+  <text class="name" x="662" y="196">LLM 요약 API</text>
+  <text class="tech" x="662" y="213">비동기 · 부가</text>
+  <rect class="ext" x="650" y="256" width="126" height="48" rx="9" />
+  <text class="name" x="662" y="276">OAuth 제공자</text>
+  <text class="tech" x="662" y="293">외부 인증</text>
+
+  <text class="tech" x="186" y="428">확장 단위(x N)와 관리형 표시는 확장성·운영 부담 위임이라는 드라이버가 물리 배치에 남긴 흔적이다.</text>
+</svg>
