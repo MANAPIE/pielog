@@ -1,0 +1,63 @@
+<svg viewBox="0 0 760 372" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="천천히 변하는 것은 손으로 쓰고 빨리 변하는 것은 생성·링크하는 전략 스펙트럼">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .zt{font-size:13px;font-weight:700;}
+    .zs{font-size:10.5px;fill:var(--c-muted);}
+    .it{font-size:11.5px;}
+    .end{font-size:11px;font-weight:700;fill:var(--c-muted);}
+  </style>
+  <rect x="0" y="0" width="760" height="372" fill="var(--c-bg)"/>
+
+  <!-- zone titles -->
+  <text class="zt" x="172" y="44" text-anchor="middle" fill="var(--c-accent)">직접 쓴다</text>
+  <text class="zs" x="172" y="62" text-anchor="middle">손으로, 천천히 갱신</text>
+  <text class="zt" x="380" y="44" text-anchor="middle" fill="var(--c-accent-3)">코드로 그린다</text>
+  <text class="zs" x="380" y="62" text-anchor="middle">diagrams-as-code</text>
+  <text class="zt" x="588" y="44" text-anchor="middle" fill="var(--c-accent-2)">쓰지 말고 생성·링크</text>
+  <text class="zs" x="588" y="62" text-anchor="middle">자동 생성된 원본을 가리킴</text>
+
+  <!-- spectrum bar -->
+  <rect x="60" y="92" width="226" height="24" rx="6" fill="var(--c-accent)" opacity="0.85"/>
+  <rect x="286" y="92" width="188" height="24" fill="var(--c-accent-3)"/>
+  <rect x="474" y="92" width="226" height="24" rx="6" fill="var(--c-accent-2)" opacity="0.85"/>
+
+  <!-- axis under bar -->
+  <line x1="60" y1="134" x2="700" y2="134" stroke="var(--c-line)" stroke-width="1.5"/>
+  <polygon points="700,134 688,129 688,139" fill="var(--c-line)"/>
+  <text class="end" x="60" y="152">천천히 변함</text>
+  <text class="end" x="700" y="152" text-anchor="end">빨리 변함</text>
+
+  <!-- divider ticks -->
+  <line x1="286" y1="88" x2="286" y2="120" stroke="var(--c-bg)" stroke-width="2"/>
+  <line x1="474" y1="88" x2="474" y2="120" stroke="var(--c-bg)" stroke-width="2"/>
+
+  <!-- items per zone -->
+  <g class="it">
+    <!-- stable -->
+    <g transform="translate(72,188)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent)"/><text x="14" y="0">드라이버 · 품질 속성</text></g>
+    <g transform="translate(72,216)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent)"/><text x="14" y="0">아키텍처 결정(ADR)</text></g>
+    <g transform="translate(72,244)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent)"/><text x="14" y="0">시스템 경계와 책임</text></g>
+    <g transform="translate(72,272)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent)"/><text x="14" y="0">횡단 정책</text></g>
+    <!-- middle -->
+    <g transform="translate(300,188)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent-3)"/><text x="14" y="0">컨테이너 다이어그램</text></g>
+    <g transform="translate(300,216)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent-3)"/><text x="14" y="0">컴포넌트 다이어그램</text></g>
+    <g transform="translate(300,244)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent-3)"/><text x="14" y="0">런타임 시퀀스</text></g>
+    <!-- volatile -->
+    <g transform="translate(488,188)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent-2)"/><text x="14" y="0">API 엔드포인트(OpenAPI)</text></g>
+    <g transform="translate(488,216)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent-2)"/><text x="14" y="0">DB 스키마</text></g>
+    <g transform="translate(488,244)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent-2)"/><text x="14" y="0">환경 · 설정 값</text></g>
+    <g transform="translate(488,272)"><circle cx="0" cy="-4" r="4" fill="var(--c-accent-2)"/><text x="14" y="0">의존성 목록(SBOM)</text></g>
+  </g>
+
+  <text class="zs" x="60" y="336">문서에 직접 적는 것은 천천히 변하는 것뿐. 빨리 변하는 것은 원본을 가리키기만 하면, 거짓말할 표면 자체가 줄어든다.</text>
+</svg>

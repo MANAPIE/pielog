@@ -1,0 +1,53 @@
+<svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="코드는 계속 변하고 문서는 가끔 갱신되어 거짓말의 간격이 자라는 모습">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .ax{stroke:var(--c-line);stroke-width:1.5;}
+    .lbl{font-size:11.5px;fill:var(--c-muted);}
+    .key{font-size:11.5px;font-weight:700;}
+  </style>
+  <rect x="0" y="0" width="720" height="320" fill="var(--c-bg)"/>
+
+  <!-- axes -->
+  <line class="ax" x1="60" y1="60" x2="60" y2="262"/>
+  <line class="ax" x1="60" y1="262" x2="680" y2="262"/>
+  <polygon points="680,262 668,257 668,267" fill="var(--c-line)"/>
+  <text class="lbl" x="676" y="280" text-anchor="end">시간</text>
+  <text class="lbl" x="54" y="70" text-anchor="end" transform="rotate(-90 54 70)">실제 시스템과의 거리</text>
+
+  <!-- gap region 1 (small) -->
+  <path d="M60,230 L240,230 L240,182 L180,198 L120,214 L60,230 Z" fill="var(--c-accent-2)" opacity="0.12"/>
+  <!-- gap region 2 (large = lie) -->
+  <path d="M240,182 L660,182 L660,108 L600,112 L540,120 L480,128 L420,138 L360,150 L300,166 L240,182 Z" fill="var(--c-accent-2)" opacity="0.26"/>
+
+  <!-- code staircase (truth) -->
+  <polyline points="60,230 120,214 180,198 240,182 300,166 360,150 420,138 480,128 540,120 600,112 660,108"
+    fill="none" stroke="var(--c-fg)" stroke-width="3"/>
+  <text class="key" x="666" y="106" fill="var(--c-fg)">코드</text>
+
+  <!-- doc line (stepwise, lags) -->
+  <polyline points="60,230 240,230 240,182 660,182" fill="none" stroke="var(--c-accent)" stroke-width="3" stroke-dasharray="6 5"/>
+  <text class="key" x="666" y="186" fill="var(--c-accent)">문서</text>
+
+  <!-- doc update markers -->
+  <circle cx="60" cy="230" r="5" fill="var(--c-accent)"/>
+  <circle cx="240" cy="182" r="5" fill="var(--c-accent)"/>
+  <text class="lbl" x="60" y="250" text-anchor="middle">수동 갱신</text>
+  <text class="lbl" x="240" y="172" text-anchor="middle">수동 갱신</text>
+
+  <!-- lie label -->
+  <text class="key" x="450" y="150" fill="var(--c-accent-2)">거짓말의 간격</text>
+  <text class="lbl" x="450" y="168">갱신이 멈춘 구간</text>
+
+  <!-- caption -->
+  <text class="lbl" x="60" y="306">갱신 주기가 코드를 못 따라가는 순간 간격이 자란다. 손으로 동기화하는 항목이 많을수록 거짓말은 빨리 자란다.</text>
+</svg>

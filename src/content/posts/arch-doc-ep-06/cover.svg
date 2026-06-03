@@ -1,0 +1,87 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="내부 공유용 정의서, 거짓말하지 않는 문서 커버">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf; --c-dot:#1f1d14;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E; --c-num:#C29A1F;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a; --c-dot:#eae7dd;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A; --c-num:#D6B23A;
+      }
+    }
+    .bg{fill:var(--c-bg);}
+    .line{stroke:var(--c-line);fill:none;stroke-width:1.5;}
+    .num{fill:var(--c-num);}
+  </style>
+  <defs>
+    <pattern id="dots06" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA06" cx="18%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB06" cx="86%" cy="84%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="630"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#dots06)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowA06)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowB06)"/>
+
+  <!-- off-canvas strokes -->
+  <circle class="line" cx="1110" cy="80" r="240" transform="rotate(-8 1110 80)"/>
+  <rect class="line" x="-150" y="430" width="430" height="430" rx="44" transform="rotate(12 65 645)"/>
+
+  <!-- ===== metaphor: living doc <-> code, continuous sync loop ===== -->
+  <!-- living document (teal) -->
+  <g>
+    <rect x="280" y="190" width="240" height="290" rx="16" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
+    <rect x="312" y="226" width="120" height="12" rx="6" fill="var(--c-accent)"/>
+    <rect x="312" y="252" width="176" height="8" rx="4" fill="var(--c-accent)" opacity="0.45"/>
+    <rect x="312" y="270" width="160" height="8" rx="4" fill="var(--c-accent)" opacity="0.45"/>
+    <!-- pulse: alive -->
+    <polyline points="312,330 344,330 360,300 388,352 414,288 440,330 488,330" fill="none" stroke="var(--c-accent)" stroke-width="3"/>
+    <!-- mini diagram inside (diagrams-as-code) -->
+    <rect x="312" y="372" width="50" height="30" rx="5" fill="var(--c-accent-3)"/>
+    <rect x="380" y="372" width="50" height="30" rx="5" fill="var(--c-accent)" opacity="0.6"/>
+    <line x1="362" y1="387" x2="380" y2="387" stroke="var(--c-line)" stroke-width="2"/>
+    <rect x="346" y="424" width="50" height="30" rx="5" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
+  </g>
+
+  <!-- code/repo glyph (right) -->
+  <g>
+    <rect x="700" y="240" width="200" height="190" rx="14" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+    <text x="724" y="288" font-family="'JetBrains Mono',monospace" font-size="22" fill="var(--c-accent)">&lt;/&gt;</text>
+    <rect x="724" y="306" width="150" height="7" rx="3.5" fill="var(--c-accent)" opacity="0.4"/>
+    <rect x="738" y="322" width="120" height="7" rx="3.5" fill="var(--c-accent)" opacity="0.4"/>
+    <rect x="738" y="338" width="136" height="7" rx="3.5" fill="var(--c-accent)" opacity="0.4"/>
+    <rect x="724" y="354" width="150" height="7" rx="3.5" fill="var(--c-accent)" opacity="0.4"/>
+    <rect x="724" y="384" width="60" height="20" rx="6" fill="var(--c-accent)" opacity="0.18"/>
+  </g>
+
+  <!-- continuous sync loop between doc and code -->
+  <g>
+    <path d="M520 280 C 600 250, 640 250, 700 280" fill="none" stroke="var(--c-accent)" stroke-width="3"/>
+    <polygon points="700,280 684,274 688,288" fill="var(--c-accent)"/>
+    <path d="M700 390 C 640 420, 600 420, 520 390" fill="none" stroke="var(--c-accent)" stroke-width="3"/>
+    <polygon points="520,390 536,396 532,382" fill="var(--c-accent)"/>
+    <text x="610" y="244" text-anchor="middle" font-family="'Pretendard',system-ui,sans-serif" font-size="15" font-weight="700" fill="var(--c-accent)">자동 동기</text>
+  </g>
+
+  <!-- detail vocab -->
+  <circle cx="980" cy="160" r="30" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="3 7" opacity="0.7"/>
+  <circle cx="980" cy="160" r="13" class="line" stroke="var(--c-accent-3)"/>
+  <rect x="170" y="470" width="32" height="32" rx="6" fill="none" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(18 186 486)" opacity="0.8"/>
+  <g>
+    <rect x="150" y="150" width="16" height="44" rx="3" fill="var(--c-accent-3)"/>
+    <rect x="172" y="134" width="16" height="60" rx="3" fill="var(--c-accent)"/>
+    <rect x="194" y="166" width="16" height="28" rx="3" fill="var(--c-accent-3)"/>
+  </g>
+
+  <text x="1150" y="600" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="232" font-weight="700" class="num" opacity="0.16">06</text>
+</svg>
