@@ -1,0 +1,100 @@
+<svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="기능 요구사항과 품질 속성의 차이">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .h {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .sub {
+      font-size: 11.5px;
+      fill: var(--c-muted);
+    }
+
+    .it {
+      font-size: 12.5px;
+    }
+
+    .card {
+      fill: var(--c-bg);
+      stroke: var(--c-line);
+      stroke-width: 1.5;
+    }
+  </style>
+  <rect x="0" y="0" width="720" height="380" fill="var(--c-bg)" />
+
+  <!-- LEFT: 기능 요구 -->
+  <rect class="card" x="24" y="40" width="316" height="270" rx="12" />
+  <text class="h" x="44" y="68" fill="var(--c-muted)">기능 요구사항</text>
+  <text class="sub" x="44" y="86">무엇을 하는가</text>
+  <line x1="44" y1="98" x2="320" y2="98" stroke="var(--c-line)" stroke-width="1" />
+  <g transform="translate(0,5)">
+    <g transform="translate(44,120)">
+      <polyline points="0,6 6,12 16,0" fill="none" stroke="var(--c-muted)" stroke-width="2.5" stroke-linecap="round"
+        stroke-linejoin="round" /><text class="it" x="28" y="11">장소를 기록한다</text>
+    </g>
+    <g transform="translate(44,154)">
+      <polyline points="0,6 6,12 16,0" fill="none" stroke="var(--c-muted)" stroke-width="2.5" stroke-linecap="round"
+        stroke-linejoin="round" /><text class="it" x="28" y="11">장소를 검색한다</text>
+    </g>
+    <g transform="translate(44,188)">
+      <polyline points="0,6 6,12 16,0" fill="none" stroke="var(--c-muted)" stroke-width="2.5" stroke-linecap="round"
+        stroke-linejoin="round" /><text class="it" x="28" y="11">기록을 공유한다</text>
+    </g>
+    <g transform="translate(44,222)">
+      <polyline points="0,6 6,12 16,0" fill="none" stroke="var(--c-muted)" stroke-width="2.5" stroke-linecap="round"
+        stroke-linejoin="round" /><text class="it" x="28" y="11">기록 요약을 받는다</text>
+    </g>
+  </g>
+  <text class="sub" x="44" y="280">→ 어떤 구조로도 만족시킬 수 있다</text>
+
+  <!-- RIGHT: 품질 속성 -->
+  <rect class="card" x="380" y="40" width="316" height="270" rx="12" stroke="var(--c-accent)" />
+  <text class="h" x="400" y="68" fill="var(--c-accent)">품질 속성</text>
+  <text class="sub" x="400" y="86">얼마나 잘 하는가</text>
+  <line x1="400" y1="98" x2="676" y2="98" stroke="var(--c-line)" stroke-width="1" />
+  <g transform="translate(0,11)">
+    <g transform="translate(400,114)">
+      <circle cx="6" cy="6" r="5" fill="var(--c-accent)" /><text class="it" x="24" y="11">검색은 1초 안에 응답</text>
+    </g>
+    <g transform="translate(400,148)">
+      <circle cx="6" cy="6" r="5" fill="var(--c-accent)" /><text class="it" x="24" y="11">지도 API 장애에도 본 기능 생존</text>
+    </g>
+    <g transform="translate(400,182)">
+      <circle cx="6" cy="6" r="5" fill="var(--c-accent)" /><text class="it" x="24" y="11">이미지 트래픽 폭증에도 견딤</text>
+    </g>
+    <g transform="translate(400,216)">
+      <circle cx="6" cy="6" r="5" fill="var(--c-accent)" /><text class="it" x="24" y="11">위치 정보는 새지 않음</text>
+    </g>
+  </g>
+  <text class="sub" x="400" y="280" fill="var(--c-accent)">→ 구조를 가르는 것은 이쪽이다</text>
+
+  <!-- caption -->
+  <text class="sub" x="360" y="346" text-anchor="middle">같은 기능을 만족하는 구조는 많다. 그중 하나를 고르게 만드는 것이 품질 속성이다.</text>
+</svg>

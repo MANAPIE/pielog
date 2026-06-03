@@ -1,0 +1,64 @@
+<svg viewBox="0 0 760 392" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="스폿의 ADR 목록 ADR-001부터 006까지">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .id{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;fill:var(--c-accent);}
+    .ti{font-size:12.5px;font-weight:700;}
+    .pill{font-size:9px;font-weight:700;fill:var(--c-bg);}
+    .drv{font-size:10px;fill:var(--c-muted);}
+    .card{fill:var(--c-bg);stroke:var(--c-line);stroke-width:1.4;}
+  </style>
+  <rect x="0" y="0" width="760" height="392" fill="var(--c-bg)"/>
+
+  <!-- col x: 20, 392 ; row y: 20,144,268 ; w=348 h=104 -->
+  <!-- ADR-001 -->
+  <rect class="card" x="20" y="20" width="348" height="104" rx="10"/>
+  <text class="id" x="38" y="46">ADR-001</text>
+  <rect x="300" y="32" width="52" height="16" rx="8" fill="var(--c-accent)"/><text class="pill" x="326" y="44" text-anchor="middle">Accepted</text>
+  <text class="ti" x="38" y="72">외부 API를 어댑터로 격리한다</text>
+  <text class="drv" x="38" y="98">드라이버 · 유지보수성(벤더 락인 회피)</text>
+
+  <!-- ADR-002 -->
+  <rect class="card" x="392" y="20" width="348" height="104" rx="10"/>
+  <text class="id" x="410" y="46">ADR-002</text>
+  <rect x="672" y="32" width="52" height="16" rx="8" fill="var(--c-accent)"/><text class="pill" x="698" y="44" text-anchor="middle">Accepted</text>
+  <text class="ti" x="410" y="72">LLM 요약을 큐 기반 비동기로 처리</text>
+  <text class="drv" x="410" y="98">드라이버 · 비용 · 가용성(부가 기능 분리)</text>
+
+  <!-- ADR-003 -->
+  <rect class="card" x="20" y="144" width="348" height="104" rx="10"/>
+  <text class="id" x="38" y="170">ADR-003</text>
+  <rect x="300" y="156" width="52" height="16" rx="8" fill="var(--c-accent)"/><text class="pill" x="326" y="168" text-anchor="middle">Accepted</text>
+  <text class="ti" x="38" y="196">핵심 경로에 서킷 브레이커와 캐싱</text>
+  <text class="drv" x="38" y="222">드라이버 · 가용성 · 성능(핵심 경로 보호)</text>
+
+  <!-- ADR-004 -->
+  <rect class="card" x="392" y="144" width="348" height="104" rx="10"/>
+  <text class="id" x="410" y="170">ADR-004</text>
+  <rect x="672" y="156" width="52" height="16" rx="8" fill="var(--c-accent)"/><text class="pill" x="698" y="168" text-anchor="middle">Accepted</text>
+  <text class="ti" x="410" y="196">이미지를 오브젝트 스토리지에 저장</text>
+  <text class="drv" x="410" y="222">드라이버 · 확장성(이미지 트래픽 분리)</text>
+
+  <!-- ADR-005 -->
+  <rect class="card" x="20" y="268" width="348" height="104" rx="10"/>
+  <text class="id" x="38" y="294">ADR-005</text>
+  <rect x="300" y="280" width="52" height="16" rx="8" fill="var(--c-accent)"/><text class="pill" x="326" y="292" text-anchor="middle">Accepted</text>
+  <text class="ti" x="38" y="320">인증을 OAuth로 위임한다</text>
+  <text class="drv" x="38" y="346">드라이버 · 보안(자체 인증 부담 회피)</text>
+
+  <!-- ADR-006 -->
+  <rect class="card" x="392" y="268" width="348" height="104" rx="10"/>
+  <text class="id" x="410" y="294">ADR-006</text>
+  <rect x="672" y="280" width="52" height="16" rx="8" fill="var(--c-accent)"/><text class="pill" x="698" y="292" text-anchor="middle">Accepted</text>
+  <text class="ti" x="410" y="320">모듈러 모놀리스로 시작한다</text>
+  <text class="drv" x="410" y="346">드라이버 · 유지보수성 · 단순성(과설계 회피)</text>
+</svg>

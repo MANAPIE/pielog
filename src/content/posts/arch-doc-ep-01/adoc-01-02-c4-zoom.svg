@@ -1,0 +1,119 @@
+<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" role="img"
+  aria-label="C4 모델의 네 줌 레벨: 컨텍스트, 컨테이너, 컴포넌트, 코드">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .lv {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .q {
+      font-size: 11px;
+      fill: var(--c-muted);
+    }
+
+    .frame {
+      fill: var(--c-bg);
+      stroke: var(--c-line);
+      stroke-width: 1.5;
+    }
+
+    .b {
+      fill: var(--c-accent);
+      opacity: 0.85;
+    }
+
+    .b2 {
+      fill: var(--c-accent-3);
+    }
+  </style>
+  <rect x="0" y="0" width="760" height="320" fill="var(--c-bg)" />
+
+  <!-- zoom arrows -->
+  <g fill="var(--c-accent-2)" transform="translate(-3,0)">
+    <polygon points="182,135 196,128 196,142" />
+    <polygon points="362,135 376,128 376,142" />
+    <polygon points="542,135 556,128 556,142" />
+  </g>
+  <g font-family="'Pretendard',system-ui,sans-serif" font-size="10" fill="var(--c-accent-2)">
+    <text x="185" y="120" text-anchor="middle">확대</text>
+    <text x="365" y="120" text-anchor="middle">확대</text>
+    <text x="545" y="120" text-anchor="middle">확대</text>
+  </g>
+
+  <!-- L1 Context -->
+  <rect class="frame" x="20" y="60" width="152" height="150" rx="12" />
+  <circle cx="96" cy="135" r="26" fill="var(--c-accent)" opacity="0.18" stroke="var(--c-accent)" stroke-width="2" />
+  <circle cx="50" cy="92" r="8" fill="none" stroke="var(--c-muted)" stroke-width="2" />
+  <circle cx="50" cy="86" r="4" fill="var(--c-muted)" />
+  <rect x="128" y="100" width="26" height="18" rx="3" fill="none" stroke="var(--c-muted)" stroke-width="2" />
+  <rect x="128" y="168" width="26" height="18" rx="3" fill="none" stroke="var(--c-muted)" stroke-width="2" />
+  <line x1="62" y1="100" x2="76" y2="120" stroke="var(--c-line)" stroke-width="1.5" />
+  <line x1="124" y1="120" x2="115" y2="128" stroke="var(--c-line)" stroke-width="1.5" />
+  <text class="lv" x="96" y="240" text-anchor="middle">L1 컨텍스트</text>
+  <text class="q" x="96" y="258" text-anchor="middle">시스템과 바깥 세계</text>
+
+  <!-- L2 Container -->
+  <rect class="frame" x="200" y="60" width="152" height="150" rx="12" />
+  <rect x="218" y="80" width="54" height="30" rx="5" class="b" />
+  <rect x="284" y="80" width="54" height="30" rx="5" class="b2" />
+  <rect x="218" y="124" width="54" height="30" rx="5" class="b2" />
+  <rect x="284" y="124" width="54" height="30" rx="5" class="b" />
+  <rect x="250" y="168" width="54" height="26" rx="5" fill="none" stroke="var(--c-accent-2)" stroke-width="2" />
+  <line x1="245" y1="110" x2="245" y2="124" stroke="var(--c-line)" stroke-width="1.5" />
+  <line x1="311" y1="110" x2="311" y2="124" stroke="var(--c-line)" stroke-width="1.5" />
+  <text class="lv" x="276" y="240" text-anchor="middle">L2 컨테이너</text>
+  <text class="q" x="276" y="258" text-anchor="middle">실행 단위들</text>
+
+  <!-- L3 Component -->
+  <rect class="frame" x="380" y="60" width="152" height="150" rx="12" />
+  <rect x="396" y="78" width="120" height="120" rx="8" fill="none" stroke="var(--c-accent)" stroke-width="2"
+    stroke-dasharray="4 3" />
+  <rect x="410" y="94" width="40" height="24" rx="4" class="b" />
+  <rect x="462" y="94" width="40" height="24" rx="4" class="b2" />
+  <rect x="410" y="128" width="40" height="24" rx="4" class="b2" />
+  <rect x="462" y="128" width="40" height="24" rx="4" class="b" />
+  <rect x="436" y="162" width="40" height="22" rx="4" fill="none" stroke="var(--c-accent-2)" stroke-width="2" />
+  <text class="lv" x="456" y="240" text-anchor="middle">L3 컴포넌트</text>
+  <text class="q" x="456" y="258" text-anchor="middle">한 컨테이너 내부</text>
+
+  <!-- L4 Code -->
+  <rect class="frame" x="560" y="60" width="152" height="150" rx="12" />
+  <rect x="578" y="80" width="116" height="14" rx="3" class="b" opacity="0.5" />
+  <rect x="588" y="100" width="96" height="10" rx="3" fill="var(--c-muted)" opacity="0.5" />
+  <rect x="588" y="116" width="84" height="10" rx="3" fill="var(--c-muted)" opacity="0.5" />
+  <rect x="598" y="132" width="72" height="10" rx="3" fill="var(--c-muted)" opacity="0.4" />
+  <rect x="588" y="148" width="90" height="10" rx="3" fill="var(--c-muted)" opacity="0.5" />
+  <rect x="578" y="170" width="116" height="14" rx="3" class="b" opacity="0.5" />
+  <text class="lv" x="636" y="240" text-anchor="middle">L4 코드</text>
+  <text class="q" x="636" y="258" text-anchor="middle">구현 · 보통 생략</text>
+
+  <!-- footer -->
+  <text class="q" x="380" y="298" text-anchor="middle">한 장이 아니라 줌 레벨의 묶음으로 시스템을 설명한다. 정의서는 보통 L1과 L2를 중심에 둔다.</text>
+</svg>

@@ -1,0 +1,91 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="품질 속성과 드라이버 커버">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf; --c-dot:#1f1d14;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E; --c-num:#C29A1F;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a; --c-dot:#eae7dd;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A; --c-num:#D6B23A;
+      }
+    }
+    .bg{fill:var(--c-bg);}
+    .line{stroke:var(--c-line);fill:none;stroke-width:1.5;}
+    .num{fill:var(--c-num);}
+  </style>
+  <defs>
+    <pattern id="dots02" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA02" cx="16%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB02" cx="88%" cy="86%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="630"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#dots02)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowA02)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowB02)"/>
+
+  <!-- off-canvas strokes -->
+  <circle class="line" cx="120" cy="600" r="240" transform="rotate(10 120 600)"/>
+  <rect class="line" x="930" y="-170" width="430" height="430" rx="44" transform="rotate(-12 1145 45)"/>
+
+  <!-- ===== metaphor: a central structure being pulled by quality-driver force vectors ===== -->
+  <!-- central structure (stack of blocks) -->
+  <g transform="rotate(-4 500 320)">
+    <rect x="420" y="236" width="160" height="46" rx="8" fill="var(--c-accent)" opacity="0.85"/>
+    <rect x="404" y="290" width="192" height="46" rx="8" fill="var(--c-accent-3)"/>
+    <rect x="438" y="344" width="124" height="46" rx="8" fill="var(--c-accent)" opacity="0.6"/>
+    <rect x="404" y="222" width="192" height="184" rx="12" class="line" stroke="var(--c-accent)" stroke-width="2.5"/>
+  </g>
+
+  <!-- force vectors pulling the structure (drivers). Arrows as polygons -->
+  <g stroke-width="3">
+    <!-- top -->
+    <line x1="500" y1="120" x2="500" y2="196" class="line" stroke="var(--c-accent-2)"/>
+    <polygon points="500,196 492,180 508,180" fill="var(--c-accent-2)"/>
+    <!-- left -->
+    <line x1="250" y1="300" x2="378" y2="312" class="line" stroke="var(--c-accent-2)"/>
+    <polygon points="378,312 360,304 364,320" fill="var(--c-accent-2)"/>
+    <!-- right -->
+    <line x1="760" y1="300" x2="624" y2="312" class="line" stroke="var(--c-accent-2)"/>
+    <polygon points="624,312 642,304 638,320" fill="var(--c-accent-2)"/>
+    <!-- bottom -->
+    <line x1="500" y1="520" x2="500" y2="430" class="line" stroke="var(--c-accent-2)"/>
+    <polygon points="500,430 492,446 508,446" fill="var(--c-accent-2)"/>
+    <!-- diagonals -->
+    <line x1="300" y1="150" x2="392" y2="232" class="line" stroke="var(--c-accent)" opacity="0.7"/>
+    <polygon points="392,232 374,228 384,214" fill="var(--c-accent)" opacity="0.7"/>
+    <line x1="700" y1="490" x2="608" y2="408" class="line" stroke="var(--c-accent)" opacity="0.7"/>
+    <polygon points="608,408 626,412 616,426" fill="var(--c-accent)" opacity="0.7"/>
+  </g>
+
+  <!-- gauge / dial detail (a quality 'measure') -->
+  <g transform="translate(880,360)">
+    <path d="M -54 0 A 54 54 0 0 1 54 0" class="line" stroke="var(--c-accent)" stroke-width="3"/>
+    <line x1="0" y1="0" x2="34" y2="-30" stroke="var(--c-accent-2)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="6" fill="var(--c-accent)"/>
+    <circle cx="-54" cy="0" r="3" fill="var(--c-muted)"/>
+    <circle cx="54" cy="0" r="3" fill="var(--c-muted)"/>
+  </g>
+  <!-- mini bars cluster -->
+  <g>
+    <rect x="200" y="440" width="16" height="44" rx="3" fill="var(--c-accent-3)"/>
+    <rect x="222" y="424" width="16" height="60" rx="3" fill="var(--c-accent)"/>
+    <rect x="244" y="456" width="16" height="28" rx="3" fill="var(--c-accent-3)"/>
+  </g>
+  <!-- concentric + dashed ring -->
+  <circle cx="950" cy="160" r="30" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="3 7" opacity="0.7"/>
+  <circle cx="950" cy="160" r="14" class="line" stroke="var(--c-accent-3)"/>
+  <!-- rotated square -->
+  <rect x="150" y="120" width="30" height="30" rx="6" fill="none" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(22 165 135)" opacity="0.8"/>
+
+  <text x="1150" y="600" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="232" font-weight="700" class="num" opacity="0.16">02</text>
+</svg>

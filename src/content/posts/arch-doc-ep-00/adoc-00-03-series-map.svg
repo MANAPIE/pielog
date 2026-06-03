@@ -1,0 +1,112 @@
+<svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="여덟 편 시리즈 여정 지도와 두 문서 척추, 거짓말과 화석이 닫히는 지점">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;fill:var(--c-bg);}
+    .title{font-size:11.5px;fill:var(--c-fg);}
+    .role{font-size:11px;font-weight:700;}
+    .note{font-size:11px;fill:var(--c-muted);}
+    .phase{font-size:12px;font-weight:700;fill:var(--c-muted);}
+  </style>
+
+  <rect x="0" y="0" width="760" height="380" fill="var(--c-bg)"/>
+
+  <!-- reading path line -->
+  <line x1="60" y1="96" x2="700" y2="96" stroke="var(--c-line)" stroke-width="2"/>
+
+  <!-- nodes: x = 60,151,243,334,426,517,609,700 -->
+  <!-- ep.00 (도입, emphasized teal+amber split) -->
+  <g>
+    <circle cx="60" cy="96" r="19" fill="var(--c-fg)"/>
+    <text class="num" x="60" y="101" text-anchor="middle">00</text>
+    <text class="title" x="60" y="142" text-anchor="middle">두 죽음</text>
+    <text class="title" x="60" y="156" text-anchor="middle">+ 샘플</text>
+  </g>
+  <!-- ep.01 theory -->
+  <g>
+    <circle cx="151" cy="96" r="17" fill="none" stroke="var(--c-muted)" stroke-width="2.5"/>
+    <text class="num" x="151" y="101" text-anchor="middle" fill="var(--c-fg)">01</text>
+    <text class="title" x="151" y="142" text-anchor="middle">표준</text>
+    <text class="title" x="151" y="156" text-anchor="middle">지형도</text>
+  </g>
+  <!-- ep.02-05 spine -->
+  <g>
+    <circle cx="243" cy="96" r="17" fill="var(--c-accent-3)"/>
+    <text class="num" x="243" y="101" text-anchor="middle">02</text>
+    <text class="title" x="243" y="142" text-anchor="middle">품질</text>
+    <text class="title" x="243" y="156" text-anchor="middle">속성</text>
+  </g>
+  <g>
+    <circle cx="334" cy="96" r="17" fill="var(--c-accent-3)"/>
+    <text class="num" x="334" y="101" text-anchor="middle">03</text>
+    <text class="title" x="334" y="142" text-anchor="middle">뷰 · C4</text>
+  </g>
+  <g>
+    <circle cx="426" cy="96" r="17" fill="var(--c-accent-3)"/>
+    <text class="num" x="426" y="101" text-anchor="middle">04</text>
+    <text class="title" x="426" y="142" text-anchor="middle">ADR</text>
+  </g>
+  <g>
+    <circle cx="517" cy="96" r="17" fill="var(--c-accent-3)"/>
+    <text class="num" x="517" y="101" text-anchor="middle">05</text>
+    <text class="title" x="517" y="142" text-anchor="middle">횡단</text>
+    <text class="title" x="517" y="156" text-anchor="middle">관심사</text>
+  </g>
+  <!-- ep.06 internal close (teal) -->
+  <g>
+    <circle cx="609" cy="96" r="19" fill="var(--c-accent)"/>
+    <text class="num" x="609" y="101" text-anchor="middle">06</text>
+    <text class="role" x="609" y="142" text-anchor="middle" fill="var(--c-accent)">내부용</text>
+    <text class="title" x="609" y="156" text-anchor="middle">완성</text>
+  </g>
+  <!-- ep.07 delivery close (amber) -->
+  <g>
+    <circle cx="700" cy="96" r="19" fill="var(--c-accent-2)"/>
+    <text class="num" x="700" y="101" text-anchor="middle">07</text>
+    <text class="role" x="700" y="142" text-anchor="middle" fill="var(--c-accent-2)">납품용</text>
+    <text class="title" x="700" y="156" text-anchor="middle">변환</text>
+  </g>
+
+  <!-- phase brackets -->
+  <text class="phase" x="60" y="50" text-anchor="middle">도입</text>
+  <text class="phase" x="151" y="50" text-anchor="middle">이론</text>
+  <text class="phase" x="380" y="50" text-anchor="middle">이론 → 적용 → 두 문서 대조</text>
+  <line x1="205" y1="58" x2="555" y2="58" stroke="var(--c-line)" stroke-width="1.5"/>
+  <text class="phase" x="655" y="50" text-anchor="middle">마무리</text>
+  <line x1="588" y1="58" x2="722" y2="58" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- dual-document spine band (ep.02 -> ep.07) -->
+  <g>
+    <text class="role" x="243" y="210" fill="var(--c-accent)">내부용</text>
+    <rect x="300" y="200" width="320" height="12" rx="6" fill="var(--c-accent)" opacity="0.30"/>
+    <rect x="300" y="200" width="320" height="12" rx="6" fill="none" stroke="var(--c-accent)" stroke-width="1.5"/>
+    <circle cx="609" cy="206" r="6" fill="var(--c-accent)"/>
+
+    <text class="role" x="243" y="244" fill="var(--c-accent-2)">납품용</text>
+    <rect x="300" y="234" width="411" height="12" rx="6" fill="var(--c-accent-2)" opacity="0.30"/>
+    <rect x="300" y="234" width="411" height="12" rx="6" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+    <circle cx="700" cy="240" r="6" fill="var(--c-accent-2)"/>
+  </g>
+
+  <!-- closing notes -->
+  <g>
+    <line x1="609" y1="115" x2="609" y2="196" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="2 4"/>
+    <line x1="700" y1="115" x2="700" y2="230" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-dasharray="2 4"/>
+    <text class="note" x="609" y="300" text-anchor="middle" fill="var(--c-accent)" font-weight="700">거짓말을 닫음</text>
+    <text class="note" x="609" y="316" text-anchor="middle">문서를 살려서</text>
+    <text class="note" x="700" y="300" text-anchor="middle" fill="var(--c-accent-2)" font-weight="700">화석을 닫음</text>
+    <text class="note" x="700" y="316" text-anchor="middle">죽음을 인정해서</text>
+  </g>
+
+  <!-- footer caption -->
+  <text class="note" x="60" y="356">가운데 여섯 편은 같은 리듬을 반복합니다. 이론을 깔고, 샘플에 적용하고, 두 문서가 그것을 어떻게 다르게 담는지 대조합니다.</text>
+</svg>

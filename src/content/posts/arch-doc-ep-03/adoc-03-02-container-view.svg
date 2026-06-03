@@ -1,0 +1,115 @@
+<svg viewBox="0 0 800 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="스폿의 C4 컨테이너 다이어그램">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .name{font-size:12.5px;font-weight:700;}
+    .tech{font-size:10px;fill:var(--c-muted);}
+    .lbl{font-size:10px;fill:var(--c-muted);}
+    .lbl-s{font-size:10px;font-weight:700;fill:var(--c-accent);}
+    .lbl-a{font-size:10px;font-weight:700;fill:var(--c-accent-2);}
+    .ext{fill:var(--c-bg);stroke:var(--c-muted);stroke-width:1.6;}
+    .ctn{fill:var(--c-bg);stroke:var(--c-accent);stroke-width:1.8;}
+    .sync{stroke:var(--c-accent);stroke-width:2;fill:none;}
+    .async{stroke:var(--c-accent-2);stroke-width:2;fill:none;stroke-dasharray:6 4;}
+  </style>
+  <rect x="0" y="0" width="800" height="470" fill="var(--c-bg)"/>
+
+  <!-- system boundary -->
+  <rect x="170" y="58" width="440" height="364" rx="14" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="2 6"/>
+  <text class="tech" x="184" y="78" fill="var(--c-accent)">스폿 Spot · 시스템 경계</text>
+
+  <!-- ===== arrows (draw under boxes) ===== -->
+  <!-- 사용자 -> SPA -->
+  <line class="sync" x1="132" y1="115" x2="196" y2="115"/>
+  <polygon points="200,115 186,109 186,121" fill="var(--c-accent)"/>
+  <!-- SPA -> API -->
+  <line class="sync" x1="275" y1="142" x2="275" y2="208"/>
+  <polygon points="275,212 269,198 281,198" fill="var(--c-accent)"/>
+  <!-- API -> DB -->
+  <line class="sync" x1="275" y1="272" x2="275" y2="344"/>
+  <polygon points="275,348 269,334 281,334" fill="var(--c-accent)"/>
+  <!-- API -> queue (async) -->
+  <line class="async" x1="350" y1="242" x2="404" y2="242"/>
+  <polygon points="408,242 394,236 394,248" fill="var(--c-accent-2)"/>
+  <text class="lbl-a" x="356" y="234">enqueue</text>
+  <!-- queue -> worker (async) -->
+  <line class="async" x1="488" y1="218" x2="488" y2="146"/>
+  <polygon points="488,142 482,156 494,156" fill="var(--c-accent-2)"/>
+  <text class="lbl-a" x="496" y="186">consume</text>
+  <!-- worker -> LLM (async) -->
+  <line class="async" x1="568" y1="115" x2="656" y2="115"/>
+  <polygon points="660,115 646,109 646,121" fill="var(--c-accent-2)"/>
+  <text class="lbl-a" x="576" y="107">비동기</text>
+  <!-- API -> maps (sync corridor y=300) -->
+  <path class="sync" d="M350 258 L350 300 L700 300 L700 276"/>
+  <polygon points="700,272 694,286 706,286" fill="var(--c-accent)"/>
+  <text class="lbl-s" x="430" y="294">동기 · 서킷브레이커</text>
+  <!-- API -> object storage (sync corridor y=326) -->
+  <path class="sync" d="M320 272 L320 326 L488 326 L488 344"/>
+  <polygon points="488,348 482,334 494,334" fill="var(--c-accent)"/>
+  <text class="lbl-s" x="326" y="320">이미지</text>
+  <!-- API -> OAuth (sync, left-down) -->
+  <path class="sync" d="M196 250 L94 250 L94 344"/>
+  <polygon points="94,348 88,334 100,334" fill="var(--c-accent)"/>
+  <text class="lbl-s" x="100" y="244">인증 위임</text>
+
+  <!-- ===== nodes ===== -->
+  <!-- 사용자 -->
+  <rect class="ext" x="28" y="88" width="104" height="54" rx="9"/>
+  <circle cx="48" cy="106" r="7" fill="none" stroke="var(--c-muted)" stroke-width="1.6"/>
+  <path d="M40 124 a8 8 0 0 1 16 0" fill="none" stroke="var(--c-muted)" stroke-width="1.6"/>
+  <text class="name" x="66" y="120">사용자</text>
+  <!-- OAuth -->
+  <rect class="ext" x="28" y="348" width="132" height="56" rx="9"/>
+  <text class="name" x="40" y="374">OAuth 제공자</text>
+  <text class="tech" x="40" y="392">외부 인증</text>
+
+  <!-- SPA -->
+  <rect class="ctn" x="200" y="88" width="150" height="54" rx="9"/>
+  <text class="name" x="216" y="112">웹 프론트엔드</text>
+  <text class="tech" x="216" y="130">SPA</text>
+  <!-- API 백엔드 -->
+  <rect class="ctn" x="200" y="212" width="150" height="60" rx="9" fill="var(--c-accent)" fill-opacity="0.10"/>
+  <text class="name" x="216" y="238">API 백엔드</text>
+  <text class="tech" x="216" y="256">모듈러 모놀리스</text>
+  <!-- PostgreSQL -->
+  <rect class="ctn" x="200" y="348" width="150" height="56" rx="9"/>
+  <text class="name" x="216" y="374">PostgreSQL</text>
+  <text class="tech" x="216" y="392">구조화 데이터</text>
+  <!-- 요약 워커 -->
+  <rect class="ctn" x="408" y="88" width="160" height="54" rx="9"/>
+  <text class="name" x="424" y="112">요약 워커</text>
+  <text class="tech" x="424" y="130">큐 소비 · 재시도</text>
+  <!-- 메시지 큐 -->
+  <rect class="ctn" x="408" y="218" width="160" height="48" rx="9"/>
+  <text class="name" x="424" y="247">메시지 큐</text>
+  <!-- 오브젝트 스토리지 -->
+  <rect class="ctn" x="408" y="348" width="160" height="56" rx="9"/>
+  <text class="name" x="424" y="374">오브젝트 스토리지</text>
+  <text class="tech" x="424" y="392">이미지(S3 호환)</text>
+  <!-- LLM API -->
+  <rect class="ext" x="660" y="88" width="128" height="54" rx="9"/>
+  <text class="name" x="674" y="112">LLM 요약 API</text>
+  <text class="tech" x="674" y="130">부가 · 비동기</text>
+  <!-- 지도 API -->
+  <rect class="ext" x="660" y="212" width="128" height="60" rx="9"/>
+  <text class="name" x="674" y="238">지도·장소 API</text>
+  <text class="tech" x="674" y="256">핵심 · 동기</text>
+
+  <!-- legend -->
+  <g transform="translate(28,432)">
+    <line class="sync" x1="0" y1="6" x2="28" y2="6"/>
+    <text class="lbl" x="34" y="10">동기 호출(핵심 경로)</text>
+    <line class="async" x1="200" y1="6" x2="228" y2="6"/>
+    <text class="lbl" x="234" y="10">비동기 처리(부가 경로)</text>
+  </g>
+</svg>

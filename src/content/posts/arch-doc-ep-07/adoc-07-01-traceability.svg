@@ -1,0 +1,73 @@
+<svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="요구사항과 설계·결정과 테스트를 잇는 추적성 매트릭스">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .hd{font-size:12px;font-weight:700;}
+    .id{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;fill:var(--c-accent-2);}
+    .t{font-size:11px;}
+    .card{fill:var(--c-bg);stroke:var(--c-line);stroke-width:1.4;}
+  </style>
+  <rect x="0" y="0" width="760" height="400" fill="var(--c-bg)"/>
+
+  <!-- headers -->
+  <text class="hd" x="120" y="42" text-anchor="middle" fill="var(--c-accent-2)">요구사항</text>
+  <text class="hd" x="380" y="42" text-anchor="middle" fill="var(--c-accent-2)">설계 · 결정</text>
+  <text class="hd" x="640" y="42" text-anchor="middle" fill="var(--c-accent-2)">테스트</text>
+
+  <!-- connectors row by row -->
+  <g stroke="var(--c-accent-2)" stroke-width="1.6">
+    <line x1="220" y1="92" x2="280" y2="92"/><polygon points="280,92 268,87 268,97" fill="var(--c-accent-2)"/>
+    <line x1="480" y1="92" x2="540" y2="92"/><polygon points="540,92 528,87 528,97" fill="var(--c-accent-2)"/>
+    <line x1="220" y1="170" x2="280" y2="170"/><polygon points="280,170 268,165 268,175" fill="var(--c-accent-2)"/>
+    <line x1="480" y1="170" x2="540" y2="170"/><polygon points="540,170 528,165 528,175" fill="var(--c-accent-2)"/>
+    <line x1="220" y1="248" x2="280" y2="248"/><polygon points="280,248 268,243 268,253" fill="var(--c-accent-2)"/>
+    <line x1="480" y1="248" x2="540" y2="248"/><polygon points="540,248 528,243 528,253" fill="var(--c-accent-2)"/>
+    <line x1="220" y1="326" x2="280" y2="326"/><polygon points="280,326 268,321 268,331" fill="var(--c-accent-2)"/>
+    <line x1="480" y1="326" x2="540" y2="326"/><polygon points="540,326 528,321 528,331" fill="var(--c-accent-2)"/>
+  </g>
+
+  <!-- rows: y top = 66,144,222,300 ; h=52 -->
+  <!-- REQ col x=20 w=200 ; DESIGN col x=280 w=200 ; TEST col x=540 w=200 -->
+  <!-- row1 -->
+  <rect class="card" x="20" y="66" width="200" height="52" rx="8"/>
+  <text class="id" x="34" y="86">REQ-001 · 가용성</text><text class="t" x="34" y="106">지도 장애 시 검색 외 생존</text>
+  <rect class="card" x="280" y="66" width="200" height="52" rx="8"/>
+  <text class="id" x="294" y="86">ADR-003 · 컨테이너 뷰</text><text class="t" x="294" y="106">서킷 브레이커 + 캐싱</text>
+  <rect class="card" x="540" y="66" width="200" height="52" rx="8"/>
+  <text class="id" x="554" y="86">TC-AV-01</text><text class="t" x="554" y="106">지도 API 차단 시나리오</text>
+
+  <!-- row2 -->
+  <rect class="card" x="20" y="144" width="200" height="52" rx="8"/>
+  <text class="id" x="34" y="164">REQ-002 · 성능</text><text class="t" x="34" y="184">검색 P95 1초 이내</text>
+  <rect class="card" x="280" y="144" width="200" height="52" rx="8"/>
+  <text class="id" x="294" y="164">캐싱 · 런타임 뷰</text><text class="t" x="294" y="184">캐시 적중 경로</text>
+  <rect class="card" x="540" y="144" width="200" height="52" rx="8"/>
+  <text class="id" x="554" y="164">TC-PF-01</text><text class="t" x="554" y="184">부하 시 응답 측정</text>
+
+  <!-- row3 -->
+  <rect class="card" x="20" y="222" width="200" height="52" rx="8"/>
+  <text class="id" x="34" y="242">REQ-003 · 보안</text><text class="t" x="34" y="262">비공개 기록 소유자 제한</text>
+  <rect class="card" x="280" y="222" width="200" height="52" rx="8"/>
+  <text class="id" x="294" y="242">ADR-005 · 접근 통제</text><text class="t" x="294" y="262">OAuth + 행 수준 권한</text>
+  <rect class="card" x="540" y="222" width="200" height="52" rx="8"/>
+  <text class="id" x="554" y="242">TC-SE-01</text><text class="t" x="554" y="262">타인 조회 차단 검증</text>
+
+  <!-- row4 -->
+  <rect class="card" x="20" y="300" width="200" height="52" rx="8"/>
+  <text class="id" x="34" y="320">REQ-004 · 비용</text><text class="t" x="34" y="340">LLM 호출 한도 통제</text>
+  <rect class="card" x="280" y="300" width="200" height="52" rx="8"/>
+  <text class="id" x="294" y="320">ADR-002 · 비동기 큐</text><text class="t" x="294" y="340">큐 + 워커 처리</text>
+  <rect class="card" x="540" y="300" width="200" height="52" rx="8"/>
+  <text class="id" x="554" y="320">TC-CO-01</text><text class="t" x="554" y="340">한도 초과 시 동작</text>
+
+  <text class="t" x="20" y="384" fill="var(--c-muted)">모든 요구사항은 설계·결정을 거쳐 테스트로 이어진다. 끊긴 행이 없어야 감리 종료 단계를 통과한다.</text>
+</svg>

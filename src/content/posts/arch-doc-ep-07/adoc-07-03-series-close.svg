@@ -1,0 +1,75 @@
+<svg viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시리즈를 닫는 대칭 그림과 인수인계를 통한 재탄생">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .ti{font-size:13px;font-weight:700;}
+    .sub{font-size:11px;fill:var(--c-muted);}
+    .close{font-size:13px;font-weight:700;}
+    .ep{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;fill:var(--c-muted);}
+    .n{font-size:11.5px;font-weight:700;}
+    .cap{font-size:11.5px;fill:var(--c-muted);}
+  </style>
+  <rect x="0" y="0" width="760" height="430" fill="var(--c-bg)"/>
+
+  <!-- left panel: lie -->
+  <rect x="36" y="40" width="330" height="150" rx="12" fill="var(--c-accent)" fill-opacity="0.08" stroke="var(--c-accent)" stroke-width="2"/>
+  <text class="ti" x="56" y="68" fill="var(--c-accent)">두 번째 죽음 — 거짓말</text>
+  <text class="sub" x="56" y="88">코드는 변하고 문서는 멈춰, 둘이 어긋난다</text>
+  <line x1="56" y1="104" x2="346" y2="104" stroke="var(--c-line)" stroke-width="1"/>
+  <text class="close" x="56" y="130" fill="var(--c-accent)">문서를 살려서 닫는다</text>
+  <text class="sub" x="56" y="150">손으로 동기화할 표면을 없애 거짓말할 자리를 지운다</text>
+  <text class="ep" x="346" y="180" text-anchor="end">ep.06</text>
+
+  <!-- right panel: fossil -->
+  <rect x="394" y="40" width="330" height="150" rx="12" fill="var(--c-accent-2)" fill-opacity="0.08" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <text class="ti" x="414" y="68" fill="var(--c-accent-2)">첫 번째 죽음 — 화석</text>
+  <text class="sub" x="414" y="88">특정 시점에 고정되어 그대로 굳는다</text>
+  <line x1="414" y1="104" x2="704" y2="104" stroke="var(--c-line)" stroke-width="1"/>
+  <text class="close" x="414" y="130" fill="var(--c-accent-2)">죽음을 인정해서 닫는다</text>
+  <text class="sub" x="414" y="150">박제임을 받아들이고 시점·추적·검수로 증빙한다</text>
+  <text class="ep" x="704" y="180" text-anchor="end">ep.07</text>
+
+  <!-- rebirth flow -->
+  <text class="cap" x="380" y="226" text-anchor="middle">그러나 납품이 끝은 아니다 — 화석은 인수인계를 통해 다시 씨앗이 된다</text>
+
+  <!-- arrows -->
+  <g stroke="var(--c-accent-2)" stroke-width="2">
+    <line x1="218" y1="300" x2="278" y2="300"/><polygon points="282,300 270,294 270,306" fill="var(--c-accent-2)"/>
+    <line x1="466" y1="300" x2="526" y2="300"/><polygon points="530,300 518,294 518,306" fill="var(--c-accent-2)"/>
+  </g>
+  <text class="sub" x="248" y="290" text-anchor="middle">인수인계</text>
+  <text class="sub" x="496" y="290" text-anchor="middle">다시 심음</text>
+
+  <!-- box1 fossil -->
+  <rect x="48" y="272" width="170" height="56" rx="9" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <text class="n" x="133" y="298" text-anchor="middle">납품용 화석 문서</text>
+  <text class="sub" x="133" y="316" text-anchor="middle">시점 스냅샷 + 추적표</text>
+
+  <!-- box2 maintenance team -->
+  <rect x="282" y="272" width="184" height="56" rx="9" fill="var(--c-bg)" stroke="var(--c-muted)" stroke-width="1.8"/>
+  <text class="n" x="374" y="298" text-anchor="middle">유지보수 · 운영팀</text>
+  <text class="sub" x="374" y="316" text-anchor="middle">화석을 출발점으로 인수</text>
+
+  <!-- box3 new living doc with sprout -->
+  <rect x="530" y="272" width="184" height="56" rx="9" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.2"/>
+  <text class="n" x="636" y="298" text-anchor="middle">새 살아있는 문서</text>
+  <text class="sub" x="636" y="316" text-anchor="middle">ep.06 원칙으로 다시 운영</text>
+  <!-- sprout -->
+  <g transform="translate(548,300)">
+    <path d="M0 12 q 0 -16 10 -22" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
+    <path d="M10 -10 q -11 2 -14 13 q 11 -1 14 -13 Z" fill="var(--c-accent)" opacity="0.7"/>
+    <line x1="-7" y1="12" x2="17" y2="12" stroke="var(--c-accent)" stroke-width="2.2"/>
+  </g>
+
+  <text class="cap" x="48" y="372">내부용에서 살아 있던 문서가 납품용에서 화석이 되고, 인수인계를 통해 유지보수팀의 살아있는 문서로 다시 태어난다.</text>
+  <text class="cap" x="48" y="392" fill="var(--c-fg)">정의서는 두 번 다 죽지만, 두 죽음을 모두 닫으면 문서는 끊기지 않고 이어진다.</text>
+</svg>

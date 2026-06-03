@@ -1,0 +1,57 @@
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="하나의 시스템을 여러 이해관계자가 서로 다른 관점으로 본다">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .role{font-size:13px;font-weight:700;}
+    .want{font-size:11.5px;fill:var(--c-muted);}
+    .center{font-size:15px;font-weight:700;}
+    .card{fill:var(--c-bg);stroke:var(--c-line);stroke-width:1.5;}
+  </style>
+  <rect x="0" y="0" width="720" height="440" fill="var(--c-bg)"/>
+
+  <!-- connectors (each a different style) -->
+  <line x1="360" y1="152" x2="360" y2="102" stroke="var(--c-accent)" stroke-width="2"/>
+  <line x1="428" y1="220" x2="552" y2="220" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="360" y1="288" x2="360" y2="344" stroke="var(--c-accent-3)" stroke-width="2" stroke-dasharray="2 5"/>
+  <line x1="292" y1="220" x2="168" y2="220" stroke="var(--c-muted)" stroke-width="2"/>
+
+  <!-- center system -->
+  <circle cx="360" cy="220" r="62" fill="var(--c-accent)" opacity="0.12"/>
+  <circle cx="360" cy="220" r="62" fill="none" stroke="var(--c-accent)" stroke-width="2.5"/>
+  <text class="center" x="360" y="216" text-anchor="middle">하나의</text>
+  <text class="center" x="360" y="234" text-anchor="middle">시스템</text>
+
+  <!-- TOP: PM / 이해관계자 -->
+  <rect class="card" x="248" y="40" width="224" height="58" rx="10"/>
+  <text class="role" x="266" y="64">기획 · 이해관계자</text>
+  <text class="want" x="266" y="82">시스템 범위와 외부 연동(컨텍스트)</text>
+
+  <!-- RIGHT: 운영자 -->
+  <rect class="card" x="556" y="180" width="150" height="80" rx="10"/>
+  <text class="role" x="572" y="208">운영자</text>
+  <text class="want" x="572" y="228">서버 · 네트워크</text>
+  <text class="want" x="572" y="244">배포 토폴로지(물리)</text>
+
+  <!-- BOTTOM: 개발자 -->
+  <rect class="card" x="248" y="348" width="224" height="58" rx="10"/>
+  <text class="role" x="266" y="372">개발자</text>
+  <text class="want" x="266" y="390">모듈 책임과 코드 구조(논리·개발)</text>
+
+  <!-- LEFT: 보안 담당 -->
+  <rect class="card" x="14" y="180" width="150" height="80" rx="10"/>
+  <text class="role" x="30" y="208">보안 담당</text>
+  <text class="want" x="30" y="228">데이터 흐름</text>
+  <text class="want" x="30" y="244">신뢰 경계</text>
+
+  <!-- caption -->
+  <text class="want" x="360" y="426" text-anchor="middle">같은 시스템을 네 사람이 본다. 한 장의 그림으로는 네 관심사를 동시에 만족시킬 수 없다.</text>
+</svg>

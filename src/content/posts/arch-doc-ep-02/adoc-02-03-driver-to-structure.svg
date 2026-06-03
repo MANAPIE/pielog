@@ -1,0 +1,132 @@
+<svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="품질 드라이버가 설계 결정으로 이어지는 매핑">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .head {
+      font-size: 12.5px;
+      font-weight: 700;
+      fill: var(--c-muted);
+    }
+
+    .d {
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .v {
+      font-size: 11.5px;
+      fill: var(--c-muted);
+    }
+
+    .adr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      fill: var(--c-accent-2);
+    }
+
+    .cardL {
+      fill: var(--c-bg);
+      stroke: var(--c-line);
+      stroke-width: 1.4;
+    }
+
+    .cardR {
+      fill: var(--c-bg);
+      stroke: var(--c-accent);
+      stroke-width: 1.6;
+    }
+  </style>
+  <rect x="0" y="0" width="760" height="400" fill="var(--c-bg)" />
+
+  <text class="head" x="24" y="28">품질 드라이버</text>
+  <text class="head" x="436" y="28">설계 결정 (ADR)</text>
+
+  <!-- arrows -->
+  <g fill="var(--c-accent-2)">
+    <polygon points="428,69 410,61 410,77" />
+    <polygon points="428,137 410,129 410,145" />
+    <polygon points="428,205 410,197 410,213" />
+    <polygon points="428,273 410,265 410,281" />
+    <polygon points="428,341 410,333 410,349" />
+  </g>
+  <g stroke="var(--c-line)" stroke-width="1.5">
+    <line x1="326" y1="69" x2="410" y2="69" />
+    <line x1="326" y1="137" x2="410" y2="137" />
+    <line x1="326" y1="205" x2="410" y2="205" />
+    <line x1="326" y1="273" x2="410" y2="273" />
+    <line x1="326" y1="341" x2="410" y2="341" />
+  </g>
+
+  <!-- row 1 -->
+  <rect class="cardL" x="24" y="42" width="302" height="54" rx="9" />
+  <text class="d" x="42" y="64">가용성 · 핵심 경로 격리</text>
+  <text class="v" x="42" y="83">지도 API 장애가 전체로 번지면 안 됨</text>
+  <rect class="cardR" x="436" y="42" width="302" height="54" rx="9" />
+  <text class="d" x="454" y="64">서킷 브레이커 + 캐싱</text>
+  <text class="v" x="454" y="83">실패를 빨리 끊고 캐시로 버틴다</text>
+  <text class="adr" x="722" y="60" text-anchor="end">ADR-003</text>
+
+  <!-- row 2 -->
+  <rect class="cardL" x="24" y="110" width="302" height="54" rx="9" />
+  <text class="d" x="42" y="132">비용 · 부가 기능 분리</text>
+  <text class="v" x="42" y="151">LLM 호출이 본 흐름을 막으면 안 됨</text>
+  <rect class="cardR" x="436" y="110" width="302" height="54" rx="9" />
+  <text class="d" x="454" y="132">큐 기반 비동기 처리</text>
+  <text class="v" x="454" y="151">요약은 큐에 넣고 나중에 처리</text>
+  <text class="adr" x="722" y="128" text-anchor="end">ADR-002</text>
+
+  <!-- row 3 -->
+  <rect class="cardL" x="24" y="178" width="302" height="54" rx="9" />
+  <text class="d" x="42" y="200">유지보수성 · 벤더 락인 회피</text>
+  <text class="v" x="42" y="219">지도 벤더 교체 가능성 대비</text>
+  <rect class="cardR" x="436" y="178" width="302" height="54" rx="9" />
+  <text class="d" x="454" y="200">어댑터로 외부 API 격리</text>
+  <text class="v" x="454" y="219">호출부는 내부 인터페이스만 의존</text>
+  <text class="adr" x="722" y="196" text-anchor="end">ADR-001</text>
+
+  <!-- row 4 -->
+  <rect class="cardL" x="24" y="246" width="302" height="54" rx="9" />
+  <text class="d" x="42" y="268">확장성 · 이미지 트래픽</text>
+  <text class="v" x="42" y="287">대용량 파일이 DB를 압박하면 안 됨</text>
+  <rect class="cardR" x="436" y="246" width="302" height="54" rx="9" />
+  <text class="d" x="454" y="268">오브젝트 스토리지 분리</text>
+  <text class="v" x="454" y="287">이미지는 객체 저장소, DB엔 참조만</text>
+  <text class="adr" x="722" y="264" text-anchor="end">ADR-004</text>
+
+  <!-- row 5 -->
+  <rect class="cardL" x="24" y="314" width="302" height="54" rx="9" />
+  <text class="d" x="42" y="336">보안 · 위치 민감정보</text>
+  <text class="v" x="42" y="355">위치 기록 노출과 인증 부담</text>
+  <rect class="cardR" x="436" y="314" width="302" height="54" rx="9" />
+  <text class="d" x="454" y="336">OAuth 위임 + 접근 통제</text>
+  <text class="v" x="454" y="355">인증은 위임, 조회는 소유자 제한</text>
+  <text class="adr" x="722" y="332" text-anchor="end">ADR-005</text>
+
+  <text class="v" x="380" y="392" text-anchor="middle">드라이버는 구조를 끌고 간다. 각 결정의 근거가 곧 ADR의 맥락 항목이 된다.</text>
+</svg>

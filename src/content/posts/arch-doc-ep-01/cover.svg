@@ -1,0 +1,85 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="아키텍처 문서의 표준 지형도 커버">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf; --c-dot:#1f1d14;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E; --c-num:#C29A1F;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a; --c-dot:#eae7dd;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A; --c-num:#D6B23A;
+      }
+    }
+    .bg{fill:var(--c-bg);}
+    .line{stroke:var(--c-line);fill:none;stroke-width:1.5;}
+    .num{fill:var(--c-num);}
+  </style>
+  <defs>
+    <pattern id="dots01" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA01" cx="20%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB01" cx="82%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="630"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#dots01)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowA01)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowB01)"/>
+
+  <!-- off-canvas strokes -->
+  <rect class="line" x="-160" y="-150" width="520" height="520" rx="40" transform="rotate(12 100 110)"/>
+  <circle class="line" cx="1130" cy="560" r="240" transform="rotate(-6 1130 560)"/>
+
+  <!-- ===== metaphor: nested zoom frames (C4 levels), like opening a toolbox of views ===== -->
+  <g transform="rotate(-5 470 320)">
+    <!-- L1 outer frame (context) -->
+    <rect x="250" y="150" width="440" height="340" rx="16" fill="none" stroke="var(--c-accent)" stroke-width="3"/>
+    <!-- L2 frame (container) -->
+    <rect x="300" y="196" width="340" height="252" rx="13" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" stroke-dasharray="1 0"/>
+    <!-- L3 frame (component) -->
+    <rect x="352" y="240" width="236" height="164" rx="10" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+    <!-- L4 inner (code) small blocks -->
+    <rect x="392" y="282" width="44" height="34" rx="5" fill="var(--c-accent)" opacity="0.5"/>
+    <rect x="446" y="282" width="44" height="34" rx="5" fill="var(--c-accent-3)" opacity="0.7"/>
+    <rect x="500" y="282" width="44" height="34" rx="5" fill="var(--c-accent)" opacity="0.5"/>
+    <rect x="419" y="328" width="44" height="34" rx="5" fill="var(--c-accent-3)" opacity="0.7"/>
+    <rect x="473" y="328" width="44" height="34" rx="5" fill="var(--c-accent)" opacity="0.5"/>
+    <!-- zoom connectors between corners (frames) -->
+    <line class="line" x1="250" y1="150" x2="300" y2="196" stroke="var(--c-muted)"/>
+    <line class="line" x1="690" y1="490" x2="640" y2="448" stroke="var(--c-muted)"/>
+  </g>
+
+  <!-- scattered tool glyphs (toolbox vocabulary) -->
+  <!-- 42010 dot cluster -->
+  <circle cx="860" cy="180" r="4" fill="var(--c-accent)"/>
+  <circle cx="876" cy="180" r="4" fill="var(--c-accent)" opacity="0.6"/>
+  <circle cx="868" cy="196" r="4" fill="var(--c-accent)" opacity="0.4"/>
+  <!-- arc42 mini bars -->
+  <g>
+    <rect x="840" y="300" width="16" height="48" rx="3" fill="var(--c-accent-3)"/>
+    <rect x="862" y="284" width="16" height="64" rx="3" fill="var(--c-accent)"/>
+    <rect x="884" y="312" width="16" height="36" rx="3" fill="var(--c-accent-3)"/>
+    <rect x="906" y="296" width="16" height="52" rx="3" fill="var(--c-accent)" opacity="0.7"/>
+  </g>
+  <!-- ADR card with check -->
+  <g transform="rotate(9 900 460)">
+    <rect x="852" y="424" width="96" height="72" rx="10" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+    <rect x="866" y="440" width="50" height="7" rx="3.5" fill="var(--c-accent-2)" opacity="0.7"/>
+    <rect x="866" y="454" width="66" height="5" rx="2.5" fill="var(--c-accent-2)" opacity="0.4"/>
+    <polyline points="866,478 878,490 902,466" fill="none" stroke="var(--c-accent-2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- focus ring (dashed) -->
+  <circle cx="220" cy="500" r="34" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="3 7" opacity="0.7"/>
+  <circle cx="220" cy="500" r="9" fill="var(--c-accent)" opacity="0.5"/>
+  <!-- rotated square -->
+  <rect x="1000" cy="0" y="120" width="30" height="30" rx="6" fill="none" stroke="var(--c-accent-3)" stroke-width="2" transform="rotate(18 1015 135)"/>
+
+  <text x="1150" y="600" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="232" font-weight="700" class="num" opacity="0.16">01</text>
+</svg>

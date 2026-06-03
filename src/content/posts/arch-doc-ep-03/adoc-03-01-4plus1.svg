@@ -1,0 +1,98 @@
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img"
+  aria-label="4+1 뷰 모델: 논리, 프로세스, 개발, 물리 뷰와 중앙의 시나리오">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .v {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .who {
+      font-size: 11px;
+      fill: var(--c-accent);
+      font-weight: 700;
+    }
+
+    .what {
+      font-size: 11.5px;
+      fill: var(--c-muted);
+    }
+
+    .card {
+      fill: var(--c-bg);
+      stroke: var(--c-line);
+      stroke-width: 1.5;
+    }
+  </style>
+  <rect x="0" y="0" width="720" height="440" fill="var(--c-bg)" />
+
+  <!-- connectors -->
+  <g stroke="var(--c-line)" stroke-width="1.5">
+    <line x1="309" y1="182" x2="280" y2="160" />
+    <line x1="411" y1="182" x2="440" y2="160" />
+    <line x1="309" y1="258" x2="280" y2="280" />
+    <line x1="411" y1="258" x2="440" y2="280" />
+  </g>
+
+  <!-- center: scenarios -->
+  <circle cx="360" cy="220" r="58" fill="var(--c-accent-2)" opacity="0.12" />
+  <circle cx="360" cy="220" r="58" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" />
+  <text class="v" x="360" y="214" text-anchor="middle" fill="var(--c-accent-2)">시나리오</text>
+  <text class="what" x="360" y="235" text-anchor="middle">유스케이스로 검증</text>
+
+  <!-- 논리 뷰 (top-left) -->
+  <rect class="card" x="36" y="40" width="248" height="120" rx="11" />
+  <text class="v" x="56" y="70">논리 뷰</text>
+  <text class="who" x="56" y="90">최종 사용자 · 기능 관점</text>
+  <text class="what" x="56" y="112">기능이 어떤 객체·모듈로 나뉘는가</text>
+  <text class="what" x="56" y="140" fill="var(--c-accent)">스폿: 도메인 모듈 구성</text>
+
+  <!-- 프로세스 뷰 (top-right) -->
+  <rect class="card" x="436" y="40" width="248" height="120" rx="11" />
+  <text class="v" x="456" y="70">프로세스 뷰</text>
+  <text class="who" x="456" y="90">통합자 · 성능·동시성</text>
+  <text class="what" x="456" y="112">런타임에 무엇이 동시에 돌고 어떻게 통신하는가</text>
+  <text class="what" x="456" y="140" fill="var(--c-accent)">스폿: 동기 검색·비동기 요약</text>
+
+  <!-- 개발 뷰 (bottom-left) -->
+  <rect class="card" x="36" y="280" width="248" height="120" rx="11" />
+  <text class="v" x="56" y="310">개발 뷰</text>
+  <text class="who" x="56" y="330">프로그래머 · 코드 조직</text>
+  <text class="what" x="56" y="352">소스가 어떤 모듈·패키지로 묶이는가</text>
+  <text class="what" x="56" y="380" fill="var(--c-accent)">스폿: 모듈러 모놀리스 경계</text>
+
+  <!-- 물리 뷰 (bottom-right) -->
+  <rect class="card" x="436" y="280" width="248" height="120" rx="11" />
+  <text class="v" x="456" y="310">물리 뷰</text>
+  <text class="who" x="456" y="330">운영자 · 배포 토폴로지</text>
+  <text class="what" x="456" y="352">코드가 어떤 인프라 위에 배치되는가</text>
+  <text class="what" x="456" y="380" fill="var(--c-accent)">스폿: CDN·앱서버·관리형 DB</text>
+
+  <text class="what" x="360" y="426" text-anchor="middle">네 뷰가 각자 다른 이해관계자에 답하고, 중앙의 시나리오가 네 뷰를 하나로 묶어 검증한다.</text>
+</svg>

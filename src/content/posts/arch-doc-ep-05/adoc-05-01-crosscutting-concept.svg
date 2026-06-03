@@ -1,0 +1,45 @@
+<svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="기능은 한 컴포넌트에 모이고 횡단 관심사는 모든 컴포넌트에 걸친다">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .col{font-size:12px;font-weight:700;}
+    .lab{font-size:12px;font-weight:700;}
+    .cap{font-size:11.5px;fill:var(--c-muted);}
+  </style>
+  <rect x="0" y="0" width="720" height="380" fill="var(--c-bg)"/>
+
+  <!-- columns -->
+  <g>
+    <rect x="60" y="70" width="130" height="220" rx="10" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+    <rect x="200" y="70" width="130" height="220" rx="10" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+    <rect x="340" y="70" width="130" height="220" rx="10" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+    <rect x="480" y="70" width="130" height="220" rx="10" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+    <text class="col" x="125" y="58" text-anchor="middle">SPA</text>
+    <text class="col" x="265" y="58" text-anchor="middle">API 백엔드</text>
+    <text class="col" x="405" y="58" text-anchor="middle">요약 워커</text>
+    <text class="col" x="545" y="58" text-anchor="middle">PostgreSQL</text>
+  </g>
+
+  <!-- feature: contained in API column -->
+  <rect x="212" y="120" width="106" height="90" rx="8" fill="var(--c-accent)" opacity="0.85"/>
+  <text class="lab" x="265" y="160" text-anchor="middle" fill="var(--c-bg)">기능</text>
+  <text class="cap" x="265" y="178" text-anchor="middle" fill="var(--c-bg)">예: 검색 로직</text>
+
+  <!-- concern: spans all columns -->
+  <rect x="60" y="226" width="550" height="44" rx="8" fill="var(--c-accent-2)" opacity="0.28"/>
+  <rect x="60" y="226" width="550" height="44" rx="8" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <text class="lab" x="335" y="253" text-anchor="middle" fill="var(--c-accent-2)">횡단 관심사 — 예: 로깅 · 인증 · 보안</text>
+
+  <!-- captions -->
+  <text class="cap" x="60" y="320">기능은 보통 한 컴포넌트 안에 모입니다. 위치가 분명합니다.</text>
+  <text class="cap" x="60" y="342">횡단 관심사는 거의 모든 컴포넌트에 걸칩니다. 흩어 두면 빠지고, 모아 두어야 일관됩니다.</text>
+</svg>

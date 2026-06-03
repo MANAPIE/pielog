@@ -1,0 +1,65 @@
+<svg viewBox="0 0 740 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ADR 상태 머신: 제안, 승인, 기각, 폐기, 대체">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .st{font-size:13px;font-weight:700;}
+    .en{font-size:10px;fill:var(--c-muted);}
+    .lbl{font-size:11px;font-weight:700;fill:var(--c-muted);}
+    .note{font-size:10.5px;fill:var(--c-muted);}
+  </style>
+  <rect x="0" y="0" width="740" height="330" fill="var(--c-bg)"/>
+
+  <!-- transitions -->
+  <!-- proposed -> accepted -->
+  <line x1="186" y1="148" x2="272" y2="148" stroke="var(--c-accent)" stroke-width="2"/>
+  <polygon points="276,148 262,142 262,154" fill="var(--c-accent)"/>
+  <text class="lbl" x="200" y="140" fill="var(--c-accent)">승인</text>
+  <!-- proposed -> rejected -->
+  <line x1="110" y1="180" x2="110" y2="222" stroke="var(--c-muted)" stroke-width="2"/>
+  <polygon points="110,226 104,212 116,212" fill="var(--c-muted)"/>
+  <text class="lbl" x="120" y="208">기각</text>
+  <!-- accepted -> deprecated -->
+  <path d="M432 138 C 480 110, 500 96, 532 92" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <polygon points="536,91 521,90 525,102" fill="var(--c-accent-2)"/>
+  <text class="lbl" x="452" y="104" fill="var(--c-accent-2)">폐기</text>
+  <!-- accepted -> superseded -->
+  <path d="M432 162 C 480 188, 500 202, 532 206" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <polygon points="536,207 521,202 524,214" fill="var(--c-accent-2)"/>
+  <text class="lbl" x="452" y="200" fill="var(--c-accent-2)">대체</text>
+
+  <!-- states -->
+  <!-- Proposed -->
+  <rect x="42" y="118" width="144" height="60" rx="10" fill="var(--c-bg)" stroke="var(--c-muted)" stroke-width="2"/>
+  <text class="st" x="114" y="144" text-anchor="middle">제안됨</text>
+  <text class="en" x="114" y="162" text-anchor="middle">Proposed</text>
+  <!-- Rejected -->
+  <rect x="42" y="228" width="144" height="52" rx="10" fill="var(--c-bg)" stroke="var(--c-muted)" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text class="st" x="114" y="250" text-anchor="middle" fill="var(--c-muted)">기각됨</text>
+  <text class="en" x="114" y="267" text-anchor="middle">Rejected</text>
+  <!-- Accepted -->
+  <rect x="282" y="118" width="150" height="60" rx="10" fill="var(--c-accent)" fill-opacity="0.14" stroke="var(--c-accent)" stroke-width="2.5"/>
+  <text class="st" x="357" y="144" text-anchor="middle" fill="var(--c-accent)">승인됨</text>
+  <text class="en" x="357" y="162" text-anchor="middle">Accepted</text>
+  <!-- Deprecated -->
+  <rect x="540" y="62" width="160" height="56" rx="10" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <text class="st" x="620" y="86" text-anchor="middle" fill="var(--c-accent-2)">폐기됨</text>
+  <text class="en" x="620" y="104" text-anchor="middle">Deprecated</text>
+  <!-- Superseded -->
+  <rect x="540" y="182" width="160" height="56" rx="10" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <text class="st" x="620" y="206" text-anchor="middle" fill="var(--c-accent-2)">대체됨</text>
+  <text class="en" x="620" y="224" text-anchor="middle">Superseded</text>
+
+  <!-- note -->
+  <text class="note" x="540" y="262">대체됨은 새 ADR을 가리킨다. 기존 결정은 지우지 않고</text>
+  <text class="note" x="540" y="278">상태만 바꾼다. 결정의 역사는 남는다.</text>
+  <text class="note" x="42" y="306">ADR은 수정하지 않고 상태를 전이시킨다. 한 번 쓰인 결정은 삭제되지 않는다.</text>
+</svg>
