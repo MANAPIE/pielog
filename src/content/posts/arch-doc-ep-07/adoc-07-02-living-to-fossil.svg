@@ -1,0 +1,101 @@
+<svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" role="img"
+  aria-label="살아있는 내부용 문서를 특정 시점에 박제해 납품용 화석으로 변환하는 그림">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .cap {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .it {
+      font-size: 11px;
+    }
+
+    .h {
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+  </style>
+  <rect x="0" y="0" width="760" height="400" fill="var(--c-bg)" />
+
+  <!-- LEFT: living internal doc -->
+  <text class="cap" x="115" y="44" text-anchor="middle" fill="var(--c-accent)">내부용 · 살아있는</text>
+  <rect x="40" y="62" width="150" height="210" rx="10" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.5" />
+  <rect x="62" y="90" width="80" height="9" rx="4.5" fill="var(--c-accent)" />
+  <rect x="62" y="110" width="106" height="6" rx="3" fill="var(--c-accent)" opacity="0.4" />
+  <rect x="62" y="124" width="106" height="6" rx="3" fill="var(--c-accent)" opacity="0.4" />
+  <polyline points="62,158 86,158 98,140 118,176 138,150 168,150" fill="none" stroke="var(--c-accent)"
+    stroke-width="2.5" />
+  <rect x="62" y="200" width="44" height="26" rx="5" fill="var(--c-accent-3)" />
+  <rect x="116" y="200" width="44" height="26" rx="5" fill="var(--c-accent)" opacity="0.5" />
+  <text class="it" x="115" y="258" text-anchor="middle" fill="var(--c-muted)">계속 갱신됨</text>
+
+  <!-- arrow -->
+  <line x1="200" y1="166" x2="296" y2="166" stroke="var(--c-accent-2)" stroke-width="2.5" />
+  <polygon points="300,166 286,160 286,172" fill="var(--c-accent-2)" />
+  <text class="h" x="248" y="156" text-anchor="middle" fill="var(--c-accent-2)">박제</text>
+  <text class="it" x="248" y="186" text-anchor="middle" fill="var(--c-muted)">특정 시점</text>
+
+  <!-- RIGHT: fossil delivery doc -->
+  <text class="cap" x="385" y="44" text-anchor="middle" fill="var(--c-accent-2)">납품용 · 화석</text>
+  <rect x="310" y="62" width="150" height="210" rx="10" fill="var(--c-bg)" stroke="var(--c-accent-2)"
+    stroke-width="2.5" />
+  <rect x="332" y="90" width="80" height="9" rx="4.5" fill="var(--c-accent-2)" />
+  <rect x="332" y="110" width="106" height="6" rx="3" fill="var(--c-accent-2)" opacity="0.4" />
+  <rect x="332" y="124" width="106" height="6" rx="3" fill="var(--c-accent-2)" opacity="0.4" />
+  <rect x="332" y="138" width="106" height="6" rx="3" fill="var(--c-accent-2)" opacity="0.4" />
+  <!-- strata -->
+  <rect x="310" y="206" width="150" height="12" fill="var(--c-accent-2)" opacity="0.25" />
+  <rect x="310" y="220" width="150" height="16" fill="var(--c-accent-2)" opacity="0.4" />
+  <rect x="310" y="238" width="150" height="34" fill="var(--c-accent-2)" opacity="0.5" />
+  <!-- seal -->
+  <circle cx="420" cy="238" r="18" fill="none" stroke="var(--c-bg)" stroke-width="2.5" />
+  <circle cx="420" cy="238" r="18" fill="none" stroke="var(--c-accent-2)" stroke-width="1.8" stroke-dasharray="2 3" />
+  <polyline points="412,238 418,245 430,231" fill="none" stroke="var(--c-bg)" stroke-width="2.5" stroke-linecap="round"
+    stroke-linejoin="round" />
+  <text class="it" x="385" y="290" text-anchor="middle" fill="var(--c-muted)">시점 이후 고정</text>
+
+  <!-- annotations -->
+  <rect x="500" y="62" width="240" height="112" rx="10" fill="var(--c-accent-2)" fill-opacity="0.08"
+    stroke="var(--c-accent-2)" stroke-width="1.4" />
+  <text class="h" x="516" y="84" fill="var(--c-accent-2)">+ 변환 시 추가되는 것</text>
+  <text class="it" x="516" y="104">· 버전 · 승인 이력 (누가, 언제)</text>
+  <text class="it" x="516" y="122">· 비어 있던 섹션 모두 채움</text>
+  <text class="it" x="516" y="140">· 요구사항 ID ↔ 설계 ↔ 테스트 매핑</text>
+  <text class="it" x="516" y="158">· 검수 기준과 인수 조건</text>
+
+  <rect x="500" y="188" width="240" height="92" rx="10" fill="none" stroke="var(--c-line)" stroke-width="1.4" />
+  <text class="h" x="516" y="210" fill="var(--c-muted)">■ 동결되는 것</text>
+  <text class="it" x="516" y="230">· 모든 뷰는 제출 시점 스냅샷</text>
+  <text class="it" x="516" y="248">· 다이어그램은 정돈해 고정</text>
+  <text class="it" x="516" y="266">· ADR은 결론 목록 + 근거로 정리</text>
+
+  <text class="it" x="40" y="330" fill="var(--c-muted)">살아 있던 문서를 죽이는 작업이 아니라, 특정 시점의 진실을 증빙으로 봉인하는 작업이다.</text>
+  <text class="it" x="40" y="350" fill="var(--c-muted)">감리와 검수는 이 봉인된 시점을 기준으로 적합 여부를 판정한다.</text>
+</svg>
