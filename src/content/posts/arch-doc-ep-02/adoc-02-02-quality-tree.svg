@@ -1,0 +1,104 @@
+<svg viewBox="0 0 760 432" xmlns="http://www.w3.org/2000/svg" role="img"
+  aria-label="스폿의 여섯 가지 품질 속성과 각 시나리오를 보여주는 유틸리티 트리">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .qa {
+      font-size: 13px;
+      font-weight: 700;
+      fill: var(--c-accent);
+    }
+
+    .sc {
+      font-size: 11.5px;
+      fill: var(--c-muted);
+    }
+
+    .root {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .card {
+      fill: var(--c-bg);
+      stroke: var(--c-line);
+      stroke-width: 1.4;
+    }
+  </style>
+  <rect x="0" y="0" width="760" height="432" fill="var(--c-bg)" />
+
+  <!-- root -->
+  <rect x="20" y="176" width="140" height="80" rx="12" fill="var(--c-accent)" opacity="0.12" />
+  <rect x="20" y="176" width="140" height="80" rx="12" fill="none" stroke="var(--c-accent)" stroke-width="2.5" />
+  <text class="root" x="90" y="203" text-anchor="middle">스폿</text>
+  <text class="root" x="90" y="223" text-anchor="middle">아키텍처</text>
+  <text class="sc" x="90" y="241" text-anchor="middle">드라이버</text>
+
+  <!-- connectors -->
+  <g class="card" fill="none" stroke="var(--c-line)" stroke-width="1.5">
+    <path d="M160 191 C 210 191, 210 53, 256 53" />
+    <path d="M160 201 C 210 201, 210 119, 256 119" />
+    <path d="M160 211 C 210 211, 210 185, 256 185" />
+    <path d="M160 221 C 210 221, 210 251, 256 251" />
+    <path d="M160 231 C 210 231, 210 317, 256 317" />
+    <path d="M160 241 C 210 241, 210 383, 256 383" />
+  </g>
+
+  <!-- 6 quality cards -->
+  <!-- y centers: 53,119,185,251,317,383 ; card h=52 -> y top = c-26 -->
+  <g>
+    <rect class="card" x="256" y="27" width="484" height="52" rx="9" />
+    <text class="qa" x="276" y="48">가용성 (availability)</text>
+    <text class="sc" x="276" y="68">지도 API가 죽어도 검색 외 기능은 계속 동작한다</text>
+  </g>
+  <g>
+    <rect class="card" x="256" y="93" width="484" height="52" rx="9" />
+    <text class="qa" x="276" y="114">성능 (performance)</text>
+    <text class="sc" x="276" y="134">정상 부하에서 장소 검색 P95 응답이 1초 이내다</text>
+  </g>
+  <g>
+    <rect class="card" x="256" y="159" width="484" height="52" rx="9" />
+    <text class="qa" x="276" y="180">확장성 (scalability)</text>
+    <text class="sc" x="276" y="200">이미지 업로드가 10배로 늘어도 본문 응답이 흔들리지 않는다</text>
+  </g>
+  <g>
+    <rect class="card" x="256" y="225" width="484" height="52" rx="9" />
+    <text class="qa" x="276" y="246">보안 (security)</text>
+    <text class="sc" x="276" y="266">비공개 위치 기록은 작성자 본인만 조회할 수 있다</text>
+  </g>
+  <g>
+    <rect class="card" x="256" y="291" width="484" height="52" rx="9" />
+    <text class="qa" x="276" y="312">유지보수성 (maintainability)</text>
+    <text class="sc" x="276" y="332">지도 벤더를 바꿔도 호출부 코드 변경이 어댑터 안에 갇힌다</text>
+  </g>
+  <g>
+    <rect class="card" x="256" y="357" width="484" height="52" rx="9" />
+    <text class="qa" x="276" y="378">비용 (cost)</text>
+    <text class="sc" x="276" y="398">LLM 요약 호출 비용을 월 한도 안에서 통제한다</text>
+  </g>
+</svg>
