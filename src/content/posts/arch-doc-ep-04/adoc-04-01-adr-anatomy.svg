@@ -1,0 +1,57 @@
+<svg viewBox="0 0 700 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ADR 한 장의 구조: 맥락, 결정, 대안, 결과">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .id{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;fill:var(--c-accent);}
+    .title{font-size:14px;font-weight:700;}
+    .sec{font-size:13px;font-weight:700;}
+    .en{font-size:10px;fill:var(--c-muted);}
+    .body{font-size:11.5px;fill:var(--c-muted);}
+    .pill{font-size:10px;font-weight:700;}
+  </style>
+  <rect x="0" y="0" width="700" height="430" fill="var(--c-bg)"/>
+
+  <!-- card -->
+  <rect x="30" y="22" width="640" height="390" rx="14" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
+
+  <!-- header -->
+  <text class="id" x="50" y="56">ADR-002</text>
+  <rect x="128" y="44" width="78" height="18" rx="9" fill="var(--c-accent)"/>
+  <text class="pill" x="167" y="57" text-anchor="middle" fill="var(--c-bg)">Accepted</text>
+  <text class="title" x="50" y="82">LLM 요약을 큐 기반 비동기로 처리한다</text>
+  <line x1="50" y1="96" x2="650" y2="96" stroke="var(--c-line)" stroke-width="1.2"/>
+
+  <!-- 맥락 -->
+  <rect x="50" y="108" width="4" height="56" rx="2" fill="var(--c-accent-2)"/>
+  <text class="sec" x="66" y="124">맥락 <tspan class="en">Context</tspan></text>
+  <text class="body" x="66" y="144">LLM 요약은 느리고 실패가 잦다.</text>
+  <text class="body" x="66" y="160">동기로 호출하면 기록 저장 응답이 그만큼 지연된다.</text>
+
+  <!-- 결정 -->
+  <rect x="50" y="176" width="4" height="56" rx="2" fill="var(--c-accent)"/>
+  <text class="sec" x="66" y="192">결정 <tspan class="en">Decision</tspan></text>
+  <text class="body" x="66" y="212">저장과 요약 생성을 분리한다. 저장 시 요약 작업을 큐에 넣고,</text>
+  <text class="body" x="66" y="228">워커가 비동기로 처리해 결과를 나중에 반영한다.</text>
+
+  <!-- 대안 -->
+  <rect x="50" y="244" width="4" height="56" rx="2" fill="var(--c-accent-3)"/>
+  <text class="sec" x="66" y="260">대안 <tspan class="en">Alternatives</tspan></text>
+  <text class="body" x="66" y="280">동기 호출(응답 지연), 저장 직후 동기 생성 후 캐싱(복잡도 증가).</text>
+  <text class="body" x="66" y="296">둘 다 응답 시간 또는 장애 격리에서 불리해 기각.</text>
+
+  <!-- 결과 -->
+  <rect x="50" y="312" width="4" height="68" rx="2" fill="var(--c-muted)"/>
+  <text class="sec" x="66" y="328">결과 <tspan class="en">Consequences</tspan></text>
+  <text class="body" x="66" y="348" fill="var(--c-accent)">+ 저장 응답이 빨라지고 LLM 장애가 본 흐름에서 격리된다.</text>
+  <text class="body" x="66" y="366" fill="var(--c-accent-2)">− 요약이 즉시 보이지 않고, 큐·워커 운영 부담이 새로 생긴다.</text>
+  <text class="body" x="66" y="384">− 최종 일관성을 받아들여야 한다(요약 반영까지 지연).</text>
+</svg>

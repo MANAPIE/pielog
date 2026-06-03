@@ -1,0 +1,83 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="결정을 남기다 ADR 커버">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf; --c-dot:#1f1d14;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E; --c-num:#C29A1F;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a; --c-dot:#eae7dd;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A; --c-num:#D6B23A;
+      }
+    }
+    .bg{fill:var(--c-bg);}
+    .line{stroke:var(--c-line);fill:none;stroke-width:1.5;}
+    .num{fill:var(--c-num);}
+  </style>
+  <defs>
+    <pattern id="dots04" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA04" cx="20%" cy="24%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB04" cx="85%" cy="82%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="630"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#dots04)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowA04)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowB04)"/>
+
+  <!-- off-canvas strokes -->
+  <circle class="line" cx="1110" cy="80" r="250" transform="rotate(-8 1110 80)"/>
+  <rect class="line" x="-150" y="430" width="430" height="430" rx="44" transform="rotate(12 65 645)"/>
+
+  <!-- ===== metaphor: a decision fork — one path chosen (teal), alternatives faded ===== -->
+  <g>
+    <!-- decision node -->
+    <circle cx="330" cy="320" r="20" fill="var(--c-accent)"/>
+    <!-- chosen path (teal solid) -->
+    <path d="M350 314 C 460 280, 520 250, 640 236" fill="none" stroke="var(--c-accent)" stroke-width="4"/>
+    <circle cx="640" cy="236" r="13" fill="var(--c-accent)"/>
+    <polyline points="630,236 637,244 651,228" fill="none" stroke="var(--c-bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- alternative paths (faded amber dashed, not taken) -->
+    <path d="M348 328 C 460 360, 520 400, 640 420" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" stroke-dasharray="6 6" opacity="0.55"/>
+    <circle cx="640" cy="420" r="11" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" opacity="0.55"/>
+    <line x1="633" y1="413" x2="647" y2="427" stroke="var(--c-accent-2)" stroke-width="2" opacity="0.55"/>
+    <line x1="647" y1="413" x2="633" y2="427" stroke="var(--c-accent-2)" stroke-width="2" opacity="0.55"/>
+    <path d="M344 334 C 440 420, 470 500, 560 520" fill="none" stroke="var(--c-muted)" stroke-width="2" stroke-dasharray="3 7" opacity="0.5"/>
+    <circle cx="560" cy="520" r="9" fill="none" stroke="var(--c-muted)" stroke-width="2" opacity="0.5"/>
+    <!-- incoming context line -->
+    <path d="M150 290 C 230 300, 270 312, 312 318" fill="none" stroke="var(--c-line)" stroke-width="2"/>
+  </g>
+
+  <!-- append-only stack of decision cards (the log) -->
+  <g transform="rotate(6 840 360)">
+    <rect x="760" y="200" width="200" height="120" rx="12" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2" opacity="0.65"/>
+    <rect x="780" y="230" width="200" height="120" rx="12" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2" opacity="0.8"/>
+    <rect x="800" y="260" width="200" height="120" rx="12" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
+    <!-- front card content -->
+    <rect x="822" y="282" width="60" height="9" rx="4.5" fill="var(--c-accent)"/>
+    <rect x="822" y="302" width="150" height="6" rx="3" fill="var(--c-accent)" opacity="0.4"/>
+    <rect x="822" y="316" width="150" height="6" rx="3" fill="var(--c-accent)" opacity="0.4"/>
+    <rect x="822" y="330" width="110" height="6" rx="3" fill="var(--c-accent)" opacity="0.4"/>
+    <rect x="822" y="350" width="44" height="14" rx="7" fill="var(--c-accent)" opacity="0.2"/>
+  </g>
+
+  <!-- detail vocab -->
+  <circle cx="980" cy="150" r="30" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="3 7" opacity="0.7"/>
+  <circle cx="980" cy="150" r="13" class="line" stroke="var(--c-accent-3)"/>
+  <rect x="170" y="470" width="32" height="32" rx="6" fill="none" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(18 186 486)" opacity="0.8"/>
+  <g>
+    <rect x="150" y="150" width="16" height="44" rx="3" fill="var(--c-accent-3)"/>
+    <rect x="172" y="134" width="16" height="60" rx="3" fill="var(--c-accent)"/>
+    <rect x="194" y="166" width="16" height="28" rx="3" fill="var(--c-accent-3)"/>
+  </g>
+
+  <text x="1150" y="600" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="232" font-weight="700" class="num" opacity="0.16">04</text>
+</svg>
