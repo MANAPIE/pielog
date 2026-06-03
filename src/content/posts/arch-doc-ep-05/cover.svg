@@ -1,0 +1,73 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="횡단 관심사 커버">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf; --c-dot:#1f1d14;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E; --c-num:#C29A1F;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a; --c-dot:#eae7dd;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A; --c-num:#D6B23A;
+      }
+    }
+    .bg{fill:var(--c-bg);}
+    .line{stroke:var(--c-line);fill:none;stroke-width:1.5;}
+    .num{fill:var(--c-num);}
+  </style>
+  <defs>
+    <pattern id="dots05" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="glowA05" cx="84%" cy="22%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB05" cx="16%" cy="82%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="630"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#dots05)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowA05)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#glowB05)"/>
+
+  <!-- off-canvas strokes -->
+  <circle class="line" cx="120" cy="90" r="230" transform="rotate(8 120 90)"/>
+  <rect class="line" x="930" y="430" width="430" height="430" rx="44" transform="rotate(-12 1145 645)"/>
+
+  <!-- ===== metaphor: vertical components sliced by horizontal concern bands ===== -->
+  <g transform="rotate(-4 470 320)">
+    <!-- vertical component columns -->
+    <g>
+      <rect x="300" y="150" width="70" height="340" rx="10" fill="none" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <rect x="392" y="150" width="70" height="340" rx="10" fill="none" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <rect x="484" y="150" width="70" height="340" rx="10" fill="none" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <rect x="576" y="150" width="70" height="340" rx="10" fill="none" stroke="var(--c-accent)" stroke-width="2.5"/>
+    </g>
+    <!-- horizontal concern bands cutting across all columns -->
+    <rect x="276" y="196" width="394" height="44" rx="8" fill="var(--c-accent-2)" opacity="0.28"/>
+    <rect x="276" y="300" width="394" height="44" rx="8" fill="var(--c-accent)" opacity="0.24"/>
+    <rect x="276" y="404" width="394" height="44" rx="8" fill="var(--c-accent-3)" opacity="0.30"/>
+    <!-- band edge lines extending beyond columns -->
+    <line x1="250" y1="218" x2="700" y2="218" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="2 6"/>
+    <line x1="250" y1="322" x2="700" y2="322" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="2 6"/>
+    <line x1="250" y1="426" x2="700" y2="426" stroke="var(--c-accent-3)" stroke-width="2" stroke-dasharray="2 6"/>
+  </g>
+
+  <!-- detail vocab -->
+  <circle cx="930" cy="470" r="32" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="3 7" opacity="0.7"/>
+  <circle cx="930" cy="470" r="14" class="line" stroke="var(--c-accent-3)"/>
+  <g>
+    <rect x="900" y="150" width="16" height="44" rx="3" fill="var(--c-accent-3)"/>
+    <rect x="922" y="134" width="16" height="60" rx="3" fill="var(--c-accent)"/>
+    <rect x="944" y="166" width="16" height="28" rx="3" fill="var(--c-accent-3)"/>
+  </g>
+  <rect x="180" y="470" width="32" height="32" rx="6" fill="none" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(20 196 486)" opacity="0.8"/>
+  <circle cx="200" cy="160" r="4" fill="var(--c-accent)"/>
+  <circle cx="214" cy="160" r="4" fill="var(--c-accent)" opacity="0.6"/>
+  <circle cx="207" cy="173" r="4" fill="var(--c-accent)" opacity="0.4"/>
+
+  <text x="1150" y="600" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="232" font-weight="700" class="num" opacity="0.16">05</text>
+</svg>

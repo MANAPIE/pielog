@@ -1,0 +1,75 @@
+<svg viewBox="0 0 740 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="동기 경로의 서킷 브레이커 전략과 비동기 경로의 재시도·데드레터 전략">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .h{font-size:13px;font-weight:700;}
+    .tag{font-size:11px;font-weight:700;}
+    .n{font-size:11.5px;font-weight:700;}
+    .l{font-size:10px;fill:var(--c-muted);}
+    .boxT{fill:var(--c-bg);stroke:var(--c-accent);stroke-width:1.8;}
+    .boxA{fill:var(--c-bg);stroke:var(--c-accent-2);stroke-width:1.8;}
+    .ext{fill:var(--c-bg);stroke:var(--c-muted);stroke-width:1.6;}
+  </style>
+  <rect x="0" y="0" width="740" height="350" fill="var(--c-bg)"/>
+  <line x1="370" y1="30" x2="370" y2="320" stroke="var(--c-line)" stroke-width="1.5" stroke-dasharray="2 6"/>
+
+  <!-- ===== LEFT: sync ===== -->
+  <text class="h" x="32" y="40">동기 · 핵심 경로</text>
+  <rect x="232" y="26" width="106" height="22" rx="11" fill="var(--c-accent)" opacity="0.16"/>
+  <text class="tag" x="285" y="42" text-anchor="middle" fill="var(--c-accent)">지도 API</text>
+
+  <!-- arrows -->
+  <line x1="85" y1="106" x2="85" y2="142" stroke="var(--c-accent)" stroke-width="2"/><polygon points="85,146 79,132 91,132" fill="var(--c-accent)"/>
+  <line x1="182" y1="178" x2="218" y2="178" stroke="var(--c-accent)" stroke-width="2"/><polygon points="222,178 208,172 208,184" fill="var(--c-accent)"/>
+  <line x1="110" y1="206" x2="110" y2="240" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 4"/><polygon points="110,244 104,230 116,230" fill="var(--c-accent-2)"/>
+  <text class="l" x="120" y="228" fill="var(--c-accent-2)">open: 폴백</text>
+  <line x1="110" y1="290" x2="110" y2="312" stroke="var(--c-accent)" stroke-width="2"/><polygon points="110,316 104,302 116,302" fill="var(--c-accent)"/>
+
+  <rect class="boxT" x="40" y="66" width="90" height="40" rx="8"/>
+  <text class="n" x="85" y="90" text-anchor="middle">API</text>
+  <rect class="boxT" x="40" y="148" width="142" height="58" rx="8"/>
+  <text class="n" x="111" y="172" text-anchor="middle">서킷 브레이커</text>
+  <text class="l" x="111" y="190" text-anchor="middle">연속 실패 시 차단</text>
+  <rect class="ext" x="222" y="150" width="108" height="54" rx="8"/>
+  <text class="n" x="276" y="174" text-anchor="middle">지도 API</text>
+  <text class="l" x="276" y="192" text-anchor="middle">외부 의존</text>
+  <rect class="boxT" x="40" y="246" width="142" height="46" rx="8"/>
+  <text class="n" x="111" y="274" text-anchor="middle">캐시 폴백</text>
+  <text class="l" x="32" y="332">실패를 빨리 끊고, 캐시로 답해 사용자 대기를 막는다.</text>
+
+  <!-- ===== RIGHT: async ===== -->
+  <text class="h" x="402" y="40">비동기 · 부가 경로</text>
+  <rect x="602" y="26" width="106" height="22" rx="11" fill="var(--c-accent-2)" opacity="0.16"/>
+  <text class="tag" x="655" y="42" text-anchor="middle" fill="var(--c-accent-2)">LLM API</text>
+
+  <!-- arrows -->
+  <line x1="455" y1="106" x2="455" y2="142" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 4"/><polygon points="455,146 449,132 461,132" fill="var(--c-accent-2)"/>
+  <line x1="512" y1="178" x2="588" y2="178" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 4"/><polygon points="592,178 578,172 578,184" fill="var(--c-accent-2)"/>
+  <!-- retry loop -->
+  <path d="M620 204 C 620 240, 540 240, 512 206" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 4"/><polygon points="512,206 526,213 516,221" fill="var(--c-accent-2)"/>
+  <text class="l" x="566" y="244" text-anchor="middle" fill="var(--c-accent-2)">지수 백오프 재시도</text>
+  <!-- to DLQ -->
+  <line x1="455" y1="206" x2="455" y2="266" stroke="var(--c-accent-2)" stroke-width="2"/><polygon points="455,270 449,256 461,256" fill="var(--c-accent-2)"/>
+  <text class="l" x="465" y="248" fill="var(--c-accent-2)">N회 초과</text>
+
+  <rect class="boxA" x="402" y="66" width="106" height="40" rx="8"/>
+  <text class="n" x="455" y="90" text-anchor="middle">메시지 큐</text>
+  <rect class="boxA" x="402" y="148" width="110" height="58" rx="8"/>
+  <text class="n" x="457" y="172" text-anchor="middle">요약 워커</text>
+  <text class="l" x="457" y="190" text-anchor="middle">실패 감지</text>
+  <rect class="ext" x="592" y="150" width="116" height="54" rx="8"/>
+  <text class="n" x="650" y="174" text-anchor="middle">LLM API</text>
+  <text class="l" x="650" y="192" text-anchor="middle">외부 의존</text>
+  <rect class="boxA" x="402" y="270" width="150" height="44" rx="8"/>
+  <text class="n" x="477" y="297" text-anchor="middle">데드레터 큐(DLQ)</text>
+  <text class="l" x="402" y="336">사용자를 막지 않고, 재시도로 버티다 안 되면 DLQ로 보낸다.</text>
+</svg>

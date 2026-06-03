@@ -1,0 +1,133 @@
+<svg viewBox="0 0 770 408" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="횡단 관심사와 컴포넌트의 적용 관계를 보여주는 매트릭스">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .ch {
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .rh {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .lg {
+      font-size: 10.5px;
+      fill: var(--c-muted);
+    }
+  </style>
+  <rect x="0" y="0" width="770" height="408" fill="var(--c-bg)" />
+
+  <!-- column headers -->
+  <g class="ch" text-anchor="middle">
+    <text x="216" y="56">SPA</text>
+    <text x="306" y="56">API</text>
+    <text x="396" y="56">워커</text>
+    <text x="486" y="56">큐</text>
+    <text x="576" y="56">DB</text>
+    <text x="666" y="56">외부 API</text>
+  </g>
+
+  <!-- grid -->
+  <g stroke="var(--c-line)" stroke-width="1">
+    <line x1="20" y1="68" x2="712" y2="68" />
+    <line x1="20" y1="116" x2="712" y2="116" />
+    <line x1="20" y1="164" x2="712" y2="164" />
+    <line x1="20" y1="212" x2="712" y2="212" />
+    <line x1="20" y1="260" x2="712" y2="260" />
+    <line x1="20" y1="308" x2="712" y2="308" />
+    <line x1="20" y1="356" x2="712" y2="356" />
+    <line x1="170" y1="68" x2="170" y2="356" />
+    <line x1="261" y1="68" x2="261" y2="356" />
+    <line x1="351" y1="68" x2="351" y2="356" />
+    <line x1="441" y1="68" x2="441" y2="356" />
+    <line x1="531" y1="68" x2="531" y2="356" />
+    <line x1="621" y1="68" x2="621" y2="356" />
+  </g>
+
+  <!-- row headers -->
+  <g class="rh">
+    <text x="28" y="96">인증 · 인가</text>
+    <text x="28" y="144">보안(위치)</text>
+    <text x="28" y="192">관측성</text>
+    <text x="28" y="240">에러 처리</text>
+    <text x="28" y="288">캐싱</text>
+    <text x="28" y="336">트랜잭션</text>
+  </g>
+
+  <!-- cells: full = filled teal r8, partial = outline r8 -->
+  <!-- helper note: cols x=216,306,396,486,576,666 ; rows y=92,140,188,236,284,332 -->
+  <g fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="2">
+    <!-- 인증·인가 -->
+    <circle cx="216" cy="92" r="7" fill="none" />
+    <circle cx="306" cy="92" r="7" />
+    <circle cx="396" cy="92" r="7" fill="none" />
+    <circle cx="576" cy="92" r="7" />
+    <circle cx="666" cy="92" r="7" />
+    <!-- 보안(위치) -->
+    <circle cx="216" cy="140" r="7" fill="none" />
+    <circle cx="306" cy="140" r="7" />
+    <circle cx="396" cy="140" r="7" fill="none" />
+    <circle cx="486" cy="140" r="7" fill="none" />
+    <circle cx="576" cy="140" r="7" />
+    <circle cx="666" cy="140" r="7" />
+    <!-- 관측성 -->
+    <circle cx="216" cy="188" r="7" />
+    <circle cx="306" cy="188" r="7" />
+    <circle cx="396" cy="188" r="7" />
+    <circle cx="486" cy="188" r="7" />
+    <circle cx="576" cy="188" r="7" fill="none" />
+    <circle cx="666" cy="188" r="7" fill="none" />
+    <!-- 에러 처리 -->
+    <circle cx="306" cy="236" r="7" />
+    <circle cx="396" cy="236" r="7" />
+    <circle cx="486" cy="236" r="7" />
+    <circle cx="216" cy="236" r="7" fill="none" />
+    <circle cx="666" cy="236" r="7" />
+    <!-- 캐싱 -->
+    <circle cx="216" cy="284" r="7" fill="none" />
+    <circle cx="306" cy="284" r="7" />
+    <circle cx="666" cy="284" r="7" />
+    <!-- 트랜잭션 -->
+    <circle cx="306" cy="332" r="7" />
+    <circle cx="396" cy="332" r="7" />
+    <circle cx="486" cy="332" r="7" fill="none" />
+    <circle cx="576" cy="332" r="7" />
+  </g>
+
+  <!-- legend -->
+  <g transform="translate(20,378)">
+    <circle cx="8" cy="-2" r="7" fill="var(--c-accent)" />
+    <text class="lg" x="22" y="2">강하게 적용</text>
+    <circle cx="150" cy="-2" r="7" fill="none" stroke="var(--c-accent)" stroke-width="2" />
+    <text class="lg" x="164" y="2">부분 적용</text>
+    <text class="lg" x="300" y="2">빈 칸 = 해당 없음</text>
+    <text class="lg" x="504" y="2">한 행이 여러 컴포넌트에 걸친다는 점에 주목</text>
+  </g>
+</svg>
