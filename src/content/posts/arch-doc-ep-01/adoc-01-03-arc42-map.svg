@@ -1,0 +1,187 @@
+<svg viewBox="0 0 770 408" xmlns="http://www.w3.org/2000/svg" role="img"
+  aria-label="arc42 12개 섹션 지도와 이 시리즈의 각 편이 채우는 섹션">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      fill: var(--c-accent);
+    }
+
+    .ko {
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .en {
+      font-size: 10px;
+      fill: var(--c-muted);
+    }
+
+    .ep {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--c-bg);
+    }
+
+    .card {
+      fill: var(--c-bg);
+      stroke: var(--c-line);
+      stroke-width: 1.3;
+    }
+
+    .bar {
+      fill: var(--c-accent);
+    }
+  </style>
+  <rect x="0" y="0" width="770" height="408" fill="var(--c-bg)" />
+  <text x="30" y="32" font-size="14" font-weight="700">arc42 · 12개 섹션</text>
+
+  <!-- card generator coordinates: 3 cols x 4 rows. col x: 30,278,526 ; row y: 50,134,218,302 ; w=214 h=70 -->
+
+  <!-- row1 -->
+  <g>
+    <rect class="card" x="30" y="50" width="214" height="70" rx="9" />
+    <rect class="bar" x="30" y="50" width="5" height="70" rx="2.5" />
+    <text class="num" x="46" y="74">01</text>
+    <text class="ko" x="46" y="94">개요와 목표</text>
+    <text class="en" x="46" y="110">Introduction &amp; Goals</text>
+    <rect x="200" y="57" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="218" y="70"
+      text-anchor="middle">ep02</text>
+  </g>
+  <g>
+    <rect class="card" x="278" y="50" width="214" height="70" rx="9" />
+    <rect class="bar" x="278" y="50" width="5" height="70" rx="2.5" />
+    <text class="num" x="294" y="74">02</text>
+    <text class="ko" x="294" y="94">제약</text>
+    <text class="en" x="294" y="110">Constraints</text>
+    <rect x="448" y="57" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="466" y="70"
+      text-anchor="middle">ep02</text>
+  </g>
+  <g>
+    <rect class="card" x="526" y="50" width="214" height="70" rx="9" />
+    <rect class="bar" x="526" y="50" width="5" height="70" rx="2.5" />
+    <text class="num" x="542" y="74">03</text>
+    <text class="ko" x="542" y="94">컨텍스트와 범위</text>
+    <text class="en" x="542" y="110">Context &amp; Scope</text>
+    <rect x="696" y="57" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="714" y="70"
+      text-anchor="middle">ep03</text>
+  </g>
+
+  <!-- row2 -->
+  <g>
+    <rect class="card" x="30" y="134" width="214" height="70" rx="9" />
+    <rect class="bar" x="30" y="134" width="5" height="70" rx="2.5" fill="var(--c-accent-3)" />
+    <text class="num" x="46" y="158">04</text>
+    <text class="ko" x="46" y="178">솔루션 전략</text>
+    <text class="en" x="46" y="194">Solution Strategy</text>
+  </g>
+  <g>
+    <rect class="card" x="278" y="134" width="214" height="70" rx="9" />
+    <rect class="bar" x="278" y="134" width="5" height="70" rx="2.5" />
+    <text class="num" x="294" y="158">05</text>
+    <text class="ko" x="294" y="178">빌딩 블록 뷰</text>
+    <text class="en" x="294" y="194">Building Block View</text>
+    <rect x="448" y="141" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="466" y="154"
+      text-anchor="middle">ep03</text>
+  </g>
+  <g>
+    <rect class="card" x="526" y="134" width="214" height="70" rx="9" />
+    <rect class="bar" x="526" y="134" width="5" height="70" rx="2.5" />
+    <text class="num" x="542" y="158">06</text>
+    <text class="ko" x="542" y="178">런타임 뷰</text>
+    <text class="en" x="542" y="194">Runtime View</text>
+    <rect x="696" y="141" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="714" y="154"
+      text-anchor="middle">ep03</text>
+  </g>
+
+  <!-- row3 -->
+  <g>
+    <rect class="card" x="30" y="218" width="214" height="70" rx="9" />
+    <rect class="bar" x="30" y="218" width="5" height="70" rx="2.5" />
+    <text class="num" x="46" y="242">07</text>
+    <text class="ko" x="46" y="262">배포 뷰</text>
+    <text class="en" x="46" y="278">Deployment View</text>
+    <rect x="200" y="225" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="218" y="238"
+      text-anchor="middle">ep03</text>
+  </g>
+  <g>
+    <rect class="card" x="278" y="218" width="214" height="70" rx="9" />
+    <rect class="bar" x="278" y="218" width="5" height="70" rx="2.5" />
+    <text class="num" x="294" y="242">08</text>
+    <text class="ko" x="294" y="262">횡단 개념</text>
+    <text class="en" x="294" y="278">Cross-cutting Concepts</text>
+    <rect x="448" y="225" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="466" y="238"
+      text-anchor="middle">ep05</text>
+  </g>
+  <g>
+    <rect class="card" x="526" y="218" width="214" height="70" rx="9" />
+    <rect class="bar" x="526" y="218" width="5" height="70" rx="2.5" />
+    <text class="num" x="542" y="242">09</text>
+    <text class="ko" x="542" y="262">아키텍처 결정</text>
+    <text class="en" x="542" y="278">Architecture Decisions</text>
+    <rect x="696" y="225" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="714" y="238"
+      text-anchor="middle">ep04</text>
+  </g>
+
+  <!-- row4 -->
+  <g>
+    <rect class="card" x="30" y="302" width="214" height="70" rx="9" />
+    <rect class="bar" x="30" y="302" width="5" height="70" rx="2.5" />
+    <text class="num" x="46" y="326">10</text>
+    <text class="ko" x="46" y="346">품질 요구사항</text>
+    <text class="en" x="46" y="362">Quality Requirements</text>
+    <rect x="200" y="309" width="36" height="18" rx="9" fill="var(--c-accent)" /><text class="ep" x="218" y="322"
+      text-anchor="middle">ep02</text>
+  </g>
+  <g>
+    <rect class="card" x="278" y="302" width="214" height="70" rx="9" />
+    <rect class="bar" x="278" y="302" width="5" height="70" rx="2.5" fill="var(--c-accent-2)" />
+    <text class="num" x="294" y="326">11</text>
+    <text class="ko" x="294" y="346">리스크와 기술 부채</text>
+    <text class="en" x="294" y="362">Risks &amp; Technical Debt</text>
+    <rect x="432" y="309" width="52" height="18" rx="9" fill="var(--c-accent-2)" /><text class="ep" x="458" y="322"
+      text-anchor="middle">ep06·07</text>
+  </g>
+  <g>
+    <rect class="card" x="526" y="302" width="214" height="70" rx="9" />
+    <rect class="bar" x="526" y="302" width="5" height="70" rx="2.5" fill="var(--c-accent-3)" />
+    <text class="num" x="542" y="326">12</text>
+    <text class="ko" x="542" y="346">용어집</text>
+    <text class="en" x="542" y="362">Glossary</text>
+  </g>
+
+  <!-- legend -->
+  <g transform="translate(580,32)">
+    <rect x="0" y="-11" width="14" height="14" rx="3" fill="var(--c-accent)" />
+    <text class="en" x="20" y="-1">이 시리즈가 본격적으로 채우는 섹션</text>
+  </g>
+</svg>
