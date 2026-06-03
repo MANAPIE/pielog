@@ -1,0 +1,96 @@
+<svg viewBox="0 0 720 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="아키텍처 정의서가 실패하는 두 가지 방식: 화석과 거짓말">
+  <style>
+    :root{
+      --c-bg:#f5f4ef; --c-fg:#1f1d14; --c-muted:#6b6553; --c-line:#cfccbf;
+      --c-accent:#C29A1F; --c-accent-2:#5E6E7E; --c-accent-3:#D9C77E;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --c-bg:#14110a; --c-fg:#eae7dd; --c-muted:#a39f8c; --c-line:#38352a;
+        --c-accent:#D6B23A; --c-accent-2:#9AA6B4; --c-accent-3:#6E5F2A;
+      }
+    }
+    text{font-family:'Pretendard',system-ui,sans-serif;fill:var(--c-fg);}
+    .t-title{font-size:17px;font-weight:700;}
+    .t-tag{font-size:13px;font-weight:700;}
+    .t-lbl{font-size:12px;fill:var(--c-muted);}
+    .t-cap{font-size:12.5px;fill:var(--c-muted);}
+    .ax{stroke:var(--c-line);stroke-width:1.5;}
+    .teal{stroke:var(--c-accent);}
+    .amber{stroke:var(--c-accent-2);}
+  </style>
+
+  <rect x="0" y="0" width="720" height="410" fill="var(--c-bg)"/>
+
+  <!-- divider -->
+  <line x1="360" y1="40" x2="360" y2="376" stroke="var(--c-line)" stroke-width="1.5" stroke-dasharray="2 6"/>
+
+  <!-- ============ LEFT: 화석 (납품용) ============ -->
+  <text class="t-title" x="36" y="42">첫 번째 죽음 · 화석</text>
+  <rect x="232" y="28" width="92" height="22" rx="11" fill="var(--c-accent-2)" opacity="0.16"/>
+  <text class="t-tag" x="278" y="44" text-anchor="middle" fill="var(--c-accent-2)">SI 납품용</text>
+
+  <!-- time axis -->
+  <line class="ax" x1="40" y1="300" x2="330" y2="300"/>
+  <polygon points="330,300 320,295 320,305" fill="var(--c-line)"/>
+  <text class="t-lbl" x="332" y="304" opacity="0">t</text>
+  <!-- ticks -->
+  <g>
+    <line class="ax" x1="80" y1="296" x2="80" y2="304"/>
+    <text class="t-lbl" x="80" y="320" text-anchor="middle">제출</text>
+    <line class="ax" x1="185" y1="296" x2="185" y2="304"/>
+    <text class="t-lbl" x="185" y="320" text-anchor="middle">검수 완료</text>
+    <line class="ax" x1="300" y1="296" x2="300" y2="304"/>
+    <text class="t-lbl" x="300" y="320" text-anchor="middle">운영</text>
+  </g>
+
+  <!-- fossil document fixed at 제출 -->
+  <g>
+    <rect x="56" y="84" width="80" height="104" rx="8" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+    <rect x="56" y="150" width="80" height="10" fill="var(--c-accent-2)" opacity="0.30"/>
+    <rect x="56" y="162" width="80" height="14" fill="var(--c-accent-2)" opacity="0.45"/>
+    <rect x="56" y="178" width="80" height="10" rx="0" fill="var(--c-accent-2)" opacity="0.6"/>
+    <rect x="68" y="98" width="44" height="7" rx="3.5" fill="var(--c-accent-2)" opacity="0.7"/>
+    <rect x="68" y="112" width="56" height="5" rx="2.5" fill="var(--c-accent-2)" opacity="0.4"/>
+    <rect x="68" y="122" width="50" height="5" rx="2.5" fill="var(--c-accent-2)" opacity="0.4"/>
+    <!-- pinned to timeline -->
+    <line class="amber" x1="80" y1="188" x2="80" y2="296" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <circle cx="80" cy="300" r="3.5" fill="var(--c-accent-2)"/>
+  </g>
+
+  <!-- system drifts on while doc stays: faded closed book at 운영 -->
+  <g opacity="0.45">
+    <rect x="270" y="120" width="60" height="78" rx="6" fill="none" stroke="var(--c-muted)" stroke-width="2"/>
+    <line x1="270" y1="138" x2="330" y2="138" stroke="var(--c-muted)" stroke-width="2"/>
+    <text x="300" y="232" text-anchor="middle" font-size="20" fill="var(--c-muted)">✕</text>
+  </g>
+  <text class="t-cap" x="36" y="356">제출 순간 시점이 고정됩니다.</text>
+  <text class="t-cap" x="36" y="372">검수 뒤에는 아무도 열지 않습니다.</text>
+
+  <!-- ============ RIGHT: 거짓말 (내부용) ============ -->
+  <text class="t-title" x="396" y="42">두 번째 죽음 · 거짓말</text>
+  <rect x="596" y="28" width="92" height="22" rx="11" fill="var(--c-accent)" opacity="0.16"/>
+  <text class="t-tag" x="642" y="44" text-anchor="middle" fill="var(--c-accent)">내부 공유용</text>
+
+  <!-- axes -->
+  <line class="ax" x1="412" y1="300" x2="690" y2="300"/>
+  <line class="ax" x1="412" y1="76" x2="412" y2="300"/>
+  <polygon points="690,300 680,295 680,305" fill="var(--c-line)"/>
+  <text class="t-lbl" x="688" y="318" text-anchor="end">시간</text>
+  <text class="t-lbl" x="406" y="84" text-anchor="end" transform="rotate(-90 406 84)" >실제 시스템</text>
+
+  <!-- gap shading between code and doc -->
+  <path d="M428,266 L488,238 L548,188 L608,150 L640,131 L640,266 Z" fill="var(--c-accent)" opacity="0.10"/>
+  <!-- code line rises (neutral fg) -->
+  <polyline points="428,266 488,238 548,188 608,150 660,120" fill="none" stroke="var(--c-fg)" stroke-width="3"/>
+  <text class="t-lbl" x="666" y="118" fill="var(--c-fg)">코드</text>
+  <!-- doc line flat (teal dashed) -->
+  <polyline points="428,266 660,266" fill="none" class="teal" stroke-width="3" stroke-dasharray="6 5"/>
+  <text class="t-lbl" x="666" y="270" fill="var(--c-accent)">문서</text>
+  <!-- gap label -->
+  <line x1="640" y1="131" x2="640" y2="266" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="2 4"/>
+  <text x="565" y="232" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--c-accent)">거짓말의 간격</text>
+
+  <text class="t-cap" x="396" y="356">코드는 오르고 문서는 멈춥니다.</text>
+  <text class="t-cap" x="396" y="372">벌어진 간격이 곧 거짓말입니다.</text>
+</svg>

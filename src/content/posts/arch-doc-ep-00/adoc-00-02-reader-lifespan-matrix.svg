@@ -1,0 +1,102 @@
+<svg viewBox="0 0 660 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="독자와 수명 두 축으로 본 아키텍처 정의서의 2x2 위치">
+  <style>
+    :root {
+      --c-bg: #f5f4ef;
+      --c-fg: #1f1d14;
+      --c-muted: #6b6553;
+      --c-line: #cfccbf;
+      --c-accent: #C29A1F;
+      --c-accent-2: #5E6E7E;
+      --c-accent-3: #D9C77E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-bg: #14110a;
+        --c-fg: #eae7dd;
+        --c-muted: #a39f8c;
+        --c-line: #38352a;
+        --c-accent: #D6B23A;
+        --c-accent-2: #9AA6B4;
+        --c-accent-3: #6E5F2A;
+      }
+    }
+
+    text {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      fill: var(--c-fg);
+    }
+
+    .axis-name {
+      font-size: 13px;
+      font-weight: 700;
+      fill: var(--c-muted);
+    }
+
+    .axis-end {
+      font-size: 12px;
+      fill: var(--c-muted);
+    }
+
+    .q-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .q-sub {
+      font-size: 12px;
+    }
+  </style>
+
+  <rect x="0" y="0" width="660" height="470" fill="var(--c-bg)" />
+
+  <!-- axis labels -->
+  <text class="axis-name" x="370" y="28" text-anchor="middle">독자</text>
+  <text class="axis-name" x="30" y="240" text-anchor="middle" transform="rotate(-90 30 240)">수명</text>
+
+  <!-- grid -->
+  <!-- plot 130..600 x , 60..400 y ; mid x=365 mid y=230 -->
+  <rect x="130" y="60" width="470" height="340" fill="none" stroke="var(--c-line)" stroke-width="1.5" />
+  <line x1="365" y1="60" x2="365" y2="400" stroke="var(--c-line)" stroke-width="1.5" />
+  <line x1="130" y1="230" x2="600" y2="230" stroke="var(--c-line)" stroke-width="1.5" />
+
+  <!-- column headers (독자) -->
+  <text class="axis-end" x="247" y="50" text-anchor="middle">외부 · 감리 · PMO · 고객</text>
+  <text class="axis-end" x="483" y="50" text-anchor="middle">내부 · 동료 · 미래의 나</text>
+  <!-- row headers (수명) -->
+  <text class="axis-end" x="120" y="148" text-anchor="end">단일 시점</text>
+  <text class="axis-end" x="120" y="316" text-anchor="end">지속 갱신</text>
+
+  <!-- TOP-LEFT quadrant : SI 납품용 (외부 × 단일시점) -->
+  <rect x="130" y="60" width="235" height="170" fill="var(--c-accent-2)" opacity="0.13" />
+  <g>
+    <!-- mini fossil doc -->
+    <rect x="158" y="92" width="40" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2" />
+    <rect x="158" y="126" width="40" height="6" fill="var(--c-accent-2)" opacity="0.4" />
+    <rect x="158" y="134" width="40" height="10" fill="var(--c-accent-2)" opacity="0.6" />
+    <text class="q-title" x="218" y="112" fill="var(--c-accent-2)">SI 납품용</text>
+    <text class="q-title" x="218" y="130" fill="var(--c-accent-2)">정의서</text>
+  </g>
+  <text class="q-sub" x="158" y="178" fill="var(--c-muted)">완결성 · 추적성 · 표준 준수</text>
+  <text class="q-sub" x="158" y="200" fill="var(--c-accent-2)" font-weight="700">화석이 되는 것이 정상</text>
+
+  <!-- BOTTOM-RIGHT quadrant : 내부 공유용 (내부 × 지속갱신) -->
+  <rect x="365" y="230" width="235" height="170" fill="var(--c-accent)" opacity="0.13" />
+  <g>
+    <!-- mini living doc with focus ring -->
+    <rect x="392" y="258" width="40" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2" />
+    <polyline points="392,300 404,288 416,302 432,278" fill="none" stroke="var(--c-accent)" stroke-width="2" />
+    <text class="q-title" x="452" y="278" fill="var(--c-accent)">내부 공유용</text>
+    <text class="q-title" x="452" y="296" fill="var(--c-accent)">정의서</text>
+  </g>
+  <text class="q-sub" x="392" y="346" fill="var(--c-muted)">의사결정 · 트레이드오프 중심</text>
+  <text class="q-sub" x="392" y="368" fill="var(--c-accent)" font-weight="700">갱신을 멈추면 거짓말</text>
+
+  <!-- legend -->
+  <g transform="translate(130,428)">
+    <rect x="0" y="0" width="13" height="13" rx="3" fill="var(--c-accent-2)" />
+    <text class="q-sub" x="20" y="11" fill="var(--c-muted)">납품용(화석)</text>
+    <rect x="220" y="0" width="13" height="13" rx="3" fill="var(--c-accent)" />
+    <text class="q-sub" x="240" y="11" fill="var(--c-muted)">내부용(살아있는 문서)</text>
+  </g>
+</svg>
