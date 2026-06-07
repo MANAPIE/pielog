@@ -1,0 +1,186 @@
+---
+title: 두 라이브러리의 req는 같은 req가 아니었다
+description: Next.js custom server에 socket.io와 NextAuth를 한 자리에서 통합하다, 4개월 전에 비워둔 한 층이 청구서로 돌아온 이야기.
+summary: 채팅 기능을 구현하던 날 socket 레이어의 게이팅을 비워둔 익숙한 손버릇이, 보안 마이그레이션 시점에 정확히 같은 자리에서 청구서로 돌아왔습니다. NextAuth의 SessionStore가 req.cookies만 보고 req.headers.cookie 헤더 자체는 무시한다는 사실을 추적하기까지의 디버깅과, 끝내 root cause를 단정하지 못한 채 in-flight 가드로 봉합한 버그까지의 회고입니다.
+date: 2026-06-07
+tags:
+  - experience
+  - develop
+  - backend
+  - frontend
+  - socketio
+  - nextauth
+  - nextjs
+  - debugging
+draft: false
+---
+
+> Next.js + socket.io + NextAuth, 그리고 4개월 뒤의 영수증
+
+여러 기반 위에 socket.io를 붙여봤다. Vue, Nuxt, Express + MySQL, Express + MongoDB, 한 번은 jQuery 한 장짜리 프론트에도. 매번 런타임은 달랐어도 그리는 모양은 비슷했다. 인증은 그 환경의 세션 미들웨어에 맡기고, 채팅 식별자는 페이로드에 동행시킨다. 클라이언트가 이미 자기 세션 안에 있는데 식별자를 한 번 더 받아 검증하는 건... 적어도 그때까지는 과잉처럼 보였다.
+
+이번 프로젝트에 socket.io를 처음 붙일 때도 비슷했다. 어느 1월의 월요일 새벽 6시 52분, 첫 커밋. 같은 날 저녁에 푸시 알림까지 얹었다.
+
+그게 4개월 뒤 부메랑이 됐다.
+
+---
+
+## 가운데를 비워둔 다층 방어
+
+원래 구조는 이랬다. 페이지 진입은 NextAuth 세션이 막고 있었다. 서버 액션은 채팅 도큐먼트의 `user1Id` / `user2Id`로 참여자 검증을 했다. 그 사이의 socket 레이어만, 게이팅이 한 줄도 없었다.
+
+```ts
+// 최초 구현
+const setupSocketHandlers = (io: SocketIOServer): void => {
+    io.on('connection', (socket: Socket) => {
+        socket.on('join-user', (data: ChatData) => {
+            const { userId } = data;          // ← 클라이언트가 보낸 값
+            socket.join(`user:${userId}`);
+            socket.data.userId = userId;
+        });
+        // ...
+    });
+};
+
+export const initializeSocketIO = (server: HTTPServer): SocketIOServer => {
+    const io = new SocketIOServer(server, {
+        path: '/api/socket',
+        cors: { origin: '*', methods: ['GET', 'POST'] },
+    });
+    setupSocketHandlers(io);
+    return io;
+};
+```
+
+`io.use`도 없고 `credentials`도 없다. 클라이언트는 SocketContext에서 `(session.user as any)._id`를 모든 emit에 동행시킨다. socket은 broadcast의 통로 역할로만 비어 있었다.
+
+이건 무방비가 아니라 익숙함이었다. 페이지가 인증으로 막혀 있고, write 경로의 끝(server actions)에 참여자 검증이 있다면, 그 사이의 broadcast 채널은 가벼워도 된다는 손버릇. Express에서도, Nuxt에서도 그렇게 해왔으니까.
+
+다만 그 다층 방어의 가운데 한 층은, 인증된 사용자가 다른 인증된 사용자로 행세하는 시나리오 앞에서는 비어 있는 채로 남는다. 위협 모델이 좁을 때는 보이지 않지만, 넓어지면 정확히 그 자리에서 청구서가 도착한다.
+
+(첫 커밋 7분 뒤에 환경변수 의존을 빼는 작은 핫픽스 하나가 들어갔다. `process.env.NEXT_PUBLIC_SOCKET_URL`을 `window.location.origin`으로 바꾸는, 다섯 줄짜리 커밋. 그때는 알지 못했다. 같은 파일에 훨씬 큰 패치가 4개월 뒤에 기다리고 있다는 걸.)
+
+---
+
+## 가운데를 채우기로
+
+actor identity 보안 감사에서 같은 패턴이 광범위하게 발견됐다. 클라이언트가 보낸 `userId` / `reqData._id`를 서버가 그대로 받아 권한 검사·로깅·DB 저장에 쓰는 결함 — Confused Deputy / 파라미터 인젝션. DevTools에서 payload만 위조해도 다른 사용자로 행세할 수 있는 상태였다.
+
+마이그레이션 패턴은 단순했다. 서버 액션은 `getServerSession`을 헬퍼 안에 가두고 모든 actor identity를 거기서만 추출한다. 시그니처에서 `_userId` / `reqData._id`를 제거한다. socket도 같은 원칙으로 옮긴다.
+
+```ts
+// 리팩토링 후
+io.use(async (socket, next) => {
+    const token = await getToken({
+        req: socket.request as any,
+        secret: process.env.NEXTAUTH_SECRET,
+    });
+    const tokenId = (token as any)?._id;
+    if (!tokenId || typeof tokenId !== 'string') {
+        return next(new Error('unauthorized'));
+    }
+    socket.data.userId = tokenId;
+    next();
+});
+```
+
+모든 핸들러는 `socket.data.userId`만 신뢰한다. 클라이언트가 페이로드로 보내는 식별자는 무시한다. `join-chat`은 채팅 도큐먼트의 참여자를 확인해 비참여자를 거른다. 나머지 이벤트들은 `socket.rooms.has('chat:${chatId}')`로 룸 멤버십을 게이트한다. CORS는 `origin: true, credentials: true`. 클라이언트는 `withCredentials: true`. 테스트 25개 통과. 푸시.
+
+그리고 채팅이 깨졌다.
+
+---
+
+## 3종 세트
+
+증상 셋이 한꺼번에 왔다. 새 채팅방 조인이 즉시 동작하지 않았다. 두 사용자의 채팅창 사이에서 실시간 메시지가 보이지 않았다. 채팅창을 다시 열면 같은 메시지가 두 개씩 저장돼 있었다.
+
+처음엔 1·2의 원인을 안다고 생각했다. SocketContext에서 `withCredentials`를 빠뜨렸을 때 polling fallback이 쿠키를 동반하지 않아 io.use가 항상 reject — 흔한 함정. CORS도 `origin: '*'` + credentials 조합은 브라우저가 차단한다. 둘 다 고쳤다. 여전히 실패.
+
+서버에 진단 로그를 박았다. `[server:boot]`로 환경변수가 살아 있는지, `[socket:auth]`로 io.use 시점에 쿠키와 토큰이 어떻게 보이는지.
+
+```text
+[socket:auth] cookie:"present(680b) names=...next-auth.session-token"
+              hasSecret:true, tokenPresent:false, tokenId:null
+```
+
+쿠키는 분명히 도착했다. secret도 정상이다. 그런데 `getToken`이 `null`을 돌려준다. JWE 복호화 실패라 짐작했지만, `raw: true`로 토큰 문자열 자체를 받게 해보니 결정적인 줄이 떴다.
+
+```text
+rawTokenPresent:false, rawTokenLen:0
+```
+
+복호화가 실패한 게 아니었다. 쿠키 추출 자체가 실패하고 있었다.
+
+여기서 NextAuth 소스로 들어갔다.
+
+```js
+// node_modules/next-auth/core/lib/cookie.js:90
+const { cookies: _cookies } = req;
+// ...
+} else {
+    for (const name in _cookies) {
+        if (name.startsWith(cookieName)) _chunks[name] = _cookies[name];
+    }
+}
+```
+
+NextAuth v4의 `SessionStore`는 `req.cookies`만 본다. `req.headers.cookie` 헤더 자체는 어디서도 읽지 않는다. 근데 socket.io가 미들웨어에 넘기는 `socket.request`는 raw Node `IncomingMessage`다. `req.cookies` 같은 프로퍼티는 존재하지 않는다.
+
+Next.js의 `Request` / `NextRequest`라면 `cookies`가 있을텐데, 여기서는 `undefined`다. 그러면 `getToken`은 `null`일 수 밖에 없지...
+
+헤더를 직접 파싱해서 `req`의 프록시 객체에 `cookies` 프로퍼티로 주입한 뒤 `getToken`에 넘기기로 했다.
+
+```ts
+const parsed = parseCookieHeader(socket.request.headers.cookie);
+const reqWithCookies = Object.assign(
+    Object.create(socket.request),
+    { cookies: parsed }
+);
+const token = await getToken({ req: reqWithCookies, secret });
+```
+
+이 와중에 작은 부메랑이 하나 더 날아왔다. 처음에는 `server.ts`에 import를 추가해 cold start race를 차단하려 했는데, 해당 import의 top-level `await dbConnect()`가 `tsx`의 CJS 출력 모드와 충돌해 빌드 자체가 깨졌다. 4개월 전 첫 구현 때 dev와 prod entrypoint를 모두 `tsx server.ts`로 통일한 결정이, 이 자리에서 잠깐 발목을 잡은 셈이다. 결국 그 import는 되돌렸다. 다른 쪽의 import 체인이 이미 mongoose 연결을 보장하니까, 처음부터 필요 없는 추가였다.
+
+---
+
+## 끝내 원인을 단정하지 못한 버그
+
+조인과 실시간 메시지는 다 살아났다. 남은 건 메시지 중복 저장.
+
+클라이언트 콘솔을 보니 `[socket:client:emit:send-message]` 로그가 한 번의 전송에 두 줄 찍히고 있었다. `messageId`가 다른 두 record가 DB에 들어가 있었다. 즉 race가 아니라 클라이언트의 dual emit. 어딘가에서 `handleSendMessage`가 두 번 호출되고 있다.
+
+후보를 다 떠올려봤다. 모바일에서 엔터키와 전송 버튼이 빠른 연쇄로 fire하는 경우. 버튼 컴포넌트가 pointer와 touch 이벤트 양쪽에서 fire하는 경우. React 19의 form action double invoke. 입력 컴포넌트의 onEnter와 rightButton.onClick이 같은 키 이벤트에서 함께 trigger되는 경우. 코드를 다시 봐도 단일 호출 경로가 분명한데, 로그는 둘이라고 말한다.
+
+한참을 봤다. 원인을 단정할 수 없었다.
+
+결국 in-flight 가드 하나 넣어서 증복 emit을 방지했다.
+
+```ts
+const isSendingRef = useRef(false);
+
+const handleSendMessage = async () => {
+    if (isSendingRef.current) return;
+    isSendingRef.current = true;
+    try {
+        // ... 기존 전송 로직
+    } finally {
+        isSendingRef.current = false;
+    }
+};
+```
+
+진행 중인 호출이 있으면 두 번째는 즉시 `return`. `try/finally`로 어떤 경로로 끝나든 ref가 복원되는 것만 보장한다. root cause가 무엇이든 — 모바일 빠른 연쇄든, 라이브러리의 double fire든, 프레임워크의 double invoke든 — 중복 호출의 결과는 차단된다.
+
+이건 회피처럼 보이겠지만, 원인을 끝까지 추적할 가치가 있는 버그가 있고, 더 일어나지 않게 막는 것만으로 충분한 버그가 있다. Bug 1·2는 라이브러리 통합의 구조적 문제였고 추적이 필요했다. Bug 3은 입력 디바이스와 프레임워크와 컴포넌트 라이브러리가 만들어내는 잡음이었고, 차단으로 종결하는 게 옳았다.
+
+---
+
+## 두 라이브러리의 같은 단어
+
+내가 쓴 코드의 각각의 정합성은 확실했다. 문제는 두 라이브러리가 같은 단어로 가리키던 서로 다른 모양이었다.
+
+NextAuth의 `SessionStore`는 `req`라는 단어로 `req.cookies`가 채워진 Next.js Request를 가정한다. socket.io의 `io.use`는 `req`라는 단어로 `req.cookies`가 없는 raw Node `IncomingMessage`를 건넨다. 둘 다 자기 영역에서는 잘못이 없다.
+
+잘못이 없는 두 부품이 한 자리에서 만나게 한 내 잘못이었을지도 모른다. 통합의 비용은 항상 어디선가 청구된다.
+
+여러 기반 위에 socket.io를 붙여봤다는 손버릇이 한 층을 비워뒀고, 같은 손이 그 자리에 NextAuth를 통합하면서 두 라이브러리의 `req`가 같은 `req`가 아니라는 사실을 알게 됐다. 새로운 무언가를 익숙함의 옆에 붙일 때, 그 익숙함이 부채로 바뀌게 된 것이다.
