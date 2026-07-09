@@ -1,0 +1,173 @@
+<svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-ds">
+  <title id="title-ds">디자인 시스템과 Factory 패턴의 대응</title>
+
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #C02D6E;
+        --c-accent-2: #D97757;
+        --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #EC85B5;
+          --c-accent-2: #E89376;
+          --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .pane-code { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-ds { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; }
+      .box-abs { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; stroke-dasharray: 5 3; }
+      .line { stroke: var(--c-line); stroke-width: 1.2; fill: none; }
+      .line-dashed { stroke: var(--c-line); stroke-width: 1.2; fill: none; stroke-dasharray: 4 4; }
+      .line-map { stroke: var(--c-muted); stroke-width: 1.5; fill: none; stroke-dasharray: 2 5; }
+      .pane-label { font-family: 'Inter', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; }
+      .pane-title { font-family: 'Inter', system-ui, sans-serif; font-size: 18px; font-weight: 700; fill: var(--c-fg); letter-spacing: -0.01em; }
+      .node { font-family: 'Inter', system-ui, sans-serif; font-size: 12px; font-weight: 600; fill: var(--c-fg); }
+      .node-sm { font-family: 'Inter', system-ui, sans-serif; font-size: 11px; font-weight: 500; fill: var(--c-fg); }
+      .node-muted { font-family: 'Inter', system-ui, sans-serif; font-size: 11px; font-weight: 500; fill: var(--c-muted); font-style: italic; }
+      .map-label { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11px; font-weight: 600; fill: var(--c-muted); }
+    </style>
+    <marker id="tri-ds" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto">
+      <polygon points="0,0 11,5.5 0,11" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.2"/>
+    </marker>
+    <marker id="arr-ds" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="560"/>
+
+  <!-- ===== 좌측 패널: CODE ===== -->
+  <g transform="translate(30 40)">
+    <rect class="pane-code" width="540" height="490" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent)">CODE</text>
+    <text x="24" y="60" class="pane-title">UIComponentFactory</text>
+
+    <!-- 인터페이스 -->
+    <g transform="translate(170 90)">
+      <rect class="box-abs" width="200" height="58" rx="4"/>
+      <text x="100" y="24" class="node" text-anchor="middle" font-style="italic">UIFactory</text>
+      <text x="100" y="44" class="node-muted" text-anchor="middle">createButton / Input / Card</text>
+    </g>
+
+    <!-- 상속 화살표 -->
+    <line x1="180" y1="200" x2="240" y2="148" class="line" marker-end="url(#tri-ds)"/>
+    <line x1="360" y1="200" x2="300" y2="148" class="line" marker-end="url(#tri-ds)"/>
+
+    <!-- 두 구체 Factory -->
+    <g transform="translate(60 200)">
+      <rect class="box" width="180" height="40" rx="4"/>
+      <text x="90" y="25" class="node" text-anchor="middle">LightUIFactory</text>
+    </g>
+    <g transform="translate(300 200)">
+      <rect class="box" width="180" height="40" rx="4"/>
+      <text x="90" y="25" class="node" text-anchor="middle">DarkUIFactory</text>
+    </g>
+
+    <!-- 생성 화살표 -->
+    <line x1="150" y1="240" x2="150" y2="280" class="line-dashed" marker-end="url(#arr-ds)"/>
+    <line x1="390" y1="240" x2="390" y2="280" class="line-dashed" marker-end="url(#arr-ds)"/>
+
+    <!-- 객체 군 -->
+    <g transform="translate(60 280)">
+      <rect width="180" height="160" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.4"/>
+      <text x="90" y="22" class="node" text-anchor="middle" fill="var(--c-accent)">Light family</text>
+      <line x1="20" y1="36" x2="160" y2="36" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="20" y="62" class="node-sm">• LightButton</text>
+      <text x="20" y="86" class="node-sm">• LightInput</text>
+      <text x="20" y="110" class="node-sm">• LightCard</text>
+      <text x="20" y="138" class="node-muted">— 동일한 시각 톤 보장</text>
+    </g>
+
+    <g transform="translate(300 280)">
+      <rect width="180" height="160" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.4"/>
+      <text x="90" y="22" class="node" text-anchor="middle" fill="var(--c-accent)">Dark family</text>
+      <line x1="20" y1="36" x2="160" y2="36" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="20" y="62" class="node-sm">• DarkButton</text>
+      <text x="20" y="86" class="node-sm">• DarkInput</text>
+      <text x="20" y="110" class="node-sm">• DarkCard</text>
+      <text x="20" y="138" class="node-muted">— 동일한 시각 톤 보장</text>
+    </g>
+  </g>
+
+  <!-- ===== 우측 패널: DESIGN SYSTEM ===== -->
+  <g transform="translate(630 40)">
+    <rect class="pane-ds" width="540" height="490" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-2)">DESIGN SYSTEM</text>
+    <text x="24" y="60" class="pane-title">ThemeProvider</text>
+
+    <!-- ThemeProvider -->
+    <g transform="translate(170 90)">
+      <rect class="box-abs" width="200" height="58" rx="4"/>
+      <text x="100" y="24" class="node" text-anchor="middle" font-style="italic">ThemeProvider</text>
+      <text x="100" y="44" class="node-muted" text-anchor="middle">선택된 token family를 주입</text>
+    </g>
+
+    <line x1="180" y1="200" x2="240" y2="148" class="line" marker-end="url(#tri-ds)"/>
+    <line x1="360" y1="200" x2="300" y2="148" class="line" marker-end="url(#tri-ds)"/>
+
+    <g transform="translate(60 200)">
+      <rect class="box" width="180" height="40" rx="4"/>
+      <text x="90" y="25" class="node" text-anchor="middle">Light tokens</text>
+    </g>
+    <g transform="translate(300 200)">
+      <rect class="box" width="180" height="40" rx="4"/>
+      <text x="90" y="25" class="node" text-anchor="middle">Dark tokens</text>
+    </g>
+
+    <line x1="150" y1="240" x2="150" y2="280" class="line-dashed" marker-end="url(#arr-ds)"/>
+    <line x1="390" y1="240" x2="390" y2="280" class="line-dashed" marker-end="url(#arr-ds)"/>
+
+    <!-- 컴포넌트 군 -->
+    <g transform="translate(60 280)">
+      <rect width="180" height="160" rx="4" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="1.4"/>
+      <text x="90" y="22" class="node" text-anchor="middle" fill="var(--c-accent-2)">Light theme UI</text>
+      <line x1="20" y1="36" x2="160" y2="36" stroke="var(--c-divider)" stroke-width="1"/>
+      <!-- 미니 컴포넌트 형상 -->
+      <rect x="22" y="50" width="80" height="22" rx="11" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+      <rect x="22" y="82" width="136" height="22" rx="4" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+      <rect x="22" y="114" width="136" height="34" rx="4" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1"/>
+    </g>
+
+    <g transform="translate(300 280)">
+      <rect width="180" height="160" rx="4" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="1.4"/>
+      <text x="90" y="22" class="node" text-anchor="middle" fill="var(--c-accent-2)">Dark theme UI</text>
+      <line x1="20" y1="36" x2="160" y2="36" stroke="var(--c-divider)" stroke-width="1"/>
+      <rect x="22" y="50" width="80" height="22" rx="11" fill="var(--c-fg)" opacity="0.85"/>
+      <rect x="22" y="82" width="136" height="22" rx="4" fill="var(--c-fg)" opacity="0.18"/>
+      <rect x="22" y="114" width="136" height="34" rx="4" fill="var(--c-fg)" opacity="0.18"/>
+    </g>
+  </g>
+
+  <!-- ===== 두 패널 사이 대응선 ===== -->
+  <g transform="translate(100 30)">
+    <!-- 인터페이스 ↔ ThemeProvider -->
+    <path d="M 310 130 Q 510 130 690 130" class="line-map"/>
+    <text x="500" y="124" class="map-label" text-anchor="middle">같은 추상</text>
+  </g>
+
+  <g transform="translate(100 40)">
+    <!-- 객체 군 ↔ 컴포넌트 군 -->
+    <path d="M 420 360 Q 510 360 580 360" class="line-map"/>
+    <text x="500" y="354" class="map-label" text-anchor="middle">같은 결정</text>
+  </g>
+</svg>
