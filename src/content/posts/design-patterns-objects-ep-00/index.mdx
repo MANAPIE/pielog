@@ -1,0 +1,100 @@
+---
+title: "패턴은 코드가 아니라 결정의 이름이다 - 디자인 패턴, 객체 수준 편 ep.00"
+description: 디자인 패턴은 코드의 문법이 아니라 같은 결정에 붙인 이름입니다. 객체 수준 패턴 10편과 부록 한 편을 통해 그 결정의 구조를 살펴봅니다.
+summary: GoF 카탈로그를 따라가되 각 편에서 그 패턴이 답하려 했던 질문을 함께 짚습니다. 같은 질문이 디자인·시스템 결정에서 다시 나타나는 자리를 연결해 봅니다. 코드 예제는 TypeScript로 통일했습니다.
+date: 2026-06-16
+tags:
+  - series
+  - cover
+  - develop
+  - frontend
+  - backend
+  - design-patterns
+  - gof
+  - typescript
+  - object-oriented
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+디자인 패턴을 외우는 것은 어렵지 않다. 어려운 것은 같은 결정 앞에 다시 섰을 때 알아보는 일이다.
+
+이 시리즈는 GoF 카탈로그를 따라가되, 한 패턴이 답하려 했던 질문을 짚고, 같은 질문이 디자인 시스템과 UX 결정에서 어떻게 다시 나타나는지를 함께 봅니다.
+
+---
+
+## 패턴은 코드가 아니라 결정의 이름이다
+
+**디자인 패턴(Design Pattern)** 은 1994년 **GoF(Gang of Four)** 가 정리한 23개의 카탈로그를 기점으로 자리 잡았습니다. 그 책은 객체지향 코드에서 반복되는 구조를 묶고 이름을 붙였습니다. 그 후 30년이 지났고, 우리는 이 카탈로그를 그대로 외우는 일에 익숙해졌습니다.
+
+그러나 패턴이 의미 있는 순간은 카탈로그를 펼칠 때가 아닙니다. 같은 결정 앞에 다시 섰을 때, 그 결정에 이미 이름이 있다는 사실을 알아차리는 순간입니다.
+
+이 시리즈는 그래서 두 가지를 같이 다룹니다. 하나는 패턴의 정석입니다. 클래스 구조, 변형, 안티패턴, 코드 예제. 다른 하나는 그 패턴이 답하는 질문입니다. 우리는 무엇을 결정하고 있었던 것인가, 같은 결정을 디자인에서도 하고 있지는 않은가.
+
+---
+
+## 이 시리즈에서 다룰 것들
+
+GoF 23개 패턴 중, 실무에서 살아남았고 디자인·시스템 결정과 연결고리가 분명한 10개를 본편으로 골랐습니다. 나머지 패턴은 부록에서 짧게 묶습니다.
+
+각 편은 다음 흐름으로 진행합니다.
+
+1. 이 패턴이 답하려는 질문. 우리는 무엇을 결정하고 있는가
+2. 패턴의 정석. 구조, 변형, 코드, 안티패턴
+3. 같은 결정이 다시 나타나는 자리. 디자인 시스템·UX의 사례
+
+코드 예제는 모두 **TypeScript**로 통일했습니다. 프론트엔드·백엔드 어느 쪽에서 보아도 패턴의 본질이 흐려지지 않도록 하기 위함입니다.
+
+### 본편
+
+- **[ep.01](/design-patterns-objects-ep-01) Factory** — 생성을 누구에게 맡길 것인가. 새 컴포넌트가 늘어날수록 같은 질문이 디자인 시스템에서 반복됩니다.
+- **[ep.02](/design-patterns-objects-ep-02) Builder** — 단계로 쌓이는 것에 이름을 붙입니다. 사용자가 한 번에 결정할 수 없는 입력을 다루는 방식과 닮아 있습니다.
+- **[ep.03](/design-patterns-objects-ep-03) Singleton** — 하나만 존재해야 한다는 결정에는 비용이 따릅니다. 안티패턴 논쟁의 한가운데에 있습니다.
+- **[ep.04](/design-patterns-objects-ep-04) Adapter** — 맞지 않는 두 인터페이스 사이에 다리를 놓습니다. 디자인 시스템 교체기에 가장 많이 마주치는 결정입니다.
+- **[ep.05](/design-patterns-objects-ep-05) Decorator** — 기능을 덧붙이는 일에는 책임이 따릅니다. HOC와 합성의 시대에 다시 읽습니다.
+- **[ep.06](/design-patterns-objects-ep-06) Facade** — 복잡한 내부를 어디까지 숨길 것인가. 좋은 추상화의 경계선을 묻습니다.
+- **[ep.07](/design-patterns-objects-ep-07) Composite** — 부분과 전체를 같은 방식으로 다룹니다. 디자인 토큰 시스템이 바로 그 형태입니다.
+- **[ep.08](/design-patterns-objects-ep-08) Strategy** — 바뀔 수 있는 것을 갈아 끼울 수 있게 만듭니다. 다크모드는 그 결정의 가장 일상적인 사례입니다.
+- **[ep.09](/design-patterns-objects-ep-09) Observer** — 누가 누구의 변화에 반응할 것인가. 알림 디자인은 결국 같은 질문에 답합니다.
+- **[ep.10](/design-patterns-objects-ep-10) State** — 객체의 행동이 상태에 따라 달라지는 구조입니다. 복잡한 폼과 결제 흐름은 코드 이전에 상태 머신입니다.
+
+### 부록
+
+- **[ep.11](/design-patterns-objects-ep-11) 그 외 GoF 객체 패턴들** — Visitor, Memento, Flyweight, Iterator, Command, Chain of Responsibility, Prototype, Bridge, Mediator, Template Method를 한 편에 묶어 빠르게 짚습니다.
+
+![이 시리즈의 카탈로그. 본편 10편이 5열 2행 그리드로 배열되어 있으며, 각 카드 좌측의 색상 바로 GoF 카테고리를 구분합니다. 생성 패턴(파랑)에 ep.01 Factory는 컴포넌트 팩토리, ep.02 Builder는 폼·필터·쿼리 빌더, ep.03 Singleton은 전역 상태·테마. 구조 패턴(주황)에 ep.04 Adapter는 레거시 마이그레이션, ep.05 Decorator는 Wrapper 컴포넌트, ep.06 Facade는 라이브러리 API, ep.07 Composite는 디자인 토큰 계층. 행위 패턴(보라)에 ep.08 Strategy는 다크모드 스위칭, ep.09 Observer는 알림 UX, ep.10 State는 폼 상태 머신. 하단 부록 ep.11에는 본편에서 다루지 못한 Visitor, Memento, Flyweight, Iterator, Command, Chain of Responsibility, Prototype, Bridge, Mediator, Template Method가 나열되어 있습니다.](dpo-00-01-catalog.svg)
+
+---
+
+## 이 시리즈를 읽는 법
+
+- **패턴을 처음 만나는 독자라면.** 각 편의 1, 2번 단락을 먼저 읽고, 3번은 가벼운 마음으로 훑으세요. 시간이 지나 같은 결정 앞에 섰을 때 다시 돌아오면 됩니다.
+- **이미 패턴을 아는 독자라면.** 2번은 빠르게 넘기고 1번과 3번에서 멈춰주세요. 패턴 이름이 익숙할수록, 그 패턴이 무엇을 결정하는 일이었는지가 흐려지기 쉽습니다.
+- **디자이너라면.** 3번을 먼저 읽고 2번으로 돌아가는 동선이 자연스럽습니다. 코드는 보조 자료입니다.
+
+---
+
+## 시리즈 전체 목차
+
+- [ep.00 - 패턴은 코드가 아니라 결정의 이름이다](/design-patterns-objects-ep-00)
+- [ep.01 - Factory와 디자인 시스템의 컴포넌트 팩토리](/design-patterns-objects-ep-01)
+- [ep.02 - Builder와 폼·필터·쿼리 빌더 UX](/design-patterns-objects-ep-02)
+- [ep.03 - Singleton과 전역 상태·테마 컨텍스트](/design-patterns-objects-ep-03)
+- [ep.04 - Adapter와 레거시 컴포넌트 마이그레이션](/design-patterns-objects-ep-04)
+- [ep.05 - Decorator와 Wrapper 컴포넌트의 윤리](/design-patterns-objects-ep-05)
+- [ep.06 - Facade와 디자인 시스템 라이브러리 API](/design-patterns-objects-ep-06)
+- [ep.07 - Composite와 디자인 토큰 계층](/design-patterns-objects-ep-07)
+- [ep.08 - Strategy와 다크모드 스위칭](/design-patterns-objects-ep-08)
+- [ep.09 - Observer와 알림 UX의 윤리](/design-patterns-objects-ep-09)
+- [ep.10 - State와 폼 상태 머신](/design-patterns-objects-ep-10)
+- [ep.11 - 부록, 그 외 GoF 객체 패턴들](/design-patterns-objects-ep-11)
+
+---
+
+## 다음 편 예고
+
+> [ep.01 — Factory와 디자인 시스템의 컴포넌트 팩토리](/design-patterns-objects-ep-01)
+
+생성을 누구에게 맡길 것인가. 패턴 카탈로그의 첫 자리를 차지한 이 질문이, 디자인 시스템에서 새 컴포넌트를 만드는 동선 안에서 어떻게 다시 나타나는지를 살펴봅니다.
