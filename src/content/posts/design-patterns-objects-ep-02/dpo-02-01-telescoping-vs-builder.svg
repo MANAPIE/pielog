@@ -1,0 +1,99 @@
+<svg viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-tele">
+  <title id="title-tele">Telescoping Constructor와 Builder의 호출 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(74,95,217,0.08);
+        --c-soft-2: rgba(217,119,87,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(141,160,255,0.14);
+          --c-soft-2: rgba(232,147,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .pane-bad { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-good { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-label { font-family: 'Inter', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; }
+      .pane-title { font-family: 'Inter', system-ui, sans-serif; font-size: 17px; font-weight: 700; fill: var(--c-fg); letter-spacing: -0.01em; }
+      .pane-caption { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 500; fill: var(--c-muted); }
+      .code { font-family: 'JetBrains Mono','SF Mono',Menlo,monospace; font-size: 12.5px; fill: var(--c-fg); }
+      .code-mute { font-family: 'JetBrains Mono','SF Mono',Menlo,monospace; font-size: 12.5px; fill: var(--c-muted); }
+      .code-accent { font-family: 'JetBrains Mono','SF Mono',Menlo,monospace; font-size: 12.5px; fill: var(--c-accent); font-weight: 700; }
+      .code-bad { font-family: 'JetBrains Mono','SF Mono',Menlo,monospace; font-size: 12.5px; fill: var(--c-accent-2); font-weight: 700; }
+      .annot { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="540"/>
+
+  <!-- 좌: BAD -->
+  <g transform="translate(40 40)">
+    <rect class="pane-bad" width="540" height="460" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-2)">ANTI-PATTERN</text>
+    <text x="24" y="60" class="pane-title">Telescoping Constructor</text>
+    <text x="24" y="82" class="pane-caption">각 인자가 무엇을 의미하는지 호출부에서 보이지 않습니다</text>
+
+    <!-- 호출 코드 -->
+    <g transform="translate(24 120)">
+      <text x="0" y="0" class="code">const req = </text>
+      <text x="100" y="0" class="code-bad">new HttpRequest(</text>
+      <text x="20" y="24" class="code">'/api/users',</text>
+      <text x="20" y="48" class="code">'POST',</text>
+      <text x="20" y="72" class="code">{ 'Content-Type': 'application/json' },</text>
+      <text x="20" y="96" class="code">JSON.stringify({ name: 'Pi' }),</text>
+      <text x="20" y="120" class="code">3000,</text>
+      <text x="20" y="144" class="code">2,</text>
+      <text x="20" y="168" class="code">true,</text>
+      <text x="0" y="192" class="code">)</text>
+
+      <!-- 의문표 주석들 -->
+      <text x="160" y="120" class="annot">← timeout? retries?</text>
+      <text x="120" y="144" class="annot">← 재시도 횟수?</text>
+      <text x="120" y="168" class="annot">← 무엇이 true?</text>
+    </g>
+
+    <!-- 하단 캡션 -->
+    <g transform="translate(24 380)">
+      <text x="0" y="0" class="pane-caption" font-weight="700" fill="var(--c-fg)">문제</text>
+      <text x="0" y="20" class="pane-caption">• 인자 순서를 외워야 합니다</text>
+      <text x="0" y="40" class="pane-caption">• 같은 타입의 인자가 바뀌어도 컴파일러가 잡지 못합니다</text>
+      <text x="0" y="60" class="pane-caption">• 새 속성이 늘면 모든 호출부를 함께 고쳐야 합니다</text>
+    </g>
+  </g>
+
+  <!-- 우: GOOD -->
+  <g transform="translate(620 40)">
+    <rect class="pane-good" width="540" height="460" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent)">PATTERN</text>
+    <text x="24" y="60" class="pane-title">Builder</text>
+    <text x="24" y="82" class="pane-caption">각 줄이 무엇을 의미하는지 메서드 이름으로 드러납니다</text>
+
+    <!-- 호출 코드 -->
+    <g transform="translate(24 120)">
+      <text x="0" y="0" class="code">const req = </text>
+      <text x="100" y="0" class="code-accent">new HttpRequestBuilder()</text>
+      <text x="20" y="24" class="code-accent">.setUrl<tspan class="code">('/api/users')</tspan></text>
+      <text x="20" y="48" class="code-accent">.setMethod<tspan class="code">('POST')</tspan></text>
+      <text x="20" y="72" class="code-accent">.setHeader<tspan class="code">('Content-Type', 'application/json')</tspan></text>
+      <text x="20" y="96" class="code-accent">.setBody<tspan class="code">(JSON.stringify(...))</tspan></text>
+      <text x="20" y="120" class="code-accent">.setTimeout<tspan class="code">(3000)</tspan></text>
+      <text x="20" y="144" class="code-accent">.setRetries<tspan class="code">(2)</tspan></text>
+      <text x="20" y="168" class="code-accent">.withAuth<tspan class="code">()</tspan></text>
+      <text x="20" y="192" class="code-accent">.build<tspan class="code">()</tspan></text>
+    </g>
+
+    <!-- 하단 캡션 -->
+    <g transform="translate(24 380)">
+      <text x="0" y="0" class="pane-caption" font-weight="700" fill="var(--c-fg)">효과</text>
+      <text x="0" y="20" class="pane-caption">• 각 호출이 무엇을 결정하는지 이름으로 드러납니다</text>
+      <text x="0" y="40" class="pane-caption">• 어떤 단계는 조건문 안에서 결정할 수 있습니다</text>
+      <text x="0" y="60" class="pane-caption">• 새 속성이 늘어도 기존 호출부를 깨뜨리지 않습니다</text>
+    </g>
+  </g>
+</svg>
