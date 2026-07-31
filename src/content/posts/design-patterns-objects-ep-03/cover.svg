@@ -1,0 +1,111 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cover-title">
+  <title id="cover-title">Singleton과 전역 상태·테마 컨텍스트 — ep.03 커버</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .num { fill: var(--c-num); font-family: 'Inter',system-ui,sans-serif; font-weight: 800; font-size: 220px; letter-spacing: -0.04em; }
+    </style>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="grad1" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="grad2" cx="20%" cy="80%" r="45%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#grad1)"/>
+  <rect width="1200" height="630" fill="url(#grad2)"/>
+
+  <!-- 배경 stroke 도형 -->
+  <circle cx="1100" cy="100" r="240" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.13"/>
+  <rect x="-100" y="430" width="500" height="300" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.12" transform="rotate(-8 150 580)"/>
+
+  <!-- 중앙: 단 하나의 객체 (큰 동심원으로 강조) -->
+  <g transform="translate(600 315)">
+    <!-- 외곽 큰 동심원들 -->
+    <circle r="180" fill="none" stroke="var(--c-accent)" stroke-width="1" stroke-dasharray="2 5" opacity="0.35"/>
+    <circle r="130" fill="none" stroke="var(--c-accent)" stroke-width="1" stroke-dasharray="2 5" opacity="0.45"/>
+    <circle r="85" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.6"/>
+
+    <!-- 중앙 사각형 (the one instance) -->
+    <rect x="-55" y="-55" width="110" height="110" rx="6" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.5"/>
+    <!-- 내부 텍스처 -->
+    <line x1="-35" y1="-25" x2="35" y2="-25" stroke="var(--c-line)" stroke-width="2.5"/>
+    <line x1="-35" y1="-8" x2="20" y2="-8" stroke="var(--c-line)" stroke-width="1.2" opacity="0.4"/>
+    <line x1="-35" y1="8" x2="25" y2="8" stroke="var(--c-line)" stroke-width="1.2" opacity="0.4"/>
+    <!-- 가운데 강조 점 -->
+    <circle cx="0" cy="30" r="6" fill="var(--c-accent)"/>
+  </g>
+
+  <!-- 사방에서 중앙으로 향하는 화살표들 (모든 호출이 하나로 향한다) -->
+  <g opacity="0.6">
+    <!-- 좌상단 -->
+    <path d="M 220 130 Q 380 220 490 280" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <polygon points="490,280 482,277 484,289" fill="var(--c-line)" transform="rotate(28 490 280)"/>
+    <!-- 우상단 -->
+    <path d="M 980 130 Q 820 220 710 280" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <polygon points="710,280 718,277 716,289" fill="var(--c-line)" transform="rotate(-28 710 280)"/>
+    <!-- 좌하단 -->
+    <path d="M 220 500 Q 380 420 490 360" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <polygon points="490,360 482,363 484,351" fill="var(--c-line)" transform="rotate(-28 490 360)"/>
+    <!-- 우하단 -->
+    <path d="M 980 500 Q 820 420 710 360" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <polygon points="710,360 718,363 716,351" fill="var(--c-line)" transform="rotate(28 710 360)"/>
+  </g>
+
+  <!-- 호출자 박스들 (네 모서리) -->
+  <g transform="translate(180 110) rotate(-8)">
+    <rect x="-40" y="-25" width="80" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <line x1="-25" y1="-8" x2="20" y2="-8" stroke="var(--c-line)" stroke-width="2"/>
+    <line x1="-25" y1="6" x2="10" y2="6" stroke="var(--c-line)" stroke-width="1.2" opacity="0.5"/>
+  </g>
+  <g transform="translate(1020 110) rotate(6)">
+    <rect x="-40" y="-25" width="80" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <line x1="-25" y1="-8" x2="20" y2="-8" stroke="var(--c-line)" stroke-width="2"/>
+    <line x1="-25" y1="6" x2="10" y2="6" stroke="var(--c-line)" stroke-width="1.2" opacity="0.5"/>
+  </g>
+  <g transform="translate(180 520) rotate(7)">
+    <rect x="-40" y="-25" width="80" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <line x1="-25" y1="-8" x2="20" y2="-8" stroke="var(--c-line)" stroke-width="2"/>
+    <line x1="-25" y1="6" x2="10" y2="6" stroke="var(--c-line)" stroke-width="1.2" opacity="0.5"/>
+  </g>
+  <g transform="translate(1020 520) rotate(-6)">
+    <rect x="-40" y="-25" width="80" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <line x1="-25" y1="-8" x2="20" y2="-8" stroke="var(--c-line)" stroke-width="2"/>
+    <line x1="-25" y1="6" x2="10" y2="6" stroke="var(--c-line)" stroke-width="1.2" opacity="0.5"/>
+  </g>
+
+  <!-- 우상단 작은 점 무리 -->
+  <g transform="translate(1010 200)">
+    <circle r="4" fill="var(--c-accent-2)"/>
+    <circle cx="16" r="4" fill="var(--c-accent-2)" opacity="0.6"/>
+    <circle cx="32" r="4" fill="var(--c-accent-2)" opacity="0.3"/>
+  </g>
+
+  <!-- 좌하단 회전 사각형 -->
+  <g transform="translate(140 450) rotate(-15)" opacity="0.7">
+    <rect x="-20" y="-20" width="40" height="40" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+  </g>
+
+  <!-- 우하단 큰 시리즈 번호 -->
+  <text x="1130" y="575" class="num" text-anchor="end">03</text>
+</svg>
