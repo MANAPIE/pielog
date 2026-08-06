@@ -1,0 +1,234 @@
+---
+title: "State와 폼 상태 머신 - 디자인 패턴, 객체 수준 편 ep.10"
+description: 객체 자신의 흐름을 결정하는 패턴. State는 분기문 대신 상태를 객체로 들어 올리는 결정의 이름입니다.
+summary: 주문 처리 상태(draft → submitted → paid → shipped)를 TypeScript로 정리하고, 분기문이 자라는 안티패턴을 State로 풀어내는 과정을 살펴봅니다. 같은 결정 구조가 폼 상태 머신(idle → validating → submitting → success/error)에서 어떻게 다시 나타나는지를 함께 봅니다. Strategy와의 경계도 다시 한 번 짚습니다.
+date: 2026-06-16
+tags:
+  - series
+  - develop
+  - frontend
+  - backend
+  - design-patterns
+  - gof
+  - typescript
+  - object-oriented
+  - state
+  - behavioral
+  - finite-state-machine
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+객체가 시간에 따라 다른 행동을 한다는 것은 그 객체에 흐름이 있다는 뜻입니다. 흐름에 이름을 붙이지 않으면, 그 자리는 분기문으로 차오릅니다.
+
+---
+
+## 시간이 만드는 분기
+
+객체가 같은 메서드 호출에 대해 시점마다 다르게 반응해야 하는 경우가 자주 있습니다. 주문 객체에 `cancel()`을 호출한다고 합시다. 작성 중인 주문은 그냥 삭제할 수 있습니다. 결제 완료된 주문은 환불 흐름이 필요합니다. 이미 배송된 주문은 취소 자체가 불가능합니다.
+
+가장 흔한 답은 상태 필드와 분기문입니다.
+
+```ts
+class Order {
+  status: 'draft' | 'submitted' | 'paid' | 'shipped' | 'delivered'
+
+  cancel() {
+    if (this.status === 'draft') {
+      this.status = 'cancelled'
+    } else if (this.status === 'submitted') {
+      this.status = 'cancelled'
+      this.notifyCustomer()
+    } else if (this.status === 'paid') {
+      this.refund()
+      this.status = 'cancelled'
+    } else if (this.status === 'shipped') {
+      throw new Error('Cannot cancel shipped order')
+    } else if (this.status === 'delivered') {
+      throw new Error('Cannot cancel delivered order')
+    }
+  }
+
+  ship() {
+    if (this.status === 'paid') {
+      // ...
+    } else if (this.status === 'submitted') {
+      throw new Error('Cannot ship unpaid order')
+    }
+    // ...
+  }
+
+  // 다른 메서드들도 비슷한 분기를 반복...
+}
+```
+
+분기가 자랍니다. 메서드마다 같은 status를 확인하는 코드가 반복됩니다. 새 상태가 추가되면 모든 메서드를 함께 고쳐야 합니다.
+
+State는 다른 답을 냅니다. **상태를 필드가 아니라 객체로 들어 올립니다.** 각 상태가 자기만의 행동을 가진 객체가 됩니다. 객체는 현재 상태 객체에 행동을 위임합니다.
+
+핵심은 단순합니다. **상태별 분기를 객체의 교체로 대체한다.** 분기문은 사라지고, 상태 사이의 전이만 남습니다.
+
+---
+
+## State의 정석
+
+### 기본 구조
+
+각 상태를 클래스로 만듭니다. 모두 같은 인터페이스를 구현합니다.
+
+```ts
+interface OrderState {
+  cancel(order: Order): void
+  ship(order: Order): void
+  // 상태에서 가능한 모든 동작
+}
+
+class DraftState implements OrderState {
+  cancel(order: Order): void {
+    order.setState(new CancelledState())
+  }
+  ship(order: Order): void {
+    throw new Error('Cannot ship draft order')
+  }
+}
+
+class PaidState implements OrderState {
+  cancel(order: Order): void {
+    order.refund()
+    order.setState(new CancelledState())
+  }
+  ship(order: Order): void {
+    order.setState(new ShippedState())
+  }
+}
+
+class ShippedState implements OrderState {
+  cancel(order: Order): void {
+    throw new Error('Cannot cancel shipped order')
+  }
+  ship(order: Order): void {
+    throw new Error('Already shipped')
+  }
+}
+```
+
+Order는 자기의 현재 상태 객체에 위임합니다.
+
+```ts
+class Order {
+  private state: OrderState = new DraftState()
+
+  setState(state: OrderState): void {
+    this.state = state
+  }
+
+  cancel(): void {
+    this.state.cancel(this)
+  }
+
+  ship(): void {
+    this.state.ship(this)
+  }
+}
+
+// 사용
+const order = new Order()
+order.ship()    // DraftState → throw
+order.setState(new PaidState())
+order.ship()    // ShippedState로 전이
+```
+
+Order의 메서드에는 더 이상 분기문이 없습니다. **현재 상태 객체가 무엇이냐에 따라 행동이 자연스럽게 결정됩니다.**
+
+![State 패턴의 구조 다이어그램. 좌측에 Context 역할의 Order 클래스가 있고, 내부에 state 필드와 cancel, ship 메서드가 표시됩니다. 각 메서드는 단순히 state.cancel(this) 형태로 위임만 합니다. 우측에는 OrderState 인터페이스를 구현하는 다섯 개의 구체 상태 클래스가 격자로 배치되어 있습니다 — DraftState, SubmittedState, PaidState, ShippedState, DeliveredState. 각 상태 클래스는 자기만의 cancel과 ship 구현을 가집니다. 다이어그램 하단에는 상태 사이의 전이 화살표가 그려져 있어, draft에서 submitted로, submitted에서 paid로, paid에서 shipped로, shipped에서 delivered로 흐르는 방향이 시각화됩니다. paid에서 cancel을 호출하면 cancelled로 가는 분기도 그려져 있습니다.](dpo-10-01-state-structure.svg)
+
+### Strategy와 State는 다시
+
+[ep.08](/design-patterns-objects-ep-08)에서 짚었듯, Strategy와 State는 구조가 비슷합니다. 결정적인 차이를 다시 한 번 명확히 합니다.
+
+- **Strategy**의 교체는 **외부**가 결정합니다. 사용자가 정렬을 바꿉니다. 개발자가 결제 게이트웨이를 갈아 끼웁니다. Context는 누군가의 결정을 받습니다.
+- **State**의 교체는 **내부**에서 일어납니다. 주문이 결제되면 자기 상태를 `PaidState`로 바꿉니다. 외부는 `pay()`라는 메서드를 부를 뿐, 어떤 상태로 가는지 결정하지 않습니다.
+
+State는 본질적으로 **상태 머신**(Finite State Machine)의 객체 구현입니다. 정의된 상태들과 그 사이의 전이만이 가능합니다. 정의되지 않은 전이는 일어나지 않습니다(예외를 던지거나 무시).
+
+### 안티패턴
+
+**상태 클래스 폭발.** 상태가 너무 많으면 클래스 수가 폭발합니다. 7개 상태에 5개 메서드면 35개의 메서드 구현이 필요합니다. 이런 경우 상태를 **데이터로** 다루는 다른 방식 — `xstate` 같은 라이브러리, 또는 단순한 switch — 이 더 가벼울 수 있습니다.
+
+**상태가 다른 상태를 너무 자세히 앎.** `DraftState`가 `PaidState`의 내부 동작을 알아야 한다면, 두 상태가 결합되어 있습니다. 상태 사이의 통신은 Context를 통해 일어나야 합니다.
+
+**Context의 상태 직접 검사.** Context 코드 어디에선가 `if (this.state instanceof PaidState)` 같은 검사가 나타나면, State 패턴의 의미가 사라집니다. 모든 분기는 상태 객체 내부에 있어야 합니다.
+
+---
+
+## 같은 결정이 다시 나타나는 자리
+
+State가 답하는 질문 — 객체의 흐름에 이름을 붙인다 — 은 UI 폼에서 매일 반복됩니다.
+
+폼의 상태를 생각합니다. 초기 상태 `idle`. 사용자가 입력을 마치고 제출 버튼을 누르면 `validating`. 검증이 통과하면 `submitting`. 서버 응답이 오면 `success` 또는 `error`. 같은 폼이 다섯 가지 다른 모습을 가집니다.
+
+```tsx
+type FormState =
+  | { type: 'idle' }
+  | { type: 'validating' }
+  | { type: 'submitting' }
+  | { type: 'success'; data: Response }
+  | { type: 'error'; message: string }
+
+function CheckoutForm() {
+  const [state, setState] = useState<FormState>({ type: 'idle' })
+
+  const handleSubmit = async (input: FormInput) => {
+    setState({ type: 'validating' })
+
+    const error = validate(input)
+    if (error) {
+      setState({ type: 'error', message: error })
+      return
+    }
+
+    setState({ type: 'submitting' })
+    try {
+      const data = await submit(input)
+      setState({ type: 'success', data })
+    } catch (e) {
+      setState({ type: 'error', message: e.message })
+    }
+  }
+
+  // 각 상태마다 다른 렌더링
+  switch (state.type) {
+    case 'idle':       return <FormFields onSubmit={handleSubmit} />
+    case 'validating': return <FormFields disabled hint="확인 중..." />
+    case 'submitting': return <FormFields disabled hint="제출 중..." />
+    case 'success':    return <SuccessMessage data={state.data} />
+    case 'error':      return <ErrorMessage message={state.message} onRetry={...} />
+  }
+}
+```
+
+TypeScript의 discriminated union이 GoF의 State 패턴을 가볍게 표현합니다. **클래스 폭발 없이 같은 결정 구조**를 만들 수 있습니다.
+
+![폼 상태 머신을 보여주는 다이어그램. 다섯 개의 상태 노드가 흐름에 따라 배치되어 있습니다 — 좌측 idle에서 시작해 validating, submitting을 거쳐 우측의 success 또는 error로 끝납니다. 각 상태 사이의 전이가 화살표로 표시되어 있으며, 화살표 옆에는 전이를 일으키는 이벤트가 라벨로 붙어 있습니다. idle에서 validating으로는 submit 클릭, validating에서 submitting으로는 valid 통과, validating에서 error로는 validation fail, submitting에서 success로는 200 응답, submitting에서 error로는 5xx 응답입니다. error 상태에서 다시 idle로 돌아가는 retry 화살표도 그려져 있습니다. 다이어그램 하단에는 각 상태에서 사용자가 보는 UI가 작은 박스로 표시되어 있어, 상태와 화면이 어떻게 대응되는지가 시각적으로 드러납니다.](dpo-10-02-form-state-machine.svg)
+
+### 왜 머신으로 다루는가
+
+폼 상태를 단순한 boolean 두세 개로 다룰 수도 있습니다. `isLoading`, `hasError`, `isSuccess`. 그러나 이 세 boolean의 조합은 8가지입니다. 그중 의미 있는 조합은 5가지뿐입니다. **나머지 3가지 — 예를 들어 `isLoading && isSuccess` — 는 절대 일어나서는 안 되는 상태입니다.**
+
+State 머신으로 다루는 이유는 **불가능한 상태를 표현 불가능하게 만드는** 것입니다. 의미 있는 상태만 타입에 존재합니다. 잘못된 상태 조합이 컴파일 타임에 막힙니다.
+
+복잡한 폼, 결제 흐름, 다단계 마법사에서 이 차이가 결정적입니다. **버그의 큰 비율이 "이 두 상태가 동시에 일어났다"에서 나오는데, State 머신은 그것이 일어나지 않도록 구조 자체로 막습니다.**
+
+디자이너에게 이 패턴이 보이는 자리. 폼이나 마법사의 흐름을 그릴 때, 디자이너는 자연스럽게 상태 머신을 그립니다. "이 화면에서 이 버튼을 누르면 이 화면으로 갑니다." 이 그림이 바로 State입니다. 디자이너의 화면 흐름도와 개발자의 상태 머신은 같은 결정의 두 표현입니다.
+
+좋은 디자인 시스템은 이 대응을 가시화합니다. 폼 컴포넌트의 props가 상태 머신을 그대로 반영하면, 디자인 명세와 코드 사이의 거리가 좁아집니다.
+
+---
+
+## 다음 편 예고
+
+> [ep.11 — 부록: 그 외 GoF 객체 패턴들](/design-patterns-objects-ep-11)
+
+지금까지 본 10개 패턴은 객체 수준 GoF의 핵심입니다. 시즌 1의 마지막 편은 본편에서 다루지 않은 나머지 패턴들을 가볍게 정리합니다. Visitor, Memento, Flyweight, Iterator, Command, Chain of Responsibility, Prototype, Bridge, Mediator, Template Method — 각각이 어떤 결정에 이름을 붙인 패턴이고 왜 본편에는 들어오지 못했는지를 살펴봅니다.

@@ -1,0 +1,185 @@
+<svg viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-mig">
+  <title id="title-mig">디자인 시스템 v1에서 v2로의 점진적 마이그레이션</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(74,95,217,0.08); --c-soft-2: rgba(217,119,87,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(141,160,255,0.14); --c-soft-2: rgba(232,147,118,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .pane-v2 { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-ad { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-v1 { fill: var(--c-card); stroke: var(--c-muted); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; }
+      .line { stroke: var(--c-line); stroke-width: 1.3; fill: none; }
+      .line-accent { stroke: var(--c-accent-2); stroke-width: 1.5; fill: none; }
+      .line-fade { stroke: var(--c-muted); stroke-width: 1.2; fill: none; stroke-dasharray: 3 4; opacity: 0.6; }
+      .pane-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; }
+      .pane-title { font-family: 'Inter',system-ui,sans-serif; font-size: 15px; font-weight: 700; fill: var(--c-fg); letter-spacing: -0.01em; }
+      .prop { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11.5px; fill: var(--c-fg); }
+      .prop-mute { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11.5px; fill: var(--c-muted); }
+      .map-arrow { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-2); }
+      .axis-label { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.06em; }
+      .timeline-label { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+    </style>
+    <marker id="ar-m" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+    <marker id="ar-m-a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="640"/>
+
+  <!-- 상단 라벨 -->
+  <text x="600" y="34" class="pane-title" text-anchor="middle">v2 호출 → Adapter → v1 실제 렌더링</text>
+
+  <!-- ===== 좌측: v2 호출자 ===== -->
+  <g transform="translate(40 70)">
+    <rect class="pane-v2" width="280" height="380" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent)">V2 CALLER</text>
+    <text x="24" y="58" class="pane-title">새 화면 코드</text>
+
+    <!-- v2 컴포넌트 호출 박스 -->
+    <g transform="translate(24 90)">
+      <rect width="232" height="160" rx="6" class="box"/>
+      <text x="12" y="22" class="prop-mute">&lt;Button</text>
+      <text x="12" y="42" class="prop">  variant="primary"</text>
+      <text x="12" y="60" class="prop">  size="lg"</text>
+      <text x="12" y="78" class="prop">  onClick={handler}</text>
+      <text x="12" y="96" class="prop-mute">&gt;</text>
+      <text x="12" y="114" class="prop">  결제하기</text>
+      <text x="12" y="132" class="prop-mute">&lt;/Button&gt;</text>
+    </g>
+
+    <text x="24" y="290" class="axis-label">V2 API</text>
+    <text x="24" y="312" class="timeline-label">• variant: 'primary' | 'secondary' | 'ghost'</text>
+    <text x="24" y="330" class="timeline-label">• size: 'sm' | 'md' | 'lg'</text>
+    <text x="24" y="348" class="timeline-label">• onClick / children</text>
+  </g>
+
+  <!-- ===== 중앙: Adapter ===== -->
+  <g transform="translate(360 70)">
+    <rect class="pane-ad" width="480" height="380" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-2)">ADAPTER COMPONENT</text>
+    <text x="24" y="58" class="pane-title">function Button(v2Props)</text>
+
+    <!-- 매핑 표 -->
+    <g transform="translate(24 90)">
+      <rect width="432" height="273" rx="6" class="box"/>
+      <line x1="0" y1="36" x2="432" y2="36" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="100" y="24" class="axis-label" text-anchor="middle">V2 PROPS</text>
+      <text x="240" y="24" class="axis-label" text-anchor="middle"></text>
+      <text x="350" y="24" class="axis-label" text-anchor="middle">V1 PROPS</text>
+
+      <!-- variant → type -->
+      <g transform="translate(0 60)">
+        <text x="20" y="0" class="prop">variant: 'primary'</text>
+        <text x="240" y="0" class="map-arrow" text-anchor="middle">→</text>
+        <text x="280" y="0" class="prop">type: 'main'</text>
+      </g>
+      <g transform="translate(0 84)">
+        <text x="20" y="0" class="prop">variant: 'secondary'</text>
+        <text x="240" y="0" class="map-arrow" text-anchor="middle">→</text>
+        <text x="280" y="0" class="prop">type: 'sub'</text>
+      </g>
+      <g transform="translate(0 108)">
+        <text x="20" y="0" class="prop-mute">variant: 'ghost'</text>
+        <text x="240" y="0" class="map-arrow" text-anchor="middle">→</text>
+        <text x="280" y="0" class="prop-mute">type: 'sub' + opacity</text>
+      </g>
+
+      <line x1="20" y1="128" x2="412" y2="128" stroke="var(--c-divider)" stroke-width="1"/>
+
+      <!-- size → large -->
+      <g transform="translate(0 156)">
+        <text x="20" y="0" class="prop">size: 'lg'</text>
+        <text x="240" y="0" class="map-arrow" text-anchor="middle">→</text>
+        <text x="280" y="0" class="prop">large: true</text>
+      </g>
+      <g transform="translate(0 180)">
+        <text x="20" y="0" class="prop-mute">size: 'sm' | 'md'</text>
+        <text x="240" y="0" class="map-arrow" text-anchor="middle">→</text>
+        <text x="280" y="0" class="prop-mute">large: false</text>
+      </g>
+
+      <line x1="20" y1="200" x2="412" y2="200" stroke="var(--c-divider)" stroke-width="1"/>
+
+      <!-- onClick → onPress -->
+      <g transform="translate(0 228)">
+        <text x="20" y="0" class="prop">onClick</text>
+        <text x="240" y="0" class="map-arrow" text-anchor="middle">→</text>
+        <text x="280" y="0" class="prop">onPress</text>
+      </g>
+      <g transform="translate(0 252)">
+        <text x="20" y="0" class="prop">children</text>
+        <text x="240" y="0" class="map-arrow" text-anchor="middle">→</text>
+        <text x="280" y="0" class="prop">label</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===== 우측: v1 렌더링 ===== -->
+  <g transform="translate(880 70)">
+    <rect class="pane-v1" width="280" height="380" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-muted)">V1 RENDER (LEGACY)</text>
+    <text x="24" y="58" class="pane-title">기존 컴포넌트</text>
+
+    <g transform="translate(24 90)">
+      <rect width="232" height="160" rx="6" class="box"/>
+      <text x="12" y="22" class="prop-mute">&lt;ButtonV1</text>
+      <text x="12" y="42" class="prop">  type="main"</text>
+      <text x="12" y="60" class="prop">  large={true}</text>
+      <text x="12" y="78" class="prop">  onPress={handler}</text>
+      <text x="12" y="96" class="prop">  label="결제하기"</text>
+      <text x="12" y="114" class="prop-mute">/&gt;</text>
+    </g>
+
+    <text x="24" y="290" class="axis-label">V1 API (변경 금지)</text>
+    <text x="24" y="312" class="timeline-label">• 수백 개 화면이 의존</text>
+    <text x="24" y="330" class="timeline-label">• 한 번에 모두 고칠 수 없음</text>
+  </g>
+
+  <!-- 연결선 -->
+  <line x1="320" y1="170" x2="362" y2="170" class="line-accent" marker-end="url(#ar-m-a)"/>
+  <line x1="840" y1="170" x2="882" y2="170" class="line-accent" marker-end="url(#ar-m-a)"/>
+
+  <!-- ===== 하단: 시간축 (Adapter는 과도기적 다리) ===== -->
+  <g transform="translate(40 510)">
+    <text x="0" y="-15" class="axis-label">MIGRATION TIMELINE</text>
+
+    <!-- 축 -->
+    <line x1="0" y1="40" x2="1120" y2="40" stroke="var(--c-line)" stroke-width="1.5"/>
+
+    <!-- 시점 라벨 -->
+    <text x="0" y="64" class="timeline-label">v2 도입 시점</text>
+    <text x="560" y="64" class="timeline-label" text-anchor="middle">마이그레이션 진행</text>
+    <text x="1120" y="64" class="timeline-label" text-anchor="end">v2 완료</text>
+
+    <!-- 시점 점 -->
+    <circle cx="0" cy="40" r="6" fill="var(--c-accent-2)"/>
+    <circle cx="1120" cy="40" r="6" fill="var(--c-accent)"/>
+
+    <!-- Adapter 영역: 부풀어 올랐다가 사라지는 곡선 -->
+    <path d="M 0 40 Q 100 -10 200 -20 Q 400 -30 600 -20 Q 800 -10 1000 5 Q 1080 25 1120 40 Z"
+          fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.85"/>
+    <text x="560" y="12" class="axis-label" fill="var(--c-accent-2)" text-anchor="middle">ADAPTER ZONE — 어댑터가 필요한 과도기</text>
+
+    <!-- 화살표: 마이그레이션 방향 -->
+    <text x="100" y="90" class="timeline-label">v1 컴포넌트가 모든 화면을 렌더링</text>
+    <text x="1000" y="90" class="timeline-label" text-anchor="end">v2 컴포넌트가 v1을 대체</text>
+  </g>
+</svg>

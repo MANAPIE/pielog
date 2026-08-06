@@ -1,0 +1,152 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-fsm">
+  <title id="title-fsm">폼 상태 머신 — idle → validating → submitting → success / error</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-3: rgba(139,122,184,0.12); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-3: rgba(176,160,218,0.16); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .state-circle { fill: var(--c-card); stroke: var(--c-accent-3); stroke-width: 2.2; }
+      .state-circle-end { fill: var(--c-card); stroke: var(--c-line); stroke-width: 2.2; }
+      .line { stroke: var(--c-line); stroke-width: 1.6; fill: none; }
+      .line-event { stroke: var(--c-accent-3); stroke-width: 2; fill: none; }
+      .line-error { stroke: var(--c-accent-2); stroke-width: 2; fill: none; }
+      .line-retry { stroke: var(--c-muted); stroke-width: 1.6; fill: none; stroke-dasharray: 5 5; }
+      .ui-box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .state-name { font-family: 'Inter',system-ui,sans-serif; font-size: 16px; font-weight: 700; fill: var(--c-fg); }
+      .event-label { font-family: 'Inter',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-accent-3); }
+      .event-error { font-family: 'Inter',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-accent-2); }
+      .ui-label { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; fill: var(--c-fg); font-weight: 600; }
+      .ui-sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+      .col-label { font-family: 'Inter',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.14em; }
+    </style>
+    <marker id="ar-fsm" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-3)"/>
+    </marker>
+    <marker id="ar-fsm-e" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+    <marker id="ar-fsm-r" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="720"/>
+
+  <text x="80" y="34" class="col-label">STATE MACHINE</text>
+
+  <!-- 5개 상태 노드 (좌 80 ~ 우 1120 밴드에 맞춤) -->
+  <!-- idle -->
+  <g transform="translate(138 185)">
+    <circle r="58" class="state-circle"/>
+    <text x="0" y="6" class="state-name" text-anchor="middle">idle</text>
+  </g>
+
+  <!-- validating -->
+  <g transform="translate(420 185)">
+    <circle r="58" class="state-circle"/>
+    <text x="0" y="6" class="state-name" text-anchor="middle">validating</text>
+  </g>
+
+  <!-- submitting -->
+  <g transform="translate(702 185)">
+    <circle r="58" class="state-circle"/>
+    <text x="0" y="6" class="state-name" text-anchor="middle">submitting</text>
+  </g>
+
+  <!-- success (오른쪽 위) -->
+  <g transform="translate(1062 100)">
+    <circle r="58" class="state-circle-end"/>
+    <circle r="52" fill="none" stroke="var(--c-line)" stroke-width="1.3"/>
+    <text x="0" y="6" class="state-name" text-anchor="middle">success</text>
+  </g>
+
+  <!-- error (오른쪽 아래) -->
+  <g transform="translate(1062 270)">
+    <circle r="58" class="state-circle-end"/>
+    <circle r="52" fill="none" stroke="var(--c-line)" stroke-width="1.3"/>
+    <text x="0" y="6" class="state-name" text-anchor="middle">error</text>
+  </g>
+
+  <!-- 전이 화살표 -->
+  <!-- idle → validating -->
+  <line x1="196" y1="185" x2="362" y2="185" class="line-event" marker-end="url(#ar-fsm)"/>
+  <text x="279" y="169" class="event-label" text-anchor="middle">submit click</text>
+
+  <!-- validating → submitting (valid) -->
+  <line x1="478" y1="185" x2="644" y2="185" class="line-event" marker-end="url(#ar-fsm)"/>
+  <text x="561" y="169" class="event-label" text-anchor="middle">valid</text>
+
+  <!-- validating → error (invalid) -->
+  <path d="M 461 226 Q 740 336 1007 290" class="line-error" marker-end="url(#ar-fsm-e)"/>
+  <text x="737" y="320" class="event-error" text-anchor="middle">validation fail</text>
+
+  <!-- submitting → success (200) -->
+  <path d="M 743 144 Q 878 76 1004 100" class="line-event" marker-end="url(#ar-fsm)"/>
+  <text x="876" y="82" class="event-label" text-anchor="middle">200 OK</text>
+
+  <!-- submitting → error (5xx) -->
+  <path d="M 743 226 Q 878 264 1007 250" class="line-error" marker-end="url(#ar-fsm-e)"/>
+  <text x="877" y="236" class="event-error" text-anchor="middle">5xx / network</text>
+
+  <!-- error → idle (retry) -->
+  <path d="M 1062 328 Q 940 428 620 428 Q 190 428 138 246" class="line-retry" marker-end="url(#ar-fsm-r)"/>
+  <text x="620" y="448" class="col-label" text-anchor="middle" fill="var(--c-muted)">retry</text>
+
+  <!-- 하단: 각 상태의 UI (상단과 동일한 80 ~ 1120 밴드) -->
+  <g transform="translate(80 498)">
+    <text x="0" y="0" class="col-label">UI PER STATE</text>
+
+    <g transform="translate(0 30)">
+      <rect width="140" height="140" rx="6" class="ui-box"/>
+      <rect x="16" y="20" width="108" height="20" rx="3" fill="var(--c-divider)"/>
+      <rect x="16" y="50" width="108" height="20" rx="3" fill="var(--c-divider)"/>
+      <rect x="16" y="96" width="108" height="26" rx="4" fill="var(--c-accent-3)"/>
+      <text x="70" y="113" class="ui-label" text-anchor="middle" fill="var(--c-bg)">제출</text>
+      <text x="70" y="166" class="ui-sub" text-anchor="middle">idle</text>
+    </g>
+
+    <g transform="translate(225 30)">
+      <rect width="140" height="140" rx="6" class="ui-box" opacity="0.6"/>
+      <rect x="16" y="20" width="108" height="20" rx="3" fill="var(--c-divider)"/>
+      <rect x="16" y="50" width="108" height="20" rx="3" fill="var(--c-divider)"/>
+      <rect x="16" y="96" width="108" height="26" rx="4" fill="var(--c-muted)" opacity="0.5"/>
+      <text x="70" y="113" class="ui-label" text-anchor="middle" fill="var(--c-bg)">확인 중</text>
+      <text x="70" y="166" class="ui-sub" text-anchor="middle">validating — disabled</text>
+    </g>
+
+    <g transform="translate(450 30)">
+      <rect width="140" height="140" rx="6" class="ui-box" opacity="0.6"/>
+      <rect x="16" y="20" width="108" height="20" rx="3" fill="var(--c-divider)"/>
+      <rect x="16" y="50" width="108" height="20" rx="3" fill="var(--c-divider)"/>
+      <circle cx="70" cy="109" r="13" fill="none" stroke="var(--c-accent-3)" stroke-width="3" stroke-dasharray="15 8"/>
+      <text x="70" y="166" class="ui-sub" text-anchor="middle">submitting — spinner</text>
+    </g>
+
+    <g transform="translate(675 30)">
+      <rect width="140" height="140" rx="6" class="ui-box"/>
+      <polyline points="40,68 62,92 102,44" fill="none" stroke="var(--c-accent)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="70" y="120" class="ui-label" text-anchor="middle">완료됨</text>
+      <text x="70" y="166" class="ui-sub" text-anchor="middle">success</text>
+    </g>
+
+    <g transform="translate(900 30)">
+      <rect width="140" height="140" rx="6" class="ui-box"/>
+      <line x1="46" y1="46" x2="94" y2="94" stroke="var(--c-accent-2)" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="94" y1="46" x2="46" y2="94" stroke="var(--c-accent-2)" stroke-width="4.5" stroke-linecap="round"/>
+      <text x="70" y="120" class="ui-label" text-anchor="middle">다시 시도</text>
+      <text x="70" y="166" class="ui-sub" text-anchor="middle">error</text>
+    </g>
+  </g>
+</svg>

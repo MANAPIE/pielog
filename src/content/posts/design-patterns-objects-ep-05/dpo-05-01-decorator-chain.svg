@@ -1,0 +1,133 @@
+<svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-dc">
+  <title id="title-dc">Decorator 체인의 양파 껍질 구조와 호출 흐름</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .layer-1 { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 2; }
+      .layer-2 { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 2; }
+      .layer-3 { fill: var(--c-card); stroke: var(--c-accent-3); stroke-width: 2; }
+      .core { fill: var(--c-card); stroke: var(--c-line); stroke-width: 2; }
+      .line { stroke: var(--c-line); stroke-width: 1.4; fill: none; }
+      .line-down { stroke: var(--c-accent-2); stroke-width: 1.8; fill: none; }
+      .line-up { stroke: var(--c-accent); stroke-width: 1.8; fill: none; }
+      .col-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.14em; }
+      .layer-name { font-family: 'Inter',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; }
+      .core-name { font-family: 'Inter',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .step { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .step-mute { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .arrow-label { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; }
+    </style>
+    <marker id="ar-d" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+    <marker id="ar-u" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="600"/>
+
+  <!-- 좌측: 양파 껍질 -->
+  <g transform="translate(80 60)">
+    <text x="0" y="0" class="col-label">ONION LAYERS — outer to inner</text>
+
+    <g transform="translate(220 240)">
+      <!-- Layer 1 -->
+      <rect x="-200" y="-180" width="400" height="360" rx="8" class="layer-1"/>
+      <text x="-185" y="-156" class="layer-name" fill="var(--c-accent-2)">LoggingDecorator</text>
+
+      <!-- Layer 2 -->
+      <rect x="-155" y="-130" width="310" height="270" rx="6" class="layer-2"/>
+      <text x="-140" y="-106" class="layer-name" fill="var(--c-accent)">CacheDecorator</text>
+
+      <!-- Layer 3 -->
+      <rect x="-110" y="-85" width="220" height="190" rx="5" class="layer-3"/>
+      <text x="-95" y="-62" class="layer-name" fill="var(--c-accent-3)">AuthDecorator</text>
+
+      <!-- Core -->
+      <rect x="-70" y="-45" width="140" height="100" rx="4" class="core"/>
+      <text x="0" y="-22" class="core-name" text-anchor="middle">HttpRequest</text>
+      <line x1="-50" y1="-10" x2="50" y2="-10" stroke="var(--c-line)" stroke-width="2"/>
+      <circle cx="-40" cy="18" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="-25" cy="18" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="-10" cy="18" r="3.5" fill="var(--c-accent)"/>
+      <rect x="10" y="12" width="40" height="10" rx="2" fill="var(--c-accent-2)" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- 우측: 호출 흐름 (세로 시간축) -->
+  <g transform="translate(680 60)">
+    <text x="0" y="0" class="col-label">CALL FLOW — send() invocation</text>
+
+    <!-- 단계들: 위에서 아래로 (호출), 다시 아래에서 위로 (응답) -->
+    <g transform="translate(40 40)">
+      <!-- 호출 흐름 (좌측 컬럼) -->
+      <g>
+        <text x="0" y="0" class="arrow-label" fill="var(--c-accent-2)">↓ REQUEST (outer → inner)</text>
+
+        <g transform="translate(0 24)">
+          <rect width="200" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+          <text x="12" y="25" class="step">log: '→ started'</text>
+        </g>
+        <line x1="20" y1="64" x2="20" y2="84" class="line-down" marker-end="url(#ar-d)"/>
+
+        <g transform="translate(0 88)">
+          <rect width="200" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.5"/>
+          <text x="12" y="25" class="step">check cache</text>
+        </g>
+        <line x1="20" y1="128" x2="20" y2="148" class="line-down" marker-end="url(#ar-d)"/>
+
+        <g transform="translate(0 152)">
+          <rect width="200" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-accent-3)" stroke-width="1.5"/>
+          <text x="12" y="25" class="step">attach auth</text>
+        </g>
+        <line x1="20" y1="192" x2="20" y2="212" class="line-down" marker-end="url(#ar-d)"/>
+
+        <g transform="translate(0 216)">
+          <rect width="200" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1.5"/>
+          <text x="12" y="25" class="step">fetch(url)</text>
+        </g>
+      </g>
+
+      <!-- 응답 흐름 (우측 컬럼) -->
+      <g transform="translate(260 0)">
+        <text x="0" y="0" class="arrow-label" fill="var(--c-accent)">↑ RESPONSE (inner → outer)</text>
+
+        <g transform="translate(0 216)">
+          <rect width="200" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1.5"/>
+          <text x="12" y="25" class="step">Response 도착</text>
+        </g>
+        <line x1="100" y1="216" x2="100" y2="196" class="line-up" marker-end="url(#ar-u)"/>
+
+        <g transform="translate(0 152)">
+          <rect width="200" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-accent-3)" stroke-width="1.5"/>
+          <text x="12" y="25" class="step-mute">(pass through)</text>
+        </g>
+        <line x1="100" y1="152" x2="100" y2="132" class="line-up" marker-end="url(#ar-u)"/>
+
+        <g transform="translate(0 88)">
+          <rect width="200" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.5"/>
+          <text x="12" y="25" class="step">store in cache</text>
+        </g>
+        <line x1="100" y1="88" x2="100" y2="68" class="line-up" marker-end="url(#ar-u)"/>
+
+        <g transform="translate(0 24)">
+          <rect width="200" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+          <text x="12" y="25" class="step">log: '← completed'</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

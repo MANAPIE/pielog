@@ -1,0 +1,200 @@
+<svg viewBox="0 0 1200 690" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="catalog-title">
+  <title id="catalog-title">디자인 패턴, 객체 수준 편 — 시리즈 카탈로그</title>
+
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #C02D6E;
+        --c-accent-2: #D97757;
+        --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #EC85B5;
+          --c-accent-2: #E89376;
+          --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+      .group-label {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Inter', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.14em;
+      }
+      .card-num {
+        font-family: 'Inter', 'SF Mono', system-ui, monospace;
+        font-size: 13px;
+        font-weight: 600;
+        fill: var(--c-muted);
+        letter-spacing: 0.06em;
+      }
+      .card-name {
+        font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        fill: var(--c-fg);
+        letter-spacing: -0.01em;
+      }
+      .appendix-title {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Inter', system-ui, sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        fill: var(--c-fg);
+        letter-spacing: -0.01em;
+      }
+      .card-conn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        fill: var(--c-muted);
+        letter-spacing: 0;
+      }
+      .appendix-list {
+        font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        fill: var(--c-muted);
+        letter-spacing: 0.01em;
+      }
+    </style>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="1200" height="690" fill="var(--c-bg)"/>
+
+  <!-- 본편 라벨 -->
+  <text x="40" y="36" class="group-label">본편 — MAIN</text>
+  <line x1="40" y1="50" x2="1160" y2="50" stroke="var(--c-divider)" stroke-width="1"/>
+
+  <!-- ROW 1: ep.01-05 -->
+
+  <!-- ep.01 Factory (Creational) -->
+  <g transform="translate(40 72)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent)"/>
+    <text x="24" y="36" class="card-num">EP.01</text>
+    <text x="24" y="96" class="card-name">Factory</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">컴포넌트 팩토리</text>
+  </g>
+
+  <!-- ep.02 Builder (Creational) -->
+  <g transform="translate(268 72)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent)"/>
+    <text x="24" y="36" class="card-num">EP.02</text>
+    <text x="24" y="96" class="card-name">Builder</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">폼·필터·쿼리 빌더</text>
+  </g>
+
+  <!-- ep.03 Singleton (Creational) -->
+  <g transform="translate(496 72)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent)"/>
+    <text x="24" y="36" class="card-num">EP.03</text>
+    <text x="24" y="96" class="card-name">Singleton</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">전역 상태·테마</text>
+  </g>
+
+  <!-- ep.04 Adapter (Structural) -->
+  <g transform="translate(724 72)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent-2)"/>
+    <text x="24" y="36" class="card-num">EP.04</text>
+    <text x="24" y="96" class="card-name">Adapter</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">레거시 마이그레이션</text>
+  </g>
+
+  <!-- ep.05 Decorator (Structural) -->
+  <g transform="translate(952 72)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent-2)"/>
+    <text x="24" y="36" class="card-num">EP.05</text>
+    <text x="24" y="96" class="card-name">Decorator</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">Wrapper 컴포넌트</text>
+  </g>
+
+  <!-- ROW 2: ep.06-10 -->
+
+  <!-- ep.06 Facade (Structural) -->
+  <g transform="translate(40 292)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent-2)"/>
+    <text x="24" y="36" class="card-num">EP.06</text>
+    <text x="24" y="96" class="card-name">Facade</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">라이브러리 API</text>
+  </g>
+
+  <!-- ep.07 Composite (Structural) -->
+  <g transform="translate(268 292)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent-2)"/>
+    <text x="24" y="36" class="card-num">EP.07</text>
+    <text x="24" y="96" class="card-name">Composite</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">디자인 토큰 계층</text>
+  </g>
+
+  <!-- ep.08 Strategy (Behavioral) -->
+  <g transform="translate(496 292)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent-3)"/>
+    <text x="24" y="36" class="card-num">EP.08</text>
+    <text x="24" y="96" class="card-name">Strategy</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">다크모드 스위칭</text>
+  </g>
+
+  <!-- ep.09 Observer (Behavioral) -->
+  <g transform="translate(724 292)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent-3)"/>
+    <text x="24" y="36" class="card-num">EP.09</text>
+    <text x="24" y="96" class="card-name">Observer</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">알림 UX</text>
+  </g>
+
+  <!-- ep.10 State (Behavioral) -->
+  <g transform="translate(952 292)">
+    <rect width="208" height="200" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect width="6" height="200" rx="2" fill="var(--c-accent-3)"/>
+    <text x="24" y="36" class="card-num">EP.10</text>
+    <text x="24" y="96" class="card-name">State</text>
+    <line x1="24" y1="120" x2="56" y2="120" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+    <text x="24" y="174" class="card-conn">폼 상태 머신</text>
+  </g>
+
+  <!-- 부록 라벨 -->
+  <text x="40" y="540" class="group-label">부록 — APPENDIX</text>
+  <line x1="40" y1="554" x2="1160" y2="554" stroke="var(--c-divider)" stroke-width="1"/>
+
+  <!-- 부록 카드 (가로로 긴 카드) -->
+  <g transform="translate(40 572)">
+    <rect width="1120" height="100" rx="4" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" stroke-dasharray="4 4"/>
+    <rect width="6" height="100" rx="2" fill="var(--c-muted)" opacity="0.55"/>
+    <text x="24" y="36" class="card-num">EP.11</text>
+    <text x="24" y="70" class="appendix-title">짧게 보는 나머지 GoF 패턴</text>
+    <line x1="500" y1="22" x2="500" y2="78" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="524" y="44" class="appendix-list">Visitor · Memento · Flyweight · Iterator · Command</text>
+    <text x="524" y="66" class="appendix-list">Chain of Responsibility · Prototype · Bridge · Mediator · Template Method</text>
+  </g>
+</svg>

@@ -1,0 +1,187 @@
+---
+title: "Adapter와 레거시 컴포넌트 마이그레이션 - 디자인 패턴, 객체 수준 편 ep.04"
+description: 맞지 않는 두 인터페이스 사이에 다리를 놓는 일. Adapter 패턴이 어떻게 디자인 시스템 v1과 v2 사이의 점진적 마이그레이션 도구가 되는지를 살펴봅니다.
+summary: Object Adapter와 Class Adapter의 차이를 TypeScript 코드로 정리하고, 결제 게이트웨이 통합 예제를 통해 외부 의존을 격리하는 방식을 살펴봅니다. 같은 결정 구조가 디자인 시스템 마이그레이션, 특히 v1 컴포넌트 위에 v2 인터페이스를 입히는 점진적 작업에서 어떻게 다시 나타나는지를 함께 봅니다.
+date: 2026-06-16
+tags:
+  - series
+  - develop
+  - frontend
+  - backend
+  - design-patterns
+  - gof
+  - typescript
+  - object-oriented
+  - adapter
+  - structural
+  - migration
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+맞지 않는 두 인터페이스를 만나는 일은 흔합니다. 한쪽을 바꿀 수도 없고, 다른 쪽도 바꿀 수 없을 때 우리는 그 사이에 무엇을 놓습니다.
+
+---
+
+## 두 형태가 만날 때
+
+소프트웨어를 짜다 보면 두 가지 객체가 같은 일을 다른 방식으로 하는 상황을 자주 만납니다. 결제 게이트웨이가 그렇습니다. 외부 라이브러리가 그렇습니다. 레거시를 섞어 쓸 때도 그렇습니다.
+
+문제는 한쪽이 다른 쪽의 형태를 강제할 수 없다는 점입니다. 외부 라이브러리는 내 마음대로 인터페이스를 바꿀 수 없습니다. 레거시 코드는 한 번에 다 고칠 수 없습니다. 두 형태가 만나야 하는데 모양이 다르다.
+
+Adapter는 이 어긋남에 다리를 놓는 패턴입니다. 한쪽의 인터페이스를 다른 쪽이 기대하는 모양으로 바꿔서 전달합니다. 양쪽 어느 것도 건드리지 않은 채로.
+
+핵심은 단순합니다. **변환의 책임을 한 객체에 모은다.** 이 책임이 흩어지면 어디서 무엇이 변환되는지를 추적할 수 없게 됩니다. 한 곳에 모아두면 그 자리가 곧 두 세계의 경계가 됩니다.
+
+---
+
+## Adapter의 정석
+
+### 어긋난 두 인터페이스
+
+예를 들어 봅니다. 우리 시스템은 결제를 다음과 같은 인터페이스로 처리합니다.
+
+```ts
+interface PaymentProcessor {
+  charge(amountInWon: number, customerId: string): Promise<PaymentResult>
+}
+```
+
+새로 통합해야 하는 외부 결제 게이트웨이가 있습니다. 그쪽의 인터페이스는 우리와 다릅니다.
+
+```ts
+class StripeGateway {
+  // 단위가 다르고(센트), 인자 이름과 순서가 다르고, 반환 형태가 다릅니다
+  createCharge(params: {
+    amount_cents: number
+    currency: string
+    customer: string
+  }): Promise<{ id: string; status: 'succeeded' | 'failed' }> {
+    // ...
+  }
+}
+```
+
+이 둘이 직접 만나려면 모든 호출 측이 단위 변환과 형태 변환을 알아야 합니다. 그 책임이 흩어집니다.
+
+### Object Adapter
+
+가장 흔히 쓰이는 형태입니다. 외부 객체를 멤버로 가지고, 우리 인터페이스를 구현합니다.
+
+```ts
+class StripePaymentAdapter implements PaymentProcessor {
+  constructor(private gateway: StripeGateway) {}
+
+  async charge(amountInWon: number, customerId: string): Promise<PaymentResult> {
+    // 단위 변환: 원 → 센트 (TODO: 실제 USD 기준 환율 사용)
+    const amountInCents = Math.round(amountInWon * 0.075 * 100)
+
+    const result = await this.gateway.createCharge({
+      amount_cents: amountInCents,
+      currency: 'usd',
+      customer: customerId,
+    })
+
+    // 반환 형태 변환
+    return {
+      success: result.status === 'succeeded',
+      transactionId: result.id,
+    }
+  }
+}
+```
+
+호출하는 쪽은 `PaymentProcessor` 인터페이스만 봅니다. Stripe의 존재를 알지 못합니다. **변환의 책임은 Adapter 안에 격리되어 있습니다.**
+
+새 결제 게이트웨이를 추가하더라도, 또 다른 Adapter 클래스를 만들면 됩니다. 호출 측 코드는 손대지 않습니다.
+
+![Object Adapter의 클래스 구조 다이어그램. 좌측 상단에 우리 시스템의 PaymentProcessor 인터페이스가 있고, 그 아래로 StripePaymentAdapter 클래스가 인터페이스를 구현(implements) 관계로 연결되어 있습니다. StripePaymentAdapter는 우측의 외부 StripeGateway 클래스를 멤버로 보유하는 컴포지션 관계로 표시되어 있습니다. 좌측 하단에는 클라이언트 코드가 PaymentProcessor 인터페이스를 통해 charge 메서드를 호출하는 흐름이 그려져 있고, 그 호출이 Adapter 안에서 단위 변환과 형태 변환을 거쳐 StripeGateway의 createCharge로 변환되는 과정이 점선 화살표로 시각화되어 있습니다.](dpo-04-01-adapter-structure.svg)
+
+### Class Adapter
+
+상속을 사용하는 변형입니다. JavaScript와 TypeScript에서는 다중 상속이 불가능하므로 거의 쓰이지 않습니다. 자바·C++ 같은 언어에서 보입니다. 개념적으로만 알아둡니다.
+
+```ts
+// 의사 코드 — TS에서는 실제로 이렇게 짜지 않습니다
+class StripePaymentAdapter extends StripeGateway implements PaymentProcessor {
+  async charge(amountInWon: number, customerId: string): Promise<PaymentResult> {
+    const result = await this.createCharge({ /* ... */ })
+    return { /* ... */ }
+  }
+}
+```
+
+Object Adapter는 컴포지션(has-a), Class Adapter는 상속(is-a)이라는 차이입니다. 거의 모든 경우 컴포지션 쪽이 더 유연합니다. **이 시리즈가 강조하는 결정 — 객체의 책임을 어떻게 나눌 것인가 — 의 관점에서, 어긋난 인터페이스에 상속을 끼워 넣는 일은 책임을 두 곳으로 흩뜨립니다.**
+
+### 안티패턴
+
+Adapter를 잘못 쓰면 다음 같은 문제가 생깁니다.
+
+**비대해진 Adapter.** 변환만 하면 되는데 비즈니스 로직이 Adapter 안에 들어가는 일. 결제 실패 시 재시도, 알림 발송, 로깅 같은 일이 Adapter에 쌓이면 Adapter가 아니라 또 하나의 서비스가 됩니다. 변환과 정책을 분리해야 합니다.
+
+**누수되는 외부 타입.** Adapter가 외부 라이브러리의 타입을 그대로 반환하는 경우. 그러면 호출 측은 외부 타입을 다루는 코드를 갖게 되고, 격리의 의미가 사라집니다. Adapter는 자기 쪽 인터페이스로 결과를 다시 포장해야 합니다.
+
+**Adapter 위에 Adapter.** 여러 Adapter를 쌓아 호환성을 맞추는 일. 각 단계의 변환이 명확하지 않으면 디버깅이 어려워집니다. 두 번째 Adapter가 필요하다면, 그 위 시스템의 인터페이스를 다시 설계할 시점인지 검토해야 합니다.
+
+---
+
+## 같은 결정이 다시 나타나는 자리
+
+Adapter가 답하는 질문 — 모양이 다른 두 세계를 한 객체로 잇는다 — 은 디자인 시스템 마이그레이션에서 정확히 같은 모양으로 다시 나타납니다.
+
+디자인 시스템이 v2로 넘어갑니다. 새 컴포넌트는 새 API를 가집니다. props가 바뀌고, 슬롯 구조가 바뀌고, 토큰 이름이 바뀝니다. 그러나 기존 화면 수백 개를 한 번에 다 고칠 수는 없습니다.
+
+이때 등장하는 것이 **컴포넌트 레벨 Adapter**입니다. 새 인터페이스를 따르는 컴포넌트가 내부에서 v1 컴포넌트를 호출합니다.
+
+```ts
+// v2 API
+type ButtonV2Props = {
+  variant: 'primary' | 'secondary' | 'ghost'
+  size: 'sm' | 'md' | 'lg'
+  onClick: () => void
+  children: React.ReactNode
+}
+
+// v1 API
+type ButtonV1Props = {
+  type: 'main' | 'sub'  // 두 종류뿐
+  large?: boolean
+  onPress: () => void
+  label: string
+}
+
+// Adapter 컴포넌트
+function Button({ variant, size, onClick, children }: ButtonV2Props) {
+  // v2 → v1 매핑
+  const v1Type = variant === 'primary' ? 'main' : 'sub'
+  const v1Large = size === 'lg'
+  const v1Label = typeof children === 'string' ? children : ''
+
+  return (
+    <ButtonV1
+      type={v1Type}
+      large={v1Large}
+      onPress={onClick}
+      label={v1Label}
+    />
+  )
+}
+```
+
+새 화면은 v2 API로 작성합니다. 옛 화면은 그대로 둡니다. **두 시스템이 같은 화면 위에서 공존할 수 있게** 됩니다. 모든 v1 컴포넌트가 v2 Adapter를 가질 필요는 없습니다. 마이그레이션의 진척에 따라 하나씩 추가합니다.
+
+![디자인 시스템 v1에서 v2로의 마이그레이션을 보여주는 다이어그램. 좌측에는 새 v2 컴포넌트 호출자가 표시되어 있고, 중앙에는 v2 API를 외부로 노출하는 Adapter 컴포넌트가 위치합니다. Adapter 내부에서 v2 props인 variant, size, onClick이 v1 props인 type, large, onPress로 변환되는 매핑이 표 형태로 그려져 있습니다. 우측에는 변환된 props를 받아 실제 렌더링을 수행하는 v1 ButtonV1 컴포넌트가 있습니다. 다이어그램 하단에는 마이그레이션 진척에 따라 Adapter가 점진적으로 사라지고 v2 컴포넌트가 v1 컴포넌트를 대체하는 시간축이 표시되어, Adapter가 영구적 구조가 아닌 과도기적 다리임을 보여줍니다.](dpo-04-02-ds-migration.svg)
+
+마이그레이션이 끝나면 Adapter는 사라집니다. v2 컴포넌트가 v1을 직접 대체합니다. **Adapter는 영구 구조가 아니라 과도기의 다리입니다.** 이것이 Adapter 패턴이 디자인 시스템 마이그레이션에 잘 맞는 이유입니다. 두 세계가 같은 자리에 잠시 공존할 수 있게 해주고, 자기 역할이 끝나면 깔끔하게 제거됩니다.
+
+디자이너에게 이 패턴이 보이는 자리. 디자인 시스템 v2를 설계할 때, v1과의 호환성을 어디까지 보장할 것인가는 중요한 결정입니다. 모든 v1 API를 보장하면 v2의 의미가 흐려집니다. 아무것도 보장하지 않으면 마이그레이션 비용이 폭발합니다. 그 중간을 찾는 일은 **무엇을 Adapter로 변환 가능하게 만들고 무엇을 단절시킬 것인가**의 결정과 같습니다.
+
+---
+
+## 다음 편 예고
+
+> [ep.05 — Decorator와 Wrapper 컴포넌트의 윤리](/design-patterns-objects-ep-05)
+
+Adapter가 모양이 다른 두 세계를 잇는다면, Decorator는 같은 모양 위에 기능을 덧붙이는 패턴입니다. 그 덧붙임에 따라오는 책임을 살펴봅니다.

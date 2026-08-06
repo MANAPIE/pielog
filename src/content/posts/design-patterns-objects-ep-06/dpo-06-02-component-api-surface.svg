@@ -1,0 +1,231 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-api">
+  <title id="title-api">디자인 시스템 컴포넌트 API의 표면적 스펙트럼</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #C02D6E;
+        --c-accent-2: #D97757;
+        --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #EC85B5;
+          --c-accent-2: #E89376;
+          --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .col-bg {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .col-center {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.5;
+        stroke-dasharray: 4 3;
+      }
+
+      .box {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.3;
+      }
+
+      .box-good {
+        fill: var(--c-card);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.6;
+      }
+
+      .axis {
+        stroke: var(--c-line);
+        stroke-width: 1.5;
+        fill: none;
+      }
+
+      .arrow-good {
+        stroke: var(--c-accent-2);
+        stroke-width: 2.5;
+        fill: none;
+      }
+
+      .col-num {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.14em;
+      }
+
+      .col-title {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        fill: var(--c-fg);
+        letter-spacing: -0.01em;
+      }
+
+      .col-cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        fill: var(--c-muted);
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        fill: var(--c-fg);
+      }
+
+      .code-mute {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+
+      .verdict-bad {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-muted);
+      }
+
+      .verdict-good {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+
+      .axis-label {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.06em;
+      }
+    </style>
+    <marker id="ar-good" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="580" />
+
+  <!-- 상단 축 라벨 -->
+  <text x="600" y="34" class="axis-label" text-anchor="middle">API SURFACE — 노출되는 결정의 수</text>
+
+  <!-- 축 -->
+  <line x1="60" y1="56" x2="1140" y2="56" class="axis" />
+  <text x="60" y="78" class="axis-label" fill="var(--c-fg)">최소 ←</text>
+  <text x="1140" y="78" class="axis-label" fill="var(--c-fg)" text-anchor="end">→ 최대</text>
+
+  <!-- 컬럼 1: 최소 -->
+  <g transform="translate(40 110)">
+    <rect class="col-bg" width="340" height="380" rx="6" />
+    <text x="20" y="32" class="col-num">01 — 최소</text>
+    <text x="20" y="58" class="col-title">단 하나의 variant</text>
+
+    <g transform="translate(20 80)">
+      <rect width="300" height="110" rx="4" class="box" />
+      <text x="12" y="22" class="code-mute">&lt;Button</text>
+      <text x="19" y="42" class="code">variant="primary"</text>
+      <text x="12" y="60" class="code-mute">&gt;</text>
+      <text x="19" y="78" class="code">결제하기</text>
+      <text x="12" y="96" class="code-mute">&lt;/Button&gt;</text>
+    </g>
+
+    <text x="20" y="220" class="col-cap" font-weight="700" fill="var(--c-fg)">일관성</text>
+    <text x="20" y="238" class="col-cap">시스템 전체가 같은 모양</text>
+
+    <text x="20" y="270" class="col-cap" font-weight="700" fill="var(--c-fg)">한계</text>
+    <text x="20" y="288" class="col-cap">예외적 상황을 다룰 수 없음</text>
+    <text x="20" y="306" class="col-cap">마케팅 페이지, A/B 테스트 변형 불가</text>
+
+    <text x="20" y="350" class="verdict-bad">자유도 부족</text>
+  </g>
+
+  <!-- 컬럼 2: 균형 (강조) -->
+  <g transform="translate(420 110)">
+    <rect class="col-center" width="340" height="380" rx="6" />
+    <text x="20" y="32" class="col-num" fill="var(--c-accent-2)">02 — 균형</text>
+    <text x="20" y="58" class="col-title">Facade + primitive 두 진입점</text>
+
+    <g transform="translate(20 80)">
+      <rect width="300" height="55" rx="4" class="box-good" />
+      <text x="12" y="22" class="code">&lt;Button variant="primary"&gt;</text>
+      <text x="12" y="40" class="code-mute"> // 자주 쓰이는 길</text>
+    </g>
+
+    <g transform="translate(20 151)">
+      <rect width="300" height="85" rx="4" class="box-good" />
+      <text x="12" y="22" class="code">&lt;ButtonPrimitive</text>
+      <text x="12" y="40" class="code"> className={tokens.primary}</text>
+      <text x="12" y="58" class="code-mute"> // 고급 사용</text>
+      <text x="12" y="74" class="code-mute">/&gt;</text>
+    </g>
+
+    <text x="20" y="266" class="col-cap" font-weight="700" fill="var(--c-fg)">두 진입점</text>
+    <text x="20" y="284" class="col-cap">일반 컴포넌트가 자주 쓰이는 길을 포장</text>
+    <text x="20" y="302" class="col-cap">primitive가 막히지 않은 다른 길</text>
+
+    <text x="20" y="350" class="verdict-good">Facade의 원칙과 일치</text>
+  </g>
+
+  <!-- 컬럼 3: 최대 -->
+  <g transform="translate(800 110)">
+    <rect class="col-bg" width="340" height="380" rx="6" />
+    <text x="20" y="32" class="col-num">03 — 최대</text>
+    <text x="20" y="58" class="col-title">모든 토큰을 prop으로</text>
+
+    <g transform="translate(20 90)">
+      <rect width="300" height="200" rx="4" class="box" />
+      <text x="12" y="20" class="code-mute">&lt;Button</text>
+      <text x="12" y="38" class="code-mute"> variant size color</text>
+      <text x="12" y="56" class="code-mute"> textColor borderRadius</text>
+      <text x="12" y="74" class="code-mute"> fontWeight paddingX</text>
+      <text x="12" y="92" class="code-mute"> paddingY hoverColor</text>
+      <text x="12" y="110" class="code-mute"> activeColor fontFamily</text>
+      <text x="12" y="128" class="code-mute"> lineHeight shadow</text>
+      <text x="12" y="146" class="code-mute"> letterSpacing ...</text>
+      <text x="12" y="168" class="code-mute">&gt;</text>
+      <text x="12" y="186" class="code"> 결제하기</text>
+    </g>
+
+    <text x="20" y="320" class="col-cap" font-weight="700" fill="var(--c-fg)">자유도 최대</text>
+    <text x="20" y="338" class="col-cap">매번 다른 조합 가능 → 일관성 사라짐</text>
+
+    <text x="20" y="370" class="verdict-bad">디자인 시스템이 작동하지 않음</text>
+  </g>
+
+  <!-- 하단 화살표: 좋은 디자인 시스템은 중앙으로 향함 -->
+  <g transform="translate(0 520)">
+    <line x1="40" y1="0" x2="420" y2="0" class="arrow-good" marker-end="url(#ar-good)" />
+    <line x1="1140" y1="0" x2="760" y2="0" class="arrow-good" marker-end="url(#ar-good)" />
+    <text x="590" y="5" class="verdict-good" text-anchor="middle">좋은 디자인 시스템은 균형 지점을 향합니다</text>
+  </g>
+</svg>

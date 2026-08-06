@@ -1,0 +1,160 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-fluent">
+  <title id="title-fluent">HttpRequestBuilder의 구조와 fluent interface 흐름</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(74,95,217,0.08); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(141,160,255,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; }
+      .box-accent { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.6; }
+      .box-final { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.6; }
+      .line { stroke: var(--c-line); stroke-width: 1.2; fill: none; }
+      .line-accent { stroke: var(--c-accent); stroke-width: 1.4; fill: none; }
+      .line-dashed { stroke: var(--c-line); stroke-width: 1.2; fill: none; stroke-dasharray: 4 4; }
+      .divider { stroke: var(--c-divider); stroke-width: 1; }
+      .col-label { font-family: 'Inter', system-ui, sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.14em; }
+      .class-title { font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 700; fill: var(--c-fg); }
+      .field { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11.5px; fill: var(--c-muted); }
+      .method { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; fill: var(--c-fg); font-weight: 600; }
+      .method-build { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; fill: var(--c-accent); font-weight: 700; }
+      .step-num { font-family: 'Inter', system-ui, sans-serif; font-size: 10px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.1em; }
+      .call { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12.5px; fill: var(--c-fg); font-weight: 600; }
+      .returns { font-family: 'Inter', system-ui, sans-serif; font-size: 10px; fill: var(--c-accent); font-weight: 700; font-style: italic; }
+      .product { font-family: 'Inter', system-ui, sans-serif; font-size: 14px; fill: var(--c-fg); font-weight: 700; }
+    </style>
+    <marker id="arr2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)"/>
+    </marker>
+    <marker id="arr2b" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="580"/>
+
+  <!-- ============ 좌: 클래스 구조 ============ -->
+  <g transform="translate(50 50)">
+    <text x="0" y="10" class="col-label">CLASS STRUCTURE</text>
+
+    <!-- HttpRequestBuilder 박스 -->
+    <g transform="translate(0 40)">
+      <rect width="420" height="440" rx="6" class="box-accent"/>
+      <text x="210" y="32" class="class-title" text-anchor="middle">HttpRequestBuilder</text>
+      <line x1="0" y1="46" x2="420" y2="46" class="divider"/>
+
+      <!-- private fields -->
+      <text x="16" y="68" class="step-num">PRIVATE FIELDS</text>
+      <text x="16" y="88" class="field">- url: string</text>
+      <text x="16" y="106" class="field">- method: string = 'GET'</text>
+      <text x="16" y="124" class="field">- headers: Record&lt;string, string&gt;</text>
+      <text x="16" y="142" class="field">- body: string | null</text>
+      <text x="16" y="160" class="field">- timeout: number = 5000</text>
+      <text x="16" y="178" class="field">- retries: number = 0</text>
+      <text x="16" y="196" class="field">- withCredentials: boolean = false</text>
+
+      <line x1="16" y1="212" x2="404" y2="212" class="divider"/>
+
+      <!-- methods -->
+      <text x="16" y="232" class="step-num">METHODS — return this</text>
+      <text x="16" y="252" class="method">+ setUrl(url): this</text>
+      <text x="16" y="270" class="method">+ setMethod(method): this</text>
+      <text x="16" y="288" class="method">+ setHeader(key, value): this</text>
+      <text x="16" y="306" class="method">+ setBody(body): this</text>
+      <text x="16" y="324" class="method">+ setTimeout(ms): this</text>
+      <text x="16" y="342" class="method">+ setRetries(n): this</text>
+      <text x="16" y="360" class="method">+ withAuth(): this</text>
+
+      <line x1="16" y1="376" x2="404" y2="376" class="divider"/>
+      <text x="16" y="398" class="method-build">+ build(): HttpRequest</text>
+      <text x="16" y="416" class="field">  → 검증 후 불변 객체 반환</text>
+    </g>
+
+    <!-- 자기 자신을 가리키는 곡선 화살표 (this) -->
+    <g transform="translate(420 280)">
+      <path d="M 0 0 C 80 0 80 50 0 50" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)"/>
+      <text x="44" y="22" class="returns" text-anchor="middle">return this</text>
+    </g>
+  </g>
+
+  <!-- ============ 우: 호출 흐름 ============ -->
+  <g transform="translate(620 40)">
+    <text x="0" y="20" class="col-label">FLUENT CALL FLOW</text>
+
+    <!-- 단계 카드들 -->
+    <g transform="translate(0 50)">
+      <!-- Step 1 -->
+      <g transform="translate(0 0)">
+        <rect width="500" height="36" rx="4" class="box"/>
+        <text x="16" y="24" class="call">new HttpRequestBuilder()</text>
+        <text x="450" y="24" class="returns" text-anchor="end">→ this</text>
+      </g>
+      <line x1="20" y1="36" x2="20" y2="50" class="line-accent" marker-end="url(#arr2)"/>
+
+      <!-- Step 2 -->
+      <g transform="translate(0 50)">
+        <rect width="500" height="36" rx="4" class="box"/>
+        <text x="16" y="24" class="call">.setUrl('/api/users')</text>
+        <text x="450" y="24" class="returns" text-anchor="end">→ this</text>
+      </g>
+      <line x1="20" y1="86" x2="20" y2="100" class="line-accent" marker-end="url(#arr2)"/>
+
+      <!-- Step 3 -->
+      <g transform="translate(0 100)">
+        <rect width="500" height="36" rx="4" class="box"/>
+        <text x="16" y="24" class="call">.setMethod('POST')</text>
+        <text x="450" y="24" class="returns" text-anchor="end">→ this</text>
+      </g>
+      <line x1="20" y1="136" x2="20" y2="150" class="line-accent" marker-end="url(#arr2)"/>
+
+      <!-- Step 4 -->
+      <g transform="translate(0 150)">
+        <rect width="500" height="36" rx="4" class="box"/>
+        <text x="16" y="24" class="call">.setHeader(...) .setBody(...)</text>
+        <text x="450" y="24" class="returns" text-anchor="end">→ this</text>
+      </g>
+      <line x1="20" y1="186" x2="20" y2="200" class="line-accent" marker-end="url(#arr2)"/>
+
+      <!-- Step 5 -->
+      <g transform="translate(0 200)">
+        <rect width="500" height="36" rx="4" class="box"/>
+        <text x="16" y="24" class="call">.setTimeout(3000) .setRetries(2)</text>
+        <text x="450" y="24" class="returns" text-anchor="end">→ this</text>
+      </g>
+      <line x1="20" y1="236" x2="20" y2="250" class="line-accent" marker-end="url(#arr2)"/>
+
+      <!-- Step 6 -->
+      <g transform="translate(0 250)">
+        <rect width="500" height="36" rx="4" class="box"/>
+        <text x="16" y="24" class="call">.withAuth()</text>
+        <text x="450" y="24" class="returns" text-anchor="end">→ this</text>
+      </g>
+      <line x1="20" y1="286" x2="20" y2="300" class="line-accent" marker-end="url(#arr2)"/>
+
+      <!-- Step 7: build() -->
+      <g transform="translate(0 300)">
+        <rect width="500" height="44" rx="4" class="box-final"/>
+        <text x="16" y="28" class="call" fill="var(--c-accent)">.build()</text>
+        <text x="484" y="28" class="returns" text-anchor="end" font-style="normal" font-weight="700">→ HttpRequest</text>
+      </g>
+
+      <!-- 최종 결과물 -->
+      <line x1="250" y1="344" x2="250" y2="380" class="line-accent" marker-end="url(#arr2)"/>
+
+      <g transform="translate(110 380)">
+        <rect width="280" height="60" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
+        <text x="140" y="25" class="product" text-anchor="middle">HttpRequest</text>
+        <text x="140" y="43" class="field" text-anchor="middle">readonly · 불변</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,137 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cover-title">
+  <title id="cover-title">Factory와 디자인 시스템의 컴포넌트 팩토리 — ep.01 커버</title>
+
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #C02D6E;
+        --c-accent-2: #D97757;
+        --c-accent-3: #A65AA8;
+        --c-num: rgba(26, 31, 46, 0.07);
+        --c-dot: #1A1F2E;
+        --c-line: #1A1F2E;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #EC85B5;
+          --c-accent-2: #E89376;
+          --c-accent-3: #CE9DD2;
+          --c-num: rgba(232, 230, 225, 0.07);
+          --c-dot: #E8E6E1;
+          --c-line: #E8E6E1;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .num {
+        fill: var(--c-num);
+        font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+        font-weight: 800;
+        font-size: 220px;
+        letter-spacing: -0.04em;
+      }
+    </style>
+
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+
+    <radialGradient id="grad1" cx="18%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="grad2" cx="85%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#grad1)"/>
+  <rect width="1200" height="630" fill="url(#grad2)"/>
+
+  <!-- 배경 큰 stroke 도형 -->
+  <circle cx="100" cy="100" r="240" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.14"/>
+  <rect x="780" y="450" width="500" height="320" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.12" transform="rotate(8 1030 610)"/>
+
+  <!-- 좌상단 회전 사각형 디테일 -->
+  <g transform="translate(140 480) rotate(-12)" opacity="0.7">
+    <rect x="-20" y="-20" width="40" height="40" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+  </g>
+
+  <!-- Factory 박스 (좌측 중앙) -->
+  <g transform="translate(280 315)">
+    <!-- 외곽 포커스 링 -->
+    <rect x="-110" y="-90" width="220" height="180" rx="9" fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.55"/>
+    <!-- 본 박스 -->
+    <rect x="-100" y="-80" width="200" height="160" rx="6" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.2"/>
+    <!-- 내부 텍스처: 가로 라인들 -->
+    <line x1="-80" y1="-45" x2="80" y2="-45" stroke="var(--c-line)" stroke-width="2"/>
+    <line x1="-80" y1="-22" x2="40" y2="-22" stroke="var(--c-line)" stroke-width="1" opacity="0.4"/>
+    <line x1="-80" y1="-5" x2="60" y2="-5" stroke="var(--c-line)" stroke-width="1" opacity="0.4"/>
+    <!-- 작은 점 무리 -->
+    <circle cx="-75" cy="30" r="3.5" fill="var(--c-accent)"/>
+    <circle cx="-60" cy="30" r="3.5" fill="var(--c-accent)" opacity="0.55"/>
+    <circle cx="-45" cy="30" r="3.5" fill="var(--c-accent)" opacity="0.3"/>
+    <!-- 미니 바 -->
+    <rect x="-80" y="50" width="50" height="7" rx="2" fill="var(--c-accent-2)" opacity="0.75"/>
+    <rect x="-25" y="50" width="30" height="7" rx="2" fill="var(--c-accent-2)" opacity="0.35"/>
+  </g>
+
+  <!-- 분기 화살표 (Factory → 결과물들) -->
+  <g opacity="0.7">
+    <!-- 위쪽 분기 -->
+    <path d="M 400 270 Q 500 220 620 180" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <polygon points="620,180 614,189 612,177" fill="var(--c-line)" transform="rotate(-20 620 180)"/>
+    <!-- 가운데 분기 -->
+    <path d="M 400 315 Q 540 315 700 320" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <polygon points="700,320 692,326 692,314" fill="var(--c-line)"/>
+    <!-- 아래쪽 분기 -->
+    <path d="M 400 365 Q 530 410 660 450" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <polygon points="660,450 652,448 654,460" fill="var(--c-line)" transform="rotate(15 660 450)"/>
+  </g>
+
+  <!-- 결과물 1: 우상단 원 (Push) -->
+  <g transform="translate(700 150) rotate(-8)">
+    <circle r="40" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
+    <circle r="22" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5"/>
+    <circle r="6" fill="var(--c-accent-3)"/>
+  </g>
+
+  <!-- 결과물 2: 우중간 사각형 (Email) -->
+  <g transform="translate(800 320) rotate(5)">
+    <rect x="-50" y="-35" width="100" height="70" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
+    <line x1="-35" y1="-15" x2="35" y2="-15" stroke="var(--c-line)" stroke-width="1.5"/>
+    <line x1="-35" y1="0" x2="20" y2="0" stroke="var(--c-line)" stroke-width="1" opacity="0.4"/>
+    <line x1="-35" y1="12" x2="25" y2="12" stroke="var(--c-line)" stroke-width="1" opacity="0.4"/>
+    <rect x="-35" y="22" width="20" height="5" rx="1" fill="var(--c-accent-2)"/>
+  </g>
+
+  <!-- 결과물 3: 우하단 삼각형 (SMS) -->
+  <g transform="translate(720 480) rotate(-5)">
+    <polygon points="0,-40 40,30 -40,30" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
+    <circle cx="0" cy="5" r="6" fill="var(--c-accent)"/>
+  </g>
+
+  <!-- 우상단 동심원 데코 -->
+  <g transform="translate(990 130)" opacity="0.6">
+    <circle r="50" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+    <circle r="32" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- 좌하단 작은 점 무리 -->
+  <g transform="translate(80 540)">
+    <circle r="4" fill="var(--c-accent-3)"/>
+    <circle cx="16" r="4" fill="var(--c-accent-3)" opacity="0.6"/>
+    <circle cx="32" r="4" fill="var(--c-accent-3)" opacity="0.3"/>
+  </g>
+
+  <!-- 우하단 큰 시리즈 번호 -->
+  <text x="1130" y="575" class="num" text-anchor="end">01</text>
+</svg>

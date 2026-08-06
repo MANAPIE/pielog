@@ -1,0 +1,140 @@
+<svg viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-st">
+  <title id="title-st">클래스 Singleton과 ES 모듈 패턴의 동등 구조</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(74,95,217,0.08);
+        --c-soft-2: rgba(217,119,87,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(141,160,255,0.14);
+          --c-soft-2: rgba(232,147,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .pane-a { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-b { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; }
+      .box-private { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; stroke-dasharray: 4 3; }
+      .box-instance { fill: var(--c-bg); stroke: var(--c-accent); stroke-width: 2; }
+      .box-instance-b { fill: var(--c-bg); stroke: var(--c-accent-2); stroke-width: 2; }
+      .line { stroke: var(--c-line); stroke-width: 1.2; fill: none; }
+      .line-block { stroke: var(--c-accent-2); stroke-width: 2; fill: none; }
+      .line-dashed { stroke: var(--c-line); stroke-width: 1.2; fill: none; stroke-dasharray: 4 4; }
+      .pane-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; }
+      .pane-title { font-family: 'Inter',system-ui,sans-serif; font-size: 17px; font-weight: 700; fill: var(--c-fg); letter-spacing: -0.01em; }
+      .pane-cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+      .node-title { font-family: 'Inter',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .node-sub { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-muted); }
+      .caller { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 600; fill: var(--c-fg); }
+    </style>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+    <marker id="ar-x" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="540"/>
+
+  <!-- ===== 좌: Class-based Singleton ===== -->
+  <g transform="translate(40 30)">
+    <rect class="pane-a" width="540" height="480" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent)">A. CLASS-BASED</text>
+    <text x="24" y="58" class="pane-title">Singleton Class</text>
+    <text x="24" y="80" class="pane-cap">private 생성자가 외부의 new를 막습니다</text>
+
+    <!-- Singleton 클래스 -->
+    <g transform="translate(180 110)">
+      <rect width="180" height="100" rx="6" class="box-instance"/>
+      <text x="90" y="28" class="node-title" text-anchor="middle">Logger</text>
+      <line x1="14" y1="40" x2="166" y2="40" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="58" class="node-sub">private constructor()</text>
+      <text x="14" y="76" class="node-sub">static getInstance()</text>
+      <text x="14" y="92" class="node-sub">log(msg)</text>
+    </g>
+
+    <!-- 차단된 new 시도 -->
+    <g transform="translate(40 260)">
+      <rect width="140" height="40" rx="4" class="box-private"/>
+      <text x="70" y="25" class="caller" text-anchor="middle">new Logger()</text>
+    </g>
+    <!-- X 표시 -->
+    <line x1="180" y1="270" x2="240" y2="290" class="line-block"/>
+    <line x1="240" y1="270" x2="180" y2="290" class="line-block"/>
+    <text x="210" y="320" class="pane-cap" text-anchor="middle" fill="var(--c-accent-2)" font-weight="700">차단됨</text>
+
+    <!-- 호출자들 -->
+    <g transform="translate(280 260)">
+      <rect width="160" height="40" rx="4" class="box"/>
+      <text x="80" y="25" class="caller" text-anchor="middle">caller A</text>
+    </g>
+    <g transform="translate(280 320)">
+      <rect width="160" height="40" rx="4" class="box"/>
+      <text x="80" y="25" class="caller" text-anchor="middle">caller B</text>
+    </g>
+    <g transform="translate(280 380)">
+      <rect width="160" height="40" rx="4" class="box"/>
+      <text x="80" y="25" class="caller" text-anchor="middle">caller C</text>
+    </g>
+
+    <!-- getInstance를 통한 단일 진입 -->
+    <line x1="280" y1="280" x2="240" y2="190" class="line" marker-end="url(#ar)"/>
+    <line x1="280" y1="340" x2="252" y2="200" class="line" marker-end="url(#ar)"/>
+    <line x1="280" y1="400" x2="265" y2="210" class="line" marker-end="url(#ar)"/>
+
+    <text x="480" y="340" class="pane-cap" text-anchor="end">getInstance() →</text>
+  </g>
+
+  <!-- ===== 우: ES Module ===== -->
+  <g transform="translate(620 30)">
+    <rect class="pane-b" width="540" height="480" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-2)">B. ES MODULE</text>
+    <text x="24" y="58" class="pane-title">Module Singleton</text>
+    <text x="24" y="80" class="pane-cap">모듈은 한 번만 평가됩니다. 자연스러운 단일 인스턴스.</text>
+
+    <!-- 모듈 파일 박스 -->
+    <g transform="translate(150 110)">
+      <rect width="240" height="100" rx="6" class="box-instance-b"/>
+      <text x="120" y="22" class="node-sub" text-anchor="middle">logger.ts</text>
+      <line x1="14" y1="32" x2="226" y2="32" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="52" class="node-sub">let _logger = null</text>
+      <text x="14" y="70" class="node-sub">function createLogger()</text>
+      <text x="14" y="88" class="node-sub">export const logger</text>
+    </g>
+
+    <!-- 평가 표시 -->
+    <text x="270" y="240" class="pane-cap" text-anchor="middle" fill="var(--c-accent-2)" font-weight="700">평가 1회 → 인스턴스 1개</text>
+
+    <!-- 호출자들 -->
+    <g transform="translate(40 300)">
+      <rect width="140" height="40" rx="4" class="box"/>
+      <text x="70" y="25" class="caller" text-anchor="middle">a.ts</text>
+    </g>
+    <g transform="translate(200 300)">
+      <rect width="140" height="40" rx="4" class="box"/>
+      <text x="70" y="25" class="caller" text-anchor="middle">b.ts</text>
+    </g>
+    <g transform="translate(360 300)">
+      <rect width="140" height="40" rx="4" class="box"/>
+      <text x="70" y="25" class="caller" text-anchor="middle">c.ts</text>
+    </g>
+
+    <!-- import 화살표 -->
+    <line x1="110" y1="300" x2="240" y2="220" class="line" marker-end="url(#ar)"/>
+    <line x1="270" y1="300" x2="270" y2="220" class="line" marker-end="url(#ar)"/>
+    <line x1="430" y1="300" x2="300" y2="220" class="line" marker-end="url(#ar)"/>
+
+    <text x="270" y="370" class="pane-cap" text-anchor="middle">import { logger } — 모두 같은 인스턴스</text>
+
+    <!-- 캡션 -->
+    <text x="24" y="430" class="pane-cap" font-weight="700" fill="var(--c-fg)">JS/TS에서 Singleton 패턴이 잘 보이지 않는 이유</text>
+    <text x="24" y="450" class="pane-cap">모듈 시스템이 이미 그 역할을 합니다</text>
+  </g>
+</svg>

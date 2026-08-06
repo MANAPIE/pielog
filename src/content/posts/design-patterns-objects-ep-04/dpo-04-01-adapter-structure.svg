@@ -1,0 +1,122 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-ad">
+  <title id="title-ad">Object Adapter의 클래스 구조</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(74,95,217,0.08);
+        --c-soft-2: rgba(217,119,87,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(141,160,255,0.14);
+          --c-soft-2: rgba(232,147,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .pane-our { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-ext { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; }
+      .box-iface { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; stroke-dasharray: 5 3; }
+      .box-adapter { fill: var(--c-bg); stroke: var(--c-accent-2); stroke-width: 2; }
+      .line { stroke: var(--c-line); stroke-width: 1.3; fill: none; }
+      .line-dashed { stroke: var(--c-line); stroke-width: 1.3; fill: none; stroke-dasharray: 5 4; }
+      .pane-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; }
+      .pane-title { font-family: 'Inter',system-ui,sans-serif; font-size: 16px; font-weight: 700; fill: var(--c-fg); letter-spacing: -0.01em; }
+      .class-name { font-family: 'Inter',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .class-name-it { font-family: 'Inter',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); font-style: italic; }
+      .stereo { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 500; fill: var(--c-muted); letter-spacing: 0.06em; }
+      .sig { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-fg); }
+      .sig-mute { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-muted); }
+      .edge-label { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 600; fill: var(--c-muted); }
+      .step-label { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 600; fill: var(--c-accent-2); }
+    </style>
+    <marker id="tri-ad" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
+      <polygon points="0,0 12,6 0,12" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.3"/>
+    </marker>
+    <marker id="ar-ad" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+    <marker id="ar-ad-ac" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+    <marker id="diamond" markerWidth="14" markerHeight="14" refX="2" refY="7" orient="auto">
+      <polygon points="2,2 12,7 2,12 0,7" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.3"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="580"/>
+
+  <!-- ===== 좌 패널: 우리 시스템 ===== -->
+  <g transform="translate(40 40)">
+    <rect class="pane-our" width="520" height="500" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent)">OUR SYSTEM</text>
+
+    <!-- 인터페이스 -->
+    <g transform="translate(140 80)">
+      <rect width="240" height="85" rx="4" class="box-iface"/>
+      <text x="120" y="22" class="stereo" text-anchor="middle">«interface»</text>
+      <text x="120" y="44" class="class-name-it" text-anchor="middle">PaymentProcessor</text>
+      <line x1="14" y1="54" x2="226" y2="54" class="line" stroke-width="1"/>
+      <text x="14" y="72" class="sig-mute">+ charge(amountInWon, customerId)</text>
+    </g>
+
+    <!-- 구현 화살표 -->
+    <line x1="260" y1="280" x2="260" y2="170" class="line-dashed" marker-end="url(#tri-ad)"/>
+    <text x="280" y="225" class="edge-label">implements</text>
+
+    <!-- Adapter -->
+    <g transform="translate(80 280)">
+      <rect width="360" height="165" rx="4" class="box-adapter"/>
+      <text x="180" y="26" class="class-name" text-anchor="middle">StripePaymentAdapter</text>
+      <line x1="14" y1="40" x2="346" y2="40" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="60" class="sig-mute">- gateway: StripeGateway</text>
+      <line x1="14" y1="70" x2="346" y2="70" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="90" class="sig">+ charge(amountInWon, customerId):</text>
+      <text x="14" y="106" class="step-label">  단위 변환 (won → cents)</text>
+      <text x="14" y="120" class="step-label">  인자명 매핑 (customerId → customer)</text>
+      <text x="14" y="134" class="step-label">  반환 형태 변환 (status → success)</text>
+      <text x="14" y="152" class="sig">+ → PaymentResult</text>
+    </g>
+
+    <!-- 클라이언트 -->
+    <g transform="translate(260 470)">
+      <text x="0" y="0" class="edge-label" text-anchor="middle">클라이언트: PaymentProcessor만 알면 됩니다</text>
+    </g>
+  </g>
+
+  <!-- ===== 우 패널: 외부 시스템 ===== -->
+  <g transform="translate(640 40)">
+    <rect class="pane-ext" width="520" height="500" rx="8"/>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-2)">EXTERNAL LIBRARY</text>
+
+    <!-- StripeGateway -->
+    <g transform="translate(80 280)">
+      <rect width="360" height="165" rx="4" class="box"/>
+      <text x="180" y="26" class="class-name" text-anchor="middle">StripeGateway</text>
+      <line x1="14" y1="40" x2="346" y2="40" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="62" class="stereo">DIFFERENT INTERFACE</text>
+      <text x="14" y="84" class="sig">+ createCharge({{</text>
+      <text x="14" y="100" class="sig-mute">    amount_cents,</text>
+      <text x="14" y="116" class="sig-mute">    currency,</text>
+      <text x="14" y="132" class="sig-mute">    customer,</text>
+      <text x="14" y="148" class="sig">  }})</text>
+    </g>
+
+    <!-- 가위표시: 직접 닿을 수 없음 -->
+    <text x="260" y="170" class="edge-label" text-anchor="middle">(우리 코드는 이 형태를 그대로 쓸 수 없습니다)</text>
+
+    <!-- 외부 표시 -->
+    <g transform="translate(260 470)">
+      <text x="0" y="0" class="edge-label" text-anchor="middle">외부 의존: 변경 권한 없음</text>
+    </g>
+  </g>
+
+  <!-- ===== 두 패널 사이 컴포지션 화살표 (Adapter has-a Gateway) ===== -->
+  <line x1="440" y1="340" x2="720" y2="340" class="line" marker-start="url(#diamond)" marker-end="url(#ar-ad-ac)"/>
+  <text x="600" y="332" class="edge-label" text-anchor="middle" fill="var(--c-accent-2)">has-a (compose)</text>
+  <text x="600" y="358" class="edge-label" text-anchor="middle">delegated call → createCharge</text>
+</svg>

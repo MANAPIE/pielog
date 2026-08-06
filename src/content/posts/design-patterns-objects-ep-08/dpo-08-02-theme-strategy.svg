@@ -1,0 +1,144 @@
+<svg viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-ts">
+  <title id="title-ts">같은 결정 구조의 세 가지 자리 — 다크모드, i18n, 플랫폼</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-3: rgba(139,122,184,0.12); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-3: rgba(176,160,218,0.16); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .row-bg { fill: var(--c-soft-3); stroke: var(--c-accent-3); stroke-width: 1; stroke-dasharray: 4 3; }
+      .ctx { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.6; }
+      .strat { fill: var(--c-card); stroke: var(--c-accent-3); stroke-width: 1.4; }
+      .line { stroke: var(--c-accent-3); stroke-width: 1.5; fill: none; stroke-dasharray: 4 3; }
+      .row-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-3); letter-spacing: 0.14em; }
+      .row-title { font-family: 'Inter',system-ui,sans-serif; font-size: 15px; font-weight: 700; fill: var(--c-fg); letter-spacing: -0.01em; }
+      .ctx-name { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .strat-name { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .strat-sub { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10.5px; fill: var(--c-muted); }
+      .annot { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+    </style>
+    <marker id="ar-row" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-3)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="640"/>
+
+  <text x="600" y="36" class="row-title" text-anchor="middle">Context 하나에 Strategy를 갈아 끼우는 같은 결정</text>
+
+  <!-- ROW 1: 다크모드 -->
+  <g transform="translate(40 70)">
+    <rect class="row-bg" width="1120" height="160" rx="8"/>
+    <text x="20" y="28" class="row-label">01 — DARK MODE</text>
+    <text x="20" y="50" class="row-title">테마 토큰 교체</text>
+
+    <!-- Context -->
+    <g transform="translate(20 80)">
+      <rect width="200" height="60" rx="5" class="ctx"/>
+      <text x="100" y="26" class="ctx-name" text-anchor="middle">Component</text>
+      <text x="100" y="46" class="annot" text-anchor="middle">tokens 인터페이스만 앎</text>
+    </g>
+
+    <!-- 화살표 -->
+    <line x1="220" y1="110" x2="400" y2="110" class="line" marker-end="url(#ar-row)"/>
+
+    <!-- Strategy 두 개 -->
+    <g transform="translate(400 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">light</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">#FFFFFF / #1A1F2E</text>
+    </g>
+
+    <g transform="translate(600 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">dark</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">#0F1419 / #E8E6E1</text>
+    </g>
+
+    <g transform="translate(800 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">contrast</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">#000000 / #FFFFFF</text>
+    </g>
+  </g>
+
+  <!-- ROW 2: i18n -->
+  <g transform="translate(40 250)">
+    <rect class="row-bg" width="1120" height="160" rx="8"/>
+    <text x="20" y="28" class="row-label">02 — I18N</text>
+    <text x="20" y="50" class="row-title">언어 사전 교체</text>
+
+    <g transform="translate(20 80)">
+      <rect width="200" height="60" rx="5" class="ctx"/>
+      <text x="100" y="26" class="ctx-name" text-anchor="middle">t('common.submit')</text>
+      <text x="100" y="46" class="annot" text-anchor="middle">키만 부르고 언어 모름</text>
+    </g>
+
+    <line x1="220" y1="110" x2="400" y2="110" class="line" marker-end="url(#ar-row)"/>
+
+    <g transform="translate(400 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">ko</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">"제출"</text>
+    </g>
+
+    <g transform="translate(600 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">ja</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">"送信"</text>
+    </g>
+
+    <g transform="translate(800 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">en</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">"Submit"</text>
+    </g>
+  </g>
+
+  <!-- ROW 3: 플랫폼 -->
+  <g transform="translate(40 430)">
+    <rect class="row-bg" width="1120" height="160" rx="8"/>
+    <text x="20" y="28" class="row-label">03 — PLATFORM</text>
+    <text x="20" y="50" class="row-title">네이티브 렌더 분기</text>
+
+    <g transform="translate(20 80)">
+      <rect width="200" height="60" rx="5" class="ctx"/>
+      <text x="100" y="26" class="ctx-name" text-anchor="middle">&lt;DatePicker /&gt;</text>
+      <text x="100" y="46" class="annot" text-anchor="middle">선언만, 플랫폼 모름</text>
+    </g>
+
+    <line x1="220" y1="110" x2="400" y2="110" class="line" marker-end="url(#ar-row)"/>
+
+    <g transform="translate(400 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">iOS</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">UIDatePicker</text>
+    </g>
+
+    <g transform="translate(600 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">Android</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">DatePickerDialog</text>
+    </g>
+
+    <g transform="translate(800 80)">
+      <rect width="180" height="60" rx="5" class="strat"/>
+      <text x="90" y="26" class="strat-name" text-anchor="middle">Web</text>
+      <text x="90" y="46" class="strat-sub" text-anchor="middle">&lt;input type="date"&gt;</text>
+    </g>
+  </g>
+
+  <!-- 하단 캡션 -->
+  <text x="600" y="620" class="annot" text-anchor="middle" font-weight="700" fill="var(--c-fg)">Context는 같음 — Strategy 객체만 갈아 끼움</text>
+</svg>

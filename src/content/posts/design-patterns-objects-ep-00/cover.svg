@@ -1,0 +1,145 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cover-title">
+  <title id="cover-title">디자인 패턴, 객체 수준 편 시리즈 커버</title>
+
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #C02D6E;
+        --c-accent-2: #D97757;
+        --c-accent-3: #A65AA8;
+        --c-num: rgba(26, 31, 46, 0.07);
+        --c-dot: #1A1F2E;
+        --c-line: #1A1F2E;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #EC85B5;
+          --c-accent-2: #E89376;
+          --c-accent-3: #CE9DD2;
+          --c-num: rgba(232, 230, 225, 0.07);
+          --c-dot: #E8E6E1;
+          --c-line: #E8E6E1;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .num {
+        fill: var(--c-num);
+        font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+        font-weight: 800;
+        font-size: 220px;
+        letter-spacing: -0.04em;
+      }
+    </style>
+
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+
+    <radialGradient id="grad1" cx="15%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="grad2" cx="88%" cy="85%" r="55%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect class="bg" width="1200" height="630"/>
+
+  <!-- 레이어 1: 도트 그리드 -->
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <!-- 레이어 2: 라디얼 그라디언트 -->
+  <rect width="1200" height="630" fill="url(#grad1)"/>
+  <rect width="1200" height="630" fill="url(#grad2)"/>
+
+  <!-- 레이어 3: 큰 stroke 도형 (화면 밖으로 빠짐) -->
+  <circle cx="1140" cy="80" r="280" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.16"/>
+  <rect x="-120" y="490" width="560" height="320" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.13" transform="rotate(-8 160 650)"/>
+
+  <!-- 좌상단 회전된 사각형 (디테일) -->
+  <g transform="translate(130 130) rotate(15)" opacity="0.75">
+    <rect x="-22" y="-22" width="44" height="44" fill="none" stroke="var(--c-accent)" stroke-width="1.5"/>
+    <rect x="-13" y="-13" width="26" height="26" fill="none" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.55"/>
+  </g>
+
+  <!-- 우상단 동심원 (디테일) -->
+  <g transform="translate(1020 130)" opacity="0.7">
+    <circle r="58" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+    <circle r="38" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.7"/>
+    <circle r="18" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.45"/>
+  </g>
+
+  <!-- 포그라운드 1: 뒤쪽 카드 (회전 -9°) -->
+  <g transform="translate(360 350) rotate(-9)">
+    <rect x="-110" y="-75" width="220" height="150" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <line x1="-85" y1="-45" x2="40" y2="-45" stroke="var(--c-line)" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.5"/>
+    <line x1="-85" y1="-25" x2="20" y2="-25" stroke="var(--c-line)" stroke-width="1" opacity="0.3"/>
+    <circle cx="-82" cy="25" r="3.5" fill="var(--c-accent)"/>
+    <circle cx="-67" cy="25" r="3.5" fill="var(--c-accent)" opacity="0.5"/>
+    <circle cx="-52" cy="25" r="3.5" fill="var(--c-accent)" opacity="0.25"/>
+    <rect x="-85" y="48" width="22" height="6" rx="2" fill="var(--c-accent-2)"/>
+    <rect x="-58" y="48" width="44" height="6" rx="2" fill="var(--c-accent-2)" opacity="0.45"/>
+  </g>
+
+  <!-- 포그라운드 2: 중간 카드 (회전 +5°) -->
+  <g transform="translate(540 300) rotate(5)">
+    <rect x="-115" y="-78" width="230" height="156" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <circle cx="-65" cy="-30" r="18" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5"/>
+    <circle cx="-65" cy="-30" r="10" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="-65" cy="-30" r="3.5" fill="var(--c-accent-3)"/>
+    <line x1="-30" y1="-45" x2="80" y2="-45" stroke="var(--c-line)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.4"/>
+    <line x1="-30" y1="-25" x2="60" y2="-25" stroke="var(--c-line)" stroke-width="1" opacity="0.3"/>
+    <rect x="-85" y="32" width="62" height="7" rx="2" fill="var(--c-accent)" opacity="0.7"/>
+    <rect x="-85" y="48" width="40" height="7" rx="2" fill="var(--c-accent)" opacity="0.35"/>
+    <rect x="50" y="22" width="22" height="22" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" transform="rotate(20 61 33)"/>
+  </g>
+
+  <!-- 포그라운드 3: 강조 카드 (이름이 붙은 카드, 회전 -2°) -->
+  <g transform="translate(750 360) rotate(-2)">
+    <!-- 외곽 포커스 링 -->
+    <rect x="-140" y="-100" width="280" height="200" rx="9" fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.55"/>
+    <!-- 본 카드 -->
+    <rect x="-130" y="-90" width="260" height="180" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.2"/>
+    <!-- 진한 헤드라인 -->
+    <line x1="-105" y1="-58" x2="-20" y2="-58" stroke="var(--c-line)" stroke-width="2.8"/>
+    <!-- 점선 라인 -->
+    <line x1="-105" y1="-35" x2="80" y2="-35" stroke="var(--c-line)" stroke-width="1" opacity="0.4"/>
+    <line x1="-105" y1="-18" x2="50" y2="-18" stroke="var(--c-line)" stroke-width="1" opacity="0.4"/>
+    <!-- 체크 -->
+    <polyline points="-100,32 -86,48 -58,18" fill="none" stroke="var(--c-accent-2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- 동심원 -->
+    <circle cx="62" cy="32" r="26" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5"/>
+    <circle cx="62" cy="32" r="16" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" opacity="0.65"/>
+    <circle cx="62" cy="32" r="6" fill="var(--c-accent-3)"/>
+    <!-- 작은 점 무리 -->
+    <circle cx="-32" cy="68" r="3" fill="var(--c-accent)"/>
+    <circle cx="-19" cy="68" r="3" fill="var(--c-accent)" opacity="0.55"/>
+    <circle cx="-6" cy="68" r="3" fill="var(--c-accent)" opacity="0.3"/>
+  </g>
+
+  <!-- 화살표: 강조 카드를 가리킴 -->
+  <g opacity="0.85">
+    <path d="M 920 175 Q 870 235 825 285" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <polygon points="822,288 834,280 826,270" fill="var(--c-line)"/>
+  </g>
+
+  <!-- 좌하단 작은 점 무리 -->
+  <g transform="translate(170 510)">
+    <circle r="4" fill="var(--c-accent-3)"/>
+    <circle cx="16" r="4" fill="var(--c-accent-3)" opacity="0.6"/>
+    <circle cx="32" r="4" fill="var(--c-accent-3)" opacity="0.3"/>
+  </g>
+
+  <!-- 우하단 큰 시리즈 번호 -->
+  <text x="1130" y="575" class="num" text-anchor="end">00</text>
+</svg>

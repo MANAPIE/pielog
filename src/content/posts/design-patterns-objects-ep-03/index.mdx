@@ -1,0 +1,178 @@
+---
+title: "Singleton과 전역 상태·테마 컨텍스트 - 디자인 패턴, 객체 수준 편 ep.03"
+description: 단 하나만 존재해야 한다는 결정의 이름. 가장 단순한 패턴이 가장 많은 논쟁의 한가운데에 놓이는 이유를 살펴봅니다.
+summary: Singleton의 TypeScript 구현과 Eager·Lazy 초기화를 정리합니다. 숨겨진 의존성, 테스트 어려움 같은 안티패턴 논점을 짚고, 디자인 시스템의 ThemeProvider와 React Context가 정말 Singleton인지 — 그 결정이 한 개여야만 하는지를 함께 살펴봅니다.
+date: 2026-06-16
+tags:
+  - series
+  - develop
+  - frontend
+  - backend
+  - design-patterns
+  - gof
+  - typescript
+  - object-oriented
+  - singleton
+  - creational
+  - design-system
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+세상에서 단 하나만 존재해야 한다는 결정은 매혹적입니다. 그 하나가 자라기 시작하면, 어디에서도 그것을 피할 수 없게 됩니다.
+
+---
+
+## 단 하나라는 결정
+
+Singleton은 가장 단순한 패턴입니다. 어떤 클래스의 인스턴스가 프로그램 전체에서 단 하나만 존재하도록 보장하고, 그 하나에 전역적으로 접근할 수 있게 합니다.
+
+설명이 짧다는 것은 사용처가 적다는 뜻은 아닙니다. 로깅 시스템, 설정 객체, 데이터베이스 연결 풀, 캐시, 이벤트 버스 — 누구나 한 번쯤 Singleton으로 만들어 본 것들입니다.
+
+질문은 "어떻게 하나만 만드는가"가 아닙니다. 그것은 쉽습니다. 진짜 질문은 다른 것입니다. **그 객체가 정말 하나여야 하는가.** 그리고 **하나라는 가정 위에 코드를 쌓아 올렸을 때 무엇이 잃어버려지는가**.
+
+Singleton이 GoF 패턴 중에서 가장 자주 안티패턴으로 비판받는 이유는 패턴 자체가 잘못되었기 때문이 아닙니다. 패턴이 답하는 질문이 너무 단순해 보여서, 그 단순함 뒤의 비용을 보지 못한 채로 사용되기 때문입니다.
+
+---
+
+## Singleton의 정석
+
+### Eager 초기화
+
+가장 단순한 형태는 클래스 로딩 시점에 인스턴스를 만들어 두는 것입니다.
+
+```ts
+class Logger {
+  static readonly instance = new Logger()
+
+  private constructor() {}
+
+  log(message: string) {
+    console.log(`[LOG] ${message}`)
+  }
+}
+
+// 사용
+Logger.instance.log('hello')
+```
+
+`private constructor`는 외부에서 `new Logger()`를 막습니다. `static readonly instance`가 유일한 진입점입니다. 단순하고 안전합니다. 다만 클래스가 로드되는 순간 인스턴스가 만들어지므로, 사용하지 않을 때도 메모리를 차지합니다.
+
+### Lazy 초기화
+
+처음 접근할 때 인스턴스를 만드는 방식입니다.
+
+```ts
+class Logger {
+  private static _instance: Logger | null = null
+
+  private constructor() {}
+
+  static getInstance(): Logger {
+    if (this._instance === null) {
+      this._instance = new Logger()
+    }
+    return this._instance
+  }
+
+  log(message: string) {
+    console.log(`[LOG] ${message}`)
+  }
+}
+
+// 사용
+Logger.getInstance().log('hello')
+```
+
+Java 같은 멀티스레드 언어에서는 이 구현에 동기화가 필요합니다. JavaScript와 TypeScript는 기본적으로 단일 스레드이므로 이런 고민이 없습니다. 그러나 비동기 초기화가 끼어들면 같은 종류의 경쟁 상황이 생길 수 있습니다.
+
+### 모듈 패턴이라는 대안
+
+TypeScript에서는 클래스를 거치지 않고도 같은 효과를 낼 수 있습니다.
+
+```ts
+// logger.ts
+let _logger: Logger | null = null
+
+function createLogger(): Logger {
+  if (_logger === null) {
+    _logger = new Logger()
+  }
+  return _logger
+}
+
+export const logger = createLogger()
+```
+
+ES 모듈은 한 번만 evaluate됩니다. `export const logger`는 자연스럽게 단일 인스턴스가 됩니다. 클래스의 `private constructor` 같은 장치 없이도 같은 결과가 나옵니다. **JavaScript/TypeScript 생태계에서 Singleton 패턴이 거의 보이지 않는 이유**는 모듈 시스템이 그 역할을 대신하기 때문입니다.
+
+![Singleton의 두 가지 구현 방식을 비교한 다이어그램. 좌측에는 클래스 기반 Singleton의 구조가 그려져 있습니다. private 생성자와 static 메서드 getInstance가 표시되어 있고, 호출자가 getInstance를 통해서만 인스턴스에 접근하는 흐름이 화살표로 표시되어 있습니다. 우측에는 ES 모듈을 통한 동등한 구조가 그려져 있습니다. 모듈 파일이 한 번만 평가되어 단일 인스턴스가 export되고, 여러 호출자가 같은 인스턴스를 import하는 모습입니다.](dpo-03-01-singleton-structure.svg)
+
+### 안티패턴: 숨겨진 의존성
+
+Singleton이 비판받는 가장 큰 이유는 **의존성을 숨긴다**는 점입니다.
+
+```ts
+class OrderService {
+  createOrder(items: Item[]) {
+    Logger.getInstance().log('creating order')
+    Cache.getInstance().invalidate('orders')
+    Analytics.getInstance().track('order.created')
+    // ...
+  }
+}
+```
+
+`OrderService`의 시그니처만 보면, 이 클래스가 무엇에 의존하는지 알 수 없습니다. 생성자 인자가 없습니다. 그러나 실제로는 Logger, Cache, Analytics라는 세 개의 전역 객체에 강하게 결합되어 있습니다. 코드를 읽는 사람은 메서드 본문을 모두 들여다봐야 의존 관계를 파악할 수 있습니다.
+
+이 문제는 **테스트할 때 가장 크게 드러납니다**. `OrderService`만 단독으로 테스트하고 싶지만, Singleton들이 실제 외부 시스템에 연결을 시도합니다. Logger는 파일에 쓰고, Cache는 Redis에 연결하려 하고, Analytics는 외부 API를 호출합니다. 테스트를 위해 전역 상태를 갈아 끼우는 일이 필요해지고, 그 작업은 깔끔하지 않습니다.
+
+![Singleton의 숨겨진 의존성 문제를 보여주는 다이어그램. 중앙에 OrderService 클래스 박스가 있고, 그 시그니처에는 createOrder 메서드만 보입니다. 그러나 메서드 내부에서 Logger, Cache, Analytics 세 개의 Singleton에 화살표로 연결되어 있는 모습이 점선으로 그려져 있습니다. 점선 화살표 옆에는 '숨겨진 결합'이라는 라벨이 붙어 있어, 호출 측에서는 보이지 않는 의존이 메서드 안에 묻혀 있음을 시각적으로 드러냅니다. 우측에는 같은 OrderService를 DI(의존성 주입) 방식으로 다시 그려, 생성자에 모든 의존이 명시되어 노출된 모습이 비교됩니다.](dpo-03-02-singleton-testing-problem.svg)
+
+대안은 **의존성 주입(DI)**입니다. 필요한 객체를 생성자 인자로 받습니다. 시그니처를 보면 의존 관계가 보입니다. 테스트할 때는 mock을 넘기면 됩니다.
+
+```ts
+class OrderService {
+  constructor(
+    private logger: Logger,
+    private cache: Cache,
+    private analytics: Analytics,
+  ) {}
+
+  createOrder(items: Item[]) {
+    this.logger.log('creating order')
+    this.cache.invalidate('orders')
+    this.analytics.track('order.created')
+  }
+}
+```
+
+Singleton이 만든 객체를 DI로 주입할 수도 있습니다. **Singleton과 DI는 배타적이지 않습니다.** 한 인스턴스만 존재하되 그 인스턴스를 명시적으로 넘기는 방식이 가능합니다. 진짜 안티패턴은 Singleton의 존재 자체가 아니라, 어디서든 `Logger.getInstance()`를 부를 수 있도록 허용한 결합입니다.
+
+---
+
+## 같은 결정이 다시 나타나는 자리
+
+Singleton이 답하는 질문 — 단 하나만 존재해야 하는 객체 — 는 디자인 시스템에서도 익숙한 자리에 놓여 있습니다.
+
+**ThemeProvider**가 좋은 예입니다. 한 애플리케이션 안에서 동시에 두 개의 테마가 활성화되는 일은 흔치 않습니다. 사용자는 라이트나 다크 중 하나를 보고 있습니다. 그래서 거의 모든 디자인 시스템은 ThemeProvider를 한 개만 두는 것을 전제로 합니다.
+
+그러나 정말 한 개여야 하는지는 다시 물어봐야 합니다. 미리보기 패널은 다른 테마를 보여주고 싶을 수 있습니다. 이메일 템플릿 에디터는 라이트 모드에서 다크 모드 결과물을 미리 보여줘야 합니다. 인쇄용 페이지는 화면과 다른 테마를 가집니다. **하나라는 가정은 편리하지만, 그 가정이 깨지는 자리가 반드시 나타납니다.**
+
+i18n provider, 토스트 시스템, 모달 매니저도 같은 종류의 객체입니다. 처음에는 한 개로 충분합니다. 시간이 지나면서 "이 영역만 다른 언어로", "이 모달은 항상 위에 표시"처럼 예외가 늘어납니다. 모든 예외는 "단 하나"라는 가정을 흔드는 신호입니다.
+
+![ThemeProvider를 둘러싼 결정의 변화를 보여주는 다이어그램. 좌측에는 단일 ThemeProvider가 애플리케이션 전체를 감싸고, 모든 컴포넌트가 동일한 테마를 사용하는 단순한 구조가 그려져 있습니다. 중앙에는 미리보기 패널처럼 다른 테마가 필요한 영역이 등장하여, 단일 가정에 균열이 생기는 모습이 강조됩니다. 우측에는 중첩된 ThemeProvider로 영역별 테마를 허용하는 구조가 그려져 있고, '하나'에서 '계층적 하나'로 결정이 바뀐 모습이 시각적으로 드러납니다.](dpo-03-03-theme-context-singleton.svg)
+
+**React Context는 Singleton인가**라는 질문이 자주 나옵니다. 답은 "그렇기도 하고 아니기도 하다"입니다. 트리의 가장 바깥에 Provider 하나를 둔다면 그것은 사실상 Singleton입니다. 그러나 Context의 강점은 트리의 어떤 지점에서도 Provider를 새로 둘 수 있다는 점입니다. 새 Provider는 그 서브트리 안에서 또 하나의 인스턴스로 작동합니다. **Context는 Singleton을 강제하지 않습니다. 사용하는 사람의 결정으로 Singleton이 됩니다.**
+
+디자이너에게 이 패턴이 보이는 자리. "전역으로 일관되어야 하는 것은 무엇이고, 영역별로 달라도 되는 것은 무엇인가." 이 질문에 답하는 일은 디자인 시스템의 경계를 정하는 일과 같습니다. 모든 것을 하나로 강제하면 유연성이 사라집니다. 모든 것을 영역별로 두면 일관성이 사라집니다. 그 사이의 결정이 시스템의 성격을 만듭니다.
+
+---
+
+## 다음 편 예고
+
+> [ep.04 — Adapter와 레거시 컴포넌트 마이그레이션](/design-patterns-objects-ep-04)
+
+Singleton이 객체 자체에 대한 결정이라면, Adapter는 객체와 객체 사이의 결정입니다. 맞지 않는 두 인터페이스 사이에 다리를 놓는 일이, 디자인 시스템 v1에서 v2로 옮겨가는 작업과 어떻게 같은 결정인지를 살펴봅니다.

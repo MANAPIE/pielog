@@ -1,0 +1,128 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-st">
+  <title id="title-st">Strategy 패턴 — Context와 교체 가능한 Strategy들</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-3: rgba(139,122,184,0.12); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-3: rgba(176,160,218,0.16); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .box-iface { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; stroke-dasharray: 5 3; }
+      .box-ctx { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.8; }
+      .box-strat { fill: var(--c-card); stroke: var(--c-accent-3); stroke-width: 1.6; }
+      .line { stroke: var(--c-line); stroke-width: 1.3; fill: none; }
+      .line-dashed { stroke: var(--c-line); stroke-width: 1.3; fill: none; stroke-dasharray: 4 4; }
+      .line-swap { stroke: var(--c-accent-3); stroke-width: 1.8; fill: none; stroke-dasharray: 3 4; }
+      .col-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.14em; }
+      .cname { font-family: 'Inter',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .cname-it { font-family: 'Inter',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); font-style: italic; }
+      .stereo { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 500; fill: var(--c-muted); letter-spacing: 0.06em; }
+      .sig { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-fg); }
+      .sig-mute { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-muted); }
+      .annot { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .swap-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-3); }
+    </style>
+    <marker id="tri-s" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
+      <polygon points="0,0 12,6 0,12" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.3"/>
+    </marker>
+    <marker id="diamond-s" markerWidth="14" markerHeight="14" refX="2" refY="7" orient="auto">
+      <polygon points="2,2 12,7 2,12 0,7" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.3"/>
+    </marker>
+    <marker id="ar-s" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-3)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="580"/>
+
+  <text x="60" y="36" class="col-label">CONTEXT</text>
+  <text x="500" y="36" class="col-label">STRATEGY INTERFACE</text>
+  <text x="900" y="36" class="col-label">CONCRETE STRATEGIES</text>
+
+  <!-- Context: ItemList -->
+  <g transform="translate(60 220)">
+    <rect width="280" height="140" rx="6" class="box-ctx"/>
+    <text x="140" y="28" class="cname" text-anchor="middle">ItemList</text>
+    <line x1="14" y1="42" x2="266" y2="42" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="14" y="62" class="sig-mute">- items: Item[]</text>
+    <text x="14" y="80" class="sig-mute">- strategy: SortStrategy</text>
+    <line x1="14" y1="92" x2="266" y2="92" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="14" y="110" class="sig">+ display()</text>
+    <text x="14" y="126" class="sig">+ setStrategy(s)</text>
+  </g>
+
+  <!-- 컴포지션 화살표 -->
+  <line x1="340" y1="290" x2="500" y2="290" class="line" marker-start="url(#diamond-s)"/>
+  <text x="420" y="282" class="annot" text-anchor="middle">has-a</text>
+
+  <!-- Strategy 인터페이스 -->
+  <g transform="translate(500 240)">
+    <rect width="240" height="100" rx="4" class="box-iface"/>
+    <text x="120" y="22" class="stereo" text-anchor="middle">«interface»</text>
+    <text x="120" y="44" class="cname-it" text-anchor="middle">SortStrategy</text>
+    <line x1="14" y1="54" x2="226" y2="54" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="14" y="76" class="sig">+ sort(items): Item[]</text>
+  </g>
+
+  <!-- 구현 화살표 -->
+  <line x1="740" y1="260" x2="860" y2="180" class="line-dashed" marker-end="url(#tri-s)"/>
+  <line x1="740" y1="290" x2="860" y2="290" class="line-dashed" marker-end="url(#tri-s)"/>
+  <line x1="740" y1="320" x2="860" y2="400" class="line-dashed" marker-end="url(#tri-s)"/>
+
+  <!-- 세 Strategy -->
+  <g transform="translate(860 130)">
+    <rect width="240" height="60" rx="4" class="box-strat"/>
+    <text x="120" y="26" class="cname" text-anchor="middle">PriceSortStrategy</text>
+    <text x="120" y="44" class="annot" text-anchor="middle">a.price - b.price</text>
+  </g>
+
+  <g transform="translate(860 240)">
+    <rect width="240" height="60" rx="4" class="box-strat"/>
+    <text x="120" y="26" class="cname" text-anchor="middle">PopularSortStrategy</text>
+    <text x="120" y="44" class="annot" text-anchor="middle">b.views - a.views</text>
+  </g>
+
+  <g transform="translate(860 350)">
+    <rect width="240" height="60" rx="4" class="box-strat"/>
+    <text x="120" y="26" class="cname" text-anchor="middle">RecentSortStrategy</text>
+    <text x="120" y="44" class="annot" text-anchor="middle">b.createdAt - a.createdAt</text>
+  </g>
+
+  <!-- 런타임 교체 흐름 -->
+  <g transform="translate(60 440)">
+    <rect width="1080" height="100" rx="6" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="20" y="28" class="swap-label">RUNTIME SWAP — list.setStrategy(...)</text>
+
+    <g transform="translate(20 50)">
+      <rect width="200" height="30" rx="4" class="box"/>
+      <text x="100" y="20" class="annot" text-anchor="middle" fill="var(--c-fg)" font-weight="700">PriceSortStrategy</text>
+    </g>
+
+    <line x1="220" y1="65" x2="380" y2="65" class="line-swap" marker-end="url(#ar-s)"/>
+    <text x="300" y="58" class="annot" text-anchor="middle" font-weight="700" fill="var(--c-accent-3)">→ swap</text>
+
+    <g transform="translate(380 50)">
+      <rect width="200" height="30" rx="4" class="box"/>
+      <text x="100" y="20" class="annot" text-anchor="middle" fill="var(--c-fg)" font-weight="700">PopularSortStrategy</text>
+    </g>
+
+    <line x1="580" y1="65" x2="740" y2="65" class="line-swap" marker-end="url(#ar-s)"/>
+    <text x="660" y="58" class="annot" text-anchor="middle" font-weight="700" fill="var(--c-accent-3)">→ swap</text>
+
+    <g transform="translate(740 50)">
+      <rect width="200" height="30" rx="4" class="box"/>
+      <text x="100" y="20" class="annot" text-anchor="middle" fill="var(--c-fg)" font-weight="700">RecentSortStrategy</text>
+    </g>
+  </g>
+</svg>
