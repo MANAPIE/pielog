@@ -1,0 +1,119 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-fac">
+  <title id="title-fac">PaymentFacade — 클라이언트와 서브시스템 사이의 단일 진입점</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft-2: rgba(217,119,87,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft-2: rgba(232,147,118,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .box-facade { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 2; }
+      .box-client { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.6; }
+      .line { stroke: var(--c-line); stroke-width: 1.3; fill: none; }
+      .line-dashed { stroke: var(--c-line); stroke-width: 1.3; fill: none; stroke-dasharray: 4 4; }
+      .col-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.14em; }
+      .title { font-family: 'Inter',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-muted); }
+      .method { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; fill: var(--c-fg); font-weight: 600; }
+      .annot { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+    </style>
+    <marker id="ar-f" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="580"/>
+
+  <!-- 좌측 라벨 -->
+  <text x="60" y="36" class="col-label">CLIENT</text>
+  <text x="430" y="36" class="col-label">FACADE</text>
+  <text x="820" y="36" class="col-label">SUBSYSTEMS — 서브시스템 객체들</text>
+
+  <!-- 클라이언트 -->
+  <g transform="translate(60 220)">
+    <rect width="220" height="100" rx="6" class="box-client"/>
+    <text x="110" y="32" class="title" text-anchor="middle">OrderController</text>
+    <line x1="14" y1="46" x2="206" y2="46" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="14" y="68" class="method">processCheckout(order)</text>
+    <text x="14" y="86" class="annot">한 줄만 호출하면 됩니다</text>
+  </g>
+
+  <!-- 클라이언트 → Facade 화살표 -->
+  <line x1="280" y1="270" x2="430" y2="270" class="line" marker-end="url(#ar-f)"/>
+  <text x="355" y="262" class="annot" text-anchor="middle">processOrder(order)</text>
+
+  <!-- Facade -->
+  <g transform="translate(430 130)">
+    <rect width="280" height="280" rx="6" class="box-facade"/>
+    <text x="140" y="32" class="title" text-anchor="middle">PaymentFacade</text>
+    <line x1="14" y1="46" x2="266" y2="46" stroke="var(--c-divider)" stroke-width="1"/>
+
+    <text x="14" y="70" class="sub">+ processOrder(order):</text>
+    <text x="14" y="92" class="annot">  1. 인증 검증</text>
+    <text x="14" y="110" class="annot">  2. 금액 검증</text>
+    <text x="14" y="128" class="annot">  3. 게이트웨이 호출</text>
+    <text x="14" y="146" class="annot">  4. 결과 저장</text>
+    <text x="14" y="164" class="annot">  5. 알림 발송</text>
+
+    <line x1="14" y1="184" x2="266" y2="184" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="14" y="206" class="sub">생성자 의존:</text>
+    <text x="14" y="224" class="annot">- auth, validator, gateway</text>
+    <text x="14" y="242" class="annot">- repository, notifier</text>
+  </g>
+
+  <!-- Facade → 서브시스템들로 분기 -->
+  <line x1="710" y1="160" x2="820" y2="110" class="line-dashed" marker-end="url(#ar-f)"/>
+  <line x1="710" y1="210" x2="820" y2="200" class="line-dashed" marker-end="url(#ar-f)"/>
+  <line x1="710" y1="270" x2="820" y2="290" class="line-dashed" marker-end="url(#ar-f)"/>
+  <line x1="710" y1="330" x2="820" y2="380" class="line-dashed" marker-end="url(#ar-f)"/>
+  <line x1="710" y1="380" x2="820" y2="470" class="line-dashed" marker-end="url(#ar-f)"/>
+
+  <!-- 서브시스템 다섯 개 -->
+  <g transform="translate(820 80)">
+    <rect width="220" height="60" rx="4" class="box"/>
+    <text x="110" y="26" class="title" text-anchor="middle">AuthService</text>
+    <text x="110" y="44" class="annot" text-anchor="middle">verify(userId)</text>
+  </g>
+
+  <g transform="translate(820 170)">
+    <rect width="220" height="60" rx="4" class="box"/>
+    <text x="110" y="26" class="title" text-anchor="middle">PaymentValidator</text>
+    <text x="110" y="44" class="annot" text-anchor="middle">validate(amount, currency)</text>
+  </g>
+
+  <g transform="translate(820 260)">
+    <rect width="220" height="60" rx="4" class="box"/>
+    <text x="110" y="26" class="title" text-anchor="middle">PaymentGateway</text>
+    <text x="110" y="44" class="annot" text-anchor="middle">charge(request)</text>
+  </g>
+
+  <g transform="translate(820 350)">
+    <rect width="220" height="60" rx="4" class="box"/>
+    <text x="110" y="26" class="title" text-anchor="middle">PaymentRepository</text>
+    <text x="110" y="44" class="annot" text-anchor="middle">save(record)</text>
+  </g>
+
+  <g transform="translate(820 440)">
+    <rect width="220" height="60" rx="4" class="box"/>
+    <text x="110" y="26" class="title" text-anchor="middle">NotificationService</text>
+    <text x="110" y="44" class="annot" text-anchor="middle">notify(userId, message)</text>
+  </g>
+
+  <!-- 하단 캡션 -->
+  <g transform="translate(60 450)">
+    <text x="0" y="0" class="annot" font-weight="700" fill="var(--c-fg)">Facade의 역할</text>
+    <text x="0" y="20" class="annot">• 클라이언트는 다섯 객체를 알지 못한 채 한 메서드만 호출</text>
+    <text x="0" y="40" class="annot">• 안쪽 서브시스템들은 그대로 노출되어 있어 고급 사용이 가능</text>
+  </g>
+</svg>
