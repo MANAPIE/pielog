@@ -1,0 +1,121 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-three">
+  <title id="title-three">Wrapper 컴포넌트, HOC, Hook — 같은 결정에 대한 세 가지 답</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(74,95,217,0.08); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(141,160,255,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .col-bg { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .wrap-1 { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.5; }
+      .wrap-2 { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.5; }
+      .wrap-3 { fill: var(--c-card); stroke: var(--c-accent-3); stroke-width: 1.5; }
+      .core { fill: var(--c-soft); stroke: var(--c-line); stroke-width: 1.5; }
+      .line { stroke: var(--c-line); stroke-width: 1.3; fill: none; }
+      .col-num { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.14em; }
+      .col-title { font-family: 'Inter',system-ui,sans-serif; font-size: 16px; font-weight: 700; fill: var(--c-fg); letter-spacing: -0.01em; }
+      .col-cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+      .jsx { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11.5px; fill: var(--c-fg); }
+      .jsx-mute { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11.5px; fill: var(--c-muted); }
+      .wname { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; }
+      .verdict { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="580"/>
+
+  <!-- ===== 컬럼 1: Wrapper Component ===== -->
+  <g transform="translate(40 40)">
+    <rect class="col-bg" width="360" height="500" rx="6"/>
+    <text x="24" y="36" class="col-num">01</text>
+    <text x="24" y="62" class="col-title">Wrapper Component</text>
+    <text x="24" y="84" class="col-cap">JSX 트리로 책임을 중첩</text>
+
+    <!-- JSX 트리 -->
+    <g transform="translate(40 130)">
+      <rect width="280" height="36" rx="4" class="wrap-1"/>
+      <text x="12" y="23" class="wname" fill="var(--c-accent-2)">&lt;AuthGate&gt;</text>
+
+      <rect x="14" y="46" width="252" height="36" rx="4" class="wrap-2"/>
+      <text x="26" y="69" class="wname" fill="var(--c-accent)">&lt;TrackingProvider&gt;</text>
+
+      <rect x="28" y="92" width="224" height="36" rx="4" class="wrap-3"/>
+      <text x="40" y="115" class="wname" fill="var(--c-accent-3)">&lt;ThemeOverride&gt;</text>
+
+      <rect x="42" y="138" width="196" height="48" rx="4" class="core"/>
+      <text x="140" y="167" class="wname" fill="var(--c-fg)" text-anchor="middle">&lt;CheckoutPage /&gt;</text>
+
+      <rect x="28" y="196" width="224" height="20" rx="4" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="40" y="210" class="jsx-mute">&lt;/ThemeOverride&gt;</text>
+
+      <rect x="14" y="226" width="252" height="20" rx="4" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="26" y="240" class="jsx-mute">&lt;/TrackingProvider&gt;</text>
+
+      <rect width="280" height="20" y="256" rx="4" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="12" y="270" class="jsx-mute">&lt;/AuthGate&gt;</text>
+    </g>
+
+    <text x="24" y="450" class="verdict">선언적, 시각적으로 명확</text>
+    <text x="24" y="468" class="col-cap">트리 깊이가 커지면 들여쓰기가 부담</text>
+  </g>
+
+  <!-- ===== 컬럼 2: HOC ===== -->
+  <g transform="translate(420 40)">
+    <rect class="col-bg" width="360" height="500" rx="6"/>
+    <text x="24" y="36" class="col-num">02</text>
+    <text x="24" y="62" class="col-title">Higher-Order Component</text>
+    <text x="24" y="84" class="col-cap">함수 합성으로 책임을 적층</text>
+
+    <!-- 함수 합성 -->
+    <g transform="translate(24 130)">
+      <text x="0" y="0" class="jsx-mute">// 정의</text>
+      <text x="0" y="22" class="jsx">const Enhanced =</text>
+      <text x="16" y="44" class="jsx" fill="var(--c-accent-2)">withAuth(</text>
+      <text x="32" y="66" class="jsx" fill="var(--c-accent)">  withTracking(</text>
+      <text x="48" y="88" class="jsx" fill="var(--c-accent-3)">    withTheme(</text>
+      <text x="64" y="110" class="jsx" fill="var(--c-fg)">      CheckoutPage</text>
+      <text x="48" y="132" class="jsx" fill="var(--c-accent-3)">    )</text>
+      <text x="32" y="154" class="jsx" fill="var(--c-accent)">  )</text>
+      <text x="16" y="176" class="jsx" fill="var(--c-accent-2)">)</text>
+
+      <text x="0" y="220" class="jsx-mute">// 사용</text>
+      <text x="0" y="242" class="jsx">&lt;Enhanced /&gt;</text>
+    </g>
+
+    <text x="24" y="450" class="verdict">컴파일 타임 합성, 정적 분석에 강함</text>
+    <text x="24" y="468" class="col-cap">현대 React에서 거의 사라짐</text>
+  </g>
+
+  <!-- ===== 컬럼 3: Hook ===== -->
+  <g transform="translate(800 40)">
+    <rect class="col-bg" width="360" height="500" rx="6"/>
+    <text x="24" y="36" class="col-num">03</text>
+    <text x="24" y="62" class="col-title">Hook</text>
+    <text x="24" y="84" class="col-cap">평탄한 책임 호출</text>
+
+    <g transform="translate(24 130)">
+      <text x="0" y="0" class="jsx-mute">function CheckoutPage() {`{`}</text>
+      <text x="0" y="26" class="jsx" fill="var(--c-accent-2)">  useAuth()</text>
+      <text x="0" y="48" class="jsx" fill="var(--c-accent)">  useTracking('payment')</text>
+      <text x="0" y="70" class="jsx" fill="var(--c-accent-3)">  useTheme('dark')</text>
+
+      <text x="0" y="100" class="jsx-mute">  // 본 렌더 로직</text>
+      <text x="0" y="122" class="jsx">  return &lt;Form /&gt;</text>
+      <text x="0" y="148" class="jsx">{`}`}</text>
+    </g>
+
+    <text x="24" y="450" class="verdict">함수 본문이 책임을 직접 보여줌</text>
+    <text x="24" y="468" class="col-cap">중첩이 사라지지만 시각적 계층이 없음</text>
+  </g>
+</svg>
