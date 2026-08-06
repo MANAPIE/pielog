@@ -1,0 +1,252 @@
+---
+title: "부록 - 그 외 GoF 객체 패턴들 - 디자인 패턴, 객체 수준 편 ep.11"
+description: 본편 10편이 다루지 못한 나머지 GoF 객체 패턴들을 가볍게 정리합니다. 각각이 어떤 결정에 이름을 붙인 패턴이고 왜 본편에는 들어오지 못했는지를 짚습니다.
+summary: Visitor, Memento, Flyweight, Iterator, Command, Chain of Responsibility, Prototype, Bridge, Mediator, Template Method를 한 편으로 다룹니다. 각 패턴마다 핵심 정의, 실무에서 보이는 자리, 그리고 본편이 아닌 부록에 머무른 이유를 간결하게 정리합니다. 시즌 1 객체 수준 편의 마지막 편입니다.
+date: 2026-06-16
+tags:
+  - series
+  - develop
+  - frontend
+  - backend
+  - design-patterns
+  - gof
+  - typescript
+  - object-oriented
+  - appendix
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+본편 10편이 객체 수준 GoF의 핵심을 다뤘다면, 이 부록은 그 바깥의 나머지를 다룹니다. 이름만 알아도 충분한 것들이 있고, 일부는 본편에 들어가지 못한 이유가 있습니다.
+
+---
+
+## 부록의 위치
+
+GoF가 정리한 객체 수준 패턴은 모두 다음과 같이 분포합니다.
+
+- **Creational (생성)**: Factory Method, Abstract Factory, Builder, Singleton, Prototype
+- **Structural (구조)**: Adapter, Decorator, Facade, Composite, Bridge, Proxy, Flyweight
+- **Behavioral (행위)**: Strategy, Observer, State, Command, Iterator, Visitor, Mediator, Memento, Chain of Responsibility, Template Method, Interpreter
+
+본편은 이 중에서 디자인 시스템·UI 작업과 같은 결정 구조를 자주 보이는 10개를 골랐습니다. 부록에서는 나머지를 다룹니다. 한 편에 정리해 두는 이유는 단순합니다. **이름을 알아두면 코드 리뷰에서 누군가 그 단어를 꺼낼 때 당황하지 않습니다.** 그리고 가끔 진짜로 필요한 자리가 있습니다.
+
+![시즌 1에서 다룬 10개 본편 패턴과 부록 10개 패턴을 함께 보여주는 미니 카탈로그 다이어그램. 화면이 세 행으로 나뉘어 있습니다. 상단 행은 생성(Creational) 카테고리로, Factory, Builder, Singleton이 본편 색으로, Prototype이 부록 색으로 표시됩니다. 중간 행은 구조(Structural) 카테고리로, Adapter, Decorator, Facade, Composite가 본편 색으로, Bridge, Proxy, Flyweight가 부록 색으로 표시됩니다. 하단 행은 행위(Behavioral) 카테고리로, Strategy, Observer, State가 본편 색으로, Command, Iterator, Visitor, Mediator, Memento, Chain of Responsibility, Template Method가 부록 색으로 표시됩니다. 각 패턴 박스에는 패턴 이름만 적혀 있어, 시즌 1 전체가 한눈에 들어오는 카탈로그 역할을 합니다.](dpo-11-01-pattern-catalog.svg)
+
+---
+
+## Command — 행동을 객체로
+
+함수 호출을 객체로 감쌉니다. 객체이므로 큐에 넣고, 저장하고, 되돌릴 수 있습니다.
+
+```ts
+interface Command {
+  execute(): void
+  undo(): void
+}
+
+class AddItemCommand implements Command {
+  constructor(private cart: Cart, private item: Item) {}
+  execute() { this.cart.add(this.item) }
+  undo() { this.cart.remove(this.item) }
+}
+```
+
+**보이는 자리**: 텍스트 에디터의 실행 취소·재실행, 작업 큐, 마우스 클릭이나 키보드 단축키에 묶인 행동들. CQRS(Command Query Responsibility Segregation, 명령 쿼리 책임 분리)에서 말하는 "Command"는 이 패턴에서 이름을 빌려왔습니다.
+
+**본편에 들어가지 못한 이유**: 디자인 시스템보다는 에디터, 게임, 워크플로 시스템에서 빛납니다. 시즌 1의 초점에서 살짝 벗어났습니다.
+
+---
+
+## Iterator — 순회의 추상
+
+컬렉션의 내부 구조를 숨긴 채로 요소를 하나씩 꺼내는 방법을 제공합니다. 배열, 트리, 그래프 모두 같은 인터페이스로 순회할 수 있습니다.
+
+```ts
+interface Iterator<T> {
+  next(): { value: T; done: boolean }
+}
+```
+
+**보이는 자리**: JavaScript의 `for...of`, generator(`function*`)는 Iterator 패턴이 언어 차원에 들어온 결과입니다. `Symbol.iterator`를 구현한 객체는 모두 Iterator입니다.
+
+**본편에 들어가지 못한 이유**: 너무 일상이 되어서 패턴으로 의식하지 않습니다. 거의 모든 모던 언어가 내장으로 가집니다.
+
+---
+
+## Visitor — 구조와 동작의 분리
+
+기존 객체 구조를 건드리지 않고 새 동작을 추가하는 패턴입니다. 객체 구조는 자기 위에 "방문자"를 받아들이고, 방문자가 각 객체에 맞는 행동을 가져옵니다.
+
+```ts
+interface Visitor {
+  visitText(node: TextNode): void
+  visitImage(node: ImageNode): void
+}
+
+class HtmlExporter implements Visitor {
+  visitText(node: TextNode) { /* HTML로 직렬화 */ }
+  visitImage(node: ImageNode) { /* <img> 태그 */ }
+}
+```
+
+**보이는 자리**: 컴파일러의 AST 변환, 문서 직렬화(JSON/XML/HTML 내보내기), 정적 분석 도구.
+
+**본편에 들어가지 못한 이유**: 객체 구조가 거의 변하지 않을 때만 유리합니다. 새 노드 타입을 추가할 때마다 모든 Visitor를 함께 고쳐야 하는 부담이 있어서, 디자인 시스템처럼 자주 변하는 영역에는 잘 맞지 않습니다.
+
+---
+
+## Chain of Responsibility — 책임의 사슬
+
+요청이 여러 객체를 차례로 거치며, 각 객체가 "내가 처리할지 다음에 넘길지"를 결정합니다.
+
+```ts
+class AuthHandler {
+  constructor(private next: AuthHandler | null = null) {}
+
+  handle(req: Request): Response {
+    if (!req.token) return this.next?.handle(req) ?? defaultResponse
+    // 처리 또는 위임
+  }
+}
+```
+
+**보이는 자리**: Express나 Koa의 미들웨어 체인, 이벤트 버블링, 로깅 필터 체인. 사실 [ep.05](/design-patterns-objects-ep-05)에서 다룬 Decorator와 구조가 닮았습니다.
+
+**본편에 들어가지 못한 이유**: Decorator와 본질이 비슷합니다. 차이는 "통과시킬지 멈출지"의 결정이 사슬에 있는 점뿐입니다. Decorator를 본편에서 다뤘으므로 부록으로 보냅니다.
+
+---
+
+## Memento — 상태의 스냅샷
+
+객체의 내부 상태를 외부에 노출하지 않으면서 저장해두고, 나중에 복원할 수 있게 합니다.
+
+```ts
+class Editor {
+  save(): Memento { return new Memento(this.content) }
+  restore(m: Memento) { this.content = m.getContent() }
+}
+```
+
+**보이는 자리**: 실행 취소·재실행(Command와 자주 함께), 게임 세이브, 폼의 임시 저장, 트랜잭션 롤백.
+
+**본편에 들어가지 못한 이유**: Command 패턴의 동반자에 가깝습니다. 단독으로 쓰이는 경우가 드뭅니다.
+
+---
+
+## Flyweight — 작은 것을 많이 만들 때
+
+같은 데이터를 가진 객체 수천 개를 만들지 않고, 공유 가능한 부분을 외부로 빼서 메모리를 절약합니다.
+
+```ts
+class GlyphFlyweight {
+  // 공유: 글자 모양, 폰트
+  // 외부: 위치, 색깔
+  render(x: number, y: number, color: string) { /* ... */ }
+}
+```
+
+**보이는 자리**: 텍스트 에디터의 글자 렌더링, 게임의 파티클·타일·NPC, 가상 스크롤 라이브러리의 셀 재사용.
+
+**본편에 들어가지 못한 이유**: 메모리 최적화가 진짜 문제가 되는 자리는 한정적입니다. 대부분의 UI 개발자는 평생 직접 구현할 일이 없습니다. 그러나 React의 fiber나 가상 스크롤 같은 도구가 내부적으로 이 패턴을 사용한다는 점은 알아둘 가치가 있습니다.
+
+---
+
+## Prototype — 복제로 만든다
+
+새 객체를 만들 때 기존 객체를 복제합니다. 클래스를 알지 못해도 인스턴스만 있으면 같은 종류의 객체를 만들 수 있습니다.
+
+```ts
+interface Cloneable<T> {
+  clone(): T
+}
+```
+
+**보이는 자리**: JavaScript는 본질적으로 프로토타입 기반 언어입니다. `Object.create`, 스프레드 연산자(`{ ...obj }`), `structuredClone`이 모두 이 패턴의 흔적입니다.
+
+**본편에 들어가지 못한 이유**: JavaScript에서는 패턴을 의식할 일이 거의 없습니다. 언어가 패턴을 흡수했습니다.
+
+---
+
+## Bridge — 추상과 구현의 분리
+
+추상(무엇을 하는가)과 구현(어떻게 하는가)을 별도의 계층으로 나눠 독립적으로 변할 수 있게 합니다. Abstract Factory와 비슷한 자리에서 자주 만나집니다.
+
+```ts
+interface Renderer {
+  draw(shape: Shape): void
+}
+
+abstract class Shape {
+  constructor(protected renderer: Renderer) {}
+  abstract draw(): void
+}
+```
+
+**보이는 자리**: 그래픽 라이브러리의 도형과 렌더링 백엔드, 데이터베이스 추상화 계층. React Native의 컴포넌트와 플랫폼 네이티브 구현 사이가 Bridge에 가깝습니다.
+
+**본편에 들어가지 못한 이유**: 작은 시스템에서는 과한 추상화입니다. 진짜로 필요한 자리는 라이브러리 설계 영역에 한정됩니다.
+
+---
+
+## Mediator — 객체들의 중재자
+
+여러 객체가 서로 직접 통신하는 대신 중재자를 통해 통신합니다. 객체 사이의 결합을 줄이고 통신 흐름을 한 곳에 모읍니다.
+
+```ts
+class DialogMediator {
+  notify(sender: Component, event: string) {
+    if (sender === this.loginButton && event === 'click') {
+      this.usernameInput.focus()
+    }
+    // ...
+  }
+}
+```
+
+**보이는 자리**: 항공 관제 시스템의 비유에서 비롯되었습니다. 채팅방의 메시지 라우터, 폼 안에서 여러 필드 사이의 의존 관계 처리.
+
+**본편에 들어가지 못한 이유**: 잘못 쓰면 Mediator 자체가 거대한 God Object가 됩니다. 적용 기준이 까다롭습니다.
+
+---
+
+## Template Method — 흐름은 고정, 단계는 갈아 끼움
+
+알고리즘의 큰 흐름은 부모 클래스가 정하고, 그 안의 일부 단계만 자식 클래스가 결정합니다.
+
+```ts
+abstract class DataExporter {
+  export(data: Data): string {
+    const head = this.formatHeader()       // 자식이 정함
+    const body = this.formatBody(data)     // 자식이 정함
+    return head + body + this.formatFooter()
+  }
+  protected abstract formatHeader(): string
+  protected abstract formatBody(data: Data): string
+  protected abstract formatFooter(): string
+}
+```
+
+**보이는 자리**: 프레임워크의 생명주기 메서드(React의 옛 클래스 컴포넌트 `componentDidMount` 같은), 테스트 프레임워크의 `beforeEach/afterEach`.
+
+**본편에 들어가지 못한 이유**: 상속에 의존하는 패턴입니다. 모던 TypeScript/JavaScript는 컴포지션과 함수형 조합을 선호하므로 점점 줄어드는 패턴입니다. Strategy로 대체 가능한 경우가 많습니다.
+
+---
+
+## 시즌 1을 마치며
+
+객체 수준에서 GoF가 정리한 패턴들은 결국 같은 질문의 다른 답입니다. **객체에게 어떤 책임을 줄 것인가. 그 책임을 어떻게 나눌 것인가. 변화가 일어날 자리를 어디로 미리 옮겨 둘 것인가.**
+
+본편 10편을 통해 살펴본 것은 패턴 자체보다 그 패턴이 답하는 질문이었습니다. 그리고 같은 질문이 디자인 시스템·UI 작업에서 어떻게 다시 나타나는지를 함께 봤습니다.
+
+이름은 도구입니다. 도구가 결정을 대신 내려주지는 않습니다. 다만 다음 코드 리뷰에서 누군가 "여기 Strategy를 쓰면 어떨까요"라고 말할 때, 그것이 무엇을 가리키는지 알고 답할 수 있다면 — 이 시리즈가 한 일은 그 정도입니다.
+
+---
+
+## 다음 시즌 예고
+
+> 객체 수준 편이 끝났습니다.
+
+객체 한두 개의 결정에서 벗어나, 시스템 전체의 결정에 이름을 붙이는 패턴들이 있습니다. 그 패턴들은 다음 시즌에서 만나기로 합니다.

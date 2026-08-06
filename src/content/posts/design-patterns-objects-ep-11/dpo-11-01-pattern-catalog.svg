@@ -1,0 +1,203 @@
+<svg viewBox="0 0 1200 790" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-cat">
+  <title id="title-cat">시즌 1 전체 패턴 카탈로그 — 본편 10편과 부록</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(74,95,217,0.08); --c-soft-2: rgba(217,119,87,0.10);
+        --c-soft-3: rgba(139,122,184,0.12); --c-divider: rgba(26,31,46,0.15);
+        --c-muted-soft: rgba(107,114,128,0.10);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(141,160,255,0.14); --c-soft-2: rgba(232,147,118,0.14);
+          --c-soft-3: rgba(176,160,218,0.16); --c-divider: rgba(232,230,225,0.18);
+          --c-muted-soft: rgba(139,146,160,0.14);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .row-creational { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1; stroke-dasharray: 4 3; }
+      .row-structural { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1; stroke-dasharray: 4 3; }
+      .row-behavioral { fill: var(--c-soft-3); stroke: var(--c-accent-3); stroke-width: 1; stroke-dasharray: 4 3; }
+      .core-c { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.8; }
+      .core-s { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.8; }
+      .core-b { fill: var(--c-card); stroke: var(--c-accent-3); stroke-width: 1.8; }
+      .appendix { fill: var(--c-bg); stroke: var(--c-muted); stroke-width: 1.4; stroke-dasharray: 3 3; }
+      .row-label { font-family: 'Inter',system-ui,sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; }
+      .row-title { font-family: 'Inter',system-ui,sans-serif; font-size: 17px; font-weight: 700; fill: var(--c-fg); letter-spacing: -0.01em; }
+      .pname { font-family: 'Inter',system-ui,sans-serif; font-size: 15px; font-weight: 700; fill: var(--c-fg); }
+      .pname-mute { font-family: 'Inter',system-ui,sans-serif; font-size: 14px; font-weight: 600; fill: var(--c-muted); }
+      .ep-num { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-muted); letter-spacing: 0.04em; }
+      .core-tag { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+      .legend-text { font-family: 'Inter',system-ui,sans-serif; font-size: 13px; fill: var(--c-fg); font-weight: 600; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="790"/>
+
+  <!-- 헤더 -->
+  <text x="60" y="38" class="row-label" fill="var(--c-muted)">DESIGN PATTERNS · OBJECTS · SEASON 1</text>
+  <text x="60" y="66" class="row-title" font-size="20">전체 카탈로그 — 본편 10편 + 부록</text>
+
+  <!-- 범례 (우측 상단, 오른쪽 끝 1160 정렬) -->
+  <g transform="translate(884 30)">
+    <rect x="0" y="0" width="24" height="24" rx="3" class="core-b"/>
+    <text x="34" y="17" class="legend-text">본편 (ep.01–10)</text>
+
+    <rect x="177" y="0" width="24" height="24" rx="3" class="appendix"/>
+    <text x="211" y="17" class="legend-text">부록 (ep.11)</text>
+  </g>
+
+  <!-- ===== Row 1: Creational ===== -->
+  <!-- 카드 그리드: x = 160 / 346 / 532 / 718 / 904, 카드 168x72, 행 오른쪽 끝 최대 1072 -->
+  <g transform="translate(40 100)">
+    <rect class="row-creational" width="1120" height="146" rx="8"/>
+    <text x="20" y="30" class="row-label" fill="var(--c-accent)">CREATIONAL</text>
+    <text x="20" y="56" class="row-title">생성</text>
+
+    <g transform="translate(160 54)">
+      <rect width="168" height="72" rx="7" class="core-c"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent)">EP.01</text>
+      <text x="16" y="54" class="pname">Factory</text>
+    </g>
+
+    <g transform="translate(346 54)">
+      <rect width="168" height="72" rx="7" class="core-c"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent)">EP.02</text>
+      <text x="16" y="54" class="pname">Builder</text>
+    </g>
+
+    <g transform="translate(532 54)">
+      <rect width="168" height="72" rx="7" class="core-c"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent)">EP.03</text>
+      <text x="16" y="54" class="pname">Singleton</text>
+    </g>
+
+    <g transform="translate(718 54)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Prototype</text>
+    </g>
+  </g>
+
+  <!-- ===== Row 2: Structural ===== -->
+  <g transform="translate(40 270)">
+    <rect class="row-structural" width="1120" height="236" rx="8"/>
+    <text x="20" y="30" class="row-label" fill="var(--c-accent-2)">STRUCTURAL</text>
+    <text x="20" y="56" class="row-title">구조</text>
+
+    <g transform="translate(160 54)">
+      <rect width="168" height="72" rx="7" class="core-s"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent-2)">EP.04</text>
+      <text x="16" y="54" class="pname">Adapter</text>
+    </g>
+
+    <g transform="translate(346 54)">
+      <rect width="168" height="72" rx="7" class="core-s"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent-2)">EP.05</text>
+      <text x="16" y="54" class="pname">Decorator</text>
+    </g>
+
+    <g transform="translate(532 54)">
+      <rect width="168" height="72" rx="7" class="core-s"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent-2)">EP.06</text>
+      <text x="16" y="54" class="pname">Facade</text>
+    </g>
+
+    <g transform="translate(718 54)">
+      <rect width="168" height="72" rx="7" class="core-s"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent-2)">EP.07</text>
+      <text x="16" y="54" class="pname">Composite</text>
+    </g>
+
+    <g transform="translate(904 54)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Bridge</text>
+    </g>
+
+    <g transform="translate(160 144)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Proxy</text>
+    </g>
+
+    <g transform="translate(346 144)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Flyweight</text>
+    </g>
+  </g>
+
+  <!-- ===== Row 3: Behavioral ===== -->
+  <g transform="translate(40 530)">
+    <rect class="row-behavioral" width="1120" height="236" rx="8"/>
+    <text x="20" y="30" class="row-label" fill="var(--c-accent-3)">BEHAVIORAL</text>
+    <text x="20" y="56" class="row-title">행위</text>
+
+    <g transform="translate(160 54)">
+      <rect width="168" height="72" rx="7" class="core-b"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent-3)">EP.08</text>
+      <text x="16" y="54" class="pname">Strategy</text>
+    </g>
+
+    <g transform="translate(346 54)">
+      <rect width="168" height="72" rx="7" class="core-b"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent-3)">EP.09</text>
+      <text x="16" y="54" class="pname">Observer</text>
+    </g>
+
+    <g transform="translate(532 54)">
+      <rect width="168" height="72" rx="7" class="core-b"/>
+      <text x="16" y="27" class="core-tag" fill="var(--c-accent-3)">EP.10</text>
+      <text x="16" y="54" class="pname">State</text>
+    </g>
+
+    <g transform="translate(718 54)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Command</text>
+    </g>
+
+    <g transform="translate(904 54)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Iterator</text>
+    </g>
+
+    <g transform="translate(160 144)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Visitor</text>
+    </g>
+
+    <g transform="translate(346 144)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Chain of Resp.</text>
+    </g>
+
+    <g transform="translate(532 144)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Memento</text>
+    </g>
+
+    <g transform="translate(718 144)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Mediator</text>
+    </g>
+
+    <g transform="translate(904 144)">
+      <rect width="168" height="72" rx="7" class="appendix"/>
+      <text x="16" y="27" class="ep-num">APPENDIX</text>
+      <text x="16" y="54" class="pname-mute">Template Method</text>
+    </g>
+  </g>
+</svg>
