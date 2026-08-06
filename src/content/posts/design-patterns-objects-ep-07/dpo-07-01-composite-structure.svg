@@ -1,0 +1,152 @@
+<svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-cs">
+  <title id="title-cs">Composite의 클래스 구조와 파일시스템 트리</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .box-iface { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; stroke-dasharray: 5 3; }
+      .line { stroke: var(--c-line); stroke-width: 1.3; fill: none; }
+      .line-dashed { stroke: var(--c-line); stroke-width: 1.3; fill: none; stroke-dasharray: 4 4; }
+      .col-label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.14em; }
+      .stereo { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 500; fill: var(--c-muted); letter-spacing: 0.06em; }
+      .cname { font-family: 'Inter',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .cname-it { font-family: 'Inter',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); font-style: italic; }
+      .sig { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-fg); }
+      .sig-mute { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-muted); }
+      .label { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); font-weight: 600; }
+      .label-mute { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); font-weight: 600; }
+      .annot { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+    </style>
+    <marker id="tri-c" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
+      <polygon points="0,0 12,6 0,12" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.3"/>
+    </marker>
+    <marker id="diamond-c" markerWidth="14" markerHeight="14" refX="2" refY="7" orient="auto">
+      <polygon points="2,2 12,7 2,12 0,7" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.3"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="600"/>
+
+  <!-- ===== 좌: 클래스 구조 ===== -->
+  <g transform="translate(60 40)">
+    <text x="0" y="20" class="col-label">CLASS STRUCTURE</text>
+
+    <!-- FileSystemNode 인터페이스 -->
+    <g transform="translate(150 60)">
+      <rect width="220" height="80" rx="4" class="box-iface"/>
+      <text x="110" y="22" class="stereo" text-anchor="middle">«interface»</text>
+      <text x="110" y="44" class="cname-it" text-anchor="middle">FileSystemNode</text>
+      <line x1="14" y1="54" x2="206" y2="54" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="72" class="sig">+ size(): number</text>
+    </g>
+
+    <!-- 구현 화살표 -->
+    <line x1="180" y1="240" x2="220" y2="150" class="line-dashed" marker-end="url(#tri-c)"/>
+    <line x1="380" y1="240" x2="320" y2="150" class="line-dashed" marker-end="url(#tri-c)"/>
+
+    <!-- File (leaf) -->
+    <g transform="translate(50 240)">
+      <rect width="200" height="100" rx="4" class="box"/>
+      <text x="100" y="26" class="cname" text-anchor="middle">File</text>
+      <line x1="14" y1="40" x2="186" y2="40" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="60" class="sig-mute">- bytes: number</text>
+      <line x1="14" y1="70" x2="186" y2="70" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="90" class="sig">+ size(): bytes</text>
+    </g>
+
+    <!-- Folder (composite) -->
+    <g transform="translate(300 240)">
+      <rect width="200" height="120" rx="4" class="box"/>
+      <text x="100" y="26" class="cname" text-anchor="middle">Folder</text>
+      <line x1="14" y1="40" x2="186" y2="40" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="60" class="sig-mute">- children: Node[]</text>
+      <line x1="14" y1="70" x2="186" y2="70" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="90" class="sig">+ add(node)</text>
+      <text x="14" y="106" class="sig">+ size(): Σ children</text>
+    </g>
+
+    <!-- Folder → FileSystemNode 컴포지션 (자기 자신 참조) -->
+    <g>
+      <path d="M 500 280 C 580 280 580 350 540 360" class="line" marker-start="url(#diamond-c)" marker-end="url(#tri-c)" fill="none"/>
+      <text x="570" y="335" class="annot">recursive: children</text>
+    </g>
+
+    <!-- 라벨 -->
+    <text x="150" y="380" class="label-mute">LEAF (단위)</text>
+    <text x="400" y="380" class="label-mute">COMPOSITE (집합)</text>
+
+    <!-- 핵심 강조 -->
+    <g transform="translate(60 420)">
+      <text x="0" y="0" class="annot" font-weight="700" fill="var(--c-fg)">핵심</text>
+      <text x="0" y="20" class="annot">leaf와 composite가 같은 인터페이스를 구현</text>
+      <text x="0" y="38" class="annot">→ 클라이언트는 둘을 구분 없이 다룰 수 있음</text>
+    </g>
+  </g>
+
+  <!-- ===== 우: 예시 트리 ===== -->
+  <g transform="translate(640 40)">
+    <text x="0" y="20" class="col-label">EXAMPLE TREE — root.size() = 600</text>
+
+    <!-- root -->
+    <g transform="translate(180 60)">
+      <rect x="-60" y="-20" width="120" height="40" rx="4" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.6"/>
+      <text x="0" y="6" class="label" text-anchor="middle">📁 root</text>
+    </g>
+
+    <!-- 가지 -->
+    <line x1="140" y1="80" x2="60" y2="160" class="line"/>
+    <line x1="220" y1="80" x2="320" y2="160" class="line"/>
+
+    <!-- a.txt (file) -->
+    <g transform="translate(40 160)">
+      <rect width="100" height="50" rx="4" class="box"/>
+      <text x="50" y="22" class="label" text-anchor="middle">📄 a.txt</text>
+      <text x="50" y="40" class="annot" text-anchor="middle">100</text>
+    </g>
+
+    <!-- docs (folder) -->
+    <g transform="translate(280 160)">
+      <rect width="120" height="50" rx="4" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.6"/>
+      <text x="60" y="22" class="label" text-anchor="middle">📁 docs</text>
+      <text x="60" y="40" class="annot" text-anchor="middle">Σ = 500</text>
+    </g>
+
+    <!-- docs 가지 -->
+    <line x1="310" y1="210" x2="260" y2="280" class="line"/>
+    <line x1="370" y1="210" x2="420" y2="280" class="line"/>
+
+    <!-- b.md -->
+    <g transform="translate(220 280)">
+      <rect width="100" height="50" rx="4" class="box"/>
+      <text x="50" y="22" class="label" text-anchor="middle">📄 b.md</text>
+      <text x="50" y="40" class="annot" text-anchor="middle">200</text>
+    </g>
+
+    <!-- c.md -->
+    <g transform="translate(380 280)">
+      <rect width="100" height="50" rx="4" class="box"/>
+      <text x="50" y="22" class="label" text-anchor="middle">📄 c.md</text>
+      <text x="50" y="40" class="annot" text-anchor="middle">300</text>
+    </g>
+
+    <!-- 호출 흐름 설명 -->
+    <g transform="translate(0 380)">
+      <text x="0" y="0" class="annot" font-weight="700" fill="var(--c-fg)">root.size() 호출</text>
+      <text x="0" y="22" class="annot">→ root는 폴더이므로 children의 size를 모두 더함</text>
+      <text x="0" y="40" class="annot">→ a.txt.size() = 100, docs.size() = b.md.size() + c.md.size() = 500</text>
+      <text x="0" y="58" class="annot">→ 합계 600. 클라이언트는 안쪽 구조를 알지 못함</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,188 @@
+---
+title: "Composite와 디자인 토큰 계층 - 디자인 패턴, 객체 수준 편 ep.07"
+description: 작은 것과 큰 것을 같은 모양으로 다루는 패턴. Composite는 계층을 단일 인터페이스로 펼치는 결정의 이름입니다.
+summary: 파일시스템과 UI 트리 예제로 Composite 패턴의 구조를 살펴보고, 같은 결정 구조가 디자인 토큰의 primitive → semantic → component 계층에서 어떻게 다시 나타나는지를 함께 봅니다. 토큰이 다른 토큰을 참조하는 일이 왜 Composite의 가장 자연스러운 사례인지를 짚습니다.
+date: 2026-06-16
+tags:
+  - series
+  - develop
+  - frontend
+  - backend
+  - design-patterns
+  - gof
+  - typescript
+  - object-oriented
+  - composite
+  - structural
+  - design-tokens
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+작은 것과 큰 것을 같은 모양으로 다룰 수 있다면, 그 사이의 계층은 가볍게 펼쳐집니다. Composite는 그 가벼움을 만드는 패턴입니다.
+
+---
+
+## 같은 모양으로 다루는 일
+
+파일과 폴더를 생각합니다. 파일은 크기를 가집니다. 폴더는 크기를 가지지 않습니다. 폴더 안에는 파일과 또 다른 폴더가 들어갑니다.
+
+"이 경로의 총 크기는 얼마인가"라는 질문에 답하려면, 클라이언트는 파일과 폴더를 다르게 다뤄야 합니다. 파일이면 크기를 바로 읽고, 폴더면 안쪽을 순회하면서 합쳐야 합니다. 분기가 생깁니다.
+
+Composite는 이 분기를 없앱니다. 파일과 폴더가 **같은 인터페이스**를 가지도록 만듭니다. 둘 다 `size()` 메서드를 가집니다. 파일의 `size()`는 자기 크기를, 폴더의 `size()`는 자식들의 `size()`를 모두 더한 값을 돌려줍니다. 클라이언트는 "이것이 파일인가 폴더인가"를 묻지 않습니다.
+
+핵심은 단순합니다. **개별 객체(leaf)와 객체의 집합(composite)을 같은 인터페이스로 표현한다.** 그렇게 하면 계층의 깊이가 코드의 복잡도로 옮겨가지 않습니다.
+
+---
+
+## Composite의 정석
+
+### 기본 구조
+
+`FileSystemNode`라는 공통 인터페이스를 정의합니다.
+
+```ts
+interface FileSystemNode {
+  name: string
+  size(): number
+}
+
+class File implements FileSystemNode {
+  constructor(public name: string, private bytes: number) {}
+
+  size(): number {
+    return this.bytes
+  }
+}
+
+class Folder implements FileSystemNode {
+  private children: FileSystemNode[] = []
+
+  constructor(public name: string) {}
+
+  add(node: FileSystemNode): this {
+    this.children.push(node)
+    return this
+  }
+
+  size(): number {
+    return this.children.reduce((sum, c) => sum + c.size(), 0)
+  }
+}
+
+// 사용
+const root = new Folder('root')
+  .add(new File('a.txt', 100))
+  .add(
+    new Folder('docs')
+      .add(new File('b.md', 200))
+      .add(new File('c.md', 300))
+  )
+
+root.size()  // 600
+```
+
+`root.size()`를 호출하는 클라이언트는 root가 파일인지 폴더인지 알 필요가 없습니다. 안쪽 `docs`가 파일인지 폴더인지도 알 필요가 없습니다. 같은 인터페이스이므로 같은 방식으로 다룹니다.
+
+![Composite 패턴의 클래스 구조. 상단에 FileSystemNode 인터페이스가 있고, name 속성과 size 메서드가 표시됩니다. 그 아래로 두 개의 구체 클래스가 인터페이스를 구현하고 있습니다. 좌측의 File 클래스는 bytes 필드를 가지고 size에서 그 값을 반환합니다. 우측의 Folder 클래스는 children 배열을 가지고 size에서 자식들의 size를 합산합니다. Folder 클래스에서 자기 자신을 다시 참조하는 컴포지션 화살표가 그려져 있어, 폴더 안에 또 다른 폴더가 들어갈 수 있는 재귀 구조를 시각적으로 보여줍니다. 하단에는 예시 트리가 그려져 있어, root 폴더 아래에 파일과 docs 폴더가 있고 docs 안에 다시 두 개의 파일이 있는 모습이 시각화되어 있습니다.](dpo-07-01-composite-structure.svg)
+
+### UI 트리도 같은 구조
+
+React 컴포넌트 트리는 Composite 패턴의 가장 자연스러운 사례입니다. `<Card>` 안에 `<CardHeader>`, `<CardContent>`, `<CardFooter>`가 들어가고, 그 안에 다시 `<Button>`이나 `<Text>`가 들어갑니다.
+
+```tsx
+<Card>
+  <CardHeader>
+    <Title>주문 확인</Title>
+  </CardHeader>
+  <CardContent>
+    <Text>3개 상품, 총 ₩45,000</Text>
+    <Button variant="primary">결제</Button>
+  </CardContent>
+</Card>
+```
+
+각 컴포넌트가 `React.ReactNode`라는 공통 타입으로 자식을 받습니다. Card는 자기 안에 무엇이 들어가는지 깊이 알 필요가 없습니다. 자식을 그저 렌더링할 뿐입니다. **React의 children prop은 Composite 패턴의 인터페이스 그 자체입니다.**
+
+### 안티패턴
+
+**leaf에 children을 강제로 둠.** "균일한 인터페이스를 위해" File에도 `add()` 메서드를 두는 일이 있습니다. 호출되면 예외를 던집니다. 이것은 인터페이스의 거짓말입니다. **leaf와 composite를 분리하는 것이 정직합니다.**
+
+**모든 메서드를 두 곳에 구현.** Composite의 메서드가 너무 많아지면 leaf와 composite 양쪽에 같은 메서드를 구현하느라 코드가 부풀어 오릅니다. 공통 메서드를 추상 클래스로 묶거나, 기능별로 인터페이스를 나누는 것이 필요합니다.
+
+**부모 참조의 순환.** 자식이 부모를 알아야 하는 경우가 생기면 양방향 참조가 만들어집니다. 메모리 누수와 순환 참조의 위험이 따라옵니다. 가능하면 부모에서 자식 방향으로만 흐르도록 설계합니다.
+
+---
+
+## 같은 결정이 다시 나타나는 자리
+
+Composite가 답하는 질문 — 개별 단위와 집합 단위를 같은 인터페이스로 다룬다 — 은 디자인 토큰 시스템에서 정확히 같은 모양으로 나타납니다.
+
+디자인 토큰은 보통 세 계층으로 구성됩니다.
+
+```ts
+// Primitive (Tier 1): 절대값
+const primitive = {
+  blue: {
+    50: '#EFF6FF',
+    500: '#3B82F6',
+    900: '#1E3A8A',
+  },
+  spacing: {
+    1: '4px',
+    2: '8px',
+    4: '16px',
+  },
+}
+
+// Semantic (Tier 2): 의미를 가진 별칭
+const semantic = {
+  color: {
+    primary: primitive.blue[500],       // primitive를 참조
+    background: primitive.blue[50],
+    text: primitive.blue[900],
+  },
+  space: {
+    gutter: primitive.spacing[4],
+  },
+}
+
+// Component (Tier 3): 컴포넌트별 토큰
+const component = {
+  button: {
+    primary: {
+      bg: semantic.color.primary,       // semantic을 참조
+      text: '#FFFFFF',
+      padding: semantic.space.gutter,
+    },
+  },
+}
+```
+
+각 토큰은 값이거나 다른 토큰의 참조입니다. **이것이 Composite입니다.** primitive는 leaf, semantic과 component는 composite. 클라이언트가 `tokens.button.primary.bg`를 묻습니다. 그 값이 `semantic.color.primary`를 참조하고, 그것은 다시 `primitive.blue[500]`을 참조하고, 결국 `#3B82F6`이 됩니다. 클라이언트는 그 깊이를 알 필요가 없습니다.
+
+![디자인 토큰의 3계층 구조 다이어그램. 좌측에서 우측으로 화살표가 흐르며 세 단계가 표시됩니다. 좌측 Primitive 계층에는 절대값들이 표시됩니다 — blue.500은 #3B82F6, spacing.4는 16px 등입니다. 중앙 Semantic 계층에는 의미를 가진 별칭들이 표시되고, primary는 blue.500을 참조하는 화살표가 그어져 있습니다. 우측 Component 계층에는 button.primary.bg가 semantic.color.primary를 참조하는 모습이 그려져 있습니다. 각 계층 사이의 화살표는 참조 방향을 나타내며, 가장 우측 컴포넌트 토큰부터 가장 좌측 primitive 토큰까지의 참조 체인이 시각적으로 추적됩니다. 다이어그램 하단에는 클라이언트 코드가 component 토큰 하나만 호출해도 안쪽의 모든 참조가 자동으로 해석된다는 점이 강조되어 있습니다.](dpo-07-02-design-token-tiers.svg)
+
+### 왜 이 계층이 필요한가
+
+세 계층이 필요한 이유는 단순합니다. **변경의 단위가 다르기 때문입니다.**
+
+- **primitive**는 거의 변하지 않습니다. blue.500의 색상값을 바꾸는 일은 디자인 시스템의 근본을 흔드는 일입니다.
+- **semantic**은 가끔 변합니다. "primary 색을 blue에서 indigo로 바꾼다" 같은 결정.
+- **component**는 자주 변합니다. "이번 분기 결제 버튼은 좀 더 진하게" 같은 결정.
+
+각 계층이 다른 속도로 변하므로, 직접 참조 대신 한 단계의 간접 참조를 둡니다. **이것이 Composite의 본질입니다.** Composite는 단순히 계층을 만드는 것이 아니라, 변경 비용을 계층의 깊이로 분산시키는 결정입니다.
+
+디자이너에게 이 패턴이 보이는 자리. 디자인 토큰을 설계할 때마다 Composite의 질문이 반복됩니다. **이 값은 primitive에 둘 것인가, semantic에 둘 것인가, component에 둘 것인가.** 답이 가벼우면 토큰이 자라기 쉽고, 답이 무거우면 토큰이 일관됩니다.
+
+Card와 CardHeader, Button과 ButtonGroup도 같은 결정의 다른 모양입니다. **무엇을 leaf로 두고 무엇을 composite로 둘 것인가.** 디자인 시스템의 깊이는 이 답의 누적입니다.
+
+---
+
+## 다음 편 예고
+
+> [ep.08 — Strategy와 다크모드 스위칭](/design-patterns-objects-ep-08)
+
+Composite가 객체의 계층을 정리하는 패턴이라면, Strategy는 객체의 동작을 갈아 끼우는 패턴입니다. 다크모드 스위칭이 단순한 색 변환이 아니라, Strategy의 거의 모든 결정을 동시에 보여주는 자리라는 점을 살펴봅니다.
