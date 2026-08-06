@@ -1,0 +1,252 @@
+<svg viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-not">
+  <title id="title-not">알림 UX와 Observer — 코드 구조와 사용자 경험의 대응</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #C02D6E;
+        --c-accent-2: #D97757;
+        --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-3: rgba(139, 122, 184, 0.12);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #EC85B5;
+          --c-accent-2: #E89376;
+          --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-3: rgba(176, 160, 218, 0.16);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .pane-code {
+        fill: var(--c-soft-3);
+        stroke: var(--c-accent-3);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .pane-ux {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .pane-ethics {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .box {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.3;
+      }
+
+      .line {
+        stroke: var(--c-accent-3);
+        stroke-width: 1.4;
+        fill: none;
+        stroke-dasharray: 4 3;
+      }
+
+      .pane-label {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+      }
+
+      .pane-title {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        fill: var(--c-fg);
+        letter-spacing: -0.01em;
+      }
+
+      .label {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 600;
+        fill: var(--c-fg);
+      }
+
+      .annot {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+
+      .warn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-accent-2);
+        font-weight: 700;
+      }
+    </style>
+    <marker id="ar-n" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-3)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="620" />
+
+  <!-- ===== 좌: 코드 구조 ===== -->
+  <g transform="translate(40 30)">
+    <rect class="pane-code" width="540" height="420" rx="8" />
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-3)">CODE — OBSERVER</text>
+    <text x="24" y="58" class="pane-title">MessageSystem.notify(msg)</text>
+
+    <!-- Subject -->
+    <g transform="translate(180 90)">
+      <rect width="180" height="56" rx="5" fill="var(--c-card)" stroke="var(--c-accent-3)" stroke-width="2" />
+      <text x="90" y="24" class="label" text-anchor="middle">MessageSystem</text>
+      <text x="90" y="42" class="annot" text-anchor="middle">notify(msg)</text>
+    </g>
+
+    <!-- 5 Observer -->
+    <line x1="200" y1="146" x2="100" y2="200" class="line" marker-end="url(#ar-n)" />
+    <line x1="270" y1="146" x2="270" y2="200" class="line" marker-end="url(#ar-n)" />
+    <line x1="340" y1="146" x2="440" y2="200" class="line" marker-end="url(#ar-n)" />
+    <line x1="230" y1="146" x2="160" y2="280" class="line" marker-end="url(#ar-n)" />
+    <line x1="310" y1="146" x2="380" y2="280" class="line" marker-end="url(#ar-n)" />
+
+    <g transform="translate(40 200)">
+      <rect width="120" height="50" rx="4" class="box" />
+      <text x="60" y="22" class="label" text-anchor="middle">HeaderBadge</text>
+      <text x="60" y="38" class="annot" text-anchor="middle">update</text>
+    </g>
+
+    <g transform="translate(210 200)">
+      <rect width="120" height="50" rx="4" class="box" />
+      <text x="60" y="22" class="label" text-anchor="middle">Sidebar</text>
+      <text x="60" y="38" class="annot" text-anchor="middle">update</text>
+    </g>
+
+    <g transform="translate(380 200)">
+      <rect width="120" height="50" rx="4" class="box" />
+      <text x="60" y="22" class="label" text-anchor="middle">PushNotif</text>
+      <text x="60" y="38" class="annot" text-anchor="middle">update</text>
+    </g>
+
+    <g transform="translate(120 280)">
+      <rect width="120" height="50" rx="4" class="box" />
+      <text x="60" y="22" class="label" text-anchor="middle">Email</text>
+      <text x="60" y="38" class="annot" text-anchor="middle">update</text>
+    </g>
+
+    <g transform="translate(300 280)">
+      <rect width="120" height="50" rx="4" class="box" />
+      <text x="60" y="22" class="label" text-anchor="middle">SMS</text>
+      <text x="60" y="38" class="annot" text-anchor="middle">update</text>
+    </g>
+
+    <g transform="translate(40 390)">
+      <text x="0" y="0" class="annot" font-weight="700" fill="var(--c-fg)">한 사건 → 다섯 Observer가 동시 수신</text>
+    </g>
+  </g>
+
+  <!-- ===== 우: UX (사용자 한 명) ===== -->
+  <g transform="translate(620 30)">
+    <rect class="pane-ux" width="540" height="420" rx="8" />
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent)">USER EXPERIENCE</text>
+    <text x="24" y="58" class="pane-title">같은 메시지가 다섯 채널로 동시 도달</text>
+
+    <!-- 사용자 한 명 -->
+    <g transform="translate(270 90)">
+      <circle r="32" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="2" />
+      <circle r="10" cy="-6" fill="var(--c-line)" />
+      <path d="M -20 16 Q 0 4 20 16" fill="none" stroke="var(--c-line)" stroke-width="2" />
+      <text x="0" y="48" class="annot" text-anchor="middle" font-weight="700" fill="var(--c-fg)">사용자 한 명</text>
+    </g>
+
+    <!-- 5 알림 -->
+    <line x1="240" y1="100" x2="100" y2="200" class="line" marker-end="url(#ar-n)" />
+    <line x1="270" y1="120" x2="270" y2="200" class="line" marker-end="url(#ar-n)" />
+    <line x1="300" y1="100" x2="440" y2="200" class="line" marker-end="url(#ar-n)" />
+    <line x1="250" y1="120" x2="150" y2="280" class="line" marker-end="url(#ar-n)" />
+    <line x1="290" y1="120" x2="370" y2="280" class="line" marker-end="url(#ar-n)" />
+
+    <g transform="translate(50 200)">
+      <rect width="110" height="50" rx="4" class="box" />
+      <text x="55" y="22" class="label" text-anchor="middle">🔴 배지</text>
+      <text x="55" y="38" class="annot" text-anchor="middle">1</text>
+    </g>
+
+    <g transform="translate(210 200)">
+      <rect width="110" height="50" rx="4" class="box" />
+      <text x="55" y="22" class="label" text-anchor="middle">📋 사이드바</text>
+      <text x="55" y="38" class="annot" text-anchor="middle">신규 메시지</text>
+    </g>
+
+    <g transform="translate(380 200)">
+      <rect width="110" height="50" rx="4" class="box" />
+      <text x="55" y="22" class="label" text-anchor="middle">📱 푸시</text>
+      <text x="55" y="38" class="annot" text-anchor="middle">시스템 알림</text>
+    </g>
+
+    <g transform="translate(115 280)">
+      <rect width="120" height="50" rx="4" class="box" />
+      <text x="60" y="22" class="label" text-anchor="middle">📧 이메일</text>
+      <text x="60" y="38" class="annot" text-anchor="middle">inbox 도착</text>
+    </g>
+
+    <g transform="translate(285 280)">
+      <rect width="120" height="50" rx="4" class="box" />
+      <text x="60" y="22" class="label" text-anchor="middle">💬 SMS</text>
+      <text x="60" y="38" class="annot" text-anchor="middle">진동</text>
+    </g>
+
+    <g transform="translate(40 390)">
+      <text x="0" y="0" class="annot" font-weight="700" fill="var(--c-fg)">사용자: "한 메시지에 다섯 번 알림이 옵니다"</text>
+    </g>
+  </g>
+
+  <!-- 하단: 윤리 경계 -->
+  <g transform="translate(40 480)">
+    <rect class="pane-ethics" width="1120" height="135" rx="8" />
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-2)">ETHICAL BOUNDARY — 같은 구조의 두 얼굴</text>
+
+    <!-- 좋은 쪽 -->
+    <g transform="translate(25 60)">
+      <text x="0" y="0" class="label">정직한 알림</text>
+      <text x="0" y="18" class="annot">• 사용자가 명시적으로 구독 / 채널 선택</text>
+      <text x="0" y="34" class="annot">• 구독 해제가 한 번의 클릭으로 가능</text>
+      <text x="0" y="50" class="annot">• 빈도와 우선순위를 사용자가 결정</text>
+    </g>
+
+    <!-- 경계선 -->
+    <line x1="540" y1="56" x2="540" y2="110" stroke="var(--c-accent-2)" stroke-width="1.5" stroke-dasharray="4 3" />
+
+    <!-- 나쁜 쪽 -->
+    <g transform="translate(570 60)">
+      <text x="0" y="0" class="warn">DARK PATTERN과 가까워지는 경계</text>
+      <text x="0" y="18" class="annot">• 모든 채널 강제 활성화</text>
+      <text x="0" y="34" class="annot">• 구독은 1클릭, 해제는 설정 깊은 곳</text>
+      <text x="0" y="50" class="annot">• 마케팅을 긴급 알림으로 위장</text>
+    </g>
+  </g>
+</svg>

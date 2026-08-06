@@ -1,0 +1,185 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-obs">
+  <title id="title-obs">Observer 패턴 — Subject와 등록된 Observer들</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #C02D6E;
+        --c-accent-2: #D97757;
+        --c-accent-3: #A65AA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-3: rgba(139, 122, 184, 0.12);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #EC85B5;
+          --c-accent-2: #E89376;
+          --c-accent-3: #CE9DD2;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-3: rgba(176, 160, 218, 0.16);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .box {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.4;
+      }
+
+      .box-sub {
+        fill: var(--c-card);
+        stroke: var(--c-accent-3);
+        stroke-width: 2;
+      }
+
+      .line-notify {
+        stroke: var(--c-accent-3);
+        stroke-width: 1.5;
+        fill: none;
+        stroke-dasharray: 4 3;
+      }
+
+      .col-label {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.14em;
+      }
+
+      .cname {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .sig {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        fill: var(--c-fg);
+      }
+
+      .sig-mute {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+
+      .annot {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+
+      .notify-label {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-accent-3);
+      }
+    </style>
+    <marker id="ar-obs" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-3)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="580" />
+
+  <text x="60" y="36" class="col-label">SUBJECT — 사건의 발원지</text>
+  <text x="680" y="36" class="col-label">OBSERVERS — 등록된 청취자들</text>
+
+  <!-- Subject -->
+  <g transform="translate(60 200)">
+    <rect width="300" height="190" rx="6" class="box-sub" />
+    <text x="150" y="30" class="cname" text-anchor="middle">AuthService</text>
+    <line x1="14" y1="44" x2="286" y2="44" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="66" class="sig-mute">- observers: Set&lt;Observer&gt;</text>
+    <text x="14" y="82" class="sig-mute">- currentUser: User</text>
+    <line x1="14" y1="96" x2="286" y2="96" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="118" class="sig">+ subscribe(o): unsubscribe</text>
+    <text x="14" y="136" class="sig">+ login(user)</text>
+    <text x="14" y="154" class="sig">+ notify(event)</text>
+    <text x="14" y="172" class="annot">// 누가 듣는지 모른다</text>
+  </g>
+
+  <!-- notify 화살표 분기 -->
+  <g>
+    <line x1="360" y1="240" x2="680" y2="125" class="line-notify" marker-end="url(#ar-obs)" />
+    <line x1="360" y1="280" x2="680" y2="245" class="line-notify" marker-end="url(#ar-obs)" />
+    <line x1="360" y1="320" x2="680" y2="365" class="line-notify" marker-end="url(#ar-obs)" />
+    <text x="500" y="100" class="notify-label" text-anchor="middle">notify(LoginEvent)</text>
+  </g>
+
+  <!-- 4 Observers (오른쪽 격자) -->
+  <g transform="translate(680 80)">
+    <rect width="220" height="90" rx="5" class="box" />
+    <text x="110" y="28" class="cname" text-anchor="middle">HeaderObserver</text>
+    <line x1="14" y1="42" x2="206" y2="42" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="62" class="sig">+ update(event)</text>
+    <text x="14" y="74" class="annot">// 헤더 UI 갱신</text>
+  </g>
+
+  <g transform="translate(920 80)">
+    <rect width="220" height="90" rx="5" class="box" />
+    <text x="110" y="28" class="cname" text-anchor="middle">SidebarObserver</text>
+    <line x1="14" y1="42" x2="206" y2="42" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="62" class="sig">+ update(event)</text>
+    <text x="14" y="74" class="annot">// 사이드바 새로고침</text>
+  </g>
+
+  <g transform="translate(680 200)">
+    <rect width="220" height="90" rx="5" class="box" />
+    <text x="110" y="28" class="cname" text-anchor="middle">AnalyticsObserver</text>
+    <line x1="14" y1="42" x2="206" y2="42" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="62" class="sig">+ update(event)</text>
+    <text x="14" y="74" class="annot">// 이벤트 전송</text>
+  </g>
+
+  <g transform="translate(920 200)">
+    <rect width="220" height="90" rx="5" class="box" />
+    <text x="110" y="28" class="cname" text-anchor="middle">CartObserver</text>
+    <line x1="14" y1="42" x2="206" y2="42" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="62" class="sig">+ update(event)</text>
+    <text x="14" y="74" class="annot">// 장바구니 불러오기</text>
+  </g>
+
+  <g transform="translate(680 320)">
+    <rect width="220" height="90" rx="5" class="box" />
+    <text x="110" y="28" class="cname" text-anchor="middle">PushObserver</text>
+    <line x1="14" y1="42" x2="206" y2="42" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="62" class="sig">+ update(event)</text>
+    <text x="14" y="74" class="annot">// 푸시 발송</text>
+  </g>
+
+  <g transform="translate(920 320)">
+    <rect width="220" height="90" rx="5" class="box" />
+    <text x="110" y="28" class="cname" text-anchor="middle">EmailObserver</text>
+    <line x1="14" y1="42" x2="206" y2="42" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="62" class="sig">+ update(event)</text>
+    <text x="14" y="74" class="annot">// 이메일 발송</text>
+  </g>
+
+  <!-- 캡션 -->
+  <g transform="translate(60 460)">
+    <rect width="1080" height="83" rx="6" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1.2"
+      stroke-dasharray="4 3" />
+    <text x="20" y="28" class="cname" fill="var(--c-accent-3)">핵심: Subject는 누가 듣고 있는지 모릅니다</text>
+    <text x="20" y="50" class="annot">새 Observer를 추가해도 Subject는 그대로</text>
+    <text x="20" y="66" class="annot">구독은 외부에서 등록 — 결합이 끊어진 상태</text>
+  </g>
+</svg>
