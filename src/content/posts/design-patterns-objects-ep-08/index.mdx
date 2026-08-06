@@ -1,0 +1,218 @@
+---
+title: "Strategy와 다크모드 스위칭 - 디자인 패턴, 객체 수준 편 ep.08"
+description: 객체의 동작을 갈아 끼우는 결정. Strategy 패턴은 알고리즘을 데이터처럼 다루는 일에 이름을 붙입니다.
+summary: switch문 안티패턴을 Strategy로 정리하는 TypeScript 예제와 정렬·결제 알고리즘 교체를 살펴봅니다. 같은 결정 구조가 다크모드, 다국어, 플랫폼별 분기에서 어떻게 다시 나타나는지를 함께 살펴봅니다. Strategy와 State의 경계도 짚습니다.
+date: 2026-06-16
+tags:
+  - series
+  - develop
+  - frontend
+  - backend
+  - design-patterns
+  - gof
+  - typescript
+  - object-oriented
+  - strategy
+  - behavioral
+  - design-system
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+같은 자리에서 다른 행동을 해야 할 때 우리는 보통 분기문을 씁니다. 분기가 자라기 시작하면, 분기 자체가 무엇이 되어야 한다는 신호입니다.
+
+---
+
+## 같은 자리, 다른 행동
+
+객체에 행동을 부여하는 가장 단순한 방식은 메서드 안에 모두 적는 것입니다. 정렬 메서드는 정렬 알고리즘을 갖고, 결제 메서드는 결제 로직을 갖습니다.
+
+그러나 그 행동이 여러 종류여야 하는 순간이 옵니다. 정렬은 가격순, 인기순, 최신순으로 갈라집니다. 결제는 카드, 계좌이체, 페이팔, 가상화폐로 갈라집니다. 가장 흔한 답은 `switch`문이나 `if-else`로 분기하는 것입니다.
+
+```ts
+function sort(items: Item[], type: 'price' | 'popular' | 'recent'): Item[] {
+  if (type === 'price') {
+    return items.sort((a, b) => a.price - b.price)
+  } else if (type === 'popular') {
+    return items.sort((a, b) => b.views - a.views)
+  } else if (type === 'recent') {
+    return items.sort((a, b) => b.createdAt - a.createdAt)
+  }
+  throw new Error('unknown sort type')
+}
+```
+
+분기가 셋이면 견딜 만합니다. 다섯이면 무겁습니다. 새 분기를 추가하려면 이 함수의 본문을 직접 고쳐야 합니다.
+
+Strategy는 이 분기에 다른 답을 냅니다. 각 행동을 별도의 객체로 만들고, 호출 측이 그 객체를 선택해 건넵니다. 분기는 사라지고, 대신 객체의 교체가 그 자리를 차지합니다.
+
+핵심은 단순합니다. **알고리즘을 데이터처럼 다룬다.** 같은 인터페이스를 가지는 객체들 중 하나를 골라 사용합니다.
+
+---
+
+## Strategy의 정석
+
+### 기본 구조
+
+각 알고리즘이 같은 인터페이스를 가지도록 만듭니다.
+
+```ts
+interface SortStrategy {
+  sort(items: Item[]): Item[]
+}
+
+class PriceSortStrategy implements SortStrategy {
+  sort(items: Item[]): Item[] {
+    return [...items].sort((a, b) => a.price - b.price)
+  }
+}
+
+class PopularSortStrategy implements SortStrategy {
+  sort(items: Item[]): Item[] {
+    return [...items].sort((a, b) => b.views - a.views)
+  }
+}
+
+class RecentSortStrategy implements SortStrategy {
+  sort(items: Item[]): Item[] {
+    return [...items].sort((a, b) => b.createdAt - a.createdAt)
+  }
+}
+```
+
+Context 객체는 Strategy를 받아서 사용합니다.
+
+```ts
+class ItemList {
+  constructor(
+    private items: Item[],
+    private strategy: SortStrategy,
+  ) {}
+
+  display(): Item[] {
+    return this.strategy.sort(this.items)
+  }
+
+  setStrategy(strategy: SortStrategy): void {
+    this.strategy = strategy
+  }
+}
+
+// 사용
+const list = new ItemList(items, new PriceSortStrategy())
+list.display()
+
+// 런타임에 교체
+list.setStrategy(new PopularSortStrategy())
+list.display()
+```
+
+`ItemList`는 어떤 정렬 알고리즘이 들어오는지 알지 못합니다. 인터페이스만 압니다. **새 정렬 방식이 늘어도 ItemList를 고치지 않습니다.** 새 Strategy 클래스를 만들어 넘기면 됩니다.
+
+![Strategy 패턴의 클래스 구조 다이어그램. 좌측에 Context 역할의 ItemList 클래스가 있고, 그 안에 SortStrategy 타입의 strategy 필드와 display 메서드가 표시됩니다. ItemList는 SortStrategy 인터페이스를 컴포지션으로 보유하는 화살표로 연결되어 있습니다. 우측에는 SortStrategy 인터페이스를 구현하는 세 개의 구체 클래스 PriceSortStrategy, PopularSortStrategy, RecentSortStrategy가 나란히 배치되어 있고, 각 클래스의 sort 메서드 시그니처가 표시되어 있습니다. 하단에는 런타임에 strategy를 교체하는 흐름이 화살표로 그려져 있어, Context는 그대로 두고 Strategy 객체만 갈아 끼우는 패턴의 본질이 시각적으로 드러납니다.](dpo-08-01-strategy-structure.svg)
+
+### TypeScript에서의 자연스러운 형태
+
+TypeScript와 같은 함수형 사용이 자유로운 언어에서는 Strategy를 클래스 대신 **함수**로 표현하는 일이 흔합니다.
+
+```ts
+type SortStrategy = (items: Item[]) => Item[]
+
+const byPrice: SortStrategy = (items) =>
+  [...items].sort((a, b) => a.price - b.price)
+
+const byPopular: SortStrategy = (items) =>
+  [...items].sort((a, b) => b.views - a.views)
+
+const byRecent: SortStrategy = (items) =>
+  [...items].sort((a, b) => b.createdAt - a.createdAt)
+
+// Context는 함수를 받는다
+function display(items: Item[], sort: SortStrategy): Item[] {
+  return sort(items)
+}
+
+display(items, byPrice)
+display(items, byPopular)
+```
+
+클래스 기반 Strategy와 함수 기반 Strategy는 본질이 같습니다. 같은 인터페이스를 가지는 교체 가능한 단위. **GoF가 정의한 패턴은 클래스 기반이지만, 모던 TypeScript에서는 함수가 더 가볍게 같은 일을 합니다.**
+
+### Strategy와 State의 차이
+
+Strategy와 State는 구조가 비슷합니다. 둘 다 Context가 다른 객체를 보유하고 그것에 행동을 위임합니다. 그러나 답하는 질문이 다릅니다.
+
+- **Strategy**: 어떤 행동을 할 것인가. 호출 측이 선택한다.
+- **State**: 지금 어떤 상태인가. 객체 자신의 흐름이 결정한다.
+
+Strategy의 교체는 외부 결정입니다. 사용자가 정렬 옵션을 바꾸거나 개발자가 결제 게이트웨이를 갈아 끼우는 일은 외부에서 일어납니다. State의 교체는 내부 흐름입니다. 주문이 `draft → submitted → paid`로 흐르는 일은 객체 안에서 일어납니다.
+
+이 둘이 헷갈리는 경우, **누가 결정하는가**를 묻습니다. 외부면 Strategy, 내부면 State. State 패턴은 [ep.10](/design-patterns-objects-ep-10)에서 자세히 봅니다.
+
+### 안티패턴
+
+**객체 하나에 너무 작은 Strategy.** 알고리즘이 너무 단순하면 Strategy로 추출하는 비용이 효용을 넘어섭니다. `sort(items)`를 그대로 두는 편이 낫습니다. Strategy는 알고리즘이 한 줄짜리 비교 함수보다 복잡할 때 의미를 가집니다.
+
+**Strategy에 Context 의존성을 주입.** Strategy가 Context의 내부 상태를 알아야 한다면, 두 객체가 결합되어 교체의 자유가 사라집니다. Strategy는 가능하면 입력만 받고 출력만 돌려주는 stateless 객체여야 합니다.
+
+**모든 분기를 Strategy로.** 분기가 두 개뿐인 경우 Strategy는 과한 추상화입니다. `if-else`가 두 줄이면 그대로 두는 것이 낫습니다.
+
+---
+
+## 같은 결정이 다시 나타나는 자리
+
+Strategy가 답하는 질문 — 같은 자리에 다른 행동을 갈아 끼운다 — 은 UI 시스템에서 매일 반복됩니다.
+
+**다크모드 스위칭**이 가장 친숙한 사례입니다. 같은 컴포넌트가 라이트와 다크 두 모드에서 다르게 그려집니다.
+
+```ts
+type ThemeStrategy = {
+  bg: string
+  text: string
+  border: string
+}
+
+const lightTheme: ThemeStrategy = {
+  bg: '#FFFFFF',
+  text: '#1A1F2E',
+  border: '#E5E7EB',
+}
+
+const darkTheme: ThemeStrategy = {
+  bg: '#0F1419',
+  text: '#E8E6E1',
+  border: '#2A2F3E',
+}
+
+// 사용자의 선택에 따라 갈아 끼움
+const activeTheme: ThemeStrategy =
+  prefersDark ? darkTheme : lightTheme
+```
+
+이것이 Strategy입니다. 컴포넌트는 어떤 테마가 들어오는지 알지 못합니다. 같은 인터페이스(`bg`, `text`, `border` 같은 토큰)만 압니다. 사용자가 모드를 바꾸는 일은 Strategy를 교체하는 일입니다.
+
+**다국어(i18n)**도 같은 구조입니다. 같은 자리에 다른 언어의 문자열이 들어갑니다. `t('common.submit')`이라는 호출은 어떤 언어가 활성화되어 있는지 알지 못합니다. 활성 Strategy(언어 사전)가 그 답을 결정합니다.
+
+**플랫폼별 렌더링.** React Native에서 iOS와 Android는 같은 컴포넌트를 다른 방식으로 그립니다. `Platform.select({{ ios: ..., android: ... }})` 같은 API는 Strategy의 가장 직접적인 표현입니다.
+
+![다크모드, i18n, 플랫폼 분기를 같은 Strategy 구조로 보여주는 다이어그램. 중앙에 ThemeStrategy 인터페이스를 받는 단일 컴포넌트가 있고, 좌측에 light 토큰과 dark 토큰의 두 Strategy 객체가 갈아 끼울 수 있는 형태로 표시됩니다. 그 아래에는 같은 패턴을 i18n에 적용한 모습이 그려져 있어, 한국어 번역과 일본어 번역이 교체 가능한 Strategy로 표현됩니다. 더 아래에는 플랫폼 분기로 iOS Native와 Android Native가 같은 Strategy 자리에 놓이는 모습이 있습니다. 세 사례 모두 Context는 그대로이고 Strategy 객체만 갈아 끼우는 동일한 결정 구조임이 강조되어 있습니다.](dpo-08-02-theme-strategy.svg)
+
+### 한 가지 더 — Strategy의 단순함이 가지는 강점
+
+Strategy는 단순합니다. 인터페이스 하나와 교체 가능한 구현들. 그 단순함이 강점입니다.
+
+새 다크 톤을 만들고 싶다면, `extraDarkTheme` Strategy를 추가하면 됩니다. 새 언어를 지원하려면 새 사전을 추가합니다. **확장이 추가이지 수정이 아닌 것**, 이것이 Open/Closed 원칙이 Strategy를 통해 자연스럽게 따라오는 이유입니다.
+
+디자이너에게 이 패턴이 보이는 자리. 디자인 시스템의 토큰 군은 Strategy의 모음입니다. 컴포넌트는 어떤 군이 활성화되어 있는지 알지 못한 채로 그려집니다. **무엇을 컴포넌트가 직접 결정하고 무엇을 외부 Strategy에 위임할 것인가** — 이 질문이 디자인 시스템의 표현력을 결정합니다.
+
+너무 많은 것을 외부에 위임하면 컴포넌트의 정체성이 흐려집니다. 너무 적게 위임하면 변형이 어렵습니다. 그 사이의 결정이 디자인 시스템의 성격을 만듭니다.
+
+---
+
+## 다음 편 예고
+
+> [ep.09 — Observer와 알림 UX의 윤리](/design-patterns-objects-ep-09)
+
+Strategy가 같은 자리에 다른 행동을 두는 패턴이라면, Observer는 같은 사건을 여러 자리에 알리는 패턴입니다. 그 알림이 사용자에게 닿는 순간 — 그것이 어떻게 다크 패턴과 가까워질 수 있는지를 살펴봅니다.
