@@ -215,7 +215,7 @@ const { variant = "sidebar" } = Astro.props;
                         window.history.replaceState(null, "", url.toString());
                     } catch (err) {}
                 } else {
-                    window.location.href = "/search?q=" + encodeURIComponent(q);
+                    window.location.href = "/search/?q=" + encodeURIComponent(q);
                 }
             });
 

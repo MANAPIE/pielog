@@ -126,7 +126,7 @@ TTV = 첫 가치 도달 시점 - 가입 시점
 
 **⑤ 비고**
 
-- **흔한 함정**: 상관관계와 인과관계 혼동. *Aha 한 사람이 잔존이 높은* 게 아니라 *원래 잔존할 사람이 Aha를 한* 것일 수도. 인과 검증은 [ep.10](/marketing-metrics-handbook-ep-10) 실험에서.
+- **흔한 함정**: 상관관계와 인과관계 혼동. *Aha 한 사람이 잔존이 높은* 게 아니라 *원래 잔존할 사람이 Aha를 한* 것일 수도. 인과 검증은 [ep.10](/marketing-metrics-handbook-ep-10/) 실험에서.
 - **함께 보기**: [Magic Number](#magic-number), [Activation Rate](#activation-rate)
 
 ---
@@ -165,7 +165,7 @@ Magic Number = [행동 X] × [N번/N개] × [Y일 안에]
 **⑤ 비고**
 
 - **함께 보기**: [Aha Moment](#aha-moment), [Activation Rate](#activation-rate)
-- **[ep.02](/marketing-metrics-handbook-ep-02) SaaS Magic Number와 다름**: [ep.02](/marketing-metrics-handbook-ep-02)의 Magic Number는 *Net New ARR ÷ S&M 비용* 의 SaaS 효율 지표. 이번 편의 Magic Number는 *사용자 활성화 임계값*. 같은 단어, 다른 의미. 회의에서 항상 어떤 매직 넘버인지 확인.
+- **[ep.02](/marketing-metrics-handbook-ep-02/) SaaS Magic Number와 다름**: [ep.02](/marketing-metrics-handbook-ep-02/)의 Magic Number는 *Net New ARR ÷ S&M 비용* 의 SaaS 효율 지표. 이번 편의 Magic Number는 *사용자 활성화 임계값*. 같은 단어, 다른 의미. 회의에서 항상 어떤 매직 넘버인지 확인.
 
 ---
 
@@ -261,7 +261,7 @@ Sign-up Rate = 가입 완료 수 ÷ 진입 수 × 100 (%)
 
 **⑤ 비고**
 
-- **함께 보기**: [CVR](/marketing-metrics-handbook-ep-03#cvr), [Landing Page CVR](/marketing-metrics-handbook-ep-03#landing-page-cvr)
+- **함께 보기**: [CVR](/marketing-metrics-handbook-ep-03/#cvr), [Landing Page CVR](/marketing-metrics-handbook-ep-03/#landing-page-cvr)
 
 ---
 
@@ -318,7 +318,7 @@ Conversion Funnel = [단계1 → 단계2 → ... → 단계N]
 
 **⑤ 비고**
 
-- **함께 보기**: [Funnel Step](#funnel-step), [Funnel Efficiency](/marketing-metrics-handbook-ep-02#funnel-efficiency)
+- **함께 보기**: [Funnel Step](#funnel-step), [Funnel Efficiency](/marketing-metrics-handbook-ep-02/#funnel-efficiency)
 
 ---
 
@@ -372,7 +372,7 @@ Activation Rate와 같은 정의지만, *시간 단위 분포* 와 *단계별 �
 
 **⑤ 비고**
 
-- **함께 보기**: [Activation Rate](#activation-rate), [N-day Retention](/marketing-metrics-handbook-ep-06#n-day-retention)
+- **함께 보기**: [Activation Rate](#activation-rate), [N-day Retention](/marketing-metrics-handbook-ep-06/#n-day-retention)
 
 ---
 
@@ -419,7 +419,7 @@ Activation Rate와 같은 정의지만, *시간 단위 분포* 와 *단계별 �
 |---|---|---|
 | **언제** | 단일 세션·온보딩 | 장기 유지 |
 | **단위** | 단계 간 (분) | 월 단위 (보통) |
-| **상세 편** | ep.04 | [ep.07](/marketing-metrics-handbook-ep-07#churn-rate) |
+| **상세 편** | ep.04 | [ep.07](/marketing-metrics-handbook-ep-07/#churn-rate) |
 
 ---
 
@@ -436,6 +436,6 @@ Activation Rate와 같은 정의지만, *시간 단위 분포* 와 *단계별 �
 
 ## 다음 편 예고
 
-> [ep.05 — 유지와 참여](/marketing-metrics-handbook-ep-05)
+> [ep.05 — 유지와 참여](/marketing-metrics-handbook-ep-05/)
 
 활성화 이후의 단어들 — 매일 들어오는 사람, 일주일 안 들어오는 사람, 한 달 만에 다시 온 사람을 측정하는 12개. DAU, WAU, MAU, Stickiness, Session 그리고 그 변형들.

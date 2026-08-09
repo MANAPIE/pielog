@@ -388,6 +388,6 @@ NPS 설문에서 *7~8점* 응답자. NPS 계산에서 제외.
 
 ## 다음 편 예고
 
-> [ep.10 — 실험과 통계](/marketing-metrics-handbook-ep-10)
+> [ep.10 — 실험과 통계](/marketing-metrics-handbook-ep-10/)
 
 지금까지의 모든 지표 변화가 *진짜 우리 변경의 효과* 인지 어떻게 알 수 있을까요. A/B 테스트, 통계적 유의성, 표본 크기, p-value, 그리고 두 종류의 오류. 12개 용어.

@@ -10,7 +10,7 @@ draft: false
 
 ![](./cover.svg)
 
-[ep.01](/marketing-metrics-handbook-ep-01)이 *지출의 단어들* 이었다면 이번은 *회수의 단어들* 이다.
+[ep.01](/marketing-metrics-handbook-ep-01/)이 *지출의 단어들* 이었다면 이번은 *회수의 단어들* 이다.
 
 같은 100만 원을 광고에 썼다. 결과 매출이 300만 원이라면 어떻게 평가할 것인가. 매체는 *ROAS 300%* 라고 말한다. 회계는 *ROI 50%* 라고 말한다. CFO는 *MER 2.4* 라고 말한다. 그로스 팀은 *증분 ROAS는 180%* 라고 말한다. 같은 사실을 네 가지 다른 단어로 묘사한다.
 
@@ -24,7 +24,7 @@ draft: false
 
 광고 효율 지표 9개. ROAS, ROI, MER, iROAS, Blended CAC, Paid vs Organic, Marketing Efficiency Ratio, Payback Window, Funnel Efficiency.
 
-[ep.01](/marketing-metrics-handbook-ep-01) 비용 지표가 *광고 매니저 화면의 단어* 였다면, ep.02는 *대표·CFO·투자자가 보는 화면의 단어* 입니다. 같은 데이터지만 시선이 한 단계 위로 올라옵니다.
+[ep.01](/marketing-metrics-handbook-ep-01/) 비용 지표가 *광고 매니저 화면의 단어* 였다면, ep.02는 *대표·CFO·투자자가 보는 화면의 단어* 입니다. 같은 데이터지만 시선이 한 단계 위로 올라옵니다.
 
 ---
 
@@ -64,8 +64,8 @@ ROAS = 광고로 발생한 매출 ÷ 광고비 (배수, ×)
 
 **⑤ 비고**
 
-- **흔한 함정**: ROAS는 *광고 매니저가 자기 광고에 귀속된 매출만* 봅니다. 같은 사람이 다른 채널 광고를 먼저 보고 들어왔어도 마지막에 클릭한 광고가 매출을 다 가져갑니다. [ep.12](/marketing-metrics-handbook-ep-12) 어트리뷰션과 직결.
-- **함께 보기**: [ROI](#roi), [MER](#mer), [iROAS](#iroas), [CAC](/marketing-metrics-handbook-ep-08#cac)
+- **흔한 함정**: ROAS는 *광고 매니저가 자기 광고에 귀속된 매출만* 봅니다. 같은 사람이 다른 채널 광고를 먼저 보고 들어왔어도 마지막에 클릭한 광고가 매출을 다 가져갑니다. [ep.12](/marketing-metrics-handbook-ep-12/) 어트리뷰션과 직결.
+- **함께 보기**: [ROI](#roi), [MER](#mer), [iROAS](#iroas), [CAC](/marketing-metrics-handbook-ep-08/#cac)
 - **% vs ×**: ROAS 300%와 ROAS 3.0×는 같은 뜻. 업계마다 표기가 다르므로 회의 시작 시 단위를 확인하는 습관.
 
 ---
@@ -101,7 +101,7 @@ ROI = (수익 - 비용) ÷ 비용 × 100 (%)
 **⑤ 비고**
 
 - **흔한 함정**: ROAS와 ROI를 같은 회의에서 섞어 쓰면 혼란. 단위를 분명히 구분해야 합니다.
-- **함께 보기**: [ROAS](#roas), [Gross Margin](/marketing-metrics-handbook-ep-08#gross-margin), [Contribution Margin](/marketing-metrics-handbook-ep-08#contribution-margin)
+- **함께 보기**: [ROAS](#roas), [Gross Margin](/marketing-metrics-handbook-ep-08/#gross-margin), [Contribution Margin](/marketing-metrics-handbook-ep-08/#contribution-margin)
 
 ---
 
@@ -151,7 +151,7 @@ ROAS는 *어트리뷰션된 매출 ÷ 광고비* 라면, MER은 *모든 매출 �
 iROAS = (광고를 본 그룹의 매출 - 안 본 그룹의 매출) ÷ 광고비
 ```
 
-리프트 테스트(lift test) 또는 홀드아웃(holdout) 실험으로만 측정 가능. [ep.10](/marketing-metrics-handbook-ep-10)과 직결.
+리프트 테스트(lift test) 또는 홀드아웃(holdout) 실험으로만 측정 가능. [ep.10](/marketing-metrics-handbook-ep-10/)과 직결.
 
 **② 맥락**
 
@@ -172,7 +172,7 @@ iROAS = (광고를 본 그룹의 매출 - 안 본 그룹의 매출) ÷ 광고비
 **⑤ 비고**
 
 - **흔한 함정**: 리타기팅 ROAS는 항상 과대평가됩니다. 이미 구매 의향이 있는 사람에게 보여주기 때문. iROAS 없이 리타기팅 예산을 늘리면 위험.
-- **함께 보기**: [ROAS](#roas), [Incrementality](/marketing-metrics-handbook-ep-12#incrementality), [Holdout](/marketing-metrics-handbook-ep-10#holdout)
+- **함께 보기**: [ROAS](#roas), [Incrementality](/marketing-metrics-handbook-ep-12/#incrementality), [Holdout](/marketing-metrics-handbook-ep-10/#holdout)
 
 ---
 
@@ -196,7 +196,7 @@ Blended CAC = 총 마케팅 비용 ÷ 신규 고객 수
 **③ 액션**
 
 - **개발**: Blended CAC 계산을 자동화하려면 *모든 채널의 사용자 유입을 한 ID 시스템에 통합* 해야 합니다. 오가닉도 *referral source* 로 추적.
-- **디자인**: Blended CAC를 낮추는 디자인은 *공유·추천 UI*, *SEO 친화 페이지*, *입소문 유도 기능*. [ep.09](/marketing-metrics-handbook-ep-09)의 K-factor·Viral Coefficient가 직결.
+- **디자인**: Blended CAC를 낮추는 디자인은 *공유·추천 UI*, *SEO 친화 페이지*, *입소문 유도 기능*. [ep.09](/marketing-metrics-handbook-ep-09/)의 K-factor·Viral Coefficient가 직결.
 - **기획**: Paid 비중이 너무 높으면 Blended CAC가 Paid CAC에 수렴. 오가닉 채널을 의도적으로 키워야 합니다.
 
 **④ 사례**
@@ -207,7 +207,7 @@ Blended CAC = 총 마케팅 비용 ÷ 신규 고객 수
 **⑤ 비고**
 
 - **흔한 함정**: 회사 규모가 커지면 *오가닉이 이미 광고에 흡수된 것* 인지 *진짜 오가닉* 인지 구분이 어려워집니다. 브랜드 광고가 검색 트래픽을 만드는 식.
-- **함께 보기**: [CAC](/marketing-metrics-handbook-ep-08#cac), [Paid vs Organic](#paid-vs-organic), [MER](#mer)
+- **함께 보기**: [CAC](/marketing-metrics-handbook-ep-08/#cac), [Paid vs Organic](#paid-vs-organic), [MER](#mer)
 
 ---
 
@@ -227,7 +227,7 @@ Blended CAC = 총 마케팅 비용 ÷ 신규 고객 수
 
 **③ 액션**
 
-- **개발**: UTM, referrer header, 첫 이벤트의 source 속성을 정확히 캡처. 이게 안 되면 Paid/Organic 구분 자체가 안 됩니다. [ep.11](/marketing-metrics-handbook-ep-11) 트래킹에서 자세히.
+- **개발**: UTM, referrer header, 첫 이벤트의 source 속성을 정확히 캡처. 이게 안 되면 Paid/Organic 구분 자체가 안 됩니다. [ep.11](/marketing-metrics-handbook-ep-11/) 트래킹에서 자세히.
 - **디자인**: 오가닉을 키우는 디자인은 *공유 가능성 높은 OG 이미지*, *공유하고 싶은 결과 화면*, *SEO 친화적 URL과 시맨틱 HTML*.
 - **기획**: 두 트래픽의 *질적 차이* 도 봐야 합니다. 오가닉이 일반적으로 활성화율과 LTV가 더 높습니다. *진짜 관심이 있어서 직접 찾아온 사용자* 이기 때문.
 
@@ -239,7 +239,7 @@ Blended CAC = 총 마케팅 비용 ÷ 신규 고객 수
 **⑤ 비고**
 
 - **흔한 함정**: *Direct* 트래픽은 사실 *측정 실패한 트래픽* 인 경우가 많습니다. UTM이 빠진 채로 들어오면 Direct로 분류됩니다.
-- **함께 보기**: [Blended CAC](#blended-cac), [Referral Rate](/marketing-metrics-handbook-ep-09#referral-rate), [UTM](/marketing-metrics-handbook-ep-11#utm)
+- **함께 보기**: [Blended CAC](#blended-cac), [Referral Rate](/marketing-metrics-handbook-ep-09/#referral-rate), [UTM](/marketing-metrics-handbook-ep-11/#utm)
 
 ---
 
@@ -274,7 +274,7 @@ SaaS MER = 분기 Net New ARR ÷ 직전 분기 S&M 비용
 **⑤ 비고**
 
 - **흔한 함정**: SaaS 초기에는 *Burn Multiple* (현금 소진 비율)도 함께 봅니다. Magic Number 좋아도 현금 소진이 심하면 위험.
-- **함께 보기**: [MRR](/marketing-metrics-handbook-ep-08#mrr), [ARR](/marketing-metrics-handbook-ep-08#arr), [CAC](/marketing-metrics-handbook-ep-08#cac)
+- **함께 보기**: [MRR](/marketing-metrics-handbook-ep-08/#mrr), [ARR](/marketing-metrics-handbook-ep-08/#arr), [CAC](/marketing-metrics-handbook-ep-08/#cac)
 
 ---
 
@@ -297,7 +297,7 @@ CAC 24,000원, 월평균 매출 4,900원이면 Payback = 4.9개월. *5개월 만
 
 **③ 액션**
 
-- **개발**: 코호트별 누적 매출 곡선을 산출. *N월차에 누적 매출이 CAC를 넘는가* 의 시각화. 이게 [ep.06](/marketing-metrics-handbook-ep-06) 리텐션 곡선과 같은 도구로 그려집니다.
+- **개발**: 코호트별 누적 매출 곡선을 산출. *N월차에 누적 매출이 CAC를 넘는가* 의 시각화. 이게 [ep.06](/marketing-metrics-handbook-ep-06/) 리텐션 곡선과 같은 도구로 그려집니다.
 - **디자인**: Payback을 줄이는 디자인은 *첫 결제까지의 시간 단축*. 가입 즉시 결제 유도, 첫 결제 할인, 무료 체험 → 자동 결제 전환의 UX 흐름.
 - **기획**: Payback Window의 적정 길이는 산업별. SaaS B2B 12개월 이내가 건강, 모바일 컨슈머 앱은 6개월 이내가 일반적.
 
@@ -309,7 +309,7 @@ CAC 24,000원, 월평균 매출 4,900원이면 Payback = 4.9개월. *5개월 만
 **⑤ 비고**
 
 - **흔한 함정**: Payback이 짧다고 무조건 좋은 건 아닙니다. LTV가 짧은 비즈니스(저가 일회성 구매)는 Payback이 짧을 수밖에 없습니다. *LTV ÷ Payback* 비율을 함께.
-- **함께 보기**: [Payback Period](/marketing-metrics-handbook-ep-08#payback-period), [LTV:CAC Ratio](/marketing-metrics-handbook-ep-08#ltv-cac-ratio)
+- **함께 보기**: [Payback Period](/marketing-metrics-handbook-ep-08/#payback-period), [LTV:CAC Ratio](/marketing-metrics-handbook-ep-08/#ltv-cac-ratio)
 
 ---
 
@@ -345,7 +345,7 @@ Funnel Efficiency = 최종 전환 수 ÷ 진입 수
 
 **⑤ 비고**
 
-- **함께 보기**: [Drop-off Rate](/marketing-metrics-handbook-ep-04#drop-off-rate), [Conversion Funnel](/marketing-metrics-handbook-ep-04#conversion-funnel), [Funnel Step](/marketing-metrics-handbook-ep-04#funnel-step)
+- **함께 보기**: [Drop-off Rate](/marketing-metrics-handbook-ep-04/#drop-off-rate), [Conversion Funnel](/marketing-metrics-handbook-ep-04/#conversion-funnel), [Funnel Step](/marketing-metrics-handbook-ep-04/#funnel-step)
 
 ---
 
@@ -412,6 +412,6 @@ LTV:CAC가 크다 = 회수 후 많이 남는다
 
 ## 다음 편 예고
 
-> [ep.03 — 유입과 클릭](/marketing-metrics-handbook-ep-03)
+> [ep.03 — 유입과 클릭](/marketing-metrics-handbook-ep-03/)
 
 광고비가 화면에 닿고 사용자가 우리 영역으로 넘어왔습니다. 이 첫 1분에 일어나는 일들 — 클릭률, 전환율, 이탈, 스크롤 깊이. 12개 용어를 다룹니다.

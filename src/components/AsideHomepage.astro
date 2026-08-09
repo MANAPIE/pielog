@@ -98,7 +98,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
 
 <script>
   // Fetch visitor counts
-  fetch("/api/views")
+  fetch("/api/views/")
     .then((r) => r.json())
     .then((data) => {
       const todayEl = document.getElementById("visitors-today");
@@ -109,7 +109,7 @@ const allTags = sortedTags.map(([tag, count]) => ({
     .catch(() => {});
 
   // Fetch top reads
-  fetch("/api/top-reads")
+  fetch("/api/top-reads/")
     .then((r) => r.json())
     .then((posts) => {
       const container = document.getElementById("top-reads");

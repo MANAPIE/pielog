@@ -59,7 +59,7 @@ CTR = 클릭 수 ÷ 노출 수 × 100 (%)
 **⑤ 비고**
 
 - **흔한 함정**: 클릭 자체가 목적이 되면 *낚시성 카피* 로 흘러갑니다. 이후 화면이 카피와 어긋나면 Bounce Rate가 급등.
-- **함께 보기**: [CPC](/marketing-metrics-handbook-ep-01#cpc), [CVR](#cvr), [Bounce Rate](#bounce-rate)
+- **함께 보기**: [CPC](/marketing-metrics-handbook-ep-01/#cpc), [CVR](#cvr), [Bounce Rate](#bounce-rate)
 
 ---
 
@@ -95,7 +95,7 @@ CVR = 전환 수 ÷ 진입 수 × 100 (%)
 **⑤ 비고**
 
 - **흔한 함정**: 트래픽 질이 다르면 CVR 비교가 무의미. *같은 채널·같은 캠페인 안에서* 비교해야 의미가 있습니다.
-- **함께 보기**: [CTR](#ctr), [Landing Page CVR](#landing-page-cvr), [Drop-off Rate](/marketing-metrics-handbook-ep-04#drop-off-rate)
+- **함께 보기**: [CTR](#ctr), [Landing Page CVR](#landing-page-cvr), [Drop-off Rate](/marketing-metrics-handbook-ep-04/#drop-off-rate)
 
 ---
 
@@ -143,7 +143,7 @@ Bounce Rate = 1 − Engagement Rate
 **⑤ 비고**
 
 - **흔한 함정**: 기존 GA(Universal Analytics) Bounce와 GA4 Bounce는 정의가 다릅니다. 보고서 비교 시 항상 출처 확인.
-- **함께 보기**: [Exit Rate](#exit-rate), [Engagement Rate](/marketing-metrics-handbook-ep-05#engagement-rate)
+- **함께 보기**: [Exit Rate](#exit-rate), [Engagement Rate](/marketing-metrics-handbook-ep-05/#engagement-rate)
 
 ---
 
@@ -178,7 +178,7 @@ Exit Rate = (특정 페이지에서 세션이 끝난 수) ÷ (해당 페이지�
 
 **⑤ 비고**
 
-- **함께 보기**: [Bounce Rate](#bounce-rate), [Drop-off Rate](/marketing-metrics-handbook-ep-04#drop-off-rate)
+- **함께 보기**: [Bounce Rate](#bounce-rate), [Drop-off Rate](/marketing-metrics-handbook-ep-04/#drop-off-rate)
 
 ---
 
@@ -400,7 +400,7 @@ GA4에서는 *Average Engagement Time*으로 측정. 백그라운드 시간은 �
 **⑤ 비고**
 
 - **흔한 함정**: 평균값만 보면 *극단값에 흔들립니다*. 중앙값과 분포를 함께.
-- **함께 보기**: [Bounce Rate](#bounce-rate), [Engagement Rate](/marketing-metrics-handbook-ep-05#engagement-rate)
+- **함께 보기**: [Bounce Rate](#bounce-rate), [Engagement Rate](/marketing-metrics-handbook-ep-05/#engagement-rate)
 
 ---
 
@@ -497,6 +497,6 @@ GA4에서는 *Average Engagement Time*으로 측정. 백그라운드 시간은 �
 
 ## 다음 편 예고
 
-> [ep.04 — 활성화와 온보딩](/marketing-metrics-handbook-ep-04)
+> [ep.04 — 활성화와 온보딩](/marketing-metrics-handbook-ep-04/)
 
 가입은 시작이지 끝이 아닙니다. 가입한 사람이 *실제로 우리 서비스를 쓰는 사람* 이 되는 데 걸리는 시간과 그 구간의 이탈 — Activation Rate, Time-to-Value, Aha Moment, Magic Number까지. 11개 용어.

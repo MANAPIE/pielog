@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 728 504" width="728" height="504" role="img">
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-card: #FFFFFF;
+        --c-line: #D8D6CF;
+        --c-divider: #E5E3DC;
+        --c-accent: #6D28D9;
+        --c-accent-2: #BE185D;
+        --c-soft: #F1EBFD;
+        --c-soft-2: #F0EFEA;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-card: #161B22;
+          --c-line: #2C333D;
+          --c-divider: #232A33;
+          --c-accent: #A78BFA;
+          --c-accent-2: #F472B6;
+          --c-soft: #241C3A;
+          --c-soft-2: #1A1F26;
+        }
+      }
+      .bg        { fill: var(--c-bg); }
+      .card      { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .card-hit  { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 2; }
+      .card-key  { fill: var(--c-card); stroke: var(--c-muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
+      text { font-family: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .ttl     { font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .hdr     { font-size: 12px; font-weight: 600; fill: var(--c-fg); }
+      .rowl    { font-size: 12px; font-weight: 600; fill: var(--c-fg); }
+      .cand    { font-size: 12.5px; font-weight: 600; fill: var(--c-fg); }
+      .meta    { font-size: 11px; fill: var(--c-muted); }
+      .why     { font-size: 11px; fill: var(--c-muted); }
+      .why-hit { font-size: 11px; font-weight: 600; fill: var(--c-accent); }
+      .why-key { font-size: 11px; font-weight: 600; fill: var(--c-accent-2); }
+      .cap     { font-size: 11px; fill: var(--c-muted); }
+      .badge-hit  { fill: var(--c-accent); }
+      .badge-miss { fill: var(--c-muted); }
+      .badge-t    { font-size: 10.5px; font-weight: 700; fill: var(--c-bg); }
+      .axis { stroke: var(--c-divider); stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="728" height="504"/>
+
+  <g transform="translate(28, 21)">
+    <text class="ttl" x="0" y="20">&#34;Stray Kids Chronosaurus MV&#34; 검색 결과 중 4건의 판정</text>
+
+    <line class="axis" x1="396" y1="48" x2="396" y2="410"/>
+
+    <text class="hdr" x="255" y="66" text-anchor="middle">점수 &lt; 0.40</text>
+    <text class="hdr" x="537" y="66" text-anchor="middle">점수 &#8805; 0.40 (채택 하한)</text>
+
+    <text class="rowl" x="104" y="162" text-anchor="end">자격 통과</text>
+    <text class="rowl" x="104" y="328" text-anchor="end">자격 불가</text>
+
+    <rect class="card"     x="120" y="80"  width="270" height="156" rx="8"/>
+    <rect class="card-hit" x="402" y="80"  width="270" height="156" rx="8"/>
+    <rect class="card"     x="120" y="246" width="270" height="156" rx="8"/>
+    <rect class="card-key" x="402" y="246" width="270" height="156" rx="8"/>
+
+    <rect class="badge-miss" x="142" y="102" width="52" height="20" rx="10"/>
+    <text class="badge-t" x="168" y="116" text-anchor="middle">미채택</text>
+    <text class="cand" x="142" y="151">&#34;Chronosaurus&#34; MV</text>
+    <text class="cand" x="142" y="169">| Sub español</text>
+    <text class="meta" x="142" y="192">팬 자막 재업로드 &#183; 0.80 &#8594; 0.00</text>
+    <text class="why"  x="142" y="209">감점으로 점수 미달</text>
+
+    <rect class="badge-hit" x="424" y="102" width="42" height="20" rx="10"/>
+    <text class="badge-t" x="445" y="116" text-anchor="middle">채택</text>
+    <text class="cand" x="424" y="151">&#34;Chronosaurus&#34; Video</text>
+    <text class="meta" x="424" y="175">공식 아티스트 채널 &#183; 0.88</text>
+    <text class="why-hit" x="424" y="195">마커는 없지만 구제 조건 충족</text>
+
+    <rect class="badge-miss" x="142" y="268" width="42" height="20" rx="10"/>
+    <text class="badge-t" x="163" y="282" text-anchor="middle">탈락</text>
+    <text class="cand" x="142" y="317">Chronosaurus</text>
+    <text class="cand" x="142" y="335">(Dance Practice Video)</text>
+    <text class="meta" x="142" y="358">공식 채널 &#183; 마커 없음</text>
+    <text class="why"  x="142" y="375">감점 단어가 있어 구제 불가</text>
+
+    <rect class="badge-miss" x="424" y="268" width="42" height="20" rx="10"/>
+    <text class="badge-t" x="445" y="282" text-anchor="middle">탈락</text>
+    <text class="cand" x="424" y="317">[MV] &#34;부작용(Side Effects)&#34;</text>
+    <text class="meta" x="424" y="341">공식 채널 &#183; 마커 있음 &#183; 점수 높음</text>
+    <text class="why-key" x="424" y="360">다른 곡 &#8212; 제목 일치 게이트에서 탈락</text>
+    <text class="why" x="424" y="376">점수만 보던 규칙이 고르던 자리</text>
+
+    <text class="cap" x="0" y="434">자격 검사는 점수와 독립적으로 걸립니다. 점수만으로 고르면 오른쪽 열 전체가 후보가 됩니다.</text>
+    <text class="cap" x="0" y="452">점수가 0.72 미만이면 Gemini 재판정 대상이 되지만, 재판정도 자격을 통과한 후보만 받습니다.</text>
+  </g>
+</svg>

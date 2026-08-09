@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://blog.manapie.me/sitemap-index.xml
+Sitemap: https://pielog.me/sitemap-index.xml

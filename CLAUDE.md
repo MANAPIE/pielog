@@ -17,13 +17,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - [src/pages/index.astro](src/pages/index.astro)
 - [src/pages/[slug].astro](src/pages/[slug].astro)
+- [src/pages/posts/[...page].astro](src/pages/posts/[...page].astro)
 - [src/pages/tags/[tag].astro](src/pages/tags/[tag].astro)
 - [src/pages/search.astro](src/pages/search.astro)
 - [src/pages/about.astro](src/pages/about.astro)
-- [src/pages/404.astro](src/pages/404.astro)
 - [src/pages/rss.xml.ts](src/pages/rss.xml.ts)
 
-Only `src/pages/api/*` (two routes) actually runs as serverless functions. Treat new pages as prerendered unless they truly need request-time data — otherwise the static fallback for `[slug]` won't include them and you'll burn function invocations on every request.
+**Three** routes run as serverless functions: `src/pages/api/*` (two) and [src/pages/404.astro](src/pages/404.astro). 404 is deliberately *not* prerendered — it reads `Astro.url.pathname` at request time to feed the jaccard slug matcher, so it can't be static. Every 404 costs a function invocation.
+
+Treat new pages as prerendered unless they truly need request-time data — otherwise the static fallback for `[slug]` won't include them and you'll burn function invocations on every request.
+
+## URLs and trailing slash
+
+`astro.config.mjs` sets **`trailingSlash: 'always'`**. This is load-bearing for SEO. Without it Astro defaults to `'ignore'`, the Vercel adapter emits no normalization routes, and `/about` and `/about/` *both* return 200 while the canonical names only the slash form — Google then files every no-slash URL under *"Alternate page with proper canonical tag"* and refuses to index it.
+
+**Every internal link must end with a slash** — `/about/`, `/tags/design/`, `/posts/`, `/slug/`, `/slug/#anchor` — in `.astro` components and in `.md`/`.mdx` post bodies alike. The only exceptions are the root `/` and paths with a file extension (`/rss.xml`, `/favicon.svg`).
+
+Sweep for regressions:
+
+```bash
+grep -rEn 'href=\{?["`]/[^"`>]*[^/"`>]["`]' src --include='*.astro' | grep -vE '\.(xml|svg|png|jpg|css|js)'
+find src/content/posts \( -name 'index.md' -o -name 'index.mdx' \) -print0 | xargs -0 grep -Eho '\]\(/[a-z0-9][a-z0-9-]*[)#]'
+```
+
+At build time the adapter writes three routes into `.vercel/output/config.json` **before** `{handle: filesystem}`:
+
+| Route | Effect |
+|---|---|
+| `^/\.well-known(?:/.*)?$` | passthrough |
+| `^/((?:[^/]+/)*[^/\.]+)$` → 308 `/$1/` | adds the slash: `/about` → `/about/` |
+| `^/((?:[^/]+/)*[^/]+\.\w+)/$` → 308 `/$1` | strips it from files: `/rss.xml/` → `/rss.xml` |
+
+The API routes also tighten to `^/api/views/$` — the slash is no longer optional, so `fetch()` calls use `/api/views/` to avoid a redirect hop on every page load.
+
+**`astro dev` does not redirect.** `node_modules/astro/dist/vite-plugin-astro-server/trailing-slash.js` *rejects* a mismatch with a 404 rendering Astro's own "trailingSlash is set to `always` — did you mean `/about/`?" diagnostic, not [404.astro](src/pages/404.astro). There is no setting to change this. It's a feature: a bad link fails loudly in dev instead of hiding behind a redirect. Production redirects normally.
 
 ## Content collection
 
@@ -202,4 +229,5 @@ draft: false
 
 - Directory: `src/content/posts/<slug>/index.mdx`
 - Pick the directory name carefully — it is the permanent URL, the Redis key, and the search meta
-- Adding a new tag (e.g. `mobile`) does **not** auto-surface it in the sidebar — edit `Sidebar.astro` to add the link
+- Adding a new tag (e.g. `mobile`) does **not** auto-surface it in the sidebar — edit `Sidebar.astro` to add the link. Write the new `href` **with a trailing slash** (see "URLs and trailing slash")
+- Cross-links to other posts in the body must be `[label](/other-slug/)` or `[label](/other-slug/#anchor)` — **with the trailing slash**. A no-slash link 404s in `astro dev` and costs a 308 hop in production

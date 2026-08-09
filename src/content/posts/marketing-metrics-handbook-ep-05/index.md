@@ -22,7 +22,7 @@ draft: false
 
 12개 용어. 시간 단위 활성 사용자(DAU, WAU, MAU), 단위 사이의 비율(Stickiness), 세션의 어휘(Session, Session Duration, Pages per Session, Average Session), 세션의 질(Engaged Session, Bounce Session, Engagement Rate), 사용자 단위의 활성도(Active Days).
 
-이번 편은 *유지의 시작점* 이고, 다음 편 [ep.06](/marketing-metrics-handbook-ep-06)이 *코호트와 리텐션 곡선*, [ep.07](/marketing-metrics-handbook-ep-07)이 *이탈* 입니다. 세 편이 묶입니다.
+이번 편은 *유지의 시작점* 이고, 다음 편 [ep.06](/marketing-metrics-handbook-ep-06/)이 *코호트와 리텐션 곡선*, [ep.07](/marketing-metrics-handbook-ep-07/)이 *이탈* 입니다. 세 편이 묶입니다.
 
 ---
 
@@ -160,7 +160,7 @@ Stickiness = DAU ÷ MAU × 100 (%)
 **⑤ 비고**
 
 - **흔한 함정**: Stickiness만 보면 *사용자 수의 변화* 를 못 봅니다. MAU가 감소하는 와중에도 Stickiness는 오를 수 있습니다.
-- **함께 보기**: [DAU](#dau), [MAU](#mau), [Power User Curve](/marketing-metrics-handbook-ep-06#power-user-curve)
+- **함께 보기**: [DAU](#dau), [MAU](#mau), [Power User Curve](/marketing-metrics-handbook-ep-06/#power-user-curve)
 
 ---
 
@@ -221,7 +221,7 @@ Average Session Duration = Σ 세션 시간 ÷ 세션 수
 **⑤ 비고**
 
 - **흔한 함정**: 평균은 항상 *극단값* 에 흔들립니다. 중앙값이 더 정확.
-- **함께 보기**: [Session](#session), [Time on Page](/marketing-metrics-handbook-ep-03#time-on-page)
+- **함께 보기**: [Session](#session), [Time on Page](/marketing-metrics-handbook-ep-03/#time-on-page)
 
 ---
 
@@ -277,7 +277,7 @@ Engaged Session = 위 셋 중 하나 이상을 만족한 세션
 
 **⑤ 비고**
 
-- **함께 보기**: [Bounce Rate](/marketing-metrics-handbook-ep-03#bounce-rate), [Engagement Rate](#engagement-rate)
+- **함께 보기**: [Bounce Rate](/marketing-metrics-handbook-ep-03/#bounce-rate), [Engagement Rate](#engagement-rate)
 
 ---
 
@@ -294,11 +294,11 @@ Bounce Rate = Bounce Session ÷ 세션 총수
 
 **② 맥락**
 
-- [ep.03](/marketing-metrics-handbook-ep-03)의 Bounce Rate와 같은 개념을 *세션 단위로* 부른 것. 회사·도구에 따라 용어 선호가 다릅니다.
+- [ep.03](/marketing-metrics-handbook-ep-03/)의 Bounce Rate와 같은 개념을 *세션 단위로* 부른 것. 회사·도구에 따라 용어 선호가 다릅니다.
 
 **⑤ 비고**
 
-- **함께 보기**: [Bounce Rate](/marketing-metrics-handbook-ep-03#bounce-rate), [Engaged Session](#engaged-session)
+- **함께 보기**: [Bounce Rate](/marketing-metrics-handbook-ep-03/#bounce-rate), [Engaged Session](#engaged-session)
 
 ---
 
@@ -329,7 +329,7 @@ Engagement Rate = 1 - Bounce Rate
 
 **⑤ 비고**
 
-- **함께 보기**: [Engaged Session](#engaged-session), [Bounce Rate](/marketing-metrics-handbook-ep-03#bounce-rate)
+- **함께 보기**: [Engaged Session](#engaged-session), [Bounce Rate](/marketing-metrics-handbook-ep-03/#bounce-rate)
 
 ---
 
@@ -353,11 +353,11 @@ Engagement Rate = 1 - Bounce Rate
 
 - **개발**: 사용자별 days 카운트 SQL — `count(distinct date) where user_id = X`. 사용자 코호트 분석의 기본.
 - **디자인**: Active Days 분포가 *바벨 형태(매일 vs 거의 안 옴)* 인 제품이 흔합니다. 라이트 유저를 헤비 유저로 끌어올리는 디자인이 주요 레버.
-- **기획**: [ep.06](/marketing-metrics-handbook-ep-06)의 *Power User Curve* 가 Active Days 분포를 시각화한 도구.
+- **기획**: [ep.06](/marketing-metrics-handbook-ep-06/)의 *Power User Curve* 가 Active Days 분포를 시각화한 도구.
 
 **⑤ 비고**
 
-- **함께 보기**: [Power User Curve](/marketing-metrics-handbook-ep-06#power-user-curve), [DAU](#dau)
+- **함께 보기**: [Power User Curve](/marketing-metrics-handbook-ep-06/#power-user-curve), [DAU](#dau)
 
 ---
 
@@ -444,6 +444,6 @@ DAU 100K에 세션 240K이면 Average Session = 2.4. *하루에 평균 2.4번 �
 
 ## 다음 편 예고
 
-> [ep.06 — 코호트와 리텐션 곡선](/marketing-metrics-handbook-ep-06)
+> [ep.06 — 코호트와 리텐션 곡선](/marketing-metrics-handbook-ep-06/)
 
 DAU와 MAU는 *현재* 의 단어들이라면, 다음 편은 *시간 경과* 의 단어들입니다. 같은 날 가입한 사람들을 묶어 따라가면 어떤 곡선이 그려지는가. Retention Curve, Cohort, N-day Retention, Power User Curve. 10개 용어.

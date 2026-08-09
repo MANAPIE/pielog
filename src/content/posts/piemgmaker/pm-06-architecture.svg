@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 504" width="600" height="504" role="img" aria-label="PIEmgmaker 전체 구조">
+<defs>
+<style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-card:#FFFFFF;--c-line:#C2C7D0;--c-divider:#E3E6EB;--c-accent:#0F766E;--c-accent-2:#9A4A08;--c-soft:#E4F1EF;--c-soft-2:#FAF0DF}
+@media (prefers-color-scheme:dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-card:#161B22;--c-line:#3B424D;--c-divider:#262C35;--c-accent:#4ECDC0;--c-accent-2:#E8A33D;--c-soft:#122A28;--c-soft-2:#2C2415}}
+text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.dash{fill:none;stroke:var(--c-line);stroke-width:1.2;stroke-dasharray:5 4}
+.t{fill:var(--c-fg);font-size:13px}
+.tb{fill:var(--c-fg);font-size:13px;font-weight:700}
+.ts{fill:var(--c-muted);font-size:11px}
+.txs{fill:var(--c-muted);font-size:10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.acc{fill:var(--c-accent)}
+.acc2{fill:var(--c-accent-2)}
+.ln{stroke:var(--c-muted);stroke-width:1.4;fill:none}
+.lnd{stroke:var(--c-muted);stroke-width:1.4;fill:none;stroke-dasharray:4 4}
+.sw-a{fill:var(--c-accent)}
+.sw-b{fill:var(--c-accent-2)}
+.sw-c{fill:var(--c-muted)}
+</style>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-muted)"/></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="600" height="504"/>
+<rect class="card" x="24" y="24" width="552" height="80" rx="8"/>
+<text class="tb" x="300" y="50" text-anchor="middle">웹 — Next.js App Router</text>
+<text class="ts" x="300" y="72" text-anchor="middle">게이트 · 생성하기 · 리뷰 확정 · 히스토리 · 자산 라이브러리</text>
+<text class="txs" x="300" y="91" text-anchor="middle">큐 폴링은 진행 중 잡이 있을 때만</text>
+<path class="ln" d="M300,104 L300,128" marker-end="url(#ar)"/>
+<text class="txs mono" x="310" y="121" text-anchor="start">/api/pm 프록시</text>
+<rect class="soft" x="24" y="130" width="552" height="116" rx="8"/>
+<text class="tb acc" x="300" y="156" text-anchor="middle">파이썬 패키지 + 잡 서버 (FastAPI)</text>
+<text class="ts" x="300" y="178" text-anchor="middle">스키마 검증 · 워크플로우 렌더 · 파이프라인 오케스트레이션</text>
+<text class="ts" x="300" y="196" text-anchor="middle">자산 라이브러리 · 능력 판정 · 골든 세트 러너</text>
+<text class="txs" x="300" y="219" text-anchor="middle">파일 기반 잡 저장소 — 별도 DB 없음</text>
+<text class="txs mono" x="300" y="234" text-anchor="middle">PM_STORAGE/jobs/&lt;job_id&gt;/ 폴더 하나가 잡 하나</text>
+<path class="ln" d="M300,246 L300,276" marker-end="url(#ar)"/>
+<text class="txs mono" x="310" y="262" text-anchor="start">WorkflowEngine Protocol</text>
+<text class="txs mono" x="310" y="274" text-anchor="start">submit · poll · fetch · cancel</text>
+<rect class="card" x="24" y="278" width="552" height="96" rx="8"/>
+<text class="tb" x="300" y="302" text-anchor="middle">엔진 구현체 — 공통 HTTP 코어</text>
+<rect class="soft" x="44" y="314" width="246" height="48" rx="8"/>
+<text class="tb mono acc" x="167" y="334" text-anchor="middle" font-size="12">LocalComfy</text>
+<text class="txs" x="167" y="352" text-anchor="middle">온디맨드 기동 · 하트비트</text>
+<rect class="soft2" x="310" y="314" width="246" height="48" rx="8"/>
+<text class="tb mono acc2" x="433" y="334" text-anchor="middle" font-size="12">RemoteComfy</text>
+<text class="txs" x="433" y="352" text-anchor="middle">계열별 URL 라우팅 · 콜드 스타트 대기</text>
+<path class="lnd" d="M24,394 L576,394"/>
+<text class="tb acc" x="24" y="420" text-anchor="start">결정론 구간</text>
+<text class="ts" x="140" y="420" text-anchor="start">입력 검증 · 후처리 · paste-back · 코어 해시 · QA</text>
+<text class="txs" x="140" y="437" text-anchor="start">→ 같은 입력이면 같은 출력. 단위 테스트로 검증</text>
+<text class="tb acc2" x="24" y="466" text-anchor="start">생성 구간</text>
+<text class="ts" x="140" y="466" text-anchor="start">ComfyUI 실행</text>
+<text class="txs" x="140" y="483" text-anchor="start">→ 결과가 흔들림. 골든 세트로 점수화 (SSIM · 알파 IoU · soft alpha MAE)</text>
+</svg>
