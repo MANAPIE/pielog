@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 504" width="600" height="504" role="img"
+    aria-label="PIEmgmaker 원격 구성">
+    <defs>
+        <style>
+            :root {
+                --c-bg: #FAFAF7;
+                --c-fg: #1A1F2E;
+                --c-muted: #6B7280;
+                --c-card: #FFFFFF;
+                --c-line: #C2C7D0;
+                --c-divider: #E3E6EB;
+                --c-accent: #0F766E;
+                --c-accent-2: #9A4A08;
+                --c-soft: #E4F1EF;
+                --c-soft-2: #FAF0DF
+            }
+
+            @media (prefers-color-scheme:dark) {
+                :root {
+                    --c-bg: #0F1419;
+                    --c-fg: #E8E6E1;
+                    --c-muted: #8B92A0;
+                    --c-card: #161B22;
+                    --c-line: #3B424D;
+                    --c-divider: #262C35;
+                    --c-accent: #4ECDC0;
+                    --c-accent-2: #E8A33D;
+                    --c-soft: #122A28;
+                    --c-soft-2: #2C2415
+                }
+            }
+
+            text {
+                font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif
+            }
+
+            .bg {
+                fill: var(--c-bg)
+            }
+
+            .card {
+                fill: var(--c-card);
+                stroke: var(--c-line);
+                stroke-width: 1
+            }
+
+            .soft {
+                fill: var(--c-soft);
+                stroke: var(--c-accent);
+                stroke-width: 1.2
+            }
+
+            .soft2 {
+                fill: var(--c-soft-2);
+                stroke: var(--c-accent-2);
+                stroke-width: 1.2
+            }
+
+            .dash {
+                fill: none;
+                stroke: var(--c-line);
+                stroke-width: 1.2;
+                stroke-dasharray: 5 4
+            }
+
+            .t {
+                fill: var(--c-fg);
+                font-size: 13px
+            }
+
+            .tb {
+                fill: var(--c-fg);
+                font-size: 13px;
+                font-weight: 700
+            }
+
+            .ts {
+                fill: var(--c-muted);
+                font-size: 11px
+            }
+
+            .txs {
+                fill: var(--c-muted);
+                font-size: 10px
+            }
+
+            .mono {
+                font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+            }
+
+            .acc {
+                fill: var(--c-accent)
+            }
+
+            .acc2 {
+                fill: var(--c-accent-2)
+            }
+
+            .ln {
+                stroke: var(--c-muted);
+                stroke-width: 1.4;
+                fill: none
+            }
+
+            .lnd {
+                stroke: var(--c-muted);
+                stroke-width: 1.4;
+                fill: none;
+                stroke-dasharray: 4 4
+            }
+
+            .sw-a {
+                fill: var(--c-accent)
+            }
+
+            .sw-b {
+                fill: var(--c-accent-2)
+            }
+
+            .sw-c {
+                fill: var(--c-muted)
+            }
+        </style>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--c-muted)" />
+        </marker>
+    </defs>
+    <rect class="bg" x="0" y="0" width="600" height="504" />
+    <rect class="dash" x="10" y="34" width="238" height="314" rx="10" />
+    <text class="tb" x="24" y="52" text-anchor="start">로컬</text>
+    <rect class="dash" x="262" y="34" width="328" height="452" rx="10" />
+    <text class="tb" x="276" y="52" text-anchor="start">GCP · asia-southeast1</text>
+    <rect class="card" x="26" y="64" width="206" height="50" rx="8" />
+    <text class="tb" x="129" y="86" text-anchor="middle">웹 UI</text>
+    <text class="ts" x="129" y="103" text-anchor="middle">Next.js · App Router</text>
+    <path class="ln" d="M129,114 L129,130" marker-end="url(#ar)" />
+    <rect class="card" x="26" y="132" width="206" height="50" rx="8" />
+    <text class="tb" x="129" y="154" text-anchor="middle">잡 큐</text>
+    <text class="ts" x="129" y="171" text-anchor="middle">FastAPI 단일 워커</text>
+    <path class="ln" d="M129,182 L129,198" marker-end="url(#ar)" />
+    <rect class="soft2" x="26" y="200" width="206" height="64" rx="8" />
+    <text class="tb mono acc2" x="129" y="222" text-anchor="middle" font-size="12">PM_ENGINE</text>
+    <text class="ts" x="129" y="240" text-anchor="middle">환경변수 하나로 분기</text>
+    <text class="txs mono" x="129" y="256" text-anchor="middle">local-comfy · remote-comfy</text>
+    <path class="ln" d="M129,264 L129,286" marker-end="url(#ar)" />
+    <rect class="card" x="26" y="288" width="206" height="50" rx="8" />
+    <text class="tb" x="129" y="310" text-anchor="middle" font-size="12">로컬 ComfyUI</text>
+    <text class="txs" x="129" y="327" text-anchor="middle">PM_ENGINE 기본값</text>
+    <path class="ln" d="M232,232 L272,232 L272,95 L284,95" marker-end="url(#ar)" />
+    <path class="ln" d="M272,159 L284,159" marker-end="url(#ar)" />
+    <rect class="soft" x="288" y="68" width="288" height="54" rx="8" />
+    <text class="tb mono acc" x="432" y="90" text-anchor="middle" font-size="12">pm-comfy-qwen</text>
+    <text class="ts mono" x="432" y="110" text-anchor="middle" font-size="10">L4 24GB · 8 vCPU · 32GiB · $1.71/h</text>
+    <rect class="soft" x="288" y="132" width="288" height="54" rx="8" />
+    <text class="tb mono acc" x="432" y="154" text-anchor="middle" font-size="12">pm-comfy-flux2</text>
+    <text class="ts mono" x="432" y="174" text-anchor="middle" font-size="10">RTX PRO 6000 96GB · 20 vCPU ·
+        $3.82/h</text>
+    <rect class="dash" x="288" y="198" width="288" height="76" rx="8" />
+    <text class="tb" x="432" y="219" text-anchor="middle" font-size="12">각 컨테이너 구성</text>
+    <text class="ts" x="432" y="238" text-anchor="middle" font-size="11">nginx Bearer 프록시 → ComfyUI</text>
+    <text class="txs mono" x="432" y="255" text-anchor="middle">자기 종료 와치독 IDLE_SHUTDOWN_SEC=540</text>
+    <text class="txs mono" x="432" y="268" text-anchor="middle">scale-to-zero · max-instances=1</text>
+    <path class="ln" d="M432,274 L432,300" marker-end="url(#ar)" />
+    <text class="txs" x="442" y="292" text-anchor="start">GCS FUSE (읽기 전용)</text>
+    <rect class="card" x="288" y="302" width="288" height="62" rx="8" />
+    <text class="tb" x="432" y="324" text-anchor="middle" font-size="12">모델 버킷 — 단일 리전</text>
+    <text class="ts mono" x="432" y="342" text-anchor="middle" font-size="10">unet 47.77GiB · 6종 sha256 핀</text>
+    <text class="txs mono" x="432" y="356" text-anchor="middle">Rapid Cache 3존 · TTL 24h</text>
+    <rect class="soft2" x="288" y="378" width="288" height="92" rx="8" />
+    <text class="tb acc2" x="432" y="400" text-anchor="middle" font-size="12">네트워크 경로 — 요구사항</text>
+    <text class="ts mono" x="432" y="420" text-anchor="middle" font-size="10">Direct VPC egress (ALL_TRAFFIC)</text>
+    <text class="ts mono" x="432" y="435" text-anchor="middle" font-size="10">+ 서브넷 Private Google Access</text>
+    <text class="txs" x="432" y="454" text-anchor="middle">미적용 시 인스턴스 대역폭 600 Mbps 상한</text>
+</svg>

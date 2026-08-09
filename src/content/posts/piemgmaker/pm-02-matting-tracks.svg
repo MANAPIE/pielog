@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 376" width="600" height="376" role="img" aria-label="배경 제거 3트랙 폴백 체인">
+<defs>
+<style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-card:#FFFFFF;--c-line:#C2C7D0;--c-divider:#E3E6EB;--c-accent:#0F766E;--c-accent-2:#9A4A08;--c-soft:#E4F1EF;--c-soft-2:#FAF0DF}
+@media (prefers-color-scheme:dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-card:#161B22;--c-line:#3B424D;--c-divider:#262C35;--c-accent:#4ECDC0;--c-accent-2:#E8A33D;--c-soft:#122A28;--c-soft-2:#2C2415}}
+text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.dash{fill:none;stroke:var(--c-line);stroke-width:1.2;stroke-dasharray:5 4}
+.t{fill:var(--c-fg);font-size:13px}
+.tb{fill:var(--c-fg);font-size:13px;font-weight:700}
+.ts{fill:var(--c-muted);font-size:11px}
+.txs{fill:var(--c-muted);font-size:10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.acc{fill:var(--c-accent)}
+.acc2{fill:var(--c-accent-2)}
+.ln{stroke:var(--c-muted);stroke-width:1.4;fill:none}
+.lnd{stroke:var(--c-muted);stroke-width:1.4;fill:none;stroke-dasharray:4 4}
+.sw-a{fill:var(--c-accent)}
+.sw-b{fill:var(--c-accent-2)}
+.sw-c{fill:var(--c-muted)}
+</style>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-muted)"/></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="600" height="376"/>
+<text class="ts mono" x="300" y="22" text-anchor="middle">MattingRouter.chain_for(material)</text>
+<rect class="card" x="190" y="32" width="200" height="40" rx="8"/>
+<text class="t" x="290" y="57" text-anchor="middle" font-size="12">재질 판정 (material_class)</text>
+<path class="ln" d="M290,72 L290,84 M30,84 L290,84"/>
+<path class="ln" d="M200,84 L200,102" marker-end="url(#ar)"/>
+<path class="ln" d="M30,84 L30,224 L54,224" marker-end="url(#ar)"/>
+<rect class="soft" x="60" y="106" width="280" height="64" rx="8"/>
+<text class="ts" x="200" y="126" text-anchor="middle">불투명 (opaque)</text>
+<text class="tb mono acc" x="200" y="146" text-anchor="middle">segment</text>
+<text class="txs" x="200" y="162" text-anchor="middle">BiRefNet-matting + 전경 정제</text>
+<rect class="soft2" x="60" y="192" width="280" height="68" rx="8"/>
+<text class="ts" x="200" y="212" text-anchor="middle">반투명 (translucent)</text>
+<text class="tb mono acc2" x="200" y="232" text-anchor="middle">native_alpha</text>
+<text class="txs" x="200" y="249" text-anchor="middle">Qwen-Image-Layered + 전용 VAE</text>
+<path class="ln" d="M200,260 L200,286" marker-end="url(#ar)"/>
+<text class="txs" x="212" y="277" text-anchor="start">실패 시 폴백</text>
+<rect class="soft2" x="60" y="288" width="280" height="64" rx="8"/>
+<text class="ts" x="200" y="308" text-anchor="middle">반투명 폴백</text>
+<text class="tb mono acc2" x="200" y="328" text-anchor="middle">trimap</text>
+<text class="txs" x="200" y="344" text-anchor="middle">ViTMatte — 경계 띠만 정밀 추정</text>
+<path class="ln" d="M340,138 L376,138" marker-end="url(#ar)"/>
+<path class="ln" d="M340,226 L358,226 L358,158 L376,158" marker-end="url(#ar)"/>
+<path class="ln" d="M340,320 L366,320 L366,180 L376,180" marker-end="url(#ar)"/>
+<path class="ln" d="M340,336 L376,336" marker-end="url(#ar)"/>
+<rect class="card" x="380" y="106" width="200" height="104" rx="8"/>
+<text class="tb mono acc" x="480" y="132" text-anchor="middle" font-size="13">AlphaResult</text>
+<text class="txs mono" x="480" y="154" text-anchor="middle">rgba</text>
+<text class="txs mono" x="480" y="168" text-anchor="middle">strategy_id</text>
+<text class="txs mono" x="480" y="182" text-anchor="middle">confidence</text>
+<text class="txs" x="480" y="200" text-anchor="middle">어느 트랙이든 출력 형태 통일</text>
+<rect class="card" x="380" y="288" width="200" height="56" rx="8"/>
+<text class="tb" x="480" y="310" text-anchor="middle" font-size="12">체인 소진 → 잡 실패</text>
+<text class="ts" x="480" y="328" text-anchor="middle">재생성 힌트 기록</text>
+</svg>

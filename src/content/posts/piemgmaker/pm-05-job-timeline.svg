@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 336" width="600" height="336" role="img" aria-label="잡 1건 소요 시간 비교">
+<defs>
+<style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-card:#FFFFFF;--c-line:#C2C7D0;--c-divider:#E3E6EB;--c-accent:#0F766E;--c-accent-2:#9A4A08;--c-soft:#E4F1EF;--c-soft-2:#FAF0DF}
+@media (prefers-color-scheme:dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-card:#161B22;--c-line:#3B424D;--c-divider:#262C35;--c-accent:#4ECDC0;--c-accent-2:#E8A33D;--c-soft:#122A28;--c-soft-2:#2C2415}}
+text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.dash{fill:none;stroke:var(--c-line);stroke-width:1.2;stroke-dasharray:5 4}
+.t{fill:var(--c-fg);font-size:13px}
+.tb{fill:var(--c-fg);font-size:13px;font-weight:700}
+.ts{fill:var(--c-muted);font-size:11px}
+.txs{fill:var(--c-muted);font-size:10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.acc{fill:var(--c-accent)}
+.acc2{fill:var(--c-accent-2)}
+.ln{stroke:var(--c-muted);stroke-width:1.4;fill:none}
+.lnd{stroke:var(--c-muted);stroke-width:1.4;fill:none;stroke-dasharray:4 4}
+.zoom{stroke:var(--c-line);stroke-width:1;fill:none;stroke-dasharray:3 3}
+.sw-a{fill:var(--c-accent)}
+.sw-b{fill:var(--c-accent-2)}
+.sw-c{fill:var(--c-muted)}
+</style>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-muted)"/></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="600" height="336"/>
+<text class="ts" x="20" y="26" text-anchor="start">잡 1건 소요 시간 — 같은 스케일</text>
+<text class="tb acc2" x="570" y="52" text-anchor="end">59분 26초 · $1.69</text>
+<text class="tb" x="20" y="84" text-anchor="start">튜닝 전</text>
+<rect x="130" y="62" width="370" height="34" rx="4" fill="var(--c-accent-2)"/>
+<rect x="500" y="62" width="70" height="34" rx="4" fill="var(--c-muted)"/>
+<text class="txs" x="315" y="112" text-anchor="middle">모델 적재 — 50분 이상</text>
+<text class="txs" x="535" y="112" text-anchor="middle">생성</text>
+<text class="tb acc" x="570" y="148" text-anchor="end">8분 25초 · $0.24</text>
+<text class="tb" x="20" y="180" text-anchor="start">튜닝 후</text>
+<rect x="130" y="158" width="62" height="34" rx="4" fill="var(--c-accent)"/>
+<path class="lnd" d="M200,176 L570,176"/>
+<text class="ts acc" x="210" y="171" text-anchor="start">7배 감소</text>
+<path class="zoom" d="M130,194 L130,250"/>
+<path class="zoom" d="M192,194 L569,250"/>
+<text class="ts" x="20" y="273" text-anchor="start">구간별 확대</text>
+<rect x="130" y="252" width="27" height="34" rx="4" fill="var(--c-muted)"/>
+<rect x="157" y="252" width="333" height="34" rx="4" fill="var(--c-accent)"/>
+<rect x="490" y="252" width="79" height="34" rx="4" fill="var(--c-accent-2)"/>
+<rect class="sw-c" x="20" y="303" width="10" height="10" rx="2"/>
+<text class="ts" x="36" y="312" text-anchor="start">컨테이너 기동 31초</text>
+<rect class="sw-a" x="200" y="303" width="10" height="10" rx="2"/>
+<text class="ts" x="216" y="312" text-anchor="start">모델 적재 6분 20초</text>
+<rect class="sw-b" x="400" y="303" width="10" height="10" rx="2"/>
+<text class="ts" x="416" y="312" text-anchor="start">생성 약 1분 30초</text>
+</svg>

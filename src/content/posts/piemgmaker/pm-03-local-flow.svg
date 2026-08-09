@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 440" width="600" height="440" role="img" aria-label="PIEmgmaker 로컬 실행 플로우">
+<defs>
+<style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-card:#FFFFFF;--c-line:#C2C7D0;--c-divider:#E3E6EB;--c-accent:#0F766E;--c-accent-2:#9A4A08;--c-soft:#E4F1EF;--c-soft-2:#FAF0DF}
+@media (prefers-color-scheme:dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-card:#161B22;--c-line:#3B424D;--c-divider:#262C35;--c-accent:#4ECDC0;--c-accent-2:#E8A33D;--c-soft:#122A28;--c-soft-2:#2C2415}}
+text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.dash{fill:none;stroke:var(--c-line);stroke-width:1.2;stroke-dasharray:5 4}
+.t{fill:var(--c-fg);font-size:13px}
+.tb{fill:var(--c-fg);font-size:13px;font-weight:700}
+.ts{fill:var(--c-muted);font-size:11px}
+.txs{fill:var(--c-muted);font-size:10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.acc{fill:var(--c-accent)}
+.acc2{fill:var(--c-accent-2)}
+.ln{stroke:var(--c-muted);stroke-width:1.4;fill:none}
+.lnd{stroke:var(--c-muted);stroke-width:1.4;fill:none;stroke-dasharray:4 4}
+.sw-a{fill:var(--c-accent)}
+.sw-b{fill:var(--c-accent-2)}
+.sw-c{fill:var(--c-muted)}
+</style>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-muted)"/></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="600" height="440"/>
+<text class="ts" x="300" y="26" text-anchor="middle">로컬 실행 — Mac mini M4 64GB</text>
+<rect class="card" x="20" y="44" width="160" height="70" rx="8"/>
+<text class="tb" x="100" y="70" text-anchor="middle">웹 UI</text>
+<text class="ts mono" x="100" y="88" text-anchor="middle">Next.js</text>
+<text class="txs" x="100" y="104" text-anchor="middle">브리프 · 리뷰 · 히스토리</text>
+<path class="ln" d="M180,79 L216,79" marker-end="url(#ar)"/>
+<rect class="card" x="220" y="44" width="160" height="70" rx="8"/>
+<text class="tb" x="300" y="70" text-anchor="middle">잡 큐</text>
+<text class="ts" x="300" y="88" text-anchor="middle">FastAPI 단일 워커</text>
+<text class="txs" x="300" y="104" text-anchor="middle">GPU 1장 = 잡 1건</text>
+<path class="ln" d="M380,79 L416,79" marker-end="url(#ar)"/>
+<rect class="soft" x="420" y="44" width="160" height="70" rx="8"/>
+<text class="tb acc" x="500" y="70" text-anchor="middle">ComfyUI</text>
+<text class="ts" x="500" y="88" text-anchor="middle">로컬 프로세스</text>
+<text class="txs mono" x="500" y="104" text-anchor="middle">submit · poll · fetch</text>
+<path class="lnd" d="M500,114 L500,140"/>
+<rect class="card" x="380" y="140" width="200" height="96" rx="8"/>
+<text class="tb" x="480" y="164" text-anchor="middle" font-size="12">로컬 SSD — 모델 파일</text>
+<text class="ts mono" x="480" y="186" text-anchor="middle" font-size="11">unet Q8 · TE fp8 · VAE</text>
+<text class="txs" x="480" y="206" text-anchor="middle">sha256 핀으로 고정</text>
+<text class="txs" x="480" y="224" text-anchor="middle">같은 이름 다른 빌드 차단</text>
+<rect class="soft2" x="20" y="140" width="200" height="96" rx="8"/>
+<text class="tb acc2" x="120" y="164" text-anchor="middle" font-size="12">메모리 경계</text>
+<text class="txs mono" x="120" y="186" text-anchor="middle">TE 35.6 + unet 32 = 67GB</text>
+<text class="txs" x="120" y="204" text-anchor="middle">장비 64GB → 무음 OOM</text>
+<text class="txs" x="120" y="224" text-anchor="middle">계열 전환 시 프로세스 재기동</text>
+<path class="ln" d="M450,114 L450,128 L300,128 L300,254" marker-end="url(#ar)"/>
+<text class="txs" x="310" y="122" text-anchor="start">수확 — 후보 k장</text>
+<rect class="card" x="200" y="256" width="200" height="62" rx="8"/>
+<text class="tb" x="300" y="280" text-anchor="middle">결정론 후처리</text>
+<text class="ts" x="300" y="298" text-anchor="middle">디프린지 · 크롭 · 여백</text>
+<text class="txs" x="300" y="312" text-anchor="middle">paste-back · 코어 해시 · QA</text>
+<path class="ln" d="M300,318 L300,340" marker-end="url(#ar)"/>
+<rect class="card" x="200" y="342" width="200" height="58" rx="8"/>
+<text class="tb" x="300" y="366" text-anchor="middle">잡 폴더에 저장</text>
+<text class="ts mono" x="300" y="384" text-anchor="middle" font-size="10">PM_STORAGE/jobs/&lt;id&gt;/</text>
+<text class="ts" x="300" y="422" text-anchor="middle">1024² 후보 4장 ≈ 96분 · 워커 타임아웃 4시간</text>
+</svg>
