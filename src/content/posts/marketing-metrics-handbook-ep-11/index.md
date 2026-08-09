@@ -62,7 +62,7 @@ https://centi.app/landing?utm_source=facebook&utm_medium=cpc&utm_campaign=spring
 **⑤ 비고**
 
 - **흔한 함정**: UTM 대소문자 — `Facebook`과 `facebook`이 다른 채널로 잡힙니다. 항상 소문자.
-- **함께 보기**: [Event Tracking](#event-tracking), [First-touch](/marketing-metrics-handbook-ep-12#first-touch)
+- **함께 보기**: [Event Tracking](#event-tracking), [First-touch](/marketing-metrics-handbook-ep-12/#first-touch)
 
 ---
 
@@ -444,6 +444,6 @@ GDPR(유럽), CCPA(캘리포니아), 한국 개인정보보호법 등 *법적 �
 
 ## 다음 편 예고
 
-> [ep.12 — 어트리뷰션과 도구 지도](/marketing-metrics-handbook-ep-12)
+> [ep.12 — 어트리뷰션과 도구 지도](/marketing-metrics-handbook-ep-12/)
 
 마지막 편. 한 가입자가 *어느 광고 덕분에 들어왔는지* 결정하는 모델들과, 모든 측정을 실제로 돌리는 도구들의 비교까지. First-touch, Last-touch, Multi-touch, Data-driven 어트리뷰션, GA4·Amplitude·Mixpanel. 13개 용어.

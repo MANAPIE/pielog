@@ -97,7 +97,7 @@ const {
 
 <script>
     const slug = window.location.pathname.replace(/^\/|\/$/g, "");
-    fetch("/api/views", {
+    fetch("/api/views/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ slug }),

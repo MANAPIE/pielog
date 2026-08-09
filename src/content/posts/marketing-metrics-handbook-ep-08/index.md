@@ -12,7 +12,7 @@ draft: false
 
 지금까지 다룬 모든 지표가 결국 이 편에서 만난다.
 
-광고비를 *얼마나 썼는가*([ep.01](/marketing-metrics-handbook-ep-01)), 그 광고로 *얼마를 벌었는가*([ep.02](/marketing-metrics-handbook-ep-02)), 가입자가 *얼마나 유지되는가*([ep.05](/marketing-metrics-handbook-ep-05)~[ep.07](/marketing-metrics-handbook-ep-07)). 이 세 가지가 한 사용자 단위에서 만나면 *한 명을 데려오는 데 24,000원 쓰고 평균 9개월 유지로 44,100원을 번다* 같은 문장이 만들어진다. *단위경제(unit economics)* — 한 사용자 단위로 본 돈의 흐름이다.
+광고비를 *얼마나 썼는가*([ep.01](/marketing-metrics-handbook-ep-01/)), 그 광고로 *얼마를 벌었는가*([ep.02](/marketing-metrics-handbook-ep-02/)), 가입자가 *얼마나 유지되는가*([ep.05](/marketing-metrics-handbook-ep-05/)~[ep.07](/marketing-metrics-handbook-ep-07/)). 이 세 가지가 한 사용자 단위에서 만나면 *한 명을 데려오는 데 24,000원 쓰고 평균 9개월 유지로 44,100원을 번다* 같은 문장이 만들어진다. *단위경제(unit economics)* — 한 사용자 단위로 본 돈의 흐름이다.
 
 이 편은 사실 *경영의 편* 이다. 마케팅을 넘어 회사 전체의 건강을 평가하는 어휘.
 
@@ -92,7 +92,7 @@ CPA가 *광고비만* 본다면 CAC는 *전체 비용*. 분모도 *신규 고객
 
 **⑤ 비고**
 
-- **함께 보기**: [LTV](#ltv), [LTV:CAC Ratio](#ltv-cac-ratio), [Blended CAC](/marketing-metrics-handbook-ep-02#blended-cac)
+- **함께 보기**: [LTV](#ltv), [LTV:CAC Ratio](#ltv-cac-ratio), [Blended CAC](/marketing-metrics-handbook-ep-02/#blended-cac)
 
 ---
 
@@ -261,7 +261,7 @@ Payback Period = CAC ÷ (ARPU × 마진율)
 
 월 ARPU 4,900원, 마진율 92%, CAC 24,000원이면 Payback = 24,000 ÷ (4,900 × 0.92) = 5.3개월.
 
-[ep.02](/marketing-metrics-handbook-ep-02)의 *Payback Window* 와 같은 개념. 회사·문맥에 따라 두 단어가 섞여 쓰입니다.
+[ep.02](/marketing-metrics-handbook-ep-02/)의 *Payback Window* 와 같은 개념. 회사·문맥에 따라 두 단어가 섞여 쓰입니다.
 
 **② 맥락**
 
@@ -277,7 +277,7 @@ Payback Period = CAC ÷ (ARPU × 마진율)
 
 **⑤ 비고**
 
-- **함께 보기**: [Payback Window](/marketing-metrics-handbook-ep-02#payback-window), [LTV:CAC Ratio](#ltv-cac-ratio)
+- **함께 보기**: [Payback Window](/marketing-metrics-handbook-ep-02/#payback-window), [LTV:CAC Ratio](#ltv-cac-ratio)
 
 ---
 
@@ -351,7 +351,7 @@ Quick Ratio = (New MRR + Expansion MRR) ÷ (Churned MRR + Contraction MRR)
 
 **⑤ 비고**
 
-- **함께 보기**: [MRR](#mrr), [NRR](/marketing-metrics-handbook-ep-07#nrr)
+- **함께 보기**: [MRR](#mrr), [NRR](/marketing-metrics-handbook-ep-07/#nrr)
 - **벤치마크**: 시리즈 A 단계 SaaS 4.0+가 이상적, 성숙기 1.5~2.5.
 
 ---
@@ -435,7 +435,7 @@ MRR Bridge의 *결론 숫자*.
 |---|---|---|
 | **비용** | 마케팅 전체 | 광고비만 |
 | **분모** | 신규 고객 | 액션 1건 |
-| **상세** | ep.08 | [ep.01](/marketing-metrics-handbook-ep-01#cpa) |
+| **상세** | ep.08 | [ep.01](/marketing-metrics-handbook-ep-01/#cpa) |
 
 ### MRR vs ARR
 
@@ -463,6 +463,6 @@ MRR Bridge의 *결론 숫자*.
 
 ## 다음 편 예고
 
-> [ep.09 — 만족과 추천](/marketing-metrics-handbook-ep-09)
+> [ep.09 — 만족과 추천](/marketing-metrics-handbook-ep-09/)
 
 만족한 사용자가 *다른 사람을 데려오면* 단위경제가 한 번 더 좋아집니다. NPS, CSAT, K-factor, Viral Coefficient — 10개 용어로 추천과 만족의 측정을 다룹니다.

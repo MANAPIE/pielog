@@ -146,7 +146,7 @@ Order의 메서드에는 더 이상 분기문이 없습니다. **현재 상태 �
 
 ### Strategy와 State는 다시
 
-[ep.08](/design-patterns-objects-ep-08)에서 짚었듯, Strategy와 State는 구조가 비슷합니다. 결정적인 차이를 다시 한 번 명확히 합니다.
+[ep.08](/design-patterns-objects-ep-08/)에서 짚었듯, Strategy와 State는 구조가 비슷합니다. 결정적인 차이를 다시 한 번 명확히 합니다.
 
 - **Strategy**의 교체는 **외부**가 결정합니다. 사용자가 정렬을 바꿉니다. 개발자가 결제 게이트웨이를 갈아 끼웁니다. Context는 누군가의 결정을 받습니다.
 - **State**의 교체는 **내부**에서 일어납니다. 주문이 결제되면 자기 상태를 `PaidState`로 바꿉니다. 외부는 `pay()`라는 메서드를 부를 뿐, 어떤 상태로 가는지 결정하지 않습니다.
@@ -229,6 +229,6 @@ State 머신으로 다루는 이유는 **불가능한 상태를 표현 불가능
 
 ## 다음 편 예고
 
-> [ep.11 — 부록: 그 외 GoF 객체 패턴들](/design-patterns-objects-ep-11)
+> [ep.11 — 부록: 그 외 GoF 객체 패턴들](/design-patterns-objects-ep-11/)
 
 지금까지 본 10개 패턴은 객체 수준 GoF의 핵심입니다. 시즌 1의 마지막 편은 본편에서 다루지 않은 나머지 패턴들을 가볍게 정리합니다. Visitor, Memento, Flyweight, Iterator, Command, Chain of Responsibility, Prototype, Bridge, Mediator, Template Method — 각각이 어떤 결정에 이름을 붙인 패턴이고 왜 본편에는 들어오지 못했는지를 살펴봅니다.

@@ -22,7 +22,7 @@ draft: false
 
 11개의 용어를 다룹니다. 노출 단가(CPM), 클릭 단가(CPC), 액션 단가(CPA), 설치 단가(CPI), 조회 단가(CPV), 리드 단가(CPL), 판매 단가(CPS) — 일곱 개의 *단가(cost per ~)* 와, 광고 도달의 규모를 묘사하는 노출(Impression), 도달(Reach), 빈도(Frequency), 점유율(Share of Voice).
 
-비용 지표는 *비용/효율* 의 한 축입니다. *수익/효율* 의 축은 [ep.02](/marketing-metrics-handbook-ep-02)에서 ROAS와 함께 다룹니다. 두 편이 짝입니다.
+비용 지표는 *비용/효율* 의 한 축입니다. *수익/효율* 의 축은 [ep.02](/marketing-metrics-handbook-ep-02/)에서 ROAS와 함께 다룹니다. 두 편이 짝입니다.
 
 ---
 
@@ -61,7 +61,7 @@ CPM = 광고비 ÷ 노출 수 × 1000
 **⑤ 비고**
 
 - **흔한 함정**: CPM이 낮다고 좋은 광고는 아닙니다. *싸게 많이 보여줬지만 아무도 기억 못 하는* 광고일 수 있습니다. 보조 지표로 광고 회상률(ad recall lift) 또는 검색량 증가를 함께 봅니다.
-- **함께 보기**: [CTR](/marketing-metrics-handbook-ep-03#ctr), [Frequency](#frequency), [Reach](#reach)
+- **함께 보기**: [CTR](/marketing-metrics-handbook-ep-03/#ctr), [Frequency](#frequency), [Reach](#reach)
 - **벤치마크(2025년 기준, 국내)**: 디스플레이 4,000\~10,000원, 유튜브 인스트림 6,000\~15,000원, 인스타그램 피드 6,000\~12,000원. 산업·시즌·타겟에 따라 편차가 큽니다.
 
 ---
@@ -101,7 +101,7 @@ CPC = 광고비 ÷ 클릭 수
 **⑤ 비고**
 
 - **흔한 함정**: CPC를 낮추는 것 자체가 목적이 되면 안 됩니다. CPC가 낮아도 클릭한 사람이 가입을 안 하면 의미 없음. *CPC × 가입 전환율(CVR)* 이 진짜 비용.
-- **함께 보기**: [CTR](/marketing-metrics-handbook-ep-03#ctr), [CVR](/marketing-metrics-handbook-ep-03#cvr), [CPA](#cpa)
+- **함께 보기**: [CTR](/marketing-metrics-handbook-ep-03/#ctr), [CVR](/marketing-metrics-handbook-ep-03/#cvr), [CPA](#cpa)
 - **벤치마크(2025년, 국내)**: 검색 광고 800\~3,500원, 디스플레이 200\~700원, 메타 링크 클릭 600\~1,800원.
 
 ---
@@ -120,13 +120,13 @@ A보다 보편적인 단어가 *Acquisition* (획득)인 경우도 많아 두 �
 
 **② 맥락**
 
-- **회의에서**: *"이번 분기 CPA가 24,000원인데 LTV 대비 너무 높아요."* — 한 명을 데려오는 비용이 그 사람이 평생 가져다줄 수익을 깎아먹는다는 경고. [ep.08](/marketing-metrics-handbook-ep-08)의 LTV:CAC와 직결됩니다.
+- **회의에서**: *"이번 분기 CPA가 24,000원인데 LTV 대비 너무 높아요."* — 한 명을 데려오는 비용이 그 사람이 평생 가져다줄 수익을 깎아먹는다는 경고. [ep.08](/marketing-metrics-handbook-ep-08/)의 LTV:CAC와 직결됩니다.
 - **UI 위치**: 광고 매체의 *전환 최적화(conversion optimization)* 캠페인. 매체가 *액션이 발생할 가능성이 높은 사람* 에게 광고를 자동 노출.
 - **대시보드**: GA4 *전환* 보고서, Meta *Cost per Result*, Appsflyer·Adjust의 *Cost per Install/Cost per Event*.
 
 **③ 액션**
 
-- **개발**: *액션의 정의* 가 모든 것을 결정합니다. "가입 완료"의 기준이 무엇인가 — 이메일 인증까지? 첫 화면 진입까지? 첫 계좌 연동까지? 이벤트를 어디에 박는지가 CPA의 정확도를 좌우합니다. 이건 [ep.11](/marketing-metrics-handbook-ep-11)에서 깊게 다룹니다.
+- **개발**: *액션의 정의* 가 모든 것을 결정합니다. "가입 완료"의 기준이 무엇인가 — 이메일 인증까지? 첫 화면 진입까지? 첫 계좌 연동까지? 이벤트를 어디에 박는지가 CPA의 정확도를 좌우합니다. 이건 [ep.11](/marketing-metrics-handbook-ep-11/)에서 깊게 다룹니다.
 - **디자인**: CPA를 낮추려면 *클릭 이후의 여정* 이 매끄러워야 합니다. 랜딩 페이지, 가입 폼, 온보딩의 모든 화면이 액션에 기여. CPA는 *광고만의 지표가 아니라 제품 전체의 지표* 라는 점이 이 단어의 특징.
 - **기획**: CPA를 한 숫자로 모니터링하기보다 채널별·캠페인별로 분해해야 합니다. *유튜브에서 온 CPA* 와 *카카오에서 온 CPA* 가 다르고, 같은 매체 안에서도 크리에이티브에 따라 다릅니다.
 
@@ -138,8 +138,8 @@ A보다 보편적인 단어가 *Acquisition* (획득)인 경우도 많아 두 �
 **⑤ 비고**
 
 - **흔한 함정**: 같은 회사 안에서도 팀마다 *액션* 의 정의가 다르면 CPA가 회의마다 다른 의미가 됩니다. 정의서를 문서화해야 합니다.
-- **함께 보기**: [CPI](#cpi), [CPL](#cpl), [CPS](#cps), [CAC](/marketing-metrics-handbook-ep-08#cac)
-- **CPA와 CAC의 차이**: CPA는 *광고비만* 나눈 값. CAC는 *마케팅 전체 비용(광고 + 인건비 + 도구 + 제휴 등)* 을 나눈 값. [ep.08](/marketing-metrics-handbook-ep-08)에서 자세히 다룹니다.
+- **함께 보기**: [CPI](#cpi), [CPL](#cpl), [CPS](#cps), [CAC](/marketing-metrics-handbook-ep-08/#cac)
+- **CPA와 CAC의 차이**: CPA는 *광고비만* 나눈 값. CAC는 *마케팅 전체 비용(광고 + 인건비 + 도구 + 제휴 등)* 을 나눈 값. [ep.08](/marketing-metrics-handbook-ep-08/)에서 자세히 다룹니다.
 
 ---
 
@@ -173,7 +173,7 @@ CPI = 광고비 ÷ 설치 수
 **⑤ 비고**
 
 - **흔한 함정**: *설치* 만 보면 사기 트래픽(install fraud)에 노출됩니다. 봇이 광고를 클릭하고 앱을 설치한 뒤 즉시 삭제하는 식. *설치 후 7일 활성 사용자 비율* 을 함께 봐야 합니다.
-- **함께 보기**: [CPA](#cpa), [Activation Rate](/marketing-metrics-handbook-ep-04#activation-rate)
+- **함께 보기**: [CPA](#cpa), [Activation Rate](/marketing-metrics-handbook-ep-04/#activation-rate)
 
 ---
 
@@ -207,7 +207,7 @@ CPV = 광고비 ÷ 조회 수
 **⑤ 비고**
 
 - **흔한 함정**: 매체별 조회 정의가 다른 채로 평균 CPV를 비교하면 잘못된 결론. 항상 *같은 정의로* 비교해야 합니다.
-- **함께 보기**: [CTR](/marketing-metrics-handbook-ep-03#ctr), [Frequency](#frequency)
+- **함께 보기**: [CTR](/marketing-metrics-handbook-ep-03/#ctr), [Frequency](#frequency)
 
 ---
 
@@ -265,7 +265,7 @@ CPS = 광고비 ÷ 결제 건수
 
 **③ 액션**
 
-- **개발**: 결제 완료 이벤트가 *서버 측에서도* 발화하는지 확인. 결제 완료 후 페이지 새로고침이 일어나면 클라이언트 이벤트가 누락될 수 있습니다. 서버사이드 트래킹([ep.11](/marketing-metrics-handbook-ep-11))이 권장.
+- **개발**: 결제 완료 이벤트가 *서버 측에서도* 발화하는지 확인. 결제 완료 후 페이지 새로고침이 일어나면 클라이언트 이벤트가 누락될 수 있습니다. 서버사이드 트래킹([ep.11](/marketing-metrics-handbook-ep-11/))이 권장.
 - **디자인**: 결제 페이지 자체의 CVR이 CPS에 직접 영향. 결제 수단 다양화, 신뢰 요소(보안 마크, 환불 정책), 입력 필드 최소화.
 - **기획**: *광고 채널별 CPS 차이* 가 예산 배분의 근거. 한 채널이 CPS 12,000원, 다른 채널이 35,000원이라면 후자에서 전자로 옮기는 결정.
 
@@ -276,8 +276,8 @@ CPS = 광고비 ÷ 결제 건수
 
 **⑤ 비고**
 
-- **흔한 함정**: 첫 구매 CPS만 보고 적자라 판단하면 LTV가 긴 비즈니스에서 잘못된 결정. [ep.08](/marketing-metrics-handbook-ep-08)의 *Payback Period* 와 함께 봐야 합니다.
-- **함께 보기**: [ROAS](/marketing-metrics-handbook-ep-02#roas), [LTV](/marketing-metrics-handbook-ep-08#ltv), [Payback Period](/marketing-metrics-handbook-ep-08#payback-period)
+- **흔한 함정**: 첫 구매 CPS만 보고 적자라 판단하면 LTV가 긴 비즈니스에서 잘못된 결정. [ep.08](/marketing-metrics-handbook-ep-08/)의 *Payback Period* 와 함께 봐야 합니다.
+- **함께 보기**: [ROAS](/marketing-metrics-handbook-ep-02/#roas), [LTV](/marketing-metrics-handbook-ep-08/#ltv), [Payback Period](/marketing-metrics-handbook-ep-08/#payback-period)
 
 ---
 
@@ -380,7 +380,7 @@ Frequency = Impression ÷ Reach
 **⑤ 비고**
 
 - **흔한 함정**: 평균 Frequency가 낮아 보여도 *상위 10% 사용자가 30회씩 본* 분포가 숨어 있을 수 있습니다. 분포(distribution)를 함께 확인.
-- **함께 보기**: [Reach](#reach), [Impression](#impression), [CTR](/marketing-metrics-handbook-ep-03#ctr)
+- **함께 보기**: [Reach](#reach), [Impression](#impression), [CTR](/marketing-metrics-handbook-ep-03/#ctr)
 
 ---
 
@@ -453,7 +453,7 @@ Impression Share = 우리 임프레션 ÷ 가능한 총 임프레션
 | **비용 범위** | 광고비만 | 마케팅 전체 비용 (광고+인건비+도구+제휴) |
 | **결과 단위** | 액션 1건 | 신규 고객 1명 |
 | **사용 맥락** | 캠페인 운영, 채널 효율 | 단위경제, 투자자 보고 |
-| **상세 편** | ep.01 | [ep.08](/marketing-metrics-handbook-ep-08#cac) |
+| **상세 편** | ep.01 | [ep.08](/marketing-metrics-handbook-ep-08/#cac) |
 
 ### Impression vs Reach vs Frequency
 
@@ -482,6 +482,6 @@ Impression Share = 우리 임프레션 ÷ 가능한 총 임프레션
 
 ## 다음 편 예고
 
-> [ep.02 — 광고 효율 지표](/marketing-metrics-handbook-ep-02)
+> [ep.02 — 광고 효율 지표](/marketing-metrics-handbook-ep-02/)
 
 CPM·CPC·CPA로 *얼마를 썼는지* 가 보였다면, 다음 편은 *그래서 얼마를 벌었는지* 의 단어들입니다. ROAS, ROI, MER, iROAS — 같은 매출을 네 가지 방식으로 측정하는 이유를 다룹니다.

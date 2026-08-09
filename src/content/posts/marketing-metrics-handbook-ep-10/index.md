@@ -362,7 +362,7 @@ A/B 테스트가 *단기 변화* 를 측정한다면, Holdout은 *분기·연 �
 
 **⑤ 비고**
 
-- **함께 보기**: [A/B Test](#ab-test), [LTV](/marketing-metrics-handbook-ep-08#ltv)
+- **함께 보기**: [A/B Test](#ab-test), [LTV](/marketing-metrics-handbook-ep-08/#ltv)
 
 ---
 
@@ -429,6 +429,6 @@ CVR 4.2% → 4.21% 차이가 통계적으로 유의해도 비즈니스적으로�
 
 ## 다음 편 예고
 
-> [ep.11 — 트래킹과 데이터 수집](/marketing-metrics-handbook-ep-11)
+> [ep.11 — 트래킹과 데이터 수집](/marketing-metrics-handbook-ep-11/)
 
 이 모든 측정의 *밑바닥에 깔리는 인프라*. UTM, 이벤트 트래킹, 픽셀·태그, 서버사이드 트래킹, 그리고 쿠키 시대의 종말과 동의 모드까지. 12개 용어.

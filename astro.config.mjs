@@ -28,6 +28,7 @@ function remarkHeadingIds() {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://pielog.me',
+  trailingSlash: 'always',
   output: 'server',
   integrations: [
     mermaid({ theme: 'default', autoTheme: true }),

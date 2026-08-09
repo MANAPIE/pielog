@@ -62,7 +62,7 @@ Retention(N) = N일째에 활성인 사용자 수 ÷ 가입 사용자 수 × 100
 **⑤ 비고**
 
 - **흔한 함정**: D1만 보고 좋다고 판단하면 위험. *떨어지는 속도* 가 아니라 *어디서 평탄해지는가* 가 PMF의 신호.
-- **함께 보기**: [N-day Retention](#n-day-retention), [Power User Curve](#power-user-curve), [Churn Rate](/marketing-metrics-handbook-ep-07#churn-rate)
+- **함께 보기**: [N-day Retention](#n-day-retention), [Power User Curve](#power-user-curve), [Churn Rate](/marketing-metrics-handbook-ep-07/#churn-rate)
 
 ---
 
@@ -192,7 +192,7 @@ X축: 28일 중 활성 일수 (1~28). Y축: 그 활성 일수에 해당하는 �
 
 **⑤ 비고**
 
-- **함께 보기**: [Active Days](/marketing-metrics-handbook-ep-05#active-days), [L7](#l7), [L28](#l28)
+- **함께 보기**: [Active Days](/marketing-metrics-handbook-ep-05/#active-days), [L7](#l7), [L28](#l28)
 
 ---
 
@@ -272,7 +272,7 @@ New User (이번 달) = 가입일이 이번 달 안에 있는 사용자
 
 **⑤ 비고**
 
-- **함께 보기**: [Returning User](#returning-user), [Activation Rate](/marketing-metrics-handbook-ep-04#activation-rate)
+- **함께 보기**: [Returning User](#returning-user), [Activation Rate](/marketing-metrics-handbook-ep-04/#activation-rate)
 
 ---
 
@@ -328,7 +328,7 @@ Resurrected User = (30일 이상 비활성 후) 이번 기간에 활성
 
 **⑤ 비고**
 
-- **함께 보기**: [Reactivation](/marketing-metrics-handbook-ep-07#reactivation), [Win-back](/marketing-metrics-handbook-ep-07#win-back), [Dormant User](/marketing-metrics-handbook-ep-07#dormant-user)
+- **함께 보기**: [Reactivation](/marketing-metrics-handbook-ep-07/#reactivation), [Win-back](/marketing-metrics-handbook-ep-07/#win-back), [Dormant User](/marketing-metrics-handbook-ep-07/#dormant-user)
 
 ---
 
@@ -392,6 +392,6 @@ Resurrected User = (30일 이상 비활성 후) 이번 기간에 활성
 
 ## 다음 편 예고
 
-> [ep.07 — 이탈(Churn)](/marketing-metrics-handbook-ep-07)
+> [ep.07 — 이탈(Churn)](/marketing-metrics-handbook-ep-07/)
 
 리텐션의 반대편. 떠난 사람을 묘사하는 단어들. Churn Rate, Logo vs Revenue Churn, NRR과 GRR, 윈백과 부활. 11개 용어와 SaaS 핵심 지표.

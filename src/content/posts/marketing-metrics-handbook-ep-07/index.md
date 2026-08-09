@@ -58,7 +58,7 @@ Churn Rate = 기간 내 떠난 사용자 수 ÷ 기간 시작 시점 사용자 �
 **⑤ 비고**
 
 - **흔한 함정**: 월 Churn과 연 Churn을 혼동. 월 5%는 연 46%로 환산. 같은 회의에서 두 단위가 섞이면 의사결정이 틀어집니다.
-- **함께 보기**: [Logo Churn](#logo-churn), [Revenue Churn](#revenue-churn), [Retention Curve](/marketing-metrics-handbook-ep-06#retention-curve)
+- **함께 보기**: [Logo Churn](#logo-churn), [Revenue Churn](#revenue-churn), [Retention Curve](/marketing-metrics-handbook-ep-06/#retention-curve)
 
 ---
 
@@ -161,7 +161,7 @@ NRR 110%는 *기존 고객 100명이 떠난 사람을 빼고도 110의 매출을
 
 **⑤ 비고**
 
-- **함께 보기**: [GRR](#grr), [Revenue Churn](#revenue-churn), [MRR](/marketing-metrics-handbook-ep-08#mrr)
+- **함께 보기**: [GRR](#grr), [Revenue Churn](#revenue-churn), [MRR](/marketing-metrics-handbook-ep-08/#mrr)
 
 ---
 
@@ -200,7 +200,7 @@ GRR은 항상 100% 이하. NRR ≥ GRR.
 
 **① 정의**
 
-휴면 또는 이탈한 사용자가 *다시 활성으로 돌아온 사건*. [ep.06](/marketing-metrics-handbook-ep-06)의 *Resurrected User* 와 비슷하지만, *마케팅 액션의 결과* 라는 관점에서 사용.
+휴면 또는 이탈한 사용자가 *다시 활성으로 돌아온 사건*. [ep.06](/marketing-metrics-handbook-ep-06/)의 *Resurrected User* 와 비슷하지만, *마케팅 액션의 결과* 라는 관점에서 사용.
 
 ```
 Reactivation Rate = 부활한 사용자 수 ÷ 휴면 사용자 수
@@ -222,7 +222,7 @@ Reactivation Rate = 부활한 사용자 수 ÷ 휴면 사용자 수
 
 **⑤ 비고**
 
-- **함께 보기**: [Win-back](#win-back), [Resurrected User](/marketing-metrics-handbook-ep-06#resurrected-user)
+- **함께 보기**: [Win-back](#win-back), [Resurrected User](/marketing-metrics-handbook-ep-06/#resurrected-user)
 
 ---
 
@@ -283,7 +283,7 @@ N의 기준은 보통 30일·60일·90일. 제품마다 다릅니다.
 
 **⑤ 비고**
 
-- **함께 보기**: [Reactivation](#reactivation), [N-day Retention](/marketing-metrics-handbook-ep-06#n-day-retention)
+- **함께 보기**: [Reactivation](#reactivation), [N-day Retention](/marketing-metrics-handbook-ep-06/#n-day-retention)
 
 ---
 
@@ -426,8 +426,8 @@ NRR = GRR + Expansion Rate
 
 세 단어 모두 *떠남* 의 측정이지만 시간 단위가 다릅니다.
 
-- **Bounce** ([ep.03](/marketing-metrics-handbook-ep-03)): 한 세션 안에서 떠남 (초~분)
-- **Drop-off** ([ep.04](/marketing-metrics-handbook-ep-04)): 퍼널 단계 간 떠남 (세션 안 또는 며칠)
+- **Bounce** ([ep.03](/marketing-metrics-handbook-ep-03/)): 한 세션 안에서 떠남 (초~분)
+- **Drop-off** ([ep.04](/marketing-metrics-handbook-ep-04/)): 퍼널 단계 간 떠남 (세션 안 또는 며칠)
 - **Churn** (ep.07): 장기 구독·관계의 끝 (월·연 단위)
 
 ---
@@ -445,6 +445,6 @@ NRR = GRR + Expansion Rate
 
 ## 다음 편 예고
 
-> [ep.08 — 수익과 단위경제](/marketing-metrics-handbook-ep-08)
+> [ep.08 — 수익과 단위경제](/marketing-metrics-handbook-ep-08/)
 
 지금까지의 모든 지표가 한 곳에 모이는 편. LTV와 CAC, MRR과 ARR, ARPU와 ARPPU, 그리고 *이 회사는 살아남는가* 의 질문에 답하는 LTV:CAC 비율과 Payback Period까지. 13개 용어.

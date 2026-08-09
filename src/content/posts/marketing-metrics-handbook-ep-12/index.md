@@ -295,7 +295,7 @@ Incrementality % = Incremental ÷ 실험군 전환 × 100
 
 **⑤ 비고**
 
-- **함께 보기**: [Holdout](/marketing-metrics-handbook-ep-10#holdout), [Data-driven](#data-driven)
+- **함께 보기**: [Holdout](/marketing-metrics-handbook-ep-10/#holdout), [Data-driven](#data-driven)
 
 ---
 
@@ -437,7 +437,7 @@ Amplitude와 유사한 *제품 분석 도구*. *사용자 경로, 깊이 분석,
 
 13편 136개 용어. *광고 비용 → 효율 → 유입 → 활성화 → 유지 → 이탈 → 수익 → 추천 → 실험 → 트래킹 → 어트리뷰션* 까지 깔때기 전 구간을 한 어휘 체계로 묶었습니다.
 
-처음 [개요와 색인](/marketing-metrics-handbook-ep-00) 으로 돌아가 *세 가지 색인 — 퍼널 단계별 / 회의 시나리오별 / UI 컴포넌트별 — 으로 다시 둘러보시기를* 권합니다. 어휘는 한 번에 외우는 게 아니라 *필요할 때 찾아 쓰는 것* 이니까요.
+처음 [개요와 색인](/marketing-metrics-handbook-ep-00/) 으로 돌아가 *세 가지 색인 — 퍼널 단계별 / 회의 시나리오별 / UI 컴포넌트별 — 으로 다시 둘러보시기를* 권합니다. 어휘는 한 번에 외우는 게 아니라 *필요할 때 찾아 쓰는 것* 이니까요.
 
 회의에서 *모르는 단어가 나왔을 때* 다시 찾으실 수 있도록, 이 시리즈는 *읽고 끝* 이 아니라 *옆에 두는 핸드북* 이 되기를 의도했습니다.
 
@@ -457,16 +457,16 @@ Amplitude와 유사한 *제품 분석 도구*. *사용자 경로, 깊이 분석,
 
 ## 시리즈 전체 목차
 
-- [ep.00 — 개요와 색인](/marketing-metrics-handbook-ep-00)
-- [ep.01 — 광고 비용 지표](/marketing-metrics-handbook-ep-01)
-- [ep.02 — 광고 효율 지표](/marketing-metrics-handbook-ep-02)
-- [ep.03 — 유입과 클릭](/marketing-metrics-handbook-ep-03)
-- [ep.04 — 활성화와 온보딩](/marketing-metrics-handbook-ep-04)
-- [ep.05 — 유지와 참여](/marketing-metrics-handbook-ep-05)
-- [ep.06 — 코호트와 리텐션 곡선](/marketing-metrics-handbook-ep-06)
-- [ep.07 — 이탈(Churn)](/marketing-metrics-handbook-ep-07)
-- [ep.08 — 수익과 단위경제](/marketing-metrics-handbook-ep-08)
-- [ep.09 — 만족과 추천](/marketing-metrics-handbook-ep-09)
-- [ep.10 — 실험과 통계](/marketing-metrics-handbook-ep-10)
-- [ep.11 — 트래킹과 데이터 수집](/marketing-metrics-handbook-ep-11)
+- [ep.00 — 개요와 색인](/marketing-metrics-handbook-ep-00/)
+- [ep.01 — 광고 비용 지표](/marketing-metrics-handbook-ep-01/)
+- [ep.02 — 광고 효율 지표](/marketing-metrics-handbook-ep-02/)
+- [ep.03 — 유입과 클릭](/marketing-metrics-handbook-ep-03/)
+- [ep.04 — 활성화와 온보딩](/marketing-metrics-handbook-ep-04/)
+- [ep.05 — 유지와 참여](/marketing-metrics-handbook-ep-05/)
+- [ep.06 — 코호트와 리텐션 곡선](/marketing-metrics-handbook-ep-06/)
+- [ep.07 — 이탈(Churn)](/marketing-metrics-handbook-ep-07/)
+- [ep.08 — 수익과 단위경제](/marketing-metrics-handbook-ep-08/)
+- [ep.09 — 만족과 추천](/marketing-metrics-handbook-ep-09/)
+- [ep.10 — 실험과 통계](/marketing-metrics-handbook-ep-10/)
+- [ep.11 — 트래킹과 데이터 수집](/marketing-metrics-handbook-ep-11/)
 - ep.12 — 어트리뷰션과 도구 지도

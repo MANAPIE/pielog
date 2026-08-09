@@ -36,43 +36,43 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
         <a href="/">Home</a>
       </li>
       <li>
-        <a href="/tags/design">
+        <a href="/tags/design/">
           Design
           <span title="Post counts">{tagCounts["design"] ?? 0}</span>
         </a>
       </li>
       <li>
-        <a href="/tags/develop">
+        <a href="/tags/develop/">
           Develop
           <span title="Post counts">{tagCounts["develop"] ?? 0}</span>
         </a>
         <ul>
           <li>
-            <a href="/tags/frontend">
+            <a href="/tags/frontend/">
               Frontend
               <span title="Post counts">{tagCounts["frontend"] ?? 0}</span>
             </a>
           </li>
           <li>
-            <a href="/tags/backend">
+            <a href="/tags/backend/">
               Backend
               <span title="Post counts">{tagCounts["backend"] ?? 0}</span>
             </a>
           </li>
           <li>
-            <a href="/tags/infra">
+            <a href="/tags/infra/">
               Infra
               <span title="Post counts">{tagCounts["infra"] ?? 0}</span>
             </a>
           </li>
           <li>
-            <a href="/tags/devops">
+            <a href="/tags/devops/">
               Devops
               <span title="Post counts">{tagCounts["devops"] ?? 0}</span>
             </a>
           </li>
           <li>
-            <a href="/tags/ai">
+            <a href="/tags/ai/">
               AI
               <span title="Post counts">{tagCounts["ai"] ?? 0}</span>
             </a>
@@ -80,19 +80,19 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
         </ul>
       </li>
       <li>
-        <a href="/tags/experience">
+        <a href="/tags/experience/">
           Experience
           <span title="Post counts">{tagCounts["experience"] ?? 0}</span>
         </a>
       </li>
       <li>
-        <a href="/tags/cover">
+        <a href="/tags/cover/">
           Series cover
           <span title="Post counts">{tagCounts["cover"] ?? 0}</span>
         </a>
       </li>
       <li>
-        <a href="/posts">
+        <a href="/posts/">
           All posts
           <span title="Post counts">{postCount}</span>
         </a>
@@ -103,7 +103,7 @@ const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
   <nav class="sidebar-categories" aria-label="사이트">
     <ul class="category-tree">
       <li>
-        <a href="/about">About</a>
+        <a href="/about/">About</a>
       </li>
       <li>
         <a href="/rss.xml" target="_blank">RSS</a>
