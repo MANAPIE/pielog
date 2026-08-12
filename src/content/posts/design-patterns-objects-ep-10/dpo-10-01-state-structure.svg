@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 660" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-st">
-  <title id="title-st">State 패턴 — Order Context와 다섯 가지 상태 객체</title>
+  <title id="title-st">State 패턴: Order Context와 다섯 가지 상태 객체</title>
   <defs>
     <style>
       :root {

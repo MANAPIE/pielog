@@ -117,7 +117,7 @@
   <g>
     <rect x="24" y="84" width="672" height="68" rx="14" class="node-bg-cur"/>
     <text x="44" y="112" class="ep-num">EP.00 · NOW</text>
-    <text x="136" y="112" class="ep-title sec-fg">시작하며 — OWASP Top 10:2025가 말하는 것</text>
+    <text x="136" y="112" class="ep-title sec-fg">시작하며: OWASP Top 10:2025가 말하는 것</text>
     <text x="44" y="132" class="ep-sub">시리즈 구성, 2025년판의 변화, 배포 직전 30분 스모크 테스트</text>
 
     <!-- 현재 위치 표시 -->

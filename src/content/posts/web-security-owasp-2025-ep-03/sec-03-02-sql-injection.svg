@@ -201,7 +201,7 @@
   <text x="396" y="252" class="mono-sm"> WHERE email = ?", [email]);</text>
 
   <text x="384" y="284" class="step-num">02</text>
-  <text x="412" y="284" class="step-label">DB가 받는 것 — 분리 전송</text>
+  <text x="412" y="284" class="step-label">DB가 받는 것: 분리 전송</text>
   <rect x="384" y="294" width="296" height="60" rx="6" class="code-good" />
   <text x="396" y="312" class="mono-sm">쿼리 구조: SELECT ... WHERE = ?</text>
   <text x="396" y="328" class="mono-sm good-t">데이터: ['' OR '1'='1' --]</text>

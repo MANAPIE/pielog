@@ -130,7 +130,7 @@
   <rect class="item-card" x="40" y="215" width="230" height="26" rx="5" />
   <text class="body" x="50" y="232">PR마다 자동 차단 가능</text>
 
-  <text class="sub" x="40" y="262">한계 — 실제 사용자 환경(느린 네트워크, 오래된 기기)</text>
+  <text class="sub" x="40" y="262">한계: 실제 사용자 환경(느린 네트워크, 오래된 기기)</text>
   <text class="sub" x="40" y="278">의 다양성은 잡지 못함</text>
 
   <!-- 우측: RUM -->
@@ -148,12 +148,12 @@
   <rect class="item-card" x="330" y="215" width="230" height="26" rx="5" />
   <text class="body" x="340" y="232">운영 환경의 실태 반영</text>
 
-  <text class="sub" x="330" y="262">한계 — 변수가 많아 단일 PR의 영향을 분리하기 어려움</text>
+  <text class="sub" x="330" y="262">한계: 변수가 많아 단일 PR의 영향을 분리하기 어려움</text>
   <text class="sub" x="330" y="278">평균이 아닌 백분위로 봐야</text>
 
   <!-- 가운데 연결 (보완 관계) -->
   <line class="conn" x1="290" y1="180" x2="310" y2="180" />
 
   <!-- 하단 -->
-  <text class="note" x="300" y="335" text-anchor="middle">합성으로 회귀를 막고, RUM으로 진실을 본다 — 두 축이 함께 있어야 합니다</text>
+  <text class="note" x="300" y="335" text-anchor="middle">합성으로 회귀를 막고, RUM으로 진실을 본다: 두 축이 함께 있어야 합니다</text>
 </svg>

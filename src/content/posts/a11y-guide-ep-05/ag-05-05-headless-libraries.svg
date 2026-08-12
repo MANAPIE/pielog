@@ -155,7 +155,7 @@
     }
   </style>
 
-  <text class="title" x="40" y="32">헤드리스 UI 라이브러리 — 선택 가이드</text>
+  <text class="title" x="40" y="32">헤드리스 UI 라이브러리: 선택 가이드</text>
   <text class="caption" x="40" y="50">접근성이 이미 내장된 컴포넌트를 받아 와서 스타일만 입히는 방식</text>
 
   <!-- React Aria -->

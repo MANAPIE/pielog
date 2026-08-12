@@ -25,7 +25,7 @@
     }
   </style>
 
-  <text class="title" x="40" y="32">eslint-plugin-jsx-a11y — 주요 린트 규칙</text>
+  <text class="title" x="40" y="32">eslint-plugin-jsx-a11y: 주요 린트 규칙</text>
   <text class="caption" x="40" y="50">CI에서 가장 먼저 접근성 이슈를 잡는 1차 방어선</text>
 
   <!-- Rule 1 -->

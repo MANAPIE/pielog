@@ -38,14 +38,14 @@
   <polygon points="640,450 630,446 630,454" class="axis-arrow"/>
   <text class="axis-tag" x="60" y="475" text-anchor="start">실용(action)</text>
   <text class="axis-tag" x="640" y="475" text-anchor="end">이론(cognition)</text>
-  <text class="axis-label" x="350" y="500" text-anchor="middle">— 글이 다루는 것 —</text>
+  <text class="axis-label" x="350" y="500" text-anchor="middle">- 글이 다루는 것 -</text>
 
   <!-- 세로축 -->
   <line x1="350" y1="450" x2="350" y2="50" class="axis-line"/>
   <polygon points="350,50 346,60 354,60" class="axis-arrow"/>
   <text class="axis-tag" x="355" y="55" text-anchor="start">학습(study)</text>
   <text class="axis-tag" x="355" y="445" text-anchor="start">작업(work)</text>
-  <text class="axis-label" x="20" y="250" text-anchor="middle" transform="rotate(-90 20 250)">— 독자가 하려는 것 —</text>
+  <text class="axis-label" x="20" y="250" text-anchor="middle" transform="rotate(-90 20 250)">- 독자가 하려는 것 -</text>
 
   <!-- 분면 1: 좌상 - 튜토리얼 (학습 + 실용) -->
   <g transform="translate(80 80)">

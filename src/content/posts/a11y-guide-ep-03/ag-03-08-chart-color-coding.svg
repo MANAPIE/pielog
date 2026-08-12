@@ -1,5 +1,5 @@
 <svg width="100%" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img">
-  <title>차트 — 색상만으로 구분 vs 패턴+마커+직접 레이블</title>
+  <title>차트: 색상만으로 구분 vs 패턴+마커+직접 레이블</title>
   <desc>3개 시리즈를 가진 라인 차트에서, 왼쪽은 모든 라인이 동일한 실선과 원형 마커를 쓰고 색상에만 의존해 별도 범례로 시리즈를 매칭해야 하는 경우, 오른쪽은 각 시리즈에 실선·파선·점선과 원·사각·삼각
     마커를 부여하고 라인 끝에 직접 레이블을 붙여 색 없이도 식별 가능한 경우를 비교</desc>
   <style>
@@ -171,15 +171,15 @@
     }
   </style>
 
-  <text class="title" x="40" y="32">차트 — 색상만으로 구분 vs 패턴 + 마커 + 직접 레이블</text>
-  <text class="caption" x="40" y="50">동일 데이터(3개 시리즈) · 인코딩 전략만 다름 — WCAG 1.4.1</text>
+  <text class="title" x="40" y="32">차트: 색상만으로 구분 vs 패턴 + 마커 + 직접 레이블</text>
+  <text class="caption" x="40" y="50">동일 데이터(3개 시리즈) · 인코딩 전략만 다름: WCAG 1.4.1</text>
 
   <!-- BAD: color-only -->
   <g>
     <rect class="rust-card" x="40" y="76" width="350" height="280" rx="14" stroke-width="0.5" />
     <rect class="rust-head" x="40" y="76" width="350" height="32" rx="14" />
     <rect class="rust-head" x="40" y="96" width="350" height="12" />
-    <text class="col-h" x="60" y="98">색상만 사용 — 별도 범례 의존</text>
+    <text class="col-h" x="60" y="98">색상만 사용: 별도 범례 의존</text>
 
     <!-- grid -->
     <line class="grid" x1="80" y1="160" x2="370" y2="160" />
@@ -233,7 +233,7 @@
     <rect class="teal-card" x="410" y="76" width="350" height="280" rx="14" stroke-width="0.5" />
     <rect class="teal-head" x="410" y="76" width="350" height="32" rx="14" />
     <rect class="teal-head" x="410" y="96" width="350" height="12" />
-    <text class="col-h" x="430" y="98">패턴 + 마커 + 직접 레이블 — 범례 불필요</text>
+    <text class="col-h" x="430" y="98">패턴 + 마커 + 직접 레이블: 범례 불필요</text>
 
     <!-- grid -->
     <line class="grid" x1="450" y1="160" x2="690" y2="160" />
@@ -277,6 +277,6 @@
 
     <text class="bullet" x="430" y="304">· 실선·파선·점선으로 색 없이도 시리즈 식별</text>
     <text class="bullet" x="430" y="322">· 원·사각·삼각 마커로 형태 차원에서 한 번 더 차별화</text>
-    <text class="bullet" x="430" y="340">· 라인 끝 직접 레이블 — 범례 시선 이동 없음</text>
+    <text class="bullet" x="430" y="340">· 라인 끝 직접 레이블: 범례 시선 이동 없음</text>
   </g>
 </svg>

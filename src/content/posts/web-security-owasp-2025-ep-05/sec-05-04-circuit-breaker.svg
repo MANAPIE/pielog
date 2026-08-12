@@ -161,7 +161,7 @@
     </marker>
   </defs>
 
-  <text x="24" y="36" class="title">Circuit Breaker — 연쇄 장애를 끊는 차단기</text>
+  <text x="24" y="36" class="title">Circuit Breaker: 연쇄 장애를 끊는 차단기</text>
   <text x="24" y="56" class="caption">의존하는 서비스가 죽으면 우리도 같이 죽지 않도록. 보안 차원에서는 자원 고갈로 인한 DoS를 막는 핵심 패턴.</text>
 
   <!-- CLOSED state -->

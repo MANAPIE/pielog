@@ -133,6 +133,6 @@
   <text class="sub" x="460" y="244">단, 만드는 비용이 큼</text>
 
   <!-- 하단 -->
-  <text class="sub" x="300" y="295" text-anchor="middle">가능하면 오른쪽으로 — fake나 진짜에 가까울수록 통합 문제를 더 잘 잡습니다</text>
+  <text class="sub" x="300" y="295" text-anchor="middle">가능하면 오른쪽으로: fake나 진짜에 가까울수록 통합 문제를 더 잘 잡습니다</text>
   <text class="sub" x="300" y="315" text-anchor="middle">mock에 너무 의존하면 통합 테스트가 사실상 단위 테스트가 됩니다</text>
 </svg>

@@ -46,7 +46,7 @@
   <line x1="390" y1="74" x2="520" y2="120" class="line" marker-end="url(#arrow)" />
 
   <rect class="orange-bg" x="40" y="120" width="240" height="220" rx="16" />
-  <text class="th orange-th" x="160" y="150" text-anchor="middle" dominant-baseline="central">시스템 1 — 빠른 사고</text>
+  <text class="th orange-th" x="160" y="150" text-anchor="middle" dominant-baseline="central">시스템 1: 빠른 사고</text>
   <text class="ts orange-ts" x="160" y="180" text-anchor="middle" dominant-baseline="central">자동적, 무의식적, 직관적</text>
   <text class="ts orange-ts" x="160" y="200" text-anchor="middle" dominant-baseline="central">노력이 거의 들지 않음</text>
   <rect class="gray-bg" x="60" y="224" width="200" height="30" rx="6" />
@@ -57,7 +57,7 @@
   <text class="ts" x="160" y="311" text-anchor="middle" dominant-baseline="central">손실 프레이밍에 반응</text>
 
   <rect class="teal-bg" x="400" y="120" width="240" height="220" rx="16" />
-  <text class="th teal-th" x="520" y="150" text-anchor="middle" dominant-baseline="central">시스템 2 — 느린 사고</text>
+  <text class="th teal-th" x="520" y="150" text-anchor="middle" dominant-baseline="central">시스템 2: 느린 사고</text>
   <text class="ts teal-ts" x="520" y="180" text-anchor="middle" dominant-baseline="central">의식적, 분석적, 논리적</text>
   <text class="ts teal-ts" x="520" y="200" text-anchor="middle" dominant-baseline="central">인지적 노력이 필요</text>
   <rect class="gray-bg" x="420" y="224" width="200" height="30" rx="6" />

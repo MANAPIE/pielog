@@ -195,7 +195,7 @@
       <path d="M0,0 L10,5 L0,10 z" fill="#6b7280" />
     </marker>
   </defs>
-  <text x="400" y="32" text-anchor="middle" class="title">두 가지 플로우차트 — 화면 플로우 vs 업무 플로우</text>
+  <text x="400" y="32" text-anchor="middle" class="title">두 가지 플로우차트: 화면 플로우 vs 업무 플로우</text>
 
   <!-- LEFT: Screen Flow -->
   <rect x="20" y="60" width="375" height="380" class="panel" rx="6" />

@@ -179,7 +179,7 @@
       <rect class="preview" x="90" y="0" width="60" height="40" rx="2" />
       <line class="preview" x1="90" y1="14" x2="150" y2="14" />
       <line class="preview" x1="60" y1="20" x2="90" y2="20" />
-      <text class="card-desc" x="64" y="16" font-size="9">1—N</text>
+      <text class="card-desc" x="64" y="16" font-size="9">1-N</text>
 
       <rect class="preview" x="40" y="55" width="60" height="30" rx="2" />
       <line class="preview" x1="30" y1="40" x2="60" y2="55" />

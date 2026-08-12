@@ -89,7 +89,7 @@
     <!-- Step 4: build() -->
     <g transform="translate(24 372)">
       <rect width="492" height="80" rx="6" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2"/>
-      <text x="16" y="24" class="step-num" fill="var(--c-accent-2)">STEP 4 — BUILD</text>
+      <text x="16" y="24" class="step-num" fill="var(--c-accent-2)">STEP 4: BUILD</text>
       <text x="16" y="44" class="step-title">결과 보기</text>
       <text x="16" y="62" class="step-desc">버튼을 누르면 최종 쿼리가 만들어집니다</text>
       <!-- 버튼 -->

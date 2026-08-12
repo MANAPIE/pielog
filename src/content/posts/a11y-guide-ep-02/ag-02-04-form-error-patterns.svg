@@ -162,7 +162,7 @@
     }
   </style>
 
-  <text class="title" x="40" y="32">폼 에러 표시 — 흔한 실패와 권장안</text>
+  <text class="title" x="40" y="32">폼 에러 표시: 흔한 실패와 권장안</text>
   <text class="caption" x="40" y="50">에러를 어떻게 보여주는가가 폼 사용성을 좌우합니다</text>
 
   <!-- Bad example -->
@@ -170,7 +170,7 @@
     <rect class="rust-card" x="40" y="76" width="350" height="290" rx="14" stroke-width="0.5" />
     <rect class="rust-head" x="40" y="76" width="350" height="32" rx="14" />
     <rect class="rust-head" x="40" y="96" width="350" height="12" />
-    <text class="col-h" x="60" y="98">나쁜 예 — 어디가 문제인가</text>
+    <text class="col-h" x="60" y="98">나쁜 예: 어디가 문제인가</text>
 
     <!-- 필드 1 -->
     <text class="lbl body-t" x="60" y="138">이메일</text>
@@ -194,7 +194,7 @@
     <rect class="teal-card" x="410" y="76" width="350" height="290" rx="14" stroke-width="0.5" />
     <rect class="teal-head" x="410" y="76" width="350" height="32" rx="14" />
     <rect class="teal-head" x="410" y="96" width="350" height="12" />
-    <text class="col-h" x="430" y="98">좋은 예 — 명확한 안내</text>
+    <text class="col-h" x="430" y="98">좋은 예: 명확한 안내</text>
 
     <!-- 필드 1: 정상 -->
     <text class="lbl body-t" x="430" y="138">이메일 주소</text>

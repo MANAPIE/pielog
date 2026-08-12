@@ -57,7 +57,7 @@
 
   <!-- 상단: ROAS 시선 (매체별 분리) -->
   <g transform="translate(40, 96)">
-    <text class="panel-title" x="0" y="0">ROAS 시선 — 매체 보고서</text>
+    <text class="panel-title" x="0" y="0">ROAS 시선: 매체 보고서</text>
     <text class="sub" x="0" y="18">각 매체가 자기 광고에 귀속한 매출만 카운트</text>
 
     <!-- Meta -->
@@ -96,7 +96,7 @@
 
   <!-- 하단: MER 시선 (통합) -->
   <g transform="translate(40, 400)">
-    <text class="panel-title" x="0" y="0">MER 시선 — 회사 손익</text>
+    <text class="panel-title" x="0" y="0">MER 시선: 회사 손익</text>
     <text class="sub" x="0" y="18">매체 어트리뷰션과 상관없이 발생한 전체 매출</text>
 
     <!-- 전체 매출 박스 (MER) -->
@@ -139,6 +139,6 @@
 
   <!-- 하단 해설 -->
   <g transform="translate(40, 740)">
-    <text class="annotation">ROAS 합산 373%와 MER 252% 사이의 격차 — 어트리뷰션 중복과 오가닉 매출이 만든 차이.</text>
+    <text class="annotation">ROAS 합산 373%와 MER 252% 사이의 격차: 어트리뷰션 중복과 오가닉 매출이 만든 차이.</text>
   </g>
 </svg>

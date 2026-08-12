@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-three">
-  <title id="title-three">Wrapper 컴포넌트, HOC, Hook — 같은 결정에 대한 세 가지 답</title>
+  <title id="title-three">Wrapper 컴포넌트, HOC, Hook: 같은 결정에 대한 세 가지 답</title>
   <defs>
     <style>
       :root {

@@ -44,7 +44,7 @@
   </style>
 
   <text class="title" x="40" y="32">테마별 컬러 토큰 비교</text>
-  <text class="caption" x="40" y="50">같은 의미의 토큰이 테마에 따라 다른 색을 가집니다 — 디자인 시스템의 핵심</text>
+  <text class="caption" x="40" y="50">같은 의미의 토큰이 테마에 따라 다른 색을 가집니다: 디자인 시스템의 핵심</text>
 
   <!-- Light (데모 — 실제 라이트 모드 카드를 시각화) -->
   <g>

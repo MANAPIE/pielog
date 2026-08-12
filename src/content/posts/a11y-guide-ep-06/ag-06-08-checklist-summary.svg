@@ -122,7 +122,7 @@
   </style>
 
   <text class="title" x="40" y="32">단계별 체크리스트 요약</text>
-  <text class="caption" x="40" y="50">기획 9 / 디자인 10 / 개발 15 항목 — 부록 참조</text>
+  <text class="caption" x="40" y="50">기획 9 / 디자인 10 / 개발 15 항목: 부록 참조</text>
 
   <!-- 기획 단계 -->
   <g transform="translate(30, 76)">

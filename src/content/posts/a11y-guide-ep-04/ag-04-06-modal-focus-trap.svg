@@ -251,7 +251,7 @@
     </marker>
   </defs>
 
-  <text class="title" x="40" y="32">모달 포커스 트랩 — 4단계 흐름</text>
+  <text class="title" x="40" y="32">모달 포커스 트랩: 4단계 흐름</text>
   <text class="caption" x="40" y="50">모달이 열리면 포커스는 모달 내부에 갇히고, 닫히면 원래 트리거로 복귀합니다</text>
 
   <!-- Step 1: 열기 -->
@@ -259,7 +259,7 @@
     <rect class="blue-card" x="0" y="0" width="350" height="170" rx="12" stroke-width="0.5" />
     <rect class="blue-head" x="0" y="0" width="350" height="32" rx="12" />
     <rect class="blue-head" x="0" y="20" width="350" height="12" />
-    <text class="step-h" x="14" y="22">1. 트리거 클릭 — 포커스 저장</text>
+    <text class="step-h" x="14" y="22">1. 트리거 클릭: 포커스 저장</text>
 
     <!-- 페이지 -->
     <rect class="inner-page" x="20" y="50" width="310" height="100" rx="8" stroke-width="0.5" />
@@ -335,7 +335,7 @@
     <rect class="purple-card" x="0" y="0" width="350" height="170" rx="12" stroke-width="0.5" />
     <rect class="purple-head" x="0" y="0" width="350" height="32" rx="12" />
     <rect class="purple-head" x="0" y="20" width="350" height="12" />
-    <text class="step-h" x="14" y="22">4. Esc — 트리거로 포커스 복귀</text>
+    <text class="step-h" x="14" y="22">4. Esc: 트리거로 포커스 복귀</text>
 
     <!-- 페이지 -->
     <rect class="inner-page" x="20" y="50" width="310" height="100" rx="8" stroke-width="0.5" />

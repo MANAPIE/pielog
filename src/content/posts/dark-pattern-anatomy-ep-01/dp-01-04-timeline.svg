@@ -39,12 +39,12 @@
 <circle class="purple-dot" cx="120" cy="100" r="5"/>
 <text class="th" x="60" y="104" text-anchor="end" dominant-baseline="central">2018</text>
 <rect class="purple-bg" x="145" y="84" width="480" height="30" rx="6"/>
-<text class="ts purple-ts" x="160" y="99" dominant-baseline="central">GDPR 시행 — 동의 UI의 다크패턴이 본격적으로 논의되기 시작</text>
+<text class="ts purple-ts" x="160" y="99" dominant-baseline="central">GDPR 시행: 동의 UI의 다크패턴이 본격적으로 논의되기 시작</text>
 
 <circle class="purple-dot" cx="120" cy="150" r="5"/>
 <text class="th" x="60" y="154" text-anchor="end" dominant-baseline="central">2019</text>
 <rect class="purple-bg" x="145" y="134" width="480" height="30" rx="6"/>
-<text class="ts purple-ts" x="160" y="149" dominant-baseline="central">Mathur et al. 11,000개 쇼핑몰 실증 연구 발표 — 학술적 분류 체계 수립</text>
+<text class="ts purple-ts" x="160" y="149" dominant-baseline="central">Mathur et al. 11,000개 쇼핑몰 실증 연구 발표: 학술적 분류 체계 수립</text>
 
 <circle class="purple-dot" cx="120" cy="200" r="5"/>
 <text class="th" x="60" y="204" text-anchor="end" dominant-baseline="central">2021</text>
@@ -65,7 +65,7 @@
 <circle class="red-dot" cx="120" cy="360" r="5"/>
 <text class="th" x="60" y="364" text-anchor="end" dominant-baseline="central">2024</text>
 <rect class="red-bg" x="145" y="344" width="480" height="30" rx="6"/>
-<text class="ts red-ts" x="160" y="359" dominant-baseline="central">전자상거래법 개정 의결 — 6개 유형 다크패턴 금지 조항 신설</text>
+<text class="ts red-ts" x="160" y="359" dominant-baseline="central">전자상거래법 개정 의결: 6개 유형 다크패턴 금지 조항 신설</text>
 
 <circle class="red-dot" cx="120" cy="410" r="5"/>
 <text class="th" x="60" y="414" text-anchor="end" dominant-baseline="central">2025</text>

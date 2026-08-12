@@ -1,6 +1,6 @@
 <svg width="100%" viewBox="0 0 680 460" role="img" xmlns="http://www.w3.org/2000/svg"
   font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title>가입 vs 해지 단계 수 비대칭 — Roach Motel 구조</title>
+  <title>가입 vs 해지 단계 수 비대칭: Roach Motel 구조</title>
   <desc>가입은 2~3단계, 해지는 8단계 이상으로 설계된 비대칭을 시각화한 다이어그램</desc>
   <defs>
     <style>

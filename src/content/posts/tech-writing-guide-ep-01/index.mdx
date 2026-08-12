@@ -1,5 +1,5 @@
 ---
-title: "프로젝트의 첫인상, README - 개발자를 위한 기술문서 입문 ep.01"
+title: "프로젝트의 첫인상: README - 개발자를 위한 기술문서 입문 ep.01"
 description: "거의 모든 프로젝트의 입구이지만 거의 모든 README가 비슷한 실패를 반복합니다. 5분 안에 무엇을, 그 너머는 어디로 보낼지를 다룹니다."
 summary: "README는 한 글이 아니라 여러 글의 시작점입니다. 평가자·사용자·기여자라는 세 유형의 독자를 30초·5분·30분이라는 시간 축으로 갈라보고, Hero / Quick Start / Deep 세 구간으로 골격을 잡습니다. 좋은 예와 나쁜 예, 그리고 체크리스트까지."
 date: 2026-05-20
@@ -72,7 +72,7 @@ A delightful framework for the modern web. 🚀
 
 ### 배지
 
-평가자에게 "활발히 관리되나"의 신호입니다. 빌드 상태, 최신 버전, 다운로드 수, 라이선스. 다만 줄 단위로 늘어선 배지의 행렬은 오히려 신뢰를 떨어뜨립니다. 의미 있는 서너 개만 남깁니다.
+평가자에게 "활발히 관리되나"의 신호입니다. 빌드 상태, 최신 버전, 다운로드 수, 라이선스가 있습니다. 다만 줄 단위로 늘어선 배지의 행렬은 오히려 신뢰를 떨어뜨립니다. 의미 있는 서너 개만 남깁니다.
 
 ### 스크린샷 · 데모 GIF
 
@@ -100,7 +100,7 @@ A delightful framework for the modern web. 🚀
 brew install caddy
 ```
 
-전제 조건이 있다면 명시합니다. "Python 3.10 이상", "Node 18+", "Docker 필요" 같은 것. 전제가 흐릿하면 사용자는 빈 에러 메시지 앞에서 멈춥니다.
+전제 조건이 있다면 명시합니다. "Python 3.10 이상", "Node 18+", "Docker 필요" 같은 것들이 있습니다. 전제가 흐릿하면 사용자는 빈 에러 메시지 앞에서 멈춥니다.
 
 사용 예는 *복사해서 그대로 동작하는 것*이어야 합니다. 아래 두 예를 비교해봅니다.
 
@@ -123,27 +123,27 @@ print(result)
 
 두 번째는 그대로 돌립니다. 첫 번째는 다시 검색하게 만듭니다. *실제로 돌아가는 코드*가 README가 줄 수 있는 가장 큰 선물입니다.
 
-결과 확인은 자주 잊히는 단계입니다. "이걸 보면 성공한 것이다"를 명시해주면 사용자는 자기가 어디까지 왔는지 압니다. 기대 출력, 스크린샷, 예상 응답 코드. 무엇이든 좋습니다.
+결과 확인은 자주 잊히는 단계입니다. "이걸 보면 성공한 것이다"를 명시해주면 사용자는 자기가 어디까지 왔는지 압니다. 기대 출력, 스크린샷, 예상 응답 코드가 있습니다. 무엇이든 좋습니다.
 
 다음 링크는 README의 *출구*입니다. 여기서 사용자는 더 깊은 문서로 가거나, 예제 모음으로 가거나, FAQ로 갑니다. README의 임무는 여기까지입니다.
 
-### Quick Start의 모범 — 짧지만 결과까지 데려가는 README들
+### Quick Start의 모범 - 짧지만 결과까지 데려가는 README들
 
 좋은 Quick Start는 신기할 정도로 짧습니다. 몇 가지 공개 사례가 같은 패턴을 공유합니다.
 
-**ripgrep**의 README는 한 단락짜리 소개로 출발합니다. *무엇인지(line-oriented search tool)*, *어떤 가정을 따르는지(.gitignore 존중, 숨김·바이너리 파일 자동 제외)*, *어떤 도구의 친척인지(The Silver Searcher · ack · grep)*가 한 호흡에 다 들어갑니다. 그 아래는 곧장 *Documentation quick links*입니다 — Installation, User Guide, FAQ, Regex syntax 등 사용자가 그다음에 갈 만한 곳을 글머리표 한 묶음으로 늘어놓습니다. 페이지를 조금만 내리면 실제 터미널에서 `rg`를 돌린 출력이 곧바로 박혀 있습니다.
+**ripgrep**의 README는 한 단락짜리 소개로 출발합니다. *무엇인지(line-oriented search tool)*, *어떤 가정을 따르는지(.gitignore 존중, 숨김·바이너리 파일 자동 제외)*, *어떤 도구의 친척인지(The Silver Searcher · ack · grep)*가 한 호흡에 다 들어갑니다. 그 아래는 곧장 *Documentation quick links*입니다. Installation, User Guide, FAQ, Regex syntax 등 사용자가 그다음에 갈 만한 곳을 글머리표 한 묶음으로 늘어놓습니다. 페이지를 조금만 내리면 실제 터미널에서 `rg`를 돌린 출력이 곧바로 박혀 있습니다.
 
 ![GitHub의 BurntSushi/ripgrep 저장소 README 첫 화면 캡처. 다크 테마에서 "ripgrep (rg)" 제목 아래 한 단락이 펼쳐진다. 본문은 "ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern. By default, ripgrep will respect gitignore rules and automatically skip hidden files/directories and binary files."로 시작해, 마지막에 "ripgrep is similar to other popular search tools like The Silver Searcher, ack and grep."이라는 비교 문장으로 닫힌다. 그 아래로 ci passing, Crates.io, in repositories 46 같은 shield 배지가 한 줄로 놓이고, "Dual-licensed under MIT or the UNLICENSE." 안내, CHANGELOG 링크, 그리고 Installation · User Guide · Frequently Asked Questions · Regex syntax · Configuration files · Shell completions · Building · Translations로 이어지는 Documentation quick links 글머리표 목록이 차례로 보인다. 화면 하단에는 "Screenshot of search results" 소제목과 함께 실제 터미널에서 rg -i rustacean을 실행해 src/doc/book 안의 매치를 색상으로 표시한 캡처가 시작된다.](./tw-01-04-ripgrep-readme.png)
 
 평가자는 첫 단락에서 *왜 이걸 써야 하는지*를, quick links에서 *어디로 갈지*를, 그리고 곧 이어지는 캡처에서 *결과가 어떻게 보이는지*를 1분 안에 모두 얻습니다.
 
-**fzf**는 더 단순합니다. 흰 카드 안의 워드마크, "command-line fuzzy finder"라는 한 줄 부제, 그리고 의미 있는 배지 몇 개. 그게 첫 화면의 전부입니다. *시각적 산출물이 있는 도구가 군더더기 없이 자신을 소개한다*는 것이 어떤 모양인지를 그대로 보여줍니다.
+**fzf**는 더 단순합니다. 흰 카드 안의 워드마크, "command-line fuzzy finder"라는 한 줄 부제, 그리고 의미 있는 배지 몇 개가 있습니다. 그게 첫 화면의 전부입니다. *시각적 산출물이 있는 도구가 군더더기 없이 자신을 소개한다*는 것이 어떤 모양인지를 그대로 보여줍니다.
 
 ![GitHub의 junegunn/fzf 저장소 README 첫 화면 캡처. 흰 배경의 둥근 사각형 카드 안에 빨간 꺾쇠와 민트색 "fzf" 워드마크가 그림자와 함께 박혀 있고, 그 아래 "command-line fuzzy finder"라는 한 줄 부제가 가로로 길게 놓인다. 카드 바로 아래에는 build passing, tag v0.72.0, license MIT, contributors 396, sponsors 71, stars 80k 같은 shield 배지가 한 줄로 늘어서 있고, 본문 하단에는 fzf 로고가 인쇄된 머그컵 두 개를 찍은 사진이 시작된다.](./tw-01-05-fzf-readme.png)
 
 **jq**는 한 단락에 "X를 위한 Y"와 비교군을 동시에 넣은 모범입니다. "jq is a lightweight and flexible command-line JSON processor akin to sed, awk, grep, and friends for JSON data. It's written in portable C and has zero runtime dependencies, allowing you to easily slice, filter, map, and transform structured data." 여기에 *무엇인지(JSON 프로세서)*, *어떤 도구의 친척인지(sed/awk/grep)*, *무엇으로 만들어졌고 무엇이 좋은지(portable C, zero runtime dependencies)* 가 다 들어갑니다. 그 아래는 곧바로 실행이 가능한 설치 방법입니다.
 
-![GitHub의 jqlang/jq 저장소 README 첫 화면 캡처. 다크 테마에서 "jq"라는 큰 제목 아래 한 단락이 펼쳐진다. 본문은 "jq is a lightweight and flexible command-line JSON processor akin to sed, awk, grep, and friends for JSON data. It's written in portable C and has zero runtime dependencies, allowing you to easily slice, filter, map, and transform structured data."로 채워져 있다. 곧바로 Documentation 섹션이 이어져 Official Documentation jqlang.org와 Try jq Online play.jqlang.org 두 링크가 글머리표로 놓이고, 그 아래로 Installation - Prebuilt Binaries - Docker Image - Run with Docker 헤더가 차례로 등장한다. Docker 섹션에는 "Example: Extracting the version from a package.json file" 설명과 함께 docker run --rm -i ghcr.io/jqlang/jq:latest < package.json '.version' 그리고 마운트 볼륨을 쓰는 변형 명령 두 개가 코드 블록으로 박혀 있다.](./tw-01-06-jq-readme.png)
+![GitHub의 jqlang/jq 저장소 README 첫 화면 캡처. 다크 테마에서 "jq"라는 큰 제목 아래 한 단락이 펼쳐진다. 본문은 "jq is a lightweight and flexible command-line JSON processor akin to sed, awk, grep, and friends for JSON data. It's written in portable C and has zero runtime dependencies, allowing you to easily slice, filter, map, and transform structured data."로 채워져 있다. 곧바로 Documentation 섹션이 이어져 Official Documentation jqlang.org와 Try jq Online play.jqlang.org 두 링크가 글머리표로 놓이고, 그 아래로 Installation: Prebuilt Binaries - Docker Image - Run with Docker 헤더가 차례로 등장한다. Docker 섹션에는 "Example: Extracting the version from a package.json file" 설명과 함께 docker run --rm -i ghcr.io/jqlang/jq:latest < package.json '.version' 그리고 마운트 볼륨을 쓰는 변형 명령 두 개가 코드 블록으로 박혀 있다.](./tw-01-06-jq-readme.png)
 
 이 셋의 공통점은 모두 *첫 화면에서 평가자의 질문에 답한다*는 것입니다. 무엇인지, 누구와 비교되는지, 어디로 가야 결과를 보는지. 사용자가 "그래서 어떻게 생긴 건데?"라고 묻기 전에, README가 먼저 보여줍니다.
 
@@ -174,13 +174,13 @@ README 자체는 이 파일들로 가는 *링크 허브* 역할만 합니다. �
 
 다섯 가지만 짚어둡니다. 다 한 번씩은 경험한 것들입니다.
 
-1. **자기소개로 시작하기** - "이 프로젝트는 제가 OOO를 공부하면서 시작했는데..."로 출발하는 README는 평가자에게 도달하지 못합니다. 동기는 *글의 마지막*에 둡니다. 첫 줄에는 "이것이 무엇인지"가 와야 합니다.
-2. **모든 기능을 다 나열하기** - Feature 리스트가 30개를 넘는 순간 아무도 안 읽습니다. "주요 기능" 5~7개로 압축하고, 전체 목록은 별도 문서로 옮깁니다.
-3. **설치 후 사용 예가 없음** - 가장 흔하고 가장 치명적인 실패입니다. 설치만 시켜놓고 "이제 알아서 잘 쓰세요"가 됩니다. 사용 예는 *반드시* 있어야 합니다.
-4. **TODO와 로드맵으로 끝나기** - "아직 미구현" 항목으로 채워진 README는 신뢰를 잃습니다. 로드맵은 별도 문서 또는 GitHub Issues로 옮깁니다.
-5. **스크린샷이 깨져 있음** - 가장 사소해 보이지만 가장 빠르게 신뢰를 무너뜨립니다. 외부 이미지 호스팅 대신 저장소 안에 두는 것을 기본으로 합니다.
+1. **자기소개로 시작하기**: "이 프로젝트는 제가 OOO를 공부하면서 시작했는데..."로 출발하는 README는 평가자에게 도달하지 못합니다. 동기는 *글의 마지막*에 둡니다. 첫 줄에는 "이것이 무엇인지"가 와야 합니다.
+2. **모든 기능을 다 나열하기**: Feature 리스트가 30개를 넘는 순간 아무도 안 읽습니다. "주요 기능" 5~7개로 압축하고, 전체 목록은 별도 문서로 옮깁니다.
+3. **설치 후 사용 예가 없음**: 가장 흔하고 가장 치명적인 실패입니다. 설치만 시켜놓고 "이제 알아서 잘 쓰세요"가 됩니다. 사용 예는 *반드시* 있어야 합니다.
+4. **TODO와 로드맵으로 끝나기**: "아직 미구현" 항목으로 채워진 README는 신뢰를 잃습니다. 로드맵은 별도 문서 또는 GitHub Issues로 옮깁니다.
+5. **스크린샷이 깨져 있음**: 가장 사소해 보이지만 가장 빠르게 신뢰를 무너뜨립니다. 외부 이미지 호스팅 대신 저장소 안에 두는 것을 기본으로 합니다.
 
-### 짧은 시나리오 — `mlpipe`의 README가 평가자를 잃은 30초
+### 짧은 시나리오 - `mlpipe`의 README가 평가자를 잃은 30초
 
 가상의 ML 파이프라인 OSS `mlpipe`를 떠올려봅니다. 메인테이너는 1년을 들여 만들었고, 처음으로 GitHub에 공개했습니다.
 
@@ -312,6 +312,6 @@ README를 다 썼다고 생각될 때 마지막으로 짚어봅니다.
 
 ## 다음 편 예고
 
-> [ep.02 - 처음 온 사람을 데려가는 길, 튜토리얼](/tech-writing-guide-ep-02/)
+> [ep.02 - 처음 온 사람을 데려가는 길: 튜토리얼](/tech-writing-guide-ep-02/)
 
-다음 편은 튜토리얼입니다. 가장 많이 쓰이고, 가장 자주 망가지는 문서. 튜토리얼의 가장 흔한 실수는 "설명을 하려 든다"는 것입니다. 설명이 아니라 *경험*을 설계한다는 게 무엇인지, 그리고 학습자의 자리에 서 본다는 게 어떤 글쓰기인지를 다뤄봅니다.
+다음 편은 튜토리얼입니다. 가장 많이 쓰이고, 가장 자주 망가지는 문서입니다. 튜토리얼의 가장 흔한 실수는 "설명을 하려 든다"는 것입니다. 설명이 아니라 *경험*을 설계한다는 게 무엇인지, 그리고 학습자의 자리에 서 본다는 게 어떤 글쓰기인지를 다뤄봅니다.

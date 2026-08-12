@@ -167,7 +167,7 @@
     }
   </style>
 
-  <text x="28" y="40" class="title">STRIDE — 위협을 6가지 범주로 본다</text>
+  <text x="28" y="40" class="title">STRIDE - 위협을 6가지 범주로 본다</text>
   <text x="28" y="62" class="caption">Microsoft가 만든 위협 모델링 프레임워크. 설계 단계에서 "이 컴포넌트가 어떻게 깨질 수 있는가"를 묻습니다.</text>
 
   <!-- Header -->

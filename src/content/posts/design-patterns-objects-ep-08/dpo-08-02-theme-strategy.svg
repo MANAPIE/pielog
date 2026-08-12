@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-ts">
-  <title id="title-ts">같은 결정 구조의 세 가지 자리 — 다크모드, i18n, 플랫폼</title>
+  <title id="title-ts">같은 결정 구조의 세 가지 자리: 다크모드, i18n, 플랫폼</title>
   <defs>
     <style>
       :root {
@@ -40,7 +40,7 @@
   <!-- ROW 1: 다크모드 -->
   <g transform="translate(40 70)">
     <rect class="row-bg" width="1120" height="160" rx="8"/>
-    <text x="20" y="28" class="row-label">01 — DARK MODE</text>
+    <text x="20" y="28" class="row-label">01 - DARK MODE</text>
     <text x="20" y="50" class="row-title">테마 토큰 교체</text>
 
     <!-- Context -->
@@ -76,7 +76,7 @@
   <!-- ROW 2: i18n -->
   <g transform="translate(40 250)">
     <rect class="row-bg" width="1120" height="160" rx="8"/>
-    <text x="20" y="28" class="row-label">02 — I18N</text>
+    <text x="20" y="28" class="row-label">02 - I18N</text>
     <text x="20" y="50" class="row-title">언어 사전 교체</text>
 
     <g transform="translate(20 80)">
@@ -109,7 +109,7 @@
   <!-- ROW 3: 플랫폼 -->
   <g transform="translate(40 430)">
     <rect class="row-bg" width="1120" height="160" rx="8"/>
-    <text x="20" y="28" class="row-label">03 — PLATFORM</text>
+    <text x="20" y="28" class="row-label">03 - PLATFORM</text>
     <text x="20" y="50" class="row-title">네이티브 렌더 분기</text>
 
     <g transform="translate(20 80)">
@@ -140,5 +140,5 @@
   </g>
 
   <!-- 하단 캡션 -->
-  <text x="600" y="620" class="annot" text-anchor="middle" font-weight="700" fill="var(--c-fg)">Context는 같음 — Strategy 객체만 갈아 끼움</text>
+  <text x="600" y="620" class="annot" text-anchor="middle" font-weight="700" fill="var(--c-fg)">Context는 같음: Strategy 객체만 갈아 끼움</text>
 </svg>

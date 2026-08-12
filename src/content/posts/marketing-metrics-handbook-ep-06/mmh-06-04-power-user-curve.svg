@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" role="img" aria-labelledby="title desc">
-  <title id="title">파워 유저 곡선 — L28 분포</title>
+  <title id="title">파워 유저 곡선: L28 분포</title>
   <desc id="desc">28일 중 활성 일수를 X축에, 사용자 수를 Y축에 그린 히스토그램. U자형(스마일) 분포는 건강한 신호.</desc>
   <style>
     :root {
@@ -32,7 +32,7 @@
   </style>
   <rect class="bg" width="600" height="460"/>
 
-  <text class="title" x="40" y="36">L28 분포 — 파워 유저 곡선</text>
+  <text class="title" x="40" y="36">L28 분포 - 파워 유저 곡선</text>
   <text class="sub" x="40" y="54">지난 28일 중 활성 일수의 분포. U자형이 일반 사용</text>
   <text class="sub" x="40" y="70">패턴, 좌측 편향이면 라이트 유저만 많음.</text>
 
@@ -118,7 +118,7 @@
 
   <!-- 결론 박스 -->
   <g transform="translate(40, 412)">
-    <text class="legend-text" x="0" y="0">U자형 분포 — 좌측 봉우리(가입 직후 1~3일 보고 떠난 사용자)와</text>
+    <text class="legend-text" x="0" y="0">U자형 분포: 좌측 봉우리(가입 직후 1~3일 보고 떠난 사용자)와</text>
     <text class="legend-text" x="0" y="16">우측 봉우리(매일 들어오는 파워 유저)가 공존하는 자연 패턴. 전략의</text>
     <text class="legend-text" x="0" y="32">핵심: 가운데(미드) 사용자를 우측으로 끌어올리거나, 좌측 봉우리를 줄이거나.</text>
   </g>

@@ -1,6 +1,6 @@
 <svg width="100%" viewBox="0 0 680 440" role="img" xmlns="http://www.w3.org/2000/svg"
   font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title>Drip Pricing — 호텔 예약의 단계별 비용 누적</title>
+  <title>Drip Pricing: 호텔 예약의 단계별 비용 누적</title>
   <desc>1박 80,000원에서 시작해 리조트 수수료, 청소비, 시설 이용료, 세금이 단계별로 추가되어 최종 121,000원이 되는 흐름을 막대그래프로 표현</desc>
   <defs>
     <style>
@@ -163,7 +163,7 @@
     </style>
   </defs>
 
-  <text x="40" y="16" class="title-text">호텔 예약 — 단계별 가격 누적</text>
+  <text x="40" y="16" class="title-text">호텔 예약: 단계별 가격 누적</text>
   <text x="40" y="36" class="caption">1박 80,000원 → 5단계에 걸쳐 121,000원으로 51% 상승</text>
 
   <!-- Y axis -->

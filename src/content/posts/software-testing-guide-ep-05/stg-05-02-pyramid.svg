@@ -75,6 +75,6 @@
   <text class="sub" x="300" y="73" text-anchor="middle">아래로 갈수록 많이, 위로 갈수록 적게</text>
 
   <!-- 하단 -->
-  <text class="note" x="300" y="335" text-anchor="middle">E2E는 핵심 시나리오에만 — 나머지는 아래 레이어로 내립니다</text>
+  <text class="note" x="300" y="335" text-anchor="middle">E2E는 핵심 시나리오에만: 나머지는 아래 레이어로 내립니다</text>
   <text class="note" x="300" y="355" text-anchor="middle">"피라미드가 뒤집히면 (E2E 多) 빌드 시간과 flakiness가 함께 늘어납니다"</text>
 </svg>

@@ -1,6 +1,6 @@
 <svg width="100%" viewBox="0 0 800 450" role="img" xmlns="http://www.w3.org/2000/svg"
   font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title>Sneak into Basket — 항공권 보험 사전 선택 Before/After</title>
+  <title>Sneak into Basket: 항공권 보험 사전 선택 Before/After</title>
   <desc>다크패턴: 수하물 보험이 사전 선택되어 장바구니에 자동 포함 / 정직한 설계: 보험은 별도 옵트인 단계로 분리</desc>
   <defs>
     <style>
@@ -246,7 +246,7 @@
   </defs>
 
   <rect class="page-bg" width="800" height="460" rx="16" />
-  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 항공권 결제 — 수하물 보험 옵션</text>
+  <text x="400" y="34" text-anchor="middle" class="pair-label">사례. 항공권 결제: 수하물 보험 옵션</text>
 
   <!-- LEFT: DARK -->
   <rect class="frame-bg" x="48" y="52" width="320" height="355" rx="12" />

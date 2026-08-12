@@ -199,7 +199,7 @@
   <text x="93" y="103" class="type-tag stored-t">STORED · 가장 위험</text>
   <rect x="40" y="90" width="44" height="18" rx="9" fill="var(--sec-red-500, #ef4444)" />
   <text x="62" y="103" text-anchor="middle" class="severity">HIGH</text>
-  <text x="40" y="124" class="type-name">Stored XSS — 악성 스크립트가 DB에 저장</text>
+  <text x="40" y="124" class="type-name">Stored XSS: 악성 스크립트가 DB에 저장</text>
   <text x="40" y="142" class="desc">댓글, 게시판, 프로필 등 사용자 입력이 저장되는 곳. 모든 방문자가 영향받음.</text>
 
   <!-- Flow nodes -->
@@ -228,7 +228,7 @@
   <text x="110" y="251" class="type-tag reflected-t">REFLECTED · 피싱 결합</text>
   <rect x="40" y="238" width="60" height="18" rx="9" fill="var(--sec-amber-500, #f59e0b)" />
   <text x="70" y="251" text-anchor="middle" class="severity">MEDIUM</text>
-  <text x="40" y="272" class="type-name">Reflected XSS — URL 파라미터가 응답에 반영</text>
+  <text x="40" y="272" class="type-name">Reflected XSS: URL 파라미터가 응답에 반영</text>
   <text x="40" y="290" class="desc">검색 결과 페이지나 에러 페이지에서 자주 발생. 피싱 링크와 결합해 타겟 공격.</text>
 
   <circle cx="100" cy="326" r="14" class="node-attacker" />
@@ -256,7 +256,7 @@
   <text x="110" y="399" class="type-tag dom-t">DOM-BASED · 클라이언트 사이드</text>
   <rect x="40" y="386" width="60" height="18" rx="9" fill="var(--sec-blue-500, #3b82f6)" />
   <text x="70" y="399" text-anchor="middle" class="severity">MEDIUM</text>
-  <text x="40" y="420" class="type-name">DOM XSS — 서버 안 거치고 JS가 직접 처리</text>
+  <text x="40" y="420" class="type-name">DOM XSS: 서버 안 거치고 JS가 직접 처리</text>
   <text x="40" y="438" class="desc">URL fragment(#)나 location 데이터를 innerHTML에 넣을 때. 서버 로그에 흔적 없음.</text>
 
   <circle cx="100" cy="474" r="14" class="node-attacker" />

@@ -79,7 +79,7 @@
 
     <!-- 평탄화 라인 (PMF) -->
     <line class="asymptote" x1="320" y1="170" x2="480" y2="170"/>
-    <text class="label-line" x="200" y="188">평탄화 30% — PMF 신호</text>
+    <text class="label-line" x="200" y="188">평탄화 30%: PMF 신호</text>
 
     <line class="asymptote" x1="320" y1="138" x2="480" y2="138"/>
     <text class="label-line" x="252" y="128">개선 후 42%</text>

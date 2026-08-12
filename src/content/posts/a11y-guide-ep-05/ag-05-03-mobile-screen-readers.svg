@@ -83,7 +83,7 @@
     }
   </style>
 
-  <text class="title" x="40" y="32">모바일 스크린리더 — VoiceOver vs TalkBack</text>
+  <text class="title" x="40" y="32">모바일 스크린리더: VoiceOver vs TalkBack</text>
   <text class="caption" x="40" y="50">개발자가 알아야 할 활성화, 제스처, 점유율, 차이점</text>
 
   <!-- VoiceOver -->

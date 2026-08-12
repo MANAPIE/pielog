@@ -117,7 +117,7 @@
   <!-- 누락 표시 -->
   <g transform="translate(40, 570)">
     <text class="flag" x="0" y="0">⚠ 흔한 누락 지점</text>
-    <text class="sublabel" x="0" y="18">광고 차단기, 페이지 로딩 지연, 픽셀 발화 타이밍 —</text>
+    <text class="sublabel" x="0" y="18">광고 차단기, 페이지 로딩 지연, 픽셀 발화 타이밍 -</text>
     <text class="sublabel" x="0" y="34">매체 측 클릭 수와 GA 측 페이지뷰가 어긋날 수 있음</text>
   </g>
 

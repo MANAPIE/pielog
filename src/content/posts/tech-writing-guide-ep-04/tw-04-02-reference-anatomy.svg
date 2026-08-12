@@ -109,7 +109,7 @@
     <text class="annot" x="20" y="434">See Also:</text>
     <text class="desc" x="30" y="452" font-size="11">detect_language(): Auto-detect source.</text>
 
-    <text class="desc" x="20" y="495" fill="var(--c-muted)" font-style="italic">— 모든 항목이 같은 순서로,</text>
+    <text class="desc" x="20" y="495" fill="var(--c-muted)" font-style="italic">- 모든 항목이 같은 순서로,</text>
     <text class="desc" x="20" y="509" fill="var(--c-muted)" font-style="italic">  같은 형식을 따라야 한다.</text>
     <text class="desc" x="20" y="523" fill="var(--c-muted)" font-style="italic">  레퍼런스의 미덕은 일관성.</text>
   </g>

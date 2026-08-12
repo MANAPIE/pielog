@@ -112,7 +112,7 @@
       }
     }
   </style>
-  <text x="400" y="32" text-anchor="middle" class="title">메뉴구조도 예시 — 이커머스 앱</text>
+  <text x="400" y="32" text-anchor="middle" class="title">메뉴구조도 예시: 이커머스 앱</text>
 
   <!-- Depth labels (right-aligned, no overlap) -->
   <text x="30" y="83" class="depth-label">Root</text>

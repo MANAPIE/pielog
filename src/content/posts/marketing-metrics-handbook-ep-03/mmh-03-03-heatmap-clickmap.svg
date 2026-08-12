@@ -169,7 +169,7 @@
 
     <!-- 해설 (폰 우측) -->
     <text class="legend-text" x="250" y="200">100% 도달 14%</text>
-    <text class="legend-text" x="250" y="214">— 후기 섹션이 묻힘</text>
+    <text class="legend-text" x="250" y="214">- 후기 섹션이 묻힘</text>
     <text class="legend-text" x="250" y="232">→ 핵심 메시지를 상단으로</text>
   </g>
 

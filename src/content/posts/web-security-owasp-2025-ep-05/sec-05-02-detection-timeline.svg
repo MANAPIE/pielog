@@ -190,7 +190,7 @@
 
   <!-- Metrics -->
   <rect x="24" y="270" width="216" height="130" rx="10" class="metric-box" />
-  <text x="40" y="294" class="metric-name" fill="var(--sec-amber-700, #b45309)">MTTD — Mean Time to Detect</text>
+  <text x="40" y="294" class="metric-name" fill="var(--sec-amber-700, #b45309)">MTTD - Mean Time to Detect</text>
   <text x="40" y="312" class="desc">사고 발생부터 탐지까지 평균</text>
   <text x="40" y="334" class="label">대표 원인</text>
   <text x="40" y="350" class="desc">로그 미수집, 알림 임계 부적절,</text>
@@ -198,7 +198,7 @@
   <text x="40" y="384" class="target">목표: &lt; 15분 (성숙 조직)</text>
 
   <rect x="252" y="270" width="216" height="130" rx="10" class="metric-box" />
-  <text x="268" y="294" class="metric-name" fill="var(--sec-blue-700, #1d4ed8)">MTTR — Mean Time to Respond</text>
+  <text x="268" y="294" class="metric-name" fill="var(--sec-blue-700, #1d4ed8)">MTTR - Mean Time to Respond</text>
   <text x="268" y="312" class="desc">탐지부터 차단·격리까지 평균</text>
   <text x="268" y="334" class="label">대표 원인</text>
   <text x="268" y="350" class="desc">Playbook 없음, 권한 부재,</text>
@@ -206,7 +206,7 @@
   <text x="268" y="384" class="target">목표: &lt; 1시간</text>
 
   <rect x="480" y="270" width="216" height="130" rx="10" class="metric-box" />
-  <text x="496" y="294" class="metric-name" fill="var(--sec-emerald-700, #047857)">Dwell Time — 체류 시간</text>
+  <text x="496" y="294" class="metric-name" fill="var(--sec-emerald-700, #047857)">Dwell Time: 체류 시간</text>
   <text x="496" y="312" class="desc">공격자가 시스템 내 머문 총 시간</text>
   <text x="496" y="334" class="label">업계 평균 (2024)</text>
   <text x="496" y="350" class="desc">전 세계 약 10일</text>

@@ -37,7 +37,7 @@
   <!-- concern: spans all columns -->
   <rect x="60" y="226" width="550" height="44" rx="8" fill="var(--c-accent-2)" opacity="0.28"/>
   <rect x="60" y="226" width="550" height="44" rx="8" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
-  <text class="lab" x="335" y="253" text-anchor="middle" fill="var(--c-accent-2)">횡단 관심사 — 예: 로깅 · 인증 · 보안</text>
+  <text class="lab" x="335" y="253" text-anchor="middle" fill="var(--c-accent-2)">횡단 관심사: 예: 로깅 · 인증 · 보안</text>
 
   <!-- captions -->
   <text class="cap" x="60" y="320">기능은 보통 한 컴포넌트 안에 모입니다. 위치가 분명합니다.</text>

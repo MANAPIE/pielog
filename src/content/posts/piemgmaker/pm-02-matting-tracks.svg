@@ -44,7 +44,7 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic 
 <rect class="soft2" x="60" y="288" width="280" height="64" rx="8"/>
 <text class="ts" x="200" y="308" text-anchor="middle">반투명 폴백</text>
 <text class="tb mono acc2" x="200" y="328" text-anchor="middle">trimap</text>
-<text class="txs" x="200" y="344" text-anchor="middle">ViTMatte — 경계 띠만 정밀 추정</text>
+<text class="txs" x="200" y="344" text-anchor="middle">ViTMatte: 경계 띠만 정밀 추정</text>
 <path class="ln" d="M340,138 L376,138" marker-end="url(#ar)"/>
 <path class="ln" d="M340,226 L358,226 L358,158 L376,158" marker-end="url(#ar)"/>
 <path class="ln" d="M340,320 L366,320 L366,180 L376,180" marker-end="url(#ar)"/>

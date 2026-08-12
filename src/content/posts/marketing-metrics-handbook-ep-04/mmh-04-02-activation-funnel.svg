@@ -31,7 +31,7 @@
   <rect class="bg" width="600" height="712"/>
 
   <text class="title" x="40" y="36">광고 클릭에서 D7 활성화까지</text>
-  <text class="sub" x="40" y="54">센티 시나리오 — 광고 클릭 10,000명에서 시작</text>
+  <text class="sub" x="40" y="54">센티 시나리오: 광고 클릭 10,000명에서 시작</text>
 
   <!-- 깔때기 단계들: 단계 라벨 위, 점점 좁아지는 막대 아래, drop 주석 사이 -->
   <g transform="translate(40, 84)">
@@ -84,7 +84,7 @@
 
   <!-- 최종 박스 -->
   <g transform="translate(40, 632)">
-    <text class="anno-bold" x="0" y="0">전체 통과율 4.6% — 광고 클릭 10,000명에서</text>
+    <text class="anno-bold" x="0" y="0">전체 통과율 4.6%: 광고 클릭 10,000명에서</text>
     <text class="anno-bold" x="0" y="20">활성화 461명. 가장 큰 누수는 ②→③ 가입</text>
     <text class="anno-bold" x="0" y="40">시작 단계 89%.</text>
   </g>

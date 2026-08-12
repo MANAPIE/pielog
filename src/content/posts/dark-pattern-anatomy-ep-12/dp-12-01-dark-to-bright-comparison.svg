@@ -78,7 +78,7 @@
 <!-- 핵심 원칙 -->
 <g class="c-gray"><rect x="100" y="380" width="500" height="56" rx="8" stroke-width="0.5"/>
 <text class="th" x="350" y="400" text-anchor="middle" dominant-baseline="central">핵심: 비즈니스 목표를 포기하지 않는다</text>
-<text class="ts" x="350" y="420" text-anchor="middle" dominant-baseline="central">경로만 바꾼다 — 기만이 아닌 투명성으로</text></g>
+<text class="ts" x="350" y="420" text-anchor="middle" dominant-baseline="central">경로만 바꾼다: 기만이 아닌 투명성으로</text></g>
 
 <!-- Legend -->
 <g class="c-coral"><rect x="160" y="464" width="12" height="12" rx="3" stroke-width="0.5"/></g>

@@ -133,7 +133,7 @@
 
   <!-- 결론 -->
   <g transform="translate(40, 482)">
-    <text class="anno" x="0" y="0">카드 분류 결과 확인의 격차 67%p — 다른 행동들의 격차</text>
+    <text class="anno" x="0" y="0">카드 분류 결과 확인의 격차 67%p: 다른 행동들의 격차</text>
     <text class="anno" x="0" y="16">31%p, 22%p, 26%p, 2%p와 비교해 명확한 Aha 후보.</text>
   </g>
 </svg>

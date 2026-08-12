@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-fsm">
-  <title id="title-fsm">폼 상태 머신 — idle → validating → submitting → success / error</title>
+  <title id="title-fsm">폼 상태 머신: idle → validating → submitting → success / error</title>
   <defs>
     <style>
       :root {
@@ -123,7 +123,7 @@
       <rect x="16" y="50" width="108" height="20" rx="3" fill="var(--c-divider)"/>
       <rect x="16" y="96" width="108" height="26" rx="4" fill="var(--c-muted)" opacity="0.5"/>
       <text x="70" y="113" class="ui-label" text-anchor="middle" fill="var(--c-bg)">확인 중</text>
-      <text x="70" y="166" class="ui-sub" text-anchor="middle">validating — disabled</text>
+      <text x="70" y="166" class="ui-sub" text-anchor="middle">validating: disabled</text>
     </g>
 
     <g transform="translate(450 30)">
@@ -131,7 +131,7 @@
       <rect x="16" y="20" width="108" height="20" rx="3" fill="var(--c-divider)"/>
       <rect x="16" y="50" width="108" height="20" rx="3" fill="var(--c-divider)"/>
       <circle cx="70" cy="109" r="13" fill="none" stroke="var(--c-accent-3)" stroke-width="3" stroke-dasharray="15 8"/>
-      <text x="70" y="166" class="ui-sub" text-anchor="middle">submitting — spinner</text>
+      <text x="70" y="166" class="ui-sub" text-anchor="middle">submitting: spinner</text>
     </g>
 
     <g transform="translate(675 30)">

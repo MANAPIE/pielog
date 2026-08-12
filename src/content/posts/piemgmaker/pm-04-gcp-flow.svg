@@ -164,11 +164,11 @@
     <path class="ln" d="M432,274 L432,300" marker-end="url(#ar)" />
     <text class="txs" x="442" y="292" text-anchor="start">GCS FUSE (읽기 전용)</text>
     <rect class="card" x="288" y="302" width="288" height="62" rx="8" />
-    <text class="tb" x="432" y="324" text-anchor="middle" font-size="12">모델 버킷 — 단일 리전</text>
+    <text class="tb" x="432" y="324" text-anchor="middle" font-size="12">모델 버킷: 단일 리전</text>
     <text class="ts mono" x="432" y="342" text-anchor="middle" font-size="10">unet 47.77GiB · 6종 sha256 핀</text>
     <text class="txs mono" x="432" y="356" text-anchor="middle">Rapid Cache 3존 · TTL 24h</text>
     <rect class="soft2" x="288" y="378" width="288" height="92" rx="8" />
-    <text class="tb acc2" x="432" y="400" text-anchor="middle" font-size="12">네트워크 경로 — 요구사항</text>
+    <text class="tb acc2" x="432" y="400" text-anchor="middle" font-size="12">네트워크 경로: 요구사항</text>
     <text class="ts mono" x="432" y="420" text-anchor="middle" font-size="10">Direct VPC egress (ALL_TRAFFIC)</text>
     <text class="ts mono" x="432" y="435" text-anchor="middle" font-size="10">+ 서브넷 Private Google Access</text>
     <text class="txs" x="432" y="454" text-anchor="middle">미적용 시 인스턴스 대역폭 600 Mbps 상한</text>

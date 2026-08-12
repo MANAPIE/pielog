@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 790" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-cat">
-  <title id="title-cat">시즌 1 전체 패턴 카탈로그 — 본편 10편과 부록</title>
+  <title id="title-cat">시즌 1 전체 패턴 카탈로그: 본편 10편과 부록</title>
   <defs>
     <style>
       :root {
@@ -42,7 +42,7 @@
 
   <!-- 헤더 -->
   <text x="60" y="38" class="row-label" fill="var(--c-muted)">DESIGN PATTERNS · OBJECTS · SEASON 1</text>
-  <text x="60" y="66" class="row-title" font-size="20">전체 카탈로그 — 본편 10편 + 부록</text>
+  <text x="60" y="66" class="row-title" font-size="20">전체 카탈로그: 본편 10편 + 부록</text>
 
   <!-- 범례 (우측 상단, 오른쪽 끝 1160 정렬) -->
   <g transform="translate(884 30)">

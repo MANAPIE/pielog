@@ -175,7 +175,7 @@
     <rect class="teal-card" x="40" y="250" width="320" height="175" rx="12" stroke-width="0.5" />
     <rect class="teal-head" x="40" y="250" width="320" height="32" rx="12" />
     <rect class="teal-head" x="40" y="270" width="320" height="12" />
-    <text class="q-h" x="58" y="272">네이티브 사용 — 비용 최저</text>
+    <text class="q-h" x="58" y="272">네이티브 사용: 비용 최저</text>
 
     <text class="out-h teal-t" x="60" y="306">예시 매핑</text>
     <text class="mono teal-t" x="60" y="328">button / a / input / select</text>
@@ -190,7 +190,7 @@
     <rect class="amber-card" x="440" y="250" width="320" height="175" rx="12" stroke-width="0.5" />
     <rect class="amber-head" x="440" y="250" width="320" height="32" rx="12" />
     <rect class="amber-head" x="440" y="270" width="320" height="12" />
-    <text class="q-h" x="458" y="272">ARIA 보완 — 비용 높음</text>
+    <text class="q-h" x="458" y="272">ARIA 보완: 비용 높음</text>
 
     <text class="out-h amber-t" x="460" y="306">"의미"만 부여, "동작"은 JS로</text>
     <text class="mono amber-t" x="460" y="328">role="button"</text>

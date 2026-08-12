@@ -51,7 +51,7 @@
 
     <!-- 빈 줄 -->
     <line x1="20" y1="172" x2="320" y2="172" stroke="var(--c-line)" stroke-dasharray="3 3"/>
-    <text class="rule" x="20" y="188" font-style="italic">— blank line —</text>
+    <text class="rule" x="20" y="188" font-style="italic">- blank line -</text>
 
     <!-- 본문 영역 -->
     <rect class="code-area" x="20" y="204" width="300" height="100" rx="3"/>
@@ -63,9 +63,9 @@
     <text class="code-text-muted mono" x="32" y="298">Accept Idempotency-Key header...</text>
 
     <text class="annot" x="20" y="324">↑ 본문 (한 줄 72자)</text>
-    <text class="rule" x="32" y="340">왜(Why) — 변경이 필요한 이유</text>
-    <text class="rule" x="32" y="354">무엇(What) — 어떻게 푸는가</text>
-    <text class="rule" x="32" y="368">대안 — 왜 다른 방법은 안 했는지</text>
+    <text class="rule" x="32" y="340">왜(Why): 변경이 필요한 이유</text>
+    <text class="rule" x="32" y="354">무엇(What): 어떻게 푸는가</text>
+    <text class="rule" x="32" y="368">대안: 왜 다른 방법은 안 했는지</text>
 
     <!-- 빈 줄 -->
     <line x1="20" y1="416" x2="320" y2="416" stroke="var(--c-line)" stroke-dasharray="3 3"/>

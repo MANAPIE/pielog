@@ -95,7 +95,7 @@
       <text x="20" y="62" class="node-sm">• LightButton</text>
       <text x="20" y="86" class="node-sm">• LightInput</text>
       <text x="20" y="110" class="node-sm">• LightCard</text>
-      <text x="20" y="138" class="node-muted">— 동일한 시각 톤 보장</text>
+      <text x="20" y="138" class="node-muted">- 동일한 시각 톤 보장</text>
     </g>
 
     <g transform="translate(300 280)">
@@ -105,7 +105,7 @@
       <text x="20" y="62" class="node-sm">• DarkButton</text>
       <text x="20" y="86" class="node-sm">• DarkInput</text>
       <text x="20" y="110" class="node-sm">• DarkCard</text>
-      <text x="20" y="138" class="node-muted">— 동일한 시각 톤 보장</text>
+      <text x="20" y="138" class="node-muted">- 동일한 시각 톤 보장</text>
     </g>
   </g>
 

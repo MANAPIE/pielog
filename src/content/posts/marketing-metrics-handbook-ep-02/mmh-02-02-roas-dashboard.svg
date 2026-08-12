@@ -55,7 +55,7 @@
   <rect class="bg" width="600" height="676"/>
 
   <text class="title" x="40" y="36">광고 매니저 KPI 카드의 풍경</text>
-  <text class="sub" x="40" y="54">같은 캠페인의 다섯 칸 — 광고비, 매출, ROAS, 손익분기, CVR</text>
+  <text class="sub" x="40" y="54">같은 캠페인의 다섯 칸: 광고비, 매출, ROAS, 손익분기, CVR</text>
 
   <!-- KPI 카드 4개 (2x2) -->
   <g transform="translate(40, 76)">
@@ -87,7 +87,7 @@
   <!-- 트렌드 차트 -->
   <g transform="translate(40, 320)">
     <rect class="card" x="0" y="0" width="520" height="216" rx="2"/>
-    <text class="kpi-label" x="16" y="28">일별 ROAS 추이 — 30일</text>
+    <text class="kpi-label" x="16" y="28">일별 ROAS 추이: 30일</text>
 
     <!-- 차트 영역 -->
     <g transform="translate(40, 48)">
