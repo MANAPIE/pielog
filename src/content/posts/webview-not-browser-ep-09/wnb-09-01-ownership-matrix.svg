@@ -1,0 +1,293 @@
+<svg viewBox="0 0 800 1210" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-own09">
+  <title id="t-own09">웹뷰 이슈의 담당을 판정하고 계통별로 배치한 매트릭스</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #0E7490; --c-accent-2: #B45309; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(14,116,144,0.08);
+        --c-soft-2: rgba(180,83,9,0.10); --c-divider: rgba(26,31,46,0.15);
+        --c-joint: #6D28D9; --c-soft-3: rgba(109,40,217,0.10);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #4DD4EC; --c-accent-2: #E8A876; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(77,212,236,0.12);
+          --c-soft-2: rgba(232,168,118,0.14); --c-divider: rgba(232,230,225,0.18);
+          --c-joint: #B49BF0; --c-soft-3: rgba(180,155,240,0.16);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .start { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.5; }
+      .dia { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .res { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; }
+      .cell { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .rowh { fill: none; stroke: var(--c-divider); stroke-width: 1; }
+      .flow { stroke: var(--c-line); stroke-width: 1.6; fill: none; }
+      .link { fill: none; stroke-width: 1.3; stroke-dasharray: 5 4; }
+      .q-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .res-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .head { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; }
+      .tag { font-family: 'Inter','Pretendard',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .item { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+      .yn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+    </style>
+    <pattern id="hatch09" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="var(--c-muted)" stroke-width="1" stroke-opacity="0.38"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="800" height="1210"/>
+
+  <!-- ============ 판정 사다리 ============ -->
+
+  <!-- 입구 -->
+  <rect x="180" y="22" width="280" height="40" rx="20" class="start"/>
+  <text x="320" y="47" class="q-txt" text-anchor="middle">앱에서 재현된 증상</text>
+  <line x1="320" y1="62" x2="320" y2="74" class="flow"/>
+  <polygon points="320,80 315,71 325,71" fill="var(--c-line)"/>
+
+  <!-- 분기 1 -->
+  <polygon points="320,80 438,114 320,148 202,114" class="dia"/>
+  <text x="320" y="110" class="q-txt" text-anchor="middle">브라우저에서도</text>
+  <text x="320" y="129" class="q-txt" text-anchor="middle">재현되는가</text>
+  <line x1="202" y1="114" x2="160" y2="114" class="flow"/>
+  <polygon points="154,114 163,109 163,119" fill="var(--c-line)"/>
+  <text x="181" y="105" class="yn" text-anchor="middle">예</text>
+  <rect x="20" y="88" width="130" height="52" rx="8" class="res"/>
+  <rect x="20" y="96" width="4" height="36" rx="2" fill="var(--c-muted)"/>
+  <text x="38" y="110" class="sub">일반 웹 이슈</text>
+  <text x="38" y="128" class="tag">이 시리즈 범위 밖</text>
+  <line x1="320" y1="148" x2="320" y2="162" class="flow"/>
+  <polygon points="320,168 315,159 325,159" fill="var(--c-line)"/>
+  <text x="332" y="160" class="yn">아니오</text>
+
+  <!-- 분기 2 -->
+  <polygon points="320,170 438,204 320,238 202,204" class="dia"/>
+  <text x="320" y="200" class="q-txt" text-anchor="middle">웹 코드를 바꾸면</text>
+  <text x="320" y="219" class="q-txt" text-anchor="middle">동작이 바뀌는가</text>
+  <line x1="438" y1="204" x2="494" y2="204" class="flow"/>
+  <polygon points="500,204 491,199 491,209" fill="var(--c-line)"/>
+  <text x="466" y="195" class="yn" text-anchor="middle">예</text>
+  <rect x="500" y="178" width="160" height="52" rx="8" class="res"/>
+  <rect x="500" y="186" width="4" height="36" rx="2" fill="var(--c-accent)"/>
+  <text x="518" y="209" class="res-txt">웹 담당</text>
+  <line x1="320" y1="238" x2="320" y2="252" class="flow"/>
+  <polygon points="320,258 315,249 325,249" fill="var(--c-line)"/>
+  <text x="332" y="250" class="yn">아니오</text>
+
+  <!-- 분기 3 -->
+  <polygon points="320,260 438,294 320,328 202,294" class="dia"/>
+  <text x="320" y="290" class="q-txt" text-anchor="middle">앱 설정을 바꾸면</text>
+  <text x="320" y="309" class="q-txt" text-anchor="middle">동작이 바뀌는가</text>
+  <line x1="438" y1="294" x2="554" y2="294" class="flow"/>
+  <polygon points="560,294 551,289 551,299" fill="var(--c-line)"/>
+  <text x="496" y="285" class="yn" text-anchor="middle">예</text>
+  <rect x="560" y="268" width="160" height="52" rx="8" class="res"/>
+  <rect x="560" y="276" width="4" height="36" rx="2" fill="var(--c-accent-2)"/>
+  <text x="578" y="299" class="res-txt">앱 담당</text>
+  <line x1="320" y1="328" x2="320" y2="342" class="flow"/>
+  <polygon points="320,348 315,339 325,339" fill="var(--c-line)"/>
+  <text x="332" y="340" class="yn">아니오</text>
+
+  <!-- 분기 4 -->
+  <polygon points="320,350 438,384 320,418 202,384" class="dia"/>
+  <text x="320" y="380" class="q-txt" text-anchor="middle">양쪽을 함께</text>
+  <text x="320" y="399" class="q-txt" text-anchor="middle">바꿔야 하는가</text>
+  <line x1="438" y1="384" x2="524" y2="384" class="flow"/>
+  <polygon points="530,384 521,379 521,389" fill="var(--c-line)"/>
+  <text x="481" y="375" class="yn" text-anchor="middle">예</text>
+  <rect x="530" y="358" width="160" height="52" rx="8" class="res"/>
+  <rect x="530" y="366" width="4" height="36" rx="2" fill="var(--c-joint)"/>
+  <text x="548" y="389" class="res-txt">공동 담당</text>
+  <line x1="320" y1="418" x2="320" y2="432" class="flow"/>
+  <polygon points="320,438 315,429 325,429" fill="var(--c-line)"/>
+  <text x="332" y="430" class="yn">아니오</text>
+
+  <!-- 양쪽 다 못 고침 -->
+  <rect x="202" y="440" width="236" height="56" rx="8" class="res"/>
+  <rect x="202" y="440" width="236" height="56" rx="8" fill="url(#hatch09)"/>
+  <rect x="202" y="448" width="4" height="40" rx="2" fill="var(--c-muted)"/>
+  <text x="220" y="464" class="res-txt">양쪽 다 못 고침</text>
+  <text x="220" y="483" class="tag">엔진 구현 또는 엔진 버전 고정</text>
+
+  <!-- 결과 상자 → 매트릭스 열 머리 연결선 -->
+  <path d="M 506 230 L 506 510 L 232 510 L 232 542" class="link" stroke="var(--c-accent)"/>
+  <polygon points="232,548 227,539 237,539" fill="var(--c-accent)"/>
+  <path d="M 536 410 L 536 520 L 388 520 L 388 542" class="link" stroke="var(--c-joint)"/>
+  <polygon points="388,548 383,539 393,539" fill="var(--c-joint)"/>
+  <path d="M 700 320 L 700 530 L 544 530 L 544 542" class="link" stroke="var(--c-accent-2)"/>
+  <polygon points="544,548 539,539 549,539" fill="var(--c-accent-2)"/>
+
+  <!-- ============ 배치 매트릭스 ============ -->
+
+  <!-- 열 머리 -->
+  <rect x="156" y="548" width="152" height="32" rx="6" fill="var(--c-soft)"/>
+  <text x="232" y="569" class="head" fill="var(--c-accent)" text-anchor="middle">웹 담당</text>
+  <rect x="312" y="548" width="152" height="32" rx="6" fill="var(--c-soft-3)"/>
+  <text x="388" y="569" class="head" fill="var(--c-joint)" text-anchor="middle">공동 담당</text>
+  <rect x="468" y="548" width="152" height="32" rx="6" fill="var(--c-soft-2)"/>
+  <text x="544" y="569" class="head" fill="var(--c-accent-2)" text-anchor="middle">앱 담당</text>
+  <rect x="624" y="548" width="152" height="32" rx="6" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+  <rect x="624" y="548" width="152" height="32" rx="6" fill="url(#hatch09)"/>
+  <text x="700" y="569" class="head" fill="var(--c-muted)" text-anchor="middle">양쪽 다 못 고침</text>
+
+  <!-- 행 1: 진단과 환경 특정 -->
+  <rect x="24" y="588" width="124" height="84" rx="6" class="rowh"/>
+  <text x="34" y="618" class="sub">진단과 환경 특정</text>
+  <text x="34" y="636" class="tag">(ep.01)</text>
+  <rect x="156" y="588" width="152" height="84" rx="6" class="cell"/>
+  <rect x="156" y="598" width="3" height="64" fill="var(--c-accent)"/>
+  <text x="168" y="610" class="item">전역 에러 핸들러와</text>
+  <text x="168" y="624" class="item">환경 스냅샷</text>
+  <rect x="312" y="588" width="152" height="84" rx="6" class="cell"/>
+  <rect x="312" y="598" width="3" height="64" fill="var(--c-joint)"/>
+  <text x="324" y="610" class="item">기기별 엔진 버전</text>
+  <text x="324" y="624" class="item">특정</text>
+  <rect x="468" y="588" width="152" height="84" rx="6" class="cell"/>
+  <rect x="468" y="598" width="3" height="64" fill="var(--c-accent-2)"/>
+  <text x="480" y="610" class="item">isInspectable,</text>
+  <text x="480" y="624" class="item">setWebContents</text>
+  <text x="480" y="638" class="item">DebuggingEnabled</text>
+  <rect x="624" y="588" width="152" height="84" rx="6" class="cell"/>
+  <rect x="624" y="588" width="152" height="84" rx="6" fill="url(#hatch09)"/>
+  <rect x="624" y="598" width="3" height="64" fill="var(--c-muted)"/>
+  <text x="636" y="610" class="item">Android 10 미만</text>
+  <text x="636" y="624" class="item">기기의 고정된</text>
+  <text x="636" y="638" class="item">WebView 버전</text>
+
+  <!-- 행 2: 눌렀는데 반응이 없다 -->
+  <rect x="24" y="680" width="124" height="84" rx="6" class="rowh"/>
+  <text x="34" y="706" class="sub">눌렀는데</text>
+  <text x="34" y="724" class="sub">반응이 없다</text>
+  <text x="34" y="742" class="tag">(ep.02)</text>
+  <rect x="156" y="680" width="152" height="84" rx="6" class="cell"/>
+  <rect x="156" y="690" width="3" height="64" fill="var(--c-accent)"/>
+  <text x="168" y="702" class="item">window.open</text>
+  <text x="168" y="716" class="item">반환값 확인,</text>
+  <text x="168" y="730" class="item">다운로드를</text>
+  <text x="168" y="744" class="item">same-origin HTTPS로</text>
+  <rect x="312" y="680" width="152" height="84" rx="6" class="cell"/>
+  <rect x="312" y="690" width="3" height="64" fill="var(--c-joint)"/>
+  <text x="324" y="702" class="item">POST 폼 위의</text>
+  <text x="324" y="716" class="item">외부 앱 호출,</text>
+  <text x="324" y="730" class="item">사용자 제스처 만료</text>
+  <rect x="468" y="680" width="152" height="84" rx="6" class="cell"/>
+  <rect x="468" y="690" width="3" height="64" fill="var(--c-accent-2)"/>
+  <text x="480" y="702" class="item">setSupportMultiple</text>
+  <text x="480" y="716" class="item">Windows,</text>
+  <text x="480" y="730" class="item">setDownloadListener,</text>
+  <text x="480" y="744" class="item">onBackPressed</text>
+  <text x="480" y="758" class="item">Dispatcher</text>
+  <rect x="624" y="680" width="152" height="84" rx="6" class="cell"/>
+  <rect x="624" y="680" width="152" height="84" rx="6" fill="url(#hatch09)"/>
+  <rect x="624" y="690" width="3" height="64" fill="var(--c-muted)"/>
+  <text x="636" y="702" class="item">iOS의 window.print</text>
+  <text x="636" y="716" class="item">전달 경로 -</text>
+  <text x="636" y="730" class="item">공개 API 미확인</text>
+
+  <!-- 행 3: 입력과 폼 -->
+  <rect x="24" y="772" width="124" height="84" rx="6" class="rowh"/>
+  <text x="34" y="802" class="sub">입력과 폼</text>
+  <text x="34" y="820" class="tag">(ep.03, ep.04)</text>
+  <rect x="156" y="772" width="152" height="84" rx="6" class="cell"/>
+  <rect x="156" y="782" width="3" height="64" fill="var(--c-accent)"/>
+  <text x="168" y="794" class="item">조합 가드를 값이</text>
+  <text x="168" y="808" class="item">아니라 부수 효과에,</text>
+  <text x="168" y="822" class="item">type=number 제거</text>
+  <rect x="312" y="772" width="152" height="84" rx="6" class="cell"/>
+  <rect x="312" y="782" width="3" height="64" fill="var(--c-joint)"/>
+  <text x="324" y="794" class="item">인증번호 자동입력,</text>
+  <text x="324" y="808" class="item">키보드 표시</text>
+  <rect x="468" y="772" width="152" height="84" rx="6" class="cell"/>
+  <rect x="468" y="782" width="3" height="64" fill="var(--c-accent-2)"/>
+  <text x="480" y="794" class="item">onShowFileChooser,</text>
+  <text x="480" y="808" class="item">setWebAuthentication</text>
+  <text x="480" y="822" class="item">Support</text>
+  <rect x="624" y="772" width="152" height="84" rx="6" class="cell"/>
+  <rect x="624" y="772" width="152" height="84" rx="6" fill="url(#hatch09)"/>
+  <rect x="624" y="782" width="3" height="64" fill="var(--c-muted)"/>
+  <text x="636" y="794" class="item">Safari 26.x 이하의</text>
+  <text x="636" y="808" class="item">조합 이벤트</text>
+  <text x="636" y="822" class="item">순서 역전</text>
+
+  <!-- 행 4: 화면과 스타일 -->
+  <rect x="24" y="864" width="124" height="84" rx="6" class="rowh"/>
+  <text x="34" y="894" class="sub">화면과 스타일</text>
+  <text x="34" y="912" class="tag">(ep.05, ep.06)</text>
+  <rect x="156" y="864" width="152" height="84" rx="6" class="cell"/>
+  <rect x="156" y="874" width="3" height="64" fill="var(--c-accent)"/>
+  <text x="168" y="886" class="item">뷰포트 단위 폴백,</text>
+  <text x="168" y="900" class="item">배율을 견디는</text>
+  <text x="168" y="914" class="item">레이아웃</text>
+  <rect x="312" y="864" width="152" height="84" rx="6" class="cell"/>
+  <rect x="312" y="874" width="3" height="64" fill="var(--c-joint)"/>
+  <text x="324" y="886" class="item">키보드 인셋,</text>
+  <text x="324" y="900" class="item">안전 영역, 핀치 확대</text>
+  <rect x="468" y="864" width="152" height="84" rx="6" class="cell"/>
+  <rect x="468" y="874" width="3" height="64" fill="var(--c-accent-2)"/>
+  <text x="480" y="886" class="item">isLightTheme,</text>
+  <text x="480" y="900" class="item">windowSoftInputMode,</text>
+  <text x="480" y="914" class="item">인셋 전달</text>
+  <rect x="624" y="864" width="152" height="84" rx="6" class="cell"/>
+  <rect x="624" y="864" width="152" height="84" rx="6" fill="url(#hatch09)"/>
+  <rect x="624" y="874" width="3" height="64" fill="var(--c-muted)"/>
+  <text x="636" y="886" class="item">OS 피커의 외형 -</text>
+  <text x="636" y="900" class="item">엔진 버전 대기</text>
+
+  <!-- 행 5: 세션과 저장소 -->
+  <rect x="24" y="956" width="124" height="84" rx="6" class="rowh"/>
+  <text x="34" y="986" class="sub">세션과 저장소</text>
+  <text x="34" y="1004" class="tag">(ep.07)</text>
+  <rect x="156" y="956" width="152" height="84" rx="6" class="cell"/>
+  <rect x="156" y="966" width="3" height="64" fill="var(--c-accent)"/>
+  <text x="168" y="978" class="item">저장소 실패를</text>
+  <text x="168" y="992" class="item">예외로 감싸기,</text>
+  <text x="168" y="1006" class="item">서비스 워커 없이</text>
+  <text x="168" y="1020" class="item">성립하는 설계</text>
+  <rect x="312" y="956" width="152" height="84" rx="6" class="cell"/>
+  <rect x="312" y="966" width="3" height="64" fill="var(--c-joint)"/>
+  <text x="324" y="978" class="item">보안 컨텍스트</text>
+  <text x="324" y="992" class="item">의존 기능,</text>
+  <text x="324" y="1006" class="item">스테이징 접속</text>
+  <rect x="468" y="956" width="152" height="84" rx="6" class="cell"/>
+  <rect x="468" y="966" width="3" height="64" fill="var(--c-accent-2)"/>
+  <text x="480" y="978" class="item">file 스킴 대신</text>
+  <text x="480" y="992" class="item">WebViewAssetLoader,</text>
+  <text x="480" y="1006" class="item">setDomStorageEnabled</text>
+  <rect x="624" y="956" width="152" height="84" rx="6" class="cell"/>
+  <rect x="624" y="956" width="152" height="84" rx="6" fill="url(#hatch09)"/>
+  <rect x="624" y="966" width="3" height="64" fill="var(--c-muted)"/>
+  <text x="636" y="978" class="item">iOS 웹뷰의</text>
+  <text x="636" y="992" class="item">서비스 워커</text>
+
+  <!-- 행 6: 배포와 수명 -->
+  <rect x="24" y="1048" width="124" height="84" rx="6" class="rowh"/>
+  <text x="34" y="1078" class="sub">배포와 수명</text>
+  <text x="34" y="1096" class="tag">(ep.08)</text>
+  <rect x="156" y="1048" width="152" height="84" rx="6" class="cell"/>
+  <rect x="156" y="1058" width="3" height="64" fill="var(--c-accent)"/>
+  <text x="168" y="1070" class="item">빌드 버전 감지 배너,</text>
+  <text x="168" y="1084" class="item">만료 시각 비교,</text>
+  <text x="168" y="1098" class="item">폼 초안 저장</text>
+  <rect x="312" y="1048" width="152" height="84" rx="6" class="cell"/>
+  <rect x="312" y="1058" width="3" height="64" fill="var(--c-joint)"/>
+  <text x="324" y="1070" class="item">캐시 헤더와</text>
+  <text x="324" y="1084" class="item">캐시 모드</text>
+  <rect x="468" y="1048" width="152" height="84" rx="6" class="cell"/>
+  <rect x="468" y="1058" width="3" height="64" fill="var(--c-accent-2)"/>
+  <text x="480" y="1070" class="item">setCacheMode,</text>
+  <text x="480" y="1084" class="item">onRenderProcessGone</text>
+  <rect x="624" y="1048" width="152" height="84" rx="6" class="cell"/>
+  <rect x="624" y="1048" width="152" height="84" rx="6" fill="url(#hatch09)"/>
+  <rect x="624" y="1058" width="3" height="64" fill="var(--c-muted)"/>
+  <text x="636" y="1070" class="item">Android 웹뷰의</text>
+  <text x="636" y="1084" class="item">immutable 지시자</text>
+
+  <!-- 캡션 띠 -->
+  <rect x="24" y="1148" width="752" height="40" rx="8" fill="var(--c-soft)"/>
+  <text x="400" y="1173" class="cap" text-anchor="middle">담당은 증상의 종류가 아니라 무엇을 바꿨을 때 동작이 바뀌는지로 갈린다</text>
+</svg>
