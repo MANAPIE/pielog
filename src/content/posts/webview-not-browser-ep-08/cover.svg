@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="웹뷰는 브라우저가 아니다 ep.08 cover">
+  <style>
+  :root {
+    --c-bg: #EEF5F6;
+    --c-fg: #10202A;
+    --c-muted: #5E7480;
+    --c-accent: #0E7490; --c-accent-2: #22B8CF; --c-accent-3: #C98A3B;
+    --c-num: rgba(14, 116, 144, 0.14);
+    --c-dot: rgba(14, 116, 144, 0.10);
+    --c-line: rgba(14, 116, 144, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0A161A;
+      --c-fg: #DCE8EA;
+      --c-muted: #8AA0A8;
+      --c-accent: #4DD4EC; --c-accent-2: #0E7490; --c-accent-3: #E0A860;
+      --c-num: rgba(77, 212, 236, 0.15);
+      --c-dot: rgba(77, 212, 236, 0.10);
+      --c-line: rgba(77, 212, 236, 0.20);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots-wnb08" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="halo-wnb08a" cx="0.14" cy="0.16" r="0.58">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo-wnb08b" cx="0.86" cy="0.88" r="0.6">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-wnb08)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb08a)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb08b)"/>
+
+  <!-- 배경 무채 stroke 도형 (오프캔버스) -->
+  <rect x="-190" y="-200" width="560" height="560" rx="52" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(-10 90 80)"/>
+  <circle cx="1120" cy="600" r="300" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="1120" cy="600" r="215" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- 세션 수명선: 양 끝만 실선, 가운데는 흐려지고 끊긴다 -->
+  <g transform="translate(600 340) rotate(-5)">
+    <!-- 시간 축: 구간 사이 틈으로만 드러난다 -->
+    <line x1="-586" y1="0" x2="600" y2="0" stroke="var(--c-accent)" stroke-width="1.4" stroke-dasharray="7 8" opacity="0.4"/>
+    <g stroke="var(--c-accent)" stroke-width="1.4" opacity="0.45">
+      <line x1="-222" y1="-42" x2="-222" y2="42"/>
+      <line x1="2" y1="-42" x2="2" y2="42"/>
+      <line x1="255" y1="-42" x2="255" y2="42"/>
+    </g>
+
+    <!-- 로드 구간: 웹이 채워 넣은 실체 -->
+    <rect x="-520" y="-24" width="290" height="48" rx="24" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.4"/>
+    <circle cx="-470" cy="0" r="22" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.4"/>
+    <path d="M -481 0 l 8 8 l 16 -17" fill="none" stroke="var(--c-accent-2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="-425" y="-11" width="96" height="9" rx="4.5" fill="var(--c-accent)" fill-opacity="0.5"/>
+    <rect x="-425" y="4" width="64" height="9" rx="4.5" fill="var(--c-accent)" fill-opacity="0.3"/>
+
+    <!-- 포그라운드 구간 -->
+    <rect x="-215" y="-24" width="210" height="48" rx="14" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.4"/>
+    <rect x="-190" y="-14" width="11" height="28" rx="5.5" fill="var(--c-accent-2)" fill-opacity="0.75"/>
+    <rect x="-172" y="-8" width="11" height="16" rx="5.5" fill="var(--c-accent-2)" fill-opacity="0.5"/>
+    <rect x="-154" y="-16" width="11" height="32" rx="5.5" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+    <rect x="-136" y="-6" width="11" height="12" rx="5.5" fill="var(--c-accent-2)" fill-opacity="0.4"/>
+
+    <!-- 백그라운드 구간: 윤곽만 남는다 -->
+    <rect x="10" y="-24" width="200" height="48" rx="14" fill="none" stroke="var(--c-accent)" stroke-width="3" stroke-dasharray="10 9"/>
+
+    <!-- 복귀 구간: 다시 채워진 실체 -->
+    <rect x="300" y="-24" width="260" height="48" rx="24" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.4"/>
+    <rect x="420" y="-11" width="96" height="9" rx="4.5" fill="var(--c-accent)" fill-opacity="0.5"/>
+    <rect x="420" y="4" width="66" height="9" rx="4.5" fill="var(--c-accent)" fill-opacity="0.3"/>
+  </g>
+
+  <!-- 바깥에서 내려와 수명선을 끊는 것 -->
+  <g transform="rotate(11 865 190)">
+    <rect x="852" y="-60" width="26" height="440" rx="6" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.2"/>
+    <line x1="865" y1="-38" x2="865" y2="366" stroke="var(--c-accent-3)" stroke-width="1.5" stroke-dasharray="7 10" opacity="0.55"/>
+    <polygon points="840,380 890,380 865,430" fill="var(--c-accent-3)"/>
+  </g>
+
+  <!-- 끊긴 자리의 파편 -->
+  <circle cx="886" cy="372" r="8" fill="var(--c-accent)"/>
+  <circle cx="908" cy="396" r="5" fill="var(--c-accent-3)"/>
+  <circle cx="866" cy="400" r="4" fill="var(--c-accent-2)"/>
+
+  <!-- 다시 켜지는 지점: 포커스 링 -->
+  <circle cx="975" cy="296" r="92" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="4 9"/>
+  <circle cx="975" cy="296" r="62" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+  <circle cx="975" cy="296" r="26" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="4"/>
+  <circle cx="975" cy="296" r="10" fill="var(--c-accent)"/>
+
+  <!-- 흩어진 디테일 -->
+  <rect x="118" y="96" width="84" height="84" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" transform="rotate(14 160 138)"/>
+  <line x1="252" y1="186" x2="238" y2="316" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 9" stroke-opacity="0.5"/>
+  <circle cx="1046" cy="110" r="9" fill="var(--c-accent)"/>
+  <circle cx="1076" cy="132" r="6" fill="var(--c-accent-2)"/>
+  <circle cx="1028" cy="142" r="5" fill="var(--c-accent-3)"/>
+  <polygon points="150,548 200,548 175,504" fill="none" stroke="var(--c-accent-3)" stroke-width="2.2" stroke-linejoin="round"/>
+  <rect x="70" y="470" width="54" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <rect x="98" y="492" width="32" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.7"/>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">08</text>
+</svg>

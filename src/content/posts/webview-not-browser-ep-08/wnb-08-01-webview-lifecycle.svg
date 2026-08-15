@@ -1,0 +1,185 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-life">
+  <title id="t-life">웹뷰 한 세션의 수명 타임라인과 계층별 통제 범위</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #0E7490; --c-accent-2: #B45309; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(14,116,144,0.08);
+        --c-soft-2: rgba(180,83,9,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #4DD4EC; --c-accent-2: #E8A876; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(77,212,236,0.12);
+          --c-soft-2: rgba(232,168,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .lbl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; fill: var(--c-muted); }
+      .stage-card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; }
+      .stage-name { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .stage-num { font-family: 'Inter','Pretendard',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-bg); }
+      .lane-name { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .lane-note { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; }
+      .cell-app { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.4; }
+      .cell-proc { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.4; }
+      .cell-web { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.4; }
+      .t { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-fg); }
+      .tb { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .tm { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+      .ta { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-accent-2); }
+      .code { font-family: ui-monospace,'SF Mono',Menlo,monospace; font-size: 10px; fill: var(--c-muted); }
+      .code-a { font-family: ui-monospace,'SF Mono',Menlo,monospace; font-size: 10px; fill: var(--c-accent-2); }
+      .code-w { font-family: ui-monospace,'SF Mono',Menlo,monospace; font-size: 10px; fill: var(--c-accent); }
+      .span-web { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.5; }
+      .span-app { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.5; }
+      .span-web-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent); }
+      .span-app-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-accent-2); }
+    </style>
+    <pattern id="hatch08" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="9" stroke="var(--c-muted)" stroke-width="1.4" stroke-opacity="0.45"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="800" height="600"/>
+
+  <!-- 시간 축 -->
+  <text x="15" y="26" class="lbl">TIME</text>
+  <line x1="62" y1="21.5" x2="772" y2="21.5" stroke="var(--c-divider)" stroke-width="1.4"/>
+  <polygon points="783,21.5 772,16.5 772,26.5" fill="var(--c-muted)"/>
+
+  <!-- 단계 헤더 -->
+  <g>
+    <rect x="15" y="38" width="150" height="38" rx="8" class="stage-card"/>
+    <circle cx="33" cy="57" r="10" fill="var(--c-line)"/>
+    <text x="33" y="61" class="stage-num" text-anchor="middle">1</text>
+    <text x="49" y="62" class="stage-name">로드</text>
+  </g>
+  <g>
+    <rect x="170" y="38" width="150" height="38" rx="8" class="stage-card"/>
+    <circle cx="188" cy="57" r="10" fill="var(--c-line)"/>
+    <text x="188" y="61" class="stage-num" text-anchor="middle">2</text>
+    <text x="204" y="62" class="stage-name">포그라운드 사용 중</text>
+  </g>
+  <g>
+    <rect x="325" y="38" width="150" height="38" rx="8" class="stage-card"/>
+    <circle cx="343" cy="57" r="10" fill="var(--c-line)"/>
+    <text x="343" y="61" class="stage-num" text-anchor="middle">3</text>
+    <text x="359" y="62" class="stage-name">백그라운드 진입</text>
+  </g>
+  <g>
+    <rect x="480" y="38" width="150" height="38" rx="8" class="stage-card"/>
+    <circle cx="498" cy="57" r="10" fill="var(--c-line)"/>
+    <text x="498" y="61" class="stage-num" text-anchor="middle">4</text>
+    <text x="514" y="62" class="stage-name">시스템 자원 회수</text>
+  </g>
+  <g>
+    <rect x="635" y="38" width="150" height="38" rx="8" class="stage-card"/>
+    <circle cx="653" cy="57" r="10" fill="var(--c-line)"/>
+    <text x="653" y="61" class="stage-num" text-anchor="middle">5</text>
+    <text x="669" y="62" class="stage-name">복귀</text>
+  </g>
+
+  <!-- 레인 1: 앱과 OS 계층 -->
+  <rect x="15" y="90" width="770" height="26" rx="6" fill="var(--c-soft-2)"/>
+  <text x="27" y="107" class="lane-name">앱과 OS 계층</text>
+  <text x="114" y="107" class="lane-note" fill="var(--c-accent-2)">- 웹이 통제할 수 없음</text>
+
+  <rect x="15" y="122" width="150" height="110" rx="8" class="cell-app"/>
+  <text x="27" y="144" class="tb">캐시 모드 결정</text>
+  <text x="27" y="159" class="code-a">Android setCacheMode</text>
+  <text x="27" y="174" class="code-a">iOS websiteDataStore</text>
+
+  <rect x="170" y="122" width="150" height="110" rx="8" class="cell-app"/>
+  <text x="182" y="144" class="tm">관여 없음</text>
+
+  <rect x="325" y="122" width="150" height="110" rx="8" class="cell-app"/>
+  <text x="337" y="144" class="tb">Android는 앱이</text>
+  <text x="337" y="159" class="t"><tspan class="code-a">onPause</tspan> 또는</text>
+  <text x="337" y="174" class="t"><tspan class="code-a">pauseTimers</tspan>를</text>
+  <text x="337" y="189" class="t">호출할지 결정</text>
+
+  <rect x="480" y="122" width="150" height="110" rx="8" class="cell-app"/>
+  <text x="492" y="144" class="tb">콜백 수신</text>
+  <text x="492" y="159" class="tm">Android</text>
+  <text x="492" y="174" class="code-a">onRenderProcessGone</text>
+  <text x="492" y="189" class="tm">iOS</text>
+  <text x="492" y="204" class="code-a">webViewWebContent</text>
+  <text x="492" y="219" class="code-a">ProcessDidTerminate</text>
+
+  <rect x="635" y="122" width="150" height="110" rx="8" class="cell-app"/>
+  <text x="647" y="144" class="tb">웹뷰 재생성 후</text>
+  <text x="647" y="159" class="t">URL 재로드</text>
+  <text x="647" y="174" class="t"><tspan class="code-a">saveState</tspan>는 표시</text>
+  <text x="647" y="189" class="t">데이터를 저장하지</text>
+  <text x="647" y="204" class="t">않음</text>
+
+  <!-- 레인 2: 웹뷰 렌더러 프로세스 -->
+  <rect x="15" y="248" width="770" height="26" rx="6" fill="var(--c-divider)" fill-opacity="0.5"/>
+  <text x="27" y="265" class="lane-name">웹뷰 렌더러 프로세스</text>
+
+  <rect x="15" y="280" width="150" height="66" rx="8" class="cell-proc"/>
+  <text x="27" y="317" class="t">렌더러 프로세스 생성</text>
+
+  <rect x="170" y="280" width="150" height="66" rx="8" class="cell-proc"/>
+  <text x="182" y="317" class="t">실행 중</text>
+
+  <rect x="325" y="280" width="150" height="66" rx="8" class="cell-proc"/>
+  <text x="337" y="302" class="t">우선순위 하락,</text>
+  <text x="337" y="317" class="t">캐시드 프로세스로</text>
+  <text x="337" y="332" class="t">이동</text>
+
+  <rect x="480" y="280" width="150" height="66" rx="8" class="cell-proc"/>
+  <text x="492" y="317" class="ta">프로세스 종료</text>
+
+  <rect x="635" y="280" width="150" height="66" rx="8" class="cell-proc"/>
+  <text x="647" y="317" class="t">새 렌더러 프로세스</text>
+
+  <!-- 레인 3: 웹 문서 계층 -->
+  <rect x="15" y="362" width="770" height="26" rx="6" fill="var(--c-soft)"/>
+  <text x="27" y="379" class="lane-name">웹 문서 계층</text>
+  <text x="114" y="379" class="lane-note" fill="var(--c-accent)">- 웹이 통제 가능</text>
+
+  <rect x="15" y="394" width="150" height="128" rx="8" class="cell-web"/>
+  <text x="27" y="416" class="tb">응답 헤더</text>
+  <text x="27" y="431" class="t"><tspan class="code-w">Cache-Control</tspan>이</text>
+  <text x="27" y="446" class="t">반영되는 지점</text>
+
+  <rect x="170" y="394" width="150" height="128" rx="8" class="cell-web"/>
+  <text x="182" y="416" class="tb">타이머와 통신</text>
+  <text x="182" y="431" class="t">정상 동작</text>
+
+  <rect x="325" y="394" width="150" height="128" rx="8" class="cell-web"/>
+  <text x="337" y="416" class="tb">백그라운드 타이머</text>
+  <text x="337" y="431" class="t">스로틀링,</text>
+  <text x="337" y="446" class="code-w">visibilitychange</text>
+  <text x="337" y="461" class="t">관측 가능</text>
+  <text x="337" y="476" class="tm">(지원 조건 있음)</text>
+
+  <rect x="480" y="394" width="150" height="128" rx="8" class="cell-web"/>
+  <rect x="481" y="395" width="148" height="126" rx="7" fill="url(#hatch08)"/>
+  <text x="492" y="416" class="tb">실행 중이던</text>
+  <text x="492" y="431" class="t">코드가 사라짐,</text>
+  <text x="492" y="446" class="t"><tspan class="code-w">unload</tspan>는 발화가</text>
+  <text x="492" y="461" class="t">보장되지 않음</text>
+
+  <rect x="635" y="394" width="150" height="128" rx="8" class="cell-web"/>
+  <text x="647" y="416" class="tb">문서는 처음부터 시작.</text>
+  <text x="647" y="431" class="t">웹이 미리 저장해 둔</text>
+  <text x="647" y="446" class="t">것만 복원 가능.</text>
+  <text x="647" y="461" class="t">iOS 웹뷰의 <tspan class="code-w">bfcache</tspan></text>
+  <text x="647" y="476" class="t">복귀라면 <tspan class="code-w">pageshow</tspan>의</text>
+  <text x="647" y="491" class="t"><tspan class="code-w">persisted</tspan>가 <tspan class="code-w">true</tspan></text>
+
+  <!-- 구간 표시 -->
+  <rect x="15" y="540" width="150" height="34" rx="8" class="span-web"/>
+  <text x="90" y="562" class="span-web-txt" text-anchor="middle">웹이 개입할 수 있는 구간</text>
+
+  <rect x="325" y="540" width="305" height="34" rx="8" class="span-app"/>
+  <text x="477" y="562" class="span-app-txt" text-anchor="middle">앱과 OS가 결정하는 구간</text>
+
+  <rect x="635" y="540" width="150" height="34" rx="8" class="span-web"/>
+  <text x="710" y="562" class="span-web-txt" text-anchor="middle">웹이 개입할 수 있는 구간</text>
+</svg>
