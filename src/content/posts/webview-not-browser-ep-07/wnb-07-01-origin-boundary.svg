@@ -1,0 +1,172 @@
+<svg viewBox="0 0 800 930" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-origin">
+  <title id="t-origin">오리진 판정에서 시작해 세 갈래로 번지는 연쇄 경계도</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #0E7490; --c-accent-2: #B45309; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(14,116,144,0.08);
+        --c-soft-2: rgba(180,83,9,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #4DD4EC; --c-accent-2: #E8A876; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(77,212,236,0.12);
+          --c-soft-2: rgba(232,168,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ok-card { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.5; }
+      .bad-card { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.5; }
+      .chain-card { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.5; }
+      .dep-card { fill: none; stroke: var(--c-accent-2); stroke-width: 1.4; stroke-dasharray: 5 4; }
+      .diamond { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.6; }
+      .note { fill: var(--c-soft); }
+      .band { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.6; }
+      .flow { stroke: var(--c-line); stroke-width: 1.6; fill: none; }
+      .flow-ok { stroke: var(--c-accent); stroke-width: 1.8; fill: none; }
+      .flow-bad { stroke: var(--c-accent-2); stroke-width: 1.8; fill: none; }
+      .ttl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 16px; font-weight: 700; fill: var(--c-fg); }
+      .node { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+      .tag { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; }
+      .lyr { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.06em; }
+      .lane-lbl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-accent); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="930"/>
+
+  <!-- ===== 왼쪽 가장자리: 층 이름 세로 라벨 ===== -->
+  <text class="lyr" transform="rotate(-90 15 64)" x="15" y="64" text-anchor="middle">로드 층</text>
+  <text class="lyr" transform="rotate(-90 15 262)" x="15" y="262" text-anchor="middle">오리진 층</text>
+  <text class="lyr" transform="rotate(-90 15 502)" x="15" y="502" text-anchor="middle">연쇄 층</text>
+  <text class="lyr" transform="rotate(-90 15 670)" x="15" y="670" text-anchor="middle">신뢰 의존 기능 층</text>
+
+  <!-- ===== 1. 로드 층 ===== -->
+  <rect x="40" y="28" width="340" height="72" rx="10" class="ok-card"/>
+  <text x="62" y="58" class="node">앱이 https 로 서빙한 문서</text>
+  <text x="62" y="80" class="cap">WebViewAssetLoader 또는 원격 서버</text>
+
+  <rect x="400" y="28" width="340" height="72" rx="10" class="bad-card"/>
+  <text x="422" y="58" class="node">앱이 file 스킴으로 로드한 로컬 번들</text>
+  <text x="422" y="80" class="cap">loadData 포함</text>
+
+  <!-- 두 입력이 판정 마름모로 모인다 -->
+  <path d="M 210 100 L 210 122 L 570 122 L 570 100" class="flow"/>
+  <path d="M 390 122 L 390 140" class="flow"/>
+  <polygon points="390,146 385,137 395,137" fill="var(--c-line)"/>
+
+  <!-- ===== 2. 오리진 층 ===== -->
+  <polygon points="390,146 530,202 390,258 250,202" class="diamond"/>
+  <text x="390" y="198" class="node" text-anchor="middle">UA가 이 문서에 어떤</text>
+  <text x="390" y="217" class="node" text-anchor="middle">오리진을 부여하는가</text>
+
+  <!-- 근거 라벨 -->
+  <rect x="40" y="163" width="190" height="78" rx="8" class="note"/>
+  <rect x="40" y="171" width="4" height="62" rx="2" fill="var(--c-accent)"/>
+  <text x="58" y="187" class="tag" fill="var(--c-accent)">URL STANDARD 4.7</text>
+  <text x="58" y="205" class="cap">file 스킴은 구현 정의,</text>
+  <text x="58" y="222" class="cap">애매하면 새 opaque origin</text>
+
+  <!-- 마름모에서 두 갈래 -->
+  <path d="M 390 258 L 390 278 L 190 278 L 190 294" class="flow-ok"/>
+  <polygon points="190,300 185,291 195,291" fill="var(--c-accent)"/>
+  <path d="M 390 278 L 590 278 L 590 294" class="flow-bad"/>
+  <polygon points="590,300 585,291 595,291" fill="var(--c-accent-2)"/>
+
+  <rect x="40" y="300" width="300" height="78" rx="10" class="ok-card"/>
+  <text x="62" y="330" class="node">튜플 오리진</text>
+  <text x="62" y="352" class="cap">scheme + host + port</text>
+  <text x="62" y="369" class="cap">직렬화 가능</text>
+
+  <rect x="440" y="300" width="300" height="78" rx="10" class="bad-card"/>
+  <text x="462" y="330" class="node">불투명 오리진</text>
+  <text x="462" y="352" class="cap">직렬화하면 문자열 null</text>
+  <text x="462" y="369" class="cap">동등성 비교만 가능</text>
+
+  <!-- 튜플 오리진에서 내려가는 정상 경로 레인 -->
+  <line x1="56" y1="378" x2="56" y2="718" stroke="var(--c-accent)" stroke-width="6" stroke-linecap="round"/>
+  <text class="lane-lbl" transform="rotate(-90 76 548)" x="76" y="548" text-anchor="middle">세 갈래 모두 정상 경로</text>
+
+  <!-- ===== 3. 연쇄 층 ===== -->
+  <path d="M 590 378 L 590 400" class="flow-bad"/>
+  <path d="M 196 400 L 636 400" class="flow-bad"/>
+  <path d="M 196 400 L 196 414" class="flow-bad"/>
+  <polygon points="196,420 191,411 201,411" fill="var(--c-accent-2)"/>
+  <path d="M 416 400 L 416 414" class="flow-bad"/>
+  <polygon points="416,420 411,411 421,411" fill="var(--c-accent-2)"/>
+  <path d="M 636 400 L 636 414" class="flow-bad"/>
+  <polygon points="636,420 631,411 641,411" fill="var(--c-accent-2)"/>
+
+  <rect x="92" y="426" width="208" height="152" rx="10" class="chain-card"/>
+  <text x="106" y="452" class="node">① Web Storage</text>
+  <text x="106" y="476" class="cap">localStorage 와</text>
+  <text x="106" y="493" class="cap">sessionStorage 접근이</text>
+  <text x="106" y="510" class="cap">SecurityError 로 던져짐</text>
+  <text x="106" y="527" class="cap">(HTML Standard 12.2)</text>
+
+  <rect x="312" y="426" width="208" height="152" rx="10" class="chain-card"/>
+  <text x="326" y="452" class="node">② 교차 출처 요청</text>
+  <text x="326" y="476" class="cap">요청 헤더에 Origin: null 이</text>
+  <text x="326" y="493" class="cap">실림. 서버 CORS 허용 목록에</text>
+  <text x="326" y="510" class="cap">등록할 도메인이 없음</text>
+  <text x="326" y="527" class="cap">(HTML Standard 7.1.1)</text>
+
+  <rect x="532" y="426" width="208" height="152" rx="10" class="chain-card"/>
+  <text x="546" y="452" class="node">③ 보안 컨텍스트 판정</text>
+  <text x="546" y="476" class="cap">W3C Secure Contexts 3.1</text>
+  <text x="546" y="493" class="cap">1단계에서 opaque origin 이면</text>
+  <text x="546" y="510" class="cap">즉시 Not Trustworthy 로 종료</text>
+  <text x="546" y="527" class="cap">뒤쪽의 file 스킴은</text>
+  <text x="546" y="544" class="cap">Potentially Trustworthy</text>
+  <text x="546" y="561" class="cap">단계에 도달하지 못함</text>
+
+  <!-- ===== 4. 신뢰 의존 기능 층 : ③ 에서만 이어진다 ===== -->
+  <path d="M 636 578 L 636 598" class="flow-bad"/>
+  <path d="M 196 598 L 636 598" class="flow-bad"/>
+  <path d="M 196 598 L 196 610" class="flow-bad"/>
+  <polygon points="196,616 191,607 201,607" fill="var(--c-accent-2)"/>
+  <path d="M 416 598 L 416 610" class="flow-bad"/>
+  <polygon points="416,616 411,607 421,607" fill="var(--c-accent-2)"/>
+  <path d="M 636 598 L 636 610" class="flow-bad"/>
+  <polygon points="636,616 631,607 641,607" fill="var(--c-accent-2)"/>
+
+  <rect x="92" y="622" width="208" height="96" rx="10" class="dep-card"/>
+  <text x="106" y="648" class="node">Clipboard API</text>
+  <text x="106" y="672" class="cap">보안 컨텍스트 전용</text>
+  <text x="106" y="689" class="cap">읽기는 사용자 활성화도 필요</text>
+
+  <rect x="312" y="622" width="208" height="96" rx="10" class="dep-card"/>
+  <text x="326" y="648" class="node">서비스 워커 등록</text>
+  <text x="326" y="672" class="cap">스킴이 http 또는 https 가</text>
+  <text x="326" y="689" class="cap">아니면 TypeError, 오리진이</text>
+  <text x="326" y="706" class="cap">신뢰 불가면 SecurityError</text>
+
+  <rect x="532" y="622" width="208" height="96" rx="10" class="dep-card"/>
+  <text x="546" y="648" class="node">Android 위치 요청</text>
+  <text x="546" y="672" class="cap">앱이 API 23 초과를 타깃하면</text>
+  <text x="546" y="689" class="cap">비보안 오리진의 요청은</text>
+  <text x="546" y="706" class="cap">프롬프트 없이 자동 거부</text>
+
+  <!-- ===== 해법 띠 ===== -->
+  <rect x="36" y="756" width="728" height="142" rx="12" class="band"/>
+  <text x="60" y="788" class="ttl">오리진을 되돌리는 경로: 앱에 요청할 것</text>
+  <line x1="400" y1="804" x2="400" y2="886" stroke="var(--c-divider)" stroke-width="1.2"/>
+
+  <text x="60" y="820" class="tag" fill="var(--c-accent)">ANDROID</text>
+  <text x="60" y="844" class="cap">WebViewAssetLoader 로</text>
+  <text x="60" y="861" class="cap">appassets.androidplatform.net 의 https URL 로 서빙</text>
+  <text x="60" y="878" class="cap">setHttpAllowed 기본값은 HTTP 비허용</text>
+
+  <text x="424" y="820" class="tag" fill="var(--c-accent)">IOS</text>
+  <text x="424" y="844" class="cap">loadFileURL 로 읽기 범위 제한, 또는</text>
+  <text x="424" y="861" class="cap">WKURLSchemeHandler 로 커스텀 스킴 처리</text>
+  <text x="424" y="878" class="cap">http 와 https 에는 등록 불가</text>
+
+  <!-- 해법 띠에서 판정 마름모로 되돌아가는 곡선 -->
+  <path d="M 686 756 C 788 744 788 620 788 520 C 788 340 788 238 700 202 L 546 202" class="flow-ok"/>
+  <polygon points="532,202 545,196 545,208" fill="var(--c-accent)"/>
+  <text class="lane-lbl" transform="rotate(-90 762 520)" x="762" y="520" text-anchor="middle">판정을 튜플 쪽으로 되돌림</text>
+</svg>
