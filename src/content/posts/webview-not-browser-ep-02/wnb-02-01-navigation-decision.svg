@@ -1,0 +1,329 @@
+<svg viewBox="0 0 800 490" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-navdec">
+  <title id="t-navdec">웹뷰의 내비게이션 결정 지점 분기 흐름도</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #0E7490;
+        --c-accent-2: #B45309;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(14, 116, 144, 0.08);
+        --c-soft-2: rgba(180, 83, 9, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+        --m1: #0E7490;
+        --m2: #1E5FA8;
+        --m3: #6D5BA6;
+        --m4: #A64B5E;
+        --m5: #B45309;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #4DD4EC;
+          --c-accent-2: #E8A876;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(77, 212, 236, 0.12);
+          --c-soft-2: rgba(232, 168, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+          --m1: #4DD4EC;
+          --m2: #7FB3E8;
+          --m3: #B0A0E0;
+          --m4: #E29AA8;
+          --m5: #E8A876;
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .sec {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        fill: var(--c-accent);
+      }
+
+      .req-t {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .req-c {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10px;
+        fill: var(--c-muted);
+      }
+
+      .band-t {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .band-c {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+
+      .grp {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        fill: var(--c-accent-2);
+      }
+
+      .api {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-fg);
+      }
+
+      .dia {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .out-t {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .out-t-mute {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-muted);
+      }
+
+      .out-c {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+
+      .yn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-muted);
+      }
+
+      .strip {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+
+      .card {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.4;
+      }
+
+      .flow {
+        stroke: var(--c-line);
+        stroke-width: 1.6;
+        fill: none;
+      }
+
+      .row {
+        fill: var(--c-soft-2);
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="490" />
+
+  <!-- 1열: 웹이 만든 요청 -->
+  <text x="12" y="30" class="sec">웹이 만든 요청</text>
+
+  <g>
+    <rect x="12" y="44" width="124" height="64" rx="9" class="card" />
+    <circle cx="27" cy="62" r="5" fill="var(--m1)" />
+    <text x="40" y="66" class="req-t">새 창 요청</text>
+    <text x="24" y="84" class="req-c">window.open,</text>
+    <text x="24" y="97" class="req-c">target=_blank</text>
+  </g>
+  <g>
+    <rect x="12" y="122" width="124" height="64" rx="9" class="card" />
+    <circle cx="27" cy="140" r="5" fill="var(--m2)" />
+    <text x="40" y="144" class="req-t">외부 앱 호출</text>
+    <text x="24" y="162" class="req-c">커스텀 스킴,</text>
+    <text x="24" y="175" class="req-c">intent</text>
+  </g>
+  <g>
+    <rect x="12" y="200" width="124" height="64" rx="9" class="card" />
+    <circle cx="27" cy="218" r="5" fill="var(--m3)" />
+    <text x="40" y="222" class="req-t">다운로드</text>
+    <text x="24" y="240" class="req-c">a download,</text>
+    <text x="24" y="253" class="req-c">Content-Disposition</text>
+  </g>
+  <g>
+    <rect x="12" y="278" width="124" height="64" rx="9" class="card" />
+    <circle cx="27" cy="296" r="5" fill="var(--m4)" />
+    <text x="40" y="300" class="req-t">인쇄</text>
+    <text x="24" y="318" class="req-c">window.print</text>
+  </g>
+  <g>
+    <rect x="12" y="356" width="124" height="64" rx="9" class="card" />
+    <circle cx="27" cy="374" r="5" fill="var(--m5)" />
+    <text x="40" y="378" class="req-t">뒤로 가기</text>
+    <text x="24" y="396" class="req-c">기기 백버튼,</text>
+    <text x="24" y="409" class="req-c">엣지 스와이프</text>
+  </g>
+
+  <!-- 1열 → 결정 지점: 다섯 화살표가 모인다 -->
+  <g>
+    <line x1="137" y1="76" x2="148" y2="76" class="flow" />
+    <polygon points="156,76 147,71 147,81" fill="var(--c-line)" />
+    <line x1="137" y1="154" x2="148" y2="154" class="flow" />
+    <polygon points="156,154 147,149 147,159" fill="var(--c-line)" />
+    <line x1="137" y1="232" x2="148" y2="232" class="flow" />
+    <polygon points="156,232 147,227 147,237" fill="var(--c-line)" />
+    <line x1="137" y1="310" x2="148" y2="310" class="flow" />
+    <polygon points="156,310 147,305 147,315" fill="var(--c-line)" />
+    <line x1="137" y1="388" x2="148" y2="388" class="flow" />
+    <polygon points="156,388 147,383 147,393" fill="var(--c-line)" />
+  </g>
+
+  <!-- 2열: 웹뷰의 결정 지점 -->
+  <rect x="158" y="44" width="48" height="376" rx="12" fill="var(--c-soft-2)" stroke="var(--c-accent-2)"
+    stroke-width="1.5" />
+  <text transform="translate(168 232) rotate(90)" text-anchor="middle" class="band-t">웹뷰의 결정 지점</text>
+  <text transform="translate(188 232) rotate(90)" text-anchor="middle" class="band-c">이 요청을 어디로 보낼 것인가</text>
+
+  <!-- 결정 지점 → 두 플랫폼 그룹 -->
+  <g>
+    <line x1="206" y1="232" x2="216" y2="232" class="flow" />
+    <line x1="216" y1="132" x2="216" y2="332" class="flow" />
+    <line x1="216" y1="132" x2="223" y2="132" class="flow" />
+    <polygon points="227,132 218,127 218,137" fill="var(--c-line)" />
+    <line x1="216" y1="332" x2="223" y2="332" class="flow" />
+    <polygon points="227,332 218,327 218,337" fill="var(--c-line)" />
+  </g>
+
+  <!-- 3열 상단: Android -->
+  <rect x="228" y="44" width="272" height="176" rx="10" class="card" />
+  <text x="236" y="66" class="grp">Android</text>
+  <g>
+    <rect x="234" y="76" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="88" r="4.5" fill="var(--m2)" />
+    <text x="260" y="92" class="api">shouldOverrideUrlLoading</text>
+  </g>
+  <g>
+    <rect x="234" y="103" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="115" r="4.5" fill="var(--m1)" />
+    <text x="260" y="119" class="api">WebChromeClient.onCreateWindow</text>
+  </g>
+  <g>
+    <rect x="234" y="130" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="142" r="4.5" fill="var(--m3)" />
+    <text x="260" y="146" class="api">DownloadListener.onDownloadStart</text>
+  </g>
+  <g>
+    <rect x="234" y="157" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="169" r="4.5" fill="var(--m4)" />
+    <text x="260" y="173" class="api">WebView.createPrintDocumentAdapter</text>
+  </g>
+  <g>
+    <rect x="234" y="184" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="196" r="4.5" fill="var(--m5)" />
+    <text x="260" y="200" class="api">canGoBack/goBack</text>
+  </g>
+
+  <!-- 3열 하단: iOS -->
+  <rect x="228" y="244" width="272" height="176" rx="10" class="card" />
+  <text x="236" y="266" class="grp">iOS</text>
+  <g>
+    <rect x="234" y="276" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="288" r="4.5" fill="var(--m2)" />
+    <text x="260" y="292" class="api">decidePolicyFor navigationAction</text>
+  </g>
+  <g>
+    <rect x="234" y="303" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="315" r="4.5" fill="var(--m1)" />
+    <text x="260" y="319" class="api">WKUIDelegate.createWebViewWith</text>
+  </g>
+  <g>
+    <rect x="234" y="330" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="342" r="4.5" fill="var(--m3)" />
+    <text x="260" y="346" class="api">navigationResponse didBecome download</text>
+  </g>
+  <g>
+    <rect x="234" y="357" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="369" r="4.5" fill="var(--m4)" />
+    <text x="260" y="373" class="api">비공개 SPI만 존재</text>
+  </g>
+  <g>
+    <rect x="234" y="384" width="260" height="24" rx="6" class="row" />
+    <circle cx="247" cy="396" r="4.5" fill="var(--m5)" />
+    <text x="260" y="400" class="api">allowsBackForwardNavigationGestures</text>
+  </g>
+
+  <!-- 두 그룹 → 분기 -->
+  <g>
+    <polyline points="500,132 510,132 510,232" class="flow" />
+    <polyline points="500,332 510,332 510,232" class="flow" />
+    <line x1="510" y1="232" x2="517" y2="232" class="flow" />
+    <polygon points="521,232 512,227 512,237" fill="var(--c-line)" />
+  </g>
+
+  <!-- 4열: 마름모 분기 -->
+  <polygon points="580,152 638,232 580,312 522,232" fill="var(--c-card)" stroke="var(--c-accent-2)"
+    stroke-width="1.8" />
+  <text x="580" y="219" class="dia" text-anchor="middle">앱이 이 지점을</text>
+  <text x="580" y="236" class="dia" text-anchor="middle">구현했는가</text>
+  <text x="580" y="253" class="dia" text-anchor="middle">설정을 켰는가</text>
+
+  <!-- 분기 → 두 결과 -->
+  <g>
+    <line x1="638" y1="232" x2="648" y2="232" class="flow" />
+    <line x1="648" y1="158" x2="648" y2="306" class="flow" />
+    <line x1="648" y1="158" x2="656" y2="158" stroke="var(--c-accent)" stroke-width="1.8" fill="none" />
+    <polygon points="661,158 652,153 652,163" fill="var(--c-accent)" />
+    <line x1="648" y1="306" x2="656" y2="306" stroke="var(--c-muted)" stroke-width="1.8" fill="none" />
+    <polygon points="661,306 652,301 652,311" fill="var(--c-muted)" />
+    <text x="644" y="190" class="yn" text-anchor="end">예</text>
+    <text x="644" y="280" class="yn" text-anchor="end">아니오</text>
+  </g>
+
+  <!-- 결과 1: 도착 -->
+  <g>
+    <rect x="662" y="124" width="126" height="68" rx="9" fill="var(--c-soft)" stroke="var(--c-accent)"
+      stroke-width="1.5" />
+    <rect x="662" y="136" width="4" height="44" rx="2" fill="var(--c-accent)" />
+    <text x="676" y="153" class="out-t">요청이 목적지에</text>
+    <text x="676" y="172" class="out-t">도착한다</text>
+  </g>
+
+  <!-- 결과 2: 소멸 -->
+  <g>
+    <rect x="662" y="272" width="126" height="68" rx="9" fill="none" stroke="var(--c-muted)" stroke-width="1.3"
+      stroke-dasharray="5 4" />
+    <rect x="662" y="284" width="4" height="44" rx="2" fill="var(--c-muted)" />
+    <text x="676" y="302" class="out-t-mute">요청이 사라진다</text>
+    <text x="676" y="320" class="out-c">에러도 로그도 없다</text>
+  </g>
+
+  <!-- 하단 캡션 띠 -->
+  <rect x="12" y="442" width="776" height="34" rx="9" fill="var(--c-soft-2)" />
+  <text x="400" y="464" class="strip" text-anchor="middle">기본값은 대체로 꺼짐이다</text>
+</svg>

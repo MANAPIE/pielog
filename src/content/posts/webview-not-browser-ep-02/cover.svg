@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="웹뷰는 브라우저가 아니다 ep.02 cover">
+  <style>
+  :root {
+    --c-bg: #EEF5F6;
+    --c-fg: #10202A;
+    --c-muted: #5E7480;
+    --c-accent: #0E7490; --c-accent-2: #22B8CF; --c-accent-3: #C98A3B;
+    --c-num: rgba(14, 116, 144, 0.14);
+    --c-dot: rgba(14, 116, 144, 0.10);
+    --c-line: rgba(14, 116, 144, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0A161A;
+      --c-fg: #DCE8EA;
+      --c-muted: #8AA0A8;
+      --c-accent: #4DD4EC; --c-accent-2: #0E7490; --c-accent-3: #E0A860;
+      --c-num: rgba(77, 212, 236, 0.15);
+      --c-dot: rgba(77, 212, 236, 0.10);
+      --c-line: rgba(77, 212, 236, 0.20);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots-wnb02" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="halo-wnb02a" cx="0.18" cy="0.84" r="0.6">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo-wnb02b" cx="0.84" cy="0.13" r="0.58">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-wnb02)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb02a)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb02b)"/>
+
+  <!-- 배경 무채 stroke 도형 (오프캔버스) -->
+  <rect x="-220" y="330" width="560" height="560" rx="50" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(12 60 610)"/>
+  <circle cx="1140" cy="20" r="300" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="1140" cy="20" r="212" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- 결정 지점: 슬롯이 뚫린 판. 다섯 요청이 도달하고 두 개만 통과한다 -->
+  <g transform="rotate(-7 600 320)">
+
+    <!-- 도달하는 요청들 -->
+    <line x1="-30" y1="159" x2="561" y2="159" stroke="var(--c-accent)" stroke-width="3"/>
+    <rect x="318" y="147" width="24" height="24" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" transform="rotate(45 330 159)"/>
+
+    <line x1="70" y1="239" x2="482" y2="239" stroke="var(--c-accent)" stroke-width="3"/>
+    <line x1="482" y1="239" x2="546" y2="239" stroke="var(--c-accent)" stroke-width="3" stroke-dasharray="6 7"/>
+    <polygon points="558,239 546,232 546,246" fill="var(--c-accent)"/>
+
+    <line x1="-60" y1="320" x2="508" y2="320" stroke="var(--c-accent)" stroke-width="3"/>
+    <line x1="508" y1="320" x2="546" y2="320" stroke="var(--c-accent)" stroke-width="3" stroke-dasharray="5 9"/>
+    <polygon points="558,320 546,313 546,327" fill="var(--c-accent)"/>
+
+    <line x1="110" y1="401" x2="561" y2="401" stroke="var(--c-accent)" stroke-width="3"/>
+
+    <line x1="30" y1="481" x2="470" y2="481" stroke="var(--c-accent)" stroke-width="3"/>
+    <line x1="470" y1="481" x2="546" y2="481" stroke="var(--c-accent)" stroke-width="3" stroke-dasharray="7 8"/>
+    <polygon points="558,481 546,474 546,488" fill="var(--c-accent)"/>
+
+    <!-- 판 -->
+    <rect x="561" y="100" width="78" height="440" rx="20" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="3"/>
+    <rect x="569" y="108" width="62" height="424" rx="14" fill="none" stroke="var(--c-accent-3)" stroke-width="1.2" opacity="0.45"/>
+
+    <!-- 열린 슬롯: 통과한다 -->
+    <rect x="573" y="137" width="54" height="44" rx="10" fill="none" stroke="var(--c-accent)" stroke-width="2.8"/>
+    <polygon points="592,147 592,171 615,159" fill="var(--c-accent-2)"/>
+    <rect x="573" y="379" width="54" height="44" rx="10" fill="none" stroke="var(--c-accent)" stroke-width="2.8"/>
+    <polygon points="592,389 592,413 615,401" fill="var(--c-accent-2)"/>
+
+    <!-- 닫힌 슬롯: 여기서 삼켜진다 -->
+    <rect x="573" y="217" width="54" height="44" rx="10" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="7 6"/>
+    <rect x="573" y="298" width="54" height="44" rx="10" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="7 6"/>
+    <rect x="573" y="459" width="54" height="44" rx="10" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="7 6"/>
+
+    <!-- 삼켜진 자리의 파편 -->
+    <circle cx="532" cy="266" r="17" fill="none" stroke="var(--c-accent)" stroke-width="1.4" opacity="0.4"/>
+    <circle cx="532" cy="266" r="8" fill="var(--c-accent)" opacity="0.85"/>
+    <circle cx="556" cy="286" r="5" fill="var(--c-accent-3)"/>
+    <circle cx="514" cy="290" r="4" fill="var(--c-accent-2)"/>
+
+    <circle cx="528" cy="349" r="15" fill="none" stroke="var(--c-accent)" stroke-width="1.4" opacity="0.34"/>
+    <circle cx="528" cy="349" r="7" fill="var(--c-accent)" opacity="0.85"/>
+    <circle cx="550" cy="369" r="4.5" fill="var(--c-accent-3)"/>
+    <circle cx="507" cy="364" r="3.5" fill="var(--c-accent-2)"/>
+
+    <circle cx="524" cy="509" r="14" fill="none" stroke="var(--c-accent)" stroke-width="1.4" opacity="0.3"/>
+    <circle cx="524" cy="509" r="6" fill="var(--c-accent)" opacity="0.85"/>
+    <circle cx="548" cy="527" r="4" fill="var(--c-accent-3)"/>
+
+    <!-- 통과한 요청이 목적지에 닿는다 -->
+    <line x1="645" y1="159" x2="872" y2="159" stroke="var(--c-accent)" stroke-width="3"/>
+    <polygon points="884,159 872,152 872,166" fill="var(--c-accent)"/>
+    <g>
+      <rect x="890" y="121" width="118" height="76" rx="12" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
+      <rect x="908" y="141" width="64" height="11" rx="5.5" fill="var(--c-accent)" fill-opacity="0.6"/>
+      <rect x="908" y="159" width="42" height="11" rx="5.5" fill="var(--c-accent)" fill-opacity="0.35"/>
+      <rect x="956" y="157" width="15" height="15" rx="3" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+    </g>
+
+    <line x1="645" y1="401" x2="837" y2="401" stroke="var(--c-accent)" stroke-width="3"/>
+    <polygon points="849,401 837,394 837,408" fill="var(--c-accent)"/>
+    <g>
+      <rect x="855" y="363" width="118" height="76" rx="12" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
+      <rect x="873" y="383" width="64" height="11" rx="5.5" fill="var(--c-accent)" fill-opacity="0.6"/>
+      <rect x="873" y="401" width="42" height="11" rx="5.5" fill="var(--c-accent)" fill-opacity="0.35"/>
+      <rect x="921" y="399" width="15" height="15" rx="3" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+    </g>
+
+    <!-- 아무도 도착하지 않은 목적지: 성립하지 않은 경로만 남는다 -->
+    <line x1="645" y1="320" x2="858" y2="307" stroke="var(--c-muted)" stroke-width="2" stroke-dasharray="5 11" opacity="0.4"/>
+    <path d="M862 299 L872 306 L862 313" fill="none" stroke="var(--c-muted)" stroke-width="2" opacity="0.4"/>
+    <rect x="878" y="268" width="118" height="76" rx="12" fill="none" stroke="var(--c-muted)" stroke-width="2.5" stroke-dasharray="9 8"/>
+    <line x1="896" y1="292" x2="960" y2="292" stroke="var(--c-muted)" stroke-width="2" stroke-dasharray="4 7" opacity="0.5"/>
+    <line x1="896" y1="312" x2="938" y2="312" stroke="var(--c-muted)" stroke-width="2" stroke-dasharray="4 7" opacity="0.35"/>
+  </g>
+
+  <!-- 흩어진 디테일 -->
+  <rect x="92" y="66" width="84" height="84" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" transform="rotate(14 134 108)"/>
+  <rect x="214" y="62" width="54" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.55"/>
+  <rect x="242" y="84" width="32" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.7"/>
+  <line x1="330" y1="96" x2="312" y2="208" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 9" stroke-opacity="0.5"/>
+  <circle cx="1064" cy="96" r="9" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
+  <circle cx="1096" cy="118" r="6" fill="var(--c-accent-2)" opacity="0.7"/>
+  <circle cx="1046" cy="128" r="5" fill="var(--c-accent-3)" opacity="0.6"/>
+  <rect x="126" y="556" width="164" height="110" rx="16" fill="none" stroke="var(--c-accent-2)" stroke-width="2" opacity="0.38" transform="rotate(-9 208 611)"/>
+  <polygon points="302,614 352,614 327,566" fill="none" stroke="var(--c-accent-3)" stroke-width="2.2" opacity="0.8"/>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">02</text>
+</svg>

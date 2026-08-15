@@ -1,0 +1,631 @@
+---
+title: "눌렀는데 아무 일도 안 일어납니다 - 웹뷰는 브라우저가 아니다 ep.02"
+description: 새 창, 외부 앱 호출, 다운로드, 인쇄, 뒤로 가기는 웹뷰 안에서 같은 결정 지점을 통과합니다. 그 지점이 비어 있으면 요청이 조용히 사라집니다.
+summary: 링크와 스킴과 다운로드와 인쇄는 따로 고장 나는 것처럼 보이지만, 실제로는 웹뷰가 "이 요청을 어디로 보낼지" 정하는 하나의 지점을 함께 지납니다. 각 요청이 어느 콜백으로 넘어가는지, 앱이 무엇을 켜지 않으면 사라지는지, 그리고 사용자 제스처가 언제 만료되는지를 공식 문서 기준으로 정리합니다. 웹 코드에서 바꿀 것과 앱에 요청할 것을 갈라 놓는 데까지 갑니다.
+date: 2026-08-11
+tags: ["series", "develop", "frontend", "webview", "wkwebview", "androidwebview", "hybridapp", "navigation"]
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+버튼을 누른다. 에러도 없고 로그도 없다. 아무 일도 일어나지 않는다. 요청은 어딘가에서 멈췄고, 그 어딘가는 웹이 아니다.
+
+## 따로 고장 난 것처럼 보이는 다섯 가지
+
+앱에서 올라오는 제보를 모아보면 대략 이런 목록이 됩니다.
+
+- 약관 상세를 새 창으로 여는 링크가 반응이 없습니다.
+- 외부 인증 앱을 부르는 버튼을 누르면 그 앱이 안 뜨고 흰 화면만 남습니다.
+- 첨부 PDF 다운로드가 안 됩니다.
+- 인쇄 버튼이 아무 동작도 하지 않습니다.
+- 기기 뒤로 가기를 누르면 화면 안에서 한 단계 돌아가는 게 아니라 앱이 그냥 닫힙니다.
+
+이 다섯 개는 담당자도 다르고 티켓도 따로 열립니다. 그런데 원인 구조는 하나입니다.
+
+웹이 만들어내는 요청 중 **현재 문서 안에서 끝나지 않는 것**들이 있습니다. 새 창을 열어달라, 다른 앱을 실행해달라, 이 응답은 화면에 그리지 말고 파일로 저장해달라, 인쇄 대화상자를 띄워달라, 히스토리를 한 칸 되감아달라. 브라우저에서는 벤더가 이 요청들의 처리를 전부 구현해 두었습니다. 웹뷰에서는 그 자리가 콜백 몇 개로 뚫려 있고, **앱이 그 콜백을 채우지 않으면 요청은 반환값 없이 사라집니다.**
+
+에러가 안 나는 이유가 여기 있습니다. 실패한 게 아니라 아무도 받지 않은 것입니다.
+
+![웹뷰의 내비게이션 결정 지점을 나타낸 분기 흐름도. 다이어그램은 왼쪽에서 오른쪽으로 4개 열로 구성된다. 첫 번째 열은 '웹이 만든 요청' 묶음으로 위에서부터 다섯 개의 상자가 세로로 놓인다. 상자 내용은 순서대로 '새 창 요청 - window.open, target=_blank', '외부 앱 호출 - 커스텀 스킴, intent', '다운로드 - a download, Content-Disposition', '인쇄 - window.print', '뒤로 가기 - 기기 백버튼, 엣지 스와이프'이다. 두 번째 열은 세로로 긴 하나의 밴드로 '웹뷰의 결정 지점 - 이 요청을 어디로 보낼 것인가'라고 적혀 있고, 다섯 상자에서 나온 화살표가 모두 이 밴드로 모인다. 세 번째 열은 위아래 두 개의 그룹으로 나뉜다. 위쪽 그룹은 'Android' 라벨이 붙고 그 안에 shouldOverrideUrlLoading, WebChromeClient.onCreateWindow, DownloadListener.onDownloadStart, WebView.createPrintDocumentAdapter, canGoBack/goBack 다섯 항목이 나열된다. 아래쪽 그룹은 'iOS' 라벨이 붙고 그 안에 decidePolicyFor navigationAction, WKUIDelegate.createWebViewWith, navigationResponse didBecome download, 비공개 SPI만 존재, allowsBackForwardNavigationGestures 다섯 항목이 나열된다. 밴드에서 두 그룹으로 화살표가 갈라져 나간다. 네 번째 열은 마름모 분기 하나로 '앱이 이 지점을 구현했는가 - 설정을 켰는가'라고 적혀 있고, 여기서 화살표가 둘로 갈라진다. 위쪽 화살표는 '예'라는 라벨과 함께 초록 계열 상자 '요청이 목적지에 도착한다'로 이어진다. 아래쪽 화살표는 '아니오'라는 라벨과 함께 회색 계열 상자 '요청이 사라진다 - 에러도 로그도 없다'로 이어진다. 다이어그램 하단에는 가로로 긴 캡션 띠가 있고 '기본값은 대체로 꺼짐이다'라고 적혀 있다. 첫 번째 열의 다섯 상자에는 각각 다른 색 점이 찍혀 있고, 세 번째 열의 대응 항목에 같은 색 점이 찍혀 요청과 콜백의 대응 관계를 표시한다.](wnb-02-01-navigation-decision.svg)
+
+이 편은 그 결정 지점을 하나씩 열어봅니다. 순서는 새 창, 스킴, 다운로드, 인쇄, 뒤로 가기이고, 마지막에 이 다섯을 관통하는 조건인 사용자 제스처를 다룹니다.
+
+---
+
+## 새 창은 앱이 만들어줘야 존재합니다
+
+`window.open()`과 `target="_blank"`는 브라우저에서 같은 일을 합니다. 새 브라우징 컨텍스트를 요청합니다. 웹뷰에는 그 컨텍스트를 만들 주체가 기본적으로 없습니다.
+
+### Android
+
+`WebSettings.setSupportMultipleWindows`의 기본값은 `false`입니다. Android API 1부터 그렇습니다.
+
+그 다음이 애매합니다. **같은 상황을 두 공식 문서가 다르게 서술합니다.**
+
+`WebSettings` 레퍼런스는 이렇게 씁니다. 다중 창 지원이 꺼져 있으면 새 창 요청은 `window.open()`에서 왔든 `target="_blank"` 링크에서 왔든 **같은 WebView의 최상위 내비게이션으로 처리되어 현재 페이지를 대체한다**고요.
+
+반면 "Build web apps in WebView" 가이드는 새 창 요청이 **무시된다(ignored)** 고 합니다. 그리고 한 문단 뒤에서, `setSupportMultipleWindows(true)`를 주면서 `onCreateWindow`는 오버라이드하지 않는 것이 "가장 안전한 구현"이며 그 조합은 **`target="_blank"` 링크를 쓰는 페이지가 로드되지 않게 만든다**고 덧붙입니다.
+
+세 서술을 합쳐서 확실하게 말할 수 있는 것은 여기까지입니다. **새 창은 생기지 않습니다.** 그 다음에 무슨 일이 일어나는지는 문서마다 다르게 적혀 있고, 앱이 어떤 조합을 골랐는지에 따라 갈립니다. 그래서 "새 창이 안 열립니다"라는 제보를 받았을 때 웹에서 먼저 확인할 것은 현상 자체가 아니라 **앱이 셋 중 어떤 조합인지**입니다.
+
+| 앱 설정 조합 | 문서상 결과 |
+|---|---|
+| `setSupportMultipleWindows(false)` (기본값) | 새 창 없음. 레퍼런스는 같은 WebView 최상위 이동, 가이드는 무시라고 서술 |
+| `setSupportMultipleWindows(true)` + `onCreateWindow` 미구현 | 기본 구현이 아무 일도 하지 않고 `false` 반환. 가이드는 이 조합이 `target="_blank"` 페이지를 로드되지 않게 만든다고 명시 |
+| `setSupportMultipleWindows(true)` + `onCreateWindow` 구현 | 앱이 자식 WebView를 만들어 `WebViewTransport`로 넘기고 `resultMsg.sendToTarget()`을 호출해야 성립 |
+
+앱 개발자에게 보여줄 지점은 이 세 줄입니다.
+
+```kotlin
+// 앱에 켜달라고 요청하는 지점입니다. 두 줄이 세트입니다.
+webView.settings.setSupportMultipleWindows(true)
+webView.webChromeClient = MyChromeClient()  // onCreateWindow 구현 필요
+```
+
+`WebChromeClient.onCreateWindow`의 기본 구현은 문서 그대로 "아무 일도 하지 않고 따라서 `false`를 반환"합니다. 설정만 켜고 콜백을 비워두면 상태가 더 나빠질 수 있다는 뜻입니다.
+
+한 가지 더. Chromium의 android\_webview 문서는 WebView가 **대기 중인 팝업을 하나만 저장**하므로 다중 팝업을 지원하지 않는다고 밝히고 있습니다. 새 창 두 개를 연달아 여는 흐름은 앱이 잘 구현했더라도 성립하지 않습니다.
+
+### iOS
+
+WKWebView에서 새 창은 `WKUIDelegate`의 **옵셔널** 메서드가 담당합니다.
+
+```swift
+// 앱에 구현을 요청하는 지점입니다.
+optional func webView(_ webView: WKWebView,
+                      createWebViewWith configuration: WKWebViewConfiguration,
+                      for navigationAction: WKNavigationAction,
+                      windowFeatures: WKWindowFeatures) -> WKWebView?
+```
+
+반환값이 `WKWebView?`입니다. 새 웹뷰를 만들어 돌려주면 WebKit이 거기에 요청을 로드하고, 만들지 않으면 요청을 로드할 곳이 없습니다. `WKUIDelegate` 프로토콜 개요는 기본 웹뷰 구현이 **웹뷰당 창 하나를 가정한다**고 명시합니다. 앱이 `uiDelegate`를 설정하지 않았다면 이 메서드가 불릴 자리 자체가 없습니다.
+
+앱이 "이건 새 창 요청이다"라고 판별하는 근거는 `WKNavigationAction.targetFrame`입니다. 이 값이 `nil`이면 대상이 새 창이라고 문서에 적혀 있습니다. 앱 개발자가 "새 창 요청이 안 잡히는데요"라고 하면 이 프로퍼티를 확인해달라고 하면 됩니다.
+
+그리고 iOS만의 함정이 하나 있습니다. `WKPreferences.javaScriptCanOpenWindowsAutomatically`의 기본값은 **iOS에서 `false`, macOS에서 `true`** 입니다. 맥에서 만든 테스트 하네스나 macOS 앱에서는 재현되지 않고 iOS 기기에서만 재현되는 차이가 여기서 나옵니다. 참고로 Android의 대응 설정 `setJavaScriptCanOpenWindowsAutomatically`도 기본값이 `false`이고, 문서는 사용자 제스처 없는 시도가 "실패하고 아무 일도 하지 않는다"고 씁니다.
+
+### 웹에서 할 수 있는 것
+
+표준 계약부터 확인합니다. MDN은 `window.open()`이 새 브라우징 컨텍스트를 열지 못하면 **`null`을 반환**한다고 명시합니다. 그러니 반환값을 버리지 않습니다.
+
+```js
+function openDetail(url) {
+  // 클릭 핸들러 안에서 동기적으로 호출합니다. 이유는 마지막 섹션에서 다룹니다.
+  const win = window.open(url, '_blank');
+  if (!win) {
+    // 새 창을 만들 주체가 없는 환경입니다. 같은 문맥에서 이동시킵니다.
+    location.assign(url);
+  }
+}
+```
+
+다만 이 폴백을 만능으로 믿지는 않습니다. 앞의 표에서 봤듯 Android는 조합에 따라 새 창 요청이 같은 웹뷰의 이동으로 바뀔 수도 있고, 그 경우 폴백까지 겹쳐 이동이 두 번 일어날 여지가 있습니다. **실기기에서 한 번 확인한 뒤 채택합니다.** 실기기에 디버거를 붙이는 절차는 [ep.01](/webview-not-browser-ep-01/)에 있습니다.
+
+더 근본적인 대응은 새 창 자체를 줄이는 것입니다. 배포 전에 전수 점검할 수 있습니다.
+
+```js
+// 콘솔에서 한 번 돌려봅니다. 웹뷰에서 위험한 후보 목록이 나옵니다.
+const risky = [...document.querySelectorAll('a[target="_blank"]')]
+  .map((a) => a.href);
+console.table(risky);
+```
+
+약관·안내처럼 읽고 돌아오면 되는 화면은 새 창 대신 같은 문맥의 라우트로 만들고 닫기 버튼을 둡니다. 새 창이 논리적으로 꼭 필요한 흐름이라면 그것은 웹의 구현 문제가 아니라 앱에 요청할 항목입니다.
+
+`window.close()`도 같은 구조입니다. 다만 전제가 하나 앞에 붙습니다. MDN이 정리한 표준 동작은 `close()`가 **스크립트로 닫을 수 있는 창(script-closable window)** 에만 적용된다는 것입니다. `window.open()`으로 연 창, `target="_blank"` 링크나 폼으로 열린 창이 여기에 해당합니다. 앱이 직접 로드한 첫 화면은 여기 들지 않습니다. 그 경우 호출은 무시되고 "Scripts may not close windows that were not opened by script" 같은 콘솔 경고만 남습니다.
+
+창이 실제로 닫힐 때 앱으로 가는 알림은 따로 있습니다. iOS에서는 DOM 창이 닫히면 `WKUIDelegate.webViewDidClose(_:)`가 호출되고 뷰 계층에서 제거하는 것은 앱의 책임이라고 문서에 적혀 있습니다. Android에는 `WebChromeClient.onCloseWindow(WebView)`가 대응합니다.
+
+그래서 화면이 그대로일 때 확인 순서는 두 갈래입니다. 먼저 그 창이 `window.open()`이나 `target="_blank"`로 열린 창인지 봅니다. 아니라면 호출 자체가 무시된 것이고, 앱에는 알림이 발생조차 하지 않았습니다. 맞다면 그때 앱이 알림을 받고 뷰를 제거하는지 확인합니다.
+
+---
+
+## 스킴은 웹뷰가 아니라 앱이 열어줍니다
+
+본인인증, 간편결제, 지도 앱 연동. 웹 화면에서 다른 앱을 부르는 흐름은 전부 커스텀 스킴 위에 서 있습니다. 그리고 이 흐름은 웹뷰에서 가장 자주 죽습니다.
+
+### Android의 결정 지점
+
+`WebViewClient.shouldOverrideUrlLoading(WebView, WebResourceRequest)`입니다. URL이 로드되기 직전에 호출되고, `true`를 반환하면 WebView가 로딩을 중단합니다. 앱이 여기서 URL을 보고 "이건 우리가 처리할 게 아니라 다른 앱을 띄워야 한다"고 판단합니다.
+
+버전 조건이 있습니다. `WebResourceRequest`를 받는 오버로드는 **API 24(Android 7.0)부터**입니다. `String`을 받는 구버전 오버로드는 API 1부터 있고 API 24에서 deprecated 됐습니다. 그리고 **`WebViewClient`를 아예 설정하지 않으면** WebView가 Activity Manager에게 URL 처리를 넘긴다고 문서에 적혀 있습니다.
+
+문제는 이 콜백이 **모든 내비게이션에 대해 불리지 않는다**는 점입니다. 문서가 직접 밝히는 예외가 두 개 있습니다.
+
+1. **앱이 `loadUrl()`로 시작한 내비게이션에는 호출되지 않습니다.** 이 콜백은 웹 페이지가 시작한 이동, 사용자가 링크를 탭한 이동, HTTP 리다이렉트로 생긴 이동을 알려주는 용도입니다.
+2. **POST 요청에는 호출되지 않습니다.** 문서에 "Note: This method is not called for POST requests"라고 한 줄로 적혀 있습니다.
+
+두 번째가 사용자 인증이 필요한 서비스에서 값이 나갑니다. 외부 인증 앱 호출과 서명이 필요한 폼 제출은 대부분 POST 폼 서브밋으로 시작합니다. **"링크는 잡히는데 인증 폼만 안 잡힌다"의 정확한 원인이 이것입니다.** 앱 개발자가 `shouldOverrideUrlLoading`에 로그를 걸어도 그 지점은 애초에 지나가지 않으므로 아무것도 찍히지 않습니다.
+
+문서의 문구는 "POST 요청에는 호출되지 않는다"까지입니다. 여기서 더 확장해 해석하지 않는 편이 안전합니다. 실무에서 취할 대응은 명확합니다. **외부 앱을 부르는 이동은 POST 폼 서브밋 위에 얹지 않습니다.**
+
+```html
+<!-- 이 형태로 외부 앱을 부르면 결정 지점을 지나지 않을 수 있습니다 -->
+<form method="post" action="cert-app://start">
+  <input type="hidden" name="reqData" value="..." />
+  <button type="submit">인증하기</button>
+</form>
+```
+
+```js
+// 데이터는 서버에 먼저 올려두고, 앱 호출은 GET 문맥의 이동으로 분리합니다
+async function startCert(payload) {
+  const res = await fetch('/api/cert/session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  const { token } = await res.json();
+
+  // 클릭 문맥 안에서 바로 이동시킵니다
+  location.assign(`cert-app://start?token=${encodeURIComponent(token)}`);
+}
+```
+
+또 하나. WebView는 커스텀 스킴 URL에 제약을 겁니다. 가이드는 `shouldOverrideUrlLoading`이나 `shouldInterceptRequest` 같은 콜백을 **유효한 URL에 대해서만** 호출한다고 명시하고, `<a href="showProfile">` 같은 형태는 WebView에서 일관되지 않게 처리되므로 잘 만들어진 URL을 쓰라고 권고합니다.
+
+```html
+<!-- 스킴이 없어 유효한 URL이 아닙니다. 콜백조차 오지 않을 수 있습니다 -->
+<a href="showProfile">프로필</a>
+
+<!-- 가이드가 권장하는 형태입니다 -->
+<a href="example-app:showProfile">프로필</a>
+```
+
+스킴이 결국 처리되지 않으면 Android에는 문서화된 대응물이 있습니다. `WebViewClient.ERROR_UNSUPPORTED_SCHEME`, 값은 −10입니다. 앱이 `onReceivedError(WebView, WebResourceRequest, WebResourceError)`(API 23+)에서 이 상수를 받습니다. 실무에서 흰 화면과 함께 보이는 에러 문자열들은 문서화된 것이 아니니, 앱 개발자와 이야기할 때는 상수명으로 말하는 편이 정확합니다.
+
+### intent:// 는 Android 전용 문법입니다
+
+`intent:` 스킴은 웹 표준이 아닙니다. Android의 `Intent` 클래스가 가진 URI 직렬화 포맷이고, `Intent.toUri(int)` / `Intent.parseUri(String, int)`가 `URI_INTENT_SCHEME` 플래그와 함께 쓰는 표현입니다. API 4부터 있습니다.
+
+문법과 폴백 파라미터는 **Chrome for Android 문서**에 정의되어 있습니다. 프래그먼트 파라미터로 `package` / `action` / `category` / `component` / `scheme`을 넣고, 앱이 없을 때의 폴백은 `S.browser_fallback_url` 엑스트라로 지정합니다. 대상 액티비티는 `android.intent.category.BROWSABLE` 필터를 가져야 합니다.
+
+여기서 정확히 선을 그어야 합니다. **이 문법 정의의 출처는 Chrome 브라우저 문서이고, Android WebView가 같은 문법을 자체적으로 해석해 준다는 서술은 Android 공식 문서에서 확인되지 않습니다.** 그러니 "웹뷰가 `S.browser_fallback_url`을 알아서 처리해 줄 것"이라고 전제하고 마크업을 짜면 안 됩니다. 확정할 수 있는 것은 두 가지입니다. `shouldOverrideUrlLoading`은 비 HTTP(S) 스킴에도 호출될 수 있고, 앱은 `Intent.parseUri(uri, URI_INTENT_SCHEME)`로 그 URI를 직접 파싱할 수 있습니다. 즉 `intent://`가 동작하는 프로젝트라면 **앱이 그렇게 구현해 둔 것**입니다.
+
+그리고 iOS에는 대응 개념 자체가 없습니다. `intent://` 링크를 두 플랫폼에 같이 내려보내는 마크업은 iOS에서 갈 곳이 없습니다.
+
+### iOS는 앱이 직접 열어야 합니다
+
+iOS에서 다른 앱으로 URL을 넘기는 API는 `UIApplication.open(_:options:completionHandler:)`(iOS 10.0+)입니다. 처리 가능한 앱이 있으면 iOS가 그 앱을 실행하고 URL을 전달하며, **처리할 앱이 없으면 completion handler가 `success = false`로 호출**됩니다.
+
+중요한 것은 이 호출의 주체입니다. WKWebView가 커스텀 스킴을 자동으로 이 API에 넘긴다는 서술은 Apple 문서에 없습니다. 앱이 `WKNavigationDelegate`에서 URL을 보고 직접 `UIApplication.open`을 부르는 구현입니다. 즉 iOS에서 스킴 호출이 안 된다면 **그 연결선이 앱에 없는 것**입니다.
+
+여기에 최근 변화가 하나 있습니다. 스킴을 열기 전에 확인하던 `canOpenURL(_:)`은 `Info.plist`의 `LSApplicationQueriesSchemes`에 선언한 스킴에 대해서만 `true`를 반환하고, 선언하지 않은 스킴에는 항상 거짓을 돌려줍니다. 항목 수 상한은 iOS 15 이후 링크된 앱이 50개, **iOS 27 이후 링크된 앱이 25개**입니다. 그리고 **이 메서드 자체가 iOS 27에서 deprecated 됐습니다.** Apple이 붙인 대체 지침은 "먼저 검증하지 말고 열어본 뒤 실패를 처리하라"입니다.
+
+외부 인증·결제 앱과 연동하는 앱은 제휴 스킴을 줄줄이 선언해 두는 경우가 많으니, 앱 개발자에게 넘길 요청 문구는 이렇게 잡는 편이 안전합니다. **스킴 조회로 분기하지 말고, `open`을 시도한 뒤 실패 콜백에서 스토어 유도나 폴백 화면을 띄워달라.**
+
+하나 더 구분해 둘 것이 있습니다. `WKURLSchemeHandler`는 이 문제의 해결책이 아닙니다. Apple 문서는 이것을 "WebKit이 처리하지 않는 스킴의 **리소스를 웹뷰 안에서 로드**하기 위한 프로토콜"로 정의합니다. 기기 안의 사진 같은 콘텐츠를 웹 콘텐츠에 끼워 넣는 용도이지 다른 앱을 실행하는 용도가 아닙니다. 앱 개발자가 이 둘을 섞어서 이야기하면 목적을 다시 확인하는 편이 좋습니다.
+
+### 유니버설 링크는 누가 열었는지에 따라 갈립니다
+
+Apple은 과거 아카이브 문서(App Search Programming Guide)에서 이렇게 설명했습니다. 앱이 유니버설 링크를 처리하려고 `WKWebView` 같은 객체를 띄우면 iOS는 앱이 아니라 Safari로 웹사이트를 엽니다. 반대로 **사용자가 임베디드 웹뷰 안에서 유니버설 링크를 탭하면 앱이 열립니다.** 또한 앱이 `openURL:`로 자기 도메인의 유니버설 링크를 열면 자기 앱으로 열리지 않습니다. iOS가 그 호출이 자기 앱에서 왔다는 것을 인식하기 때문입니다.
+
+이 서술의 출처는 아카이브 문서이고 현행 문서에서 같은 문장을 재확인하지는 못했습니다. 다만 구조가 실무 증상과 잘 맞습니다. "같은 링크인데 사용자가 누르면 앱이 열리고 우리가 스크립트로 이동시키면 웹으로 떨어진다"는 제보를 받았을 때 먼저 의심할 지점입니다.
+
+### 결제 시트도 같은 자리에서 막힙니다
+
+앞의 스킴 이야기가 그대로 적용되는 대표 사례가 결제입니다. 안드로이드에서 웹의 `PaymentRequest` 호출은 결국 외부 결제 앱을 부르는 인텐트로 나가고, **그 통로가 기본으로 닫혀 있습니다.**
+
+켜는 조건이 두 축입니다. 라이브러리 축으로 `androidx.webkit` 1.14.0 이상에서 `WebSettingsCompat.setPaymentRequestEnabled()`를 호출해야 하고, 런타임 축으로 WebView 136 이상이 필요합니다. 여기에 매니페스트의 `queries`에 결제 인텐트 세 개를 선언해야 결제 앱이 조회됩니다. **다른 축이라 하나만 충족해서는 동작하지 않습니다.** 기기의 WebView 버전 분포를 확인하는 방법은 [ep.01](/webview-not-browser-ep-01/)에 있습니다.
+
+iOS는 구조가 다릅니다. Apple Pay는 외부 앱을 부르지 않고 웹뷰 안에서 시트를 띄우며, iOS 13부터 `WKWebView`에서 동작합니다. 대신 조건이 하나 붙습니다. **Apple Pay는 `WKUserScript`나 `evaluateJavaScript` 같은 스크립트 주입 API와 함께 쓸 수 없습니다.** 앱이 그 API를 먼저 호출하면 Apple Pay가 비활성화되고, 반대로 웹페이지가 Apple Pay를 먼저 쓰면 `evaluateJavaScript`의 완료 핸들러가 오류를 반환합니다. 이 제약은 최상위 프레임 내비게이션마다 초기화됩니다.
+
+여기서 요청 문장이 뒤집힙니다. 하이브리드 앱은 브릿지와 헤더 제어 때문에 이미 주입 API를 쓰고 있는 경우가 대부분입니다. 그러니 **"Apple Pay를 켜 달라"가 아니라 "이 화면에서는 주입을 하지 말아 달라"가 올바른 요청입니다.** 결제 화면을 별도 웹뷰로 분리하거나, 최소한 그 화면에 진입한 뒤로는 주입을 멈추는 구성이 필요합니다.
+
+웹 쪽 대응은 이 편의 다른 항목과 같습니다. **`window.PaymentRequest`가 있다고 해서 호출이 성공하지 않습니다.** 존재 검사로 분기하지 말고 시도한 뒤 실패를 폴백으로 받습니다.
+
+---
+
+## 다운로드는 웹이 시작하고 앱이 끝냅니다
+
+웹에서 다운로드를 지시하는 방법은 두 가지입니다. 응답 헤더와 앵커 속성입니다.
+
+`Content-Disposition`은 기본값이 `inline`이고, `attachment`가 다운로드를 지시합니다. `filename` / `filename*` 파라미터로 파일명을 제안합니다.
+
+```text
+Content-Disposition: attachment; filename="report.pdf"; filename*=UTF-8''%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf
+```
+
+`<a download>`에는 제약이 있습니다. MDN이 명시하는 대로 **same-origin URL, 그리고 `blob:`과 `data:` 스킴에서만 동작합니다.** 다른 오리진의 파일 URL에 `download`를 붙이는 마크업은 표준적으로 보장되지 않습니다. 파일명 추정 순서는 `Content-Disposition` 헤더가 지정한 `filename`이 `download` 속성보다 우선합니다.
+
+여기까지는 브라우저와 웹뷰가 같습니다. 갈리는 것은 그다음입니다.
+
+### Android
+
+Android WebView는 다운로드를 **저장하지 않습니다.** 렌더링 엔진이 처리할 수 없는 콘텐츠를 앱에 넘길 뿐입니다.
+
+```kotlin
+// 앱에 등록을 요청하는 지점입니다. 이게 없으면 다운로드를 받을 곳이 없습니다.
+webView.setDownloadListener { url, userAgent, contentDisposition, mimeType, contentLength ->
+    // 앱이 실제 저장을 구현합니다
+}
+```
+
+`setDownloadListener` 문서의 문구가 정확합니다. "렌더링 엔진이 콘텐츠를 처리할 수 없어 대신 다운로드해야 할 때 사용할 인터페이스를 등록한다." 콜백은 URL, User-Agent, `Content-Disposition`, MIME 타입, 콘텐츠 길이를 함께 넘깁니다. 웹이 헤더에 파일명을 제대로 넣어두면 앱이 그 값을 쓸 수 있다는 뜻입니다.
+
+앱이 흔히 쓰는 저장 수단은 `DownloadManager`인데 여기에 문서화된 제약이 있습니다. `DownloadManager.Request(Uri uri)`의 파라미터 설명은 "**the HTTP or HTTPS URI to download**"입니다. HTTP/HTTPS만 받습니다. `blob:`이나 `data:` URL을 그대로 넘길 수 없습니다.
+
+그래서 웹에서 취할 태도가 정해집니다. **웹뷰에서 배포되는 화면의 파일 저장은 `blob:` 생성 대신 same-origin HTTPS 엔드포인트로 만듭니다.**
+
+```js
+// 웹뷰에서 앱 쪽 저장 경로에 얹기 까다로운 형태입니다
+const blob = await (await fetch('/api/report')).blob();
+const objectUrl = URL.createObjectURL(blob);
+location.href = objectUrl;
+```
+
+```js
+// 서버가 attachment 헤더를 주는 same-origin 주소로 그냥 보냅니다
+location.assign('/api/report/download?id=' + encodeURIComponent(id));
+```
+
+브라우저에서는 앞의 코드도 잘 돌아갑니다. 그래서 "브라우저에서는 되는데요"가 다시 나옵니다.
+
+### iOS
+
+WKWebView의 다운로드 공개 API는 **iOS 14.5 / iPadOS 14.5 / macOS 11.3**에서 처음 생겼습니다. `WKDownload`, `WKNavigationActionPolicy.download`, `WKNavigationResponsePolicy.download`, `webView(_:navigationAction:didBecome:)`, `webView(_:navigationResponse:didBecome:)`, `WKWebView.startDownload(using:)`, `WKNavigationAction.shouldPerformDownload`가 전부 이 버전 라인입니다.
+
+그러니 서술은 이렇게 갈라야 합니다. **iOS 14.5 미만에는 이 경로 자체가 없습니다. 14.5 이상에서는 앱이 델리게이트에서 `.download` 정책을 반환하고 `WKDownloadDelegate`를 붙여야 성립합니다.**
+
+`WKDownloadDelegate`에서 앱이 반드시 구현해야 하는 메서드는 하나입니다. 저장 목적지를 정하는 `download(_:decideDestinationUsing:suggestedFilename:completionHandler:)`이고, 문서는 제안 파일명이 "응답에서 오거나 웹 콘텐츠에서 온다"고 설명합니다. 즉 웹이 헤더와 `download` 속성으로 넣은 파일명이 여기까지 전달됩니다.
+
+앱이 판단에 쓸 수 있는 신호도 문서화되어 있습니다.
+
+- `WKNavigationAction.shouldPerformDownload` - 웹 콘텐츠가 다운로드를 지시하는 속성을 제공했는지 (iOS 14.5+)
+- `WKNavigationResponse.canShowMIMEType` - WebKit이 이 응답의 MIME 타입을 네이티브로 표시할 수 있는지 (iOS 8.0+)
+
+"PDF는 열리는데 저장이 안 됩니다"라는 증상은 두 번째와 관련이 깊습니다. WebKit이 표시할 수 있는 타입은 그냥 표시되고, 다운로드로 전환하려면 앱이 정책을 `.download`로 바꿔야 합니다.
+
+---
+
+## 인쇄는 아예 다른 경로를 탑니다
+
+`window.print()`의 표준 계약은 단순합니다. 현재 문서의 인쇄 대화상자를 열고, 문서가 아직 로딩 중이면 로딩이 끝난 뒤에 엽니다. 그리고 **대화상자가 열려 있는 동안 블로킹**합니다.
+
+Android가 문서화한 인쇄 경로는 `window.print()`가 아닙니다. `WebView.createPrintDocumentAdapter(String documentName)`입니다. 이 어댑터는 WebView 콘텐츠를 PDF 스트림으로 변환합니다. 인자를 받는 이 시그니처는 **API 21+** 이고, 인자 없는 버전은 API 19에서 도입되어 API 21에서 deprecated 됐습니다.
+
+문서에 붙은 주의가 실무에 직결됩니다. **변환 중에는 WebView를 그릴 수 없고**, 그 시점의 그리기 동작은 정의되지 않았습니다. 그래서 문서가 인쇄 전용 오프스크린 WebView 사용을 권장합니다. 사용자가 보고 있는 화면을 그대로 인쇄에 넣는 구조가 아니라는 뜻입니다.
+
+### iOS는 엔진이 아니라 창구가 없습니다
+
+WKWebView 쪽은 흔히 "웹뷰가 `window.print()`를 무시한다"고 알고 있는데, 엔진 소스를 따라가 보면 사실이 아닙니다.
+
+웹 콘텐츠가 `window.print()`를 부르면 WebKit은 이 호출을 웹 프로세스에서 UI 프로세스로 넘깁니다. 요청은 끝까지 살아서 앱 앞까지 옵니다. 문제는 그다음입니다. UI 프로세스가 그 요청을 건네줄 수 있는 상대가 **비공개 델리게이트 하나뿐**이고, 앱이 그 셀렉터에 응답하지 않으면 완료 핸들러만 호출하고 끝냅니다.
+
+이 비공개 창구는 2014년에 **`window.print()` 지원을 위해** 추가됐고, 12년이 지난 지금도 공개 `WKUIDelegate`로 올라오지 않았습니다. Safari에서 인쇄가 되는 이유도 여기 있습니다. 엔진이 다른 것이 아니라 Safari가 그 창구를 구현한 클라이언트일 뿐입니다.
+
+웹 입장에서 더 곤란한 사실이 하나 붙습니다. **`beforeprint`와 `afterprint`도 발화하지 않습니다.** 두 이벤트는 앱이 실제로 인쇄 작업을 시작해 페이지 계산을 요청할 때 발생하는데, 창구가 없으면 그 단계에 도달하지 못합니다. 콘솔 경고도 남지 않습니다. **웹 코드는 인쇄가 실패했다는 사실 자체를 감지할 수 없습니다.**
+
+### 실무에서는 이렇게 배선합니다
+
+Apple 문서에 절차로 정리된 것은 아니지만, 하이브리드 웹뷰 라이브러리들이 거의 같은 골격으로 이 문제를 풉니다. Flutter의 InAppWebView, Cordova 인쇄 플러그인, Capacitor 인쇄 플러그인이 전부 같은 모양이고, 각 프로젝트 저장소에서 구현을 직접 확인할 수 있습니다.
+
+react-native-webview는 사정이 조금 다릅니다. 같은 방식의 구현이 풀 리퀘스트로 올라왔지만 머지되지 않은 채 닫혔습니다. **상류에는 지금도 인쇄 지원이 없습니다.** 이 라이브러리를 쓰는 앱이라면 앱 팀이 직접 배선해야 한다는 뜻입니다.
+
+1. 앱이 문서 로드 시작 시점에 사용자 스크립트를 주입해 **`window.print`를 메시지 브릿지 호출로 덮어씁니다.**
+2. 그 메시지를 받은 앱이 `UIPrintInteractionController`에 `webView.viewPrintFormatter()`를 물려 인쇄 시트를 띄웁니다.
+
+주입되는 스크립트는 이 정도로 단순합니다.
+
+```js
+// 앱이 document start에 주입하는 코드입니다. 웹이 작성하는 코드가 아닙니다
+window.print = function () {
+  window.webkit.messageHandlers.printBridge.postMessage('');
+};
+```
+
+앱 쪽에서 하는 일도 세 줄입니다. 요청할 지점을 지목하는 용도로만 봐두시면 됩니다.
+
+```swift
+// 앱에 구현을 요청하는 지점입니다
+let controller = UIPrintInteractionController.shared
+controller.printFormatter = webView.viewPrintFormatter()
+controller.present(animated: true, completionHandler: nil)
+```
+
+이 경로에는 웹 개발자에게 중요한 성질이 셋 있습니다.
+
+**전부 공개 API입니다.** `viewPrintFormatter()`는 `UIView`의 공개 메서드이고 WebKit이 웹뷰용 구현으로 갈아끼웁니다. 비공개 셀렉터를 구현하는 방식과 달리 심사 리스크를 이야기할 필요가 없습니다. 다만 Apple 문서가 "WKWebView에서 이 메서드를 쓸 수 있다"고 명시한 적은 없습니다. 공개 API를 쓰지만 문서화된 보증은 없는 자리입니다.
+
+**웹 코드는 한 글자도 바뀌지 않습니다.** 앱이 `window.print`를 덮어쓰기 때문에 기존 인쇄 버튼이 그대로 동작합니다. 이 패턴의 가장 큰 장점입니다.
+
+**`@media print` 스타일은 그대로 적용됩니다.** 이 포맷터는 화면 밖 콘텐츠까지 페이지로 나눠 렌더합니다. 다만 페이지네이션이 어긋나거나 보이는 영역만 인쇄되는 문제는 오래된 하소연거리이니, 실기기에서 여러 페이지짜리 문서로 한 번 확인하는 편이 안전합니다.
+
+앱이 인쇄 시트 대신 PDF로 빼는 선택도 있습니다. `WKWebView.createPDF(configuration:completionHandler:)`가 **iOS 14 이상**에서 웹뷰 콘텐츠를 PDF 데이터로 돌려줍니다. 이쪽은 공식 문서에 있는 공개 API이고, 결과물을 공유 시트로 넘기는 흐름이 됩니다.
+
+### 그래서 웹은 무엇을 하는가
+
+앱이 위 배선을 해두면 웹은 손댈 것이 없습니다. 문제는 **배선 여부를 웹이 알 수 없다**는 점입니다. 실패가 이벤트로도 반환값으로도 오지 않기 때문입니다.
+
+그래서 인쇄가 업무상 필요한 화면이라면 **`window.print()` 하나에만 걸어두지 않습니다.** 서버가 만든 PDF를 내려받는 경로를 나란히 두는 것이 확실합니다. 그 경로는 앞 섹션의 다운로드 구조를 그대로 씁니다.
+
+```js
+// 웹뷰에서 인쇄 요청이 어디까지 가는지는 앱 구현에 달려 있습니다.
+// 대안 경로를 함께 제공합니다.
+printButton.addEventListener('click', () => {
+  window.print();
+});
+
+pdfButton.addEventListener('click', () => {
+  location.assign('/api/report/print.pdf?id=' + encodeURIComponent(id));
+});
+```
+
+그리고 인쇄 레이아웃은 웹의 온전한 책임입니다. `@media print` 스타일이 없으면 어느 경로로 가든 결과물이 화면 그대로 나옵니다.
+
+```css
+@media print {
+  .app-header,
+  .sticky-cta,
+  .toast-area {
+    display: none;
+  }
+
+  .report-table {
+    /* 표가 페이지 사이에서 잘리지 않게 합니다 */
+    break-inside: avoid;
+  }
+}
+```
+
+---
+
+## 뒤로 가기는 앱이 연결해야 웹까지 옵니다
+
+기기 뒤로 가기는 웹의 이벤트가 아닙니다. OS가 앱에 보내는 신호이고, 앱이 그 신호를 웹뷰 히스토리에 연결해야 웹까지 옵니다.
+
+### Android
+
+Android WebView는 방문 히스토리를 **자체적으로 누적합니다.** `canGoBack()` / `goBack()`은 API 1부터 있습니다. 가이드에도 코드가 나와 있습니다.
+
+문서가 강조하는 것은 확인 절차입니다. `canGoBack()`으로 확인하지 않고 `goBack()`을 부르면, 히스토리 끝에 도달한 뒤에는 **아무 일도 일어나지 않습니다.** 반대로 확인 후 히스토리가 없을 때 시스템 기본 동작으로 넘기지 않으면 앱이 안 닫힙니다. "뒤로 가기를 눌렀는데 앱이 그냥 종료됩니다"와 "뒤로 가기를 눌러도 아무 반응이 없습니다"는 같은 선상의 실패입니다.
+
+연결 방식에도 변화가 있습니다. 예측형 뒤로 가기(predictive back)가 도입되면서 `KeyEvent.KEYCODE_BACK`으로 뒤로 가기 이벤트를 **가로채는 방식은 더 이상 지원되지 않습니다.** `OnBackPressedCallback` 또는 `OnBackInvokedCallback`으로 이전해야 합니다. 예측형 뒤로 가기는 Android 13+에서 지원되고, Android 15부터는 관련 개발자 옵션이 사라지고 옵트인한 앱에 시스템 애니메이션이 적용됩니다.
+
+매니페스트의 `android:enableOnBackInvokedCallback`은 여기서 방향이 뒤집힙니다. Android 13\~15 구간에서는 옵트인 스위치였습니다. 반면 Android 16(API 36) 이상을 타깃하는 앱이 Android 16 이상 기기에서 실행되면 예측형 뒤로 가기가 기본으로 켜지고, 이 속성은 `false`를 지정해 잠시 빠져나오는 옵트아웃 스위치가 됩니다. 그 조건에서는 `onBackPressed`가 호출되지 않고 `KeyEvent.KEYCODE_BACK`도 디스패치되지 않습니다.
+
+그래서 앱에 넘길 요청 문구는 "백키 가로채 달라"가 아니라 이렇게 잡습니다. **`onBackPressedDispatcher`에 콜백을 등록하고 그 안에서 WebView 히스토리를 확인해 되감아 달라.**
+
+상태 보존도 앱 쪽에 수단이 있습니다. `saveState`로 내비게이션 히스토리를 Bundle에 직렬화하고 `restoreState`로 복원합니다. 프로세스가 정리된 뒤 돌아왔을 때 화면이 초기화되는 문제는 이 지점과 관련되는데, 백그라운드 복귀 전반은 [ep.08](/webview-not-browser-ep-08/) 소관입니다.
+
+### iOS
+
+WKWebView에는 기기 백버튼이 없고 대신 화면 가장자리 스와이프가 있습니다. 이것도 기본이 꺼져 있습니다.
+
+`WKWebView.allowsBackForwardNavigationGestures`의 기본값은 **`false`** 입니다. iOS 8.0부터 그렇습니다. 앱이 켜지 않으면 가로 스와이프로 앞뒤 이동이 되지 않습니다. 한 줄짜리 설정이므로 요청 항목으로 넘기기 쉽습니다.
+
+반대로 켜져 있을 때 가로 캐러셀이나 스와이프 삭제 같은 웹 제스처와 충돌하는데, 제스처 경합은 [ep.05](/webview-not-browser-ep-05/)에서 다룹니다.
+
+### SPA 히스토리와 어긋나는 지점
+
+여기는 웹 개발자가 해결해야합니다. `history.pushState()`는 세션 히스토리 스택에 항목을 추가하고, 사용자가 그 항목으로 돌아올 때 `popstate`가 발생합니다. **`pushState()` 호출 자체는 `popstate`를 발생시키지 않습니다.**
+
+앱이 히스토리 되감기를 정상적으로 연결해 두었는데도 "뒤로 갔더니 모달만 남고 화면이 두 칸 뒤로 갔다" 같은 증상이 나오는 것은, 웹이 화면 상태를 히스토리 항목으로 만들지 않았기 때문입니다. 모달·바텀시트·탭 전환처럼 사용자가 뒤로 가기로 닫으려 할 상태는 히스토리 항목으로 올려둡니다.
+
+```js
+function openSheet(name) {
+  // 시트를 여는 순간 히스토리에 항목을 하나 쌓습니다
+  history.pushState({ sheet: name }, '');
+  render(name);
+}
+
+function closeSheet() {
+  // 닫기 버튼으로 닫을 때도 히스토리를 한 칸 되감습니다
+  history.back();
+}
+
+window.addEventListener('popstate', (event) => {
+  const state = event.state;
+  if (!state || !state.sheet) {
+    hideSheet();
+  }
+});
+```
+
+Vue Router를 쓴다면 시트 상태를 쿼리 파라미터로 올려 같은 효과를 냅니다.
+
+```js
+// 시트 열기
+router.push({ query: { ...route.query, sheet: 'terms' } });
+
+// 뒤로 가기는 라우터가 처리하고, 컴포넌트는 쿼리만 바라봅니다
+const isSheetOpen = computed(() => route.query.sheet === 'terms');
+```
+
+### 뒤로가기·앞으로가기 캐시(bfcache)는 플랫폼별로 다릅니다
+
+웹 표준 쪽 신호부터 정리합니다. `pageshow` 이벤트는 bfcache에서 복원될 때도 발생하고, `PageTransitionEvent.persisted`로 복원 여부를 구분합니다. 그리고 `unload` 핸들러처럼 호환되지 않는 코드가 페이지에 있으면 bfcache 대상에서 제외됩니다.
+
+```js
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    // 뒤로 가기 캐시에서 살아 돌아온 경우입니다.
+    // 재고 수량·세션 만료처럼 시간에 민감한 값을 다시 가져옵니다.
+    refreshVolatileState();
+  }
+});
+
+// unload 핸들러는 두지 않습니다. 이것 하나로 bfcache 대상에서 빠집니다.
+```
+
+플랫폼 쪽은 비대칭입니다. **Android WebView에는 bfcache가 없습니다.** 미구현이 아니라 명시적인 결정입니다. Chromium 팀은 back-forward cache의 Android 출시 공지에서, WebView 임베딩 API와 bfcache를 통합하는 비용이 너무 크고 WebView의 성격상 히스토리 내비게이션 최적화의 이득이 제한적이라 **WebView는 지원하지 않겠다**고 밝혔습니다. 이후 NotRestoredReasons API 공지에서도 "해당 API는 WebView를 포함한 모든 플랫폼에서 쓸 수 있지만 bfcache는 WebView에서 활성화되어 있지 않다"고 재확인합니다.
+
+WKWebView에 대해서는 같은 수준의 공개 서술을 찾지 못했습니다. 그러니 **"웹뷰에는 bfcache가 없다"고 두 플랫폼을 묶어서 말하지 않습니다.** 확정된 것은 Android WebView 쪽입니다.
+
+실무적으로 봤을 땐 오히려 단순합니다. `pageshow` 복원 분기에만 의존해서 상태를 되살리는 구현은 Android WebView에서 아예 실행되지 않습니다. **복원 경로를 유일한 경로로 만들지 않고, 일반 진입 경로에서도 같은 상태가 만들어지도록 짭니다.**
+
+---
+
+## 제스처는 생각보다 빨리 만료됩니다
+
+앞의 다섯 가지를 관통하는 조건이 하나 더 있습니다. **사용자가 방금 눌렀는가.**
+
+HTML 스펙은 두 종류의 활성화를 구분합니다. **sticky activation**은 그 세션에서 한 번이라도 상호작용이 있었는지이고, **transient activation**은 최근에 상호작용이 있었는지입니다. 후자는 타임아웃으로 만료되고 일부 API가 소비합니다. 스펙은 transient activation duration이 "길어야 몇 초" 수준일 것으로 기대한다고 적고 있습니다. 사용자가 상호작용과 그 결과를 연결지어 인식할 수 있어야 하기 때문입니다.
+
+transient activation을 만드는 입력은 정해져 있습니다. 창에 포커스가 있는 상태에서의 `mousedown` 또는 `pointerdown`(마우스), 그 외 포인터의 `pointerup`, `touchend`, 그리고 `keydown`(esc와 브라우저 단축키 제외)입니다. `Window.open()` 같은 게이트 기능을 쓰면 소비될 수 있습니다.
+
+문서로 확인되는 웹뷰 쪽 사실은 네 가지입니다.
+
+| 사실 | 출처 |
+|---|---|
+| 제스처 없는 `window.open()`은 실패하고 아무 일도 하지 않는다. 이 제약은 다중 창 설정과 무관하다 | Android `WebSettings` |
+| 앱이 받는 `WebResourceRequest.hasGesture()`는 실제로 사용자 제스처로 시작된 요청이라도 보안상 `false`를 반환할 수 있다 (API 21+) | Android `WebResourceRequest` |
+| `onCreateWindow`의 `isUserGesture`가 `false`이면 앱은 창 생성을 허용하지 않는 것이 일반적으로 권장된다 | Android `WebChromeClient` |
+| Chrome은 사용자 제스처 없이 시작된 `intent://` 요청으로 외부 앱을 실행하지 않는다 | Chrome for Developers |
+
+두 번째 항목이 이 구조의 핵심입니다. 앱은 제스처 여부를 신호로 받아 판단하는데, **그 신호가 실제보다 보수적으로 내려올 수 있습니다.** 그러면 앱은 정상적인 사용자 탭을 자동 팝업으로 오인하고 막습니다. 웹에서는 "분명히 눌렀는데 안 열린다"로 보입니다.
+
+여기에 웹 쪽 관행이 겹치면 실패 확률이 올라갑니다. 네이티브 브릿지를 경유하는 코드가 대표적입니다.
+
+```js
+// 위험한 형태입니다. 브릿지 응답을 기다리는 동안 제스처가 만료될 수 있습니다.
+button.addEventListener('click', () => {
+  window.NativeBridge.getUserToken((token) => {
+    window.open('/detail?token=' + token, '_blank');
+  });
+});
+```
+
+```js
+// 브릿지 왕복과 창 요청을 분리합니다.
+// 토큰은 화면 진입 시점에 미리 받아두고, 클릭 핸들러에서는 즉시 호출합니다.
+let cachedToken = null;
+window.NativeBridge.getUserToken((token) => {
+  cachedToken = token;
+});
+
+button.addEventListener('click', () => {
+  if (!cachedToken) return;
+  window.open('/detail?token=' + cachedToken, '_blank');
+});
+```
+
+`await` 뒤에서 창을 여는 코드도 같은 위험을 갖습니다.
+
+```js
+// 네트워크 왕복이 길어지면 제스처가 만료된 뒤에 호출됩니다
+button.addEventListener('click', async () => {
+  const res = await fetch('/api/link');
+  const data = await res.json();
+  window.open(data.url, '_blank');
+});
+```
+
+브릿지 왕복 자체가 활성화를 끊는다고 문서로 확정할 수는 없습니다. 확정되는 것은 활성화가 **입력 이벤트에서만 생기고 몇 초 안에 만료된다**는 점, 그리고 앱이 받는 제스처 신호가 실제보다 낮게 보고될 수 있다는 점입니다. 그 둘만으로도 결론은 같습니다. **창을 여는 호출, 스킴으로 이동하는 호출은 클릭 핸들러 안에서 동기적으로 실행합니다.**
+
+현재 상태를 확인하고 싶다면 표준 API가 있습니다.
+
+```js
+// 지금 transient activation이 살아 있는지 확인합니다
+if (navigator.userActivation && !navigator.userActivation.isActive) {
+  showManualLinkFallback();
+}
+```
+
+---
+
+## 그래서 무엇을 하면 되나
+
+이 편에서 다룬 것을 담당별로 갈라 놓습니다.
+
+### 웹 개발자가 할 일
+
+- `a[target="_blank"]`를 전수 조사하고, 읽고 돌아오면 되는 화면은 같은 문맥의 라우트로 바꿉니다.
+- `window.open()`의 반환값을 반드시 확인하고 폴백을 둡니다. 다만 폴백 채택 전에 실기기에서 이중 이동이 없는지 확인합니다.
+- 외부 앱을 부르는 이동을 POST 폼 서브밋 위에 얹지 않습니다. 데이터는 먼저 서버에 올리고 이동은 GET 문맥으로 분리합니다.
+- 커스텀 스킴 URL을 스킴 포함 형태로 잘 만들어 씁니다. 스킴 없는 상대 경로 형태는 콜백조차 오지 않을 수 있습니다.
+- `intent://` 링크를 두 플랫폼에 공통으로 내려보내지 않습니다. iOS에는 대응 개념이 없습니다.
+- 파일 저장은 `blob:` 대신 same-origin HTTPS 엔드포인트로 만들고, 서버가 `Content-Disposition: attachment`와 `filename*`을 정확히 내려주게 합니다.
+- 인쇄 버튼을 `window.print()` 하나에만 걸지 않습니다. PDF 내려받기 경로를 나란히 둡니다. `@media print` 스타일은 어느 쪽이든 필요합니다.
+- 모달·시트·탭 상태를 `pushState`나 라우터 쿼리로 히스토리 항목에 올립니다.
+- `unload` 핸들러를 제거하고, `pageshow`의 `persisted` 분기를 유일한 상태 복원 경로로 만들지 않습니다.
+- 창을 열거나 스킴으로 이동하는 호출을 클릭 핸들러 안에서 동기적으로 실행합니다. 브릿지 왕복과 네트워크 왕복은 그 앞으로 옮깁니다.
+
+### 앱에 요청할 일
+
+요청은 "이게 안 돼요"가 아니라 지점으로 넘깁니다.
+
+| 증상 | 앱에 요청할 지점 |
+|---|---|
+| 새 창 링크 무반응 | Android: `setSupportMultipleWindows(true)` + `WebChromeClient.onCreateWindow` 구현. iOS: `uiDelegate` 설정 + `createWebViewWith` 구현 |
+| `window.close()`가 화면을 안 닫음 (웹 콘텐츠가 연 창일 때) | Android `onCloseWindow`, iOS `webViewDidClose` 수신 후 뷰 제거 |
+| `window.close()`가 화면을 안 닫음 (앱이 직접 로드한 첫 화면) | 표준상 닫히지 않는 창이라 앱에 알림도 가지 않음. 화면 종료가 필요하면 별도 브릿지 규약으로 협의 |
+| 링크는 되는데 인증 폼만 외부 앱 호출 실패 | `shouldOverrideUrlLoading`이 POST 요청에 호출되지 않음. 웹의 GET 이동 전환과 함께 앱 쪽 처리 지점 재확인 |
+| iOS에서 스킴이 안 열림 | `WKNavigationDelegate`에서 `UIApplication.open` 호출 연결. `canOpenURL`로 사전 검증하지 말고 실패 콜백에서 폴백 처리 (iOS 27 deprecated) |
+| 다운로드 무반응 | Android: `setDownloadListener` 등록. iOS: 14.5+ 에서 `.download` 정책 반환 + `WKDownloadDelegate` 저장 경로 구현 |
+| 파일명이 깨지거나 무시됨 | 앱이 `contentDisposition` 또는 `suggestedFilename`을 실제로 사용하는지 확인 |
+| PDF가 열리기만 하고 저장이 안 됨 | iOS `WKNavigationResponse.canShowMIMEType` 분기 확인 |
+| 인쇄 버튼 무반응 | Android: `createPrintDocumentAdapter`(API 21+) 경로 존재 여부. 인쇄 전용 오프스크린 WebView 필요 |
+| 뒤로 가기가 앱을 닫음 | `onBackPressedDispatcher` 콜백에서 `canGoBack()` 확인 후 `goBack()` 연결. `KEYCODE_BACK` 가로채기는 지원되지 않는 방식 |
+| iOS에서 스와이프 뒤로 가기가 안 됨 | `allowsBackForwardNavigationGestures = true` (기본값 `false`) |
+| 사용자가 눌렀는데 팝업으로 오인되어 차단됨 | `hasGesture()`가 실제 제스처에도 `false`일 수 있음. 이 값만으로 차단 분기를 만들지 않도록 협의 |
+
+여기 있는 항목 중 웹이 코드로 해결할 수 있는 것은 하나도 없습니다. 반대로, 앞 목록의 웹 항목은 앱이 아무리 잘 구현해도 웹이 안 고치면 그대로 남습니다. **이 편이 하려는 일은 그 선을 정확한 이름으로 긋는 것입니다.**
+
+전체 담당 매핑과 이슈 작성 양식은 [ep.09](/webview-not-browser-ep-09/)에서 다시 정리합니다.
+
+---
+
+## 참고 자료
+
+- Android Developers. WebSettings. https://developer.android.com/reference/android/webkit/WebSettings
+- Android Developers. WebViewClient. https://developer.android.com/reference/android/webkit/WebViewClient
+- Android Developers. WebChromeClient. https://developer.android.com/reference/android/webkit/WebChromeClient
+- Android Developers. WebView. https://developer.android.com/reference/android/webkit/WebView
+- Android Developers. WebResourceRequest. https://developer.android.com/reference/android/webkit/WebResourceRequest
+- Android Developers. DownloadListener. https://developer.android.com/reference/android/webkit/DownloadListener
+- Android Developers. DownloadManager.Request. https://developer.android.com/reference/android/app/DownloadManager.Request
+- Android Developers. Intent. https://developer.android.com/reference/android/content/Intent
+- Android Developers. Build web apps in WebView. https://developer.android.com/develop/ui/views/layout/webapps/webview
+- Android Developers. Add support for the predictive back gesture. https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture
+- Android Developers. Behavior changes: Apps targeting Android 16 or higher. https://developer.android.com/about/versions/16/behavior-changes-16
+- The Chromium Projects. Web platform compatibility in Android WebView. https://chromium.googlesource.com/chromium/src/+/main/android\_webview/docs/web-platform-compatibility.md
+- The Chromium Projects. How does WebChromeClient#onCreateWindow work? https://chromium.googlesource.com/chromium/src/+/main/android\_webview/docs/how-does-on-create-window-work.md
+- The Chromium Projects. Intent to Ship: Same-site back-forward cache on Android. https://groups.google.com/a/chromium.org/g/bfcache-dev/c/0zTVPni5F9g
+- The Chromium Projects. Intent to Ship: Back/forward cache NotRestoredReasons API. https://groups.google.com/a/chromium.org/g/blink-dev/c/G5tPtziBkEA/m/HlAHT4u5BQAJ
+- Chrome for Developers. Android Intents with Chrome. https://developer.chrome.com/docs/android/intents
+- Apple. WKUIDelegate. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkuidelegate
+- Apple. UIPrintInteractionController. Apple Developer Documentation. https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller
+- Apple. UIView viewPrintFormatter(). Apple Developer Documentation. https://developer.apple.com/documentation/uikit/uiview/viewprintformatter()
+- Apple. WKWebView createPDF(configuration:completionHandler:). Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebview/createpdf(configuration:completionhandler:)
+- Apple. WKNavigationDelegate. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wknavigationdelegate
+- Apple. WKNavigationAction. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wknavigationaction
+- Apple. WKNavigationResponse. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wknavigationresponse
+- Apple. WKDownload. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkdownload
+- Apple. WKDownloadDelegate. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkdownloaddelegate
+- Apple. WKPreferences. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkpreferences
+- Apple. WKURLSchemeHandler. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkurlschemehandler
+- Apple. WKWebView. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebview
+- Apple. UIApplication. Apple Developer Documentation. https://developer.apple.com/documentation/uikit/uiapplication
+- Apple. Support Universal Links (App Search Programming Guide, archived). https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch/UniversalLinks.html
+- MDN Web Docs. Window: open() method. https://developer.mozilla.org/en-US/docs/Web/API/Window/open
+- MDN Web Docs. Window: close() method. https://developer.mozilla.org/en-US/docs/Web/API/Window/close
+- MDN Web Docs. Window: print() method. https://developer.mozilla.org/en-US/docs/Web/API/Window/print
+- MDN Web Docs. The Anchor element. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a
+- MDN Web Docs. Content-Disposition. https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Disposition
+- MDN Web Docs. History: pushState() method. https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
+- MDN Web Docs. Window: pageshow event. https://developer.mozilla.org/en-US/docs/Web/API/Window/pageshow\_event
+- MDN Web Docs. bfcache. https://developer.mozilla.org/en-US/docs/Glossary/bfcache
+- MDN Web Docs. Transient activation. https://developer.mozilla.org/en-US/docs/Glossary/Transient\_activation
+- MDN Web Docs. User activation. https://developer.mozilla.org/en-US/docs/Web/Security/User\_activation
+- WHATWG. HTML Standard. Tracking user activation. https://html.spec.whatwg.org/multipage/interaction.html#tracking-user-activation
+- flutter\_inappwebview. PrintJS.swift (iOS 플러그인 스크립트). https://github.com/pichillilorenzo/flutter\_inappwebview/blob/master/flutter\_inappwebview\_ios/ios/flutter\_inappwebview\_ios/Sources/flutter\_inappwebview\_ios/PluginScriptsJS/PrintJS.swift
+- flutter\_inappwebview. PrintJS.java (Android 플러그인 스크립트). https://github.com/pichillilorenzo/flutter\_inappwebview/blob/master/flutter\_inappwebview\_android/android/src/main/java/com/pichillilorenzo/flutter\_inappwebview\_android/plugin\_scripts\_js/PrintJS.java
+- katzer. cordova-plugin-printer. https://github.com/katzer/cordova-plugin-printer
+- Cap-go. capacitor-printer. https://github.com/Cap-go/capacitor-printer
+- react-native-webview. Pull request #3318 — Support of window.print() function (미머지). https://github.com/react-native-webview/react-native-webview/pull/3318
+- Apple. Choosing an API for Implementing Apple Pay on Your Website. Apple Developer Documentation. https://developer.apple.com/documentation/applepayontheweb/choosing-an-api-for-implementing-apple-pay-on-your-website
+- Apple. Setting Up Your Server (Apple Pay on the Web). Apple Developer Documentation. https://developer.apple.com/documentation/applepayontheweb/setting-up-your-server
+- Apple. Configuring Your Environment (Apple Pay on the Web). Apple Developer Documentation. https://developer.apple.com/documentation/applepayontheweb/configuring-your-environment
+- Apple. Merchant IDs Entitlement. Apple Developer Documentation. https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.in-app-payments
+- WebKit. New WebKit Features in Safari 13. WebKit Blog. https://webkit.org/blog/9674/new-webkit-features-in-safari-13/
+- Chrome for Developers. Support Android payment apps in WebView using Payment Request API. https://developer.chrome.com/docs/android/payments-in-webviews
+---
+
+## 다음 편 예고
+
+> [ep.03 - 폼이 내 디자인이 아닙니다](/webview-not-browser-ep-03/)
+
+선택 상자와 날짜 입력은 웹뷰에서 플랫폼 고유 UI로 치환됩니다. CSS가 닿지 않는 영역을 커스텀으로 다시 짜는 순간 접근성이 무너지고, 자동완성과 인증번호 자동입력이 브라우저와 다르게 동작하기 시작합니다.
