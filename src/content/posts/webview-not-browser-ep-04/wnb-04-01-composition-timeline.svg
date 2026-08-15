@@ -1,0 +1,220 @@
+<svg viewBox="0 0 800 796" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-comp04">
+  <title id="t-comp04">한글 한 음절의 조합 이벤트 타임라인과 값의 어긋남</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #0E7490; --c-accent-2: #B45309; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(14,116,144,0.08);
+        --c-soft-2: rgba(180,83,9,0.10); --c-divider: rgba(26,31,46,0.15);
+        --c-t1: #1D4ED8; --c-t2: #6D28D9; --c-t3: #B45309; --c-t4: #15803D;
+        --c-warn: #B91C1C;
+        --c-t1-s: rgba(29,78,216,0.10); --c-t2-s: rgba(109,40,217,0.10);
+        --c-t3-s: rgba(180,83,9,0.10); --c-warn-s: rgba(185,28,28,0.10);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #4DD4EC; --c-accent-2: #E8A876; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(77,212,236,0.12);
+          --c-soft-2: rgba(232,168,118,0.14); --c-divider: rgba(232,230,225,0.18);
+          --c-t1: #8FB4FF; --c-t2: #C6A8FF; --c-t3: #E8A876; --c-t4: #7CD8A0;
+          --c-warn: #FF9A9A;
+          --c-t1-s: rgba(143,180,255,0.14); --c-t2-s: rgba(198,168,255,0.14);
+          --c-t3-s: rgba(232,168,118,0.14); --c-warn-s: rgba(255,154,154,0.14);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .sec { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 16px; font-weight: 700; fill: var(--c-fg); }
+      .node { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .trk { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .num { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-bg); }
+      .ann { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .ann-s { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .pill-t { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; }
+      .warn-t { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; font-weight: 700; fill: var(--c-warn); }
+      .warn-b { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-warn); }
+      .val { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; }
+      .cap { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .tag { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; fill: var(--c-accent-2); }
+    </style>
+    <pattern id="hatch04" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="var(--c-card)"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="var(--c-muted)" stroke-width="2.2" stroke-opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="800" height="796"/>
+
+  <!-- 구간 라벨 -->
+  <text x="116" y="40" class="sec">조합 시작</text>
+  <text x="340" y="40" class="sec">조합 중 (반복)</text>
+  <text x="592" y="40" class="sec">조합 확정</text>
+
+  <!-- 시간축 -->
+  <line x1="116" y1="56" x2="778" y2="56" stroke="var(--c-divider)" stroke-width="1.2"/>
+  <polygon points="788,56 776,51 776,61" fill="var(--c-divider)"/>
+
+  <!-- 조합 중 구간 상자 -->
+  <rect x="336" y="68" width="248" height="454" rx="10" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <rect x="496" y="62" width="79" height="22" rx="11" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.2"/>
+  <text x="535" y="77" class="pill-t" fill="var(--c-accent)" text-anchor="middle">여러 번 반복</text>
+
+  <!-- 트랙 라벨 -->
+  <rect x="16" y="105" width="8" height="8" rx="2" fill="var(--c-t1)"/>
+  <text x="32" y="114" class="trk">키 이벤트</text>
+  <rect x="16" y="245" width="8" height="8" rx="2" fill="var(--c-t2)"/>
+  <text x="32" y="254" class="trk">조합 이벤트</text>
+  <rect x="16" y="399" width="8" height="8" rx="2" fill="var(--c-t3)"/>
+  <text x="32" y="408" class="trk">입력 이벤트</text>
+  <rect x="14" y="528" width="8" height="8" rx="2" fill="var(--c-t4)"/>
+  <rect x="26" y="528" width="8" height="8" rx="2" fill="var(--c-muted)"/>
+  <text x="42" y="537" class="trk">값</text>
+
+  <!-- 트랙1: 키 이벤트 -->
+  <g>
+    <rect x="122" y="92" width="100" height="34" rx="8" fill="var(--c-t1-s)" stroke="var(--c-t1)" stroke-width="1.5"/>
+    <circle cx="140" cy="109" r="8" fill="var(--c-t1)"/>
+    <text x="140" y="113" class="num" text-anchor="middle">1</text>
+    <text x="154" y="114" class="node">keydown</text>
+  </g>
+  <text x="122" y="146" class="ann">isComposing = false</text>
+  <text x="122" y="163" class="ann">조합을 시작시키는 키</text>
+
+  <g>
+    <rect x="496" y="92" width="80" height="34" rx="8" fill="var(--c-t1-s)" stroke="var(--c-t1)" stroke-width="1.5"/>
+    <circle cx="514" cy="109" r="8" fill="var(--c-t1)"/>
+    <text x="514" y="113" class="num" text-anchor="middle">4</text>
+    <text x="528" y="114" class="node">keyup</text>
+  </g>
+  <text x="576" y="146" class="ann" text-anchor="end">isComposing = true</text>
+
+  <g>
+    <rect x="596" y="92" width="100" height="34" rx="8" fill="var(--c-t1-s)" stroke="var(--c-t1)" stroke-width="1.5"/>
+    <circle cx="614" cy="109" r="8" fill="var(--c-t1)"/>
+    <text x="614" y="113" class="num" text-anchor="middle">5</text>
+    <text x="628" y="114" class="node">keydown</text>
+  </g>
+  <text x="596" y="146" class="ann">isComposing = true</text>
+  <text x="596" y="163" class="ann">조합을 끝내는 키</text>
+
+  <g>
+    <rect x="706" y="92" width="80" height="34" rx="8" fill="var(--c-t1-s)" stroke="var(--c-t1)" stroke-width="1.5"/>
+    <circle cx="724" cy="109" r="8" fill="var(--c-t1)"/>
+    <text x="724" y="113" class="num" text-anchor="middle">7</text>
+    <text x="738" y="114" class="node">keyup</text>
+  </g>
+  <line x1="746" y1="126" x2="746" y2="172" stroke="var(--c-warn)" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="786" y="184" class="ann" fill="var(--c-warn)" text-anchor="end">isComposing = false</text>
+  <rect x="609" y="194" width="177" height="22" rx="11" fill="var(--c-warn-s)" stroke="var(--c-warn)" stroke-width="1.2"/>
+  <text x="697" y="209" class="warn-t" text-anchor="middle">keyup에 가드를 걸면 여기서 뚫린다</text>
+
+  <!-- 1 -> 2 시간순 화살표 -->
+  <path d="M 222 109 H 252 V 224" fill="none" stroke="var(--c-line)" stroke-width="1.6"/>
+  <polygon points="252,232 247,222 257,222" fill="var(--c-line)"/>
+
+  <!-- 트랙2: 조합 이벤트 -->
+  <g>
+    <rect x="166" y="232" width="150" height="34" rx="8" fill="var(--c-t2-s)" stroke="var(--c-t2)" stroke-width="1.5"/>
+    <circle cx="184" cy="249" r="8" fill="var(--c-t2)"/>
+    <text x="184" y="253" class="num" text-anchor="middle">2</text>
+    <text x="198" y="254" class="node">compositionstart</text>
+  </g>
+  <g>
+    <rect x="344" y="232" width="143" height="34" rx="8" fill="var(--c-t2-s)" stroke="var(--c-t2)" stroke-width="1.5"/>
+    <text x="354" y="254" class="node">compositionupdate</text>
+  </g>
+  <g>
+    <rect x="620" y="232" width="145" height="34" rx="8" fill="var(--c-t2-s)" stroke="var(--c-t2)" stroke-width="1.5"/>
+    <circle cx="638" cy="249" r="8" fill="var(--c-t2)"/>
+    <text x="638" y="253" class="num" text-anchor="middle">6</text>
+    <text x="652" y="254" class="node">compositionend</text>
+  </g>
+  <text x="620" y="284" class="ann">data = 확정된 최종 문자열</text>
+  <text x="620" y="301" class="ann">DOM 변경 없음</text>
+
+  <!-- 순서 불확정 양방향 표시 -->
+  <line x1="354" y1="274" x2="354" y2="378" stroke="var(--c-muted)" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <polygon points="354,268 349,278 359,278" fill="var(--c-muted)"/>
+  <polygon points="354,384 349,374 359,374" fill="var(--c-muted)"/>
+  <circle cx="354" cy="326" r="13" fill="var(--c-bg)" stroke="var(--c-muted)" stroke-width="1.4"/>
+  <text x="354" y="331" class="node" fill="var(--c-muted)" text-anchor="middle">?</text>
+  <line x1="367" y1="326" x2="374" y2="326" stroke="var(--c-warn)" stroke-width="1.2"/>
+
+  <rect x="374" y="292" width="204" height="66" rx="8" fill="var(--c-warn-s)" stroke="var(--c-warn)" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="386" y="313" class="warn-b">UI Events와 Input Events가</text>
+  <text x="386" y="329" class="warn-b">서로 다른 순서를 적고 있음</text>
+  <text x="386" y="345" class="warn-b">이 순서에 의존하지 않는다</text>
+
+  <!-- 트랙3: 입력 이벤트 -->
+  <g>
+    <rect x="344" y="386" width="94" height="34" rx="8" fill="var(--c-t3-s)" stroke="var(--c-t3)" stroke-width="1.5"/>
+    <text x="354" y="408" class="node">beforeinput</text>
+  </g>
+  <g>
+    <rect x="476" y="386" width="53" height="34" rx="8" fill="var(--c-t3-s)" stroke="var(--c-t3)" stroke-width="1.5"/>
+    <text x="486" y="408" class="node">input</text>
+  </g>
+  <text x="344" y="438" class="ann-s">inputType =</text>
+  <text x="344" y="452" class="ann-s">insertCompositionText</text>
+  <rect x="344" y="460" width="61" height="20" rx="10" fill="var(--c-warn-s)" stroke="var(--c-warn)" stroke-width="1.1"/>
+  <text x="374" y="474" class="warn-t" text-anchor="middle">취소 불가</text>
+
+  <!-- DOM 갱신 지점 -->
+  <line x1="457" y1="422" x2="457" y2="536" stroke="var(--c-t4)" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <polygon points="457,542 452,532 462,532" fill="var(--c-t4)"/>
+  <text x="465" y="498" class="ann" fill="var(--c-t4)">DOM 값이 여기서</text>
+  <text x="465" y="512" class="ann" fill="var(--c-t4)">갱신된다</text>
+
+  <!-- 트랙4: 값 -->
+  <text x="106" y="571" class="ann-s" text-anchor="end">el.value (DOM)</text>
+  <rect x="250" y="546" width="536" height="32" rx="6" fill="var(--c-t4)"/>
+  <line x1="354" y1="546" x2="354" y2="578" stroke="var(--c-bg)" stroke-width="2"/>
+  <line x1="457" y1="546" x2="457" y2="578" stroke="var(--c-bg)" stroke-width="2"/>
+  <text x="302" y="567" class="val" fill="var(--c-bg)" text-anchor="middle">ㅎ</text>
+  <text x="405" y="567" class="val" fill="var(--c-bg)" text-anchor="middle">하</text>
+  <text x="621" y="567" class="val" fill="var(--c-bg)" text-anchor="middle">한</text>
+
+  <text x="106" y="609" class="ann-s" text-anchor="end">프레임워크 모델 값</text>
+  <text x="106" y="622" class="ann-s" text-anchor="end">(예: Vue v-model)</text>
+  <rect x="250" y="592" width="430" height="32" rx="6" fill="url(#hatch04)" stroke="var(--c-muted)" stroke-width="1.2"/>
+  <text x="465" y="613" class="val" fill="var(--c-muted)" text-anchor="middle">이전 값</text>
+  <path d="M 682 618 H 698 V 606 H 714 V 594 H 728" fill="none" stroke="var(--c-t4)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="736,594 726,589 726,599" fill="var(--c-t4)"/>
+  <rect x="740" y="592" width="46" height="32" rx="6" fill="var(--c-t4)"/>
+  <text x="763" y="613" class="val" fill="var(--c-bg)" text-anchor="middle">한</text>
+
+  <path d="M 250 628 V 634 H 680 V 628" fill="none" stroke="var(--c-muted)" stroke-width="1.2"/>
+  <text x="465" y="652" class="cap" text-anchor="middle">화면과 모델이 어긋나 있는 구간</text>
+
+  <!-- iOS 주석 -->
+  <rect x="24" y="676" width="764" height="96" rx="10" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-dasharray="6 5"/>
+  <text x="44" y="698" class="tag">iOS</text>
+  <text x="44" y="716" class="ann" fill="var(--c-fg)">Safari 26.x 이하 및 같은 엔진을 쓰는 iOS WKWebView</text>
+  <text x="44" y="733" class="ann">조합 확정 구간의 keydown과 input이 compositionend보다 뒤에 오고</text>
+  <text x="44" y="750" class="ann">그때 isComposing은 false로 관찰된다</text>
+
+  <g>
+    <rect x="440" y="707" width="122" height="30" rx="7" fill="var(--c-t2-s)" stroke="var(--c-t2)" stroke-width="1.3"/>
+    <circle cx="455" cy="722" r="7" fill="var(--c-t2)"/>
+    <text x="455" y="726" class="num" text-anchor="middle">6</text>
+    <text x="467" y="726" class="pill-t" fill="var(--c-fg)">compositionend</text>
+  </g>
+  <line x1="564" y1="722" x2="570" y2="722" stroke="var(--c-muted)" stroke-width="1.4"/>
+  <polygon points="576,722 566,717 566,727" fill="var(--c-muted)"/>
+  <g>
+    <rect x="576" y="707" width="83" height="30" rx="7" fill="var(--c-t1-s)" stroke="var(--c-t1)" stroke-width="1.3"/>
+    <circle cx="591" cy="722" r="7" fill="var(--c-t1)"/>
+    <text x="591" y="726" class="num" text-anchor="middle">5</text>
+    <text x="603" y="726" class="pill-t" fill="var(--c-fg)">keydown</text>
+  </g>
+  <line x1="661" y1="722" x2="667" y2="722" stroke="var(--c-muted)" stroke-width="1.4"/>
+  <polygon points="673,722 663,717 663,727" fill="var(--c-muted)"/>
+  <g>
+    <rect x="673" y="707" width="67" height="30" rx="7" fill="var(--c-t1-s)" stroke="var(--c-t1)" stroke-width="1.3"/>
+    <circle cx="688" cy="722" r="7" fill="var(--c-t1)"/>
+    <text x="688" y="726" class="num" text-anchor="middle">7</text>
+    <text x="700" y="726" class="pill-t" fill="var(--c-fg)">keyup</text>
+  </g>
+  <text x="440" y="756" class="ann-s">Safari 27에서 수정, 2026년 8월 기준 베타</text>
+</svg>
