@@ -1,5 +1,5 @@
 <svg width="100%" viewBox="0 0 680 540" role="img" xmlns="http://www.w3.org/2000/svg">
-<title>다크패턴 교육자료 시리즈 — 한 페이지 요약</title>
+<title>다크패턴 교육자료 시리즈: 한 페이지 요약</title>
 <desc>5가지 핵심 원칙과 6개 여정 단계별 점검 항목을 요약한 시리즈 종합 인포그래픽</desc>
 <style>
   text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
@@ -42,7 +42,7 @@
 </style>
 
 <!-- Title -->
-<text class="th" x="340" y="30" text-anchor="middle" dominant-baseline="central">다크패턴 방지 — 5가지 핵심 원칙</text>
+<text class="th" x="340" y="30" text-anchor="middle" dominant-baseline="central">다크패턴 방지: 5가지 핵심 원칙</text>
 
 <!-- Principle cards -->
 <g class="c-purple"><rect x="40" y="50" width="116" height="60" rx="8" stroke-width="0.5"/>

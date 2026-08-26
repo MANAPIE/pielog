@@ -1,7 +1,7 @@
 ---
 title: "Decorator와 Wrapper 컴포넌트의 윤리 - 디자인 패턴, 객체 수준 편 ep.05"
 description: 같은 모양 위에 기능을 덧붙이는 일. Decorator 패턴은 책임을 쌓아 올리는 방식을 정의합니다.
-summary: Logger, Cache, Auth 데코레이터를 체인으로 쌓는 TypeScript 예제로 Decorator의 구조를 살펴보고, HOC와의 차이를 정리합니다. 같은 결정 구조가 Wrapper 컴포넌트와 Compound Component 사이에서 어떻게 다른 답을 내놓는지 — 그리고 덧붙임에는 어떤 윤리가 따라오는지를 함께 봅니다.
+summary: Logger, Cache, Auth 데코레이터를 체인으로 쌓는 TypeScript 예제로 Decorator의 구조를 살펴보고, HOC와의 차이를 정리합니다. 같은 결정 구조가 Wrapper 컴포넌트와 Compound Component 사이에서 어떻게 다른 답을 내놓는지, 그리고 덧붙임에는 어떤 윤리가 따라오는지를 함께 봅니다.
 date: 2026-06-16
 tags:
   - series
@@ -29,7 +29,7 @@ thumbnail: ./cover.svg
 
 객체에 새 기능을 더하는 일을 생각합니다. HTTP 요청에 로깅을 더한다. 캐싱을 더한다. 인증 헤더를 더한다. 재시도를 더한다.
 
-각 기능을 별도의 클래스로 만들고 상속으로 조합하려는 시도는 곧 막힙니다. 로깅과 캐싱을 동시에 더하려면 `LoggingCachingRequest`가 필요합니다. 거기에 인증을 더하면 `LoggingCachingAuthRequest`. 조합의 수만큼 클래스가 늘어납니다.
+각 기능을 별도의 클래스로 만들고 상속으로 조합하려는 시도는 곧 막힙니다. 로깅과 캐싱을 동시에 더하려면 `LoggingCachingRequest`가 필요합니다. 거기에 인증을 더하면 `LoggingCachingAuthRequest`까지 필요합니다. 조합의 수만큼 클래스가 늘어납니다.
 
 Decorator는 다른 답을 냅니다. 기능을 더하는 객체가 원본 객체와 **같은 인터페이스**를 가지도록 만듭니다. 같은 모양이므로 어디든 끼워 넣을 수 있습니다. 같은 모양이므로 또 다른 Decorator로 감쌀 수 있습니다.
 
@@ -133,7 +133,7 @@ TypeScript에는 `@Logger`처럼 사용하는 클래스/메서드 데코레이�
 
 ## 같은 결정이 다시 나타나는 자리
 
-Decorator가 답하는 질문 — 같은 모양 위에 책임을 한 겹씩 쌓는다 — 는 React 같은 컴포넌트 시스템에서 매일 반복됩니다.
+Decorator가 답하는 질문은 같은 모양 위에 책임을 한 겹씩 쌓는 것입니다. 이 질문은 React 같은 컴포넌트 시스템에서 매일 반복됩니다.
 
 **Wrapper 컴포넌트**가 가장 직접적인 사례입니다. 인증이 필요한 페이지를 `AuthGate`로 감쌉니다. 분석 이벤트가 필요한 영역을 `TrackingProvider`로 감쌉니다. 다크 모드 강제 영역을 `ThemeOverride`로 감쌉니다.
 
@@ -149,9 +149,9 @@ Decorator가 답하는 질문 — 같은 모양 위에 책임을 한 겹씩 쌓�
 
 각 Wrapper가 같은 자식 타입을 받고 같은 모양을 내보냅니다. 자유롭게 조합되고, 자유롭게 쌓입니다. 코드의 Decorator 체인과 같은 구조입니다.
 
-컴포넌트를 받아 컴포넌트를 돌려주는 **HOC(Higher-Order Component)** 는 같은 결정에 대한 또 다른 답입니다. `withAuth(withTracking(withTheme(CheckoutPage)))`처럼 호출 순서는 Decorator와 같지만, 외부에서 보이는 것은 최종 컴포넌트 하나입니다. **현대 React는 Hook과 Wrapper로 거의 대체했지만, 같은 결정 — 같은 모양 위에 책임을 쌓는다 — 가 패턴의 이름만 바꿔 다시 나타난 것입니다.**
+컴포넌트를 받아 컴포넌트를 돌려주는 **HOC(Higher-Order Component)** 는 같은 결정에 대한 또 다른 답입니다. `withAuth(withTracking(withTheme(CheckoutPage)))`처럼 호출 순서는 Decorator와 같지만, 외부에서 보이는 것은 최종 컴포넌트 하나입니다. **현대 React는 Hook과 Wrapper로 거의 대체했지만, 같은 모양 위에 책임을 쌓는다는 같은 결정이 패턴의 이름만 바꿔 다시 나타난 것입니다.**
 
-![Wrapper 컴포넌트, HOC, Hook의 세 가지 답을 비교한 다이어그램. 좌측에는 JSX 트리 형태의 Wrapper 컴포넌트 중첩이 그려져 있습니다. AuthGate, TrackingProvider, ThemeOverride가 차례로 감싸고 가장 안쪽에 CheckoutPage가 위치합니다. 중앙에는 HOC 형태의 함수 합성이 표시되어 있으며, withAuth(withTracking(withTheme(CheckoutPage))) 형태로 바깥에서 안쪽으로 함수가 호출되는 구조입니다. 우측에는 Hook 기반의 평탄한 구조가 그려져 있고, CheckoutPage 내부에서 useAuth, useTracking, useTheme가 동일한 깊이로 호출되는 모습입니다. 세 답 모두 같은 결정 — 같은 모양 위에 책임을 쌓는다 — 에 대한 다른 해법임을 시각적으로 드러냅니다.](dpo-05-02-wrapper-vs-compound.svg)
+![Wrapper 컴포넌트, HOC, Hook의 세 가지 답을 비교한 다이어그램. 좌측에는 JSX 트리 형태의 Wrapper 컴포넌트 중첩이 그려져 있습니다. AuthGate, TrackingProvider, ThemeOverride가 차례로 감싸고 가장 안쪽에 CheckoutPage가 위치합니다. 중앙에는 HOC 형태의 함수 합성이 표시되어 있으며, withAuth(withTracking(withTheme(CheckoutPage))) 형태로 바깥에서 안쪽으로 함수가 호출되는 구조입니다. 우측에는 Hook 기반의 평탄한 구조가 그려져 있고, CheckoutPage 내부에서 useAuth, useTracking, useTheme가 동일한 깊이로 호출되는 모습입니다. 세 답 모두 같은 결정, "같은 모양 위에 책임을 쌓는다"에 대한 다른 해법임을 시각적으로 드러냅니다.](dpo-05-02-wrapper-vs-compound.svg)
 
 ### Compound Component와의 차이
 
@@ -191,6 +191,6 @@ Decorator는 강력합니다. 그래서 책임이 따라옵니다.
 
 ## 다음 편 예고
 
-> [ep.06 — Facade와 디자인 시스템 라이브러리 API](/design-patterns-objects-ep-06/)
+> [ep.06 - Facade와 디자인 시스템 라이브러리 API](/design-patterns-objects-ep-06/)
 
-Decorator가 같은 모양 위에 쌓는 패턴이라면, Facade는 안쪽의 복잡함을 한 겹의 단순함으로 가리는 패턴입니다. 디자인 시스템 컴포넌트의 API 표면을 어떻게 결정할 것인가 — 그 질문이 곧 Facade의 질문입니다.
+Decorator가 같은 모양 위에 쌓는 패턴이라면, Facade는 안쪽의 복잡함을 한 겹의 단순함으로 가리는 패턴입니다. 디자인 시스템 컴포넌트의 API 표면을 어떻게 결정할 것인가? 그 질문이 곧 Facade의 질문입니다.

@@ -100,7 +100,7 @@
   <line x1="360" y1="190" x2="382" y2="190" stroke="var(--c-warm)" stroke-width="1.2"/>
 
   <!-- 상단 -->
-  <text class="sub" x="300" y="40" text-anchor="middle">자동만으로는 부족합니다 — 두 레이어가 함께 작동해야 진짜 접근성이 됩니다</text>
+  <text class="sub" x="300" y="40" text-anchor="middle">자동만으로는 부족합니다: 두 레이어가 함께 작동해야 진짜 접근성이 됩니다</text>
 
   <!-- 하단 -->
   <text class="sub" x="300" y="362" text-anchor="middle">자동은 매 PR, 수동은 새 화면이나 큰 흐름 변경 시</text>

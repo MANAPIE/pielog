@@ -163,7 +163,7 @@
     }
   </style>
 
-  <text x="24" y="36" class="title">Incident Response Playbook — 사고 발생 시 정해진 흐름</text>
+  <text x="24" y="36" class="title">Incident Response Playbook: 사고 발생 시 정해진 흐름</text>
   <text x="24" y="56" class="caption">"이미 정해진 절차가 있는가" 가 사고의 피해 규모를 결정합니다. 한밤중에 즉흥적 결정을 내리지 마세요.</text>
 
   <!-- Phase 1: Detect -->

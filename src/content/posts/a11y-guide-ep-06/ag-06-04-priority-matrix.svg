@@ -173,7 +173,7 @@
   </style>
 
   <text class="title" x="40" y="32">접근성 이슈 우선순위 계산</text>
-  <text class="caption" x="40" y="50">발견된 이슈를 어떤 순서로 수정할지 — 세 축의 곱으로 결정</text>
+  <text class="caption" x="40" y="50">발견된 이슈를 어떤 순서로 수정할지: 세 축의 곱으로 결정</text>
 
   <!-- 공식 -->
   <g transform="translate(40, 76)">
@@ -190,22 +190,22 @@
     <g transform="translate(14, 51)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h rust-t" x="18" y="16" text-anchor="middle">4</text>
-      <text class="lvl-d" x="46" y="16">차단 — 사용 완전 불가</text>
+      <text class="lvl-d" x="46" y="16">차단: 사용 완전 불가</text>
     </g>
     <g transform="translate(14, 77)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h rust-t" x="18" y="16" text-anchor="middle">3</text>
-      <text class="lvl-d" x="46" y="16">심각 — 매우 어려움</text>
+      <text class="lvl-d" x="46" y="16">심각: 매우 어려움</text>
     </g>
     <g transform="translate(14, 103)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h rust-t" x="18" y="16" text-anchor="middle">2</text>
-      <text class="lvl-d" x="46" y="16">보통 — 우회 가능</text>
+      <text class="lvl-d" x="46" y="16">보통: 우회 가능</text>
     </g>
     <g transform="translate(14, 129)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h rust-t" x="18" y="16" text-anchor="middle">1</text>
-      <text class="lvl-d" x="46" y="16">경미 — 경험 저하</text>
+      <text class="lvl-d" x="46" y="16">경미: 경험 저하</text>
     </g>
   </g>
 
@@ -218,17 +218,17 @@
     <g transform="translate(14, 51)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h amber-t" x="18" y="16" text-anchor="middle">3</text>
-      <text class="lvl-d" x="46" y="16">높음 — 핵심 플로우</text>
+      <text class="lvl-d" x="46" y="16">높음: 핵심 플로우</text>
     </g>
     <g transform="translate(14, 77)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h amber-t" x="18" y="16" text-anchor="middle">2</text>
-      <text class="lvl-d" x="46" y="16">보통 — 주요 기능</text>
+      <text class="lvl-d" x="46" y="16">보통: 주요 기능</text>
     </g>
     <g transform="translate(14, 103)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h amber-t" x="18" y="16" text-anchor="middle">1</text>
-      <text class="lvl-d" x="46" y="16">낮음 — 부가 기능</text>
+      <text class="lvl-d" x="46" y="16">낮음: 부가 기능</text>
     </g>
   </g>
 
@@ -241,17 +241,17 @@
     <g transform="translate(14, 51)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h purple-head" x="18" y="16" text-anchor="middle">3</text>
-      <text class="lvl-d" x="46" y="16">넓음 — 다수 장애 유형</text>
+      <text class="lvl-d" x="46" y="16">넓음: 다수 장애 유형</text>
     </g>
     <g transform="translate(14, 77)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h purple-head" x="18" y="16" text-anchor="middle">2</text>
-      <text class="lvl-d" x="46" y="16">보통 — 특정 유형</text>
+      <text class="lvl-d" x="46" y="16">보통: 특정 유형</text>
     </g>
     <g transform="translate(14, 102)">
       <rect class="lvl-chip" x="0" y="0" width="36" height="22" rx="3" />
       <text class="lvl-h purple-head" x="18" y="16" text-anchor="middle">1</text>
-      <text class="lvl-d" x="46" y="16">좁음 — 매우 특수 상황</text>
+      <text class="lvl-d" x="46" y="16">좁음: 매우 특수 상황</text>
     </g>
   </g>
 

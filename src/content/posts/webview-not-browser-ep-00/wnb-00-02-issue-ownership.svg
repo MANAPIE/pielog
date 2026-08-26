@@ -1,0 +1,93 @@
+<svg viewBox="0 0 600 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-own">
+  <title id="t-own">웹뷰 이슈의 담당을 가르는 판단 흐름도</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #0E7490; --c-accent-2: #B45309; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(14,116,144,0.08);
+        --c-soft-2: rgba(180,83,9,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #4DD4EC; --c-accent-2: #E8A876; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(77,212,236,0.12);
+          --c-soft-2: rgba(232,168,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .start { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.5; }
+      .q-card { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .end-card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; }
+      .flow { stroke: var(--c-line); stroke-width: 1.6; fill: none; }
+      .q-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .end-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+      .yn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="600" height="470"/>
+
+  <!-- 시작 -->
+  <rect x="70" y="26" width="240" height="44" rx="22" class="start"/>
+  <text x="190" y="53" class="q-txt" text-anchor="middle">앱에서만 재현되는 증상</text>
+  <line x1="190" y1="70" x2="190" y2="96" class="flow"/>
+  <polygon points="190,102 185,93 195,93" fill="var(--c-line)"/>
+
+  <!-- 분기 1 -->
+  <rect x="60" y="102" width="260" height="56" rx="10" class="q-card"/>
+  <text x="190" y="134" class="q-txt" text-anchor="middle">브라우저에서도 재현되는가</text>
+  <line x1="320" y1="130" x2="392" y2="130" class="flow"/>
+  <polygon points="398,130 389,125 389,135" fill="var(--c-line)"/>
+  <text x="356" y="121" class="yn" text-anchor="middle">예</text>
+  <g>
+    <rect x="398" y="105" width="178" height="50" rx="8" class="end-card"/>
+    <rect x="398" y="113" width="4" height="34" rx="2" fill="var(--c-muted)"/>
+    <text x="418" y="135" class="end-txt">일반 웹 이슈</text>
+  </g>
+  <line x1="190" y1="158" x2="190" y2="192" class="flow"/>
+  <polygon points="190,198 185,189 195,189" fill="var(--c-line)"/>
+  <text x="202" y="180" class="yn">아니오</text>
+
+  <!-- 분기 2 -->
+  <rect x="60" y="198" width="260" height="56" rx="10" class="q-card"/>
+  <text x="190" y="230" class="q-txt" text-anchor="middle">웹 코드 수정으로 동작이 바뀌는가</text>
+  <line x1="320" y1="226" x2="392" y2="226" class="flow"/>
+  <polygon points="398,226 389,221 389,231" fill="var(--c-line)"/>
+  <text x="356" y="217" class="yn" text-anchor="middle">예</text>
+  <g>
+    <rect x="398" y="201" width="178" height="50" rx="8" class="end-card"/>
+    <rect x="398" y="209" width="4" height="34" rx="2" fill="var(--c-accent)"/>
+    <text x="418" y="231" class="end-txt">웹 담당</text>
+  </g>
+  <line x1="190" y1="254" x2="190" y2="288" class="flow"/>
+  <polygon points="190,294 185,285 195,285" fill="var(--c-line)"/>
+  <text x="202" y="276" class="yn">아니오</text>
+
+  <!-- 분기 3 -->
+  <rect x="60" y="294" width="260" height="56" rx="10" class="q-card"/>
+  <text x="190" y="326" class="q-txt" text-anchor="middle">앱 설정 변경으로 동작이 바뀌는가</text>
+  <line x1="320" y1="322" x2="392" y2="322" class="flow"/>
+  <polygon points="398,322 389,317 389,327" fill="var(--c-line)"/>
+  <text x="356" y="313" class="yn" text-anchor="middle">예</text>
+  <g>
+    <rect x="398" y="291" width="178" height="62" rx="8" class="end-card"/>
+    <rect x="398" y="299" width="4" height="46" rx="2" fill="var(--c-accent-2)"/>
+    <text x="418" y="315" class="end-txt">앱 담당</text>
+    <text x="418" y="337" class="cap">요청 항목 특정</text>
+  </g>
+  <line x1="190" y1="350" x2="190" y2="384" class="flow"/>
+  <polygon points="190,390 185,381 195,381" fill="var(--c-line)"/>
+  <text x="202" y="372" class="yn">아니오</text>
+
+  <!-- 종착: 공동 대응 -->
+  <g>
+    <rect x="60" y="390" width="260" height="62" rx="8" class="end-card"/>
+    <rect x="60" y="398" width="4" height="23" rx="2" fill="var(--c-accent)"/>
+    <rect x="60" y="421" width="4" height="23" rx="2" fill="var(--c-accent-2)"/>
+    <text x="80" y="414" class="end-txt">공동 대응</text>
+    <text x="80" y="436" class="cap">합의 필요</text>
+  </g>
+</svg>

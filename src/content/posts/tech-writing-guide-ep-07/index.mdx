@@ -1,5 +1,5 @@
 ---
-title: "운영의 언어, 런북과 포스트모템 - 개발자를 위한 기술문서 입문 ep.07"
+title: "운영의 언어: 런북과 포스트모템 - 개발자를 위한 기술문서 입문 ep.07"
 description: "새벽 3시에 호출된 사람을 위한 런북, 그리고 실패에서 조직이 배우게 하는 포스트모템. 운영 문서가 갖춰야 할 차가운 글쓰기를 다룹니다."
 summary: "운영 문서는 평소엔 안 읽힙니다. 읽힐 때는 누군가 잠에서 깬 새벽 3시이거나, 무언가가 막 망가진 직후입니다. 그래서 톤이 다릅니다. 군더더기가 없어야 하고, 감정이 빠져 있어야 하고, 사실이 우선해야 합니다. 이번 편은 런북의 응급 카드 구조와 포스트모템의 비난 없는 글쓰기를 다룹니다."
 date: 2026-05-20
@@ -22,7 +22,7 @@ draft: false
 
 - 막 잠에서 깬 채로 노트북을 열었다
 - 알람의 텍스트만 보고 무엇이 문제인지 모른다
-- 시간이 흐르고 있다 — 그리고 그 시간이 곧 비용이다
+- 시간이 흐르고 있다: 그리고 그 시간이 곧 비용이다
 - 평소 그 시스템을 깊이 모를 수도 있다
 
 이 상태의 독자에게 필요한 건 *교육*이 아닙니다. *행동*입니다. 그래서 런북은 *튜토리얼이 아니라 카드 묶음*에 가깝습니다.
@@ -31,14 +31,14 @@ draft: false
 
 좋은 런북 하나는 다음 네 구간으로 구성됩니다.
 
-![런북의 응급 카드 구조 다이어그램. 상단에는 빨간 테두리의 알람 카드가 있다. 헤더는 ALERT 태그와 함께 "PaymentService — High 5xx error rate", 메타 정보로 Severity SEV-2, Triggers error_rate > 5% for 3min, On-call payments team. 그 아래 1. FIRST ACTION 30초 안에 — 트래픽이 정상보다 30% 이상 높으면 자동 스케일 그룹 +50% 즉시 트리거, 그렇지 않으면 다음 단계로. 2. DIAGNOSE 결정 트리 — Q1 에러가 특정 엔드포인트에 몰리는가? YES면 해당 엔드포인트 deploy 이력 확인(Q2), NO면 인프라 이슈 가능성(Q3). Q2 최근 1시간 내 배포가 있었는가? YES면 Mitigation A(롤백), NO면 Mitigation B(서킷 브레이커). 3-A MITIGATION 롤백 — kubectl rollout undo 명령어 박스, 검증은 5xx rate < 1% within 5min, 실패 시 3-B로. 3-B MITIGATION 서킷 브레이커 — feature_flag set 명령어 박스, 검증은 의존 서비스 호출 차단 확인, 실패 시 4. ESCALATE로.](./tw-07-01-runbook-card.svg)
+![런북의 응급 카드 구조 다이어그램. 상단에는 빨간 테두리의 알람 카드가 있다. 헤더는 ALERT 태그와 함께 "PaymentService: High 5xx error rate", 메타 정보로 Severity SEV-2, Triggers error_rate > 5% for 3min, On-call payments team. 그 아래 1. FIRST ACTION 30초 안에: 트래픽이 정상보다 30% 이상 높으면 자동 스케일 그룹 +50% 즉시 트리거, 그렇지 않으면 다음 단계로. 2. DIAGNOSE 결정 트리: Q1 에러가 특정 엔드포인트에 몰리는가? YES면 해당 엔드포인트 deploy 이력 확인(Q2), NO면 인프라 이슈 가능성(Q3). Q2 최근 1시간 내 배포가 있었는가? YES면 Mitigation A(롤백), NO면 Mitigation B(서킷 브레이커). 3-A MITIGATION 롤백: kubectl rollout undo 명령어 박스, 검증은 5xx rate < 1% within 5min, 실패 시 3-B로. 3-B MITIGATION 서킷 브레이커: feature_flag set 명령어 박스, 검증은 의존 서비스 호출 차단 확인, 실패 시 4. ESCALATE로.](./tw-07-01-runbook-card.svg)
 
 각 구간을 짧게 풀어봅니다.
 
 1. **알람 헤더**: 어떤 알람이고, 심각도가 무엇이고, 누가 on-call인지가 *맨 위*에 있어야 합니다. 잠에서 깬 사람이 *지금 자기 일이 맞는지* 30초 안에 판단할 수 있어야 합니다.
 2. **First Action (30초 안에)**: 가장 자주 효과가 있는 *즉시 행동*. 일단 출혈을 멈추는 것. 진단 없이도 안전하게 할 수 있는 것이어야 합니다.
 3. **Diagnose**: 결정 트리 형태가 좋습니다. "이게 보이면 → A로, 저게 보이면 → B로." 길지 않게. 3~5 분기면 충분합니다.
-4. **Mitigate**: 결정 트리의 각 가지가 가리키는 *완화 액션*. *복사해서 실행할 수 있는 명령어*가 있어야 합니다. 그리고 *검증* — 이게 됐는지 어떻게 확인하는가 — 가 같이 있어야 합니다.
+4. **Mitigate**: 결정 트리의 각 가지가 가리키는 *완화 액션*. *복사해서 실행할 수 있는 명령어*가 있어야 합니다. 그리고 이게 됐는지 어떻게 확인하는가 하는 *검증* 도 같이 있어야 합니다.
 
 ### 런북에서 빠뜨리지 말아야 할 것
 
@@ -54,9 +54,9 @@ draft: false
 - **PagerDuty**: 인시던트 자체에 `Runbook URL` 필드가 있고, 알람을 정의할 때 해당 알람 → 런북 매핑을 박을 수 있습니다. 알람 SMS에서 한 번의 탭으로 런북에 가는 길이 가장 가까운 형태입니다.
 - **Grafana · Datadog · PromQL 알람**: 알람 정의의 `annotations` 또는 `runbook_url` 필드에 URL 한 줄. 알람 본문에 자동으로 따라옵니다. Prometheus Alertmanager의 표준 관습이기도 합니다.
 - **Confluence · Notion**: *카탈로그* 역할이 강합니다. 런북 페이지마다 `service`·`severity`·`last-drilled` 같은 프로퍼티를 두고, 데이터베이스 뷰로 *6개월 이상 드릴되지 않은 런북*을 자동으로 떠올립니다. 글이 묻히지 않게 하는 장치.
-- **GitHub의 `docs/runbooks/`**: 코드와 같은 저장소에 두고, 알람의 `runbook_url`이 GitHub 영구 링크를 가리키게 합니다. 코드와 런북이 *같은 PR로 갱신*되는 가장 단단한 결합 — 다만 새벽 3시 노트북에서 GitHub 로그인이 막히지 않도록 *공개 또는 SSO 우선*으로 두는 게 안전합니다.
+- **GitHub의 `docs/runbooks/`**: 코드와 같은 저장소에 두고, 알람의 `runbook_url`이 GitHub 영구 링크를 가리키게 합니다. 코드와 런북이 *같은 PR로 갱신*되는 가장 단단한 결합 - 다만 새벽 3시 노트북에서 GitHub 로그인이 막히지 않도록 *공개 또는 SSO 우선*으로 두는 게 안전합니다.
 
-도구가 무엇이든 *알람 본문에 한 줄의 링크*만큼 강력한 건 없습니다. 그리고 그 링크가 *깨지지 않게* 한 명이 분기마다 점검해야 합니다.
+도구가 무엇이든 *알람 본문에 링크 한 줄*을 넣는 것이 효과적입니다. 그리고 그 링크가 *깨지지 않게* 한 명이 분기마다 점검해야 합니다.
 
 ### 런북이 자주 무너지는 지점
 
@@ -71,18 +71,18 @@ draft: false
 런북은 보통 사내 깊숙이 묻혀 있어 외부에서 볼 일이 적습니다. 다만 *공개된 런북 묶음*이 몇 곳 있고, 처음 런북을 쓰기 시작한 팀이 *어휘와 디렉터리 구조*를 그대로 흉내 내기에 좋습니다.
 
 - **[Prometheus Operator runbooks](https://github.com/prometheus-operator/runbooks)**: Kubernetes 알람 한 건당 한 마크다운 파일이 디렉터리에 누적됩니다. 알람 정의의 `runbook_url` 필드가 *바로 이 저장소의 해당 파일*을 가리키게 두는 표준 사례. 위에서 본 *Prometheus Alertmanager의 표준 관습*이 실전에서 어떻게 굳어졌는지를 볼 수 있는 가장 가까운 자료입니다.
-- **[GitLab Production runbooks](https://gitlab.com/gitlab-com/runbooks)**: GitLab.com SRE 팀이 실제로 운영하는 런북 묶음을 그대로 공개해 둔 저장소. `docs/`·`dashboards/`·`mimir-rules/`·`legacy-cookbooks/`가 한 저장소에 같이 사는 모습은 본문에서 권한 *GitHub `docs/runbooks/`* 결합 — *코드와 런북이 같은 PR로 갱신된다* — 의 살아 있는 예시입니다.
+- **[GitLab Production runbooks](https://gitlab.com/gitlab-com/runbooks)**: GitLab.com SRE 팀이 실제로 운영하는 런북 묶음을 그대로 공개해 둔 저장소. `docs/`·`dashboards/`·`mimir-rules/`·`legacy-cookbooks/`가 한 저장소에 같이 사는 모습은 본문에서 권한 *GitHub `docs/runbooks/`* 결합, 곧 *코드와 런북이 같은 PR로 갱신된다*는 원칙의 살아 있는 예시입니다.
 - **[PagerDuty Incident Response](https://response.pagerduty.com/)**: 런북 *한 편*이 아니라 *런북·인시던트 대응을 어떻게 조직 차원으로 굴리는가*의 핸드북. 본문에서 쓰는 *Severity · On-call · Escalate* 어휘의 거의 원전이고, 사내에서 처음 인시던트 절차를 세울 때 이 사이트의 페이지 구조를 그대로 가져다 쓰는 팀이 많습니다.
 
-세 사례의 공통점은 셋입니다. **(1) 알람이 글의 시작점**입니다 — 런북은 *알람의 부록*이지 *서비스의 매뉴얼*이 아닙니다. **(2) 디렉터리 컨벤션이 곧 검색 도구**입니다 — 파일명·경로·태그만으로 새벽 3시에 필요한 한 편이 잡힙니다. **(3) 어휘가 통일**되어 있습니다 — `Severity`·`Mitigation`·`Escalation` 같은 단어의 의미가 모든 런북에서 같습니다. 사내 런북을 처음 만들 때 이 셋 중 하나의 *어휘와 디렉터리 컨벤션*을 그대로 빌려오는 것이 가장 빠른 시작입니다.
+세 사례의 공통점은 셋입니다. **(1) 알람이 글의 시작점**입니다. 런북은 *알람의 부록*이지 *서비스의 매뉴얼*이 아닙니다. **(2) 디렉터리 컨벤션이 곧 검색 도구**입니다. 파일명·경로·태그만으로 새벽 3시에 필요한 한 편이 잡힙니다. **(3) 어휘가 통일**되어 있습니다. `Severity`·`Mitigation`·`Escalation` 같은 단어의 의미가 모든 런북에서 같습니다. 사내 런북을 처음 만들 때 이 셋 중 하나의 *어휘와 디렉터리 컨벤션*을 그대로 빌려오는 것이 가장 빠른 시작입니다.
 
-#### 짧은 시나리오 — PaymentService 팀의 분기 gameday
+#### 짧은 시나리오 - PaymentService 팀의 분기 gameday
 
 가상의 PaymentService 팀이 분기마다 하루를 잡아 *gameday*를 합니다. 인시던트가 *나기를 기다리지 않고*, 의도적으로 장애를 주입해 런북이 실제로 동작하는지 확인합니다.
 
 이번 분기의 시나리오는 다음 세 줄로 시작합니다.
 
-> 2026-04-15 14:00 KST — staging 환경에서 결제 게이트웨이 응답을 임의로 60% 차단한다. on-call rotation의 다음 차례인 *현우*가 *아무런 사전 정보 없이* 알람을 받는다. 목표는 30분 안에 *완화*까지 가는 것.
+> 2026-04-15 14:00 KST - staging 환경에서 결제 게이트웨이 응답을 임의로 60% 차단한다. on-call rotation의 다음 차례인 *현우*가 *아무런 사전 정보 없이* 알람을 받는다. 목표는 30분 안에 *완화*까지 가는 것.
 
 알람이 울리고 30초 안에 현우는 PagerDuty에서 런북 링크를 탭합니다. 첫 5분이 지나고 *발견된 문제* 두 가지:
 
@@ -196,13 +196,13 @@ draft: false
 
 비난 없는 글쓰기가 추상적으로 느껴진다면, 외부에 공개된 포스트모템을 한두 편 직접 읽어보는 게 가장 빠릅니다. 위에서 살펴본 *Timeline · 5 Whys · What Worked · Action Items* 가 실제로 어떻게 채워지는지 한 편씩 다른 각도에서 보여줍니다.
 
-- **[Cloudflare — *Details of the Cloudflare outage on July 2, 2019*](https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/)**: WAF 정규식의 catastrophic backtracking으로 글로벌 트래픽이 약 27분 영향을 받은 사건. 본문 다이어그램의 *5 Whys*가 실전에서 어떻게 *정규식 한 줄 → 배포 절차 → 테스트 부재 → 정책 부재*까지 깊어지는지의 정직하게 보여줍니다. *원인*뿐 아니라 *27분이 27분에서 멈춘 이유*까지 같이 적혀 있는 점이 인상적입니다.
-- **[GitHub — *October 21 post-incident analysis*](https://github.blog/2018-10-30-oct21-post-incident-analysis/)**: 약 24시간을 넘긴 다중 리전 데이터베이스 인시던트. *Background → Impact → Timeline → Root Cause → Next Steps* 골격이 정확히 그대로 채워져 있어 *포맷의 한 편*으로 가장 흉내 내기 쉽습니다. *Next Steps*가 단순 목록이 아니라 *카테고리(technical · process · resilience)* 로 묶여 있어 액션 아이템을 어떻게 그룹화할지의 참고가 됩니다.
-- **[AWS — *Summary of the Amazon S3 Service Disruption (Feb 28, 2017)*](https://aws.amazon.com/message/41926/)**: us-east-1의 S3가 약 4시간 영향을 받은 사건. 사람 이름이 *한 번도* 등장하지 않고 *시스템 차원의 조치*만 남는 차가운 톤을 잘 보여줍니다. "an authorized S3 team member ... entered the command incorrectly"라는 한 줄에 *오타*에 대한 비난 대신 *왜 이 명령이 그렇게 큰 영향을 줬는지*가 곧장 이어 붙는 흐름이 비난 없는 글쓰기의 표본입니다.
-- **[GitLab — *Postmortem of the database outage of January 31*](https://about.gitlab.com/blog/2017/02/10/postmortem-of-database-outage-of-january-31/)**: 한 엔지니어가 잘못된 호스트에서 `rm -rf`를 실행해 primary DB가 사라진 사건. 인시던트가 *진행 중일 때* 구글 닥과 유튜브 스트림으로 외부에 *실시간*으로 공개됐다는 점에서 특이합니다. 비난 없는 글쓰기가 회사 바깥까지 노출됐을 때도 어떻게 가능한지의 가장 강한 증거이고, *What Went Well · What Went Wrong · Where We Got Lucky* 라는 세 갈래 회고 구조는 흔치 않은 변형입니다.
-- **[Slack — *Slack's Outage on January 4th 2021*](https://slack.engineering/slacks-outage-on-january-4th-2021/)**: 새해 첫 출근일 캐스케이딩 실패. *AWS Transit Gateway 스케일링 실패 → 내부 서비스 디스커버리 폭주 → 대시보드까지 함께 마비*되는 연쇄가 *분 단위*로 추적됩니다. *What Worked*에 해당하는 단락이 한 자리에 모이지 않고 인시던트 곳곳에 흩어져 있어, 본문이 권한 "잘 작동한 시스템을 *보호*해야 한다"는 원칙을 실전 글의 구조로 보여주는 변형 사례입니다.
+- **[Cloudflare: *Details of the Cloudflare outage on July 2, 2019*](https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/)**: WAF 정규식의 catastrophic backtracking으로 글로벌 트래픽이 약 27분 영향을 받은 사건. 본문 다이어그램의 *5 Whys*가 실전에서 어떻게 *정규식 한 줄 → 배포 절차 → 테스트 부재 → 정책 부재*까지 깊어지는지의 정직하게 보여줍니다. *원인*뿐 아니라 *27분이 27분에서 멈춘 이유*까지 같이 적혀 있는 점이 인상적입니다.
+- **[GitHub: *October 21 post-incident analysis*](https://github.blog/2018-10-30-oct21-post-incident-analysis/)**: 약 24시간을 넘긴 다중 리전 데이터베이스 인시던트. *Background → Impact → Timeline → Root Cause → Next Steps* 골격이 정확히 그대로 채워져 있어 *포맷의 한 편*으로 가장 흉내 내기 쉽습니다. *Next Steps*가 단순 목록이 아니라 *카테고리(technical · process · resilience)* 로 묶여 있어 액션 아이템을 어떻게 그룹화할지의 참고가 됩니다.
+- **[AWS: *Summary of the Amazon S3 Service Disruption (Feb 28, 2017)*](https://aws.amazon.com/message/41926/)**: us-east-1의 S3가 약 4시간 영향을 받은 사건. 사람 이름이 *한 번도* 등장하지 않고 *시스템 차원의 조치*만 남는 차가운 톤을 잘 보여줍니다. "an authorized S3 team member ... entered the command incorrectly"라는 한 줄에 *오타*에 대한 비난 대신 *왜 이 명령이 그렇게 큰 영향을 줬는지*가 곧장 이어 붙는 흐름이 비난 없는 글쓰기의 표본입니다.
+- **[GitLab: *Postmortem of the database outage of January 31*](https://about.gitlab.com/blog/2017/02/10/postmortem-of-database-outage-of-january-31/)**: 한 엔지니어가 잘못된 호스트에서 `rm -rf`를 실행해 primary DB가 사라진 사건. 인시던트가 *진행 중일 때* 구글 닥과 유튜브 스트림으로 외부에 *실시간*으로 공개됐다는 점에서 특이합니다. 비난 없는 글쓰기가 회사 바깥까지 노출됐을 때도 어떻게 가능한지의 가장 강한 증거이고, *What Went Well · What Went Wrong · Where We Got Lucky* 라는 세 갈래 회고 구조는 흔치 않은 변형입니다.
+- **[Slack: *Slack's Outage on January 4th 2021*](https://slack.engineering/slacks-outage-on-january-4th-2021/)**: 새해 첫 출근일 캐스케이딩 실패. *AWS Transit Gateway 스케일링 실패 → 내부 서비스 디스커버리 폭주 → 대시보드까지 함께 마비*되는 연쇄가 *분 단위*로 추적됩니다. *What Worked*에 해당하는 단락이 한 자리에 모이지 않고 인시던트 곳곳에 흩어져 있어, 본문이 권한 "잘 작동한 시스템을 *보호*해야 한다"는 원칙을 실전 글의 구조로 보여주는 변형 사례입니다.
 
-다섯 글의 공통점은 셋입니다. **(1) 개인 이름이 거의 등장하지 않거나 등장해도 직책·팀 단위**입니다. **(2) Timeline · What Worked · Action Items의 *위치*가 거의 같습니다** — 다섯 글을 나란히 펴두면 같은 골격이 보입니다. **(3) Root Cause가 사람이 아니라 시스템에 닿습니다** — *누가* 명령을 잘못 입력했는지가 아니라 *왜 그 명령이 그런 영향을 줄 수 있었는지*까지 갑니다. 처음 포스트모템을 쓸 때 *비난조 검토*를 혼자 하기 어려우면, 이 다섯 글을 *옆에 켜두고 톤을 그대로 흉내 내는 것*이 가장 빠른 우회로입니다.
+다섯 글의 공통점은 셋입니다. **(1) 개인 이름이 거의 등장하지 않거나 등장해도 직책·팀 단위**입니다. **(2) Timeline · What Worked · Action Items의 *위치*가 거의 같습니다.** 다섯 글을 나란히 펴두면 같은 골격이 보입니다. **(3) Root Cause가 사람이 아니라 시스템에 닿습니다.** *누가* 명령을 잘못 입력했는지가 아니라 *왜 그 명령이 그런 영향을 줄 수 있었는지*까지 갑니다. 처음 포스트모템을 쓸 때 *비난조 검토*를 혼자 하기 어려우면, 이 다섯 글을 *옆에 켜두고 톤을 그대로 흉내 내는 것*이 가장 빠른 우회로입니다.
 
 ### 포스트모템의 구조
 
@@ -220,9 +220,9 @@ draft: false
 
 타임라인과 5 Whys가 포스트모템의 *두 기둥*입니다.
 
-![포스트모템의 타임라인과 5 Whys 다이어그램. 상단 TIMELINE 섹션: "무엇이 일어났는가, 감정 없이 사실만, 시간순으로". 세로 타임라인에 다섯 이벤트. 14:23 파란점 — 결제 서비스에 새 버전 v2.34.0 배포 (PR #4521 · 14:21 머지). 14:31 빨간점 — 5xx 에러율 임계치 초과(5%), PagerDuty 알람 발생, on-call 호출. 14:34 회색점 — on-call 응답, 런북 절차 시작. 14:38 황토점 — 롤백 실행(kubectl rollout undo), v2.33.5로 복원. 14:42 파란점 — 에러율 정상 복귀(\<0.1%), 총 인시던트 시간 11분. 하단 5 WHYS 섹션: "왜가 다섯 번, 증상에서 시작해 시스템의 근원까지 거슬러 간다". Q1 왜 결제가 실패했나? 새 버전에서 DB 풀 사이즈가 작게 설정되어 있었음. Q2 왜 작게 설정되어 있었나? config 변경 PR에서 환경 변수의 단위(개/MB)를 혼동. Q3 왜 리뷰에서 못 잡았나? 단위가 변수명에 명시되지 않았고, 단위 검증 테스트가 없었음. Q4 왜 배포 후 5xx까지 8분이 걸렸나? 카나리 배포 단계가 없고 100%로 전환되었음. Q5 왜 카나리가 없었나? 배포 시스템 도입 시 결제 서비스가 누락, 정책 문서 없음 — 이것이 근원.](./tw-07-02-postmortem-anatomy.svg)
+![포스트모템의 타임라인과 5 Whys 다이어그램. 상단 TIMELINE 섹션: "무엇이 일어났는가, 감정 없이 사실만, 시간순으로". 세로 타임라인에 다섯 이벤트. 14:23 파란점: 결제 서비스에 새 버전 v2.34.0 배포 (PR #4521 · 14:21 머지). 14:31 빨간점: 5xx 에러율 임계치 초과(5%), PagerDuty 알람 발생, on-call 호출. 14:34 회색점: on-call 응답, 런북 절차 시작. 14:38 황토점: 롤백 실행(kubectl rollout undo), v2.33.5로 복원. 14:42 파란점: 에러율 정상 복귀(\<0.1%), 총 인시던트 시간 11분. 하단 5 WHYS 섹션: "왜가 다섯 번, 증상에서 시작해 시스템의 근원까지 거슬러 간다". Q1 왜 결제가 실패했나? 새 버전에서 DB 풀 사이즈가 작게 설정되어 있었음. Q2 왜 작게 설정되어 있었나? config 변경 PR에서 환경 변수의 단위(개/MB)를 혼동. Q3 왜 리뷰에서 못 잡았나? 단위가 변수명에 명시되지 않았고, 단위 검증 테스트가 없었음. Q4 왜 배포 후 5xx까지 8분이 걸렸나? 카나리 배포 단계가 없고 100%로 전환되었음. Q5 왜 카나리가 없었나? 배포 시스템 도입 시 결제 서비스가 누락, 정책 문서 없음. 이것이 근원.](./tw-07-02-postmortem-anatomy.svg)
 
-### Timeline — 감정 없이 사실만
+### Timeline - 감정 없이 사실만
 
 타임라인은 *법정 진술*처럼 씁니다. *해석*과 *판단*은 다른 섹션으로 미룹니다.
 
@@ -239,9 +239,9 @@ draft: false
 
 후자는 *형용사·부사가 없습니다*. "성급하게", "다행히도" 같은 단어가 들어가는 순간 글은 *해석*이 됩니다. 해석은 다음 섹션에 분리합니다.
 
-### Root Cause — 5 Whys로 거슬러 가기
+### Root Cause - 5 Whys로 거슬러 가기
 
-근원적 원인을 찾는 가장 단순하고 강력한 도구가 **5 Whys** 입니다. 증상에서 시작해 "왜?"를 다섯 번 물으면 시스템의 빈틈이 드러납니다.
+**5 Whys** 는 근원적 원인을 찾는 도구입니다. 증상에서 시작해 "왜?"를 다섯 번 물으면 시스템의 빈틈이 드러납니다.
 
 위 다이어그램의 5 Whys 예시에서 보듯, *근원*은 보통 *코드 한 줄의 버그*가 아닙니다. *프로세스의 부재*, *문서의 부재*, *피드백 루프의 부재* 같은 시스템 차원의 것입니다.
 
@@ -252,7 +252,7 @@ draft: false
 
 근원이 *여러 개*일 수도 있습니다. 그 경우 각각을 별도로 5 Whys로 풉니다.
 
-### Action Items — *누가, 무엇을, 언제까지*
+### Action Items - *누가, 무엇을, 언제까지*
 
 가장 자주 무너지는 섹션입니다. "다음부터는 잘 합시다" 같은 문장으로 끝나면 포스트모템의 임무가 *실패*입니다.
 
@@ -393,6 +393,6 @@ draft: false
 
 ## 다음 편 예고
 
-> [ep.08 - 매일 쓰는 협업의 글, PR · 커밋 · 온보딩](/tech-writing-guide-ep-08/)
+> [ep.08 - 매일 쓰는 협업의 글: PR · 커밋 · 온보딩](/tech-writing-guide-ep-08/)
 
-다음 편은 매일 쓰는 글입니다. 좋은 커밋 메시지, 리뷰가 즐거워지는 PR, 첫 주를 단축시키는 온보딩 문서. 의식하지 않으면 형편없이 쓰이지만 의식하면 협업의 비용을 절반으로 줄이는 글들을 다룹니다.
+다음 편은 매일 쓰는 글입니다. 좋은 커밋 메시지, 리뷰가 즐거워지는 PR, 첫 주를 단축시키는 온보딩 문서입니다. 의식하지 않으면 형편없이 쓰이지만 의식하면 협업의 비용을 절반으로 줄이는 글들을 다룹니다.

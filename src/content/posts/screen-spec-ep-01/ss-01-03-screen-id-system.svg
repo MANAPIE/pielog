@@ -147,7 +147,7 @@
       }
     }
   </style>
-  <text x="400" y="35" text-anchor="middle" class="title">화면 ID 체계 — 영역 약어 + 일련번호</text>
+  <text x="400" y="35" text-anchor="middle" class="title">화면 ID 체계: 영역 약어 + 일련번호</text>
 
   <!-- Big ID example -->
   <rect x="240" y="70" width="320" height="100" class="id-bg" rx="8" />

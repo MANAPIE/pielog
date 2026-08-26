@@ -52,8 +52,8 @@
   <rect class="bg" width="1200" height="500"/>
 
   <!-- 그룹 라벨 -->
-  <text x="30" y="40" class="label-stereo">DISPATCHER 계층 — Factory Method</text>
-  <text x="1170" y="40" class="label-stereo" text-anchor="end">PRODUCT 계층 — 생성되는 객체</text>
+  <text x="30" y="40" class="label-stereo">DISPATCHER 계층: Factory Method</text>
+  <text x="1170" y="40" class="label-stereo" text-anchor="end">PRODUCT 계층: 생성되는 객체</text>
 
   <!-- ====================== 상속 / 구현 커넥터 ====================== -->
   <!-- 상속: EmailDispatcher → NotificationDispatcher -->

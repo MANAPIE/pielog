@@ -20,7 +20,7 @@ draft: false
 
 먼저 셋의 위치를 한 장에 정리합니다.
 
-![본 시리즈 바깥의 세 인접 문서 비교 다이어그램. 상단 안내: 본 시리즈는 내부 개발 협업의 글에 집중했습니다 — 이 셋은 그 바깥에 자리한 문서들입니다. 세 컬럼이 나란히 비교된다. 첫째 USER MANUAL 사용자 매뉴얼(파란 원 아이콘): 독자는 비개발자 최종 사용자, 분면은 How-to의 확장, 표현은 전문용어 최소화·UI 라벨 사용과 스크린샷·GIF 필수, 유지비용은 매우 높음(UI 바뀌면). 둘째 DESIGN DOC 디자인 문서(황토색 사각형 아이콘): 독자는 동료 엔지니어, 분면은 Explanation의 일종이며 결정 직전의 글, RFC와의 차이는 더 좁은 범위이고 팀 내 합의용, 수명은 구현 후 역할 종료이며 필요 시 ADR로 박제. 셋째 SECURITY DOC 보안 문서(적색 삼각형 아이콘): 독자는 내부 개발자·SRE와 외부 보안 연구자, 분면은 Reference + Explanation, 하위 종류는 Threat Model, 보안 가이드라인, Disclosure Policy, 핵심 긴장은 공개할 것과 공개 안 할 것의 경계.](./tw-09-01-three-adjacent-docs.svg)
+![본 시리즈 바깥의 세 인접 문서 비교 다이어그램. 상단 안내: 본 시리즈는 내부 개발 협업의 글에 집중했습니다 - 이 셋은 그 바깥에 자리한 문서들입니다. 세 컬럼이 나란히 비교된다. 첫째 USER MANUAL 사용자 매뉴얼(파란 원 아이콘): 독자는 비개발자 최종 사용자, 분면은 How-to의 확장, 표현은 전문용어 최소화·UI 라벨 사용과 스크린샷·GIF 필수, 유지비용은 매우 높음(UI 바뀌면). 둘째 DESIGN DOC 디자인 문서(황토색 사각형 아이콘): 독자는 동료 엔지니어, 분면은 Explanation의 일종이며 결정 직전의 글, RFC와의 차이는 더 좁은 범위이고 팀 내 합의용, 수명은 구현 후 역할 종료이며 필요 시 ADR로 박제. 셋째 SECURITY DOC 보안 문서(적색 삼각형 아이콘): 독자는 내부 개발자·SRE와 외부 보안 연구자, 분면은 Reference + Explanation, 하위 종류는 Threat Model, 보안 가이드라인, Disclosure Policy, 핵심 긴장은 공개할 것과 공개 안 할 것의 경계.](./tw-09-01-three-adjacent-docs.svg)
 
 세 문서가 본 시리즈의 다른 글들과 다른 결정적 차이는 **독자가 시스템 바깥에 있다**는 점입니다. 그 차이가 톤·언어·시각 자료의 비중을 크게 바꿉니다.
 
@@ -28,7 +28,7 @@ draft: false
 
 ## 사용자 매뉴얼
 
-소프트웨어를 만들면 *사용자*가 옵니다. 그 사용자 중 다수는 개발자가 아닙니다. 마케터, 회계, 의사, 교사, 학생. 이들에게 보낼 글은 *튜토리얼*과 *하우투*의 친척이지만, 어휘가 다릅니다.
+소프트웨어를 만들면 *사용자*가 옵니다. 그 사용자 중 다수는 개발자가 아닙니다. 마케터, 회계, 의사, 교사, 학생 등입니다. 이들에게 보낼 글은 *튜토리얼*과 *하우투*의 친척이지만, 어휘가 다릅니다.
 
 ### 사용자 매뉴얼의 핵심 차이
 
@@ -84,13 +84,13 @@ draft: false
 
   ![Notion 도움말 센터 홈 화면 스크린샷. 좌측에 13개의 기능 카테고리 사이드바(시작하기, 워크스페이스 및 설정, 페이지와 블록, 데이터베이스, 공유 및 협업, 자동화 및 연결, Notion AI, 관리와 보안, 메일·캘린더 및 앱, 마켓플레이스 및 템플릿, 요금제와 청구, 문제 해결 방법, 개발자 플랫폼)가 있고 맨 앞은 시나리오 항목인 시작하기. 우측 메인 영역에 안녕하세요 무엇을 도와드릴까요 검색창과 그 아래 인기 주제 섹션의 카드 6개(Notion 101, Notion AI 사용, 댓글과 리마인더, 데이터베이스, 이미지·파일·미디어, 멤버 vs 게스트)가 격자로 배치되어 있다.](./tw-09-05-notion-help.png)
 
-- **[Slack Help Center](https://slack.com/help)**: 단계가 *UI에 보이는 라벨 그대로* 입니다. — *"사이드바에서 ＋ 더하기 기호를 클릭"*, *"채널 이름을 입력하고 공개 또는 비공개 여부를 선택한 다음 새로 만들기를 클릭"*. 함수명도, 내부 자원명도 본문에 들어오지 않습니다. 거기에 본문 상단엔 동작을 그대로 보여주는 *GIF*가 한 장 박혀 글의 머리를 *움직이는 화면*이 잡습니다. 앞서 짚은 *UI 라벨로 지칭한다*와 *스크린샷이 본문이다* 두 원칙이 한 글 안에서 같이 작동하는 사례입니다.
+- **[Slack Help Center](https://slack.com/help)**: 단계가 *UI에 보이는 라벨 그대로* 입니다. - *"사이드바에서 ＋ 더하기 기호를 클릭"*, *"채널 이름을 입력하고 공개 또는 비공개 여부를 선택한 다음 새로 만들기를 클릭"*. 함수명도, 내부 자원명도 본문에 들어오지 않습니다. 거기에 본문 상단엔 동작을 그대로 보여주는 *GIF*가 한 장 박혀 글의 머리를 *움직이는 화면*이 잡습니다. 앞서 짚은 *UI 라벨로 지칭한다*와 *스크린샷이 본문이다* 두 원칙이 한 글 안에서 같이 작동하는 사례입니다.
 
-  ![Slack 도움말 글 "채널 만들기" 본문 스크린샷. 상단엔 Slack 데스크톱 앱에서 사이드바의 ＋ 추가 아이콘 위에 커서가 올라가는 GIF가 한 장 박혀 있다. 그 아래에 "채널 만들기" 제목과 데스크톱·모바일 환경 전환 탭, 그리고 1·2·3 번호가 매겨진 단계가 UI 라벨 그대로 적힌다. 1. 사이드바에서 ＋ 더하기 기호를 클릭합니다. 2. 채널을 선택합니다 — 유료 플랜인 경우 빈 채널을 선택해 일반 채널을 만들거나 템플릿을 선택해 특정 목적에 맞게 자동 설정할 수 있다. 3. 채널 이름을 입력하고 공개 또는 비공개 여부를 선택한 다음 새로 만들기를 클릭합니다. 그 아래엔 멀티 채널 게스트에 대한 참고 박스가 이어진다.](./tw-09-04-slack-tabs.png)
+  ![Slack 도움말 글 "채널 만들기" 본문 스크린샷. 상단엔 Slack 데스크톱 앱에서 사이드바의 ＋ 추가 아이콘 위에 커서가 올라가는 GIF가 한 장 박혀 있다. 그 아래에 "채널 만들기" 제목과 데스크톱·모바일 환경 전환 탭, 그리고 1·2·3 번호가 매겨진 단계가 UI 라벨 그대로 적힌다. 1. 사이드바에서 ＋ 더하기 기호를 클릭합니다. 2. 채널을 선택합니다: 유료 플랜인 경우 빈 채널을 선택해 일반 채널을 만들거나 템플릿을 선택해 특정 목적에 맞게 자동 설정할 수 있다. 3. 채널 이름을 입력하고 공개 또는 비공개 여부를 선택한 다음 새로 만들기를 클릭합니다. 그 아래엔 멀티 채널 게스트에 대한 참고 박스가 이어진다.](./tw-09-04-slack-tabs.png)
 
 - **[1Password Support](https://support.1password.com/)**: 허브 카드를 *Get started · Team members: Get started · Using 1Password · Families · Businesses · MSP · Developers · Get help · Security*처럼 **독자 그룹·시나리오 단위**로 자르고, 그 아래에 *Mac · iOS · Windows · Android · Linux · ChromeOS · Command Line* **플랫폼 그리드**를 별도로 둡니다. *무엇을 하려고 왔는가*(시나리오)와 *어디서 쓰는가*(플랫폼) 두 축으로 입구가 갈라져, 사용자가 떠올린 질문에 맞춰 진입할 수 있습니다.
 
-  ![1Password Support 허브 페이지 스크린샷. 두 행에 걸쳐 9개의 큰 카드가 격자로 배치되어 있다. 첫 행은 Get started 카드(Set up 1Password for yourself or your family — Get started 버튼)와 Team members: Get started 카드(Set up 1Password at your workplace — Join your team 버튼). 둘째 행은 Using 1Password · Families · Billing and subscriptions, 셋째 행은 Businesses · Managed Service Providers · Developers, 마지막 행은 Get help · Security. 각 카드는 독자 그룹 또는 시나리오 단위로 갈라져 있고, 본문 더 아래엔 별도의 Mac·iOS·Windows·Android·Linux·ChromeOS·Command Line 플랫폼 그리드가 이어진다.](./tw-09-03-1password-hub.png)
+  ![1Password Support 허브 페이지 스크린샷. 두 행에 걸쳐 9개의 큰 카드가 격자로 배치되어 있다. 첫 행은 Get started 카드(본문 Set up 1Password for yourself or your family, 버튼 Get started)와 Team members: Get started 카드(본문 Set up 1Password at your workplace, 버튼 Join your team). 둘째 행은 Using 1Password · Families · Billing and subscriptions, 셋째 행은 Businesses · Managed Service Providers · Developers, 마지막 행은 Get help · Security. 각 카드는 독자 그룹 또는 시나리오 단위로 갈라져 있고, 본문 더 아래엔 별도의 Mac·iOS·Windows·Android·Linux·ChromeOS·Command Line 플랫폼 그리드가 이어진다.](./tw-09-03-1password-hub.png)
 
 세 곳의 공통점은 *글 하나하나가 짧고, 진입 경로가 여러 갈래로 준비된다*는 것입니다. 100페이지짜리 PDF 매뉴얼이 아닙니다. 각 글이 *5분짜리 한 시나리오*를 끝까지 책임지고, 그 외 영역은 옆 글이 책임지며, *기능 색인 / 시나리오 / 역할 / 플랫폼* 가운데 사용자가 떠올린 축으로 들어올 수 있도록 입구가 여러 개 마련됩니다.
 
@@ -113,7 +113,7 @@ draft: false
 - **수명**: RFC는 한 번 Accepted되면 ADR로 박제됩니다. 디자인 문서는 *구현이 끝나면 역할 종료*입니다.
 - **길이**: RFC가 길어지는 경우가 많다면, 디자인 문서는 5~10페이지가 흔합니다.
 
-Google이 내부적으로 광범위하게 쓰는 *Design Doc 문화*가 대표적입니다. 큰 기능을 시작하기 전 반드시 1~2주를 디자인 문서에 투자합니다. 문화 전반은 [*Design Docs at Google*](https://www.industrialempathy.com/posts/design-docs-at-google/)에서 잘 정리되어 있고, 채워진 실제 예시는 OSS 생태계에서 찾을 수 있습니다 — [Kubernetes KEP-753 (Sidecar Containers)](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/753-sidecar-containers/README.md)는 *Summary · Motivation · Goals · Non-Goals · Proposal · Design Details · Alternatives · Risks · Test Plan*이 모두 채워진 큰 사례, [Chromium의 about:conflicts 디자인 문서](https://www.chromium.org/developers/design-documents/about-conflicts/)는 같은 골격을 작은 기능에 맞게 줄인 가벼운 예시입니다.
+Google이 내부적으로 광범위하게 쓰는 *Design Doc 문화*가 대표적입니다. 큰 기능을 시작하기 전 반드시 1~2주를 디자인 문서에 투자합니다. 문화 전반은 [*Design Docs at Google*](https://www.industrialempathy.com/posts/design-docs-at-google/)에서 잘 정리되어 있고, 채워진 실제 예시는 OSS 생태계에서 찾을 수 있습니다. [Kubernetes KEP-753 (Sidecar Containers)](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/753-sidecar-containers/README.md)는 *Summary · Motivation · Goals · Non-Goals · Proposal · Design Details · Alternatives · Risks · Test Plan*이 모두 채워진 큰 사례이고, [Chromium의 about:conflicts 디자인 문서](https://www.chromium.org/developers/design-documents/about-conflicts/)는 같은 골격을 작은 기능에 맞게 줄인 가벼운 예시입니다.
 
 ### 디자인 문서의 표준 구조
 
@@ -189,11 +189,11 @@ Google이 내부적으로 광범위하게 쓰는 *Design Doc 문화*가 대표�
 
 디자인 문서를 *영구 보존*하려 하지 않아도 됩니다. *결정의 박제*는 ADR이 맡습니다. 디자인 문서는 *과정의 글*입니다.
 
-#### 짧은 시나리오 — 디자인 문서가 ADR로 박제되기까지
+#### 짧은 시나리오 - 디자인 문서가 ADR로 박제되기까지
 
 가상의 PayLite 팀이 *환불 자동화* 기능을 시작합니다. 두 주의 흐름을 한 장으로 보면 두 문서의 자리가 분명해집니다.
 
-![디자인 문서에서 ADR로 이어지는 시간 축 다이어그램. 가로축이 시간이며 세 단계가 마디로 표시된다. 1단계 PROPOSAL: Design Doc 작성 — Background 환불 요청이 결제 트래픽의 8%, Goals 자동 환불 정책, Non-Goals 분쟁 처리는 별도, Design API와 데이터 모델 초안, Alternatives 동기 vs 비동기 처리, Open Questions PG사 응답 지연 시 정책. 상태 Draft → In Review → Approved. 2단계 IMPLEMENT: 구현 1~2 스프린트 — Design Doc은 작업 가이드로 사용되고 PR마다 링크됨. 구현 중 새로 결정된 큰 사안(예: 재시도 정책의 변경, 외부 의존성 추가) 발생. 3단계 ARCHIVE + DECISION: 구현 완료 — Design Doc은 archive 폴더로 이동(상태가 Implemented로 변경), 핵심 결정만 ADR-031 자동 환불 정책 채택으로 박제, ADR의 References에 Design Doc 링크. 다이어그램 하단 노트: 디자인 문서는 결정의 과정, ADR은 결정의 결과. 둘 다 필요하지만 수명이 다르다.](./tw-09-02-design-doc-to-adr.svg)
+![디자인 문서에서 ADR로 이어지는 시간 축 다이어그램. 가로축이 시간이며 세 단계가 마디로 표시된다. 1단계 PROPOSAL: Design Doc 작성, Background 환불 요청이 결제 트래픽의 8%, Goals 자동 환불 정책, Non-Goals 분쟁 처리는 별도, Design API와 데이터 모델 초안, Alternatives 동기 vs 비동기 처리, Open Questions PG사 응답 지연 시 정책. 상태 Draft → In Review → Approved. 2단계 IMPLEMENT: 구현 1~2 스프린트, Design Doc은 작업 가이드로 사용되고 PR마다 링크됨. 구현 중 새로 결정된 큰 사안(예: 재시도 정책의 변경, 외부 의존성 추가) 발생. 3단계 ARCHIVE + DECISION: 구현 완료, Design Doc은 archive 폴더로 이동(상태가 Implemented로 변경), 핵심 결정만 ADR-031 자동 환불 정책 채택으로 박제, ADR의 References에 Design Doc 링크. 다이어그램 하단 노트: 디자인 문서는 결정의 과정, ADR은 결정의 결과. 둘 다 필요하지만 수명이 다르다.](./tw-09-02-design-doc-to-adr.svg)
 
 흐름을 풀어 쓰면 이렇습니다.
 
@@ -221,12 +221,12 @@ Google이 내부적으로 광범위하게 쓰는 *Design Doc 문화*가 대표�
 
 | 약어 | 의미 |
 | --- | --- |
-| S | Spoofing — 가짜 신원 |
-| T | Tampering — 변조 |
-| R | Repudiation — 행위 부인 |
-| I | Information Disclosure — 정보 유출 |
-| D | Denial of Service — 가용성 공격 |
-| E | Elevation of Privilege — 권한 상승 |
+| S | Spoofing: 가짜 신원 |
+| T | Tampering: 변조 |
+| R | Repudiation: 행위 부인 |
+| I | Information Disclosure: 정보 유출 |
+| D | Denial of Service: 가용성 공격 |
+| E | Elevation of Privilege: 권한 상승 |
 
 각 컴포넌트별로 이 여섯 차원에서 *어떤 위협이 가능한가*, *그것에 어떻게 대처하는가*를 적습니다.
 
@@ -236,7 +236,7 @@ Threat Model은 **내부 전용** 문서입니다. 외부에 공개하지 않습
 
  SQL injection 방지, XSS 방지, secret 관리, 의존성 관리 등 개발자 동료가 *코드를 쓰면서* 따라야 할 규칙입니다.
 
-이 글은 *내부 문서*이지만 *Reference*에 가까운 톤으로 씁니다. "이렇게 하라", "이건 금지" 같은 단정적 문장.
+이 글은 *내부 문서*이지만 *Reference*에 가까운 톤으로 씁니다. "이렇게 하라", "이건 금지" 같은 단정적 문장을 씁니다.
 
 ```markdown
 ## Secret 관리
@@ -285,13 +285,13 @@ DON'T:
 - ...
 ```
 
-이 문서는 GitHub 저장소 루트의 `SECURITY.md` 또는 도메인의 `/.well-known/security.txt`로 둡니다. 외부 보안 연구자가 *어디로 가야 할지*를 찾을 수 있게. 공개 예로는 [GitHub의 SECURITY.md](https://github.com/github/.github/blob/main/SECURITY.md)가 사람이 읽는 정책의 표준 형태(Scope·신고 채널·Safe Harbor)를 보여주고, [Cloudflare의 security.txt](https://www.cloudflare.com/.well-known/security.txt)는 같은 정보를 RFC 9116 기계 가독 포맷(`Contact` · `Policy` · `Canonical` · `Preferred-Languages`)으로 풀어놓은 사례입니다.
+이 문서는 GitHub 저장소 루트의 `SECURITY.md` 또는 도메인의 `/.well-known/security.txt`로 둡니다. 외부 보안 연구자가 *어디로 가야 할지*를 찾을 수 있게 합니다. 공개 예로는 [GitHub의 SECURITY.md](https://github.com/github/.github/blob/main/SECURITY.md)가 사람이 읽는 정책의 표준 형태(Scope·신고 채널·Safe Harbor)를 보여주고, [Cloudflare의 security.txt](https://www.cloudflare.com/.well-known/security.txt)는 같은 정보를 RFC 9116 기계 가독 포맷(`Contact` · `Policy` · `Canonical` · `Preferred-Languages`)으로 풀어놓은 사례입니다.
 
 #### security.txt와 그 주변 표준
 
 이 영역에는 *읽는 글*만이 아니라 *기계가 읽는 글*도 있습니다.
 
-- **RFC 9116 — `security.txt`**: 도메인의 `/.well-known/security.txt`에 두는 짧은 텍스트 파일. `Contact:`, `Encryption:`, `Expires:`, `Preferred-Languages:` 같은 필드가 표준화되어 있습니다. 자동화된 취약점 스캐너·연구자 도구가 *어디로 신고할지*를 코드로 찾을 수 있게 합니다.
+- **RFC 9116: `security.txt`**: 도메인의 `/.well-known/security.txt`에 두는 짧은 텍스트 파일. `Contact:`, `Encryption:`, `Expires:`, `Preferred-Languages:` 같은 필드가 표준화되어 있습니다. 자동화된 취약점 스캐너·연구자 도구가 *어디로 신고할지*를 코드로 찾을 수 있게 합니다.
 - **GitHub Security Advisories**: 저장소의 *Security* 탭에서 *비공개 advisory*를 만들고, *비공개 fork*에서 패치를 준비해 *동시에 공개*하는 흐름을 지원합니다. CVE 발급도 GitHub이 대행합니다. 외부 신고 → 비공개 협업 → 공개의 전 과정을 한 곳에서.
 - **OWASP ASVS**(Application Security Verification Standard): "우리 시스템이 어느 수준의 보안 검증을 통과하는가"를 체크리스트로 정리한 표준. 보안 가이드라인을 *처음부터 다 쓸 필요 없이* ASVS의 항목을 인용·발췌해 시작점으로 삼는 팀이 많습니다.
 
@@ -324,7 +324,7 @@ DON'T:
 1. **독자를 정하고 시작하라.**<br />모든 편의 첫 원칙이었습니다. 누가, 무엇을 알고 있고, 무엇을 하려고 이 문서를 여는가.
 2. **한 문서, 한 의도.**<br />튜토리얼·하우투·레퍼런스·익스플레네이션의 네 분면이 섞이는 순간 글은 누구에게도 닿지 않습니다.
 3. **예시는 상상하는 것보다 강하다.**<br />막힐 때마다 예시로 돌아갑니다.
-4. **"왜"를 보존하라.**<br />코드와 diff는 *무엇*을 알려주지만 *왜*는 사람만 쓸 수 있습니다. ADR, 커밋 본문, PR 설명, 디자인 문서 — 다 *왜의 보존*에 관한 글입니다.
+4. **"왜"를 보존하라.**<br />코드와 diff는 *무엇*을 알려주지만 *왜*는 사람만 쓸 수 있습니다. ADR, 커밋 본문, PR 설명, 디자인 문서: 다 *왜의 보존*에 관한 글입니다.
 5. **안 쓰는 것도 선택지다.**<br />문서는 작성하는 것도 비용입니다. *비용을 치를 가치가 있는 곳*에만 씁니다. 동시에, 가치가 있는 곳에는 *치를 만한 비용*을 치릅니다.
 
 기술문서는 *부수적인 일*이 아닙니다. *엔지니어링의 일부*입니다. 시스템의 총 비용을 낮추는 도구이고, 미래의 자신과 동료에게 보내는 비동기 메시지입니다. 코드가 *컴퓨터에게 하는 말*이라면, 문서는 *사람에게 하는 말*입니다. 둘 다 우리의 일입니다.
@@ -334,14 +334,14 @@ DON'T:
 ## 시리즈 전체 목차
 
 - [ep.00 - 왜, 무엇을, 어떻게](/tech-writing-guide-ep-00/)
-- [ep.01 - 프로젝트의 첫인상, README](/tech-writing-guide-ep-01/)
-- [ep.02 - 처음 온 사람을 데려가는 길, 튜토리얼](/tech-writing-guide-ep-02/)
-- [ep.03 - 한 가지 목적을 해내는 절차, 하우투 가이드](/tech-writing-guide-ep-03/)
-- [ep.04 - 정확한 사실의 색인, 레퍼런스와 API 문서](/tech-writing-guide-ep-04/)
-- [ep.05 - 왜 이렇게 만들었는가, 아키텍처와 개념 설명](/tech-writing-guide-ep-05/)
-- [ep.06 - 의사결정의 기록, ADR과 RFC](/tech-writing-guide-ep-06/)
-- [ep.07 - 운영의 언어, 런북과 포스트모템](/tech-writing-guide-ep-07/)
-- [ep.08 - 매일 쓰는 협업의 글, PR · 커밋 · 온보딩](/tech-writing-guide-ep-08/)
+- [ep.01 - 프로젝트의 첫인상: README](/tech-writing-guide-ep-01/)
+- [ep.02 - 처음 온 사람을 데려가는 길: 튜토리얼](/tech-writing-guide-ep-02/)
+- [ep.03 - 한 가지 목적을 해내는 절차: 하우투 가이드](/tech-writing-guide-ep-03/)
+- [ep.04 - 정확한 사실의 색인: 레퍼런스와 API 문서](/tech-writing-guide-ep-04/)
+- [ep.05 - 왜 이렇게 만들었는가: 아키텍처와 개념 설명](/tech-writing-guide-ep-05/)
+- [ep.06 - 의사결정의 기록: ADR과 RFC](/tech-writing-guide-ep-06/)
+- [ep.07 - 운영의 언어: 런북과 포스트모템](/tech-writing-guide-ep-07/)
+- [ep.08 - 매일 쓰는 협업의 글: PR · 커밋 · 온보딩](/tech-writing-guide-ep-08/)
 - [ep.09 - 본 시리즈 바깥의 인접 문서들](/tech-writing-guide-ep-09/)
 
 ---

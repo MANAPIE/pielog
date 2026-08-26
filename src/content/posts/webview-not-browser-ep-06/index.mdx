@@ -1,0 +1,597 @@
+---
+title: "앱이 내 CSS를 덮어씁니다 - 웹뷰는 브라우저가 아니다 ep.06"
+description: 강제 다크 반전, 시스템 글꼴 배율, 확대 차단, 폰트 폴백까지. 내가 쓰지 않은 스타일이 어디서 들어와 화면을 바꾸는지 추적합니다.
+summary: Android 웹뷰의 prefers-color-scheme는 사용자의 OS 다크모드가 아니라 앱 테마의 isLightTheme로 결정됩니다. 시스템 글꼴 배율은 웹 콘텐츠에 곱해지고, 핀치 확대는 앱이 켜지 않으면 아예 동작하지 않습니다. 마지막 항목은 WCAG 1.4.4 위반이기도 합니다. 이 편은 CSS 바깥에서 들어오는 스타일의 출처를 하나씩 지목하고, 웹이 선언할 것과 앱에 요청할 것을 가릅니다.
+date: 2026-08-14
+tags: ["series", "develop", "frontend", "webview", "wkwebview", "androidwebview", "darkmode", "accessibility", "css"]
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+내가 쓴 CSS가 화면에 그대로 나오지 않는다. 개발자 도구를 열면 선언한 값이 그대로 있다. 그런데 눈에 보이는 색은 다르다. 그 사이에 무엇이 끼어 있는가.
+
+## 스타일은 세 층에서 들어옵니다
+
+브라우저에서 우리는 두 층만 생각합니다. 사용자 에이전트 기본 스타일시트가 아래에 깔리고, 우리 CSS가 그 위에 얹힙니다. 캐스케이드는 이 두 층 안에서 끝납니다.
+
+웹뷰에는 층이 하나 더 있습니다. **호스트 앱이 웹뷰 객체에 설정한 값**입니다. 이 층은 CSS 캐스케이드에 참여하지 않습니다. 우선순위 경쟁을 하지 않고, 개발자 도구의 Styles 패널에도 나타나지 않습니다. 렌더링 파이프라인의 다른 지점에 끼어들어 결과를 바꿉니다.
+
+그래서 증상이 이상하게 보입니다.
+
+- `getComputedStyle`은 CSS 캐스케이드를 통과한 값을 그대로 돌려주는데, 화면 색은 다릅니다.
+- `font-size: 14px`라고 썼는데 기기마다 글자 크기가 다릅니다.
+- `user-scalable=no`를 지웠는데도 확대가 안 됩니다.
+- `position: fixed` 헤더 위에 우리가 만들지 않은 막대가 얹혀 있습니다.
+
+이 편이 답하려는 질문은 하나입니다. **내가 쓰지 않은 스타일은 어디서 들어오는가.**
+
+각 항목의 끝에는 앱이 켜거나 끌 수 있는 스위치가 하나씩 있습니다. 그 스위치의 이름을 아는 것이 이 편의 실질적인 목표입니다.
+
+---
+
+## 다크모드는 OS가 아니라 앱 테마가 결정합니다
+
+가장 자주 보고되는 증상부터 봅니다. 기기는 다크모드인데 앱 안의 웹 화면만 라이트로 나옵니다. 혹은 그 반대로, 우리는 다크에 대응해뒀는데 앱 안에서만 색이 뭉개집니다.
+
+### Android: isLightTheme가 값을 정합니다
+
+Android 공식 문서는 이렇게 못박습니다.
+
+> WebView always sets `prefers-color-scheme` according to `isLightTheme`. If `isLightTheme` is `true` or not specified, then `prefers-color-scheme` is `light`; otherwise, it is `dark`.
+
+즉 Android WebView에서 `prefers-color-scheme`의 값은 **사용자의 OS 다크모드 설정이 아니라 앱 테마의 `android:isLightTheme` 속성**으로 결정됩니다. 그리고 이 속성을 지정하지 않으면 `light`로 취급됩니다.
+
+이 한 줄이 "크롬에서는 다크로 나오는데 앱에서는 라이트로 나온다"의 정확한 원인입니다. 웹 코드에는 잘못이 없습니다. 앱 테마에 `android:isLightTheme`가 선언되어 있지 않거나, 다크 테마에서 `false`로 바뀌지 않고 있는 것입니다. 앱 개발자에게 지목할 수 있는 속성명이 정확히 이것입니다.
+
+### 알고리즘 반전은 별도의 스위치입니다
+
+미디어 쿼리 값과는 별개로, WebView가 웹 콘텐츠의 색을 알고리즘으로 뒤집는 기능이 있습니다. 여기가 targetSdk 버전으로 갈리는 지점입니다.
+
+**targetSdkVersion 33 미만**: `WebSettings.setForceDark()` 및 `WebSettingsCompat.setForceDark()`가 동작합니다. 여기에 `WebSettingsCompat.setForceDarkStrategy()`로 세 가지 전략 중 하나를 고릅니다. 전략 API는 androidx 전용이고, 프레임워크 `android.webkit.WebSettings`에는 존재하지 않습니다. 호출하려면 `WebViewFeature.FORCE_DARK_STRATEGY` 지원 여부를 먼저 확인해야 합니다. 그리고 이 묶음은 targetSdk와 무관하게 androidx에서 이미 전부 deprecated 상태입니다. 기본 전략인 `DARK_STRATEGY_PREFER_WEB_THEME_OVER_USER_AGENT_DARKENING`은 조건이 하나 붙습니다.
+
+> While most browsers treat the `<meta name="color-scheme" content="dark light">` tag as optional, Android WebView's default mode requires the meta tag to honor the web page's `prefers-color-scheme` media queries.
+
+메타 태그가 없으면 우리가 작성한 다크 CSS가 존중되지 않고, 대신 WebView가 자기 방식으로 색을 반전시킵니다. 그리고 `DARK_STRATEGY_USER_AGENT_DARKENING_ONLY`를 쓰는 경우 문서는 더 분명하게 적어둡니다.
+
+> If you use user-agent darkening, the `@media (prefers-color-scheme: dark)` query evaluates to `false`.
+
+우리 다크 CSS는 아예 켜지지 않고, 라이트로 그려진 화면 위에 UA 반전이 얹힙니다. 결과는 우리가 만든 다크가 아니라 앱이 만든 회색 화면입니다.
+
+**targetSdkVersion 33 이상**: Android 13 동작 변경 문서는 이렇게 씁니다.
+
+> The `setForceDark()` method is deprecated and becomes a no-op if called.
+
+`setForceDark`도, 그것에 딸린 전략 API도 전부 아무 일도 하지 않습니다. 대신 `setAlgorithmicDarkeningAllowed()`가 유효하고, 기본값은 `false`입니다. 즉 앱이 명시적으로 켜지 않으면 알고리즘 반전 자체가 일어나지 않습니다. 단, 예외가 하나 있습니다. AOSP javadoc은 "If Android is applying Force Dark to WebView then WebView will ignore the value of this setting and behave as if it were set to true."라고 못박습니다. 앱 레벨 Force Dark가 걸려 있으면 이 설정값은 무시됩니다. 그 경로는 이 절 뒤에서 따로 봅니다.
+
+이제 앱이 직접 켠 경우입니다. 앱 테마가 다크(`isLightTheme`가 `false`)라는 전제 아래에서, 적용 조건은 문서에 두 줄로 적혀 있습니다.
+
+> WebView then applies algorithmic darkening if the following conditions are met: The web content doesn't use `prefers-color-scheme`. The web content author doesn't explicitly disable darkening.
+
+여기서 주의할 점이 있습니다. "웹 콘텐츠가 `prefers-color-scheme`를 쓰는지"를 WebView가 어떤 방식으로 판정하는지는 문서화되어 있지 않습니다. 미디어 쿼리를 몇 개 썼는지, 어떤 형태로 썼는지에 따라 갈릴 수 있고, 그 판정에 기대는 것은 안전하지 않습니다. 우리가 확실하게 통제할 수 있는 신호는 두 번째 조건, 즉 **명시적 비활성화**뿐입니다.
+
+### iOS는 자동으로 어둡게 만들지 않습니다
+
+Android와 대칭 관계가 아니라는 점이 중요합니다. WebKit 공식 블로그는 이렇게 적습니다.
+
+> Safari and WebKit do not auto-darken web content - documents will need to opt-in to dark mode.
+
+WKWebView에는 알고리즘 반전에 해당하는 기능이 없습니다. 페이지가 옵트인하지 않으면 라이트로 그려집니다. 그래서 iOS 쪽 증상은 "이상하게 반전됐다"가 아니라 "다크로 안 바뀐다" 쪽으로 나타납니다.
+
+옵트인 방법도 같은 글에 있습니다.
+
+> Specifying the values `light` and `dark` on the root element lets the engine know both modes are supported.
+
+### 그래서 웹이 선언해야 하는 것
+
+세 갈래 경로를 모두 통과하는 선언은 하나입니다. `color-scheme`입니다.
+
+```html
+<!-- 문서 최상단. 첫 페인트 전에 엔진에 알립니다 -->
+<meta name="color-scheme" content="dark light">
+```
+
+```css
+:root {
+  /* 두 스킴을 모두 지원한다고 선언합니다 */
+  color-scheme: light dark;
+}
+```
+
+`color-scheme`는 CSS Color Adjustment Module Level 1의 표준 속성이고, MDN 기준 2022년 1월 이후 널리 사용 가능한 상태입니다. 이 선언은 우리 CSS 색만 바꾸는 것이 아니라 UA가 직접 그리는 부분의 색까지 함께 바꿉니다.
+
+> The color of the canvas surface / The default colors of scrollbars and other interaction UI / The default colors of form controls / The default colors of other browser-provided UI, such as "spellcheck" underlines
+
+스크롤바와 폼 컨트롤의 기본색이 여기 포함됩니다. 폼 컨트롤이 플랫폼 고유 UI로 치환되는 문제 자체는 [ep.03](/webview-not-browser-ep-03/)에서 다루지만, 그 컨트롤이 라이트 색으로 남아 다크 배경 위에 떠 있는 문제는 `color-scheme` 선언으로 정리됩니다.
+
+반전을 아예 금지하려면 `only` 키워드를 씁니다. 명세는 이 키워드를 "forbids the user agent from overriding the color scheme for the element"로 정의합니다.
+
+```css
+/* 어떤 상황에서도 라이트로만 그리라는 뜻입니다 */
+:root {
+  color-scheme: only light;
+}
+```
+
+Chrome 팀 문서는 이 선언을 `meta` 태그로 head에 넣으면 화면이 잠깐 어둡게 번쩍이는 현상까지 막힌다고 설명합니다. 다만 브랜드 색을 그대로 지켜야 하는 화면이라도 `only light`를 기본값으로 삼는 판단은 신중해야 합니다. 다크모드를 쓰는 사용자에게 눈부신 화면을 강제하는 선택이기 때문입니다. 다크 대응이 아직 안 된 화면에 한시적으로 걸어두는 용도로 쓰는 편이 낫습니다.
+
+![Android WebView에서 다크모드 요청이 세 갈래로 갈리는 과정을 나란히 보여주는 다이어그램. 전체는 세 개의 세로 열로 구성되고, 각 열은 위에서 아래로 네 단계를 거칩니다. 단계 라벨은 왼쪽 축에 '앱 테마 설정', 'prefers-color-scheme 평가', '페이지 렌더링', '최종 화면' 순서로 표시됩니다. 첫 번째 열은 제목이 '정상 경로'이고 초록 계열로 표시됩니다. 앱 테마 단계에 'android:isLightTheme = false', 평가 단계에 'prefers-color-scheme: dark', 렌더링 단계에 '페이지가 선언한 다크 CSS 적용, color-scheme: light dark 선언됨', 최종 화면 단계에 '우리가 설계한 다크 화면, 알고리즘 반전 미적용'이 적혀 있습니다. 두 번째 열은 제목이 '반전 경로'이고 주황 계열로 표시됩니다. 앱 테마 단계에 'android:isLightTheme = false + 알고리즘 다크 허용', 평가 단계에 '페이지에 color-scheme 선언 없음', 렌더링 단계에 '페이지는 라이트 CSS로 그려짐', 최종 화면 단계에 'WebView가 색을 알고리즘으로 반전, 브랜드 색이 회색으로 뭉개짐'이 적혀 있습니다. 세 번째 열은 제목이 '어긋난 경로'이고 붉은 계열로 표시됩니다. 앱 테마 단계에 'OS는 다크모드, 그러나 android:isLightTheme = true 또는 미지정', 평가 단계에 'prefers-color-scheme: light', 렌더링 단계에 '페이지가 라이트 CSS로 그려짐', 최종 화면 단계에 '기기는 다크인데 웹 화면만 라이트, 사용자 기대와 불일치'가 적혀 있습니다. 각 열의 단계 사이는 아래로 향하는 화살표로 연결됩니다. 다이어그램 하단에는 가로로 긴 주석 띠가 있고 '세 경로의 분기점은 두 개다. 앱 테마의 isLightTheme 속성값, 그리고 페이지의 color-scheme 선언 유무.'라는 문장이 적혀 있습니다. 오른쪽 여백에는 targetSdkVersion 33 이상에서는 setForceDark가 no-op이며 setAlgorithmicDarkeningAllowed의 기본값이 false라는 조건 상자가 별도로 표시됩니다.](wnb-06-01-forced-dark-collision.svg)
+
+### 페이지 바깥 영역
+
+한 가지 더 있습니다. 스크롤을 끝까지 당겼을 때 페이지 밖으로 드러나는 영역의 색입니다. iOS 15.0 이상에서 이 색은 `WKWebView.underPageBackgroundColor`가 결정하고, 기본값은 `<html>`과 `<body>`의 배경색, 그리고 웹뷰 자체 배경색을 조합해 유도됩니다.
+
+다크 화면인데 바운스 영역만 하얗게 번쩍인다면 `<html>`에 배경색이 선언되어 있는지 먼저 확인하고, 그래도 남으면 앱에 이 프로퍼티를 지목해 요청합니다.
+
+### 앱 레벨 Force Dark와 헷갈리지 않습니다
+
+Android에는 이름이 비슷한 별개 기능이 하나 더 있습니다. 웹뷰가 아니라 네이티브 뷰 전체를 어둡게 만드는 Force Dark입니다. Android 10 이상에서 동작하고, 테마에 `android:forceDarkAllowed="true"`를 넣어야 켜집니다. 그리고 앱 테마가 이미 다크이거나 DayNight 테마를 상속하면 적용되지 않습니다.
+
+이건 웹뷰 설정은 아니지만 웹뷰에 영향을 줍니다. 공식 문서는 앱 레벨 Force Dark가 켜졌을 때 웹 콘텐츠에도 알고리즘 반전이 걸리는 조건을 별도 절로 적어둡니다. 웹뷰와 그 부모 뷰들이 Force Dark를 허용하고, 현재 액티비티 테마의 `isLightTheme`가 `true`로 표시되어 있고, 콘텐츠 작성자가 반전을 명시적으로 막지 않은 경우입니다. targetSdk 33 이상이면 웹 콘텐츠가 `prefers-color-scheme`를 쓰지 않아야 한다는 조건이 하나 더 붙습니다.
+
+여기서 테마 조건이 앞 절과 정반대입니다. `setAlgorithmicDarkeningAllowed` 경로는 앱 테마가 다크일 때 성립하고, Force Dark 경로는 액티비티 테마가 라이트일 때 성립합니다. 원인을 추적할 때 두 경로를 섞으면 엉뚱한 곳을 파게 됩니다.
+
+---
+
+## 글자만 커집니다
+
+두 번째 출처는 시스템 글꼴 배율입니다. 같은 CSS인데 기기마다 글자 크기가 다르고, 레이아웃이 특정 사용자에게서만 무너집니다.
+
+### Android WebView는 시스템 배율을 곱합니다
+
+Android WebView의 구현체인 Chromium 소스에는 이런 주석이 달려 있습니다.
+
+> By default, WebView scales all fonts by the user's Android font preference, and has for many years.
+
+바로 아래에서 `SetTextZoomFactor()`가 호출됩니다. Java 쪽 구현을 보면 `getResources().getConfiguration().fontScale`에 100을 곱한 값을 텍스트 크기 퍼센트로 설정합니다. 즉 사용자가 기기 설정에서 글자 크기를 키워두면 그 배율이 웹 콘텐츠에 그대로 곱해집니다.
+
+Android 14부터는 이 배율의 최대치가 200퍼센트이고, 크기 계층을 유지하기 위해 비선형 곡선을 씁니다.
+
+> Nonlinear font scaling helps preserve the proportional hierarchy between elements of different sizes while mitigating issues with linear text scaling at high degrees.
+
+같은 문서는 `Configuration.fontScale`을 정보 용도로만 쓰라고 명시합니다. 배율이 크기마다 다르게 적용되므로 단순 곱셈으로 역산할 수 없다는 뜻입니다.
+
+이 배율을 멈추는 스위치는 앱 쪽에 있습니다. `WebSettings.setTextZoom(int)`이고 기본값은 100입니다. 앱이 이 메서드를 한 번이라도 호출하면 시스템 배율 동기화가 끊어지고, 이후에는 앱이 지정한 값만 적용됩니다.
+
+**여기서 판단이 필요합니다.** 레이아웃이 깨진다고 앱에 `setTextZoom(100)`을 요청하는 것은 사용자의 접근성 설정을 무시하는 선택입니다. 시스템 글꼴을 키워둔 사용자는 그럴 이유가 있어서 키워둔 것입니다. 배율이 곱해져도 무너지지 않는 레이아웃을 만드는 쪽이 먼저입니다.
+
+```css
+/* 높이를 고정하지 않고 최소 높이와 패딩으로 잡습니다 */
+.btn {
+  min-height: 44px;
+  padding: 12px 16px;
+  /* 배율이 곱해지면 줄바꿈되도록 둡니다 */
+  white-space: normal;
+  line-height: 1.4;
+}
+
+/* 한 줄 고정이 필요한 자리에만 말줄임을 씁니다 */
+.list-item__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+```
+
+`px` 대신 `rem`을 쓰는 것으로는 이 문제가 풀리지 않습니다. 시스템 배율은 루트 글자 크기 위에 다시 곱해지는 층이기 때문입니다. 필요한 것은 단위 교체가 아니라 **높이를 콘텐츠가 정하도록 두는 레이아웃**입니다.
+
+### text-size-adjust를 만능으로 쓰지 않습니다
+
+`-webkit-text-size-adjust`가 이 문제의 해법으로 자주 언급됩니다. 정확히 하고 넘어가겠습니다.
+
+MDN은 `text-size-adjust`를 CSS Mobile Text Size Adjustment Module Level 1 소속으로 분류하면서, 동시에 실험적이며 Baseline이 아니라고 표기합니다.
+
+> The `text-size-adjust` CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property.
+
+이 속성이 제어하는 것은 **text inflation algorithm**입니다. Apple의 아카이브 문서를 보면 원래 목적이 나옵니다. 사용자가 블록 요소를 더블탭하면 Safari가 그 블록 너비에 맞춰 뷰포트를 확대하는데, 그때 글자가 지나치게 작거나 크게 보이는 것을 보정하는 장치였습니다. 같은 문서는 iPad의 기본값이 `none`이고 다른 기기의 기본값은 `auto`라고 적어둡니다.
+
+즉 이 속성은 시스템 글꼴 배율을 끄는 스위치가 아닙니다. 두 기능은 서로 다른 경로를 탑니다. `-webkit-text-size-adjust: 100%`를 넣어두면 안전하다고 결론짓지 마시고, 실기기의 글자 크기 설정을 최대로 올린 상태에서 직접 확인하시는 편이 확실합니다.
+
+### iOS 쪽 사정
+
+iOS에서 시스템 글꼴 배율을 웹뷰 콘텐츠에 자동으로 곱하는 동작은 공식 문서로 확인되지 않습니다. 있는지 없는지 단정하지 않고, 다음 두 가지만 확실한 사실로 씁니다.
+
+첫째, 앱은 `WKWebView.pageZoom`으로 웹뷰 전체 배율을 코드로 바꿀 수 있습니다. iOS 14.0 이상이고 기본값은 1.0이며, 문서는 "Changing the value of this property is equivalent to setting the CSS `zoom` property on all page content"라고 설명합니다. 앱 안에서만 화면이 유독 크거나 작다면 이 값을 의심할 수 있습니다.
+
+둘째, Apple이 문서화한 시스템 폰트 CSS 값들이 있습니다. WebKit 블로그는 `-apple-system`과 함께 `-apple-system-body`, `-apple-system-headline`, `-apple-system-subheadline`, `-apple-system-caption1` 등의 값 목록을 제시합니다. 그 글은 이 값들을 iOS의 dynamic type 동작으로 소개하고, 크기와 굵기를 포함한 스타일 전체를 나타낸다고 적습니다. 다만 사용자의 텍스트 크기 설정에 따라 실제로 얼마나 변하는지까지는 규정하지 않습니다. Dynamic Type 연동의 폭을 기대하고 도입하기 전에 실기기 검증이 필요합니다.
+
+---
+
+## 확대를 막는 것은 접근성 기준 위반입니다
+
+확대 차단은 취향이나 디자인 판단의 문제가 아닙니다. 국제 표준에 명시된 실패 조건입니다.
+
+### 근거는 두 층으로 되어 있습니다
+
+**성공 기준 원문.** WCAG 2.2 성공 기준 1.4.4 Resize text는 레벨 AA이고, 전문은 이렇습니다.
+
+> Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.
+
+여기까지는 확대 **방법**을 지정하지 않습니다. 200퍼센트까지 키울 수 있어야 한다는 결과만 규정합니다.
+
+**구체화 규칙.** 이 결과를 뷰포트 메타 조건으로 옮긴 것이 W3C WAI의 ACT 규칙 `b4f0c3` "Meta viewport allows for zoom"입니다. 두 가지 기대를 명시합니다.
+
+> the attribute value does not have a `user-scalable` property with a value of `no`.
+
+> the attribute value does not have a `maximum-scale` property with a value less than 2.
+
+그리고 이 규칙은 1.4.4 Resize text (Level AA)로 매핑됩니다. `maximum-scale`의 실패선은 **1이 아니라 2 미만**이라는 점을 짚어둡니다. `maximum-scale=1.5`도 실패입니다.
+
+정리하면, "WCAG에 `user-scalable=no` 금지라고 적혀 있다"는 부정확한 인용입니다. 정확히는 성공 기준이 200퍼센트 확대를 요구하고(AA), ACT 규칙이 그것을 뷰포트 메타 조건으로 구체화합니다.
+
+### 그런데 웹 코드만 고쳐서는 못 맞춥니다
+
+여기가 이 절의 핵심입니다. 확대 차단을 "웹 개발자가 뷰포트 메타에 `user-scalable=no`를 넣어서 생기는 문제"로만 보면 절반만 맞습니다. 두 플랫폼의 기본값이 정반대이고, 한쪽은 웹이 손댈 수 없는 자리에 있습니다.
+
+| 항목 | Android WebView | iOS WKWebView | 참고: 모바일 Safari |
+|---|---|---|---|
+| 확대 메커니즘의 기본 상태 | `setBuiltInZoomControls` 기본값 `false`: 핀치 확대 자체가 비활성 | 활성. 단 페이지의 뷰포트 제한을 따름 | 활성 |
+| 페이지가 `user-scalable=no`를 넣으면 | 앱이 켜지 않았다면 애초에 무관 | 그대로 적용되어 확대 불가 | iOS 10 이상에서 무시됨 |
+| 앱이 바꾸는 스위치 | `setBuiltInZoomControls(true)` + `setDisplayZoomControls(false)` | `ignoresViewportScaleLimits = true` (기본 `false`) | 해당 없음 |
+
+Android 쪽 근거는 AOSP `WebSettings.java`의 javadoc입니다. `setBuiltInZoomControls`는 "on-screen zoom controls, and the use of a pinch gesture to control zooming"을 함께 가리키며 기본값이 `false`라고 적혀 있습니다. `setSupportZoom`의 기본값은 `true`지만, 확대 메커니즘 자체가 꺼져 있으면 그 값은 의미가 없습니다. 화면 위에 플러스 마이너스 버튼 없이 핀치 확대만 얻으려면 `setDisplayZoomControls(false)`를 함께 요청해야 합니다.
+
+iOS 쪽 근거는 WebKit 블로그와 Apple 문서입니다.
+
+> There is new API on WKWebViewConfiguration: `var ignoresViewportScaleLimits: Bool` ... The default value of this property is `false`.
+
+같은 글은 Safari와 SafariViewController가 이 값을 `true`로 설정한다고 적습니다. 그래서 iOS 10 이상의 Safari는 `user-scalable`을 무시하지만, **WKWebView는 기본적으로 페이지의 확대 차단을 그대로 따릅니다.** Safari에서 확대가 되니 괜찮다고 판단하면 앱에서 정확히 반대 결과를 받습니다.
+
+### 그래서 웹이 할 일과 앱에 요청할 일
+
+웹 쪽은 간단합니다. 뷰포트 메타에서 확대 제한을 걷어냅니다.
+
+```html
+<!-- user-scalable과 maximum-scale을 아예 쓰지 않습니다 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+```
+
+그리고 앱에 요청합니다. Android는 `setBuiltInZoomControls(true)`와 `setDisplayZoomControls(false)`, iOS는 `ignoresViewportScaleLimits = true`입니다. 이 두 항목은 웹 코드로 대신할 방법이 없습니다. 요청 문안 자체는 [ep.09](/webview-not-browser-ep-09/)에서 정리합니다.
+
+---
+
+## 텍스트 선택과 캡처는 CSS 밖에서 결정됩니다
+
+민감한 식별자를 다루는 화면에서는 반대 방향의 요구도 들어옵니다. 개인 식별 정보를 길게 눌렀을 때 뜨는 메뉴를 막아달라거나, 화면 캡처를 금지해달라는 요구입니다. 이 요구는 CSS로 절반만 해결됩니다.
+
+### 세 속성이 서로 다른 것을 끕니다
+
+```css
+.no-select {
+  -webkit-user-select: none; /* Safari */
+  user-select: none;
+  /* iOS의 길게 누르기 콜아웃만 끕니다 */
+  -webkit-touch-callout: none;
+  /* 탭할 때 나타나는 하이라이트 색. 초기값은 black입니다 */
+  -webkit-tap-highlight-color: transparent;
+}
+```
+
+세 속성의 성격이 다릅니다.
+
+- `user-select`는 CSS Basic User Interface Level 4의 **표준** 속성입니다. 텍스트 선택 가능 여부를 제어합니다. Safari에서는 `-webkit-` 프리픽스가 함께 필요합니다.
+- `-webkit-touch-callout`은 **비표준**입니다. MDN은 문서 상단 배너에 "Non-standard: This feature is not standardized."라고 적고, Specifications 절에는 "Not part of any standard."라고만 적습니다. 제어 범위는 iOS Safari에서 터치 앤 홀드 시 나타나는 기본 콜아웃뿐입니다.
+- `-webkit-tap-highlight-color`도 **비표준**입니다. 링크를 탭할 때 덮이는 하이라이트 색을 지정하고, 초기값은 `black`입니다.
+
+앞의 `text-size-adjust`와 성격이 다릅니다. 저건 표준화가 진행 중이지만 미완인 상태이고, 이 둘은 어떤 공식 표준에도 속하지 않습니다. 프로젝트 코딩 규약에서 두 부류를 섞어 취급하면 나중에 판단 근거가 흐려집니다.
+
+### CSS로 막았는데 메뉴가 뜬다면
+
+iOS에서 흔한 상황입니다. `-webkit-touch-callout: none`을 걸었는데도 길게 누르면 컨텍스트 메뉴가 나타납니다.
+
+최종 결정권이 CSS에 없기 때문입니다. iOS 13.0 이상에서 웹뷰의 롱프레스 컨텍스트 메뉴는 `WKUIDelegate`의 `webView(_:contextMenuConfigurationForElement:completionHandler:)`를 거칩니다. 앱이 이 델리게이트에서 완료 핸들러에 `nil`을 넘기면 메뉴가 표시되지 않습니다.
+
+즉 "웹에서 막았는데 안 막힌다"의 답은 델리게이트입니다. 앱 개발자에게 이 메서드 이름을 그대로 전달하면 대화가 짧아집니다.
+
+### 화면 캡처는 CSS 주제가 아닙니다
+
+캡처 방지는 웹의 영역이 전혀 아닙니다. 그리고 두 플랫폼이 제공하는 것의 성격이 다릅니다.
+
+**Android는 차단할 수 있습니다.** 윈도우 플래그 `FLAG_SECURE`입니다.
+
+> `FLAG_SECURE` is a Window flag that tells Android not to allow screenshots or to display the window view on a non-secure display (such as Casting the screen).
+
+주의할 조건이 둘 있습니다. 하나는 같은 문서의 경고입니다. "For Android 11 (API 30) and lower `FLAG_SECURE` is able to help around 70% of the devices reliably." 다른 하나는 적용 범위입니다. 이 플래그는 윈도우 전체에 걸립니다. 웹뷰 안의 특정 영역만 골라 막을 수 없고, 액티비티 전체가 캡처 불가가 됩니다. 웹 쪽에서 부분 제어할 방법은 없습니다.
+
+**iOS에는 차단이 아니라 감지가 있습니다.** `UIScreen.isCaptured`는 iOS 11.0에서 도입된 읽기 전용 프로퍼티이고, `capturedDidChangeNotification`으로 변화를 관찰합니다. 다만 Apple 문서는 이 프로퍼티를 iOS 27.0에서 deprecated로 표시하고 있습니다.
+
+> A value of `YES` indicates the system is actively recording, mirroring, or using AirPlay to stream the contents of the screen.
+
+> You should observe this property and optionally take appropriate action in your app to prevent the capture of your content.
+
+문서가 권하는 것은 차단이 아니라 "감지하고 앱이 알아서 조치하라"입니다. iOS 17.0 이상에서는 `UITraitCollection.sceneCaptureState`가 같은 역할을 하고, Apple 문서가 지목하는 대체 API도 이쪽입니다. 신규 구현을 기획서에 적을 때는 `isCaptured`가 아니라 이 값을 기준으로 잡습니다.
+
+---
+
+## 고정 요소가 떨립니다
+
+증상 자체는 웹뷰 밖에서도 보고됩니다. 스크롤 중에 `position: fixed` 헤더가 미세하게 떨리거나, 스크롤이 멈춘 뒤 늦게 제자리로 돌아옵니다. 앱 안에서 유독 심하다는 제보가 자주 들어오지만, 그 인과를 뒷받침하는 공식 문서는 확인되지 않았습니다. 현상은 현상으로 두고, 대응 과정에서 확실한 것만 씁니다.
+
+### 흔한 처방이 새 버그를 만듭니다
+
+가장 자주 쓰이는 처방은 레이어 승격입니다.
+
+```css
+/* 흔히 쓰이는 처방 */
+.sticky-header {
+  transform: translateZ(0);
+  will-change: transform;
+}
+```
+
+이 코드에는 문서화된 부작용이 둘 있습니다.
+
+**첫째, 자손의 `position: fixed`가 뷰포트를 기준으로 삼지 않게 됩니다.** MDN의 `position` 문서는 이렇게 적습니다.
+
+> the element's containing block is the initial containing block established by the viewport, unless any ancestor has `transform`, `perspective`, or `filter` property set to something other than `none` ... Also, when the `will-change` property is set to `transform`, a new containing block is established.
+
+즉 어느 조상에 `transform`이나 `will-change: transform`을 걸어두면, 그 아래의 고정 요소는 뷰포트가 아니라 그 조상을 기준으로 붙습니다. 화면 하단에 고정해둔 CTA 버튼이 갑자기 컨테이너 안쪽에 붙는 문제의 정확한 원인이 이것입니다. 이건 웹뷰 고유 동작이 아니라 CSS 규칙이므로, 브라우저에서도 똑같이 재현됩니다.
+
+**둘째, 레이어는 기기의 사양을 잡아먹습니다.** MDN의 `will-change` 문서는 "Overusing the property can cause the page to slow down instead of improving it's performance"라고 적고, 이 속성을 최후의 수단으로 쓰라고 권합니다. Chrome 팀 문서는 더 직접적입니다.
+
+> every layer you create requires memory and management, and that's not free.
+
+> On devices with limited memory the impact on performance can far outweigh any benefit of creating a layer.
+
+떨림을 잡으려고 레이어를 늘리다가 저사양 기기에서 더 느려지는 교환이 여기서 일어납니다. `will-change`는 전역 유틸리티 클래스로 만들어 여기저기 붙이는 종류의 속성이 아닙니다.
+
+### 하드웨어 가속의 방향은 비대칭입니다
+
+Android 쪽에서 앱이 할 수 있는 일에는 방향 제약이 있습니다. 공식 문서를 그대로 옮깁니다.
+
+- targetSdk 14 이상이면 하드웨어 가속은 기본 활성입니다.
+- 뷰 레벨: "You currently cannot enable hardware acceleration at the view level."
+- 윈도우 레벨: "You currently cannot disable hardware acceleration at the window level."
+
+방향으로 옮기면 이렇습니다. 뷰 레벨에서는 끄기만 되고, 윈도우 레벨에서는 켜기만 됩니다.
+
+`android.webkit.WebView`는 `AbsoluteLayout`을 상속하는 일반 View입니다. 그래서 앱은 `View.setLayerType(View.LAYER_TYPE_SOFTWARE, null)`로 웹뷰의 하드웨어 가속을 **끌 수만** 있습니다. 이 방향을 뒤집어 요청하면 대화가 어긋납니다. 뷰 레벨에서 "웹뷰에 하드웨어 가속을 켜주세요"라는 요청은 성립하지 않습니다.
+
+대신 확인할 것이 둘입니다. 하나는 매니페스트의 액티비티나 애플리케이션에 `android:hardwareAccelerated="false"`가 들어가 있는지입니다. 하드웨어 가속은 애플리케이션, 액티비티, 윈도우, 뷰 네 레벨에서 제어되므로 이 값은 앱이 되돌릴 수 있습니다. 다른 하나는 웹뷰가 소프트웨어 레이어로 내려가 있는지입니다.
+
+---
+
+## 같은 font-family가 다른 글자를 부릅니다
+
+"웹뷰가 폰트를 바꿉니다"라는 표현을 자주 듣습니다. 정확하지 않습니다. 바뀌는 것은 폴백의 결과이고, 그 결과에 이르는 단계가 셋입니다.
+
+### 첫째, 제네릭 패밀리가 플랫폼마다 다른 실물 폰트로 해석됩니다
+
+`system-ui`는 CSS 표준 제네릭 패밀리입니다. MDN의 정의는 "Glyphs are taken from the default user interface font on a given platform"입니다. 정의상 플랫폼마다 다른 폰트가 됩니다.
+
+- Android: AOSP `fonts.xml`에서 `sans-serif` 계열의 첫 항목은 Roboto입니다.
+- iOS: Apple의 시스템 폰트이고, 한글 시스템 폰트는 Apple SD Gothic Neo입니다.
+
+같은 문서에는 짚어둘 만한 문장이 하나 더 있습니다.
+
+> As the name implies, `system-ui` is intended to make UI elements look like native apps, and not for typesetting large paragraphs of text.
+
+`system-ui`는 UI 요소를 네이티브처럼 보이게 하려는 용도이고, 본문 조판용으로 설계된 것이 아닙니다. 약관이나 안내문 같은 긴 본문에 이 값을 기본으로 두는 선택은 다시 검토할 여지가 있습니다.
+
+### 둘째, 한글은 글자 단위로 폴백됩니다
+
+폰트 폴백이 폰트 단위가 아니라는 점이 중요합니다.
+
+> Font selection does not stop at the first font in the list that is on the user's system. Rather, font selection is done one character at a time, so that if an available font does not have a glyph for a needed character, the latter fonts are tried.
+
+`font-family` 목록의 첫 폰트가 존재해도, 그 폰트에 한글 글리프가 없으면 그 글자만 다음 폰트로 넘어갑니다. Android에서 `lang="ko"` 문맥의 한글은 `fonts.xml` 설정에 따라 Noto Sans CJK로 매핑됩니다. 그래서 영문과 숫자는 지정한 폰트로, 한글은 다른 폰트로 그려지는 혼합이 자연스럽게 발생합니다. 자간과 세로 정렬이 미세하게 어긋나는 증상이 여기서 나옵니다.
+
+### 셋째, 없는 웨이트는 합성됩니다
+
+폴백으로 도착한 폰트에 요청한 웨이트가 없으면 브라우저가 만들어냅니다. CSS Fonts Module Level 4의 `font-synthesis`가 이 동작을 제어하고, MDN은 CJK에 대해 명시적으로 경고합니다.
+
+> Fonts used for Chinese, Japanese, Korean and other logographic scripts tend not to include these variants and synthesizing them might impede the legibility or change the meaning of the text.
+
+한글 볼드가 유독 뭉개져 보이는 현상의 이름이 **가짜 볼드(synthetic bold)**입니다. 기본값은 네 가지 합성을 모두 허용하는 쪽입니다. 끄려면 명시해야 합니다.
+
+```css
+:root {
+  /* 웹폰트로 웨이트를 직접 공급하는 경우에만 끕니다 */
+  font-synthesis: none;
+}
+
+.heading {
+  /* 합성을 껐다면 실제로 존재하는 웨이트만 요청해야 합니다 */
+  font-weight: 700;
+}
+```
+
+주의할 점이 있습니다. 합성을 끄면 없는 웨이트는 그냥 얇게 나옵니다. 볼드가 사라진 것처럼 보일 수 있습니다. `font-synthesis: none`은 필요한 웨이트를 웹폰트로 직접 공급하고 있을 때만 안전한 선택입니다.
+
+### 정리하면
+
+세 단계를 구분하면 대응이 갈립니다.
+
+| 단계 | 무슨 일이 일어나는가 | 웹이 할 수 있는 것 |
+|---|---|---|
+| 제네릭 해석 | `system-ui` / `-apple-system`이 플랫폼별 실물 폰트가 됨 | 본문에는 제네릭 대신 명시적 폰트 스택을 쓴다 |
+| 글자 단위 폴백 | 한글만 다른 폰트로 떨어짐 | 한글 웹폰트를 직접 공급해 폴백 자체를 없앤다 |
+| 웨이트 합성 | 없는 볼드를 브라우저가 만들어냄 | 필요한 웨이트를 모두 공급하고 `font-synthesis`를 통제한다 |
+
+세 단계 모두 웹 쪽에서 해결 가능합니다.
+
+---
+
+## 웹의 z-index는 웹뷰 안에서만 유효합니다
+
+마지막 출처는 스타일이라기보다 구조입니다.
+
+`WKWebView`는 iOS에서 `UIView`를 상속합니다. Apple 문서는 이것을 "a platform-native view that seamlessly incorporates web content into your app's UI"로 설명합니다. Android의 `WebView`는 소스 선언 그대로 `AbsoluteLayout`을 상속하는 View입니다.
+
+여기서 따라오는 결론이 하나 있습니다. **CSS의 `z-index`는 웹뷰 내부의 쌓임 순서만 정렬합니다.** 웹뷰 자체가 네이티브 뷰 계층에서 어디에 놓이는지는 앱이 정합니다. `z-index: 9999`를 걸어도 웹뷰 위에 얹힌 네이티브 헤더나 탭바를 넘어갈 수 없습니다. 애초에 다른 좌표계입니다.
+
+그래서 이런 증상이 나옵니다.
+
+- 전체화면 모달을 띄웠는데 상단에 네이티브 헤더가 그대로 남아 있습니다.
+- 하단 고정 CTA 버튼이 네이티브 탭바에 가려집니다.
+- 네이티브 바텀시트가 올라오면 웹 콘텐츠의 하단이 잘립니다.
+
+### 웹이 할 수 있는 것
+
+웹이 네이티브 뷰를 치울 수는 없습니다. 대신 **가려지는 영역을 알고 피할 수는** 있습니다. 안전 영역 변수입니다.
+
+```html
+<!-- 뷰포트가 디스플레이 전체를 채우도록 하고 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+```
+
+```css
+.fixed-cta {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  /* 안전 영역만큼 아래 여백을 더합니다 */
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  padding-top: env(safe-area-inset-top);
+}
+```
+
+MDN의 `env()` 문서는 `safe-area-inset-*`를 이렇게 정의합니다.
+
+> The safe distance from the top, right, bottom, or left inset edge of the viewport, defining where it is safe to place content into without risking it being cut off by the shape of a non-rectangular display.
+
+그리고 MDN의 viewport meta 문서는 `viewport-fit: cover`에 대해 "It's highly recommended to use the safe area inset variables to ensure that important content doesn't end up outside the display"라고 적습니다. 둘은 세트로 씁니다. 뷰포트 계산 자체는 [ep.05](/webview-not-browser-ep-05/)에서 다뤘고, 여기서는 z축 충돌을 푸는 도구로만 씁니다.
+
+### 앱이 할 수 있는 것
+
+핵심은 이겁니다. **앱은 자기 네이티브 크롬의 높이를 안전 영역으로 웹뷰에 알려줄 수 있습니다.**
+
+iOS 11.0 이상의 `UIViewController.additionalSafeAreaInsets`가 그 통로입니다. Apple 문서는 "Use this property to adjust the safe area insets of your view controller's views by the specified amount"라고 설명하고, 예시로 "A drawing app might use this property to avoid displaying content underneath custom tool palettes"를 듭니다. 커스텀 툴 팔레트 자리에 네이티브 헤더나 탭바를 대입하면 그대로 우리 상황입니다.
+
+관련 프로퍼티가 하나 더 있습니다. `WKWebView.scrollView`는 `UIScrollView`이므로 `contentInsetAdjustmentBehavior`의 영향을 받고, 기본값은 `.automatic`입니다. 스크롤 상단에 원인 모를 여백이 생긴다면 이 값을 확인해달라고 요청할 수 있습니다.
+
+`env(safe-area-inset-bottom)`이 0으로 나오는데 실제로는 탭바에 가려진다면, 웹의 CSS 문제가 아닙니다. 앱이 인셋을 전달하지 않고 있는 것입니다.
+
+---
+
+## 그래서 무엇을 하면 되나
+
+이 편에서 다룬 출처들을 담당별로 갈라둡니다.
+
+### 웹 개발자가 할 일
+
+**하나. 색상 스킴을 명시적으로 선언합니다.** `meta` 태그와 `:root`의 `color-scheme` 양쪽에 씁니다. 이건 Android의 기본 전략이 요구하는 조건이면서, iOS에서 다크 옵트인이 되는 방법이고, 알고리즘 반전에 대한 유일하게 확실한 신호입니다. 세 갈래 경로를 한 선언으로 통과합니다.
+
+**둘. 확대 제한을 뷰포트 메타에서 걷어냅니다.** `user-scalable=no`와 `maximum-scale`을 지웁니다. 그리고 텍스트가 200퍼센트로 커진 상태에서 화면이 살아 있는지 확인합니다.
+
+**셋. 글꼴 배율이 곱해져도 무너지지 않는 레이아웃을 만듭니다.** 고정 높이를 최소 높이와 패딩으로 바꾸고, 줄바꿈을 허용합니다. 단위를 `rem`으로 바꾸는 것으로는 해결되지 않습니다.
+
+**넷. 폰트 스택을 명시하고 웨이트를 직접 공급합니다.** 제네릭 패밀리에 본문 조판을 맡기지 않습니다. 한글 웹폰트를 공급하면 폴백 단계와 합성 단계가 함께 사라집니다.
+
+**다섯. `will-change`와 `transform`을 남발하지 않습니다.** 붙이기 전에 그 아래에 `position: fixed` 자손이 있는지 확인합니다.
+
+### 진단부터 하고 싶다면
+
+원인을 특정하기 전에 웹뷰가 우리에게 무엇을 알려주고 있는지 먼저 봅니다.
+
+```js
+// 웹뷰가 알려주는 값과 우리가 선언한 값을 대조합니다
+const root = document.documentElement;
+const probe = {
+  // Android에서는 앱 테마의 isLightTheme가 이 값을 정합니다
+  prefersDark: matchMedia('(prefers-color-scheme: dark)').matches,
+  // 우리가 선언한 색상 스킴이 실제로 적용됐는지
+  colorScheme: getComputedStyle(root).colorScheme,
+  // 루트 글자 크기. 지정한 값과 다르면 배율 개입을 의심합니다
+  rootFontSize: getComputedStyle(root).fontSize,
+  // 안전 영역이 0으로만 나오면 앱이 인셋을 전달하지 않는 것입니다
+  safeAreaBottom: getComputedStyle(root)
+    .getPropertyValue('--probe-safe-bottom'),
+  // 뷰포트 메타 원문. 배포본에 제한이 남아 있는지 확인합니다
+  viewport: document.querySelector('meta[name="viewport"]')?.content,
+};
+console.log(probe);
+```
+
+```css
+/* 위 스크립트가 읽을 수 있도록 안전 영역을 커스텀 속성에 담아둡니다 */
+:root {
+  --probe-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+```
+
+`getComputedStyle`이 돌려주는 값은 **CSS 캐스케이드를 통과한 결과**입니다. 활성 스타일시트를 모두 적용한 뒤의 resolved value이므로, 캐스케이드 바깥인 앱 설정에서 들어온 개입은 여기에 잡히지 않을 수 있습니다. 이 값과 실기기에서 눈에 보이는 화면이 어긋난다면, 그 차이가 곧 CSS 바깥에서 개입이 있었다는 증거입니다. 이슈를 올릴 때 이 로그와 실기기 스크린샷을 함께 붙이면 대화가 훨씬 빨라집니다.
+
+### 앱에 요청할 일
+
+웹 코드로 대신할 수 없는 항목들입니다. 실기기에서 재현 조건을 확인한 뒤 스위치 이름을 지목해 요청합니다.
+
+| 증상 | 확인할 스위치 | 플랫폼 |
+|---|---|---|
+| 기기는 다크인데 웹만 라이트 | 앱 테마의 `android:isLightTheme` | Android |
+| 색이 알고리즘으로 뭉개짐 | `setAlgorithmicDarkeningAllowed` (기본 `false`) | Android |
+| 바운스 영역만 다른 색 | `WKWebView.underPageBackgroundColor` | iOS |
+| 글자 크기가 기기마다 다름 | `WebSettings.setTextZoom` (기본 100) | Android |
+| 화면 전체 배율이 이상함 | `WKWebView.pageZoom` (기본 1.0) | iOS |
+| 핀치 확대가 안 됨 | `setBuiltInZoomControls` + `setDisplayZoomControls` | Android |
+| 페이지의 확대 제한이 그대로 먹힘 | `ignoresViewportScaleLimits` (기본 `false`) | iOS |
+| CSS로 막았는데 롱프레스 메뉴가 뜸 | `WKUIDelegate`의 컨텍스트 메뉴 델리게이트 | iOS |
+| 화면 캡처 차단 | `FLAG_SECURE` (윈도우 전체에 적용) | Android |
+| 네이티브 크롬에 가려짐 | `additionalSafeAreaInsets`, `contentInsetAdjustmentBehavior` | iOS |
+
+Android의 `androidx.webkit` 기능을 요청할 때 한 가지 덧붙일 것이 있습니다. 이 기능들은 OS 버전이 아니라 **기기에 설치된 Android System WebView APK 버전**에 묶입니다. androidx 저장소의 README는 이렇게 경고합니다.
+
+> You should take care to always check feature availability before calling an API, as you otherwise risk a runtime crash
+
+그래서 `setAlgorithmicDarkeningAllowed` 같은 기능은 `WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING)`로 먼저 판별해야 합니다. "안드로이드 13 이상이면 되나요"가 아니라 "이 기기의 WebView가 이 기능을 지원하나요"가 정확한 질문입니다. 기기마다 갈리는 이 구조 자체는 [ep.01](/webview-not-browser-ep-01/)에서 다룹니다.
+
+우리 화면에 들어온 낯선 스타일에는 **켜고 끌 수 있는 스위치**가 붙어 있습니다. 그 스위치가 어디 있는지 알면, 안 되는 것이 아니라 아직 켜지 않은 것이 됩니다.
+
+---
+
+## 참고 자료
+
+- Android Developers. Darken web content in WebView. https://developer.android.com/develop/ui/views/layout/webapps/dark-theme
+- Android Developers. Behavior changes: Apps targeting Android 13 or higher. https://developer.android.com/about/versions/13/behavior-changes-13
+- Android Developers. Dark theme. https://developer.android.com/develop/ui/views/theming/darktheme
+- Android Developers. Hardware acceleration. https://developer.android.com/topic/performance/hardware-accel
+- Android Developers. Secure sensitive activities. https://developer.android.com/security/fraud-prevention/activities
+- Android Developers. Android 14 features and changes list. https://developer.android.com/about/versions/14/features
+- Android Open Source Project. WebSettings.java. https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/core/java/android/webkit/WebSettings.java
+- Android Open Source Project. WebSettingsCompat.java. https://android.googlesource.com/platform/frameworks/support/+/refs/heads/androidx-main/webkit/webkit/src/main/java/androidx/webkit/WebSettingsCompat.java
+- Android Open Source Project. fonts.xml. https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/data/fonts/fonts.xml
+- The Chromium Projects. aw\_settings.cc. https://chromium.googlesource.com/chromium/src/+/refs/heads/main/android\_webview/browser/aw\_settings.cc
+- Apple. WKWebView. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebview
+- Apple. ignoresViewportScaleLimits. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/ignoresviewportscalelimits
+- Apple. underPageBackgroundColor. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebview/underpagebackgroundcolor
+- Apple. pageZoom. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebview/pagezoom
+- Apple. additionalSafeAreaInsets. Apple Developer Documentation. https://developer.apple.com/documentation/uikit/uiviewcontroller/additionalsafeareainsets
+- Apple. contentInsetAdjustmentBehavior. Apple Developer Documentation. https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior
+- Apple. isCaptured. Apple Developer Documentation. https://developer.apple.com/documentation/uikit/uiscreen/iscaptured
+- Apple. System Fonts. Apple Developer. https://developer.apple.com/fonts/system-fonts/
+- Apple. Adjusting the Text Size. Safari Web Content Guide (Archive). https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/AdjustingtheTextSize/AdjustingtheTextSize.html
+- WebKit. Dark Mode Support in WebKit. https://webkit.org/blog/8840/dark-mode-support-in-webkit/
+- WebKit. New Interaction Behaviors in iOS 10. https://webkit.org/blog/7367/new-interaction-behaviors-in-ios-10/
+- WebKit. Using the System Font in Web Content. https://webkit.org/blog/3709/using-the-system-font-in-web-content/
+- W3C. Web Content Accessibility Guidelines (WCAG) 2.2, Success Criterion 1.4.4 Resize text. https://www.w3.org/TR/WCAG22/#resize-text
+- W3C WAI. Understanding SC 1.4.4: Resize text. https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html
+- W3C WAI. ACT Rule: Meta viewport allows for zoom. https://www.w3.org/WAI/standards-guidelines/act/rules/b4f0c3/
+- W3C CSS Working Group. CSS Color Adjustment Module Level 1. https://drafts.csswg.org/css-color-adjust-1/
+- MDN Web Docs. color-scheme. https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+- MDN Web Docs. text-size-adjust. https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
+- MDN Web Docs. font-synthesis. https://developer.mozilla.org/en-US/docs/Web/CSS/font-synthesis
+- MDN Web Docs. font-family. https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
+- MDN Web Docs. user-select. https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
+- MDN Web Docs. -webkit-touch-callout. https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-touch-callout
+- MDN Web Docs. -webkit-tap-highlight-color. https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color
+- MDN Web Docs. position. https://developer.mozilla.org/en-US/docs/Web/CSS/position
+- MDN Web Docs. will-change. https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
+- MDN Web Docs. env(). https://developer.mozilla.org/en-US/docs/Web/CSS/env
+- MDN Web Docs. Viewport meta element. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/viewport
+- MDN Web Docs. Window: getComputedStyle() method. https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
+- Chrome for Developers. Auto Dark Theme. https://developer.chrome.com/blog/auto-dark-theme
+- web.dev. Stick to compositor-only properties and manage layer count. https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count
+
+---
+
+## 다음 편 예고
+
+> [ep.07 - 로그인이 풀립니다](/webview-not-browser-ep-07/)
+
+색이 뒤집히는 것은 눈에 보이기라도 합니다. 저장소와 쿠키는 조용히 사라지고, 사용자는 로그인이 풀린 결과만 봅니다. 웹뷰가 브라우저와 무엇을 공유하지 않는지, 오리진이 특수하게 취급될 때 무엇이 함께 무너지는지 따라갑니다.

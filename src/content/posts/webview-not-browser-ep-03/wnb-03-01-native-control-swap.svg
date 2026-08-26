@@ -1,0 +1,409 @@
+<svg viewBox="0 0 800 1410" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-swap">
+  <title id="t-swap">폼 컨트롤이 웹뷰에서 네이티브 컴포넌트로 치환되는 경로</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #0E7490;
+        --c-accent-2: #B45309;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(14, 116, 144, 0.08);
+        --c-soft-2: rgba(180, 83, 9, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #4DD4EC;
+          --c-accent-2: #E8A876;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(77, 212, 236, 0.12);
+          --c-soft-2: rgba(232, 168, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .hdr {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .node {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .code {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        fill: var(--c-muted);
+      }
+
+      .cap-warn {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+
+      .cap-acc {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-accent);
+      }
+
+      .pathlbl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-muted);
+      }
+
+      .lgd {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .web-card {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.5;
+      }
+
+      .os-card {
+        fill: var(--c-card);
+        stroke: var(--c-muted);
+        stroke-width: 1.2;
+      }
+
+      .app-card {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.5;
+      }
+
+      .flow {
+        stroke: var(--c-line);
+        stroke-width: 2;
+        fill: none;
+        stroke-linejoin: round;
+      }
+
+      .flow-acc {
+        stroke: var(--c-accent);
+        stroke-width: 2;
+        fill: none;
+        stroke-linejoin: round;
+      }
+
+      .flow-dash {
+        stroke: var(--c-muted);
+        stroke-width: 1.8;
+        fill: none;
+        stroke-dasharray: 5 4;
+        stroke-linejoin: round;
+      }
+
+      .divider {
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .band {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.2;
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="1238" />
+
+  <!-- 열 제목 -->
+  <text x="24" y="32" class="hdr">웹이 선언한 것</text>
+  <text x="250" y="32" class="hdr">웹뷰 경계</text>
+  <text x="486" y="32" class="hdr">사용자가 실제로 만나는 것</text>
+  <line x1="24" y1="46" x2="776" y2="46" class="divider" />
+
+  <!-- ================= 1행 select ================= -->
+  <g>
+    <rect x="24" y="62" width="196" height="46" rx="9" class="web-card" />
+    <rect x="24" y="71" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="42" y="90" class="code">select 요소 + CSS 규칙</text>
+
+    <line x1="220" y1="85" x2="238" y2="85" class="flow" />
+    <polygon points="250,85 238,79 238,91" fill="var(--c-line)" />
+
+    <rect x="250" y="62" width="206" height="46" rx="9" class="os-card" />
+    <rect x="250" y="71" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="268" y="81" class="node">엔진이 브라우저 창</text>
+    <text x="268" y="99" class="node">밖으로 렌더</text>
+
+    <line x1="456" y1="85" x2="474" y2="85" class="flow" />
+    <polygon points="486,85 474,79 474,91" fill="var(--c-line)" />
+
+    <rect x="486" y="62" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="71" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="90" class="node">OS 제공 피커</text>
+    <text x="486" y="126" class="cap">앱 개입 없음, 엔진 버전이 결과를 결정</text>
+
+    <!-- 조건 분기 -->
+    <path class="flow-acc" d="M 272 108 V 168 Q 272 178 282 178 H 474" />
+    <polygon points="486,178 474,172 474,184" fill="var(--c-accent)" />
+    <text x="288" y="142" class="cap-acc">appearance base-select</text>
+    <text x="288" y="158" class="cap-acc">지원 엔진일 때</text>
+
+    <rect x="486" y="155" width="290" height="46" rx="9" class="web-card" />
+    <rect x="486" y="164" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="504" y="183" class="node">웹이 그린 드롭다운, 접근성 유지</text>
+  </g>
+
+  <line x1="24" y1="217" x2="776" y2="217" class="divider" />
+
+  <!-- ================= 2행 날짜 입력 ================= -->
+  <g>
+    <rect x="24" y="264" width="196" height="46" rx="9" class="web-card" />
+    <rect x="24" y="273" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="42" y="292" class="code">input type=date</text>
+
+    <line x1="220" y1="287" x2="238" y2="287" class="flow" />
+    <polygon points="250,287 238,281 238,293" fill="var(--c-line)" />
+
+    <rect x="250" y="264" width="206" height="46" rx="9" class="os-card" />
+    <rect x="250" y="273" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="268" y="292" class="node">엔진이 type을 아는가</text>
+
+    <path class="flow" d="M 456 287 H 468 V 256" />
+    <path class="flow" d="M 468 256 H 474" />
+    <polygon points="486,256 474,250 474,262" fill="var(--c-line)" />
+    <path class="flow" d="M 468 287 V 318 H 474" />
+    <polygon points="486,318 474,312 474,324" fill="var(--c-line)" />
+
+    <rect x="486" y="233" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="242" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="261" class="node">OS 날짜 피커, 표시 형식은 로케일</text>
+
+    <rect x="486" y="295" width="290" height="46" rx="9" class="web-card" />
+    <rect x="486" y="304" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="504" y="323" class="node">모르면 텍스트 입력 상태로 처리</text>
+
+    <text x="486" y="359" class="cap">value는 어느 쪽이든 항상 yyyy-mm-dd</text>
+  </g>
+
+  <line x1="24" y1="379" x2="776" y2="379" class="divider" />
+
+  <!-- ================= 3행 파일 선택 ================= -->
+  <g>
+    <rect x="24" y="445" width="196" height="46" rx="9" class="web-card" />
+    <rect x="24" y="454" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="42" y="464" class="code">input type=file</text>
+    <text x="42" y="482" class="code">+ accept</text>
+
+    <line x1="220" y1="468" x2="353" y2="468" class="flow" />
+    <circle cx="353" cy="468" r="3.5" fill="var(--c-line)" />
+    <line x1="353" y1="418" x2="353" y2="519" class="flow" />
+
+    <line x1="353" y1="418" x2="474" y2="418" class="flow" />
+    <polygon points="486,418 474,412 474,424" fill="var(--c-line)" />
+    <text x="362" y="410" class="pathlbl">iOS 경로</text>
+
+    <line x1="353" y1="519" x2="474" y2="519" class="flow" />
+    <polygon points="486,519 474,513 474,525" fill="var(--c-line)" />
+    <text x="362" y="511" class="pathlbl">안드로이드 경로</text>
+
+    <rect x="486" y="395" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="404" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="414" class="node">기본값 켜짐, 델리게이트 없이도</text>
+    <text x="504" y="432" class="node">파일 선택 동작</text>
+
+    <rect x="486" y="450" width="3" height="32" rx="1.5" fill="var(--c-accent-2)" />
+    <text x="498" y="461" class="cap-warn">앱이 runOpenPanelWith를 구현하면</text>
+    <text x="498" y="477" class="cap-warn">accept 정보가 사라짐</text>
+
+    <rect x="486" y="496" width="290" height="46" rx="9" class="app-card" />
+    <rect x="486" y="505" width="4" height="28" rx="2" fill="var(--c-accent-2)" />
+    <text x="504" y="515" class="code">WebChromeClient.</text>
+    <text x="504" y="533" class="code">onShowFileChooser</text>
+
+    <line x1="540" y1="542" x2="540" y2="562" class="flow-dash" />
+    <polygon points="540,574 534,562 546,562" fill="var(--c-muted)" />
+    <text x="556" y="563" class="cap-warn">미구현일 때</text>
+
+    <rect x="486" y="574" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="583" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <circle cx="510" cy="597" r="8.5" fill="none" stroke="var(--c-muted)" stroke-width="1.5" />
+    <path d="M 506.5 593.5 L 513.5 600.5 M 513.5 593.5 L 506.5 600.5" stroke="var(--c-muted)" stroke-width="1.6"
+      stroke-linecap="round" fill="none" />
+    <text x="528" y="602" class="node">아무 반응 없음</text>
+  </g>
+
+  <line x1="24" y1="636" x2="776" y2="636" class="divider" />
+
+  <!-- ================= 4행 자동완성 ================= -->
+  <g>
+    <rect x="24" y="652" width="196" height="46" rx="9" class="web-card" />
+    <rect x="24" y="661" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="42" y="680" class="code">autocomplete 속성</text>
+
+    <line x1="220" y1="675" x2="238" y2="675" class="flow" />
+    <polygon points="250,675 238,669 238,681" fill="var(--c-line)" />
+
+    <rect x="250" y="652" width="206" height="46" rx="9" class="os-card" />
+    <rect x="250" y="661" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="268" y="680" class="node">OS 자격증명 저장소 조회</text>
+
+    <line x1="456" y1="675" x2="474" y2="675" class="flow" />
+    <polygon points="486,675 474,669 474,681" fill="var(--c-line)" />
+
+    <rect x="486" y="652" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="661" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="671" class="node">iOS QuickType 바 /</text>
+    <text x="504" y="689" class="node">안드로이드 자동완성 오버레이</text>
+
+    <rect x="486" y="707" width="3" height="16" rx="1.5" fill="var(--c-accent-2)" />
+    <text x="498" y="719" class="cap-warn">Chrome 또는 System WebView 61 이상 필요</text>
+  </g>
+
+  <line x1="24" y1="742" x2="776" y2="742" class="divider" />
+
+  <!-- ================= 5행 패스키 ================= -->
+  <g>
+    <rect x="24" y="791" width="196" height="46" rx="9" class="web-card" />
+    <rect x="24" y="800" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="42" y="810" class="code">navigator.</text>
+    <text x="42" y="828" class="code">credentials 호출</text>
+
+    <line x1="220" y1="814" x2="238" y2="814" class="flow" />
+    <polygon points="250,814 238,808 238,820" fill="var(--c-line)" />
+
+    <rect x="250" y="791" width="206" height="46" rx="9" class="app-card" />
+    <rect x="250" y="800" width="4" height="28" rx="2" fill="var(--c-accent-2)" />
+    <text x="268" y="810" class="node">앱과 도메인이</text>
+    <text x="268" y="828" class="node">묶여 있는가</text>
+
+    <path class="flow" d="M 456 814 H 468 V 781 H 474" />
+    <polygon points="486,781 474,775 474,787" fill="var(--c-line)" />
+    <path class="flow-dash" d="M 468 814 V 847 H 474" />
+    <polygon points="486,847 474,841 474,853" fill="var(--c-muted)" />
+
+    <rect x="486" y="758" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="767" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="786" class="node">OS 인증 시트</text>
+
+    <rect x="486" y="824" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="833" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="852" class="node">호출이 거절됨</text>
+
+    <rect x="486" y="879" width="3" height="16" rx="1.5" fill="var(--c-accent-2)" />
+    <text x="498" y="891" class="cap-warn">Android는 앱이 opt-in, iOS는 Associated Domains</text>
+  </g>
+
+  <line x1="24" y1="914" x2="776" y2="914" class="divider" />
+
+  <!-- ================= 6행 인증번호 ================= -->
+  <g>
+    <rect x="24" y="963" width="196" height="46" rx="9" class="web-card" />
+    <rect x="24" y="972" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="42" y="982" class="code">autocomplete=</text>
+    <text x="42" y="1000" class="code">one-time-code</text>
+
+    <line x1="220" y1="986" x2="353" y2="986" class="flow" />
+    <circle cx="353" cy="986" r="3.5" fill="var(--c-line)" />
+    <line x1="353" y1="953" x2="353" y2="1019" class="flow" />
+
+    <line x1="353" y1="953" x2="474" y2="953" class="flow" />
+    <polygon points="486,953 474,947 474,959" fill="var(--c-line)" />
+    <line x1="353" y1="1019" x2="474" y2="1019" class="flow" />
+    <polygon points="486,1019 474,1013 474,1025" fill="var(--c-line)" />
+
+    <rect x="486" y="930" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="939" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="949" class="node">iOS: SMS에서 코드 파싱해</text>
+    <text x="504" y="967" class="node">QuickType 바에 제안</text>
+
+    <rect x="486" y="996" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="1005" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="1024" class="node">Android WebView: WebOTP 미지원</text>
+
+    <line x1="631" y1="1042" x2="631" y2="1060" class="flow" />
+    <polygon points="631,1072 625,1060 637,1060" fill="var(--c-line)" />
+
+    <rect x="486" y="1072" width="290" height="46" rx="9" class="app-card" />
+    <rect x="486" y="1081" width="4" height="28" rx="2" fill="var(--c-accent-2)" />
+    <text x="504" y="1091" class="node">앱이 SMS를 받아 웹에 전달하는</text>
+    <text x="504" y="1109" class="node">경로를 만들어야 함</text>
+  </g>
+
+  <line x1="24" y1="1134" x2="776" y2="1134" class="divider" />
+
+  <!-- ================= 7행 포커스 ================= -->
+  <g>
+    <rect x="24" y="1183" width="196" height="46" rx="9" class="web-card" />
+    <rect x="24" y="1192" width="4" height="28" rx="2" fill="var(--c-accent)" />
+    <text x="42" y="1211" class="code">el.focus() 호출</text>
+
+    <line x1="220" y1="1206" x2="238" y2="1206" class="flow" />
+    <polygon points="250,1206 238,1200 238,1212" fill="var(--c-line)" />
+
+    <rect x="250" y="1183" width="206" height="46" rx="9" class="app-card" />
+    <rect x="250" y="1192" width="4" height="28" rx="2" fill="var(--c-accent-2)" />
+    <text x="268" y="1202" class="node">웹뷰 자체가 포커스를</text>
+    <text x="268" y="1220" class="node">갖고 있는가</text>
+
+    <path class="flow" d="M 456 1206 H 468 V 1173 H 474" />
+    <polygon points="486,1173 474,1167 474,1179" fill="var(--c-line)" />
+    <path class="flow-dash" d="M 468 1206 V 1239 H 474" />
+    <polygon points="486,1239 474,1233 474,1245" fill="var(--c-muted)" />
+
+    <rect x="486" y="1150" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="1159" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="1178" class="node">소프트 키보드 표시</text>
+
+    <rect x="486" y="1216" width="290" height="46" rx="9" class="os-card" />
+    <rect x="486" y="1225" width="4" height="28" rx="2" fill="var(--c-muted)" />
+    <text x="504" y="1244" class="node">호출이 무시됨</text>
+  </g>
+
+  <line x1="24" y1="1278" x2="776" y2="1278" class="divider" />
+
+  <!-- ================= 범례 ================= -->
+  <g>
+    <rect x="24" y="1294" width="14" height="14" rx="3" class="web-card" />
+    <text x="46" y="1305" class="lgd">웹이 통제</text>
+
+    <rect x="130" y="1294" width="14" height="14" rx="3" class="os-card" />
+    <text x="152" y="1305" class="lgd">OS가 통제</text>
+
+    <rect x="236" y="1294" width="14" height="14" rx="3" class="app-card" />
+    <text x="258" y="1305" class="lgd">앱이 구현해야 통제 가능</text>
+  </g>
+
+  <!-- ================= 하단 띠 ================= -->
+  <rect x="24" y="1334" width="752" height="52" rx="10" class="band" />
+  <text x="400" y="1365" class="node" text-anchor="middle">왼쪽 열만 웹의 코드다. 가운데와 오른쪽은 요청하거나 조건을 확인하는 영역이다</text>
+</svg>

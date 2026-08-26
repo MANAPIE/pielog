@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-not">
-  <title id="title-not">알림 UX와 Observer — 코드 구조와 사용자 경험의 대응</title>
+  <title id="title-not">알림 UX와 Observer: 코드 구조와 사용자 경험의 대응</title>
   <defs>
     <style>
       :root {
@@ -117,7 +117,7 @@
   <!-- ===== 좌: 코드 구조 ===== -->
   <g transform="translate(40 30)">
     <rect class="pane-code" width="540" height="420" rx="8" />
-    <text x="24" y="32" class="pane-label" fill="var(--c-accent-3)">CODE — OBSERVER</text>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-3)">CODE - OBSERVER</text>
     <text x="24" y="58" class="pane-title">MessageSystem.notify(msg)</text>
 
     <!-- Subject -->
@@ -228,7 +228,7 @@
   <!-- 하단: 윤리 경계 -->
   <g transform="translate(40 480)">
     <rect class="pane-ethics" width="1120" height="135" rx="8" />
-    <text x="24" y="32" class="pane-label" fill="var(--c-accent-2)">ETHICAL BOUNDARY — 같은 구조의 두 얼굴</text>
+    <text x="24" y="32" class="pane-label" fill="var(--c-accent-2)">ETHICAL BOUNDARY: 같은 구조의 두 얼굴</text>
 
     <!-- 좋은 쪽 -->
     <g transform="translate(25 60)">

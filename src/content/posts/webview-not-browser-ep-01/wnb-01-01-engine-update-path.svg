@@ -1,0 +1,219 @@
+<svg viewBox="0 0 800 716" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-path">
+  <title id="t-path">iOS와 Android의 웹뷰 엔진 업데이트 경로 대조</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #0E7490;
+        --c-accent-2: #B45309;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(14, 116, 144, 0.08);
+        --c-soft-2: rgba(180, 83, 9, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #4DD4EC;
+          --c-accent-2: #E8A876;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(77, 212, 236, 0.12);
+          --c-soft-2: rgba(232, 168, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .node {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .item {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        fill: var(--c-muted);
+      }
+
+      .tag {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .pkg {
+        font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+        font-size: 12px;
+        fill: var(--c-fg);
+      }
+
+      .concl {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .card {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.5;
+      }
+
+      .slot {
+        fill: var(--c-soft);
+      }
+
+      .locked {
+        fill: none;
+        stroke: var(--c-muted);
+        stroke-width: 1.4;
+        stroke-dasharray: 5 4;
+      }
+
+      .live {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.6;
+      }
+
+      .sep {
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="716" />
+
+  <!-- ================= iOS 단 : 경로가 하나, 전부 단색 실선 ================= -->
+  <text x="28" y="44" class="ttl" fill="var(--c-accent)">iOS</text>
+
+  <!-- 출발: OS 업데이트 -->
+  <rect x="28" y="86" width="150" height="56" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.6" />
+  <text x="103" y="119" class="node" text-anchor="middle">OS 업데이트</text>
+
+  <!-- 굵은 실선 화살표 하나 -->
+  <text x="260" y="100" class="tag" fill="var(--c-accent)" text-anchor="middle">Safari 26.6 = iOS 26.6</text>
+  <line x1="186" y1="114" x2="326" y2="114" stroke="var(--c-accent)" stroke-width="2.6" />
+  <polygon points="334,114 322,108 322,120" fill="var(--c-accent)" />
+
+  <!-- 도착: 세 항목을 하나로 묶은 상자 -->
+  <rect x="340" y="52" width="280" height="124" rx="10" class="card" />
+  <rect x="354" y="62" width="252" height="32" rx="6" class="slot" />
+  <circle cx="372" cy="78" r="6" fill="var(--c-accent)" />
+  <text x="390" y="83" class="item">Safari</text>
+  <rect x="354" y="98" width="252" height="32" rx="6" class="slot" />
+  <circle cx="372" cy="114" r="6" fill="var(--c-accent)" />
+  <text x="390" y="119" class="item">Safari View Controller</text>
+  <rect x="354" y="134" width="252" height="32" rx="6" class="slot" />
+  <circle cx="372" cy="150" r="6" fill="var(--c-accent)" />
+  <text x="390" y="155" class="item">WKWebView</text>
+
+  <!-- 묶음 상자 아래: 설명과 결론 -->
+  <text x="340" y="198" class="cap">세 가지가 같은 릴리즈 노트로 함께 배포됨</text>
+  <rect x="340" y="208" width="194" height="26" rx="13" fill="var(--c-soft)" />
+  <text x="354" y="226" class="concl" fill="var(--c-accent)">엔진 버전은 OS 버전이 결정한다</text>
+
+  <!-- 두 단을 가르는 구분선 -->
+  <line x1="28" y1="252" x2="772" y2="252" class="sep" />
+
+  <!-- ================= Android 단 : 경로가 둘로 갈라진다 ================= -->
+  <text x="28" y="286" class="ttl" fill="var(--c-accent-2)">Android</text>
+
+  <!-- 분리 지점: 굵은 세로 구분선 -->
+  <text x="204" y="357" class="tag" fill="var(--c-accent-2)" text-anchor="middle">5.0부터 분리됨</text>
+  <line x1="204" y1="369" x2="204" y2="565" stroke="var(--c-accent-2)" stroke-width="3" />
+
+  <!-- 경로 1: OS 업데이트 -> Android 프레임워크 -->
+  <rect x="28" y="393" width="160" height="52" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)"
+    stroke-width="1.4" />
+  <text x="108" y="424" class="node" text-anchor="middle">OS 업데이트</text>
+  <line x1="216" y1="419" x2="268" y2="419" stroke="var(--c-accent)" stroke-width="2" />
+  <polygon points="276,419 265,414 265,424" fill="var(--c-accent)" />
+  <rect x="282" y="393" width="156" height="52" rx="8" class="card" />
+  <text x="360" y="424" class="node" text-anchor="middle">Android 프레임워크</text>
+
+  <!-- 경로 2: Play 스토어 업데이트 -> WebView 구현 APK -->
+  <rect x="28" y="489" width="160" height="52" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)"
+    stroke-width="1.4" />
+  <text x="108" y="520" class="node" text-anchor="middle">Play 스토어 업데이트</text>
+  <line x1="216" y1="515" x2="268" y2="515" stroke="var(--c-accent-2)" stroke-width="2" />
+  <polygon points="276,515 265,510 265,520" fill="var(--c-accent-2)" />
+  <rect x="282" y="489" width="156" height="52" rx="8" class="card" />
+  <text x="360" y="520" class="node" text-anchor="middle">WebView 구현 APK</text>
+
+  <!-- WebView 구현 APK -> 시기별 제공 패키지 (분기 연결선) -->
+  <g stroke="var(--c-divider)" stroke-width="1.4" fill="none">
+    <line x1="438" y1="515" x2="446" y2="515" />
+    <line x1="446" y1="353" x2="446" y2="581" />
+    <line x1="446" y1="353" x2="449" y2="353" />
+    <line x1="446" y1="467" x2="449" y2="467" />
+    <line x1="446" y1="581" x2="449" y2="581" />
+  </g>
+  <polygon points="454,353 447,349 447,357" fill="var(--c-divider)" />
+  <polygon points="454,467 447,463 447,471" fill="var(--c-divider)" />
+  <polygon points="454,581 447,577 447,585" fill="var(--c-divider)" />
+
+  <!-- 패키지 1: Android 5~6 (고정) -->
+  <rect x="454" y="302" width="322" height="102" rx="10" class="locked" />
+  <text x="470" y="336" class="tag" fill="var(--c-muted)">Android 5~6</text>
+  <text x="470" y="358" class="pkg">com.google.android.webview</text>
+  <line x1="470" y1="376" x2="760" y2="376" class="sep" />
+  <g transform="translate(470 382)">
+    <path d="M 3 7 v -2 a 4 4 0 0 1 8 0 v 2" fill="none" stroke="var(--c-muted)" stroke-width="1.6" />
+    <rect x="0" y="7" width="14" height="10" rx="2" fill="var(--c-muted)" />
+  </g>
+  <text x="492" y="394" class="cap">새 업데이트 중단: 마지막 받은 버전에 고정</text>
+
+  <!-- 패키지 2: Android 7~9 일반 기기 (고정) -->
+  <rect x="454" y="416" width="322" height="102" rx="10" class="locked" />
+  <text x="470" y="442" class="tag" fill="var(--c-muted)">Android 7~9 일반 기기</text>
+  <text x="470" y="464" class="pkg">com.android.chrome</text>
+  <text x="470" y="482" class="cap">(Chrome APK가 함께 제공)</text>
+  <line x1="470" y1="490" x2="760" y2="490" class="sep" />
+  <g transform="translate(470 496)">
+    <path d="M 3 7 v -2 a 4 4 0 0 1 8 0 v 2" fill="none" stroke="var(--c-muted)" stroke-width="1.6" />
+    <rect x="0" y="7" width="14" height="10" rx="2" fill="var(--c-muted)" />
+  </g>
+  <text x="492" y="508" class="cap">새 업데이트 중단: 마지막 받은 버전에 고정</text>
+
+  <!-- 패키지 3: Android 10 이상 (갱신 계속) -->
+  <rect x="454" y="530" width="322" height="102" rx="10" class="live" />
+  <text x="470" y="556" class="tag" fill="var(--c-accent)">Android 10 이상</text>
+  <text x="470" y="578" class="pkg">com.google.android.webview</text>
+  <text x="470" y="596" class="cap">(Stable·Beta·Dev·Canary 병행 설치 가능)</text>
+  <line x1="470" y1="604" x2="760" y2="604" class="sep" />
+  <circle cx="477" cy="618" r="7" fill="var(--c-accent)" />
+  <path d="M 473.5 618 l 2.6 2.6 l 4.8 -5.2" fill="none" stroke="var(--c-bg)" stroke-width="1.8" stroke-linecap="round"
+    stroke-linejoin="round" />
+  <text x="492" y="622" class="tag" fill="var(--c-accent)">갱신 계속됨</text>
+
+  <!-- ================= 두 단을 관통하는 결론 ================= -->
+  <rect x="95" y="656" width="610" height="40" rx="12" fill="var(--c-soft)" />
+  <text x="400" y="681" class="concl" fill="var(--c-fg)" text-anchor="middle">iOS는 OS 버전만 알면 엔진 버전이 결정되고, Android는 OS
+    버전을 알아도 엔진 버전을 알 수 없다.</text>
+</svg>

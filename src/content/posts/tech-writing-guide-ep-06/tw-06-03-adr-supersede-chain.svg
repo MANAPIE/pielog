@@ -49,7 +49,7 @@
 
     <line x1="20" y1="76" x2="580" y2="76" stroke="var(--c-line)" stroke-width="1"/>
 
-    <text class="body" x="20" y="96">· 큰 결정 — 결제 도메인 = PostgreSQL — 은 여전히 유효</text>
+    <text class="body" x="20" y="96">· 큰 결정: 결제 도메인 = PostgreSQL - 은 여전히 유효</text>
     <text class="body" x="20" y="114">· "단일 인스턴스" 가정 부분만 대체됨</text>
     <text class="body-muted" x="20" y="130">· References: ADR-027</text>
   </g>
@@ -71,7 +71,7 @@
     <line x1="20" y1="76" x2="580" y2="76" stroke="var(--c-line)" stroke-width="1"/>
 
     <text class="body" x="20" y="96">· ADR-012의 재검토 조건("100M row 이후") 도달</text>
-    <text class="body" x="20" y="114">· 현재 195M row, 쓰기 QPS 12k — Vitess 도입, tenant_id 라우팅</text>
+    <text class="body" x="20" y="114">· 현재 195M row, 쓰기 QPS 12k: Vitess 도입, tenant_id 라우팅</text>
     <text class="body-muted" x="20" y="130">· References: ADR-012 (partial supersede)</text>
   </g>
 
@@ -80,5 +80,5 @@
   <text class="note" x="20" y="250" transform="rotate(-90 20 250)" text-anchor="middle">양방향 link</text>
 
   <!-- 하단 노트 -->
-  <text class="note" x="20" y="490">옛 ADR을 지우지 않는다 — 옛 결정의 맥락이 새 결정의 근거가 된다.</text>
+  <text class="note" x="20" y="490">옛 ADR을 지우지 않는다: 옛 결정의 맥락이 새 결정의 근거가 된다.</text>
 </svg>

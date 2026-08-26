@@ -45,7 +45,7 @@
   </style>
   <rect class="bg" width="600" height="720"/>
 
-  <text class="title" x="40" y="36">노출에서 가입까지 — 직렬로 곱해지는 비율</text>
+  <text class="title" x="40" y="36">노출에서 가입까지: 직렬로 곱해지는 비율</text>
   <text class="anno" x="40" y="56">광고 100,000회 노출에서 시작한 깔때기. 두 단계의 비율이 차례로 곱해진다.</text>
 
   <!-- 깔때기 형태로 4단계 (세로 적층, 폭이 점점 좁아짐) -->

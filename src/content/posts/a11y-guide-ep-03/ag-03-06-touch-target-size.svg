@@ -155,7 +155,7 @@
     }
   </style>
 
-  <text class="title" x="40" y="32">터치 타겟 — 크기 기준과 간격</text>
+  <text class="title" x="40" y="32">터치 타겟: 크기 기준과 간격</text>
   <text class="caption" x="40" y="50">WCAG 2.5.8(2.2 신규)은 최소 24px, 모바일 플랫폼 가이드는 44~48px을 권장합니다</text>
 
   <!-- 크기 비교 영역 -->
@@ -195,7 +195,7 @@
   </g>
 
   <!-- 간격 영역 -->
-  <text class="grp-h body-t" x="40" y="266">간격 규칙 — 인접 타겟 사이 최소 8px</text>
+  <text class="grp-h body-t" x="40" y="266">간격 규칙: 인접 타겟 사이 최소 8px</text>
 
   <!-- 좋은 예 -->
   <g transform="translate(60, 286)">
@@ -216,7 +216,7 @@
     <text class="badge rust-t" x="22" y="28" text-anchor="middle">A</text>
     <rect class="rust-card" x="44" y="0" width="44" height="44" rx="6" stroke-width="0.5" />
     <text class="badge rust-t" x="66" y="28" text-anchor="middle">B</text>
-    <text class="lbl rust-t" x="104" y="18">간격 0px — 오터치 빈발</text>
+    <text class="lbl rust-t" x="104" y="18">간격 0px: 오터치 빈발</text>
     <text class="source rust-t" x="104" y="34">고령·운동 장애 사용자 좌절</text>
   </g>
 </svg>

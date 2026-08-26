@@ -67,7 +67,7 @@
     <rect class="ad" x="14" y="68" width="172" height="56" rx="2"/>
     <text class="ad-label" x="22" y="84">AD · 광고</text>
     <text class="ad-content" x="22" y="104">한 달 지출, 한 화면에서</text>
-    <text class="muted" x="22" y="118" style="font-size: 9px;">센티 — 무료 가입</text>
+    <text class="muted" x="22" y="118" style="font-size: 9px;">센티: 무료 가입</text>
     <circle class="marker" cx="170" cy="88" r="9"/>
     <text class="marker-num" x="170" y="92" text-anchor="middle">1</text>
 
@@ -111,7 +111,7 @@
   <!-- 뷰어블 임프레션 정의 박스 -->
   <g transform="translate(40, 636)">
     <rect fill="none" stroke="var(--c-anno)" stroke-width="1" stroke-dasharray="3 3" x="0" y="0" width="520" height="60" rx="2"/>
-    <text class="anno-bold" x="16" y="24">IAB 표준 — Viewable Impression</text>
+    <text class="anno-bold" x="16" y="24">IAB 표준: Viewable Impression</text>
     <text class="anno" x="16" y="44">광고 영역의 50% 이상이 뷰포트에 1초 이상 머물러야 카운트</text>
   </g>
 </svg>

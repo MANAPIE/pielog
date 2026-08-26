@@ -252,7 +252,7 @@
   <g transform="translate(40, 400)">
     <rect class="amber-card" x="0" y="0" width="720" height="56" rx="10" stroke-width="0.5" />
     <rect class="amber-head" x="0" y="0" width="6" height="56" />
-    <text class="out-h amber-t" x="20" y="22">예외 — 캡션이 이미 동일 정보 제공</text>
+    <text class="out-h amber-t" x="20" y="22">예외: 캡션이 이미 동일 정보 제공</text>
     <text class="out-d amber-sub" x="20" y="40">캡션과 alt가 같은 내용이면 중복. alt=""로 두고 캡션에 모든 정보를 담거나, alt에 보완 정보만 기술</text>
   </g>
 </svg>

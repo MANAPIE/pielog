@@ -328,10 +328,10 @@
     <text class="row-d rust-sub" x="14" y="34">사전 녹화 영상에 통역사 삽입</text>
 
     <rect class="empty-cell" x="296" y="0" width="80" height="44" rx="6" stroke-width="0.5" />
-    <text class="cell-h empty-t" x="336" y="25" text-anchor="middle">—</text>
+    <text class="cell-h empty-t" x="336" y="25" text-anchor="middle">-</text>
 
     <rect class="empty-cell" x="392" y="0" width="80" height="44" rx="6" stroke-width="0.5" />
-    <text class="cell-h empty-t" x="432" y="25" text-anchor="middle">—</text>
+    <text class="cell-h empty-t" x="432" y="25" text-anchor="middle">-</text>
 
     <rect class="rust-fill" x="488" y="0" width="80" height="44" rx="6" />
     <text class="cell-h on-fill" x="528" y="21" text-anchor="middle">필수</text>

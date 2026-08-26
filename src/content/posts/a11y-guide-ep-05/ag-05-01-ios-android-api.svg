@@ -118,16 +118,16 @@
   </style>
 
   <g transform="translate(-20, 0)">
-    <text class="title" x="40" y="32">iOS vs Android — 접근성 API 매핑</text>
+    <text class="title" x="40" y="32">iOS vs Android: 접근성 API 매핑</text>
     <text class="caption" x="40" y="50">웹의 ARIA가 모바일 네이티브에서는 어떤 형태가 되는가</text>
 
     <!-- 컬럼 헤더 -->
     <g transform="translate(40, 76)">
       <rect class="blue-head" x="240" y="0" width="260" height="36" rx="6" />
-      <text class="plat-h" x="254" y="22">iOS — SwiftUI</text>
+      <text class="plat-h" x="254" y="22">iOS: SwiftUI</text>
       <text class="plat-d" x="490" y="22" text-anchor="end">VoiceOver</text>
       <rect class="teal-head" x="510" y="0" width="250" height="36" rx="6" />
-      <text class="plat-h" x="524" y="22">Android — Compose</text>
+      <text class="plat-h" x="524" y="22">Android: Compose</text>
       <text class="plat-d" x="750" y="22" text-anchor="end">TalkBack</text>
     </g>
 

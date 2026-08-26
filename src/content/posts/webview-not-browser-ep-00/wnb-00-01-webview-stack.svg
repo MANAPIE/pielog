@@ -1,0 +1,140 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-stack">
+  <title id="t-stack">브라우저와 웹뷰의 스택 대조</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #0E7490; --c-accent-2: #B45309; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(14,116,144,0.08);
+        --c-soft-2: rgba(180,83,9,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #4DD4EC; --c-accent-2: #E8A876; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(77,212,236,0.12);
+          --c-soft-2: rgba(232,168,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .lbl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 16px; font-weight: 700; fill: var(--c-fg); }
+      .layer-name { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+      .item { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; fill: var(--c-fg); }
+      .item-empty { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; fill: var(--c-muted); }
+      .engine-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-bg); }
+      .arrow-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; }
+      .card { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .slot-filled { fill: var(--c-soft); }
+      .slot-empty { fill: none; stroke: var(--c-muted); stroke-width: 1.2; stroke-dasharray: 4 3; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="460"/>
+
+  <!-- 좌: 브라우저 -->
+  <g transform="translate(28 0)">
+    <text x="0" y="34" class="lbl" fill="var(--c-accent)">BROWSER</text>
+    <text x="0" y="58" class="ttl">브라우저</text>
+
+    <!-- UI 계층 (맨 위) -->
+    <rect x="0" y="78" width="307" height="58" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.2"/>
+    <text x="20" y="103" class="layer-name">브라우저 UI</text>
+    <text x="20" y="123" class="cap">주소창 · 탭 · 메뉴</text>
+
+    <!-- 정책 계층 -->
+    <rect x="0" y="148" width="307" height="216" rx="8" class="card"/>
+    <text x="20" y="174" class="layer-name">정책 계층</text>
+    <text x="88" y="174" class="cap">벤더가 구현</text>
+    <g>
+      <rect x="16" y="186" width="275" height="27" rx="6" class="slot-filled"/>
+      <circle cx="34" cy="199.5" r="8" fill="var(--c-accent)"/>
+      <path d="M 30 199.5 l 3 3 l 5.5 -6" fill="none" stroke="var(--c-bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="204" class="item">새 창 처리</text>
+    </g>
+    <g>
+      <rect x="16" y="219" width="275" height="27" rx="6" class="slot-filled"/>
+      <circle cx="34" cy="232.5" r="8" fill="var(--c-accent)"/>
+      <path d="M 30 232.5 l 3 3 l 5.5 -6" fill="none" stroke="var(--c-bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="237" class="item">다운로드</text>
+    </g>
+    <g>
+      <rect x="16" y="252" width="275" height="27" rx="6" class="slot-filled"/>
+      <circle cx="34" cy="265.5" r="8" fill="var(--c-accent)"/>
+      <path d="M 30 265.5 l 3 3 l 5.5 -6" fill="none" stroke="var(--c-bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="270" class="item">파일 선택</text>
+    </g>
+    <g>
+      <rect x="16" y="285" width="275" height="27" rx="6" class="slot-filled"/>
+      <circle cx="34" cy="298.5" r="8" fill="var(--c-accent)"/>
+      <path d="M 30 298.5 l 3 3 l 5.5 -6" fill="none" stroke="var(--c-bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="303" class="item">쿠키 정책</text>
+    </g>
+    <g>
+      <rect x="16" y="318" width="275" height="27" rx="6" class="slot-filled"/>
+      <circle cx="34" cy="331.5" r="8" fill="var(--c-accent)"/>
+      <path d="M 30 331.5 l 3 3 l 5.5 -6" fill="none" stroke="var(--c-bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="336" class="item">확대 허용</text>
+    </g>
+
+    <!-- 렌더링 엔진 (맨 아래) -->
+    <rect x="0" y="376" width="307" height="58" rx="8" fill="var(--c-accent)"/>
+    <text x="153.5" y="410" class="engine-txt" text-anchor="middle">렌더링 엔진</text>
+  </g>
+
+  <!-- 우: 웹뷰 -->
+  <g transform="translate(465 0)">
+    <text x="0" y="34" class="lbl" fill="var(--c-accent-2)">WEBVIEW</text>
+    <text x="0" y="58" class="ttl">웹뷰</text>
+
+    <!-- UI 계층 자리: 비어 있음 -->
+    <rect x="0" y="78" width="307" height="58" rx="8" fill="none" stroke="var(--c-divider)" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+    <!-- 정책 계층: 빈 슬롯 -->
+    <rect x="0" y="148" width="307" height="216" rx="8" class="card"/>
+    <text x="20" y="174" class="layer-name">정책 계층</text>
+    <rect x="171" y="158" width="120" height="22" rx="11" fill="var(--c-soft-2)"/>
+    <text x="231" y="173" class="arrow-txt" fill="var(--c-accent-2)" text-anchor="middle">앱이 구현해야 함</text>
+    <g>
+      <rect x="16" y="186" width="275" height="27" rx="6" class="slot-empty"/>
+      <text x="52" y="204" class="item-empty">새 창 처리</text>
+    </g>
+    <g>
+      <rect x="16" y="219" width="275" height="27" rx="6" class="slot-empty"/>
+      <text x="52" y="237" class="item-empty">다운로드</text>
+    </g>
+    <g>
+      <rect x="16" y="252" width="275" height="27" rx="6" class="slot-empty"/>
+      <text x="52" y="270" class="item-empty">파일 선택</text>
+    </g>
+    <g>
+      <rect x="16" y="285" width="275" height="27" rx="6" class="slot-empty"/>
+      <text x="52" y="303" class="item-empty">쿠키 정책</text>
+    </g>
+    <g>
+      <rect x="16" y="318" width="275" height="27" rx="6" class="slot-empty"/>
+      <text x="52" y="336" class="item-empty">확대 허용</text>
+    </g>
+
+    <!-- 렌더링 엔진: 브라우저와 동일 -->
+    <rect x="0" y="376" width="307" height="58" rx="8" fill="var(--c-accent)"/>
+    <text x="153.5" y="410" class="engine-txt" text-anchor="middle">렌더링 엔진</text>
+  </g>
+
+  <!-- 정책 계층을 잇는 화살표: 껍데기가 다르다 -->
+  <g>
+    <text x="400" y="243" class="arrow-txt" fill="var(--c-accent-2)" text-anchor="middle">껍데기가 다르다</text>
+    <line x1="347" y1="258" x2="453" y2="258" stroke="var(--c-accent-2)" stroke-width="1.8" stroke-dasharray="5 4"/>
+    <polygon points="339,258 349,253 349,263" fill="var(--c-accent-2)"/>
+    <polygon points="461,258 451,253 451,263" fill="var(--c-accent-2)"/>
+  </g>
+
+  <!-- 엔진 계층을 잇는 화살표: 엔진은 같다 -->
+  <g>
+    <text x="400" y="395" class="arrow-txt" fill="var(--c-accent)" text-anchor="middle">엔진은 같다</text>
+    <line x1="347" y1="408" x2="453" y2="408" stroke="var(--c-accent)" stroke-width="1.8"/>
+    <polygon points="339,408 349,403 349,413" fill="var(--c-accent)"/>
+    <polygon points="461,408 451,403 451,413" fill="var(--c-accent)"/>
+  </g>
+</svg>

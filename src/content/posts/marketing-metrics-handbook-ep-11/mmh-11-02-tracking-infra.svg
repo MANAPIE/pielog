@@ -48,7 +48,7 @@
 
   <!-- 1. 클라이언트 사이드 경로 (위) -->
   <g transform="translate(40, 96)">
-    <text class="path-title" x="0" y="0">① 클라이언트 사이드 — 픽셀·태그 (정확도 70~80%)</text>
+    <text class="path-title" x="0" y="0">① 클라이언트 사이드: 픽셀·태그 (정확도 70~80%)</text>
 
     <!-- Browser/App -->
     <g transform="translate(190, 20)">
@@ -91,7 +91,7 @@
 
   <!-- 2. 서버사이드 경로 (아래) -->
   <g transform="translate(40, 388)">
-    <text class="path-title" x="0" y="0">② 서버사이드 — Conversion API (정확도 90%+)</text>
+    <text class="path-title" x="0" y="0">② 서버사이드: Conversion API (정확도 90%+)</text>
 
     <!-- Browser/App -->
     <g transform="translate(190, 20)">

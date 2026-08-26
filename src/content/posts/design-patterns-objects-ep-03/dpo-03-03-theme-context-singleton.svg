@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-tp">
-  <title id="title-tp">ThemeProvider — 단일 가정에서 계층적 가정으로의 변화</title>
+  <title id="title-tp">ThemeProvider: 단일 가정에서 계층적 가정으로의 변화</title>
   <defs>
     <style>
       :root {
@@ -45,7 +45,7 @@
     <!-- App 박스 -->
     <g transform="translate(40 120)">
       <rect width="280" height="320" rx="6" class="app-light"/>
-      <text x="16" y="24" class="tag">ThemeProvider — light</text>
+      <text x="16" y="24" class="tag">ThemeProvider: light</text>
 
       <!-- 컴포넌트들 -->
       <rect x="22" y="50" width="240" height="40" rx="4" class="comp"/>
@@ -73,7 +73,7 @@
 
     <g transform="translate(40 120)">
       <rect width="280" height="320" rx="6" class="app-light"/>
-      <text x="16" y="24" class="tag">ThemeProvider — light</text>
+      <text x="16" y="24" class="tag">ThemeProvider: light</text>
 
       <rect x="22" y="50" width="240" height="40" rx="4" class="comp"/>
       <text x="142" y="74" class="col-cap" text-anchor="middle" fill="var(--c-fg)">Header</text>
@@ -101,7 +101,7 @@
 
     <g transform="translate(40 120)">
       <rect width="280" height="320" rx="6" class="app-light"/>
-      <text x="16" y="24" class="tag">ThemeProvider — light</text>
+      <text x="16" y="24" class="tag">ThemeProvider: light</text>
 
       <rect x="22" y="50" width="240" height="40" rx="4" class="comp"/>
       <text x="142" y="74" class="col-cap" text-anchor="middle" fill="var(--c-fg)">Header</text>
@@ -112,7 +112,7 @@
       <!-- 중첩된 dark provider -->
       <g transform="translate(22 220)">
         <rect width="240" height="60" rx="4" class="app-dark"/>
-        <text x="120" y="22" class="tag-dark" text-anchor="middle">ThemeProvider — dark</text>
+        <text x="120" y="22" class="tag-dark" text-anchor="middle">ThemeProvider: dark</text>
         <rect x="14" y="32" width="212" height="20" rx="2" class="comp-dark"/>
       </g>
     </g>

@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="웹뷰는 브라우저가 아니다 ep.06 cover">
+  <style>
+  :root {
+    --c-bg: #EEF5F6;
+    --c-fg: #10202A;
+    --c-muted: #5E7480;
+    --c-accent: #0E7490; --c-accent-2: #22B8CF; --c-accent-3: #C98A3B;
+    --c-num: rgba(14, 116, 144, 0.14);
+    --c-dot: rgba(14, 116, 144, 0.10);
+    --c-line: rgba(14, 116, 144, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0A161A;
+      --c-fg: #DCE8EA;
+      --c-muted: #8AA0A8;
+      --c-accent: #4DD4EC; --c-accent-2: #0E7490; --c-accent-3: #E0A860;
+      --c-num: rgba(77, 212, 236, 0.15);
+      --c-dot: rgba(77, 212, 236, 0.10);
+      --c-line: rgba(77, 212, 236, 0.20);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots-wnb06" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <pattern id="hatch-wnb06" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="14" stroke="var(--c-accent-3)" stroke-width="1.3" stroke-opacity="0.3"/>
+    </pattern>
+    <radialGradient id="halo-wnb06a" cx="0.20" cy="0.80" r="0.58">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo-wnb06b" cx="0.80" cy="0.16" r="0.60">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+    <!-- 앱 레이어가 덮는 영역 -->
+    <clipPath id="sheet-clip-wnb06">
+      <rect x="-160" y="-340" width="680" height="760" rx="30" transform="translate(660 300) rotate(9)"/>
+    </clipPath>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-wnb06)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb06a)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb06b)"/>
+
+  <!-- 배경 무채 stroke 도형 (오프캔버스) -->
+  <rect x="-250" y="300" width="600" height="600" rx="56" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(-14 50 600)"/>
+  <circle cx="1090" cy="-70" r="330" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="1090" cy="-70" r="240" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- 우리가 선언한 화면: 색이 온전히 살아 있는 상태 -->
+  <g transform="translate(450 320) rotate(-5)">
+    <rect x="-235" y="-165" width="470" height="330" rx="18" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
+    <rect x="-223" y="-153" width="446" height="306" rx="12" fill="none" stroke="var(--c-accent)" stroke-width="1" stroke-opacity="0.35"/>
+    <rect x="-196" y="-128" width="196" height="22" rx="11" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
+    <line x1="-196" y1="-85.5" x2="114" y2="-85.5" stroke="var(--c-accent)" stroke-width="4" stroke-linecap="round" stroke-opacity="0.5"/>
+    <line x1="-196" y1="-63.5" x2="90" y2="-63.5" stroke="var(--c-accent)" stroke-width="4" stroke-linecap="round" stroke-opacity="0.33"/>
+    <rect x="-196" y="-30" width="60" height="60" rx="12" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-opacity="0.4"/>
+    <rect x="-120" y="-30" width="60" height="60" rx="12" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-opacity="0.56"/>
+    <rect x="-44" y="-30" width="60" height="60" rx="12" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-opacity="0.72"/>
+    <rect x="32" y="-30" width="60" height="60" rx="12" fill="var(--c-accent)" fill-opacity="0.22" stroke="var(--c-accent)" stroke-width="2" stroke-opacity="0.86"/>
+    <rect x="108" y="-30" width="60" height="60" rx="12" fill="var(--c-accent)" fill-opacity="0.5" stroke="var(--c-accent)" stroke-width="2"/>
+    <rect x="-196" y="52" width="180" height="54" rx="27" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.5"/>
+    <rect x="-172" y="74" width="90" height="10" rx="5" fill="var(--c-accent)" fill-opacity="0.6"/>
+    <rect x="0" y="52" width="168" height="54" rx="27" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="9 7"/>
+  </g>
+
+  <!-- 캐스케이드 밖에서 내려앉는 앱 레이어 -->
+  <g transform="translate(660 300) rotate(9)">
+    <rect x="-160" y="-340" width="680" height="760" rx="30" fill="var(--c-accent-3)" fill-opacity="0.07"/>
+    <rect x="-160" y="-340" width="680" height="760" rx="30" fill="url(#hatch-wnb06)"/>
+    <rect x="-176" y="-40" width="16" height="80" rx="8" fill="var(--c-accent-3)"/>
+  </g>
+
+  <!-- 레이어에 덮인 만큼만 다시 칠해지는 같은 화면 -->
+  <g clip-path="url(#sheet-clip-wnb06)">
+    <g transform="translate(450 320) rotate(-5)">
+      <rect x="-235" y="-165" width="470" height="330" rx="18" fill="var(--c-bg)"/>
+      <rect x="-235" y="-165" width="470" height="330" rx="18" fill="var(--c-accent-3)" fill-opacity="0.11"/>
+      <rect x="-235" y="-165" width="470" height="330" rx="18" fill="none" stroke="var(--c-accent-3)" stroke-width="3"/>
+      <rect x="-223" y="-153" width="446" height="306" rx="12" fill="none" stroke="var(--c-accent-3)" stroke-width="1" stroke-opacity="0.4"/>
+      <rect x="-196" y="-128" width="196" height="22" rx="11" fill="none" stroke="var(--c-accent-3)" stroke-width="2.2"/>
+      <line x1="-196" y1="-85.5" x2="114" y2="-85.5" stroke="var(--c-accent-3)" stroke-width="4" stroke-linecap="round" stroke-opacity="0.5"/>
+      <line x1="-196" y1="-63.5" x2="90" y2="-63.5" stroke="var(--c-accent-3)" stroke-width="4" stroke-linecap="round" stroke-opacity="0.33"/>
+      <rect x="-196" y="-30" width="60" height="60" rx="12" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-opacity="0.4"/>
+      <rect x="-120" y="-30" width="60" height="60" rx="12" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-opacity="0.56"/>
+      <rect x="-44" y="-30" width="60" height="60" rx="12" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-opacity="0.72"/>
+      <rect x="32" y="-30" width="60" height="60" rx="12" fill="var(--c-accent-3)" fill-opacity="0.22" stroke="var(--c-accent-3)" stroke-width="2" stroke-opacity="0.86"/>
+      <rect x="108" y="-30" width="60" height="60" rx="12" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-accent-3)" stroke-width="2"/>
+      <rect x="-196" y="52" width="180" height="54" rx="27" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+      <rect x="-172" y="74" width="90" height="10" rx="5" fill="var(--c-accent-3)" fill-opacity="0.6"/>
+      <rect x="0" y="52" width="168" height="54" rx="27" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="9 7"/>
+    </g>
+  </g>
+
+  <!-- 레이어의 경계선 -->
+  <g transform="translate(660 300) rotate(9)">
+    <rect x="-160" y="-340" width="680" height="760" rx="30" fill="none" stroke="var(--c-accent-3)" stroke-width="3"/>
+    <rect x="-130" y="-310" width="620" height="700" rx="22" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-dasharray="10 9" stroke-opacity="0.55"/>
+  </g>
+
+  <!-- 흩어진 디테일 -->
+  <circle cx="1010" cy="210" r="58" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-dasharray="4 9" stroke-opacity="0.55"/>
+  <circle cx="1010" cy="210" r="34" fill="none" stroke="var(--c-accent)" stroke-width="2.5"/>
+  <circle cx="1010" cy="210" r="14" fill="var(--c-accent-3)"/>
+  <polygon points="296,58 352,58 324,110" fill="none" stroke="var(--c-accent-3)" stroke-width="2.4" stroke-linejoin="round"/>
+  <rect x="96" y="52" width="86" height="86" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" transform="rotate(13 139 95)"/>
+  <line x1="168" y1="196" x2="146" y2="330" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 9" stroke-opacity="0.5"/>
+  <circle cx="468" cy="548" r="9" fill="var(--c-accent-3)"/>
+  <circle cx="496" cy="570" r="6" fill="var(--c-accent)"/>
+  <circle cx="452" cy="578" r="7" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <rect x="76" y="468" width="58" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <rect x="104" y="490" width="34" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.8"/>
+  <line x1="76" y1="514" x2="170" y2="514" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-dasharray="5 7" stroke-opacity="0.5"/>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">06</text>
+</svg>

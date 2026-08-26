@@ -93,7 +93,7 @@
 
   <!-- 사이클 복귀 화살표 (Refactor → Red): 매끄러운 U자 곡선 -->
   <path class="arrow" d="M 480 282 C 480 325, 120 325, 120 282" stroke-dasharray="4 3" marker-end="url(#arr02-01)"/>
-  <text class="sub" x="300" y="338" text-anchor="middle">다음 사이클로 — 짧게, 자주 반복합니다</text>
+  <text class="sub" x="300" y="338" text-anchor="middle">다음 사이클로: 짧게, 자주 반복합니다</text>
 
   <!-- 상단 강조 -->
   <text class="note" x="300" y="40" text-anchor="middle">한 사이클은 5분을 넘기지 않습니다</text>

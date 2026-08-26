@@ -1,5 +1,5 @@
 <svg width="100%" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img">
-  <title>접근성 이슈 발견 범위 — 자동화 도구의 한계</title>
+  <title>접근성 이슈 발견 범위: 자동화 도구의 한계</title>
   <desc>전체 접근성 이슈 중 자동화 도구가 발견 가능한 비율은 30~40%, 나머지 60~70%는 수동 테스트와 보조기기 실사용 테스트가 필요함을 시각화</desc>
   <style>
     .title {
@@ -99,7 +99,7 @@
     }
   </style>
 
-  <text class="title" x="40" y="32">자동화 vs 수동 — 발견 가능 이슈 범위</text>
+  <text class="title" x="40" y="32">자동화 vs 수동: 발견 가능 이슈 범위</text>
   <text class="caption" x="40" y="50">자동화 도구만 통과해도 접근성 문제의 60~70%는 남아 있습니다</text>
 
   <!-- 자동 발견 -->

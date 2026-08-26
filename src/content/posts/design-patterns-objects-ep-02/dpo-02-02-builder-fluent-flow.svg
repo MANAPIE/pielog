@@ -65,7 +65,7 @@
       <line x1="16" y1="212" x2="404" y2="212" class="divider"/>
 
       <!-- methods -->
-      <text x="16" y="232" class="step-num">METHODS — return this</text>
+      <text x="16" y="232" class="step-num">METHODS: return this</text>
       <text x="16" y="252" class="method">+ setUrl(url): this</text>
       <text x="16" y="270" class="method">+ setMethod(method): this</text>
       <text x="16" y="288" class="method">+ setHeader(key, value): this</text>

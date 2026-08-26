@@ -18,9 +18,9 @@ draft: false
 
 ## 이번 편에서 다룰 것
 
-![핸드북 시리즈 전체 구조를 보여주는 단계 지도. 위쪽에는 다섯 단계 퍼널이 세로로 쌓여 있다 — ep.01–02 획득, ep.03–04 활성화, ep.05–07 유지, ep.08 수익, ep.09 추천. 그 아래 '측정 인프라 · MEASUREMENT LAYER'라는 띠가 있고 세 항목이 들어 있다 — ep.10 실험(A/B · p-value · MDE), ep.11 트래킹(UTM · Event · Pixel · CAPI), ep.12 어트리뷰션(Last-touch · Data-driven · GA4 · Amplitude). 이번 편인 ep.11 트래킹 항목이 강조 표시되어 있다. 하단 설명은 측정 인프라가 다섯 단계 전체에서 작동한다고 적혀 있다.](./mmh-11-01-stage-map.svg)
+![핸드북 시리즈 전체 구조를 보여주는 단계 지도. 위쪽에는 다섯 단계 퍼널이 세로로 쌓여 있다: ep.01–02 획득, ep.03–04 활성화, ep.05–07 유지, ep.08 수익, ep.09 추천. 그 아래 '측정 인프라 · MEASUREMENT LAYER'라는 띠가 있고 세 항목이 들어 있다: ep.10 실험(A/B · p-value · MDE), ep.11 트래킹(UTM · Event · Pixel · CAPI), ep.12 어트리뷰션(Last-touch · Data-driven · GA4 · Amplitude). 이번 편인 ep.11 트래킹 항목이 강조 표시되어 있다. 하단 설명은 측정 인프라가 다섯 단계 전체에서 작동한다고 적혀 있다.](./mmh-11-01-stage-map.svg)
 
-12개 용어. 캠페인 파라미터(UTM), 이벤트 측정(Event Tracking, Pageview, Custom Event, User Property), 외부 트래킹 도구(Cookie, Pixel/Tag, Server-side Tracking), 동의와 식별(Consent Mode, Identity Resolution), 데이터의 출처(First-party Data, Third-party Data).
+12개 용어. 캠페인 파라미터(UTM), 이벤트 측정(Event Tracking, Pageview, Custom Event, User Property), 외부 트래킹 도구(Cookie, Pixel/Tag, Server-side Tracking), 동의와 식별(Consent Mode, Identity Resolution), 데이터의 출처(First-party Data, Third-party Data)로 나뉩니다.
 
 이번 편은 *프론트엔드 개발자* 의 편에 가깝습니다. 그러나 *어트리뷰션이 왜 깨졌는지* 진단하려면 모두 알아야 합니다.
 
@@ -46,7 +46,7 @@ https://centi.app/landing?utm_source=facebook&utm_medium=cpc&utm_campaign=spring
 
 **② 맥락**
 
-- **회의에서**: *"네이버 광고 UTM이 utm_medium=cpa로 잘못 박혀서 cpc 그룹에 안 잡혔어요. 보고서 다시 돌립니다."* — 사소한 오타가 전체 보고를 깨뜨립니다.
+- **회의에서**: *"네이버 광고 UTM이 utm_medium=cpa로 잘못 박혀서 cpc 그룹에 안 잡혔어요. 보고서 다시 돌립니다."* - 사소한 오타가 전체 보고를 깨뜨립니다.
 - **UI 위치**: GA4 *Traffic Acquisition*, Amplitude *Acquisition* 보고서.
 
 **③ 액션**
@@ -57,11 +57,11 @@ https://centi.app/landing?utm_source=facebook&utm_medium=cpc&utm_campaign=spring
 
 **④ 사례**
 
-- **센티**: UTM 규약 — `utm_source = facebook | google | naver | kakao`, `utm_medium = cpc | display | social | email | push`, `utm_campaign = {month}-{theme}-{audience}`. 명명 규칙 문서가 마케팅 팀의 핵심 자산.
+- **센티**: UTM 규약 - `utm_source = facebook | google | naver | kakao`, `utm_medium = cpc | display | social | email | push`, `utm_campaign = {month}-{theme}-{audience}`. 명명 규칙 문서가 마케팅 팀의 핵심 자산.
 
 **⑤ 비고**
 
-- **흔한 함정**: UTM 대소문자 — `Facebook`과 `facebook`이 다른 채널로 잡힙니다. 항상 소문자.
+- **흔한 함정**: UTM 대소문자 - `Facebook`과 `facebook`이 다른 채널로 잡힙니다. 항상 소문자.
 - **함께 보기**: [Event Tracking](#event-tracking), [First-touch](/marketing-metrics-handbook-ep-12/#first-touch)
 
 ---
@@ -81,7 +81,7 @@ https://centi.app/landing?utm_source=facebook&utm_medium=cpc&utm_campaign=spring
 
 **② 맥락**
 
-- **회의에서**: *"sign_up_completed 이벤트가 D-7부터 안 잡혀요. SDK 업데이트 영향 의심."* — 정확도 진단의 출발.
+- **회의에서**: *"sign_up_completed 이벤트가 D-7부터 안 잡혀요. SDK 업데이트 영향 의심."* - 정확도 진단의 출발.
 - **UI 위치**: Amplitude, Mixpanel, GA4의 *Events* 보고서.
 
 **③ 액션**
@@ -104,7 +104,7 @@ https://centi.app/landing?utm_source=facebook&utm_medium=cpc&utm_campaign=spring
 
 ---
 
-![트래킹 인프라의 두 가지 경로를 비교하는 흐름도. 제목은 '두 가지 트래킹 경로'이며 같은 사용자 행동이 두 갈래 길로 흐른다. 위쪽 경로 ① 클라이언트 사이드 — 픽셀·태그(정확도 70~80%)는 '브라우저·앱(사용자 디바이스)' 노드에서 점선 화살표 두 개가 갈라져 나간다 — 하나는 '픽셀 신호, 차단 영향 큼'으로 '광고 매체(Meta·Google·Kakao)'에, 다른 하나는 'SDK 신호(GA4·Amplitude)'로 '분석 도구(GA4·Amplitude)'에 도달한다. 점선 구분선 아래 경로 ② 서버사이드 — Conversion API(정확도 90%+)는 '브라우저·앱'에서 실선 화살표 '이벤트'로 '우리 서버(centi-api)'에 보내고, 우리 서버는 'CAPI 해시 식별자 + 이벤트'로 '광고 매체'에, 또 아래로 '데이터 웨어하우스(BigQuery·Snowflake)'를 거쳐 '분석·BI(Amplitude·자체 BI)'로 흐른다. 하단 결론은 서버사이드 도입의 ROI가 광고 월비 1억 이상부터 명확하며 두 경로 병행이 2026년 표준이라고 적혀 있다.](./mmh-11-02-tracking-infra.svg)
+![트래킹 인프라의 두 가지 경로를 비교하는 흐름도. 제목은 '두 가지 트래킹 경로'이며 같은 사용자 행동이 두 갈래 길로 흐른다. 위쪽 경로 ① 클라이언트 사이드: 픽셀·태그(정확도 70~80%)는 '브라우저·앱(사용자 디바이스)' 노드에서 점선 화살표 두 개가 갈라져 나간다: 하나는 '픽셀 신호, 차단 영향 큼'으로 '광고 매체(Meta·Google·Kakao)'에, 다른 하나는 'SDK 신호(GA4·Amplitude)'로 '분석 도구(GA4·Amplitude)'에 도달한다. 점선 구분선 아래 경로 ② 서버사이드: Conversion API(정확도 90%+)는 '브라우저·앱'에서 실선 화살표 '이벤트'로 '우리 서버(centi-api)'에 보내고, 우리 서버는 'CAPI 해시 식별자 + 이벤트'로 '광고 매체'에, 또 아래로 '데이터 웨어하우스(BigQuery·Snowflake)'를 거쳐 '분석·BI(Amplitude·자체 BI)'로 흐른다. 하단 결론은 서버사이드 도입의 ROI가 광고 월비 1억 이상부터 명확하며 두 경로 병행이 2026년 표준이라고 적혀 있다.](./mmh-11-02-tracking-infra.svg)
 
 ---
 
@@ -118,11 +118,11 @@ https://centi.app/landing?utm_source=facebook&utm_medium=cpc&utm_campaign=spring
 Pageview = { url, title, referrer, time, user_id }
 ```
 
-웹은 페이지 URL, 모바일 앱은 화면 이름.
+웹은 페이지 URL, 모바일 앱은 화면 이름을 씁니다.
 
 **② 맥락**
 
-- **회의에서**: *"DAU는 그대로인데 pageview가 30% 늘었어요. 사용자당 둘러본 페이지가 늘었다는 신호."* — 가장 기본 지표.
+- **회의에서**: *"DAU는 그대로인데 pageview가 30% 늘었어요. 사용자당 둘러본 페이지가 늘었다는 신호."* - 가장 기본 지표.
 
 **③ 액션**
 
@@ -147,7 +147,7 @@ Pageview = { url, title, referrer, time, user_id }
 
 **② 맥락**
 
-- **회의에서**: *"새 기능 출시했는데 이벤트 정의를 안 했어요. 다음 주부터 측정해야 합니다."* — 가장 흔한 실수.
+- **회의에서**: *"새 기능 출시했는데 이벤트 정의를 안 했어요. 다음 주부터 측정해야 합니다."* - 가장 흔한 실수.
 
 **③ 액션**
 
@@ -176,7 +176,7 @@ Pageview = { url, title, referrer, time, user_id }
 
 **② 맥락**
 
-- **회의에서**: *"코호트 분석할 때 사용자 속성에 sign_up_channel이 있어야 채널별 잔존이 나옵니다."* — 분석 단위의 결정.
+- **회의에서**: *"코호트 분석할 때 사용자 속성에 sign_up_channel이 있어야 채널별 잔존이 나옵니다."* - 분석 단위의 결정.
 
 **③ 액션**
 
@@ -200,11 +200,11 @@ First-party Cookie: 우리 도메인이 직접 발급
 Third-party Cookie: 다른 도메인(광고 매체)이 발급
 ```
 
-2024~2025년 *Third-party Cookie 시대 종말*. Safari·Firefox는 이미 차단, Chrome도 단계적 제한.
+2024~2025년 *Third-party Cookie 시대 종말*. Safari·Firefox는 이미 차단했고, Chrome도 단계적으로 제한하고 있습니다.
 
 **② 맥락**
 
-- **회의에서**: *"iOS Safari 사용자는 third-party cookie가 0이라 페이스북 어트리뷰션이 깨져요. 서버사이드로 옮겨야 합니다."* — 어트리뷰션 정확도 하락의 주 원인.
+- **회의에서**: *"iOS Safari 사용자는 third-party cookie가 0이라 페이스북 어트리뷰션이 깨져요. 서버사이드로 옮겨야 합니다."* - 어트리뷰션 정확도 하락의 주 원인.
 
 **③ 액션**
 
@@ -227,11 +227,11 @@ Third-party Cookie: 다른 도메인(광고 매체)이 발급
 Meta Pixel, Google Tag, TikTok Pixel, Kakao Pixel, Naver Premium Log
 ```
 
-페이지가 로드될 때 *해당 매체로 신호 전송* — *"이 사용자가 우리 사이트를 봤다"*. 매체는 이걸 자기 광고 이력과 매칭.
+페이지가 로드될 때 *해당 매체로 신호 전송*: *"이 사용자가 우리 사이트를 봤다"*. 매체는 이걸 자기 광고 이력과 매칭합니다.
 
 **② 맥락**
 
-- **회의에서**: *"Meta Pixel 신호가 30% 누락. iOS ATT(App Tracking Transparency) 영향."* — 측정 누락의 일반 원인.
+- **회의에서**: *"Meta Pixel 신호가 30% 누락. iOS ATT(App Tracking Transparency) 영향."* - 측정 누락의 일반 원인.
 
 **③ 액션**
 
@@ -259,7 +259,7 @@ Meta Pixel, Google Tag, TikTok Pixel, Kakao Pixel, Naver Premium Log
 
 **② 맥락**
 
-- **회의에서**: *"Meta CAPI(Conversions API) 도입했어요. 이전 픽셀 대비 신호 22% 회복."* — 정확도 복원의 표준 방법.
+- **회의에서**: *"Meta CAPI(Conversions API) 도입했어요. 이전 픽셀 대비 신호 22% 회복."* - 정확도 복원의 표준 방법.
 
 **③ 액션**
 
@@ -288,11 +288,11 @@ Meta Pixel, Google Tag, TikTok Pixel, Kakao Pixel, Naver Premium Log
 - Denied: 식별 가능 데이터 차단, 익명 집계만
 ```
 
-GDPR(유럽), CCPA(캘리포니아), 한국 개인정보보호법 등 *법적 요구*.
+GDPR(유럽), CCPA(캘리포니아), 한국 개인정보보호법 등 *법적 요구*가 있습니다.
 
 **② 맥락**
 
-- **회의에서**: *"유럽 사용자 30%가 트래킹 거부. 그쪽 어트리뷰션은 추정 모델."* — 지역별 데이터 정확도 차이.
+- **회의에서**: *"유럽 사용자 30%가 트래킹 거부. 그쪽 어트리뷰션은 추정 모델."* - 지역별 데이터 정확도 차이.
 
 **③ 액션**
 
@@ -319,11 +319,11 @@ GDPR(유럽), CCPA(캘리포니아), 한국 개인정보보호법 등 *법적 �
 
 **② 맥락**
 
-- **회의에서**: *"광고는 디바이스로 어트리뷰션, 결제는 user_id로 추적. 두 단위 매칭이 30% 누락."* — 가장 흔한 데이터 결손.
+- **회의에서**: *"광고는 디바이스로 어트리뷰션, 결제는 user_id로 추적. 두 단위 매칭이 30% 누락."* - 가장 흔한 데이터 결손.
 
 **③ 액션**
 
-- **개발**: *Identity Stitching* — 가입·로그인 시점에 익명 디바이스 ID를 user_id에 연결. 모든 이벤트에 *두 ID 동시 저장*.
+- **개발**: *Identity Stitching* - 가입·로그인 시점에 익명 디바이스 ID를 user_id에 연결. 모든 이벤트에 *두 ID 동시 저장*.
 - **기획**: Identity Resolution이 정확하면 *Cross-device LTV* 같은 분석 가능. 모바일에서 본 광고가 데스크탑 결제로 이어진 사례까지 추적.
 
 **⑤ 비고**
@@ -344,11 +344,11 @@ GDPR(유럽), CCPA(캘리포니아), 한국 개인정보보호법 등 *법적 �
 
 **② 맥락**
 
-- **회의에서**: *"Third-party 데이터 의존도 줄이고 First-party 강화. 가입 시 더 풍부한 프로파일 수집."* — 2025년 이후 마케팅 데이터 전략의 핵심 방향.
+- **회의에서**: *"Third-party 데이터 의존도 줄이고 First-party 강화. 가입 시 더 풍부한 프로파일 수집."* - 2025년 이후 마케팅 데이터 전략의 핵심 방향.
 
 **③ 액션**
 
-- **개발**: First-party 데이터 수집 강화 — 회원 정보, 이벤트, 거래 기록, 사용자 프로파일.
+- **개발**: First-party 데이터 수집 강화 - 회원 정보, 이벤트, 거래 기록, 사용자 프로파일.
 - **기획**: First-party 데이터는 *우리만의 자산*. 광고 매체와 공유 시(CAPI, Customer Match) 강력한 타게팅과 어트리뷰션 가능.
 
 **⑤ 비고**
@@ -367,11 +367,11 @@ GDPR(유럽), CCPA(캘리포니아), 한국 개인정보보호법 등 *법적 �
 오라클, Acxiom, Experian 등 데이터 브로커의 제공 데이터
 ```
 
-쿠키 시대 종말과 함께 *영향력 감소 중*. GDPR·CCPA 이후 더 어려워진 영역.
+쿠키 시대 종말과 함께 *영향력 감소 중*. GDPR·CCPA 이후 더 어려워진 영역입니다.
 
 **② 맥락**
 
-- **회의에서**: *"기존 Third-party 데이터 기반 타게팅 효율 절반으로 하락. First-party 중심으로 재편."* — 2025년 이후 마케팅 데이터의 변화.
+- **회의에서**: *"기존 Third-party 데이터 기반 타게팅 효율 절반으로 하락. First-party 중심으로 재편."* - 2025년 이후 마케팅 데이터의 변화.
 
 **③ 액션**
 
@@ -444,6 +444,6 @@ GDPR(유럽), CCPA(캘리포니아), 한국 개인정보보호법 등 *법적 �
 
 ## 다음 편 예고
 
-> [ep.12 — 어트리뷰션과 도구 지도](/marketing-metrics-handbook-ep-12/)
+> [ep.12 - 어트리뷰션과 도구 지도](/marketing-metrics-handbook-ep-12/)
 
 마지막 편. 한 가입자가 *어느 광고 덕분에 들어왔는지* 결정하는 모델들과, 모든 측정을 실제로 돌리는 도구들의 비교까지. First-touch, Last-touch, Multi-touch, Data-driven 어트리뷰션, GA4·Amplitude·Mixpanel. 13개 용어.

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="웹뷰는 브라우저가 아니다 ep.07 cover">
+  <style>
+  :root {
+    --c-bg: #EEF5F6;
+    --c-fg: #10202A;
+    --c-muted: #5E7480;
+    --c-accent: #0E7490; --c-accent-2: #22B8CF; --c-accent-3: #C98A3B;
+    --c-num: rgba(14, 116, 144, 0.14);
+    --c-dot: rgba(14, 116, 144, 0.10);
+    --c-line: rgba(14, 116, 144, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0A161A;
+      --c-fg: #DCE8EA;
+      --c-muted: #8AA0A8;
+      --c-accent: #4DD4EC; --c-accent-2: #0E7490; --c-accent-3: #E0A860;
+      --c-num: rgba(77, 212, 236, 0.15);
+      --c-dot: rgba(77, 212, 236, 0.10);
+      --c-line: rgba(77, 212, 236, 0.20);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots-wnb07" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="halo-wnb07a" cx="0.22" cy="0.86" r="0.60">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo-wnb07b" cx="0.80" cy="0.12" r="0.58">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-wnb07)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb07a)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb07b)"/>
+
+  <!-- 배경 무채 stroke 도형 (오프캔버스) -->
+  <rect x="-230" y="290" width="600" height="600" rx="56" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(14 70 590)"/>
+  <circle cx="1150" cy="20" r="300" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="1150" cy="20" r="205" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- 걸쇠: 한쪽만 박혀 있고 반대쪽은 들려서 자리를 벗어났다 -->
+  <g transform="rotate(-9 372 300)">
+    <path d="M 360 320 L 360 214 A 108 108 0 0 1 576 214 L 576 246 A 12 12 0 0 0 552 246 L 552 214 A 84 84 0 0 0 384 214 L 384 320 Z"
+          fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M 365 142 A 126 126 0 0 1 571 142" fill="none" stroke="var(--c-accent)" stroke-width="1.4" stroke-dasharray="4 9" opacity="0.45"/>
+  </g>
+
+  <!-- 자물쇠 몸통 -->
+  <g transform="translate(450 400) rotate(-7)">
+    <rect x="-160" y="-105" width="320" height="225" rx="28" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.4"/>
+    <rect x="-142" y="-87" width="284" height="189" rx="18" fill="none" stroke="var(--c-accent)" stroke-width="1.3" stroke-dasharray="6 9" opacity="0.5"/>
+    <circle cx="-30" cy="-5" r="70" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="4 9" opacity="0.45"/>
+    <circle cx="-30" cy="-5" r="46" fill="none" stroke="var(--c-accent-3)" stroke-width="3"/>
+    <g fill="var(--c-accent)" opacity="0.55">
+      <circle cx="-30" cy="-5" r="21"/>
+      <polygon points="-41,10 -19,10 -12,62 -48,62"/>
+    </g>
+    <rect x="66" y="52" width="62" height="12" rx="6" fill="var(--c-accent)" opacity="0.45"/>
+    <rect x="66" y="74" width="38" height="12" rx="6" fill="var(--c-accent)" opacity="0.28"/>
+  </g>
+
+  <!-- 걸쇠가 앉아 있어야 할 빈 자리 -->
+  <circle cx="556" cy="298" r="19" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="4 6"/>
+  <circle cx="556" cy="298" r="7" fill="var(--c-accent-3)" fill-opacity="0.5"/>
+
+  <!-- 빈 자리에서 갈라져 나가는 세 갈래 -->
+  <path d="M 578 252 C 676 238 748 282 826 292" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="7 8"/>
+  <circle cx="848" cy="292" r="9" fill="var(--c-accent)" opacity="0.85"/>
+  <circle cx="876" cy="310" r="6" fill="var(--c-accent-3)"/>
+  <circle cx="840" cy="318" r="5" fill="var(--c-accent-2)"/>
+
+  <path d="M 572 278 C 664 308 712 366 776 402" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" stroke-dasharray="5 9"/>
+  <polygon points="792,386 836,410 790,432" fill="none" stroke="var(--c-accent-3)" stroke-width="2.4" stroke-linejoin="round"/>
+
+  <path d="M 566 302 C 626 346 654 428 682 492" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="3 8"/>
+
+  <!-- 세 번째 갈래가 닿는 판정 링 -->
+  <circle cx="700" cy="512" r="78" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="4 9"/>
+  <circle cx="700" cy="512" r="51" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+  <circle cx="700" cy="512" r="21" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
+  <circle cx="700" cy="512" r="8" fill="var(--c-accent-3)"/>
+
+  <!-- 흩어진 디테일 -->
+  <rect x="118" y="96" width="84" height="84" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" transform="rotate(-14 160 138)"/>
+  <line x1="246" y1="200" x2="230" y2="336" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 9" stroke-opacity="0.5"/>
+  <line x1="272" y1="188" x2="254" y2="352" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-dasharray="4 10" stroke-opacity="0.4"/>
+  <circle cx="1016" cy="112" r="9" fill="var(--c-accent)" opacity="0.85"/>
+  <circle cx="1046" cy="134" r="6" fill="var(--c-accent-2)"/>
+  <circle cx="998" cy="144" r="5" fill="var(--c-accent-3)"/>
+  <polygon points="152,556 202,556 177,512" fill="none" stroke="var(--c-accent-3)" stroke-width="2.2" stroke-linejoin="round"/>
+  <rect x="72" y="466" width="56" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.55"/>
+  <rect x="100" y="488" width="32" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.7"/>
+  <circle cx="912" cy="196" r="34" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 7"/>
+  <g transform="translate(1002 574)" opacity="0.55">
+    <circle r="60" fill="none" stroke="var(--c-accent-2)" stroke-width="1.6"/>
+    <circle r="33" fill="none" stroke="var(--c-accent-2)" stroke-width="1.6" opacity="0.65"/>
+  </g>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">07</text>
+</svg>

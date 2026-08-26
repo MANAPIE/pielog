@@ -75,6 +75,6 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic 
 <text class="ts" x="300" y="545" text-anchor="middle">자산 경로만 · 픽셀 sha256 바이트 정확 일치</text>
 <path class="ln" d="M300,556 L300,574" marker-end="url(#ar)"/>
 <rect class="card" x="110" y="576" width="380" height="50" rx="8"/>
-<text class="tb" x="300" y="598" text-anchor="middle">QA 판정 — 하드 룰 3종</text>
+<text class="tb" x="300" y="598" text-anchor="middle">QA 판정: 하드 룰 3종</text>
 <text class="ts" x="300" y="615" text-anchor="middle">경계 접촉 · 알파 커버리지 · 헤일로 (재질 인지)</text>
 </svg>

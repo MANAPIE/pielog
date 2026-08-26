@@ -69,7 +69,7 @@
   </style>
 
   <!-- 시리즈 바깥 표시 -->
-  <text class="near" x="350" y="24" text-anchor="middle">— 본 시리즈는 내부 개발 협업의 글에 집중했습니다 —</text>
+  <text class="near" x="350" y="24" text-anchor="middle">- 본 시리즈는 내부 개발 협업의 글에 집중했습니다 -</text>
   <text class="near" x="350" y="42" text-anchor="middle">이 셋은 그 바깥에 자리한 문서들입니다</text>
 
   <!-- 1. 사용자 매뉴얼 -->

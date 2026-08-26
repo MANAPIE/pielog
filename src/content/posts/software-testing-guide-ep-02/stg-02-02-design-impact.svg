@@ -170,5 +170,5 @@
   <text class="note" x="450" y="336" text-anchor="middle">자연스럽게 작은 단위가 됨</text>
 
   <!-- 하단 요약 -->
-  <text class="col-sub" x="300" y="380" text-anchor="middle">같은 기능, 다른 모양 — 테스트를 먼저 쓰면 설계의 압력이 작동합니다</text>
+  <text class="col-sub" x="300" y="380" text-anchor="middle">같은 기능, 다른 모양: 테스트를 먼저 쓰면 설계의 압력이 작동합니다</text>
 </svg>

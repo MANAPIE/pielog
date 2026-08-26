@@ -64,7 +64,7 @@
   <!-- 1. 획득 -->
   <g transform="translate(40, 104)">
     <rect class="card-accent" x="0" y="0" width="520" height="170" rx="2"/>
-    <text class="ep-num" x="20" y="32">ep.01 — 02</text>
+    <text class="ep-num" x="20" y="32">ep.01 - 02</text>
     <text class="stage-title" x="20" y="60">획득</text>
     <text class="stage-en" x="70" y="60">ACQUISITION</text>
     <line class="divider" x1="20" y1="76" x2="500" y2="76"/>
@@ -84,7 +84,7 @@
   <!-- 2. 활성화 -->
   <g transform="translate(40, 310)">
     <rect class="card" x="0" y="0" width="520" height="170" rx="2"/>
-    <text class="ep-num" x="20" y="32">ep.03 — 04</text>
+    <text class="ep-num" x="20" y="32">ep.03 - 04</text>
     <text class="stage-title" x="20" y="60">활성화</text>
     <text class="stage-en" x="86" y="60">ACTIVATION</text>
     <line class="divider" x1="20" y1="76" x2="500" y2="76"/>
@@ -103,7 +103,7 @@
   <!-- 3. 유지 -->
   <g transform="translate(40, 516)">
     <rect class="card" x="0" y="0" width="520" height="146" rx="2"/>
-    <text class="ep-num" x="20" y="32">ep.05 — 07</text>
+    <text class="ep-num" x="20" y="32">ep.05 - 07</text>
     <text class="stage-title" x="20" y="60">유지</text>
     <text class="stage-en" x="66" y="60">RETENTION</text>
     <line class="divider" x1="20" y1="76" x2="500" y2="76"/>
@@ -149,7 +149,7 @@
   <!-- 추천 → 획득 순환 화살표 (오른쪽 여백으로 우회) -->
   <path d="M 560 942 Q 590 942 590 540 Q 590 188 562 188" fill="none" stroke="var(--c-faint)" stroke-width="0.75" stroke-dasharray="3 3"/>
   <path class="arrow" d="M 570 192 L 560 188 L 568 181 Z" transform="rotate(15 562 188)"/>
-  <text class="arrow-label" x="574" y="565" text-anchor="middle" transform="rotate(90 574 565)">추천이 다시 획득으로 — Viral loop</text>
+  <text class="arrow-label" x="574" y="565" text-anchor="middle" transform="rotate(90 574 565)">추천이 다시 획득으로: Viral loop</text>
 
   <!-- ============ 인프라 레이어 (하단) ============ -->
 

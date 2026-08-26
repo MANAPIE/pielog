@@ -1,6 +1,6 @@
 <svg width="100%" viewBox="0 0 800 480" role="img" xmlns="http://www.w3.org/2000/svg"
   font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title>알림 설정의 비대칭 — 동의는 1번, 해제는 8개 토글 Before/After</title>
+  <title>알림 설정의 비대칭: 동의는 1번, 해제는 8개 토글 Before/After</title>
   <desc>다크패턴: 카테고리별 분할 토글 / 정직한 설계: 단일 전체 끄기 토글</desc>
   <defs>
     <style>
@@ -278,7 +278,7 @@
   <circle class="toggle-knob" cx="328" cy="350" r="6" />
 
   <rect class="red-annot-bg" x="64" y="388" width="288" height="32" rx="6" />
-  <text x="80" y="408" class="annot-bold red-annot-text">8개 카테고리 — "전체 끄기" 옵션 없음</text>
+  <text x="80" y="408" class="annot-bold red-annot-text">8개 카테고리: "전체 끄기" 옵션 없음</text>
 
   <!-- RIGHT: BRIGHT -->
   <rect class="frame-bg" x="432" y="52" width="320" height="380" rx="12" />
@@ -311,7 +311,7 @@
   <text x="468" y="340" class="body" font-size="10">프로모션, 이벤트, 추천 상품 등 개별 설정 가능</text>
 
   <rect class="teal-annot-bg" x="448" y="388" width="288" height="32" rx="6" />
-  <text x="464" y="408" class="annot-bold teal-annot-text">"전체 끄기" 단일 토글 — 1번에 해제</text>
+  <text x="464" y="408" class="annot-bold teal-annot-text">"전체 끄기" 단일 토글: 1번에 해제</text>
 
   <line class="vs-divider" x1="400" y1="72" x2="400" y2="432" stroke-dasharray="4 4" />
   <circle class="vs-circle" cx="400" cy="242" r="16" />

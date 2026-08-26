@@ -54,7 +54,7 @@
       .caption{fill:#737373}
     }
   </style>
-  <text x="400" y="32" text-anchor="middle" class="title">실습 B — 의도적 누락이 포함된 설계서</text>
+  <text x="400" y="32" text-anchor="middle" class="title">실습 B: 의도적 누락이 포함된 설계서</text>
 
   <!-- Document mockup -->
   <rect x="40" y="60" width="500" height="510" class="panel" rx="6"/>
@@ -97,26 +97,26 @@
   <text x="252" y="155" class="desc-bold">[Description]</text>
   <circle cx="260" cy="178" r="8" class="num-circle"/>
   <text x="260" y="181" class="num-text">1</text>
-  <text x="275" y="181" class="desc">상품 이미지 영역 - 좌우 스와이프</text>
+  <text x="275" y="181" class="desc">상품 이미지 영역: 좌우 스와이프</text>
   <circle cx="260" cy="208" r="8" class="num-circle"/>
   <text x="260" y="211" class="num-text">2</text>
-  <text x="275" y="211" class="desc">상품 정보 - 상품명, 가격, 평점</text>
+  <text x="275" y="211" class="desc">상품 정보: 상품명, 가격, 평점</text>
   <circle cx="260" cy="238" r="8" class="num-circle"/>
   <text x="260" y="241" class="num-text">3</text>
-  <text x="275" y="241" class="desc">구매하기 - 주문서로 이동</text>
+  <text x="275" y="241" class="desc">구매하기: 주문서로 이동</text>
   <circle cx="260" cy="268" r="8" class="num-circle"/>
   <text x="260" y="271" class="num-text">4</text>
-  <text x="275" y="271" class="desc">찜하기 - 찜 목록에 추가</text>
+  <text x="275" y="271" class="desc">찜하기: 찜 목록에 추가</text>
   <circle cx="260" cy="298" r="8" class="num-circle"/>
   <text x="260" y="301" class="num-text">5</text>
-  <text x="275" y="301" class="desc">리뷰 - 최근 3개, 전체 보기 이동</text>
+  <text x="275" y="301" class="desc">리뷰: 최근 3개, 전체 보기 이동</text>
   <circle cx="260" cy="328" r="8" class="num-circle"/>
   <text x="260" y="331" class="num-text">6</text>
-  <text x="275" y="331" class="desc">관련 상품 - 가로 스크롤 노출</text>
+  <text x="275" y="331" class="desc">관련 상품: 가로 스크롤 노출</text>
 
   <!-- Question marks for missing items - uniform 20px padding all sides -->
   <rect x="60" y="395" width="460" height="160" class="miss" rx="6"/>
-  <text x="80" y="419" class="miss-text">⚠ 빠진 항목 — 27개 질문 중 답을 찾을 수 없는 것이 거의 전부입니다</text>
+  <text x="80" y="419" class="miss-text">⚠ 빠진 항목: 27개 질문 중 답을 찾을 수 없는 것이 거의 전부입니다</text>
   <text x="80" y="442" class="miss-section">치명적 누락 (개발 시 즉시 멈추는 부분):</text>
   <text x="80" y="462" class="miss-bullet">• 품절 시 구매 버튼 처리 미정의 → 결제 시도 가능</text>
   <text x="80" y="477" class="miss-bullet">• 비로그인 상태에서 구매/찜 동작 미정의</text>

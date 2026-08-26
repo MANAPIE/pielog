@@ -22,7 +22,7 @@
 
   <!-- left panel: lie -->
   <rect x="36" y="40" width="330" height="150" rx="12" fill="var(--c-accent)" fill-opacity="0.08" stroke="var(--c-accent)" stroke-width="2"/>
-  <text class="ti" x="56" y="68" fill="var(--c-accent)">두 번째 죽음 — 거짓말</text>
+  <text class="ti" x="56" y="68" fill="var(--c-accent)">두 번째 죽음: 거짓말</text>
   <text class="sub" x="56" y="88">코드는 변하고 문서는 멈춰, 둘이 어긋난다</text>
   <line x1="56" y1="104" x2="346" y2="104" stroke="var(--c-line)" stroke-width="1"/>
   <text class="close" x="56" y="130" fill="var(--c-accent)">문서를 살려서 닫는다</text>
@@ -31,7 +31,7 @@
 
   <!-- right panel: fossil -->
   <rect x="394" y="40" width="330" height="150" rx="12" fill="var(--c-accent-2)" fill-opacity="0.08" stroke="var(--c-accent-2)" stroke-width="2"/>
-  <text class="ti" x="414" y="68" fill="var(--c-accent-2)">첫 번째 죽음 — 화석</text>
+  <text class="ti" x="414" y="68" fill="var(--c-accent-2)">첫 번째 죽음: 화석</text>
   <text class="sub" x="414" y="88">특정 시점에 고정되어 그대로 굳는다</text>
   <line x1="414" y1="104" x2="704" y2="104" stroke="var(--c-line)" stroke-width="1"/>
   <text class="close" x="414" y="130" fill="var(--c-accent-2)">죽음을 인정해서 닫는다</text>
@@ -39,7 +39,7 @@
   <text class="ep" x="704" y="180" text-anchor="end">ep.07</text>
 
   <!-- rebirth flow -->
-  <text class="cap" x="380" y="226" text-anchor="middle">그러나 납품이 끝은 아니다 — 화석은 인수인계를 통해 다시 씨앗이 된다</text>
+  <text class="cap" x="380" y="226" text-anchor="middle">그러나 납품이 끝은 아니다: 화석은 인수인계를 통해 다시 씨앗이 된다</text>
 
   <!-- arrows -->
   <g stroke="var(--c-accent-2)" stroke-width="2">

@@ -87,7 +87,7 @@
     <path d="M 450 402 L 510 402 Q 540 402 540 372 L 540 168 Q 540 138 510 138 L 450 138"
       fill="none" stroke="var(--c-arrow)" stroke-width="1.5" stroke-dasharray="4 3"/>
     <path d="M 456 134 L 446 138 L 456 142 Z" fill="var(--c-arrow)"/>
-    <text class="arrow-label" x="556" y="266" text-anchor="middle" transform="rotate(90 556 266)">다음 라운드 — 100 + 32 = 132명이 다시 시작</text>
+    <text class="arrow-label" x="556" y="266" text-anchor="middle" transform="rotate(90 556 266)">다음 라운드: 100 + 32 = 132명이 다시 시작</text>
   </g>
 
   <!-- K-factor 공식 박스 -->
@@ -96,7 +96,7 @@
     <text class="anno-bold" x="20" y="28">K-factor (= Viral Coefficient)</text>
     <text class="formula-text" x="20" y="56">K = i × c = 0.8 × 0.40 = </text>
     <text class="k-num" x="232" y="62">0.32</text>
-    <text class="anno" x="20" y="84">한 사용자가 평균 0.32명의 신규 사용자를 데려옴 — 사용자</text>
+    <text class="anno" x="20" y="84">한 사용자가 평균 0.32명의 신규 사용자를 데려옴: 사용자</text>
     <text class="anno" x="20" y="100">100명당 신규 32명. K &lt; 1.0 이므로 광고와 병행해야 함.</text>
   </g>
 

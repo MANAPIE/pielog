@@ -1,5 +1,5 @@
 ---
-title: "정확한 사실의 색인, 레퍼런스와 API 문서 - 개발자를 위한 기술문서 입문 ep.04"
+title: "정확한 사실의 색인: 레퍼런스와 API 문서 - 개발자를 위한 기술문서 입문 ep.04"
 description: "작업 중인 사람이 정확한 사실을 찾으러 오는 글. docstring부터 OpenAPI까지, 사람의 손과 기계의 손이 만나는 자리를 다룹니다."
 summary: "레퍼런스는 가장 조용한 문서입니다. 처음부터 끝까지 읽으라고 만든 글이 아니라, 색인처럼 필요할 때 펼쳐 보라고 만든 글입니다. 그래서 미덕이 완전성과 일관성입니다. 이번 편은 레퍼런스 스펙트럼을 따라 docstring·시그니처·스펙을 짚고, 한 항목을 어떻게 써야 하는지 그 골격을 살핍니다."
 date: 2026-05-20
@@ -26,9 +26,9 @@ draft: false
 
 이 스펙트럼이 중요한 이유는 **각 자리에서 글쓰기의 책임이 다르기 때문**입니다.
 
-가장 왼쪽 *개념 가이드*는 산문에 가깝습니다. "이 시스템의 인증 모델", "트랜잭션 격리 수준의 의미" 같은 글. 자동화될 수 없으므로 사람이 처음부터 끝까지 책임집니다. 사실은 이건 레퍼런스라기보단 ep.05에서 다룰 *익스플레네이션*에 가깝습니다.
+가장 왼쪽 *개념 가이드*는 산문에 가깝습니다. "이 시스템의 인증 모델", "트랜잭션 격리 수준의 의미" 같은 글입니다. 자동화될 수 없으므로 사람이 처음부터 끝까지 책임집니다. 사실은 이건 레퍼런스라기보단 ep.05에서 다룰 *익스플레네이션*에 가깝습니다.
 
-가장 오른쪽 *스펙*은 거의 코드입니다. OpenAPI 스키마, GraphQL SDL, Protocol Buffers. 사람이 글을 쓰는 게 아니라 *코드로부터 자동 생성*되는 영역. 사람의 책임은 코드의 *주석과 description 필드*를 잘 채우는 것까지입니다.
+가장 오른쪽 *스펙*은 거의 코드입니다. OpenAPI 스키마, GraphQL SDL, Protocol Buffers. 사람이 글을 쓰는 게 아니라 *코드로부터 자동 생성*되는 영역입니다. 사람의 책임은 코드의 *주석과 description 필드*를 잘 채우는 것까지입니다.
 
 대부분의 레퍼런스 글쓰기는 가운데 두 칸, *docstring*과 *시그니처*에서 일어납니다. 그 둘이 이번 편의 무게중심입니다.
 
@@ -36,7 +36,7 @@ draft: false
 
 스펙트럼 위에서 각 자리를 받쳐주는 도구가 다릅니다. 새 프로젝트의 레퍼런스 사이트를 처음 세울 때 자주 마주치는 조합을 한 표로 정리합니다.
 
-![레퍼런스 도구 체인 매트릭스 다이어그램. 가로축은 언어별, 세로축은 단계(docstring 표준 → 자동 생성기 → 호스팅·사이트 빌더)로 구성된 3행 5열 표. 행 1 docstring 표준: Python은 Google style 또는 NumPy style, TypeScript는 JSDoc, Rust는 `///` 라인 주석에 내장 Markdown, Go는 godoc 스타일의 주석, REST API는 OpenAPI YAML의 description·summary 필드. 행 2 자동 생성기: Python은 Sphinx + autodoc 또는 MkDocs + mkdocstrings, TypeScript는 TypeDoc, Rust는 rustdoc(언어 표준 내장), Go는 godoc·pkg.go.dev(공식 사이트), REST API는 openapi-generator 또는 swagger-codegen으로 SDK까지. 행 3 호스팅·사이트 빌더: Python은 Read the Docs, TypeScript는 Docusaurus·Nextra, Rust는 docs.rs(crates.io 등록 시 자동), Go는 pkg.go.dev(공식), REST API는 Swagger UI(인터랙티브) / Redoc(읽기 좋음) / Scalar(가볍고 빠름) 중 선택. 다이어그램 우측 라벨: 한 칸이라도 비면 다음 칸이 자동으로 따라오지 않는다 — 표준을 따르는 게 자동화의 입장권.](./tw-04-03-reference-toolchain.svg)
+![레퍼런스 도구 체인 매트릭스 다이어그램. 가로축은 언어별, 세로축은 단계(docstring 표준 → 자동 생성기 → 호스팅·사이트 빌더)로 구성된 3행 5열 표. 행 1 docstring 표준: Python은 Google style 또는 NumPy style, TypeScript는 JSDoc, Rust는 `///` 라인 주석에 내장 Markdown, Go는 godoc 스타일의 주석, REST API는 OpenAPI YAML의 description·summary 필드. 행 2 자동 생성기: Python은 Sphinx + autodoc 또는 MkDocs + mkdocstrings, TypeScript는 TypeDoc, Rust는 rustdoc(언어 표준 내장), Go는 godoc·pkg.go.dev(공식 사이트), REST API는 openapi-generator 또는 swagger-codegen으로 SDK까지. 행 3 호스팅·사이트 빌더: Python은 Read the Docs, TypeScript는 Docusaurus·Nextra, Rust는 docs.rs(crates.io 등록 시 자동), Go는 pkg.go.dev(공식), REST API는 Swagger UI(인터랙티브) / Redoc(읽기 좋음) / Scalar(가볍고 빠름) 중 선택. 다이어그램 우측 라벨: 한 칸이라도 비면 다음 칸이 자동으로 따라오지 않는다: 표준을 따르는 게 자동화의 입장권.](./tw-04-03-reference-toolchain.svg)
 
 세 단계가 한 줄로 이어집니다. 표준 → 생성기 → 호스팅. 표준을 따르지 않은 docstring은 생성기에 들어가지 못하고, 생성기에 들어가지 못한 문서는 사이트로 자동 배포되지 못합니다. *형식을 일관되게 따르는 것*이 단순한 미감이 아닌 이유가 여기 있습니다.
 
@@ -49,7 +49,7 @@ draft: false
 
 ## 좋은 레퍼런스 항목의 골격
 
-한 함수, 한 API 엔드포인트, 한 설정 옵션. 레퍼런스의 *최소 단위*는 이 한 항목입니다. 좋은 항목은 다음 일곱 부분을 갖습니다.
+한 함수, 한 API 엔드포인트, 한 설정 옵션. 레퍼런스의 *최소 단위*는 이 한 항목입니다. 좋은 항목에는 다음 일곱 부분이 있습니다.
 
 ![좋은 레퍼런스 항목의 골격 다이어그램. 왼쪽 컬럼은 골격 설명. 1. 시그니처: 함수의 형태(예: translate(text: str, target_lang: str) -> str). 2. 한 줄 요약: "무엇을 하는 함수인가"를 동사로 시작해 한 문장. 부사와 형용사는 자제. 3. 파라미터: 각 파라미터마다 이름, 타입, 의미·제약·기본값, 예시 값. 4. 반환값: 타입과 의미. 실패 시 무엇이 오는가도. 5. 예외·에러: 어떤 조건에서 어떤 예외가 나는가. 6. 예시: 최소한의 호출 예와 기대 출력. 7. 관련: 관련된 다른 함수·문서로 가는 링크. 오른쪽 컬럼은 실제 예시. translate 함수의 docstring. 함수 정의 후 "Translate text into the target language." 한 줄 요약. Args 섹션에 text(str): Source text. Max 5000 chars. / target_lang(str): BCP-47 code. e.g. "en", "ko", "ja". Returns 섹션에 str: Translated text. Raises 섹션에 ValueError: If text exceeds 5000 chars. / RateLimitError: If quota exceeded. Example 섹션에 translate("안녕하세요", "en") 호출 결과 'Hello'. See Also 섹션에 detect_language(): Auto-detect source. 우측 하단 주석: 모든 항목이 같은 순서로, 같은 형식을 따라야 한다. 레퍼런스의 미덕은 일관성.](./tw-04-02-reference-anatomy.svg)
 
@@ -57,7 +57,7 @@ draft: false
 
 각 부분을 살펴봅니다.
 
-### 시그니처 — *바로 본문 위*에
+### 시그니처 - *바로 본문 위*에
 
 함수 시그니처는 검색 결과의 *제목*이자 페이지의 *대표 카드*입니다. 항목 페이지를 열었을 때 가장 먼저 보여야 합니다.
 
@@ -67,13 +67,13 @@ translate(text: str, target_lang: str, *, source_lang: str | None = None) -> str
 
 타입 힌트가 있는 언어라면 *그 자체가 문서*가 됩니다. 별도의 "Type" 섹션을 두지 않아도 됩니다.
 
-### 한 줄 요약 — *동사로 시작*
+### 한 줄 요약 - *동사로 시작*
 
-본문 첫 줄은 동사로 시작합니다. 명령형보다는 평서형이 더 흔합니다. "Translates text..." 또는 "Returns the translated string..." 식.
+본문 첫 줄은 동사로 시작합니다. 명령형보다는 평서형이 더 흔합니다. "Translates text..." 또는 "Returns the translated string..."과 같은 식입니다.
 
 부사·형용사를 가능한 피합니다. "Quickly translates", "Efficiently parses" 같은 표현은 *추측*입니다. 실제 성능 특성은 별도 섹션 또는 *복잡도 표기*로 분리합니다.
 
-### 파라미터 — *제약과 예시 값*
+### 파라미터 - *제약과 예시 값*
 
 타입만 있고 의미가 없는 파라미터 설명은 *없는 것과 같습니다*.
 
@@ -93,11 +93,11 @@ text (str): Source text. Max 5000 chars. Empty string raises ValueError.
 
 특히 *예시 값*은 BCP-47 같은 표준을 따르는 경우 결정적입니다. `"en"`인지 `"en-US"`인지 `"English"`인지를 적어두지 않으면 독자는 매번 시행착오를 겪습니다.
 
-### 반환값 — *실패 시도 함께*
+### 반환값 - *실패 시도 함께*
 
 성공 시 무엇을 반환하는지뿐 아니라, *실패 시* 어떻게 되는지도 명시합니다. 예외를 던지는지, None을 반환하는지, 빈 리스트인지. 이게 빠지면 호출 측 코드는 *방어적이지 못한* 코드가 됩니다.
 
-### 예외 · 에러 — *조건과 짝지어*
+### 예외 · 에러 - *조건과 짝지어*
 
 예외는 *언제 발생하는가*가 핵심입니다.
 
@@ -109,7 +109,7 @@ RateLimitError: If the per-minute quota is exceeded.
 
 예외 이름만 적어두면 *방어할 수 없는* 문서가 됩니다.
 
-### 예시 — *복사해서 동작*
+### 예시 - *복사해서 동작*
 
 레퍼런스의 예시는 짧고 *그대로 동작*해야 합니다. 한두 줄로 충분합니다.
 
@@ -120,7 +120,7 @@ RateLimitError: If the per-minute quota is exceeded.
 
 기대 출력까지 적어둡니다. 독자는 자기 환경에서 같은 결과가 나오는지 확인할 수 있습니다.
 
-### 관련 — *다음 항목으로*
+### 관련 - *다음 항목으로*
 
 이 항목과 함께 자주 쓰이는 다른 항목, 또는 *이것 대신 더 적합한* 다른 항목으로 가는 링크. 레퍼런스를 *책*이 아니라 *그래프*로 만드는 작은 장치입니다.
 
@@ -132,7 +132,7 @@ docstring은 *코드 안에 사는 레퍼런스*입니다. 그 자리가 결정�
 
 각 언어별로 정착된 형식이 있습니다. 형식 자체보다 *그 형식을 일관되게 따르는 것*이 중요합니다.
 
-**Python — Google style (예시)**
+**Python: Google style (예시)**
 
 ```python
 def translate(text: str, target_lang: str) -> str:
@@ -155,7 +155,7 @@ def translate(text: str, target_lang: str) -> str:
     """
 ```
 
-**TypeScript — JSDoc**
+**TypeScript: JSDoc**
 
 ```typescript
 /**
@@ -170,7 +170,7 @@ def translate(text: str, target_lang: str) -> str:
  */
 ```
 
-**Rust — `///` 라인 주석**
+**Rust: `///` 라인 주석**
 
 ```rust
 /// Translate text into the target language.
@@ -267,11 +267,11 @@ Stripe, Twilio, GitHub 같은 곳의 문서가 이 구조를 따릅니다. 진�
 
 세 곳 모두 *동일한 함수·엔드포인트가 가이드에서 한 번, 레퍼런스에서 한 번 등장*합니다. 중복으로 보이지만, *독자의 진입 경로가 다르기 때문*에 두 곳에 같이 있어야 합니다.
 
-#### 시나리오 — `translate()` 함수가 v1에서 v2로 가는 동안의 docstring
+#### 시나리오 - `translate()` 함수가 v1에서 v2로 가는 동안의 docstring
 
 가상의 사내 라이브러리에서 `translate()` 함수가 메이저 버전 업그레이드를 거치는 동안 docstring이 어떻게 변하는지를 따라가봅니다.
 
-**v1.0 — 초기 출시.** 함수는 단순합니다.
+**v1.0 - 초기 출시.** 함수는 단순합니다.
 
 ```python
 def translate(text: str, target_lang: str) -> str:
@@ -286,7 +286,7 @@ def translate(text: str, target_lang: str) -> str:
     """
 ```
 
-**v1.4 — RateLimitError 추가.** 외부 API의 쿼터 정책이 생기면서 새 예외가 등장합니다. docstring에 `Raises` 섹션이 추가됩니다.
+**v1.4 - RateLimitError 추가.** 외부 API의 쿼터 정책이 생기면서 새 예외가 등장합니다. docstring에 `Raises` 섹션이 추가됩니다.
 
 ```python
     """...
@@ -296,7 +296,7 @@ def translate(text: str, target_lang: str) -> str:
     """
 ```
 
-**v2.0 — `source_lang` 키워드 인자 추가, 반환 타입 변경.** 이 버전은 시그니처 자체가 바뀌므로 *호환성 깨짐*을 docstring 상단에 적습니다.
+**v2.0 - `source_lang` 키워드 인자 추가, 반환 타입 변경.** 이 버전은 시그니처 자체가 바뀌므로 *호환성 깨짐*을 docstring 상단에 적습니다.
 
 ```python
 def translate(
@@ -401,6 +401,6 @@ def function_name(param1: Type, param2: Type = default) -> ReturnType:
 
 ## 다음 편 예고
 
-> [ep.05 - 왜 이렇게 만들었는가, 아키텍처와 개념 설명](/tech-writing-guide-ep-05/)
+> [ep.05 - 왜 이렇게 만들었는가: 아키텍처와 개념 설명](/tech-writing-guide-ep-05/)
 
 다음 편은 익스플레네이션입니다. "왜"의 글. 시스템이 *어떻게* 동작하는지가 아니라 *왜 이렇게 만들어졌는지*를 다루는 글입니다. 다이어그램을 그리는 법, C4 모델, 그리고 좋은 설명문이 자주 빠지는 두 가지 함정을 봅니다.

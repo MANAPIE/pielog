@@ -25,11 +25,11 @@
       .desc-faint{fill:#737373}
     }
   </style>
-  <text x="400" y="32" text-anchor="middle" class="title">Bad vs Good — 검색 결과 화면 디스크립션</text>
+  <text x="400" y="32" text-anchor="middle" class="title">Bad vs Good: 검색 결과 화면 디스크립션</text>
 
   <!-- BAD panel (left) -->
   <rect x="20" y="55" width="380" height="525" class="panel bad" rx="8"/>
-  <text x="40" y="85" class="label-bad">✕ Bad — 빠진 게 많은 설계서</text>
+  <text x="40" y="85" class="label-bad">✕ Bad: 빠진 게 많은 설계서</text>
 
   <rect x="40" y="100" width="340" height="20" class="header" rx="3"/>
   <text x="50" y="114" class="header-text">SRC-001 · 검색 결과</text>
@@ -55,7 +55,7 @@
 
   <!-- GOOD panel (right) -->
   <rect x="400" y="55" width="380" height="525" class="panel good" rx="8"/>
-  <text x="420" y="85" class="label-good">✓ Good — 빈틈없는 설계서</text>
+  <text x="420" y="85" class="label-good">✓ Good: 빈틈없는 설계서</text>
 
   <rect x="420" y="100" width="340" height="20" class="header" rx="3"/>
   <text x="430" y="114" class="header-text">SRC-001 · 검색 결과</text>
@@ -71,8 +71,8 @@
   <rect x="530" y="241" width="100" height="10" class="placeholder" rx="2"/>
 
   <text x="420" y="335" class="desc-bold">[Description]</text>
-  <text x="420" y="358" class="desc">① 결과 리스트 — 무한스크롤 20건 단위, 마지막 3개 전 추가 로딩</text>
-  <text x="420" y="378" class="desc">② 정렬 — 기본 정확도순 / 옵션: 최신·인기·가격</text>
+  <text x="420" y="358" class="desc">① 결과 리스트: 무한스크롤 20건 단위, 마지막 3개 전 추가 로딩</text>
+  <text x="420" y="378" class="desc">② 정렬: 기본 정확도순 / 옵션: 최신·인기·가격</text>
   <text x="420" y="398" class="desc">③ 검색어 일치 텍스트 볼드 처리</text>
 
   <text x="420" y="430" class="desc-bold">[State]</text>

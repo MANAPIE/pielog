@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-obs">
-  <title id="title-obs">Observer 패턴 — Subject와 등록된 Observer들</title>
+  <title id="title-obs">Observer 패턴: Subject와 등록된 Observer들</title>
   <defs>
     <style>
       :root {
@@ -100,8 +100,8 @@
 
   <rect class="bg" width="1200" height="580" />
 
-  <text x="60" y="36" class="col-label">SUBJECT — 사건의 발원지</text>
-  <text x="680" y="36" class="col-label">OBSERVERS — 등록된 청취자들</text>
+  <text x="60" y="36" class="col-label">SUBJECT: 사건의 발원지</text>
+  <text x="680" y="36" class="col-label">OBSERVERS: 등록된 청취자들</text>
 
   <!-- Subject -->
   <g transform="translate(60 200)">
@@ -180,6 +180,6 @@
       stroke-dasharray="4 3" />
     <text x="20" y="28" class="cname" fill="var(--c-accent-3)">핵심: Subject는 누가 듣고 있는지 모릅니다</text>
     <text x="20" y="50" class="annot">새 Observer를 추가해도 Subject는 그대로</text>
-    <text x="20" y="66" class="annot">구독은 외부에서 등록 — 결합이 끊어진 상태</text>
+    <text x="20" y="66" class="annot">구독은 외부에서 등록: 결합이 끊어진 상태</text>
   </g>
 </svg>

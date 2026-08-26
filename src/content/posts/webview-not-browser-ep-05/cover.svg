@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="웹뷰는 브라우저가 아니다 ep.05 cover">
+  <style>
+  :root {
+    --c-bg: #EEF5F6;
+    --c-fg: #10202A;
+    --c-muted: #5E7480;
+    --c-accent: #0E7490; --c-accent-2: #22B8CF; --c-accent-3: #C98A3B;
+    --c-num: rgba(14, 116, 144, 0.14);
+    --c-dot: rgba(14, 116, 144, 0.10);
+    --c-line: rgba(14, 116, 144, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0A161A;
+      --c-fg: #DCE8EA;
+      --c-muted: #8AA0A8;
+      --c-accent: #4DD4EC; --c-accent-2: #0E7490; --c-accent-3: #E0A860;
+      --c-num: rgba(77, 212, 236, 0.15);
+      --c-dot: rgba(77, 212, 236, 0.10);
+      --c-line: rgba(77, 212, 236, 0.20);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots-wnb05" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="halo-wnb05a" cx="0.18" cy="0.82" r="0.60">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo-wnb05b" cx="0.82" cy="0.16" r="0.58">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-wnb05)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb05a)"/>
+  <rect width="1200" height="630" fill="url(#halo-wnb05b)"/>
+
+  <!-- 배경 무채 stroke 도형 (오프캔버스) -->
+  <rect x="-250" y="330" width="560" height="560" rx="54" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(13 30 610)"/>
+  <circle cx="1150" cy="-20" r="300" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="1150" cy="-20" r="212" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- 어긋난 두 겹의 뷰포트, 그리고 바깥에서 밀고 들어온 면 -->
+  <g transform="translate(500 300) rotate(-7)">
+
+    <!-- 바깥 점선 링 -->
+    <rect x="-268" y="-238" width="536" height="476" rx="30" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="4 10" stroke-opacity="0.55"/>
+
+    <!-- 어긋난 만큼 드러나는 띠: 채움 대신 점선 테두리 + 해치선 -->
+    <rect x="154" y="-206" width="92" height="302" fill="none" stroke="var(--c-accent)" stroke-width="1.4" stroke-dasharray="6 6" stroke-opacity="0.5"/>
+    <path d="M154 -178 H246 M154 -138 H246 M154 -98 H246 M154 -58 H246 M154 -18 H246 M154 22 H246 M154 62 H246"
+          fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-opacity="0.3"/>
+
+    <!-- 아래 겹: 레이아웃이 기준으로 삼는 상자 -->
+    <rect x="-250" y="-220" width="500" height="440" rx="22" fill="none" stroke="var(--c-accent)" stroke-width="3.5"/>
+
+    <!-- 위 겹: 실제로 보이는 상자. 어긋나 있고 아래는 잘려 있다 -->
+    <rect x="-286" y="-252" width="440" height="348" rx="20" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="3"/>
+    <rect x="-278" y="-244" width="424" height="332" rx="14" fill="none" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-opacity="0.45"/>
+    <rect x="-96" y="-240" width="60" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.55"/>
+    <rect x="-256" y="-208" width="180" height="14" rx="7" fill="none" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-opacity="0.7"/>
+    <circle cx="76" cy="-201" r="5" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="1.6"/>
+    <circle cx="100" cy="-201" r="5" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-opacity="0.7"/>
+    <circle cx="124" cy="-201" r="5" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-opacity="0.45"/>
+    <rect x="-256" y="-176" width="250" height="13" rx="6.5" fill="none" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-opacity="0.6"/>
+    <rect x="44" y="-176" width="90" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.4"/>
+    <rect x="-256" y="-152" width="196" height="13" rx="6.5" fill="none" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-dasharray="7 5" stroke-opacity="0.5"/>
+    <rect x="44" y="-152" width="72" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.26"/>
+    <rect x="-256" y="-118" width="190" height="86" rx="12" fill="none" stroke="var(--c-accent-2)" stroke-width="1.8" stroke-opacity="0.6"/>
+    <rect x="-46" y="-70" width="13" height="38" rx="6.5" fill="var(--c-accent)" fill-opacity="0.5"/>
+    <rect x="-24" y="-92" width="13" height="60" rx="6.5" fill="var(--c-accent)" fill-opacity="0.34"/>
+    <rect x="-2" y="-56" width="13" height="24" rx="6.5" fill="var(--c-accent)" fill-opacity="0.58"/>
+    <rect x="20" y="-104" width="13" height="72" rx="6.5" fill="var(--c-accent)" fill-opacity="0.26"/>
+
+    <!-- 두 겹이 어긋난 폭을 짚는 점선 -->
+    <line x1="-286" y1="-252" x2="-250" y2="-220" stroke="var(--c-accent)" stroke-width="1.6" stroke-dasharray="4 4" stroke-opacity="0.75"/>
+    <circle cx="-250" cy="-220" r="5.5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
+
+    <!-- 밖에서 밀고 올라와 위 겹을 잘라내는 면 -->
+    <rect x="-560" y="96" width="832" height="140" rx="20" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.6"/>
+    <rect x="-260" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
+    <rect x="-180" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
+    <rect x="-100" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
+    <rect x="-20" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
+    <rect x="60" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
+    <rect x="140" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
+    <g fill="none" stroke="var(--c-accent-3)" stroke-width="1.4" stroke-opacity="0.55">
+      <rect x="-260" y="152" width="64" height="18" rx="9"/>
+      <rect x="-180" y="152" width="64" height="18" rx="9"/>
+      <rect x="-100" y="152" width="64" height="18" rx="9"/>
+      <rect x="-20" y="152" width="64" height="18" rx="9"/>
+      <rect x="60" y="152" width="64" height="18" rx="9"/>
+      <rect x="140" y="152" width="64" height="18" rx="9"/>
+    </g>
+    <rect x="-140" y="184" width="240" height="18" rx="9" fill="none" stroke="var(--c-accent-3)" stroke-width="1.4" stroke-opacity="0.4"/>
+
+    <!-- 밀어 올리는 방향 -->
+    <polygon points="58,96 118,96 88,44" fill="var(--c-accent-3)"/>
+  </g>
+
+  <!-- 프레임 밖으로 빠져나가는 제스처 -->
+  <circle cx="776" cy="296" r="30" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-dasharray="4 9"/>
+  <circle cx="776" cy="296" r="17" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+  <circle cx="776" cy="296" r="7" fill="var(--c-accent-3)"/>
+  <path d="M 798 286 C 872 260 934 222 986 170 C 1040 116 1104 88 1178 80" fill="none" stroke="var(--c-accent-3)" stroke-width="3.5" stroke-dasharray="9 8" stroke-linecap="round"/>
+  <polygon points="1216,82 1166,60 1170,104" fill="var(--c-accent-3)"/>
+
+  <!-- 흩어진 디테일 -->
+  <rect x="98" y="108" width="84" height="84" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" transform="rotate(14 140 150)"/>
+  <line x1="150" y1="206" x2="132" y2="290" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 9" stroke-opacity="0.5"/>
+  <circle cx="128" cy="296" r="9" fill="var(--c-accent)"/>
+  <circle cx="158" cy="316" r="6" fill="var(--c-accent-2)"/>
+  <circle cx="112" cy="328" r="5" fill="var(--c-accent-3)"/>
+  <rect x="58" y="372" width="54" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.6"/>
+  <rect x="86" y="394" width="32" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.8"/>
+  <polygon points="886,196 936,196 911,152" fill="none" stroke="var(--c-accent-3)" stroke-width="2.2"/>
+  <g transform="translate(1006 316)" opacity="0.6">
+    <circle r="46" fill="none" stroke="var(--c-accent)" stroke-width="1.6"/>
+    <circle r="26" fill="none" stroke="var(--c-accent)" stroke-width="1.6" stroke-dasharray="5 6"/>
+  </g>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">05</text>
+</svg>

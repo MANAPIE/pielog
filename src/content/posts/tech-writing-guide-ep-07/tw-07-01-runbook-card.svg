@@ -38,15 +38,15 @@
   <!-- 헤더: 알람 카드 -->
   <rect class="header" x="20" y="20" width="660" height="100" rx="6"/>
   <text class="tag" x="40" y="46">ALERT</text>
-  <text class="alert-title" x="40" y="72">PaymentService — High 5xx error rate</text>
+  <text class="alert-title" x="40" y="72">PaymentService: High 5xx error rate</text>
   <text class="meta" x="40" y="94">Severity: SEV-2 · Triggers: error_rate &gt; 5% for 3min · On-call: payments team</text>
 
   <!-- 1. 우선 행동 -->
   <g transform="translate(20 140)">
     <rect class="card" x="0" y="0" width="660" height="80" rx="6"/>
     <text class="label" x="20" y="22">1. FIRST ACTION · 30초 안에</text>
-    <text class="text mono" x="20" y="44">— 트래픽이 정상보다 30% 이상 높으면 → 자동 스케일 그룹 +50% 즉시 트리거</text>
-    <text class="text mono" x="20" y="62">— 그렇지 않으면 → 다음 단계로</text>
+    <text class="text mono" x="20" y="44">- 트래픽이 정상보다 30% 이상 높으면 → 자동 스케일 그룹 +50% 즉시 트리거</text>
+    <text class="text mono" x="20" y="62">- 그렇지 않으면 → 다음 단계로</text>
   </g>
 
   <!-- 2. 진단 -->

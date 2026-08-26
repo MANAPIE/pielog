@@ -39,7 +39,7 @@
 
   <!-- 상단: Logo Churn -->
   <g transform="translate(40, 96)">
-    <text class="panel-title" x="0" y="0">고객 수 단위 — Logo Churn</text>
+    <text class="panel-title" x="0" y="0">고객 수 단위: Logo Churn</text>
     <text class="sub" x="0" y="18">모든 고객 동일 가중</text>
 
     <!-- 시각화: 100명의 점 (10x10, 20px pitch) -->
@@ -73,7 +73,7 @@
 
   <!-- 하단: Revenue Churn -->
   <g transform="translate(40, 388)">
-    <text class="panel-title" x="0" y="0">매출 단위 — Revenue Churn</text>
+    <text class="panel-title" x="0" y="0">매출 단위: Revenue Churn</text>
     <text class="sub" x="0" y="18">큰 고객은 큰 무게</text>
 
     <!-- 시각화: 매출 막대 -->

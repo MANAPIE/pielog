@@ -25,7 +25,7 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic 
 <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-muted)"/></marker>
 </defs>
 <rect class="bg" x="0" y="0" width="600" height="440"/>
-<text class="ts" x="300" y="26" text-anchor="middle">로컬 실행 — Mac mini M4 64GB</text>
+<text class="ts" x="300" y="26" text-anchor="middle">로컬 실행: Mac mini M4 64GB</text>
 <rect class="card" x="20" y="44" width="160" height="70" rx="8"/>
 <text class="tb" x="100" y="70" text-anchor="middle">웹 UI</text>
 <text class="ts mono" x="100" y="88" text-anchor="middle">Next.js</text>
@@ -42,7 +42,7 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic 
 <text class="txs mono" x="500" y="104" text-anchor="middle">submit · poll · fetch</text>
 <path class="lnd" d="M500,114 L500,140"/>
 <rect class="card" x="380" y="140" width="200" height="96" rx="8"/>
-<text class="tb" x="480" y="164" text-anchor="middle" font-size="12">로컬 SSD — 모델 파일</text>
+<text class="tb" x="480" y="164" text-anchor="middle" font-size="12">로컬 SSD: 모델 파일</text>
 <text class="ts mono" x="480" y="186" text-anchor="middle" font-size="11">unet Q8 · TE fp8 · VAE</text>
 <text class="txs" x="480" y="206" text-anchor="middle">sha256 핀으로 고정</text>
 <text class="txs" x="480" y="224" text-anchor="middle">같은 이름 다른 빌드 차단</text>
@@ -52,7 +52,7 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic 
 <text class="txs" x="120" y="204" text-anchor="middle">장비 64GB → 무음 OOM</text>
 <text class="txs" x="120" y="224" text-anchor="middle">계열 전환 시 프로세스 재기동</text>
 <path class="ln" d="M450,114 L450,128 L300,128 L300,254" marker-end="url(#ar)"/>
-<text class="txs" x="310" y="122" text-anchor="start">수확 — 후보 k장</text>
+<text class="txs" x="310" y="122" text-anchor="start">수확: 후보 k장</text>
 <rect class="card" x="200" y="256" width="200" height="62" rx="8"/>
 <text class="tb" x="300" y="280" text-anchor="middle">결정론 후처리</text>
 <text class="ts" x="300" y="298" text-anchor="middle">디프린지 · 크롭 · 여백</text>

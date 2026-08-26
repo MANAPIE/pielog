@@ -137,7 +137,7 @@
   <rect class="bg" width="1200" height="580" />
 
   <!-- 상단 축 라벨 -->
-  <text x="600" y="34" class="axis-label" text-anchor="middle">API SURFACE — 노출되는 결정의 수</text>
+  <text x="600" y="34" class="axis-label" text-anchor="middle">API SURFACE: 노출되는 결정의 수</text>
 
   <!-- 축 -->
   <line x1="60" y1="56" x2="1140" y2="56" class="axis" />
@@ -147,7 +147,7 @@
   <!-- 컬럼 1: 최소 -->
   <g transform="translate(40 110)">
     <rect class="col-bg" width="340" height="380" rx="6" />
-    <text x="20" y="32" class="col-num">01 — 최소</text>
+    <text x="20" y="32" class="col-num">01 - 최소</text>
     <text x="20" y="58" class="col-title">단 하나의 variant</text>
 
     <g transform="translate(20 80)">
@@ -172,7 +172,7 @@
   <!-- 컬럼 2: 균형 (강조) -->
   <g transform="translate(420 110)">
     <rect class="col-center" width="340" height="380" rx="6" />
-    <text x="20" y="32" class="col-num" fill="var(--c-accent-2)">02 — 균형</text>
+    <text x="20" y="32" class="col-num" fill="var(--c-accent-2)">02 - 균형</text>
     <text x="20" y="58" class="col-title">Facade + primitive 두 진입점</text>
 
     <g transform="translate(20 80)">
@@ -199,7 +199,7 @@
   <!-- 컬럼 3: 최대 -->
   <g transform="translate(800 110)">
     <rect class="col-bg" width="340" height="380" rx="6" />
-    <text x="20" y="32" class="col-num">03 — 최대</text>
+    <text x="20" y="32" class="col-num">03 - 최대</text>
     <text x="20" y="58" class="col-title">모든 토큰을 prop으로</text>
 
     <g transform="translate(20 90)">

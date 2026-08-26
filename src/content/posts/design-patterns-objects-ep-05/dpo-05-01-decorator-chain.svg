@@ -41,7 +41,7 @@
 
   <!-- 좌측: 양파 껍질 -->
   <g transform="translate(80 60)">
-    <text x="0" y="0" class="col-label">ONION LAYERS — outer to inner</text>
+    <text x="0" y="0" class="col-label">ONION LAYERS: outer to inner</text>
 
     <g transform="translate(220 240)">
       <!-- Layer 1 -->
@@ -69,7 +69,7 @@
 
   <!-- 우측: 호출 흐름 (세로 시간축) -->
   <g transform="translate(680 60)">
-    <text x="0" y="0" class="col-label">CALL FLOW — send() invocation</text>
+    <text x="0" y="0" class="col-label">CALL FLOW: send() invocation</text>
 
     <!-- 단계들: 위에서 아래로 (호출), 다시 아래에서 위로 (응답) -->
     <g transform="translate(40 40)">

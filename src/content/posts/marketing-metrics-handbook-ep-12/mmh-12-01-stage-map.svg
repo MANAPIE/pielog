@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" role="img" aria-labelledby="title desc">
   <title id="title">ep.12에서 다루는 단계</title>
-  <desc id="desc">측정 인프라 - 어트리뷰션 부분이 강조된 작은 퍼널 지도. 시리즈 마지막.</desc>
+  <desc id="desc">측정 인프라: 어트리뷰션 부분이 강조된 작은 퍼널 지도. 시리즈 마지막.</desc>
   <style>
     :root {
       --c-bg:#fafaf7; --c-fg:#1a1a1a; --c-muted:#6b6b6b; --c-faint:#d4d4d0;
@@ -40,25 +40,25 @@
   </style>
   <rect class="bg" width="600" height="700"/>
 
-  <text class="focus-tag" x="40" y="36">FOCUS — 측정 인프라 · 어트리뷰션 (시리즈 마지막)</text>
+  <text class="focus-tag" x="40" y="36">FOCUS - 측정 인프라 · 어트리뷰션 (시리즈 마지막)</text>
 
   <g>
     <rect class="card" x="40" y="56" width="520" height="62" rx="3"/>
-    <text class="ep" x="60" y="82">ep.01 — 02</text>
+    <text class="ep" x="60" y="82">ep.01 - 02</text>
     <text class="label" x="60" y="104">획득</text>
   </g>
   <path class="arrow" d="M 294 121 L 306 121 L 300 129 Z"/>
 
   <g>
     <rect class="card" x="40" y="132" width="520" height="62" rx="3"/>
-    <text class="ep" x="60" y="158">ep.03 — 04</text>
+    <text class="ep" x="60" y="158">ep.03 - 04</text>
     <text class="label" x="60" y="180">활성화</text>
   </g>
   <path class="arrow" d="M 294 197 L 306 197 L 300 205 Z"/>
 
   <g>
     <rect class="card" x="40" y="208" width="520" height="62" rx="3"/>
-    <text class="ep" x="60" y="234">ep.05 — 07</text>
+    <text class="ep" x="60" y="234">ep.05 - 07</text>
     <text class="label" x="60" y="256">유지</text>
   </g>
   <path class="arrow" d="M 294 273 L 306 273 L 300 281 Z"/>

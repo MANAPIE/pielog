@@ -1,6 +1,6 @@
 <svg width="100%" viewBox="0 0 800 480" role="img" xmlns="http://www.w3.org/2000/svg"
   font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title>Permission Bombardment — 권한 요청 타이밍 Before/After</title>
+  <title>Permission Bombardment: 권한 요청 타이밍 Before/After</title>
   <desc>다크패턴: 앱 최초 실행 시 모든 권한 일괄 요청 / 정직한 설계: 기능 사용 시점에 맥락과 함께 요청</desc>
   <defs>
     <style>

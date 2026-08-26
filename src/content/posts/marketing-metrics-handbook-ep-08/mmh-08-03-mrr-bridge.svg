@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" role="img" aria-labelledby="title desc">
-  <title id="title">MRR Bridge — 한 달의 매출 변동</title>
+  <title id="title">MRR Bridge: 한 달의 매출 변동</title>
   <desc id="desc">전월 MRR에서 신규, 확장, 부활, 이탈, 축소를 거쳐 이번 달 MRR이 되는 폭포 차트.</desc>
   <style>
     :root {
@@ -121,6 +121,6 @@
     <rect fill="var(--c-final-bg)" stroke="var(--c-anchor)" stroke-width="1" width="520" height="68" rx="2"/>
     <text class="bar-label" x="16" y="22" style="font-size: 12px;">Net New MRR = (1,200 + 600 + 200) − (800 + 200) = <tspan style="font-weight: 700; fill: var(--c-anchor); font-family: ui-monospace, monospace;">+1,000만원</tspan></text>
     <text class="anno" x="16" y="42">Quick Ratio = (1,200 + 600) ÷ (800 + 200) = 1.8 · MoM Growth = 1,000 ÷ 18,000 = 5.6%</text>
-    <text class="anno" x="16" y="60">Gross Revenue Churn 5.6%, Expansion 3.3% — Net Revenue Churn 2.3%, NRR 100% 부근 안정.</text>
+    <text class="anno" x="16" y="60">Gross Revenue Churn 5.6%, Expansion 3.3%: Net Revenue Churn 2.3%, NRR 100% 부근 안정.</text>
   </g>
 </svg>

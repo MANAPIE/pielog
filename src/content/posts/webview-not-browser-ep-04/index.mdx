@@ -1,0 +1,605 @@
+---
+title: "한글이 덜 조합된 채로 넘어갑니다 - 웹뷰는 브라우저가 아니다 ep.04"
+description: 한글 입력에는 아직 확정되지 않은 조합 중 상태가 있습니다. 이 상태를 다루지 않으면 전송 버튼을 눌러도 마지막 글자가 빠지고, 엔터가 두 번 실행되고, 실시간 검증이 미완성 값으로 서버를 찌릅니다.
+summary: 조합 이벤트 세 개와 isComposing, 그리고 폐기 예정인 keyCode 229를 같이 봐야 하는 이유를 스펙과 MDN 문서로 정리합니다. 전송 버튼·엔터 중복·실시간 조회·Vue의 v-model까지, 증상별로 틀린 코드와 고친 코드를 나란히 놓고 무엇을 웹에서 막고 무엇을 앱에 요청할지 가릅니다.
+date: 2026-08-12
+tags: ["series", "develop", "frontend", "webview", "ime", "hangul", "composition", "vue"]
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+화면에는 "한국"이 보인다. 서버로는 "한"이 갔다. 사용자는 다 쳤고, 코드는 다 읽지 못했다. 그 사이에 조합 중이라는 상태가 있다.
+
+---
+
+## 조합 중이라는 상태가 있습니다
+
+영문 입력은 키 하나가 글자 하나입니다. 한글은 그렇지 않습니다. "한"을 치려면 최소 세 번을 눌러야 하고, 그 세 번 사이에는 아직 글자가 아닌 중간 상태가 지나갑니다. ㅎ, 하, 한.
+
+이 중간 상태를 웹 표준은 **조합 세션(composition session)** 이라고 부릅니다. 사용자가 키를 직접 문자로 넣는 것이 아니라 입력기를 거쳐 간접적으로 넣는 모든 경우가 여기 해당합니다. W3C UI Events가 정의하는 이벤트는 세 개입니다.
+
+| 이벤트 | 발생 시점 | data 값 | 취소 가능 |
+|---|---|---|---|
+| `compositionstart` | 조합 세션이 시작될 때 | 편집 대상이던 원본 문자열, 없으면 빈 문자열 | 가능 (다만 IME에 따라 무효) |
+| `compositionupdate` | 조합 내용이 바뀔 때마다 여러 번 | 현재까지의 조합 결과 문자열 | 불가 |
+| `compositionend` | 조합이 확정되거나 취소될 때 | 확정된 최종 문자열 | 불가 |
+
+세 이벤트의 상대 순서는 스펙이 못박아 둡니다. `compositionstart` 다음에 `compositionupdate`가 여러 번, 마지막에 `compositionend`입니다.
+
+`compositionstart`만 취소 가능으로 정의돼 있지만, 이걸로 조합을 막을 생각은 하지 마시기 바랍니다. 스펙이 직접 예외를 적어두었습니다. 진행 중인 조합 세션의 취소를 지원하지 않는 IME가 있고, 그런 경우 `preventDefault()`는 아무 효과가 없습니다.
+
+여기까지가 스펙이 정의하는 부분이고, 실무에서 진짜 중요한 건 그다음입니다.
+
+**조합 중에도 입력 요소의 값은 계속 갱신됩니다.** W3C Input Events Level 2는 매 `compositionupdate` 뒤에 `beforeinput`과 `input`이 쌍으로 발생하며, 이 두 이벤트 사이에서 DOM 내용이 갱신된다고 규정합니다. 이때 `inputType`은 `"insertCompositionText"`이고, 두 이벤트 모두 **취소 불가**입니다.
+
+정리하면 이렇습니다. `el.value`는 조합 중에도 화면에 보이는 것과 같은 값을 갖고 있습니다. 어긋나는 건 DOM이 아니라 **우리가 따로 들고 있는 상태**입니다. 이 편의 거의 모든 증상이 여기서 나옵니다.
+
+![한글 한 음절을 입력하고 확정할 때 발생하는 이벤트 순서를 왼쪽에서 오른쪽으로 흐르는 타임라인으로 정리한 다이어그램. 가로축은 시간이고 세로로 네 개의 트랙이 위에서부터 쌓여 있다. 트랙1 '키 이벤트'(파랑 계열), 트랙2 '조합 이벤트'(보라 계열), 트랙3 '입력 이벤트'(주황 계열), 트랙4 '값'(초록과 회색)이다. 타임라인은 세 구간으로 나뉘고 각 구간 위에 구간 라벨이 붙는다. 왼쪽부터 '조합 시작', '조합 중(반복)', '조합 확정'이다. 조합 시작 구간에는 트랙1에 번호 1의 keydown 노드가 있고 그 아래 'isComposing = false'와 '조합을 시작시키는 키'라는 주석이 붙는다. 이어서 트랙2에 번호 2의 compositionstart 노드가 놓이고 두 노드는 시간순 화살표로 이어진다. 조합 중 구간은 점선 테두리 상자로 감싸이고 상자 오른쪽 위에 '여러 번 반복'이라는 라벨이 있다. 상자 안 트랙2에 compositionupdate 노드, 트랙3에 beforeinput 노드와 input 노드가 있으며 두 입력 노드에는 'inputType = insertCompositionText'와 '취소 불가'라는 주석이 붙는다. beforeinput 노드와 compositionupdate 노드 사이는 실선이 아니라 물음표가 붙은 회색 양방향 표시로 연결되고 'UI Events와 Input Events가 서로 다른 순서를 적고 있음 - 이 순서에 의존하지 않는다'는 경고 라벨이 달린다. 트랙4에서는 beforeinput과 input 사이 지점으로 세로 점선이 내려오고 'DOM 값이 여기서 갱신된다'는 라벨이 붙는다. 같은 구간 트랙1에는 번호 4의 keyup 노드가 있고 'isComposing = true'가 붙는다. 조합 확정 구간에는 트랙1에 번호 5의 keydown 노드가 있고 'isComposing = true', '조합을 끝내는 키'라는 주석이 붙는다. 이어 트랙2에 번호 6의 compositionend 노드가 놓이고 'data = 확정된 최종 문자열', 'DOM 변경 없음'이라는 주석이 붙는다. 마지막으로 트랙1에 번호 7의 keyup 노드가 있고 'isComposing = false'가 붙으며 그 아래 붉은 경고 배지로 'keyup에 가드를 걸면 여기서 뚫린다'가 표시된다. 트랙4에는 두 개의 가로 막대가 나란히 놓인다. 위 막대는 'el.value (DOM)'이고 조합 시작 직후부터 확정까지 ㅎ, 하, 한으로 매 갱신마다 값이 바뀌는 것으로 표시되며 초록으로 채워진다. 아래 막대는 '프레임워크 모델 값 (예: Vue v-model)'이고 조합 시작부터 compositionend 직전까지 이전 값에 멈춰 있는 것으로 회색 빗금으로 표시되며, compositionend 지점에서 한 번에 '한'으로 따라잡는 계단 모양 화살표가 그려진다. 두 막대가 어긋난 구간에는 '화면과 모델이 어긋나 있는 구간'이라는 라벨이 붙는다. 다이어그램 하단에는 점선 테두리의 별도 박스로 iOS 주석이 놓인다. 박스 안에는 'Safari 26.x 이하 및 같은 엔진을 쓰는 iOS WKWebView: 조합 확정 구간의 keydown과 input이 compositionend보다 뒤에 오고 그때 isComposing은 false로 관찰된다'는 문장과 함께, 확정 구간의 노드 순서가 6번 compositionend, 5번 keydown, 7번 keyup으로 재배열된 축소 타임라인이 그려지고 'Safari 27에서 수정, 2026년 8월 기준 베타'라는 각주가 달린다. 경고 요소는 모두 붉은 계열로 통일되어 있다.](wnb-04-01-composition-timeline.svg)
+
+### 세 플랫폼이 같은 것을 다르게 부릅니다
+
+앱 개발자와 이 문제를 이야기할 때 말이 안 통하는 이유가 있습니다. 이름이 다릅니다.
+
+| 계층 | 용어 | 관련 API |
+|---|---|---|
+| 웹 | 조합 세션 (composition session) | `compositionstart` / `compositionend`, `isComposing` |
+| Android | composing text | `InputConnection.setComposingText()`, `finishComposingText()` |
+| iOS | marked text (마크된 텍스트) | `UITextInput.markedTextRange`, `unmarkText()` |
+
+iOS 문서의 표현이 가장 명확합니다. marked text는 "사용자가 아직 확정하지 않은, 잠정적으로 삽입된 텍스트"입니다. 다단계 텍스트 입력은 언어가 표의문자이고 키보드가 표음식일 때 요구되는 방식이라고 적혀 있고요. 한글은 표의문자가 아닙니다. 다만 자모를 여러 번 눌러 한 음절을 만드는 다단계 입력이라는 점은 같고, iOS도 한글을 같은 marked text 경로로 처리합니다.
+
+---
+
+## 키 이벤트로는 한글을 셀 수 없습니다
+
+가장 먼저 버려야 할 습관이 키 이벤트로 입력을 추적하는 것입니다.
+
+Android에서는 이게 아예 다른 경로로 동작합니다. Android 공식 문서는 IME가 텍스트를 넣을 때 `InputConnection.setComposingText()`와 `commitText()` 계열을 쓴다고 설명합니다. 키 이벤트를 보내는 `sendKeyEvent()`에 대해서는 이렇게 적혀 있습니다.
+
+> 일반적인 동작에서 이런 키 이벤트를 보내는 것은 권장되지 않습니다. 이것은 주로 `InputType.TYPE_NULL` 타입 텍스트 필드를 위한 것입니다. 대신 애플리케이션에 텍스트를 보낼 때는 `commitText(CharSequence, int)` 계열 메서드를 사용하십시오.
+
+즉 소프트 키보드가 키 이벤트를 안 보내는 건 버그가 아니라 정상입니다. 그런데 웹 계층은 `keydown`을 아예 안 받으면 곤란하니, 브라우저는 이 구간에 값이 특정된 키 이벤트를 흘려보냅니다. 그게 229입니다.
+
+### 229는 표준값이 아닙니다
+
+여기서 정확히 알고 넘어갈 부분이 있습니다. W3C UI Events 본문은 `keyCode`와 `charCode`의 값을 **정의하지 않는다**고 명시합니다. 229는 부록의 레거시 키 모델에 남아 있는 산출 알고리즘 2단계 값입니다.
+
+> 입력기가 키 입력을 처리 중이고 이벤트가 `keydown`이면 229를 반환한다.
+
+그리고 `KeyboardEvent.keyCode` 자체가 **폐기 예정(deprecated)** 입니다. MDN은 새 프로젝트에서 쓰지 말고 `key`나 `code`를 쓰라고 권합니다.
+
+그런데도 229를 봐야 합니다. MDN이 직접 그렇게 적어두었기 때문입니다.
+
+> `compositionstart`는 IME를 여는 첫 글자를 칠 때 `keydown` **뒤에** 발생할 수 있고, `compositionend`는 IME를 닫는 마지막 글자를 칠 때 `keydown` **앞에** 발생할 수 있습니다. 이런 경우 해당 이벤트가 실제로는 조합의 일부인데도 `isComposing`은 false입니다. 다만 이런 경우에도 `KeyboardEvent.keyCode`는 여전히 229이므로, 폐기 예정이긴 하지만 `keyCode`도 함께 확인하는 것이 여전히 바람직합니다.
+
+정리하면 이렇습니다. 229는 표준의 규범적 값이 아니고, `keyCode`는 폐기 예정입니다. 그러나 조합 경계에서 `isComposing`이 놓치는 구간을 메워주는 유일한 실용 신호이고, 그렇게 쓰라고 MDN이 코드까지 제시하고 있습니다.
+
+참고로 `key` 값 쪽에서 IME를 판별하려는 시도는 권하지 않습니다. UI Events KeyboardEvent key Values에 `"Process"`라는 값이 정의돼 있긴 하지만 **required=No**, 즉 선택 사항입니다. 한국어 전용으로 정의된 `"HangulMode"`, `"HanjaMode"`, `"JunjaMode"`도 마찬가지입니다. `key === 'Process'` 판별에 로직을 걸면 구현에 따라 그냥 안 걸립니다.
+
+### 조합 상태는 눈으로 먼저 봅니다
+
+증상별 처방으로 들어가기 전에, 내 단말과 내 키보드 앱에서 이벤트가 어떤 순서로 오는지 한 번 찍어보는 게 훨씬 빠릅니다. 이 코드를 붙여두고 실기기 원격 디버깅으로 콘솔을 열면 됩니다. 원격 디버거를 붙이는 절차는 [ep.01](/webview-not-browser-ep-01/)에 있습니다.
+
+```js
+const input = document.querySelector('#name');
+
+['compositionstart', 'compositionupdate', 'compositionend'].forEach((type) => {
+  input.addEventListener(type, (e) => {
+    console.log(type, JSON.stringify(e.data), '| el.value:', input.value);
+  });
+});
+
+input.addEventListener('keydown', (e) => {
+  // isComposing과 keyCode를 나란히 찍어야 경계 구간이 보입니다
+  console.log('keydown', e.key, '| isComposing:', e.isComposing, '| keyCode:', e.keyCode);
+});
+
+input.addEventListener('input', (e) => {
+  console.log('input', e.inputType, '| isComposing:', e.isComposing, '| el.value:', input.value);
+});
+```
+
+한글 두 글자를 치고 로그를 읽어보면, `el.value`가 한 번도 뒤처지지 않는다는 사실이 바로 보입니다.
+
+---
+
+## 화면의 값과 모델의 값이 어긋납니다
+
+"전송 버튼을 눌렀는데 마지막 글자가 안 갔습니다."
+
+가장 자주 올라오는 제보이고, 원인 진단이 자주 틀리는 증상이기도 합니다. 흔한 진단은 "조합 중이라 값이 안 넘어간다"인데, 이건 정확하지 않습니다. 값은 넘어가 있습니다. 앞 절에서 봤듯 `el.value`는 조합 중에도 화면과 같습니다.
+
+진짜 원인은 이런 코드입니다.
+
+```js
+let name = '';
+
+input.addEventListener('input', (e) => {
+  if (e.isComposing) return; // 조합 중이니까 건너뛰자
+  name = e.target.value;
+});
+
+sendButton.addEventListener('click', () => {
+  submit(name);
+});
+```
+
+`isComposing` 가드를 값 갱신에 걸어버렸습니다. 사용자가 "홍길동"을 치고 마지막 "동"이 조합 중인 상태에서 버튼을 누르면, `name`에는 "홍길"까지만 들어 있습니다. 화면에는 "홍길동"이 멀쩡히 보입니다.
+
+가장 단순한 수정은 제출 시점에 DOM에서 직접 읽는 것입니다.
+
+```js
+sendButton.addEventListener('click', () => {
+  // 조합 중이어도 el.value는 화면에 보이는 것과 같습니다
+  submit(input.value);
+});
+```
+
+폼 전체를 다룬다면 `new FormData(form)`도 같은 성질을 갖습니다. DOM에서 읽으니까요.
+
+그래도 상태를 들고 있어야 하는 화면이 대부분입니다. 그럴 때는 **가드는 값 갱신이 아니라 부수 효과에만 겁니다.**
+
+```js
+let name = '';
+let composing = false;
+
+input.addEventListener('compositionstart', () => {
+  composing = true;
+});
+
+input.addEventListener('compositionend', (e) => {
+  composing = false;
+  name = e.target.value;
+  validate(name);
+});
+
+input.addEventListener('input', (e) => {
+  name = e.target.value; // 값은 조합 중에도 항상 따라갑니다
+  if (composing) return; // 미루는 것은 검증과 서버 호출뿐입니다
+  validate(name);
+});
+```
+
+`compositionend` 핸들러에서 `e.target.value`를 읽는 게 안전한 이유가 있습니다. UI Events는 `compositionend` 시점에는 DOM 갱신이 동반되지 않으므로 `beforeinput`과 `input`이 그때 발생해서는 안 된다고 적습니다. 즉 그 시점의 `el.value`는 이미 확정된 값입니다.
+
+### change를 안전망으로 답니다
+
+여기에 한 줄이 더 필요합니다.
+
+```js
+input.addEventListener('change', (e) => {
+  composing = false;
+  name = e.target.value;
+});
+```
+
+이유는 이렇습니다. 스펙은 조합 세션이 완료되거나 취소되면 `compositionend`를 디스패치해야 한다고 규정합니다. 다만 조합 중에 사용자가 다른 곳을 눌러 포커스를 옮겼을 때 그 이벤트가 **어느 엘리먼트로 오는지는 정의돼 있지 않습니다.** w3c/uievents 이슈 #5(캐럿이 다른 요소로 이동했을 때 `compositionend`가 어떻게 동작하는지 명시)가 아직 열려 있고, Chrome·Safari는 조합이 일어난 엘리먼트에, Firefox는 조합이 시작될 때 캐럿이 있던 엘리먼트에 이벤트를 올립니다. 게다가 구현에 따라서는 아예 발생하지 않기도 합니다. 그 사례는 아래 Vue 소스 주석에 적혀 있습니다.
+
+반면 `change`는 정의가 분명합니다. MDN은 텍스트 계열 `input`과 `textarea`에서 `change`가 "값이 바뀐 뒤 요소가 포커스를 잃을 때" 발생한다고 적습니다. 조합이 어떻게 끝났든 포커스가 빠지면 한 번은 옵니다.
+
+이게 임시방편이 아니라는 근거가 하나 더 있습니다. Vue 3의 `vModelText` 디렉티브 구현이 정확히 같은 일을 합니다. `.lazy`가 아닐 때 `change` 이벤트에도 `onCompositionEnd` 핸들러를 붙여둡니다. 소스 주석은 이렇게 적혀 있습니다.
+
+> Safari 10.2 미만과 UIWebView는 조합 선택을 확정하기 전에 포커스를 옮기면 `compositionend`를 발생시키지 않는다.
+
+프레임워크가 안전망을 달아둔 자리라면, 바닐라로 짤 때도 달아야 합니다.
+
+---
+
+## 엔터가 두 번 실행됩니다
+
+한글 입력창에서 엔터로 제출하는 화면은 거의 다 이 버그를 갖고 있습니다.
+
+```js
+// 틀린 코드
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') submit();
+});
+```
+
+한글 IME에서 엔터는 두 가지 일을 합니다. 조합 중이면 **조합을 확정**하고, 조합이 없으면 **제출**합니다. 위 코드는 둘을 구분하지 않으니, 사용자가 조합을 확정하려고 누른 엔터에서 제출이 한 번 나가고, 다시 누른 엔터에서 또 나갑니다.
+
+MDN이 제시하는 방어가 그대로 답입니다.
+
+```js
+input.addEventListener('keydown', (e) => {
+  // isComposing이 false여도 keyCode가 229인 경계 구간이 있습니다
+  if (e.isComposing || e.keyCode === 229) return;
+  if (e.key !== 'Enter') return;
+
+  e.preventDefault();
+  submit(input.value);
+});
+```
+
+### keyup으로 옮기면 더 나빠집니다
+
+`keydown`이 조합에 걸리니 `keyup`으로 옮기자는 발상이 자주 나옵니다. 이건 스펙 수준에서 틀립니다.
+
+UI Events는 조합 세션 동안에도 `keydown`과 `keyup`이 계속 발생해야 하고 그 이벤트들의 `isComposing`이 true여야 한다고 규정하면서, 이벤트 순서를 표로 제시합니다.
+
+| # | 이벤트 | isComposing | 비고 |
+|---|---|---|---|
+| 1 | `keydown` | false | 조합을 시작시키는 키 |
+| 2 | `compositionstart` | - | |
+| 3 | `compositionupdate` | - | |
+| 4 | `keyup` | true | |
+| 5 | `keydown` | true | 조합을 끝내는 키 |
+| 6 | `compositionend` | - | |
+| 7 | `keyup` | **false** | |
+
+답은 7번에 있습니다. **조합을 끝낸 키의 `keyup`은 `isComposing`이 false입니다.** 스펙이 그렇게 정해둔 값입니다. `keyup`에 가드를 걸면 조합 확정 엔터가 정확히 그 자리에서 가드를 통과합니다. `keydown`에 걸었을 때보다 확실하게 뚫립니다.
+
+`keyup`은 쓰지 마시기 바랍니다. `keydown`에 `isComposing`과 `keyCode` 두 신호를 함께 봅니다.
+
+---
+
+## 실시간 검증이 미완성 값으로 서버를 찌릅니다
+
+이 문제가 가장 번거롭게 드러나는 자리가 입력 중 서버를 부르는 실시간 조회입니다. 계좌번호를 치는 동안 예금주를 조회한다거나, 아이디를 치는 동안 중복 확인을 한다거나, 주소를 치는 동안 후보 목록을 불러오는 화면들입니다.
+
+```js
+// 틀린 코드
+input.addEventListener('input', async (e) => {
+  const users = await searchUsers(e.target.value);
+  render(users);
+});
+```
+
+앞 절에서 확인한 대로 조합 중에도 `input`은 매 단계 발생합니다. "홍길동" 세 글자를 치면 ㅎ, 호, 홀, 홍, ㄱ, 기... 각 단계마다 호출이 나갑니다. 한글 한 글자에 최대 3회에서 5회입니다. 조회 API가 유료라면 요금이 그만큼 나가고, 계정 잠금 정책이 붙어 있으면 실패 카운트가 그만큼 올라갑니다.
+
+방어는 세 겹입니다. 조합 가드, 디바운스, 그리고 늦게 도착한 응답 폐기입니다.
+
+```js
+let composing = false;
+let timer = null;
+let seq = 0;
+
+function schedule(value) {
+  clearTimeout(timer);
+  timer = setTimeout(async () => {
+    const my = ++seq;
+    const users = await searchUsers(value);
+    if (my !== seq) return; // 더 최신 요청이 나갔으면 이 응답은 버립니다
+    render(users);
+  }, 300);
+}
+
+input.addEventListener('compositionstart', () => {
+  composing = true;
+  clearTimeout(timer); // 조합이 시작되면 예약된 호출도 취소합니다
+});
+
+input.addEventListener('compositionend', (e) => {
+  composing = false;
+  schedule(e.target.value);
+});
+
+input.addEventListener('input', (e) => {
+  if (composing) return;
+  schedule(e.target.value);
+});
+
+// 조합 중 포커스가 빠지는 경로의 안전망
+input.addEventListener('change', (e) => {
+  composing = false;
+  schedule(e.target.value);
+});
+```
+
+한 가지 덧붙일 점이 있습니다. 한글 입력은 후보 창을 띄우고 고르는 방식이 아니라 음절이 완성되는 대로 확정되는 형태라, 짧은 문자열을 쳐도 조합 세션이 여러 번 시작하고 끝납니다. "홍길동"은 한 번의 조합이 아니라 세 번에 가깝습니다. 그래서 `compositionend`마다 서버를 부르면 여전히 과호출입니다. **디바운스는 조합 가드와 함께 걸어야 하고, 둘 중 하나만으로는 부족합니다.**
+
+### 조합 입력을 beforeinput으로 막을 수는 없습니다
+
+입력 자체를 필터링하려는 접근도 자주 시도됩니다. 숫자만 받는 필드에 한글이 들어오는 걸 `beforeinput`에서 막는 식입니다. 조합 입력에 대해서는 통하지 않습니다.
+
+Input Events 스펙이 조합 중 발생하는 `beforeinput`과 `input`을 **취소 불가**로 정의합니다. MDN도 같은 이야기를 더 넓게 적어둡니다.
+
+> 모든 사용자 수정이 `beforeinput`을 발생시키는 것은 아닙니다. 또한 이벤트가 발생하더라도 취소 불가일 수 있습니다. 자동완성, 맞춤법 교정 수락, 비밀번호 관리자 자동입력, IME 등에 의한 수정에서 이런 일이 일어납니다. 세부 동작은 브라우저와 OS마다 다릅니다. 모든 상황에서 편집 동작을 재정의하려면 `input` 이벤트를 처리하고 `beforeinput` 핸들러가 처리하지 못한 수정을 되돌려야 합니다.
+
+즉 조합 입력 필터링은 **막는 방식이 아니라 되돌리는 방식**으로 짜야 합니다. `input`에서 값을 검사하고, 허용되지 않는 문자를 제거한 값을 다시 써넣는 형태입니다. 다만 조합 중에 값을 되돌려 쓰면 조합 상태가 깨져 커서가 튀거나 글자가 뒤섞이므로, 되돌리기는 `compositionend` 이후로 미루는 편이 안전합니다.
+
+```js
+input.addEventListener('input', (e) => {
+  if (composing) return; // 조합 중에는 값을 건드리지 않습니다
+  const cleaned = e.target.value.replace(/[^0-9]/g, '');
+  if (cleaned !== e.target.value) e.target.value = cleaned;
+});
+
+input.addEventListener('compositionend', (e) => {
+  composing = false;
+  const cleaned = e.target.value.replace(/[^0-9]/g, '');
+  if (cleaned !== e.target.value) e.target.value = cleaned;
+});
+```
+
+숫자만 받는 필드라면 애초에 `inputmode="numeric"`으로 키보드를 좁혀 조합 자체가 시작될 여지를 줄이는 편이 훨씬 낫습니다. 다만 웹뷰에서 어떤 키보드가 올라오는지는 앱 설정과도 얽히는데, 이 이야기는 [ep.03](/webview-not-browser-ep-03/)에 적어두었습니다.
+
+---
+
+## iOS에서는 가드가 뚫립니다
+
+여기까지 짠 코드가 안드로이드에서는 잘 도는데 아이폰에서만 엔터가 두 번 나가는 일이 있습니다. 코드 문제가 아닙니다.
+
+mdn/browser-compat-data가 Safari의 `KeyboardEvent.isComposing`에 붙여둔 주석이 이 현상을 정확히 기술합니다.
+
+> IME 조합 세션을 완료하는 키 입력에 대한 이벤트들이 순서가 어긋나게 발생하여 `isComposing` 값이 혼란스럽게 나옵니다. `keydown`과 `input` 이벤트가 `compositionend` 이벤트보다 앞이 아니라 **뒤에** 디스패치됩니다. 결과적으로 `isComposing` 값이 예상되는 true가 아니라 **false**로 나옵니다. 세션 초반에 발생한 이벤트들은 영향을 받지 않습니다.
+
+앞 절의 스펙 표에서 5번 `keydown`(isComposing=true)이 6번 `compositionend`보다 먼저 와야 하는데, 그 둘이 뒤집힙니다. 그리고 뒤집힌 자리의 `isComposing`은 false입니다. 우리가 건 가드가 통과됩니다.
+
+버전 조건을 정확히 적어두겠습니다.
+
+| 속성 | 정상 동작 | 순서 뒤집힘 |
+|---|---|---|
+| `KeyboardEvent.isComposing` | Chrome 56 이상, Firefox 31 이상 / Safari 27 | Safari 10.1부터 26.x까지 |
+| `InputEvent.isComposing` | Chrome 60 이상, Firefox 31 이상 / Safari 27 | Safari 16.4부터 26.x까지 |
+
+두 가지를 분명히 해두겠습니다.
+
+**Safari가 `isComposing`을 지원하지 않는 게 아닙니다.** 속성은 Safari 10.1부터 있습니다. 있는데 조합 확정 키에서 값이 뒤집혀 옵니다. "지원 안 함"으로 진단하면 대응이 틀어집니다.
+
+**그리고 이건 수정됐습니다.** WebKit Bug 311717(제목: 회귀를 수정하고 올바른 조합 이벤트 순서를 기본으로 켠다)이 RESOLVED FIXED이고, Safari 27 베타 릴리스 노트의 해결된 이슈 항목에 "IME 입력 중 조합 이벤트가 잘못된 순서로 디스패치되던 문제를 수정했다"가 올라와 있습니다. 다만 **2026년 8월 25일 기준 공개 출시된 최신 버전은 보안 전용 업데이트인 Safari 26.6.1이고, Safari 27은 베타입니다.** Safari 26.5와 26.6 릴리스 노트에는 조합 관련 수정 항목이 없습니다.
+
+iOS Safari와 iOS WKWebView는 호환성 데이터상 데스크톱 Safari 값을 그대로 상속하도록 기록돼 있습니다. 같은 WebKit 엔진을 쓰니 iOS WKWebView에도 동일하게 적용되는 것으로 봐야 합니다. 다만 이 기록은 iOS에서 별도로 측정된 값이 아니라 데스크톱 값을 미러링한 것이므로, 한국어 두벌식이나 천지인에서 실제로 어떻게 관찰되는지는 **실기기에서 앞의 로깅 코드로 직접 확인**하시기 바랍니다.
+
+### 이건 앱 개발자가 못 고칩니다
+
+대부분의 웹뷰 이슈는 앱이 켜주면 되는 것이지만, 이건 아닙니다.
+
+iOS의 웹뷰는 시스템 WebKit에 묶여 있어서, 앱이 앱스토어에 무엇을 올리든 엔진 버전은 단말의 OS를 따라갑니다. 엔진 갱신 경로가 플랫폼마다 어떻게 다른지는 [ep.01](/webview-not-browser-ep-01/)에서 다뤘습니다. 앱 설정 어디에도 IME 이벤트 순서를 바꿀 스위치는 없습니다.
+
+그러니 웹에서 방어해야 합니다. 순서가 뒤집힌다는 사실을 역으로 이용합니다.
+
+```js
+let composing = false;
+let composingEndedAt = 0;
+
+input.addEventListener('compositionstart', () => {
+  composing = true;
+});
+
+input.addEventListener('compositionend', () => {
+  composing = false;
+  composingEndedAt = Date.now();
+});
+
+input.addEventListener('keydown', (e) => {
+  if (e.isComposing || e.keyCode === 229) return;
+  if (composing) return;
+
+  // compositionend 직후에 도착한 keydown은 조합을 확정한 그 키일 수 있습니다
+  if (Date.now() - composingEndedAt < 50) return;
+
+  if (e.key !== 'Enter') return;
+  e.preventDefault();
+  submit(input.value);
+});
+```
+
+사실 50밀리초라는 값에는 스펙 근거가 없습니다. 순서가 뒤집힌다는 확인된 사실에서 역산한 임계값이고, 대상 단말에서 재보정해야 하는 숫자입니다. 임계값을 너무 키우면 사용자가 확정 직후 곧바로 누른 정상 엔터까지 삼킵니다.
+
+근본적으로는 설계에서 빼는 편이 낫습니다. **한글을 입력하는 필드에서 엔터 즉시 제출은 위험한 인터랙션입니다.** 특히 결제 확정이나 계정 삭제처럼 되돌릴 수 없는 동작이라면, 엔터를 제출이 아니라 다음 필드로의 이동이나 확인 단계 진입으로 배정하는 쪽이 안전합니다.
+
+---
+
+## Vue의 v-model은 조합 중에 갱신되지 않습니다
+
+프레임워크를 쓰면 앞의 문제가 알아서 해결되는 것처럼 보입니다. 반은 맞고 반은 틀립니다.
+
+Vue 공식 문서가 명시하고 있습니다.
+
+> IME가 필요한 언어(중국어, 일본어, 한국어 등)에서는 `v-model`이 IME 조합 중에 갱신되지 않는 것을 보게 됩니다. 이런 갱신에도 반응하고 싶다면 `v-model` 대신 직접 `input` 이벤트 리스너와 `value` 바인딩을 사용하십시오.
+
+이게 무슨 뜻인지 정확히 잡아야 합니다. 앞서 확인했듯 **DOM의 `el.value`는 조합 중에도 정확합니다.** 멈춰 있는 건 모델 값입니다. 화면에는 "한국"이 보이는데 `message`에는 "한"만 들어 있는 상태, 이게 정확한 서술입니다.
+
+Vue 3 `runtime-dom`의 `vModelText` 구현을 보면 처리가 이렇게 돼 있습니다.
+
+- `compositionstart`에서 엘리먼트에 `composing` 플래그를 세우고, `compositionend`에서 내린 다음 합성 `input` 이벤트를 직접 발사합니다.
+- `input` 리스너 첫 줄에서 `composing` 플래그가 서 있으면 즉시 반환합니다.
+- `beforeUpdate` 훅에도 같은 가드가 있습니다. 소스 주석은 "미확정 텍스트를 지우지 않기 위해"라고 적혀 있습니다.
+- 조합 리스너는 `.lazy`가 아닐 때만 등록됩니다.
+- `.lazy`가 아니면 `change`에도 같은 조합 종료 핸들러를 붙입니다.
+
+세 번째 항목이 실무에서 종종 발목을 잡습니다. **조합 중에는 바깥에서 바인딩 값을 바꿔도 DOM에 반영되지 않습니다.** 전화번호에 하이픈을 넣거나 금액에 천 단위 콤마를 찍는 포맷팅을 `watch`로 걸어두면, 조합 중인 필드에서는 그 포맷팅이 화면에 나타나지 않습니다.
+
+### .lazy는 해결책이 아니라 다른 트레이드오프입니다
+
+"`.lazy`를 붙이면 완성된 값만 들어옵니다"라는 조언이 돌아다닙니다. 결과는 맞는데 원리가 다릅니다.
+
+`.lazy`는 조합 가드를 더 강하게 켜는 게 아닙니다. 앞서 정리한 대로 **`.lazy`를 쓰면 `compositionstart`와 `compositionend` 리스너가 아예 등록되지 않고**, 대신 `change`만 듣습니다. `change`는 포커스가 빠질 때 발생하니 결과적으로 완성된 값만 올라옵니다.
+
+그래서 이런 것들이 같이 사라집니다.
+
+- 입력하는 동안의 글자 수 카운터
+- 입력하는 동안의 형식 검증 피드백
+- 입력하는 동안의 제출 버튼 활성화 판정
+
+검색 버튼이 따로 있는 검색어처럼 실시간 반응이 필요 없는 필드에는 괜찮은 선택입니다. 실시간 피드백이 요구사항인 필드에는 쓸 수 없습니다.
+
+### 공용 인풋 컴포넌트에서 조합 처리가 증발합니다
+
+가장 자주 밟는 지뢰가 이겁니다. 커먼 인풋 컴포넌트를 만드는 순간 조합 처리가 사라집니다.
+
+Vue 공식 문서의 컴포넌트 `v-model` 페이지가 제시하는 내부 구현 예제는 이렇습니다.
+
+```vue
+<!-- BaseInput.vue — 조합 가드가 없습니다 -->
+<script setup>
+defineProps(['modelValue']);
+defineEmits(['update:modelValue']);
+</script>
+
+<template>
+  <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" />
+</template>
+```
+
+이건 문서 그대로의 코드이고, 문서 맥락에서는 아무 문제가 없습니다. `v-model`이 어떻게 전개되는지를 설명하는 예제니까요. 다만 그 컴포넌트 `v-model` 문서 페이지에는 IME나 composition 이야기가 한 번도 나오지 않습니다.
+
+문제는 여기에 있습니다. `vModelText` 디렉티브는 **네이티브 `input`과 `textarea`에 붙은 `v-model`에만** 적용됩니다. 위 컴포넌트는 `v-model`을 쓰지 않고 `:value`와 `@input`으로 직접 풀어 썼으므로, 조합 가드도 `compositionstart`/`compositionend` 리스너도 붙지 않습니다.
+
+그래서 동작이 정반대로 뒤집힙니다. `<input v-model="x">`는 조합 중 부모에 값을 안 올리는데, `<BaseInput v-model="x">`는 조합 중 매 단계 값을 올립니다. **같은 문법인데 다르게 동작합니다.** 조합 중 값이 부모로 올라가면, 부모가 그 값으로 서버를 찌르거나 검증을 돌립니다. 앞 절의 과호출 문제가 컴포넌트 한 겹 아래에 숨은 채로 재현됩니다.
+
+수정은 두 갈래입니다.
+
+**갈래 A: 네이티브 `v-model`에 다시 위임합니다.** `defineModel()`이 돌려주는 ref를 네이티브 엘리먼트의 `v-model`에 물리면 `vModelText`가 적용되어 조합 처리가 살아납니다. 대부분의 공용 인풋은 이걸로 끝납니다.
+
+```vue
+<!-- BaseInput.vue — vModelText가 적용됩니다 -->
+<script setup>
+const model = defineModel();
+</script>
+
+<template>
+  <input v-model="model" />
+</template>
+```
+
+**갈래 B: 조합 중 값도 필요한 화면입니다.** 글자 수 카운터처럼 조합 중에도 반응해야 한다면 공식 문서 안내대로 `v-model`을 쓰지 않고 직접 씁니다. 다만 이때 **조합 여부를 값이 아니라 부수 효과의 조건으로** 씁니다. 바닐라에서 세운 원칙과 같습니다.
+
+```vue
+<script setup>
+import { ref } from 'vue';
+
+const text = ref('');
+const composing = ref(false);
+
+function onInput(e) {
+  text.value = e.target.value; // 값은 조합 중에도 갱신합니다
+  if (composing.value) return;
+  lookup(text.value);
+}
+
+function onCompositionStart() {
+  composing.value = true;
+}
+
+function onCompositionEnd(e) {
+  composing.value = false;
+  text.value = e.target.value;
+  lookup(text.value);
+}
+
+function onChange(e) {
+  // 조합 중 포커스가 빠지는 경로의 안전망
+  composing.value = false;
+  text.value = e.target.value;
+}
+</script>
+
+<template>
+  <input
+    :value="text"
+    @input="onInput"
+    @compositionstart="onCompositionStart"
+    @compositionend="onCompositionEnd"
+    @change="onChange"
+  />
+  <p>{{ text.length }}자</p>
+</template>
+```
+
+### React도 구조는 같습니다
+
+React는 `onCompositionStart`, `onCompositionUpdate`, `onCompositionEnd`를 공식 지원합니다. 문서상 각각 입력기가 새 조합 세션을 시작할 때, 문자를 받을 때, 세션을 완료하거나 취소할 때 발생하며, 핸들러 인자에 `data` 속성이 붙습니다. 캡처 단계 변형도 있습니다.
+
+React의 제어 컴포넌트는 `onChange`(실제로는 `input`에 대응)마다 상태를 갱신하므로, Vue와 달리 조합 중에도 상태가 따라옵니다. 즉 "마지막 글자가 빠지는" 증상은 덜 나타나고, 대신 "조합 중 값으로 검증과 조회가 돌아가는" 증상이 기본값입니다. 처방은 같습니다. 값 갱신은 그대로 두고, 조합 플래그로 **부수 효과만** 미룹니다.
+
+---
+
+## 그래서 무엇을 하면 되나
+
+조합 문제는 **거의 전부 웹에서 해결합니다.** `WKWebViewConfiguration`이나 `WebSettings`를 뒤져도 조합 동작을 바꾸는 공개 설정은 없습니다. "앱에 이 옵션을 켜달라"고 지목할 IME 스위치가 존재하지 않습니다.
+
+### 웹 개발자가 할 일
+
+**하나. 값 갱신에는 절대 조합 가드를 걸지 않습니다.**
+
+`if (e.isComposing) return`을 값 대입 앞에 두는 코드가 이 편에서 다룬 증상의 절반입니다. 가드는 검증, 서버 호출, 포맷팅, 제출 같은 부수 효과에만 겁니다.
+
+**둘. 제출 시점 값은 DOM에서 읽습니다.**
+
+`input.value` 또는 `new FormData(form)`입니다. 따로 들고 있는 상태가 조합 중에 뒤처져 있을 가능성을 아예 없앱니다.
+
+**셋. 엔터 가드는 `keydown`에, 두 신호를 함께 봅니다.**
+
+`if (e.isComposing || e.keyCode === 229) return`입니다. `keyup`으로 옮기지 않습니다. 스펙상 조합 확정 키의 `keyup`은 `isComposing`이 false입니다.
+
+**넷. `change`를 안전망으로 답니다.**
+
+조합 중 포커스가 빠질 때 `compositionend`가 어느 엘리먼트로 오는지는 스펙 미정의이고, 구현에 따라 아예 안 오기도 합니다. Vue가 그 자리에 안전망을 달아둔 이유가 이겁니다.
+
+**다섯. iOS는 시간 기반 방어를 얹거나, 설계에서 뺍니다.**
+
+Safari 26.x 이하에서는 조합 확정 키의 `isComposing`이 false로 옵니다. Safari 27에서 수정됐지만 2026년 8월 기준 베타이고, 그 이전 OS를 쓰는 단말은 계속 남습니다. 되돌릴 수 없는 동작이라면 엔터 즉시 제출 자체를 빼는 편이 안전합니다.
+
+**여섯. 공용 인풋 컴포넌트를 한 번 열어봅니다.**
+
+`:value` + `@input`으로 풀어 쓴 컴포넌트에는 조합 처리가 없습니다. 네이티브 `v-model`에 위임하거나, 조합 리스너를 명시적으로 답니다.
+
+**일곱. 실기기에서 로그를 찍습니다.**
+
+이 편의 모든 서술은 스펙과 벤더 문서에 근거하지만, 실제 순서는 단말·OS 버전·키보드 앱 조합에 따라 갈립니다. [ep.01](/webview-not-browser-ep-01/)의 원격 디버깅 절차로 콘솔을 열고 직접 확인하시기 바랍니다.
+
+### 앱에 요청할 일
+
+요청할 항목은 하나뿐입니다. 그런데 이 하나가 걸리면 웹에서는 손쓸 방법이 없습니다.
+
+**앱이 웹뷰 바깥에 전송 버튼이나 키보드 액세서리 뷰를 그리고, 그것을 누르면 브리지로 웹 함수를 호출하는 구조라면, 브리지를 호출하기 전에 조합을 확정해달라고 요청합니다.**
+
+네이티브 버튼은 웹뷰의 입력 필드에서 포커스를 뺏지 않을 수 있습니다. 그러면 `compositionend`도 `change`도 발생하지 않은 채로 웹 함수가 불립니다. 웹에서 `input.value`를 읽든 뭘 하든, 조합 중인 마지막 음절이 아직 확정되지 않은 시점입니다.
+
+앱 쪽에서 지목할 지점은 이렇습니다.
+
+| 플랫폼 | 요청 내용 |
+|---|---|
+| Android | 브리지 호출 전에 `InputConnection.finishComposingText()`를 불러 조합 중인 텍스트를 확정 |
+| iOS | 브리지 호출 전에 `webView.endEditing(true)`로 웹뷰의 텍스트 입력을 종료해 마크된 텍스트를 해제 |
+
+Android 문서는 `finishComposingText()`가 텍스트를 그대로 두고 조합 관련 스타일과 상태만 제거하며 커서 위치는 바뀌지 않는다고 적습니다. 조합 중인 텍스트를 그대로 둔 채 조합 상태만 끝내는 동작입니다.
+
+iOS는 도달 경로가 다릅니다. 마크된 텍스트를 푸는 API는 개념상 `UITextInput.unmarkText()`가 맞습니다. 그런데 `WKWebView`는 `UITextInput`을 채택하지 않으므로, 앱이 웹뷰 안의 마크된 텍스트에 이 메서드를 직접 부를 수는 없습니다. 대신 공개 API인 `UIView.endEditing(true)`를 씁니다. 이 메서드는 뷰와 그 하위 계층에서 현재 first responder인 텍스트 입력을 찾아 강제로 사퇴시키고, 그 과정에서 조합이 끝납니다. `resignFirstResponder()`를 직접 부르는 방식도 같은 결과를 냅니다.
+
+가장 확실한 요청은 더 단순합니다. **전송 버튼을 웹 안에 두는 것입니다.** 웹 안의 버튼을 누르면 입력 필드에서 포커스가 빠지고, 그러면 최소한 `change`는 발생합니다. 네이티브 액세서리 뷰가 UX 요구사항이라면 위 표대로 요청하고, 아니라면 애초에 이 경로를 만들지 않는 편이 낫습니다.
+
+**앱이 못 고치는 것도 있습니다.** iOS의 조합 이벤트 순서 문제는 시스템 WebKit에 묶여 있어 앱 설정으로 바꿀 수 없습니다. 이슈 트래커에 "iOS 26 이하에서 재현, 앱 수정 불가, 웹에서 방어함"이라고 적어두면 같은 티켓이 두 번 돌지 않습니다.
+
+---
+
+## 참고 자료
+
+- W3C. UI Events. https://www.w3.org/TR/uievents/
+- W3C. Input Events Level 2. https://www.w3.org/TR/input-events-2/
+- W3C. UI Events KeyboardEvent key Values. https://www.w3.org/TR/uievents-key/
+- MDN Web Docs. CompositionEvent. https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent
+- MDN Web Docs. Element: compositionstart event. https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart\_event
+- MDN Web Docs. Element: compositionupdate event. https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate\_event
+- MDN Web Docs. Element: compositionend event. https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend\_event
+- MDN Web Docs. Element: keydown event. https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown\_event
+- MDN Web Docs. Element: beforeinput event. https://developer.mozilla.org/en-US/docs/Web/API/Element/beforeinput\_event
+- MDN Web Docs. KeyboardEvent: isComposing property. https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/isComposing
+- MDN Web Docs. InputEvent: isComposing property. https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/isComposing
+- MDN Web Docs. KeyboardEvent: keyCode property. https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
+- MDN Web Docs. HTMLElement: change event. https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change\_event
+- Vue.js. Form Input Bindings. https://vuejs.org/guide/essentials/forms.html
+- Vue.js. Component v-model. https://vuejs.org/guide/components/v-model.html
+- Vue.js. vModel.ts (runtime-dom). https://github.com/vuejs/core/blob/main/packages/runtime-dom/src/directives/vModel.ts
+- React. Common components (e.g. div). https://react.dev/reference/react-dom/components/common
+- Android Developers. InputConnection. https://developer.android.com/reference/android/view/inputmethod/InputConnection
+- Apple. UITextInput. Apple Developer Documentation. https://developer.apple.com/documentation/uikit/uitextinput
+- Apple. WKWebView. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebview
+- Apple. UIView endEditing(\_:). Apple Developer Documentation. https://developer.apple.com/documentation/uikit/uiview/endediting(\_:)
+- Apple. About the security content of Safari 26.6.1. https://support.apple.com/en-us/148286
+- Apple. Safari 27 Beta Release Notes. Apple Developer Documentation. https://developer.apple.com/documentation/safari-release-notes/safari-27-release-notes
+- WebKit. Bug 311717 - Fix a regression and turn on correct composition event ordering by default. https://bugs.webkit.org/show\_bug.cgi?id=311717
+- mdn/browser-compat-data. api/KeyboardEvent.json. https://github.com/mdn/browser-compat-data/blob/main/api/KeyboardEvent.json
+- w3c/uievents. Issue #5 - specify how compositionend works if the caret has been moved to a different element. https://github.com/w3c/uievents/issues/5
+
+---
+
+## 다음 편 예고
+
+> [ep.05 - 화면이 잘리고 손이 미끄러집니다](/webview-not-browser-ep-05/)
+
+조합이 끝나 값이 정확해져도, 그 입력창이 키보드에 가려 보이지 않으면 소용이 없습니다. 키보드가 올라올 때 화면이 어떻게 변하는지, 뷰포트 단위 중 무엇을 믿어도 되는지, 가로 캐러셀이 왜 뒤로가기 제스처에 먹히는지를 다룹니다.

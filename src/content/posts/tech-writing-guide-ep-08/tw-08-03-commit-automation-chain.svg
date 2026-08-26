@@ -176,5 +176,5 @@
   </g>
 
   <!-- 하단 노트 -->
-  <text class="note" x="20" y="280">체인의 가장 약한 고리는 사람 — commitlint가 강제력을 가져야 하는 이유.</text>
+  <text class="note" x="20" y="280">체인의 가장 약한 고리는 사람: commitlint가 강제력을 가져야 하는 이유.</text>
 </svg>

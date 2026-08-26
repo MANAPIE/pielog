@@ -30,7 +30,7 @@
   </style>
   <rect class="bg" width="600" height="540"/>
 
-  <text class="title" x="40" y="36">가입 주차별 잔존율 — 8주 분석</text>
+  <text class="title" x="40" y="36">가입 주차별 잔존율: 8주 분석</text>
   <text class="sub" x="40" y="54">행: 가입 주차 · 열: 가입 후 경과 주차 · 셀: 그 시점에 활성인 비율</text>
 
   <!-- 헤더 (경과 주차) -->

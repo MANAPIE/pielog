@@ -187,6 +187,6 @@
   <text class="ts amber-ts" x="560" y="324" text-anchor="middle" dominant-baseline="central">컴플라이언스 필수</text>
 
   <rect class="gray-bg" x="40" y="370" width="600" height="36" rx="8" />
-  <text class="ts" x="340" y="388" text-anchor="middle" dominant-baseline="central">실무에서는 하나만 쓰지 않는다 — 교육은 Brignull로,
+  <text class="ts" x="340" y="388" text-anchor="middle" dominant-baseline="central">실무에서는 하나만 쓰지 않는다: 교육은 Brignull로,
     분석은 Mathur로, 보고는 공정위 기준으로</text>
 </svg>

@@ -97,7 +97,7 @@
 
   <!-- ===== 우: 예시 트리 ===== -->
   <g transform="translate(640 40)">
-    <text x="0" y="20" class="col-label">EXAMPLE TREE — root.size() = 600</text>
+    <text x="0" y="20" class="col-label">EXAMPLE TREE: root.size() = 600</text>
 
     <!-- root -->
     <g transform="translate(180 60)">

@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-fac">
-  <title id="title-fac">PaymentFacade — 클라이언트와 서브시스템 사이의 단일 진입점</title>
+  <title id="title-fac">PaymentFacade: 클라이언트와 서브시스템 사이의 단일 진입점</title>
   <defs>
     <style>
       :root {
@@ -38,7 +38,7 @@
   <!-- 좌측 라벨 -->
   <text x="60" y="36" class="col-label">CLIENT</text>
   <text x="430" y="36" class="col-label">FACADE</text>
-  <text x="820" y="36" class="col-label">SUBSYSTEMS — 서브시스템 객체들</text>
+  <text x="820" y="36" class="col-label">SUBSYSTEMS: 서브시스템 객체들</text>
 
   <!-- 클라이언트 -->
   <g transform="translate(60 220)">

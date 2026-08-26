@@ -105,7 +105,7 @@
     <text class="ratio purple-t" x="222" y="126" text-anchor="end">3.0 : 1</text>
 
     <text class="lvl purple-sub" x="18" y="160">AAA · 강화</text>
-    <text class="dash empty-t" x="222" y="162" text-anchor="end">—</text>
+    <text class="dash empty-t" x="222" y="162" text-anchor="end">-</text>
     <text class="ratio-s purple-sub" x="222" y="178" text-anchor="end">기준 없음</text>
 
     <text class="lvl purple-sub" x="18" y="196">실무 권장</text>

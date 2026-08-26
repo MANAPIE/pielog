@@ -1,7 +1,7 @@
 ---
 title: "어트리뷰션과 도구 지도 - 마케팅 지표 핸드북 ep.12"
 description: "First-touch, Last-touch, Multi-touch, Data-driven. 한 가입자의 공로를 어디에 돌릴 것인가의 13개 단어."
-summary: "시리즈의 마지막 편. 한 사용자가 광고를 다섯 번 보고 가입했다면 그 공로는 어느 광고에게 갈까요. 첫 광고, 마지막 광고, 모든 광고에 골고루, 또는 데이터가 학습한 가중치. 어트리뷰션 모델 일곱 종과 마지막으로 실제 도구들 — GA4, Amplitude, Mixpanel의 차이까지. 13개 용어로 시리즈를 마칩니다."
+summary: "시리즈의 마지막 편. 한 사용자가 광고를 다섯 번 보고 가입했다면 그 공로는 어느 광고에게 갈까요. 첫 광고, 마지막 광고, 모든 광고에 골고루, 또는 데이터가 학습한 가중치. 어트리뷰션 모델 일곱 종과 마지막으로 실제 도구들: GA4, Amplitude, Mixpanel의 차이까지. 13개 용어로 시리즈를 마칩니다."
 date: 2026-05-19
 thumbnail: ./cover.svg
 tags: [series, develop, design, marketing, metrics, attribution, ga4, amplitude, mixpanel]
@@ -22,7 +22,7 @@ draft: false
 
 ## 이번 편에서 다룰 것
 
-![핸드북 시리즈 전체 구조를 보여주는 단계 지도이며 시리즈 마지막 편 표시가 있다. 위쪽에는 다섯 단계 퍼널이 세로로 쌓여 있다 — ep.01–02 획득, ep.03–04 활성화, ep.05–07 유지, ep.08 수익, ep.09 추천. 그 아래 '측정 인프라 · MEASUREMENT LAYER'라는 띠가 있고 세 항목이 들어 있다 — ep.10 실험(A/B · p-value · MDE), ep.11 트래킹(UTM · Event · Pixel · CAPI), ep.12 어트리뷰션(Last-touch · Data-driven · GA4 · Amplitude). 이번 편인 ep.12 어트리뷰션 항목이 강조 표시되어 있다. 하단 설명은 측정 인프라가 다섯 단계 전체에서 작동한다고 적혀 있다.](./mmh-12-01-stage-map.svg)
+![핸드북 시리즈 전체 구조를 보여주는 단계 지도이며 시리즈 마지막 편 표시가 있다. 위쪽에는 다섯 단계 퍼널이 세로로 쌓여 있다: ep.01–02 획득, ep.03–04 활성화, ep.05–07 유지, ep.08 수익, ep.09 추천. 그 아래 '측정 인프라 · MEASUREMENT LAYER'라는 띠가 있고 세 항목이 들어 있다: ep.10 실험(A/B · p-value · MDE), ep.11 트래킹(UTM · Event · Pixel · CAPI), ep.12 어트리뷰션(Last-touch · Data-driven · GA4 · Amplitude). 이번 편인 ep.12 어트리뷰션 항목이 강조 표시되어 있다. 하단 설명은 측정 인프라가 다섯 단계 전체에서 작동한다고 적혀 있다.](./mmh-12-01-stage-map.svg)
 
 13개 용어. 어트리뷰션 모델 7종(First-touch, Last-touch, Linear, Time-decay, Position-based, Data-driven, Multi-touch), 모델 외 개념(View-through, Click-through, Incrementality), 실제 도구 3종(GA4, Amplitude, Mixpanel).
 
@@ -44,7 +44,7 @@ draft: false
 
 **② 맥락**
 
-- **회의에서**: *"브랜드 인지도 캠페인 효과를 보려면 First-touch가 적합."* — *처음 알게 한 채널* 평가.
+- **회의에서**: *"브랜드 인지도 캠페인 효과를 보려면 First-touch가 적합."* - *처음 알게 한 채널* 평가.
 
 **③ 액션**
 
@@ -72,7 +72,7 @@ draft: false
 
 **② 맥락**
 
-- **회의에서**: *"GA4 기본은 Data-driven인데 우리는 익숙해서 Last-touch도 함께 봅니다."* — 모델 전환기의 일반적 운영.
+- **회의에서**: *"GA4 기본은 Data-driven인데 우리는 익숙해서 Last-touch도 함께 봅니다."* - 모델 전환기의 일반적 운영.
 
 **③ 액션**
 
@@ -101,7 +101,7 @@ draft: false
 
 **② 맥락**
 
-- **회의에서**: *"단순 평등 모델. 어느 채널도 과소평가 안 됩니다."* — 모델 선택의 출발점.
+- **회의에서**: *"단순 평등 모델. 어느 채널도 과소평가 안 됩니다."* - 모델 선택의 출발점.
 
 **③ 액션**
 
@@ -126,7 +126,7 @@ draft: false
 
 **② 맥락**
 
-- **회의에서**: *"전환까지의 마지막 1주가 더 결정적이라는 가정. Time-decay 7일 반감기."* — 적당한 가중의 표준 모델.
+- **회의에서**: *"전환까지의 마지막 1주가 더 결정적이라는 가정. Time-decay 7일 반감기."* - 적당한 가중의 표준 모델.
 
 **③ 액션**
 
@@ -151,7 +151,7 @@ draft: false
 
 **② 맥락**
 
-- **회의에서**: *"브랜드 인지와 전환 모두 중요. Position-based 40-20-40."* — 균형 모델.
+- **회의에서**: *"브랜드 인지와 전환 모두 중요. Position-based 40-20-40."* - 균형 모델.
 
 **③ 액션**
 
@@ -176,7 +176,7 @@ GA4 Data-driven, Google Ads Data-driven, Adobe Algorithmic
 
 **② 맥락**
 
-- **회의에서**: *"GA4가 2024년 Data-driven을 기본으로 바꿨어요. Last-touch 보고서가 사라졌습니다."* — 표준 변화의 회의.
+- **회의에서**: *"GA4가 2024년 Data-driven을 기본으로 바꿨어요. Last-touch 보고서가 사라졌습니다."* - 표준 변화의 회의.
 
 **③ 액션**
 
@@ -185,7 +185,7 @@ GA4 Data-driven, Google Ads Data-driven, Adobe Algorithmic
 
 **④ 사례**
 
-- **센티**: GA4 Data-driven 모델 결과 — 페이스북 32%, 구글 28%, 카카오 18%, 기타 22%. Last-touch였던 카카오 35% 1위가 페이스북에 자리를 넘겼습니다.
+- **센티**: GA4 Data-driven 모델 결과 - 페이스북 32%, 구글 28%, 카카오 18%, 기타 22%. Last-touch였던 카카오 35% 1위가 페이스북에 자리를 넘겼습니다.
 - **실제 사례**: Google이 2024~2025년 모든 어트리뷰션 보고서의 *기본을 Data-driven으로 통일*. 사실상 *Last-touch 시대의 종말*.
 
 **⑤ 비고**
@@ -207,7 +207,7 @@ Multi-touch: Linear, Time-decay, Position-based, Data-driven
 
 **② 맥락**
 
-- **회의에서**: *"Single-touch 시대에서 MTA로 전환 중. 그러나 cookie 종말로 MTA 자체의 정확도도 하락."* — 환경 변화의 어휘.
+- **회의에서**: *"Single-touch 시대에서 MTA로 전환 중. 그러나 cookie 종말로 MTA 자체의 정확도도 하락."* - 환경 변화의 어휘.
 
 **⑤ 비고**
 
@@ -215,7 +215,7 @@ Multi-touch: Linear, Time-decay, Position-based, Data-driven
 
 ---
 
-![어트리뷰션 모델 6종이 같은 경로의 공로를 어떻게 다르게 나누는지 비교하는 누적 가로 막대그래프. 제목은 '한 가입자, 세 광고, 여섯 가지 답'이다. 시나리오는 한 사용자가 페이스북(3주 전) → 구글(1주 전) → 인스타그램(1일 전)을 거쳐 가입한 경로이며, 1.0의 공로를 어떻게 나눌 것인가를 묻는다. 색상 범례는 페이스북(첫 접점), 구글(중간), 인스타그램(마지막)이다. 모델별 막대는 다음과 같다 — First-touch는 첫 접점에 100%로 페이스북 100% · 구글 0 · 인스타그램 0, Last-touch는 마지막 접점에 100%로 페이스북 0 · 구글 0 · 인스타그램 100%, Linear는 모든 접점 동일로 33% · 33% · 33%, Time-decay는 최근일수록 큰 가중치로 15% · 30% · 55%, Position-based는 첫·마지막 강조 U자형으로 40% · 20% · 40%, Data-driven은 ML이 데이터로 학습해 32% · 28% · 40%. 결론은 같은 데이터라도 모델 선택에 따라 여섯 가지 결론이 나오며 어느 모델을 쓰느냐가 광고비 배분을 바꾼다는 것, 2024년 이후 GA4 기본은 Data-driven이지만 모든 모델의 정확도는 결국 Incrementality 테스트로만 검증된다는 것이다.](./mmh-12-02-attribution-models.svg)
+![어트리뷰션 모델 6종이 같은 경로의 공로를 어떻게 다르게 나누는지 비교하는 누적 가로 막대그래프. 제목은 '한 가입자, 세 광고, 여섯 가지 답'이다. 시나리오는 한 사용자가 페이스북(3주 전) → 구글(1주 전) → 인스타그램(1일 전)을 거쳐 가입한 경로이며, 1.0의 공로를 어떻게 나눌 것인가를 묻는다. 색상 범례는 페이스북(첫 접점), 구글(중간), 인스타그램(마지막)이다. 모델별 막대는 다음과 같다: First-touch는 첫 접점에 100%로 페이스북 100% · 구글 0 · 인스타그램 0, Last-touch는 마지막 접점에 100%로 페이스북 0 · 구글 0 · 인스타그램 100%, Linear는 모든 접점 동일로 33% · 33% · 33%, Time-decay는 최근일수록 큰 가중치로 15% · 30% · 55%, Position-based는 첫·마지막 강조 U자형으로 40% · 20% · 40%, Data-driven은 ML이 데이터로 학습해 32% · 28% · 40%. 결론은 같은 데이터라도 모델 선택에 따라 여섯 가지 결론이 나오며 어느 모델을 쓰느냐가 광고비 배분을 바꾼다는 것, 2024년 이후 GA4 기본은 Data-driven이지만 모든 모델의 정확도는 결국 Incrementality 테스트로만 검증된다는 것이다.](./mmh-12-02-attribution-models.svg)
 
 ---
 
@@ -232,7 +232,7 @@ View-through Window: 보통 1일~7일
 
 **② 맥락**
 
-- **회의에서**: *"디스플레이 광고는 View-through 비중이 높아요. 클릭만 보면 효과가 작아 보입니다."* — 디스플레이 광고 평가의 주요 지표.
+- **회의에서**: *"디스플레이 광고는 View-through 비중이 높아요. 클릭만 보면 효과가 작아 보입니다."* - 디스플레이 광고 평가의 주요 지표.
 
 **③ 액션**
 
@@ -259,7 +259,7 @@ View-through보다 *훨씬 강한 신호*.
 
 **② 맥락**
 
-- **회의에서**: *"검색 광고는 Click-through 위주, 디스플레이는 View-through 위주."* — 채널별 평가 기준.
+- **회의에서**: *"검색 광고는 Click-through 위주, 디스플레이는 View-through 위주."* - 채널별 평가 기준.
 
 **⑤ 비고**
 
@@ -282,7 +282,7 @@ Incrementality % = Incremental ÷ 실험군 전환 × 100
 
 **② 맥락**
 
-- **회의에서**: *"리타게팅 광고 ROAS 600%인데 Incrementality 테스트 결과 진짜 효과는 25%. 나머지는 그냥 들어왔을 사람."* — 어트리뷰션의 함정 폭로.
+- **회의에서**: *"리타게팅 광고 ROAS 600%인데 Incrementality 테스트 결과 진짜 효과는 25%. 나머지는 그냥 들어왔을 사람."* - 어트리뷰션의 함정 폭로.
 
 **③ 액션**
 
@@ -307,7 +307,7 @@ Google의 무료 *웹·앱 통합 분석 도구*. 2023년 7월부터 *Universal 
 
 **② 맥락**
 
-- **회의에서**: *"GA4로 옮긴 후 보고서가 다르게 보여요. UA와 정의가 달라요."* — 전환기의 일반적 혼란.
+- **회의에서**: *"GA4로 옮긴 후 보고서가 다르게 보여요. UA와 정의가 달라요."* - 전환기의 일반적 혼란.
 
 **③ 액션**
 
@@ -332,7 +332,7 @@ Google의 무료 *웹·앱 통합 분석 도구*. 2023년 7월부터 *Universal 
 
 **② 맥락**
 
-- **회의에서**: *"GA4는 광고 어트리뷰션, Amplitude는 제품 분석. 둘 다 운영."* — 일반적 도구 분담.
+- **회의에서**: *"GA4는 광고 어트리뷰션, Amplitude는 제품 분석. 둘 다 운영."* - 일반적 도구 분담.
 
 **③ 액션**
 
@@ -356,7 +356,7 @@ Amplitude와 유사한 *제품 분석 도구*. *사용자 경로, 깊이 분석,
 
 **② 맥락**
 
-- **회의에서**: *"Mixpanel은 분석가가 SQL처럼 깊이 파고들기 좋아요. Amplitude는 PM이 빠르게 보기 좋고요."* — 두 도구의 일반적 비교.
+- **회의에서**: *"Mixpanel은 분석가가 SQL처럼 깊이 파고들기 좋아요. Amplitude는 PM이 빠르게 보기 좋고요."* - 두 도구의 일반적 비교.
 
 **③ 액션**
 
@@ -378,7 +378,7 @@ Amplitude와 유사한 *제품 분석 도구*. *사용자 경로, 깊이 분석,
 | Time-decay | 가입에 가까울수록 큰 가중치 | 짧은 사이클에 적합 |
 | Position-based | 첫·마지막 강조, 중간 약화 | 40-20-40 |
 | Data-driven | ML로 가중치 학습 | GA4 기본 (2024+) |
-| Multi-touch (MTA) | 다중 접점 모델 우산 용어 | — |
+| Multi-touch (MTA) | 다중 접점 모델 우산 용어 | - |
 | View-through | 광고 본 후 전환 | 과대평가 위험 |
 | Click-through | 광고 클릭 후 전환 | 강한 신호 |
 | Incrementality | 진짜 광고 효과 | 어트리뷰션의 진실 검증 |
@@ -388,7 +388,7 @@ Amplitude와 유사한 *제품 분석 도구*. *사용자 경로, 깊이 분석,
 
 ---
 
-## 도구 지도 — 어떤 도구가 어떤 일에 맞나
+## 도구 지도 - 어떤 도구가 어떤 일에 맞나
 
 | 분석 목적 | 적합한 도구 |
 |---|---|
@@ -437,7 +437,7 @@ Amplitude와 유사한 *제품 분석 도구*. *사용자 경로, 깊이 분석,
 
 13편 136개 용어. *광고 비용 → 효율 → 유입 → 활성화 → 유지 → 이탈 → 수익 → 추천 → 실험 → 트래킹 → 어트리뷰션* 까지 깔때기 전 구간을 한 어휘 체계로 묶었습니다.
 
-처음 [개요와 색인](/marketing-metrics-handbook-ep-00/) 으로 돌아가 *세 가지 색인 — 퍼널 단계별 / 회의 시나리오별 / UI 컴포넌트별 — 으로 다시 둘러보시기를* 권합니다. 어휘는 한 번에 외우는 게 아니라 *필요할 때 찾아 쓰는 것* 이니까요.
+처음 [개요와 색인](/marketing-metrics-handbook-ep-00/) 으로 돌아가 *세 가지 색인(퍼널 단계별 / 회의 시나리오별 / UI 컴포넌트별)으로 다시 둘러보시기를* 권합니다. 어휘는 한 번에 외우는 게 아니라 *필요할 때 찾아 쓰는 것* 이니까요.
 
 회의에서 *모르는 단어가 나왔을 때* 다시 찾으실 수 있도록, 이 시리즈는 *읽고 끝* 이 아니라 *옆에 두는 핸드북* 이 되기를 의도했습니다.
 
@@ -451,22 +451,22 @@ Amplitude와 유사한 *제품 분석 도구*. *사용자 경로, 깊이 분석,
 - Adjust. *Mobile Attribution 101*. https://www.adjust.com
 - AppsFlyer. *The State of Mobile Attribution*.
 - Tunguz, T. *MTA, MMM, and Incrementality*. https://tomtunguz.com
-- Mixpanel vs Amplitude — *G2 Crowd Comparisons*. https://www.g2.com
+- Mixpanel vs Amplitude. *G2 Crowd Comparisons*. https://www.g2.com
 
 ---
 
 ## 시리즈 전체 목차
 
-- [ep.00 — 개요와 색인](/marketing-metrics-handbook-ep-00/)
-- [ep.01 — 광고 비용 지표](/marketing-metrics-handbook-ep-01/)
-- [ep.02 — 광고 효율 지표](/marketing-metrics-handbook-ep-02/)
-- [ep.03 — 유입과 클릭](/marketing-metrics-handbook-ep-03/)
-- [ep.04 — 활성화와 온보딩](/marketing-metrics-handbook-ep-04/)
-- [ep.05 — 유지와 참여](/marketing-metrics-handbook-ep-05/)
-- [ep.06 — 코호트와 리텐션 곡선](/marketing-metrics-handbook-ep-06/)
-- [ep.07 — 이탈(Churn)](/marketing-metrics-handbook-ep-07/)
-- [ep.08 — 수익과 단위경제](/marketing-metrics-handbook-ep-08/)
-- [ep.09 — 만족과 추천](/marketing-metrics-handbook-ep-09/)
-- [ep.10 — 실험과 통계](/marketing-metrics-handbook-ep-10/)
-- [ep.11 — 트래킹과 데이터 수집](/marketing-metrics-handbook-ep-11/)
-- ep.12 — 어트리뷰션과 도구 지도
+- [ep.00 - 개요와 색인](/marketing-metrics-handbook-ep-00/)
+- [ep.01 - 광고 비용 지표](/marketing-metrics-handbook-ep-01/)
+- [ep.02 - 광고 효율 지표](/marketing-metrics-handbook-ep-02/)
+- [ep.03 - 유입과 클릭](/marketing-metrics-handbook-ep-03/)
+- [ep.04 - 활성화와 온보딩](/marketing-metrics-handbook-ep-04/)
+- [ep.05 - 유지와 참여](/marketing-metrics-handbook-ep-05/)
+- [ep.06 - 코호트와 리텐션 곡선](/marketing-metrics-handbook-ep-06/)
+- [ep.07 - 이탈(Churn)](/marketing-metrics-handbook-ep-07/)
+- [ep.08 - 수익과 단위경제](/marketing-metrics-handbook-ep-08/)
+- [ep.09 - 만족과 추천](/marketing-metrics-handbook-ep-09/)
+- [ep.10 - 실험과 통계](/marketing-metrics-handbook-ep-10/)
+- [ep.11 - 트래킹과 데이터 수집](/marketing-metrics-handbook-ep-11/)
+- ep.12 - 어트리뷰션과 도구 지도

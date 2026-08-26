@@ -1,0 +1,586 @@
+---
+title: "어제 배포했는데 앱에서는 그제 화면입니다 - 웹뷰는 브라우저가 아니다 ep.08"
+description: 웹뷰 한 세션의 수명은 웹이 정하지 않습니다. 캐시를 쓸지, 프로세스를 언제 회수할지, 타이머를 언제 멈출지는 전부 바깥에서 결정됩니다.
+summary: 캐시 모드는 앱 설정에 종속되고, 렌더러 프로세스는 시스템이 회수하며, 백그라운드에서는 타이머가 흐르지 않습니다. 웹 개발자가 통제할 수 있는 층이 어디까지인지 문서로 확인한 뒤, 폼 초안 복원과 만료 시각 기반 카운트다운, 배포 반영을 위한 캐시 무효화 전략까지 웹 쪽에서 할 수 있는 것으로 착지합니다.
+date: 2026-08-15
+tags: ["series", "develop", "frontend", "webview", "wkwebview", "androidwebview", "hybridapp", "cache", "bfcache"]
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+배포는 어제 끝났다. 브라우저에서는 새 화면이다. 앱에서는 그제 화면이다. 무엇이 그 사이에서 시간을 붙잡고 있는가.
+
+## 새로고침 버튼이 없는 화면
+
+브라우저에서 캐시 문제는 대체로 사용자가 해결합니다. 새로고침을 누르고, 안 되면 강제 새로고침을 누르고, 그래도 안 되면 설정에서 캐시를 지웁니다. 웹 개발자가 배포를 잘못해도 사용자 쪽에 탈출구가 있습니다.
+
+웹뷰에는 그 탈출구가 없습니다. 주소창이 없으니 새로고침 버튼도 없고, 설정 메뉴도 없습니다. 사용자가 할 수 있는 일은 앱을 껐다 켜는 것 정도인데, 그마저도 웹뷰 캐시를 지우지는 않습니다.
+
+그래서 이 편의 질문은 하나입니다.
+
+**웹뷰가 지금 보여주는 화면의 수명은 누가 정하는가.**
+
+답을 미리 말하면, 대부분은 웹이 아닙니다. 그러나 "대부분"과 "전부"는 다릅니다. 웹이 정할 수 있는 구간이 어디까지인지 정확히 그어두면, 그 안에서 할 수 있는 일이 생각보다 많습니다.
+
+---
+
+## 캐시를 쓸지 말지는 앱이 먼저 정합니다
+
+서버가 `Cache-Control` 헤더를 아무리 정성껏 붙여도, 안드로이드 웹뷰에서는 그 위에 한 겹이 더 있습니다.
+
+`WebSettings.setCacheMode(int)`입니다. 문서는 이렇게 씁니다.
+
+> Overrides the way the cache is used. The way the cache is used is based on the navigation type. ... This method allows the client to override this behavior by specifying one of LOAD\_DEFAULT, LOAD\_CACHE\_ELSE\_NETWORK, LOAD\_NO\_CACHE or LOAD\_CACHE\_ONLY. The default value is LOAD\_DEFAULT.
+
+여기서 client는 앱입니다. **캐시 모드(cache mode)** 는 앱이 웹뷰 인스턴스에 걸어두는 설정이고, 웹은 이 값을 읽을 수도 바꿀 수도 없습니다.
+
+| 상수 | 값 | 동작 (문서 요약) |
+|---|---|---|
+| `LOAD_DEFAULT` | -1 | 내비게이션 종류가 특별한 동작을 요구하지 않으면, 캐시된 리소스가 있고 만료되지 않았을 때 그것을 쓰고 아니면 네트워크에서 받습니다. 기본값입니다. |
+| `LOAD_CACHE_ELSE_NETWORK` | 1 | 캐시된 리소스가 있으면 **만료되었더라도** 씁니다. 없을 때만 네트워크에서 받습니다. |
+| `LOAD_NO_CACHE` | 2 | 캐시를 쓰지 않고 네트워크에서 받습니다. |
+| `LOAD_CACHE_ONLY` | 3 | 네트워크를 쓰지 않고 캐시에서만 받습니다. |
+
+문제가 되는 값은 두 번째입니다. `LOAD_CACHE_ELSE_NETWORK`가 걸려 있으면 서버가 만료 시각을 아무리 짧게 줘도 만료된 사본이 계속 쓰입니다. 오프라인 대응이나 초기 로딩 속도를 이유로 이 값을 넣어두는 경우가 있고, 넣은 사람도 잊고 지냅니다. "어제 배포했는데 앱에서는 그제 화면"의 가장 흔한 뿌리가 여기입니다.
+
+다만 문서가 보증하는 것은 **만료된 캐시도 쓴다**까지입니다. `no-store`가 붙은 응답까지 이 모드가 무시하는지는 문서에 없습니다. 앱에 확인을 요청할 때도 "헤더를 무시합니다"가 아니라 "만료된 사본이 계속 쓰입니다"로 말하는 편이 정확합니다.
+
+앱에 확인을 요청하는 지점은 이 한 줄입니다.
+
+```kotlin
+// 앱에 확인을 요청하는 지점 — 이 값이 무엇으로 설정돼 있는가
+webView.settings.cacheMode = WebSettings.LOAD_DEFAULT
+```
+
+참고로 `LOAD_NORMAL`이라는 상수가 옛 코드에 남아 있는 경우가 있는데, 이것은 API level 17에서 deprecated 되었고 Honeycomb 이후로는 `LOAD_DEFAULT`와 같은 효과라고 문서에 적혀 있습니다.
+
+### 캐시를 지우는 일도 앱의 몫입니다
+
+이미 쌓인 캐시를 비우는 것도 웹에서 할 수 없습니다. 안드로이드는 `WebView.clearCache(boolean)`이고, 문서가 중요한 단서를 붙입니다.
+
+> Clears the resource cache. Note that the cache is per-application, so this will clear the cache for all WebViews used.
+
+캐시가 **앱 단위**라는 뜻입니다. 앱 안에 웹뷰 화면이 여럿이면 하나를 지울 방법이 없고, 지우면 전부 지워집니다. 파라미터 `includeDiskFiles`를 `false`로 주면 RAM 캐시만 비워집니다.
+
+iOS는 다른 이름으로 같은 구조입니다. WKWebView의 캐시·쿠키·저장소는 `WKWebsiteDataStore`가 관리합니다. 문서는 "An object that manages cookies, disk and memory caches, and other types of data for a web view"라고 정의하고, `WKWebViewConfiguration.websiteDataStore`에 값을 지정하지 않으면 데이터를 디스크에 영구 저장하는 기본 데이터 스토어를 쓴다고 명시합니다. 지우려면 앱이 `removeData(ofTypes:modifiedSince:completionHandler:)`나 `removeData(ofTypes:for:completionHandler:)`를 호출해야 합니다.
+
+지울 대상 타입 상수는 도입 시점이 갈립니다. iOS 최소 지원 버전이 낮은 앱이라면 이 표가 요청서에 필요합니다.
+
+| 상수 | 대상 | 도입 |
+|---|---|---|
+| `WKWebsiteDataTypeDiskCache` | 디스크 캐시 | iOS 9.0+ |
+| `WKWebsiteDataTypeMemoryCache` | 메모리 캐시 | iOS 9.0+ |
+| `WKWebsiteDataTypeCookies` | 쿠키 | iOS 9.0+ |
+| `WKWebsiteDataTypeLocalStorage` | HTML local storage | iOS 9.0+ |
+| `WKWebsiteDataTypeFetchCache` | fetch 캐시 | iOS 11.3+ |
+| `WKWebsiteDataTypeServiceWorkerRegistrations` | 서비스 워커 등록 정보 | iOS 11.3+ |
+
+쿠키와 저장소가 이 목록에 함께 들어 있다는 점은 기억해 둘 만합니다. 앱이 캐시를 지운다고 `allWebsiteDataTypes()`를 통째로 넘기면 로그인 세션도 같이 날아갑니다. 그쪽 이야기는 [ep.07](/webview-not-browser-ep-07/)에서 다룹니다.
+
+배포 반영만 강제하고 싶다면 더 가벼운 수단이 있습니다.
+
+```swift
+// 앱에 요청하는 지점 — 저장소를 지우지 않고 재검증만 강제한다
+webView.reloadFromOrigin()
+```
+
+문서는 이 메서드를 "Reloads the current webpage, and performs end-to-end revalidation of the content using cache-validating conditionals, if possible"라고 설명합니다. **종단간 재검증(end-to-end revalidation)** 을 조건부 요청으로 수행한다는 뜻입니다. 참고로 `reload()`의 abstract는 "Reloads the current webpage."뿐이고 캐시 동작 서술이 없습니다. 두 메서드를 "하나는 캐시를 쓰고 하나는 안 쓴다"로 대비시키는 설명을 자주 보는데, 문서가 말하는 것은 후자의 재검증뿐입니다.
+
+### 웹 자산이 서버에 없을 수도 있습니다
+
+한 가지 경우가 더 있습니다. 앱이 웹 자산을 번들에 넣어 로컬에서 서빙하는 구성입니다.
+
+안드로이드에는 `WebViewClient.shouldInterceptRequest`가 있고, 앱은 이 지점에서 모든 리소스 요청을 가로채 자체 응답을 돌려줄 수 있습니다. 공식 헬퍼인 `androidx.webkit.WebViewAssetLoader`가 정확히 그 용도입니다. 문서는 "Helper class to load local files including application's static assets and resources using http(s):// URLs inside a WebView"라고 설명하고, 이 클래스가 `shouldInterceptRequest` 안에서 쓰이도록 설계되었으며 `appassets.androidplatform.net`이 예약 도메인이라고 적습니다.
+
+이 구성이라면 서버에 무엇을 배포해도 화면에 닿지 않습니다. 캐시 문제가 아니라 **애초에 서버를 보지 않는 구조**입니다. 캐시 헤더를 붙들고 며칠 쓰기 전에, 지금 화면의 자산이 어디서 오는지부터 확인하는 편이 빠릅니다. 원격 디버거로 네트워크 탭을 여는 절차는 [ep.01](/webview-not-browser-ep-01/)에 있습니다.
+
+---
+
+## 웹뷰의 수명은 누가 정하는가
+
+캐시는 앞부분일 뿐입니다. 더 근본적인 층이 있습니다. 웹 문서가 살아 있는 시간 자체를 웹이 정하지 않습니다.
+
+두 플랫폼 모두 웹 콘텐츠를 앱과 **별도 프로세스**에서 렌더합니다. 그 프로세스를 **렌더러 프로세스(renderer process)** 라고 부릅니다.
+
+다만 안드로이드에는 버전 조건이 붙습니다. 웹 콘텐츠가 앱과 분리된 격리 프로세스에서 도는 것은 안드로이드 8.0(API level 26)의 동작 변경부터입니다. 문서는 "Web content is handled in a separate, isolated process from the containing app's process"라고 적습니다. 그 이전 기기에서는 웹뷰가 앱 프로세스 안에서 돕니다. iOS는 WKWebView 도입 이후 항상 별도 프로세스입니다. 아래에 나오는 안드로이드 콜백과 설정도 전부 API level 26부터입니다. minSdk가 24나 25인 앱이라면 요청서에 그 조건을 함께 적어야 합니다.
+
+iOS의 `WKNavigationDelegate`에는 이런 메서드가 있습니다.
+
+> Web views use a separate process to render and manage web content. WebKit calls this method when the process for the specified web view terminates **for any reason**.
+
+`webViewWebContentProcessDidTerminate(_:)`입니다. "for any reason"이라는 표현이 전부입니다. 어떤 조건에서 회수되는지 문서는 말하지 않습니다.
+
+안드로이드는 같은 사건을 `WebViewClient.onRenderProcessGone(WebView, RenderProcessGoneDetail)`(API level 26+)로 알리고, 여기 붙은 문장이 이 편에서 가장 선명한 근거입니다.
+
+> 반환값: true if the host application handled the situation that process has exited, otherwise, application will crash if render process crashed, or be killed if render process was killed by the system.
+
+앱이 이 콜백을 구현하지 않으면 렌더러가 죽었을 때 **앱 전체가 크래시하거나 킬됩니다.** 웹 화면 하나 때문에 앱이 종료되는 경로가 문서에 명시돼 있습니다. 크래시인지 시스템이 죽인 것인지는 `RenderProcessGoneDetail.didCrash()`로 구분하고, 문서는 "If the render process was killed, this is most likely caused by the system being low on memory"라고 덧붙입니다. 이 콜백은 웹이 손댈 수 없는 항목이라 요청 목록으로 남깁니다. [ep.09](/webview-not-browser-ep-09/)의 체크리스트에 들어갑니다.
+
+회수는 예외 상황이 아닙니다. 안드로이드 문서는 캐시드 프로세스를 두고 "the system is free to kill it as needed when resources like memory are needed elsewhere"라고 쓰고, "regularly kills the cached apps as needed"라고 이어갑니다. iOS도 마찬가지입니다. UIKit 문서는 "UIKit can disconnect a background or suspended scene at any time to reclaim its resources"라고 하고, 백그라운드 문서는 "the system terminates background apps as needed"라고 씁니다.
+
+정리하면 이렇습니다.
+
+![웹뷰 한 세션의 수명을 5단계 타임라인으로 그린 다이어그램. 가로축은 왼쪽에서 오른쪽으로 시간 흐름이며 1단계 로드, 2단계 포그라운드 사용 중, 3단계 백그라운드 진입, 4단계 시스템 자원 회수, 5단계 복귀의 다섯 칸으로 나뉩니다. 세로로는 세 개의 레인이 위에서 아래로 쌓여 있습니다. 맨 위 레인은 주황 계열의 '앱과 OS 계층: 웹이 통제할 수 없음', 가운데 레인은 회색 계열의 '웹뷰 렌더러 프로세스', 맨 아래 레인은 파랑 계열의 '웹 문서 계층: 웹이 통제 가능'입니다. 1단계 로드 칸에서 앱 레인은 '캐시 모드 결정 (Android setCacheMode / iOS websiteDataStore)', 프로세스 레인은 '렌더러 프로세스 생성', 웹 레인은 '응답 헤더 Cache-Control이 반영되는 지점'입니다. 2단계 포그라운드 칸에서 앱 레인은 '관여 없음', 프로세스 레인은 '실행 중', 웹 레인은 '타이머와 통신 정상 동작'입니다. 3단계 백그라운드 진입 칸에서 앱 레인은 'Android는 앱이 onPause 또는 pauseTimers를 호출할지 결정', 프로세스 레인은 '우선순위 하락, 캐시드 프로세스로 이동', 웹 레인은 '백그라운드 타이머 스로틀링, visibilitychange 관측 가능(지원 조건 있음)'입니다. 4단계 시스템 자원 회수 칸에서 앱 레인은 '콜백 수신: Android onRenderProcessGone, iOS webViewWebContentProcessDidTerminate', 프로세스 레인은 '프로세스 종료', 웹 레인은 '실행 중이던 코드가 사라짐, unload는 발화가 보장되지 않음'이고 이 칸의 웹 레인만 빗금 처리되어 통제 불가임을 나타냅니다. 5단계 복귀 칸에서 앱 레인은 '웹뷰 재생성 후 URL 재로드, saveState는 표시 데이터를 저장하지 않음', 프로세스 레인은 '새 렌더러 프로세스', 웹 레인은 '문서는 처음부터 시작. 웹이 미리 저장해 둔 것만 복원 가능. iOS 웹뷰의 bfcache 복귀라면 pageshow의 persisted가 true'입니다. 다이어그램 하단에는 두 개의 굵은 구간 표시가 있습니다. 1단계와 5단계 아래에는 파란색으로 '웹이 개입할 수 있는 구간'이, 3단계부터 4단계까지 아래에는 주황색으로 '앱과 OS가 결정하는 구간'이 표시되어 있습니다.](wnb-08-01-webview-lifecycle.svg)
+
+이 그림에서 읽을 것은 하나입니다. **웹이 개입할 수 있는 구간은 양 끝뿐입니다.** 문서가 살아 있을 때 무엇을 저장해 두는지, 다시 켜졌을 때 무엇을 복원하는지. 그 사이는 전부 바깥의 결정입니다.
+
+그리고 안드로이드에는 이 회수 확률을 앱이 조절하는 손잡이가 하나 더 있습니다. `WebView.setRendererPriorityPolicy(int, boolean)`(API level 26+)입니다. 문서는 기본 정책이 `RENDERER_PRIORITY_IMPORTANT`이며 "this should not be changed unless the caller also handles renderer crashes with WebViewClient.onRenderProcessGone. Any other setting will result in WebView renderers being killed by the system more aggressively than the application"이라고 씁니다. `RENDERER_PRIORITY_WAIVED`로 내려두면 "frequent targets for being killed"이 됩니다. 두 번째 파라미터 `waivedWhenNotVisible`이 `true`면 웹뷰가 보이지 않을 때 자동으로 그 낮은 우선순위로 취급됩니다.
+
+메모리 절감을 이유로 이 값을 내려둔 앱에서는 백그라운드 복귀 시 화면이 처음으로 돌아가는 빈도가 눈에 띄게 올라갑니다. 재현이 잦다면 이 설정값을 확인해 달라고 요청할 수 있습니다.
+
+---
+
+## 긴 신청 폼이 처음으로 돌아가는 이유
+
+여러 화면으로 나뉜 가입 신청 폼을 다섯 화면 채웠는데, 인증 문자를 확인하러 메시지 앱에 다녀오니 첫 화면입니다.
+
+앱이 상태 저장을 게을리해서 그런 것이라고 생각하기 쉽습니다. 그런데 안드로이드 문서는 이렇게 못 박습니다.
+
+> `WebView.saveState(Bundle)` - Saves the state of this WebView used in Activity.onSaveInstanceState(Bundle). **Please note that this method no longer stores the display data for this WebView.**
+
+앱이 `saveState`를 성실히 호출해도 화면에 표시되던 데이터는 저장되지 않습니다. 폼에 입력된 값은 그 안에 없습니다. 앱 쪽에서 아무리 잘해도 돌아오지 않는 값이라는 뜻이고, 뒤집으면 **폼 상태 복원은 웹의 책임**이라는 뜻입니다.
+
+그러면 언제 저장해야 하는가. 페이지가 사라지기 직전을 잡아야 하는데, `unload`는 후보가 아닙니다. MDN은 이렇게 씁니다.
+
+> Especially on mobile, the unload event is not reliably fired.
+
+이어지는 예시가 정확히 웹뷰 상황입니다. 사용자가 페이지를 보다가 다른 앱으로 전환하고, 나중에 앱 관리자에서 브라우저를 닫는 경우 `unload`는 아예 발화하지 않습니다.
+
+문서가 권하는 것은 `visibilitychange`이고, 지원하지 않는 환경의 차선책이 `pagehide`입니다. 웹뷰 지원 범위는 이렇습니다. `visibilitychange` 이벤트는 안드로이드 웹뷰 62부터, iOS 웹뷰 14.5부터입니다. `document.visibilityState` 프로퍼티 자체는 훨씬 오래되어 안드로이드 웹뷰 4.4.3, iOS 웹뷰 7부터 있습니다. `pagehide`와 `pageshow`는 안드로이드 웹뷰 4.4, iOS 웹뷰 4.2부터입니다.
+
+iOS 14.5 미만을 지원해야 한다면 `visibilitychange` 하나만 걸어두면 저장 시점을 놓칩니다. 둘 다 겁니다.
+
+```js
+const KEY = 'draft:signup'
+const form = document.querySelector('#signup')
+
+function persist() {
+  const data = Object.fromEntries(new FormData(form))
+  sessionStorage.setItem(KEY, JSON.stringify(data))
+}
+
+// 화면이 가려지는 시점 (권장 경로)
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') persist()
+})
+
+// visibilitychange를 지원하지 않는 구버전 웹뷰의 차선책
+window.addEventListener('pagehide', persist)
+```
+
+복원은 문서가 다시 뜨는 시점에 겁니다.
+
+```js
+function restore() {
+  const raw = sessionStorage.getItem(KEY)
+  if (!raw) return
+  const data = JSON.parse(raw)
+  for (const [name, value] of Object.entries(data)) {
+    const field = form.elements[name]
+    if (field) field.value = value
+  }
+}
+
+restore()
+```
+
+Vue라면 컴포넌트 수명주기에 같은 두 이벤트를 붙입니다.
+
+```vue
+<script setup>
+import { reactive, onMounted, onUnmounted } from 'vue'
+
+const KEY = 'draft:signup'
+const state = reactive({ name: '', email: '' })
+
+const persist = () => sessionStorage.setItem(KEY, JSON.stringify(state))
+const onVisibilityChange = () => {
+  if (document.visibilityState === 'hidden') persist()
+}
+
+onMounted(() => {
+  const raw = sessionStorage.getItem(KEY)
+  if (raw) Object.assign(state, JSON.parse(raw))
+  document.addEventListener('visibilitychange', onVisibilityChange)
+  window.addEventListener('pagehide', persist)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('visibilitychange', onVisibilityChange)
+  window.removeEventListener('pagehide', persist)
+})
+</script>
+```
+
+`sessionStorage`를 쓴 이유는 문서에 근거가 있습니다. MDN은 "A page session lasts as long as the tab or the browser is open, and survives over page reloads and restores"라고 설명합니다. 재로드와 복원을 견딘다는 것이 명시돼 있습니다.
+
+다만 여기에는 확인되지 않은 구간이 있습니다. **렌더러 프로세스가 시스템에 회수된 뒤에도 `sessionStorage`가 남는지는 공식 문서에서 확인하지 못했습니다.** 그래서 반드시 살아남아야 하는 초안이라면 클라이언트 저장소만 믿지 말고 서버에 임시 저장하는 편이 확실합니다. 개인정보를 다루는 서비스라면 어차피 민감한 식별 정보나 인증 토큰을 클라이언트 저장소에 남길 수 없으니, 초안 키만 남기고 값은 서버에 두는 구성이 자연스럽습니다. 웹뷰 저장소가 브라우저 저장소와 어떻게 다른지는 [ep.07](/webview-not-browser-ep-07/)에서 다루었습니다.
+
+저장 주기는 취향의 문제가 아닙니다. `visibilitychange`가 발화하는 시점에는 이미 늦은 경우가 있으므로, 화면 단위 신청 폼이라면 **다음 화면으로 넘어갈 때마다** 한 번씩 저장해 두는 편이 안전합니다.
+
+---
+
+## 백그라운드에서 시간은 흐르지 않습니다
+
+세션 만료 카운트다운이 있는 화면을 생각해 봅니다. 30분을 세다가 0이 되면 로그아웃 안내를 띄웁니다. 브라우저에서는 잘 돕니다. 앱에서는 이런 일이 벌어집니다. 다른 앱에 20분 다녀왔는데 카운트다운은 28분을 가리키고 있고, 그 상태로 요청을 보내면 서버가 세션 만료로 거절합니다.
+
+원인이 두 층에 있습니다. 섞어서 이해하면 대응이 어긋납니다.
+
+**첫째, 웹 표준 차원의 백그라운드 스로틀링입니다.** MDN은 "Timers such as setTimeout() are throttled in background/inactive tabs to help improve performance"라고 쓰고, 예산 기반 스로틀링이 파이어폭스와 크롬 모두 초당 10밀리초 비율로 예산을 회복시킨다고 설명합니다. `requestAnimationFrame` 콜백은 대부분의 브라우저가 백그라운드에서 아예 보내지 않습니다.
+
+**둘째, 앱이 직접 호출하는 정지입니다.** 안드로이드 `WebView.onPause()`의 문서에는 중요한 단서가 붙어 있습니다.
+
+> Does a best-effort attempt to pause any processing that can be paused safely, such as animations and geolocation. **Note that this call does not pause JavaScript. To pause JavaScript globally, use pauseTimers().**
+
+그리고 `pauseTimers()`는 이렇습니다.
+
+> Pauses all layout, parsing, and JavaScript timers **for all WebViews**. This is a global requests, not restricted to just this WebView.
+
+전역입니다. 앱이 한 화면의 배터리 소모를 줄이려고 이 메서드를 호출하면 앱 안의 모든 웹뷰에서 타이머가 멈춥니다. 백그라운드에서 카운트다운이 얼마나 멈추는지는, 결국 앱이 어느 메서드를 언제 호출했는지에 달려 있습니다. 웹은 그 호출 여부를 알 수 없습니다.
+
+그러면 웹은 어떻게 짜야 하는가. 답은 간단합니다. **남은 초를 세지 말고, 만료 시각과 현재 시각을 비교합니다.**
+
+```js
+// 서버가 만료 시각을 내려줍니다. 클라이언트는 그것을 세지 않고 비교만 합니다
+let expiresAt = 0
+
+function remainingSeconds() {
+  return Math.max(0, Math.floor((expiresAt - Date.now()) / 1000))
+}
+
+function tick() {
+  const left = remainingSeconds()
+  render(left)
+  if (left === 0) onExpired()
+}
+
+setInterval(tick, 1000)
+```
+
+`setInterval`이 백그라운드에서 몇 번을 건너뛰든 상관없습니다. 다시 실행되는 순간 `Date.now()`가 현실을 알려줍니다. 남은 초를 변수에 담아 1씩 빼는 구현만 피하면 됩니다.
+
+여기에 한 겹 더 얹습니다. 화면이 다시 보이는 시점에 서버에 만료 시각을 다시 물어보는 것입니다.
+
+```js
+document.addEventListener('visibilitychange', async () => {
+  if (document.visibilityState !== 'visible') return
+
+  // 백그라운드에 있는 동안 서버 쪽 상태가 바뀌었을 수 있습니다
+  const res = await fetch('/api/session')
+  if (!res.ok) return onExpired()
+
+  const data = await res.json()
+  expiresAt = data.expiresAt
+  tick()
+})
+```
+
+클라이언트가 계산한 남은 시간과 서버가 아는 남은 시간이 어긋날 수 있는 구간이 백그라운드입니다. 그 구간을 넘어온 직후에 한 번 맞춰주는 것이 좋습니다.
+
+### freeze와 resume에 기대지 않습니다
+
+크로미움 계열에는 `freeze`와 `resume` 이벤트가 있습니다. 크롬 문서는 frozen 상태에서 "JavaScript timers and fetch callbacks don't run"이라고 설명하고, 이 편의 문제를 정확히 겨냥한 것처럼 보입니다.
+
+그런데 이식성이 없습니다. 스펙 문서인 WICG Page Lifecycle은 첫 줄에 이렇게 씁니다.
+
+> This specification was published by the Web Platform Incubator Community Group. **It is not a W3C Standard nor is it on the W3C Standards Track.**
+
+지원 범위도 한쪽뿐입니다. `freeze`와 `resume`은 크롬 68, 안드로이드 웹뷰 68, 엣지 79에서 지원되고, **사파리와 iOS 웹뷰에서는 지원되지 않습니다.** MDN에는 이 두 이벤트의 문서 페이지 자체가 없고 호환성 데이터에만 항목이 있습니다.
+
+웹 개발자에게 실제로 이식성 있는 도구는 `visibilitychange`와 `pagehide` 둘뿐입니다. 이 둘로 짜두면 두 플랫폼에서 같은 코드가 돕니다.
+
+---
+
+## 뒤로가기·앞으로가기 캐시(bfcache)는 안드로이드 웹뷰에 없습니다
+
+**안드로이드 웹뷰에는 bfcache가 구현되어 있지 않습니다.** 크로미움은 이것을 의도적으로 선택했습니다. 인텐트 문서는 "We will not support Android WebView as the cost of integrating WebView embedding APIs with back-forward cache is too high"라고 적고, 다른 인텐트 문서도 "back/forward cache is not enabled on WebView"라고 못 박습니다. 이 절의 나머지는 iOS 웹뷰와 브라우저 이야기입니다.
+
+MDN의 설명이 명확합니다.
+
+> The snapshot contains the entire page in memory, including the JavaScript heap; in-progress code is paused when the user navigates away and resumed when they return to the page.
+
+JS 힙까지 통째로 스냅숏하고, 진행 중이던 코드가 일시정지되었다가 재개됩니다. iOS 웹뷰에서 신청 폼에 값을 채우다 약관 화면으로 갔다가 뒤로 돌아왔을 때 입력값이 그대로 살아 있다면 이것이 일하고 있는 겁니다. 그리고 `pageshow` 이벤트가 발화하는 경우 목록에는 "Restoring a frozen page on mobile OSes"가 명시적으로 포함돼 있습니다.
+
+복귀를 감지하려면 `pageshow`의 `persisted`를 봅니다. 이 코드가 실제로 일하는 곳은 iOS 웹뷰뿐입니다. 안드로이드 웹뷰에서는 `persisted`가 참이 되는 일이 없습니다.
+
+```js
+window.addEventListener('pageshow', (event) => {
+  if (!event.persisted) return
+
+  // bfcache에서 복원된 경우입니다. 문서는 그대로지만 데이터는 낡았습니다
+  refreshSessionState()
+  refreshServerData()
+})
+```
+
+여기가 함정입니다. bfcache 복원은 화면이 멀쩡해 보이기 때문에 낡은 수치나 만료된 세션이 그대로 표시됩니다. 복원 시점에 서버 상태를 다시 읽는 코드를 반드시 붙여야 합니다.
+
+그런데 보안 요구가 강한 화면에는 다른 사정이 있습니다. HTML 응답에 `Cache-Control: no-store`를 붙이는 경우가 많습니다. 이 헤더는 오랫동안 bfcache 차단 사유였지만, 지금은 엔진마다 다릅니다. MDN의 차단 사유 목록에 `"response-cache-control-no-store"`가 "The Document was created from an HTTP response whose Cache-Control header included the 'no-store' token."으로 적혀 있는데, 이 값이 놓인 자리가 **User-agent specific blocking reasons** 절입니다. 스펙이 정한 값이 아니라 브라우저가 알아서 정하는 사유라는 뜻입니다.
+
+실제로 크롬이 이 동작을 바꿨습니다. 크롬 116부터 실험을 넓혀 2025년 3\~4월에 100% 롤아웃을 마쳤고, 이제 HTTPS 페이지는 `no-store`가 붙어도 bfcache에 들어갑니다. 대신 쿠키나 인증 상태가 바뀌면 그 페이지를 캐시에서 즉시 내보냅니다. 타임아웃도 이 페이지들만 10분에서 3분으로 줄였습니다.
+
+같은 UA별 목록에 `"unload-listener"`와 `"request-method-not-get"`도 있습니다. `unload` 리스너 하나를 달아둔 것만으로 bfcache가 꺼지는 겁니다. 스펙이 정의한 사유는 따로 있고, 그쪽 목록은 `fetch`·`lock`·`masked`·`navigation-failure`·`parser-aborted`·`websocket` 여섯 개입니다. `websocket`은 이 스펙 목록에 있으니 엔진을 가리지 않지만, UA별 목록의 값들은 대상 웹뷰에서 직접 확인해야 합니다.
+
+정리하면 이렇습니다. `no-store`는 응답이 캐시에 저장되는 것을 막지만, 크롬에서는 메모리 스냅숏인 bfcache까지 막아주지 않습니다. "no-store를 붙였으니 화면이 메모리에 남지 않는다"를 전제로 보안 검토를 끝내면 결론이 틀립니다. 뒤로가기 속도와 잔류 데이터 사이의 선택은 보안 요건이 결정하는 문제이고, 웹 개발자가 혼자 정할 사안은 아닙니다.
+
+**"뒤로가기 하면 폼이 날아갑니다"라는 제보는 플랫폼부터 갈라서 봅니다.** iOS 웹뷰라면 bfcache가 걸렸는지, 즉 헤더와 `unload` 리스너를 확인합니다. 안드로이드 웹뷰라면 헤더를 볼 이유가 없습니다. 애초에 bfcache가 없어서 뒤로가기가 항상 재로드이므로, 앞 절의 캐시 모드와 렌더러 회수, 그리고 앱의 히스토리 처리를 먼저 봅니다.
+
+---
+
+## 네트워크가 끊겼을 때 화면을 그리는 쪽
+
+지하 주차장에서 앱을 켜면 흰 화면이 뜨는 문제가 있습니다. 이 증상은 원인이 두 갈래이고, 갈래에 따라 담당이 완전히 갈립니다.
+
+**첫 로드가 실패한 경우**: 웹 문서가 아예 뜨지 않았으므로 웹 코드는 한 줄도 실행되지 않았습니다. 이때 화면에 무엇을 보여줄지는 앱이 정합니다. 안드로이드는 `WebViewClient.onReceivedError`로 알립니다. API 23부터 시그니처가 바뀌었고, 문서는 새 버전에 대해 "unlike the deprecated version of the callback, the new version will be called for any resource (iframe, image, etc.), not just for the main page"라고 씁니다. HTTP 4xx와 5xx는 `onReceivedHttpError`(API 23+)로 따로 옵니다. iOS는 `WKNavigationDelegate`의 두 콜백입니다. 초기 단계 실패는 `webView(_:didFailProvisionalNavigation:withError:)`, 이후 실패는 `webView(_:didFail:withError:)`입니다.
+
+**여기서 오류 화면을 무엇으로 채울지는 앱의 구현에 달려 있습니다.** 앱이 이 콜백을 비워두면 사용자는 아무 설명 없는 화면을 봅니다. 웹이 손댈 수 있는 지점이 없습니다.
+
+**문서는 떠 있고 이후 통신이 실패한 경우**: 이건 전부 웹의 영역입니다. 그리고 실무에서 훨씬 흔합니다.
+
+```js
+async function request(url, options) {
+  try {
+    const res = await fetch(url, options)
+    if (!res.ok) throw new Error('HTTP ' + res.status)
+    return res
+  } catch (err) {
+    // 응답 자체가 오지 않은 경우와 오류 응답이 온 경우를 같은 화면으로 받습니다
+    showRetryPanel(() => request(url, options))
+    throw err
+  }
+}
+```
+
+핵심은 **재시도 수단을 화면 안에 두는 것**입니다. 브라우저라면 사용자가 새로고침을 누르면 됩니다. 웹뷰에는 그 버튼이 없습니다. 통신 실패 안내에 재시도 버튼이 없으면 사용자는 앱을 껐다 켜는 것 외에 방법이 없습니다.
+
+한 가지 쓰지 말아야 할 것이 있습니다. `navigator.onLine`으로 기능을 잠그는 구현입니다. MDN의 경고가 명확합니다.
+
+> In general, connection to LAN is considered online, even though the LAN may not have Internet access. ... Therefore, this property is inherently unreliable, and you should not disable features based on the online status, only provide hints when the user may seem offline.
+
+힌트로만 쓰라는 뜻입니다. 값이 `false`일 때 "네트워크 연결을 확인해 주세요"라는 문구를 덧붙이는 정도는 괜찮고, 이 값으로 전송 버튼을 비활성화하면 멀쩡한 사용자가 갇힙니다.
+
+서비스 워커로 오프라인 페이지를 미리 심어두는 방법도 있는데, 웹뷰에서는 반쪽입니다. 안드로이드 웹뷰는 서비스 워커를 지원하고 앱이 `ServiceWorkerController`(API level 24부터)로 제어합니다. **iOS 웹뷰는 서비스 워커를 지원하지 않습니다.** 같은 iOS라도 사파리는 11.3부터 지원하는데 웹뷰는 다릅니다. 참고로 Cache API 자체는 iOS 웹뷰 11.3부터 있습니다. 캐시 저장소는 있는데 요청을 가로챌 워커가 없는 상태입니다. 두 플랫폼에 같은 오프라인 전략을 깔 수 없다는 뜻이고, 그래서 서비스 워커보다 앞의 재시도 패널이 먼저입니다.
+
+---
+
+## 배포한 것을 오늘 안에 닿게 하는 법
+
+이제 통제할 수 있는 쪽입니다.
+
+### 헤더를 비워두면 캐시가 알아서 정합니다
+
+가장 먼저 확인할 것은 `Cache-Control`을 실제로 보내고 있는지입니다. 없으면 **휴리스틱 캐싱(heuristic caching)** 이 개입합니다. RFC 9111은 이렇게 씁니다.
+
+> A cache MAY assign a heuristic expiration time when an explicit time is not specified, employing algorithms that use other field values (such as the Last-Modified time) to estimate a plausible expiration time.
+
+그리고 마지막 수정 이후 경과 시간의 일정 비율을 쓰도록 권하며 "A typical setting of this fraction might be 10%"라는 예를 듭니다. 반년 동안 손대지 않은 파일이라면 20일 가까이 캐시될 수 있다는 뜻입니다. MDN의 결론이 단호합니다.
+
+> basically all responses should explicitly specify a Cache-Control header.
+
+### no-cache는 캐시하지 말라는 뜻이 아닙니다
+
+이름 때문에 반대로 쓰이는 지시자입니다. MDN이 직접 주의를 답니다.
+
+> **Note:** no-cache does not mean "don't cache". no-cache allows caches to store a response but requires them to revalidate it before reuse.
+
+`no-cache`는 **저장은 하되 쓰기 전에 반드시 재검증하라**입니다. 진짜로 저장을 막는 것은 `no-store`이고, RFC 9111은 "a cache MUST NOT store any part of either the immediate request or the response"라고 정의합니다.
+
+### 리소스 종류에 따라 다르게 씁니다
+
+MDN이 권고하는 패턴은 두 갈래입니다.
+
+메인 리소스, 즉 HTML은 URL을 바꿀 수 없습니다. MDN의 표현으로는 "main resources cannot be cache busted because their URLs can't be decorated in the same way that subresource URLs can be"입니다. 그래서 항상 최신이어야 하지만 저장은 허용하고 싶은 HTML에는 `no-cache`가 맞습니다. 로그인 이후 개인화된 HTML이라면 MDN 예시가 `no-cache, private`입니다.
+
+서브리소스, 즉 JS와 CSS는 파일명에 해시를 박습니다. MDN이 **캐시 무효화(cache busting)** 라고 부르는 패턴입니다. 내용이 바뀌면 URL이 바뀌므로 캐시가 낡을 일이 없고, 그래서 만료 시각을 최대로 길게 줄 수 있습니다.
+
+```text
+# HTML — 저장은 허용하되 쓰기 전에 반드시 재검증
+Cache-Control: no-cache, private
+
+# 해시가 박힌 JS/CSS — 1년, 내용이 바뀌면 파일명이 바뀝니다
+Cache-Control: max-age=31536000, immutable
+
+# 이미지처럼 파일명이 고정된 자산 — 재검증 주기를 명시
+Cache-Control: max-age=3600
+```
+
+여기서 웹뷰 특유의 갈림이 하나 있습니다. `immutable`을 붙이면 유효 기간 안에는 재검증 요청조차 보내지 않는데, **이 지시자는 크로미움에서 지원되지 않습니다.** 지원 현황은 사파리 11, iOS 웹뷰 11, 파이어폭스 49이고 크롬·크롬 안드로이드·안드로이드 웹뷰는 미지원입니다. 엣지는 15에서 지원했다가 크로미움 전환과 함께 79에서 제거했으니 지금은 동작하지 않습니다. 안드로이드 웹뷰에서는 `max-age`만 동작합니다.
+
+이건 앱이 켤 수 있는 옵션이 아니라 엔진이 이예 구현하지 않은 항목입니다. 앱 개발자에게 요청할 대상이 아니니 구분해 두어야 합니다. 실무적으로는 `immutable`을 붙여도 손해는 없고, 안드로이드 쪽에서는 조건부 요청 한 번이 더 나간다고 이해하면 됩니다. 그 요청은 `ETag`가 있으면 304로 끝납니다. MDN은 "The server will return 304 Not Modified if the value of the ETag header it determines for the requested resource is the same as the If-None-Match value in the request"라고 설명하고, RFC 9110이 200 응답에 `ETag`와 `Last-Modified`를 함께 보내는 것을 선호한다고 덧붙입니다.
+
+### 쓰지 못하는 두 가지
+
+배포 반영 문제를 만나면 손이 먼저 가는 두 가지가 있는데, 둘 다 제대로 동작하지 않을 수 있습니다.
+
+**HTML의 meta 태그로 캐시를 제어하는 방법**: `http-equiv` 속성에 문서화된 값은 `content-language`, `content-type`, `content-security-policy`, `default-style`, `refresh`, `set-cookie`, `x-ua-compatible`뿐입니다. `Cache-Control`과 `Pragma`, `Expires`는 이 목록에 없습니다. MDN은 "Since unrecognized headers or invalid values are ignored, this can lead to inconsistent behavior across browser implementations"라고 씁니다. 캐시는 HTTP 응답 헤더로만 제어합니다.
+
+**`location.reload(true)`**: 인자를 주면 캐시를 우회한다는 이야기가 오래 돌았습니다. MDN은 이 `forceGet` 인자에 대해 "Only supported in Firefox"라고 명시하고, 스펙 시그니처에는 인자가 아예 없습니다.
+
+### 서버에서 원격으로 지우는 방법
+
+`Clear-Site-Data` 헤더가 있습니다. 서버가 응답에 이 헤더를 실어 브라우저 쪽 캐시와 저장소를 지우게 하는 장치입니다. HTTPS에서만 동작하고, 문법상 지시자는 반드시 큰따옴표로 감싸야 합니다.
+
+이름이 비슷해 보이지만 지시자마다 건드리는 층이 다릅니다.
+
+| 지시자 | 지우는 대상 |
+|---|---|
+| `"cookies"` | 해당 오리진의 쿠키 전부. **HTTP 인증 자격증명도 함께 지워집니다.** 그리고 범위가 등록 도메인 전체라 서브도메인 쿠키까지 걸립니다 |
+| `"storage"` | DOM 저장소 전부. `localStorage`, `sessionStorage`, IndexedDB, **서비스 워커 등록**, File System API 데이터가 여기 들어갑니다 |
+| `"cache"` | 브라우저 캐시. 브라우저에 따라 프리렌더 페이지, bfcache, 스크립트 캐시까지 함께 지워질 수 있습니다 |
+| `"clientHints"` | `Accept-CH`로 요청해 저장해둔 클라이언트 힌트 |
+| `"executionContexts"` | 지우는 것이 아니라 **해당 오리진의 브라우징 컨텍스트를 새로고침**합니다 |
+| `"prefetchCache"` / `"prerenderCache"` | Speculation Rules로 미리 가져오거나 미리 렌더해둔 결과 |
+| `"*"` | 위 전부. 나중에 지시자가 추가되면 그것까지 포함됩니다 |
+
+실무에서 걸리는 지점이 셋 있습니다. **`"cookies"`가 서브도메인까지 훑는다는 점**은 의도한 범위보다 넓게 지워질 수 있다는 뜻입니다. **`"storage"`가 서비스 워커 등록까지 해제한다는 점**도 로그아웃 처리에 이 지시자를 넣기 전에 알고 있어야 합니다. 그리고 `"clientHints"`는 `"cache"`나 `"cookies"`, `"*"` 중 하나만 있어도 함께 지워지므로 **단독으로 쓸 때만 의미가 있습니다.**
+
+`"cache"`에 붙은 단서도 짚어둡니다. 확실히 지우는 것은 브라우저 캐시까지이고, MDN이 "Depending on the browser"라는 조건을 달아둔 그 뒤는 표준이 보증하지 않습니다.
+
+만능처럼 보이지만 웹뷰 지원 범위가 지시자마다 다릅니다.
+
+| 지시자 | 안드로이드 웹뷰 | iOS 웹뷰 |
+|---|---|---|
+| 헤더 자체 / `"cookies"` / `"storage"` | 61 | 17 |
+| `"cache"` | 127 (부분 구현) | 17 |
+| `"*"` (전체) | 127 (부분 구현) | 17 |
+| `"executionContexts"` | 미지원 | 17\~18.2 (18.3에서 제거) |
+| `"prefetchCache"` / `"prerenderCache"` | 138 | 미지원 |
+| `"clientHints"` | 117 | 미지원 |
+
+정작 배포 반영에 필요한 `"cache"`가 안드로이드 웹뷰에서 크롬 127 이상이고, 그것도 부분 구현입니다. 안드로이드 웹뷰는 기기마다 버전이 제각각이라([ep.01](/webview-not-browser-ep-01/)) 이 헤더 하나로 전 사용자를 커버할 수 없습니다. 로그아웃 시 저장소 정리 같은 용도의 보조 수단으로는 쓸 만하고, 배포 반영의 주력으로 삼기에는 이릅니다.
+
+표에서 `"executionContexts"`는 아예 빼고 생각하는 편이 낫습니다. 사파리 계열에만 잠깐 있다가 18.3에서 제거되었고 크로미움과 파이어폭스는 지원한 적이 없으니, 지금은 어느 엔진에서도 동작하지 않습니다.
+
+### 화면 안에 새로고침 버튼을 만듭니다
+
+결국 가장 확실한 것은 **웹이 스스로 새 버전을 감지해서 사용자에게 알리는 것**입니다. 캐시 계층을 우회하려 애쓰는 대신, 캐시되지 않는 작은 파일 하나를 두고 그것만 확인합니다.
+
+빌드마다 값이 바뀌는 파일을 배포합니다.
+
+```text
+GET /version.json
+Cache-Control: no-store
+
+{"build": "2026-08-25T09:12:00Z"}
+```
+
+HTML에는 빌드 시점에 같은 값을 박아둡니다.
+
+```html
+<html data-build="2026-08-25T09:12:00Z">
+```
+
+그리고 화면이 다시 보이는 시점마다 비교합니다. 쿼리 파라미터를 붙이는 것은 앞에서 본 캐시 무효화 패턴 그대로입니다.
+
+```js
+const CURRENT = document.documentElement.dataset.build
+
+async function checkForUpdate() {
+  try {
+    // 쿼리 파라미터로 URL을 바꿔 캐시된 사본을 피합니다
+    const res = await fetch('/version.json?t=' + Date.now())
+    if (!res.ok) return
+
+    const data = await res.json()
+    if (data.build !== CURRENT) showUpdateBanner()
+  } catch {
+    // 통신 실패는 조용히 넘깁니다. 다음 기회에 다시 확인합니다
+  }
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') checkForUpdate()
+})
+
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) checkForUpdate()
+})
+```
+
+`showUpdateBanner`는 자동 새로고침이 아니라 사용자가 누르는 버튼이어야 합니다. 신청 폼을 절반 채운 사용자의 화면을 예고 없이 갈아엎으면 앞 섹션에서 만든 초안 저장이 무의미해집니다. 배너를 띄우고, 누르면 `location.reload()`를 부르고, 그 전에 초안을 저장합니다.
+
+이 패턴의 장점은 **앱 설정과 무관하다**는 점입니다. 캐시 모드가 무엇이든, 렌더러가 언제 회수되든, 화면이 다시 보이는 순간 웹이 직접 확인합니다. 통제할 수 없는 층을 우회하는 대신 통제할 수 있는 층에서 해결하는 방식입니다.
+
+---
+
+## 그래서 무엇을 하면 되나
+
+이 편에서 나온 항목을 담당별로 갈라둡니다.
+
+### 웹 개발자가 할 일
+
+- **모든 응답에 `Cache-Control`을 명시합니다.** 비워두면 휴리스틱 캐싱이 마지막 수정 시각 기준으로 만료를 추정합니다.
+- **HTML은 `no-cache`, 해시를 적은 자산은 최대한 길게 `max-age=31536000`을 씁니다.** `no-cache`는 저장 금지가 아니라 재검증 강제입니다. `immutable`은 iOS 웹뷰 11 이상에서만 효과가 있고 안드로이드 웹뷰에서는 무시됩니다.
+- **빌드 버전 파일로 배포를 스스로 감지합니다.** `visibilitychange`가 visible로 바뀔 때 확인하고, 새 버전이면 사용자가 누를 수 있는 배너를 띄웁니다.
+- **폼 초안을 직접 저장합니다.** 앱이 `saveState`를 호출해도 표시 데이터는 돌아오지 않습니다. `visibilitychange`와 `pagehide` 양쪽에 저장을 겁니다. iOS 웹뷰는 14.5 미만에서 `visibilitychange`가 없으므로 `pagehide`가 필요합니다.
+- **카운트다운을 만료 시각 비교로 바꿉니다.** 남은 초를 세는 구현은 백그라운드 스로틀링과 `pauseTimers()` 두 층 모두에 취약합니다.
+- **화면 복귀 시 서버 상태를 다시 읽습니다.** `visibilitychange`와 `pageshow`의 `persisted`가 그 지점입니다. `persisted`는 iOS 웹뷰에서만 참이 됩니다. 안드로이드 웹뷰에는 bfcache가 없으므로 `visibilitychange` 쪽이 유일한 경로입니다.
+- **통신 실패 화면에 재시도 버튼을 둡니다.** 웹뷰에는 새로고침 버튼이 없습니다.
+- **`navigator.onLine`으로 기능을 잠그지 않습니다.** MDN이 힌트 용도로만 쓰라고 명시합니다.
+- **`unload` 리스너를 걷어냅니다.** 모바일에서 발화가 보장되지 않고, bfcache 차단 사유이기도 합니다.
+- **`meta http-equiv`와 `location.reload(true)`를 지웁니다.** 전자는 캐시 제어에 정의된 값이 아니고, 후자는 파이어폭스에서만 동작합니다.
+
+### 앱에 요청할 일
+
+대부분 먼저 확인을 요청하는 항목입니다. 값을 알아야 무엇을 바꿔달라고 할지 정해집니다.
+
+- **`WebSettings.setCacheMode`에 무엇이 설정돼 있는지.** `LOAD_CACHE_ELSE_NETWORK`이면 만료된 사본이 계속 쓰입니다.
+- **`WebViewClient.onRenderProcessGone`(API level 26+)을 구현했는지.** 구현하지 않으면 렌더러가 죽었을 때 앱이 크래시하거나 킬된다고 문서에 적혀 있습니다.
+- **`setRendererPriorityPolicy`(API level 26+)를 기본값에서 내렸는지.** 내렸다면 백그라운드 복귀 시 화면 초기화 빈도가 올라갑니다.
+- **`pauseTimers()`를 호출하는 지점이 있는지.** 이 호출은 앱 안의 모든 웹뷰에 전역으로 적용됩니다.
+- **네트워크 오류 콜백에서 무엇을 보여주는지.** 첫 로드 실패 화면은 앱이 그립니다.
+- **웹 자산을 번들에서 서빙하는지.** `WebViewAssetLoader` 구성이라면 서버 배포가 화면에 닿지 않습니다.
+- **배포 반영이 급할 때 강제할 수단이 있는지.** iOS는 `reloadFromOrigin()`, 안드로이드는 `clearCache(true)`입니다. 후자는 앱 전체 캐시를 비웁니다.
+
+요청 항목을 이슈에 어떻게 담을지는 [ep.09](/webview-not-browser-ep-09/)에서 정리합니다.
+
+한 문장으로 줄이면 이렇습니다. **웹뷰가 살아 있는 시간은 바깥이 정하지만, 그 시간이 끊길 때 무엇을 남기고 무엇을 되찾을지는 웹이 정합니다.** 캐시 모드를 이길 방법을 찾는 대신, 화면이 다시 켜지는 순간마다 스스로 확인하는 코드를 두는 편이 훨씬 빠릅니다.
+
+---
+
+## 참고 자료
+
+- Android Developers. WebSettings. https://developer.android.com/reference/android/webkit/WebSettings
+- Android Developers. WebView. https://developer.android.com/reference/android/webkit/WebView
+- Android Developers. WebViewClient. https://developer.android.com/reference/android/webkit/WebViewClient
+- Android Developers. RenderProcessGoneDetail. https://developer.android.com/reference/android/webkit/RenderProcessGoneDetail
+- Android Developers. ServiceWorkerController. https://developer.android.com/reference/android/webkit/ServiceWorkerController
+- Android Developers. WebViewAssetLoader. https://developer.android.com/reference/androidx/webkit/WebViewAssetLoader
+- Android Developers. Processes and app lifecycle. https://developer.android.com/guide/components/activities/process-lifecycle
+- Android Developers. Android 8.0 Behavior Changes. https://developer.android.com/about/versions/oreo/android-8.0-changes
+- Apple. webViewWebContentProcessDidTerminate(\_:). Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wknavigationdelegate/webviewwebcontentprocessdidterminate(\_:)
+- Apple. WKWebsiteDataStore. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebsitedatastore
+- Apple. WKWebsiteDataRecord. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebsitedatarecord
+- Apple. reloadFromOrigin(). Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebview/reloadfromorigin()
+- Apple. websiteDataStore. Apple Developer Documentation. https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/websitedatastore
+- Apple. Managing your app's life cycle. Apple Developer Documentation. https://developer.apple.com/documentation/uikit/managing-your-app-s-life-cycle
+- Apple. Preparing your UI to run in the background. Apple Developer Documentation. https://developer.apple.com/documentation/uikit/preparing-your-ui-to-run-in-the-background
+- MDN Web Docs. Page Visibility API. https://developer.mozilla.org/en-US/docs/Web/API/Page\_Visibility\_API
+- MDN Web Docs. Window: unload event. https://developer.mozilla.org/en-US/docs/Web/API/Window/unload\_event
+- MDN Web Docs. Window: pageshow event. https://developer.mozilla.org/en-US/docs/Web/API/Window/pageshow\_event
+- MDN Web Docs. bfcache. https://developer.mozilla.org/en-US/docs/Glossary/bfcache
+- MDN Web Docs. Monitoring bfcache blocking reasons. https://developer.mozilla.org/en-US/docs/Web/API/Performance\_API/Monitoring\_bfcache\_blocking\_reasons
+- MDN Web Docs. Navigator: onLine property. https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine
+- MDN Web Docs. Window: sessionStorage property. https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+- MDN Web Docs. Cache-Control. https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control
+- MDN Web Docs. Clear-Site-Data. https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Clear-Site-Data
+- MDN Web Docs. HTTP caching. https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching
+- MDN Web Docs. The http-equiv attribute. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/http-equiv
+- MDN Web Docs. Location: reload() method. https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
+- MDN Web Docs. Service Worker API. https://developer.mozilla.org/en-US/docs/Web/API/Service\_Worker\_API
+- IETF. RFC 9111: HTTP Caching. https://www.rfc-editor.org/rfc/rfc9111.html
+- WICG. Page Lifecycle. Draft Community Group Report. https://wicg.github.io/page-lifecycle/
+- Chrome Developers. Page Lifecycle API. https://developer.chrome.com/docs/web-platform/page-lifecycle-api
+- Chrome Developers. Enabling bfcache for pages with Cache-Control: no-store. https://developer.chrome.com/docs/web-platform/bfcache-ccns
+- Chromium. Intent to Ship: Same-site back-forward cache on Android. bfcache-dev. https://groups.google.com/a/chromium.org/g/bfcache-dev/c/0zTVPni5F9g
+- Chromium. Intent to Ship: Back/forward cache NotRestoredReasons API. blink-dev. https://groups.google.com/a/chromium.org/g/blink-dev/c/G5tPtziBkEA
+
+---
+
+## 다음 편 예고
+
+> [ep.09 - 앱 개발자에게 무엇을 요청할 것인가](/webview-not-browser-ep-09/)
+
+여덟 편에 흩어진 항목을 담당별로 재배열합니다. 증상에서 원인과 담당으로 가는 매핑표, 이슈에 담아야 할 재현 정보, 프로젝트 초기에 합의해둘 항목까지 요청서 형태로 정리합니다.

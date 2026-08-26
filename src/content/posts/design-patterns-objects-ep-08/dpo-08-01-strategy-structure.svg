@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title-st">
-  <title id="title-st">Strategy 패턴 — Context와 교체 가능한 Strategy들</title>
+  <title id="title-st">Strategy 패턴: Context와 교체 가능한 Strategy들</title>
   <defs>
     <style>
       :root {
@@ -84,25 +84,25 @@
   <g transform="translate(860 130)">
     <rect width="240" height="60" rx="4" class="box-strat"/>
     <text x="120" y="26" class="cname" text-anchor="middle">PriceSortStrategy</text>
-    <text x="120" y="44" class="annot" text-anchor="middle">a.price - b.price</text>
+    <text x="120" y="44" class="annot" text-anchor="middle">a.price: b.price</text>
   </g>
 
   <g transform="translate(860 240)">
     <rect width="240" height="60" rx="4" class="box-strat"/>
     <text x="120" y="26" class="cname" text-anchor="middle">PopularSortStrategy</text>
-    <text x="120" y="44" class="annot" text-anchor="middle">b.views - a.views</text>
+    <text x="120" y="44" class="annot" text-anchor="middle">b.views: a.views</text>
   </g>
 
   <g transform="translate(860 350)">
     <rect width="240" height="60" rx="4" class="box-strat"/>
     <text x="120" y="26" class="cname" text-anchor="middle">RecentSortStrategy</text>
-    <text x="120" y="44" class="annot" text-anchor="middle">b.createdAt - a.createdAt</text>
+    <text x="120" y="44" class="annot" text-anchor="middle">b.createdAt: a.createdAt</text>
   </g>
 
   <!-- 런타임 교체 흐름 -->
   <g transform="translate(60 440)">
     <rect width="1080" height="100" rx="6" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1.5" stroke-dasharray="4 3"/>
-    <text x="20" y="28" class="swap-label">RUNTIME SWAP — list.setStrategy(...)</text>
+    <text x="20" y="28" class="swap-label">RUNTIME SWAP: list.setStrategy(...)</text>
 
     <g transform="translate(20 50)">
       <rect width="200" height="30" rx="4" class="box"/>

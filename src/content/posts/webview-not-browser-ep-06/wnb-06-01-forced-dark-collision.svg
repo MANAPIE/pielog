@@ -1,0 +1,182 @@
+<svg viewBox="0 0 800 628" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-fdc">
+  <title id="t-fdc">Android WebView에서 다크모드 요청이 세 갈래로 갈리는 과정</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #0E7490; --c-accent-2: #B45309; --c-line: #1A1F2E;
+        --c-card: #FFFFFF; --c-soft: rgba(14,116,144,0.08);
+        --c-soft-2: rgba(180,83,9,0.10); --c-divider: rgba(26,31,46,0.15);
+        --c-danger: #B0181B; --c-soft-3: rgba(176,24,27,0.09);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #4DD4EC; --c-accent-2: #E8A876; --c-line: #E8E6E1;
+          --c-card: #161B22; --c-soft: rgba(77,212,236,0.12);
+          --c-soft-2: rgba(232,168,118,0.14); --c-divider: rgba(232,230,225,0.18);
+          --c-danger: #F2A0A0; --c-soft-3: rgba(242,160,160,0.13);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .hdr { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-bg); }
+      .axis { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-muted); }
+      .axis-code { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+      .node { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .node-sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; fill: var(--c-muted); }
+      .code { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; }
+      .side-ttl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .side-cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; fill: var(--c-muted); }
+      .band-ttl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .band-txt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; fill: var(--c-fg); }
+      .c1-card { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.4; }
+      .c1-final { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.8; }
+      .c2-card { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.4; }
+      .c2-final { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.8; }
+      .c3-card { fill: var(--c-card); stroke: var(--c-danger); stroke-width: 1.4; }
+      .c3-final { fill: var(--c-soft-3); stroke: var(--c-danger); stroke-width: 1.8; }
+      .side-box { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; stroke-dasharray: 5 4; }
+      .band-box { fill: var(--c-soft); stroke: var(--c-divider); stroke-width: 1.2; }
+      .divider { stroke: var(--c-divider); stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="628"/>
+
+  <!-- ================= 왼쪽 단계 축 ================= -->
+  <line x1="118" y1="64" x2="118" y2="516" class="divider"/>
+  <circle cx="118" cy="110" r="3.5" fill="var(--c-muted)"/>
+  <circle cx="118" cy="230" r="3.5" fill="var(--c-muted)"/>
+  <circle cx="118" cy="350" r="3.5" fill="var(--c-muted)"/>
+  <circle cx="118" cy="470" r="3.5" fill="var(--c-muted)"/>
+
+  <text x="106" y="114" class="axis" text-anchor="end">앱 테마 설정</text>
+  <text x="106" y="226" class="axis-code" text-anchor="end">prefers-color-</text>
+  <text x="106" y="243" class="axis" text-anchor="end">scheme 평가</text>
+  <text x="106" y="354" class="axis" text-anchor="end">페이지 렌더링</text>
+  <text x="106" y="474" class="axis" text-anchor="end">최종 화면</text>
+
+  <!-- ================= 열 1: 정상 경로 ================= -->
+  <g>
+    <rect x="136" y="16" width="162" height="34" rx="8" fill="var(--c-accent)"/>
+    <text x="217" y="38" class="hdr" text-anchor="middle">정상 경로</text>
+
+    <rect x="136" y="64" width="162" height="92" rx="8" class="c1-card"/>
+    <text x="148" y="106" class="code" fill="var(--c-accent)">android:isLightTheme</text>
+    <text x="148" y="123" class="code" fill="var(--c-accent)">= false</text>
+
+    <line x1="217" y1="158" x2="217" y2="172" stroke="var(--c-accent)" stroke-width="1.8"/>
+    <polygon points="217,182 211,172 223,172" fill="var(--c-accent)"/>
+
+    <rect x="136" y="184" width="162" height="92" rx="8" class="c1-card"/>
+    <text x="148" y="226" class="code" fill="var(--c-accent)">prefers-color-scheme:</text>
+    <text x="148" y="243" class="code" fill="var(--c-accent)">dark</text>
+
+    <line x1="217" y1="278" x2="217" y2="292" stroke="var(--c-accent)" stroke-width="1.8"/>
+    <polygon points="217,302 211,292 223,292" fill="var(--c-accent)"/>
+
+    <rect x="136" y="304" width="162" height="92" rx="8" class="c1-card"/>
+    <text x="148" y="329" class="node">페이지가 선언한</text>
+    <text x="148" y="346" class="node">다크 CSS 적용</text>
+    <text x="148" y="363" class="code" fill="var(--c-accent)">color-scheme:</text>
+    <text x="148" y="380" class="code" fill="var(--c-accent)">light dark 선언됨</text>
+
+    <line x1="217" y1="398" x2="217" y2="412" stroke="var(--c-accent)" stroke-width="1.8"/>
+    <polygon points="217,422 211,412 223,412" fill="var(--c-accent)"/>
+
+    <rect x="136" y="424" width="162" height="92" rx="8" class="c1-final"/>
+    <text x="148" y="458" class="node">우리가 설계한</text>
+    <text x="148" y="475" class="node">다크 화면</text>
+    <text x="148" y="492" class="node-sub">알고리즘 반전 미적용</text>
+  </g>
+
+  <!-- ================= 열 2: 반전 경로 ================= -->
+  <g>
+    <rect x="308" y="16" width="162" height="34" rx="8" fill="var(--c-accent-2)"/>
+    <text x="389" y="38" class="hdr" text-anchor="middle">반전 경로</text>
+
+    <rect x="308" y="64" width="162" height="92" rx="8" class="c2-card"/>
+    <text x="320" y="98" class="code" fill="var(--c-accent-2)">android:isLightTheme</text>
+    <text x="320" y="115" class="code" fill="var(--c-accent-2)">= false</text>
+    <text x="320" y="132" class="node">+ 알고리즘 다크 허용</text>
+
+    <line x1="389" y1="158" x2="389" y2="172" stroke="var(--c-accent-2)" stroke-width="1.8"/>
+    <polygon points="389,182 383,172 395,172" fill="var(--c-accent-2)"/>
+
+    <rect x="308" y="184" width="162" height="92" rx="8" class="c2-card"/>
+    <text x="320" y="218" class="node">페이지에</text>
+    <text x="320" y="235" class="code" fill="var(--c-accent-2)">color-scheme</text>
+    <text x="320" y="252" class="node">선언 없음</text>
+
+    <line x1="389" y1="278" x2="389" y2="292" stroke="var(--c-accent-2)" stroke-width="1.8"/>
+    <polygon points="389,302 383,292 395,292" fill="var(--c-accent-2)"/>
+
+    <rect x="308" y="304" width="162" height="92" rx="8" class="c2-card"/>
+    <text x="320" y="346" class="node">페이지는 라이트</text>
+    <text x="320" y="363" class="node">CSS로 그려짐</text>
+
+    <line x1="389" y1="398" x2="389" y2="412" stroke="var(--c-accent-2)" stroke-width="1.8"/>
+    <polygon points="389,422 383,412 395,412" fill="var(--c-accent-2)"/>
+
+    <rect x="308" y="424" width="162" height="92" rx="8" class="c2-final"/>
+    <text x="320" y="449" class="node">WebView가 색을</text>
+    <text x="320" y="466" class="node">알고리즘으로 반전</text>
+    <text x="320" y="483" class="node-sub">브랜드 색이</text>
+    <text x="320" y="500" class="node-sub">회색으로 뭉개짐</text>
+  </g>
+
+  <!-- ================= 열 3: 어긋난 경로 ================= -->
+  <g>
+    <rect x="480" y="16" width="162" height="34" rx="8" fill="var(--c-danger)"/>
+    <text x="561" y="38" class="hdr" text-anchor="middle">어긋난 경로</text>
+
+    <rect x="480" y="64" width="162" height="92" rx="8" class="c3-card"/>
+    <text x="492" y="98" class="node">OS는 다크모드, 그러나</text>
+    <text x="492" y="115" class="code" fill="var(--c-danger)">android:isLightTheme</text>
+    <text x="492" y="132" class="code" fill="var(--c-danger)">= true 또는 미지정</text>
+
+    <line x1="561" y1="158" x2="561" y2="172" stroke="var(--c-danger)" stroke-width="1.8"/>
+    <polygon points="561,182 555,172 567,172" fill="var(--c-danger)"/>
+
+    <rect x="480" y="184" width="162" height="92" rx="8" class="c3-card"/>
+    <text x="492" y="226" class="code" fill="var(--c-danger)">prefers-color-scheme:</text>
+    <text x="492" y="243" class="code" fill="var(--c-danger)">light</text>
+
+    <line x1="561" y1="278" x2="561" y2="292" stroke="var(--c-danger)" stroke-width="1.8"/>
+    <polygon points="561,302 555,292 567,292" fill="var(--c-danger)"/>
+
+    <rect x="480" y="304" width="162" height="92" rx="8" class="c3-card"/>
+    <text x="492" y="346" class="node">페이지가 라이트</text>
+    <text x="492" y="363" class="node">CSS로 그려짐</text>
+
+    <line x1="561" y1="398" x2="561" y2="412" stroke="var(--c-danger)" stroke-width="1.8"/>
+    <polygon points="561,422 555,412 567,412" fill="var(--c-danger)"/>
+
+    <rect x="480" y="424" width="162" height="92" rx="8" class="c3-final"/>
+    <text x="492" y="458" class="node">기기는 다크인데</text>
+    <text x="492" y="475" class="node">웹 화면만 라이트</text>
+    <text x="492" y="492" class="node-sub">사용자 기대와 불일치</text>
+  </g>
+
+  <!-- ================= 오른쪽 여백: 조건 상자 ================= -->
+  <g>
+    <rect x="654" y="190" width="130" height="200" rx="8" class="side-box"/>
+    <text x="666" y="216" class="code" fill="var(--c-fg)">targetSdkVersion</text>
+    <text x="666" y="233" class="side-ttl">33 이상</text>
+    <line x1="666" y1="249" x2="772" y2="249" class="divider"/>
+    <text x="666" y="274" class="code" fill="var(--c-accent-2)">setForceDark()</text>
+    <text x="666" y="292" class="side-cap">→ no-op</text>
+    <line x1="666" y1="308" x2="772" y2="308" class="divider"/>
+    <text x="666" y="332" class="code" fill="var(--c-accent)">setAlgorithmic</text>
+    <text x="666" y="347" class="code" fill="var(--c-accent)">DarkeningAllowed</text>
+    <text x="666" y="365" class="side-cap">기본값 false</text>
+  </g>
+
+  <!-- ================= 하단 주석 띠 ================= -->
+  <g>
+    <rect x="16" y="546" width="768" height="62" rx="8" class="band-box"/>
+    <rect x="16" y="560" width="4" height="34" rx="2" fill="var(--c-accent-2)"/>
+    <text x="36" y="572" class="band-ttl">세 경로의 분기점은 두 개다.</text>
+    <text x="36" y="594" class="band-txt">앱 테마의 isLightTheme 속성값, 그리고 페이지의 color-scheme 선언 유무.</text>
+  </g>
+</svg>

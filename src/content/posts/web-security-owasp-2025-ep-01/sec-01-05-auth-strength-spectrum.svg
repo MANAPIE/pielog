@@ -200,7 +200,7 @@
       <text x="0" y="14" class="attack-label">SIM Swap</text>
       <circle cx="150" cy="10" r="10" fill="var(--sec-slate-200, #e2e8f0)" />
       <text x="150" y="14" text-anchor="middle"
-        style="font: 400 11px system-ui; fill: var(--sec-fg-muted, #64748b);">—</text>
+        style="font: 400 11px system-ui; fill: var(--sec-fg-muted, #64748b);">-</text>
     </g>
 
     <!-- Level 2: Password + SMS OTP -->

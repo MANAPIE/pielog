@@ -50,7 +50,7 @@
     <rect class="card" x="0" y="0" width="660" height="230" rx="6" />
 
     <text class="pr-label" x="20" y="26">TITLE</text>
-    <text class="pr-line" x="20" y="44">[type] 한 줄로 무엇을 하는 PR인지 — 영문/한글 일관성 유지</text>
+    <text class="pr-line" x="20" y="44">[type] 한 줄로 무엇을 하는 PR인지: 영문/한글 일관성 유지</text>
 
     <line x1="20" y1="60" x2="640" y2="60" stroke="var(--c-line)" stroke-width="0.5" />
 

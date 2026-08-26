@@ -148,7 +148,7 @@
     <rect class="rust-card" x="40" y="76" width="350" height="280" rx="14" stroke-width="0.5" />
     <rect class="rust-head" x="40" y="76" width="350" height="32" rx="14" />
     <rect class="rust-head" x="40" y="96" width="350" height="12" />
-    <text class="col-h" x="60" y="98">색상만 사용 — 정보 전달 실패</text>
+    <text class="col-h" x="60" y="98">색상만 사용: 정보 전달 실패</text>
 
     <text class="lbl body-t" x="60" y="134">이름</text>
     <rect class="input-bg teal-stroke" x="60" y="142" width="310" height="32" rx="6" stroke-width="2" />
@@ -170,7 +170,7 @@
     <rect class="teal-card" x="410" y="76" width="350" height="280" rx="14" stroke-width="0.5" />
     <rect class="teal-head" x="410" y="76" width="350" height="32" rx="14" />
     <rect class="teal-head" x="410" y="96" width="350" height="12" />
-    <text class="col-h" x="430" y="98">색상 + 아이콘 + 텍스트 — 3중 채널</text>
+    <text class="col-h" x="430" y="98">색상 + 아이콘 + 텍스트: 3중 채널</text>
 
     <text class="lbl body-t" x="430" y="134">이름</text>
     <rect class="input-bg teal-stroke" x="430" y="142" width="310" height="32" rx="6" stroke-width="2" />

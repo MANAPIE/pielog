@@ -238,5 +238,5 @@
 
   <!-- 그룹 3: Level AAA (2개) - 간략 -->
   <rect class="red-head" x="40" y="546" width="720" height="28" rx="6" />
-  <text class="grp-h" x="60" y="564">LEVEL AAA · 2개 — 2.4.12 초점 표시(강화), 3.3.9 접근 가능한 인증(강화)</text>
+  <text class="grp-h" x="60" y="564">LEVEL AAA · 2개: 2.4.12 초점 표시(강화), 3.3.9 접근 가능한 인증(강화)</text>
 </svg>

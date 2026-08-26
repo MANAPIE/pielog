@@ -54,17 +54,17 @@ export const initializeSocketIO = (server: HTTPServer): SocketIOServer => {
 
 `io.use`도 없고 `credentials`도 없다. 클라이언트는 SocketContext에서 `(session.user as any)._id`를 모든 emit에 동행시킨다. socket은 broadcast의 통로 역할로만 비어 있었다.
 
-이건 무방비가 아니라 익숙함이었다. 페이지가 인증으로 막혀 있고, write 경로의 끝(server actions)에 참여자 검증이 있다면, 그 사이의 broadcast 채널은 가벼워도 된다는 손버릇. Express에서도, Nuxt에서도 그렇게 해왔으니까.
+이건 무방비가 아니라 익숙함이었다. 페이지가 인증으로 막혀 있고, write 경로의 끝(server actions)에 참여자 검증이 있다면, 그 사이의 broadcast 채널은 가벼워도 된다는 손버릇이었다. Express에서도, Nuxt에서도 그렇게 해왔으니까.
 
 다만 그 다층 방어의 가운데 한 층은, 인증된 사용자가 다른 인증된 사용자로 행세하는 시나리오 앞에서는 비어 있는 채로 남는다. 위협 모델이 좁을 때는 보이지 않지만, 넓어지면 정확히 그 자리에서 청구서가 도착한다.
 
-(첫 커밋 7분 뒤에 환경변수 의존을 빼는 작은 핫픽스 하나가 들어갔다. `process.env.NEXT_PUBLIC_SOCKET_URL`을 `window.location.origin`으로 바꾸는, 다섯 줄짜리 커밋. 그때는 알지 못했다. 같은 파일에 훨씬 큰 패치가 4개월 뒤에 기다리고 있다는 걸.)
+(첫 커밋 7분 뒤에 환경변수 의존을 빼는 작은 핫픽스 하나가 들어갔다. `process.env.NEXT_PUBLIC_SOCKET_URL`을 `window.location.origin`으로 바꾸는, 다섯 줄짜리 커밋이었다. 그때는 알지 못했다. 같은 파일에 훨씬 큰 패치가 4개월 뒤에 기다리고 있다는 걸.)
 
 ---
 
 ## 가운데를 채우기로
 
-actor identity 보안 감사에서 같은 패턴이 광범위하게 발견됐다. 클라이언트가 보낸 `userId` / `reqData._id`를 서버가 그대로 받아 권한 검사·로깅·DB 저장에 쓰는 결함 — Confused Deputy / 파라미터 인젝션. DevTools에서 payload만 위조해도 다른 사용자로 행세할 수 있는 상태였다.
+actor identity 보안 감사에서 같은 패턴이 광범위하게 발견됐다. 클라이언트가 보낸 `userId` / `reqData._id`를 서버가 그대로 받아 권한 검사·로깅·DB 저장에 쓰는 결함: Confused Deputy / 파라미터 인젝션이었다. DevTools에서 payload만 위조해도 다른 사용자로 행세할 수 있는 상태였다.
 
 마이그레이션 패턴은 단순했다. 서버 액션은 `getServerSession`을 헬퍼 안에 가두고 모든 actor identity를 거기서만 추출한다. 시그니처에서 `_userId` / `reqData._id`를 제거한다. socket도 같은 원칙으로 옮긴다.
 
@@ -94,7 +94,7 @@ io.use(async (socket, next) => {
 
 증상 셋이 한꺼번에 왔다. 새 채팅방 조인이 즉시 동작하지 않았다. 두 사용자의 채팅창 사이에서 실시간 메시지가 보이지 않았다. 채팅창을 다시 열면 같은 메시지가 두 개씩 저장돼 있었다.
 
-처음엔 1·2의 원인을 안다고 생각했다. SocketContext에서 `withCredentials`를 빠뜨렸을 때 polling fallback이 쿠키를 동반하지 않아 io.use가 항상 reject — 흔한 함정. CORS도 `origin: '*'` + credentials 조합은 브라우저가 차단한다. 둘 다 고쳤다. 여전히 실패.
+처음엔 1·2의 원인을 안다고 생각했다. SocketContext에서 `withCredentials`를 빠뜨렸을 때 polling fallback이 쿠키를 동반하지 않아 io.use가 항상 reject되는 흔한 함정이었다. CORS도 `origin: '*'` + credentials 조합은 브라우저가 차단한다. 둘 다 고쳤다. 여전히 실패했다.
 
 서버에 진단 로그를 박았다. `[server:boot]`로 환경변수가 살아 있는지, `[socket:auth]`로 io.use 시점에 쿠키와 토큰이 어떻게 보이는지.
 
@@ -145,11 +145,11 @@ const token = await getToken({ req: reqWithCookies, secret });
 
 ## 끝내 원인을 단정하지 못한 버그
 
-조인과 실시간 메시지는 다 살아났다. 남은 건 메시지 중복 저장.
+조인과 실시간 메시지는 다 살아났다. 남은 건 메시지 중복 저장이었다.
 
 클라이언트 콘솔을 보니 `[socket:client:emit:send-message]` 로그가 한 번의 전송에 두 줄 찍히고 있었다. `messageId`가 다른 두 record가 DB에 들어가 있었다. 즉 race가 아니라 클라이언트의 dual emit. 어딘가에서 `handleSendMessage`가 두 번 호출되고 있다.
 
-후보를 다 떠올려봤다. 모바일에서 엔터키와 전송 버튼이 빠른 연쇄로 fire하는 경우. 버튼 컴포넌트가 pointer와 touch 이벤트 양쪽에서 fire하는 경우. React 19의 form action double invoke. 입력 컴포넌트의 onEnter와 rightButton.onClick이 같은 키 이벤트에서 함께 trigger되는 경우. 코드를 다시 봐도 단일 호출 경로가 분명한데, 로그는 둘이라고 말한다.
+후보를 다 떠올려봤다. 모바일에서 엔터키와 전송 버튼이 빠른 연쇄로 fire하는 경우였다. 버튼 컴포넌트가 pointer와 touch 이벤트 양쪽에서 fire하는 경우였다. React 19의 form action double invoke인 경우였다. 입력 컴포넌트의 onEnter와 rightButton.onClick이 같은 키 이벤트에서 함께 trigger되는 경우였다. 코드를 다시 봐도 단일 호출 경로가 분명한데, 로그는 둘이라고 말한다.
 
 한참을 봤다. 원인을 단정할 수 없었다.
 
@@ -169,7 +169,7 @@ const handleSendMessage = async () => {
 };
 ```
 
-진행 중인 호출이 있으면 두 번째는 즉시 `return`. `try/finally`로 어떤 경로로 끝나든 ref가 복원되는 것만 보장한다. root cause가 무엇이든 — 모바일 빠른 연쇄든, 라이브러리의 double fire든, 프레임워크의 double invoke든 — 중복 호출의 결과는 차단된다.
+진행 중인 호출이 있으면 두 번째는 즉시 `return`. `try/finally`로 어떤 경로로 끝나든 ref가 복원되는 것만 보장한다. root cause가 무엇이든, 모바일 빠른 연쇄든, 라이브러리의 double fire든, 프레임워크의 double invoke든, 중복 호출의 결과는 차단된다.
 
 이건 회피처럼 보이겠지만, 원인을 끝까지 추적할 가치가 있는 버그가 있고, 더 일어나지 않게 막는 것만으로 충분한 버그가 있다. Bug 1·2는 라이브러리 통합의 구조적 문제였고 추적이 필요했다. Bug 3은 입력 디바이스와 프레임워크와 컴포넌트 라이브러리가 만들어내는 잡음이었고, 차단으로 종결하는 게 옳았다.
 
@@ -177,7 +177,7 @@ const handleSendMessage = async () => {
 
 ## 두 라이브러리의 같은 단어
 
-내가 쓴 코드의 각각의 정합성은 확실했다. 문제는 두 라이브러리가 같은 단어로 가리키던 서로 다른 모양이었다.
+내가 쓴 코드 각각의 정합성은 확실했다. 문제는 두 라이브러리가 같은 단어로 가리키던 서로 다른 모양이었다.
 
 NextAuth의 `SessionStore`는 `req`라는 단어로 `req.cookies`가 채워진 Next.js Request를 가정한다. socket.io의 `io.use`는 `req`라는 단어로 `req.cookies`가 없는 raw Node `IncomingMessage`를 건넨다. 둘 다 자기 영역에서는 잘못이 없다.
 

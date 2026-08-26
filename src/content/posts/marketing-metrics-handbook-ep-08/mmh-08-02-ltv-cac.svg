@@ -39,7 +39,7 @@
   </style>
   <rect class="bg" width="600" height="470"/>
 
-  <text class="title" x="40" y="36">한 사용자의 누적 매출 — CAC, Payback, LTV</text>
+  <text class="title" x="40" y="36">한 사용자의 누적 매출: CAC, Payback, LTV</text>
   <text class="sub" x="40" y="54">CAC를 마이너스로 보고 시작해 매월 ARPU만큼 회복. 회수 지점이 Payback.</text>
 
   <!-- 차트 영역 · 플롯 폭 520 (x=60..580 화면) -->

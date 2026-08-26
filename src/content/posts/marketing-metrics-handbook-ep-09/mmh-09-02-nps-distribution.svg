@@ -83,7 +83,7 @@
 
   <!-- 비율 막대 (응답 분포) -->
   <g transform="translate(40, 252)">
-    <text class="sub" x="0" y="-6">실제 응답 분포 — 센티 D30 사용자</text>
+    <text class="sub" x="0" y="-6">실제 응답 분포: 센티 D30 사용자</text>
 
     <!-- 분포 막대: 너비 520 -->
     <!-- Detractor 12%, Passive 34%, Promoter 54% -->

@@ -131,7 +131,7 @@
     <line x1="270" y1="300" x2="270" y2="220" class="line" marker-end="url(#ar)"/>
     <line x1="430" y1="300" x2="300" y2="220" class="line" marker-end="url(#ar)"/>
 
-    <text x="270" y="370" class="pane-cap" text-anchor="middle">import { logger } — 모두 같은 인스턴스</text>
+    <text x="270" y="370" class="pane-cap" text-anchor="middle">import { logger }: 모두 같은 인스턴스</text>
 
     <!-- 캡션 -->
     <text x="24" y="430" class="pane-cap" font-weight="700" fill="var(--c-fg)">JS/TS에서 Singleton 패턴이 잘 보이지 않는 이유</text>

@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1200 690" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="catalog-title">
-  <title id="catalog-title">디자인 패턴, 객체 수준 편 — 시리즈 카탈로그</title>
+  <title id="catalog-title">디자인 패턴, 객체 수준 편: 시리즈 카탈로그</title>
 
   <defs>
     <style>
@@ -76,7 +76,7 @@
   <rect width="1200" height="690" fill="var(--c-bg)"/>
 
   <!-- 본편 라벨 -->
-  <text x="40" y="36" class="group-label">본편 — MAIN</text>
+  <text x="40" y="36" class="group-label">본편: MAIN</text>
   <line x1="40" y1="50" x2="1160" y2="50" stroke="var(--c-divider)" stroke-width="1"/>
 
   <!-- ROW 1: ep.01-05 -->
@@ -184,7 +184,7 @@
   </g>
 
   <!-- 부록 라벨 -->
-  <text x="40" y="540" class="group-label">부록 — APPENDIX</text>
+  <text x="40" y="540" class="group-label">부록: APPENDIX</text>
   <line x1="40" y1="554" x2="1160" y2="554" stroke="var(--c-divider)" stroke-width="1"/>
 
   <!-- 부록 카드 (가로로 긴 카드) -->

@@ -26,7 +26,7 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic 
 </defs>
 <rect class="bg" x="0" y="0" width="600" height="504"/>
 <rect class="card" x="24" y="24" width="552" height="80" rx="8"/>
-<text class="tb" x="300" y="50" text-anchor="middle">웹 — Next.js App Router</text>
+<text class="tb" x="300" y="50" text-anchor="middle">웹: Next.js App Router</text>
 <text class="ts" x="300" y="72" text-anchor="middle">게이트 · 생성하기 · 리뷰 확정 · 히스토리 · 자산 라이브러리</text>
 <text class="txs" x="300" y="91" text-anchor="middle">큐 폴링은 진행 중 잡이 있을 때만</text>
 <path class="ln" d="M300,104 L300,128" marker-end="url(#ar)"/>
@@ -35,13 +35,13 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic 
 <text class="tb acc" x="300" y="156" text-anchor="middle">파이썬 패키지 + 잡 서버 (FastAPI)</text>
 <text class="ts" x="300" y="178" text-anchor="middle">스키마 검증 · 워크플로우 렌더 · 파이프라인 오케스트레이션</text>
 <text class="ts" x="300" y="196" text-anchor="middle">자산 라이브러리 · 능력 판정 · 골든 세트 러너</text>
-<text class="txs" x="300" y="219" text-anchor="middle">파일 기반 잡 저장소 — 별도 DB 없음</text>
+<text class="txs" x="300" y="219" text-anchor="middle">파일 기반 잡 저장소: 별도 DB 없음</text>
 <text class="txs mono" x="300" y="234" text-anchor="middle">PM_STORAGE/jobs/&lt;job_id&gt;/ 폴더 하나가 잡 하나</text>
 <path class="ln" d="M300,246 L300,276" marker-end="url(#ar)"/>
 <text class="txs mono" x="310" y="262" text-anchor="start">WorkflowEngine Protocol</text>
 <text class="txs mono" x="310" y="274" text-anchor="start">submit · poll · fetch · cancel</text>
 <rect class="card" x="24" y="278" width="552" height="96" rx="8"/>
-<text class="tb" x="300" y="302" text-anchor="middle">엔진 구현체 — 공통 HTTP 코어</text>
+<text class="tb" x="300" y="302" text-anchor="middle">엔진 구현체: 공통 HTTP 코어</text>
 <rect class="soft" x="44" y="314" width="246" height="48" rx="8"/>
 <text class="tb mono acc" x="167" y="334" text-anchor="middle" font-size="12">LocalComfy</text>
 <text class="txs" x="167" y="352" text-anchor="middle">온디맨드 기동 · 하트비트</text>

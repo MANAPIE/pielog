@@ -139,7 +139,7 @@
     <rect class="amber-card" x="40" y="156" width="350" height="240" rx="12" stroke-width="0.5" />
     <rect class="amber-head" x="40" y="156" width="350" height="28" rx="12" />
     <rect class="amber-head" x="40" y="172" width="350" height="12" />
-    <text class="grp-h" x="60" y="176">인수 조건 — 기능</text>
+    <text class="grp-h" x="60" y="176">인수 조건: 기능</text>
 
     <g transform="translate(60, 219)">
       <text class="check amber-t" x="0" y="0">✓</text>
@@ -168,7 +168,7 @@
     <rect class="teal-card" x="410" y="156" width="350" height="240" rx="12" stroke-width="0.5" />
     <rect class="teal-head" x="410" y="156" width="350" height="28" rx="12" />
     <rect class="teal-head" x="410" y="172" width="350" height="12" />
-    <text class="grp-h" x="430" y="176">인수 조건 — 접근성</text>
+    <text class="grp-h" x="430" y="176">인수 조건: 접근성</text>
 
     <g transform="translate(430, 219)">ㅁ
       <text class="check teal-t" x="0" y="0">♿</text>

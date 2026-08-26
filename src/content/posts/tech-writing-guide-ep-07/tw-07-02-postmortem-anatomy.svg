@@ -98,7 +98,7 @@
 
   <!-- 타임라인 섹션 -->
   <g transform="translate(20 30)">
-    <text class="section-title" x="0" y="0">TIMELINE — 무엇이 일어났는가</text>
+    <text class="section-title" x="0" y="0">TIMELINE: 무엇이 일어났는가</text>
     <text class="label" x="0" y="20">감정 없이, 사실만. 시간순으로.</text>
   </g>
 
@@ -144,7 +144,7 @@
   <line x1="20" y1="330" x2="680" y2="330" stroke="var(--c-line)" stroke-width="0.5" />
 
   <g transform="translate(20 360)">
-    <text class="section-title" x="0" y="0">5 WHYS — 왜가 다섯 번</text>
+    <text class="section-title" x="0" y="0">5 WHYS: 왜가 다섯 번</text>
     <text class="label" x="0" y="20">증상에서 시작해 시스템의 근원까지 거슬러 간다.</text>
   </g>
 
