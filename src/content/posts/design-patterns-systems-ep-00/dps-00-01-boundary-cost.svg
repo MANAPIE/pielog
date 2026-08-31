@@ -1,0 +1,219 @@
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-cost">
+  <title id="t-cost">경계를 긋지 않았을 때와 그었을 때의 비용 구조</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .pane-a {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .pane-b {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .node {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.5;
+      }
+
+      .mesh {
+        stroke: var(--c-accent-2);
+        stroke-width: 1.1;
+        opacity: 0.55;
+      }
+
+      .link {
+        stroke: var(--c-line);
+        stroke-width: 1.6;
+      }
+
+      .bound {
+        stroke: var(--c-accent);
+        stroke-width: 4;
+        stroke-linecap: round;
+      }
+
+      .lbl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        fill: var(--c-muted);
+      }
+
+      .cost {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .concl {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="520" />
+
+  <!-- 좌: 경계 없음 -->
+  <g transform="translate(24,24)">
+    <rect class="pane-a" width="352" height="300" rx="8" />
+    <text x="20" y="30" class="lbl" fill="var(--c-accent-2)">NO BOUNDARY</text>
+    <text x="20" y="54" class="ttl">경계를 긋지 않았을 때</text>
+
+    <!-- 6 노드 그물망 -->
+    <g transform="translate(176,178)">
+      <!-- 연결선 (완전 그래프에 가깝게) -->
+      <g class="mesh">
+        <line x1="-110" y1="-62" x2="0" y2="-80" />
+        <line x1="-110" y1="-62" x2="110" y2="-62" />
+        <line x1="-110" y1="-62" x2="-92" y2="52" />
+        <line x1="-110" y1="-62" x2="4" y2="76" />
+        <line x1="-110" y1="-62" x2="102" y2="46" />
+        <line x1="0" y1="-80" x2="110" y2="-62" />
+        <line x1="0" y1="-80" x2="-92" y2="52" />
+        <line x1="0" y1="-80" x2="4" y2="76" />
+        <line x1="0" y1="-80" x2="102" y2="46" />
+        <line x1="110" y1="-62" x2="-92" y2="52" />
+        <line x1="110" y1="-62" x2="4" y2="76" />
+        <line x1="110" y1="-62" x2="102" y2="46" />
+        <line x1="-92" y1="52" x2="4" y2="76" />
+        <line x1="-92" y1="52" x2="102" y2="46" />
+        <line x1="4" y1="76" x2="102" y2="46" />
+      </g>
+      <!-- 노드 -->
+      <circle cx="-110" cy="-62" r="17" class="node" />
+      <circle cx="0" cy="-80" r="17" class="node" />
+      <circle cx="110" cy="-62" r="17" class="node" />
+      <circle cx="-92" cy="52" r="17" class="node" />
+      <circle cx="4" cy="76" r="17" class="node" />
+      <circle cx="102" cy="46" r="17" class="node" />
+    </g>
+
+    <text x="176" y="286" class="cap" text-anchor="middle">연결 15개 · 한 곳을 고치면 다섯 곳이 흔들립니다</text>
+  </g>
+
+  <!-- 우: 경계 있음 -->
+  <g transform="translate(424,24)">
+    <rect class="pane-b" width="352" height="300" rx="8" />
+    <text x="20" y="30" class="lbl" fill="var(--c-accent)">WITH BOUNDARY</text>
+    <text x="20" y="54" class="ttl">경계를 그었을 때</text>
+
+    <g transform="translate(176,178)">
+      <!-- 좌측 덩어리 내부 연결 -->
+      <g class="link" opacity="0.7">
+        <line x1="-112" y1="-62" x2="-52" y2="-76" />
+        <line x1="-112" y1="-62" x2="-88" y2="50" />
+        <line x1="-52" y1="-76" x2="-88" y2="50" />
+      </g>
+      <!-- 우측 덩어리 내부 연결 -->
+      <g class="link" opacity="0.7">
+        <line x1="58" y1="-70" x2="116" y2="-46" />
+        <line x1="58" y1="-70" x2="72" y2="58" />
+        <line x1="116" y1="-46" x2="72" y2="58" />
+      </g>
+      <!-- 경계선 -->
+      <line x1="-1" y1="-108" x2="5" y2="90" class="bound" />
+      <!-- 경계를 넘는 연결 2개 -->
+      <line x1="-52" y1="-76" x2="58" y2="-70" class="link" stroke="var(--c-accent)" stroke-dasharray="5 4" />
+      <line x1="-88" y1="50" x2="72" y2="58" class="link" stroke="var(--c-accent)" stroke-dasharray="5 4" />
+
+      <circle cx="-112" cy="-62" r="17" class="node" />
+      <circle cx="-52" cy="-76" r="17" class="node" />
+      <circle cx="-88" cy="50" r="17" class="node" />
+      <circle cx="58" cy="-70" r="17" class="node" />
+      <circle cx="116" cy="-46" r="17" class="node" />
+      <circle cx="72" cy="58" r="17" class="node" />
+
+      <!-- 교차 지점 강조 -->
+      <circle cx="0" cy="-73" r="6" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.5" />
+      <circle cx="4" cy="54" r="6" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.5" />
+    </g>
+
+    <text x="176" y="286" class="cap" text-anchor="middle">연결 8개 · 경계를 넘는 것은 2개뿐입니다</text>
+  </g>
+
+  <!-- 하단: 청구되는 비용 -->
+  <g transform="translate(24,348)">
+    <rect width="752" height="96" rx="8" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.5" />
+    <text x="20" y="28" class="lbl" fill="var(--c-accent)">경계를 그으면 청구되는 것</text>
+
+    <g transform="translate(20,58)">
+      <text x="0" y="0" class="cost">지연</text>
+      <text x="0" y="20" class="cap">네트워크</text>
+
+      <text x="150" y="0" class="cost">복잡도</text>
+      <text x="150" y="20" class="cap">직렬화·검증</text>
+
+      <text x="310" y="0" class="cost">일관성</text>
+      <text x="310" y="20" class="cap">사본과 시차</text>
+
+      <text x="470" y="0" class="cost">수명</text>
+      <text x="470" y="20" class="cap">약속이 됨</text>
+
+      <text x="600" y="0" class="cost">가시성</text>
+      <text x="600" y="20" class="cap">추적 단절</text>
+    </g>
+
+    <line x1="136" y1="44" x2="136" y2="84" stroke="var(--c-divider)" stroke-width="1" />
+    <line x1="296" y1="44" x2="296" y2="84" stroke="var(--c-divider)" stroke-width="1" />
+    <line x1="456" y1="44" x2="456" y2="84" stroke="var(--c-divider)" stroke-width="1" />
+    <line x1="586" y1="44" x2="586" y2="84" stroke="var(--c-divider)" stroke-width="1" />
+  </g>
+
+  <text x="400" y="484" class="concl" text-anchor="middle">설계는 단순히 경계를 긋는 일이 아니라, 어느 비용을 낼지 고르는 일입니다</text>
+</svg>
