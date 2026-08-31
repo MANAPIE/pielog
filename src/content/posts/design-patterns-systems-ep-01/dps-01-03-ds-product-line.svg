@@ -1,0 +1,221 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-dsline">
+  <title id="t-dsline">디자인 시스템과 프로덕트 사이의 경계선</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-3: rgba(139, 122, 184, 0.12);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-3: rgba(176, 160, 218, 0.16);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .zone-1 {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.5;
+      }
+
+      .zone-2 {
+        fill: var(--c-soft-3);
+        stroke: var(--c-accent-3);
+        stroke-width: 1.5;
+      }
+
+      .zone-3 {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.5;
+      }
+
+      .item {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.2;
+      }
+
+      .divline {
+        stroke: var(--c-line);
+        stroke-width: 2.6;
+      }
+
+      .zone-lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .zone-ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .it {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .q {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .warn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="ar-w" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="560" />
+
+  <text x="400" y="30" class="zone-ttl" text-anchor="middle" font-size="15">이것은 화면 개편과 함께 바뀌는가</text>
+
+  <!-- 세 영역 -->
+  <g transform="translate(24 52)">
+    <!-- 토큰 -->
+    <rect width="232" height="230" rx="8" class="zone-1" />
+    <text x="18" y="26" class="zone-lbl" fill="var(--c-accent)">TIER 1: TOKEN</text>
+    <text x="18" y="48" class="zone-ttl">토큰</text>
+
+    <g transform="translate(18 66)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">color.brand.primary</text>
+    </g>
+    <g transform="translate(18 104)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">spacing.4</text>
+    </g>
+    <g transform="translate(18 142)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">font.body.md</text>
+    </g>
+
+    <text x="116" y="204" class="cap" text-anchor="middle">거의 바뀌지 않습니다</text>
+  </g>
+
+  <g transform="translate(284 52)">
+    <!-- 시스템 컴포넌트 -->
+    <rect width="232" height="230" rx="8" class="zone-2" />
+    <text x="18" y="26" class="zone-lbl" fill="var(--c-accent-3)">TIER 2: SYSTEM</text>
+    <text x="18" y="48" class="zone-ttl">시스템 컴포넌트</text>
+
+    <g transform="translate(18 66)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">Button</text>
+    </g>
+    <g transform="translate(18 104)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">Input · Select</text>
+    </g>
+    <g transform="translate(18 142)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">Modal · Toast</text>
+    </g>
+
+    <text x="116" y="204" class="cap" text-anchor="middle">분기마다 바뀔 수 있습니다</text>
+  </g>
+
+  <g transform="translate(544 52)">
+    <!-- 프로덕트 -->
+    <rect width="232" height="230" rx="8" class="zone-3" />
+    <text x="18" y="26" class="zone-lbl" fill="var(--c-accent-2)">TIER 3: PRODUCT</text>
+    <text x="18" y="48" class="zone-ttl">프로덕트</text>
+
+    <g transform="translate(18 66)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">CheckoutButton</text>
+    </g>
+    <g transform="translate(18 104)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">PaymentForm</text>
+    </g>
+    <g transform="translate(18 142)">
+      <rect width="196" height="30" rx="4" class="item" />
+      <text x="12" y="20" class="it">OrderSummary</text>
+    </g>
+
+    <text x="116" y="204" class="cap" text-anchor="middle">스프린트마다 바뀝니다</text>
+  </g>
+
+  <!-- 경계선 + 질문 -->
+  <line x1="270" y1="52" x2="270" y2="282" class="divline" />
+  <line x1="530" y1="52" x2="530" y2="282" class="divline" />
+  <circle cx="270" cy="167" r="7" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2.4" />
+  <circle cx="530" cy="167" r="7" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2.4" />
+
+  <!-- 잘못된 배치 경고 -->
+  <g transform="translate(24 306)">
+    <rect width="752" height="160" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.6"
+      stroke-dasharray="5 4" />
+    <text x="20" y="28" class="warn">선을 잘못 그었을 때</text>
+
+    <g transform="translate(20 44)">
+      <rect width="352" height="95" rx="5" fill="none" stroke="var(--c-divider)" stroke-width="1.2" />
+      <text x="14" y="24" class="q">시스템 쪽으로 너무 넓게</text>
+      <text x="14" y="46" class="cap"><tspan class="mono">CheckoutButton</tspan>이 시스템 저장소에 들어감</text>
+      <text x="14" y="64" class="cap">→ 결제팀 스프린트가 시스템 릴리스를 기다림</text>
+      <text x="14" y="80" class="cap">→ 시스템 팀이 남의 요구사항을 받음</text>
+    </g>
+
+    <g transform="translate(388 44)">
+      <rect width="348" height="95" rx="5" fill="none" stroke="var(--c-divider)" stroke-width="1.2" />
+      <text x="14" y="24" class="q">프로덕트 쪽으로 너무 좁게</text>
+      <text x="14" y="46" class="cap">각 프로덕트가 자기 버튼을 만듦</text>
+      <text x="14" y="64" class="cap">→ 비슷한 버튼 여섯 개가 여섯 저장소에</text>
+      <text x="14" y="80" class="cap">→ 일관성이 사라짐</text>
+    </g>
+  </g>
+
+  <text x="400" y="502" class="zone-ttl" text-anchor="middle" font-size="13">두 곳에서 쓴다고 바로 올리지 않습니다. 세 번째가 나타날 때
+    올립니다</text>
+  <text x="400" y="526" class="cap" text-anchor="middle">복제는 잘못된 추상화보다 쌉니다</text>
+</svg>

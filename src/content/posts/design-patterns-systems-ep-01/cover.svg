@@ -1,0 +1,118 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cover-title">
+  <title id="cover-title">모듈 경계와 폴더 구조 전략: ep.01 커버</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .num { fill: var(--c-num); font-family: 'Inter',system-ui,sans-serif; font-weight: 800; font-size: 220px; letter-spacing: -0.04em; }
+    </style>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="g1" cx="30%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="75%" cy="72%" r="48%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <circle cx="80" cy="560" r="230" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.12"/>
+  <rect x="850" y="-120" width="520" height="380" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.11" transform="rotate(8 1110 70)"/>
+
+  <!-- 메타포: 흩어진 조각이 세 덩어리로 묶이는 순간 -->
+  <g transform="translate(600 315)">
+    <!-- 좌: 흩어진 조각들 -->
+    <g transform="translate(-330 0)">
+      <g transform="rotate(-9)"><rect x="-90" y="-120" width="56" height="34" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/></g>
+      <g transform="rotate(6)"><rect x="10" y="-140" width="56" height="34" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/></g>
+      <g transform="rotate(-4)"><rect x="-40" y="-40" width="56" height="34" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/></g>
+      <g transform="rotate(12)"><rect x="30" y="20" width="56" height="34" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/></g>
+      <g transform="rotate(-7)"><rect x="-100" y="60" width="56" height="34" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/></g>
+      <g transform="rotate(3)"><rect x="-30" y="120" width="56" height="34" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/></g>
+      <!-- 얽힌 연결선 -->
+      <g stroke="var(--c-accent-2)" stroke-width="1.2" opacity="0.5">
+        <line x1="-60" y1="-100" x2="40" y2="-120"/>
+        <line x1="-60" y1="-100" x2="-10" y2="-20"/>
+        <line x1="40" y1="-120" x2="60" y2="40"/>
+        <line x1="-10" y1="-20" x2="-70" y2="80"/>
+        <line x1="-70" y1="80" x2="0" y2="140"/>
+        <line x1="60" y1="40" x2="0" y2="140"/>
+        <line x1="-10" y1="-20" x2="60" y2="40"/>
+      </g>
+    </g>
+
+    <!-- 중앙 굵은 경계선 (묶임의 순간) -->
+    <line x1="-140" y1="-200" x2="-124" y2="200" stroke="var(--c-accent)" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+
+    <!-- 우: 세 덩어리로 묶인 상태 -->
+    <g transform="translate(130 0)">
+      <!-- 덩어리 1 -->
+      <g transform="translate(-40 -130) rotate(-3)">
+        <rect x="-90" y="-46" width="180" height="92" rx="6" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.4"/>
+        <rect x="-70" y="-28" width="52" height="24" rx="3" fill="var(--c-accent)" opacity="0.65"/>
+        <rect x="-10" y="-28" width="52" height="24" rx="3" fill="var(--c-accent)" opacity="0.4"/>
+        <rect x="-70" y="6" width="112" height="8" rx="4" fill="var(--c-line)" opacity="0.35"/>
+        <rect x="-70" y="20" width="76" height="8" rx="4" fill="var(--c-line)" opacity="0.2"/>
+      </g>
+      <!-- 덩어리 2 -->
+      <g transform="translate(20 0) rotate(4)">
+        <rect x="-90" y="-46" width="180" height="92" rx="6" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.4"/>
+        <rect x="-70" y="-28" width="52" height="24" rx="3" fill="var(--c-accent-3)" opacity="0.65"/>
+        <rect x="-10" y="-28" width="52" height="24" rx="3" fill="var(--c-accent-3)" opacity="0.4"/>
+        <rect x="-70" y="6" width="112" height="8" rx="4" fill="var(--c-line)" opacity="0.35"/>
+        <rect x="-70" y="20" width="60" height="8" rx="4" fill="var(--c-line)" opacity="0.2"/>
+      </g>
+      <!-- 덩어리 3 -->
+      <g transform="translate(-30 132) rotate(-5)">
+        <rect x="-90" y="-46" width="180" height="92" rx="6" fill="var(--c-bg)" stroke="var(--c-accent-4)" stroke-width="2.4"/>
+        <rect x="-70" y="-28" width="52" height="24" rx="3" fill="var(--c-accent-4)" opacity="0.65"/>
+        <rect x="-10" y="-28" width="52" height="24" rx="3" fill="var(--c-accent-4)" opacity="0.4"/>
+        <rect x="-70" y="6" width="112" height="8" rx="4" fill="var(--c-line)" opacity="0.35"/>
+        <rect x="-70" y="20" width="88" height="8" rx="4" fill="var(--c-line)" opacity="0.2"/>
+      </g>
+
+      <!-- 덩어리 사이 얇은 연결 (공개 표면) -->
+      <g stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.55">
+        <line x1="-30" y1="-84" x2="10" y2="-46"/>
+        <line x1="10" y1="46" x2="-20" y2="86"/>
+      </g>
+      <circle cx="-10" cy="-65" r="6" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2"/>
+      <circle cx="-5" cy="66" r="6" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- 디테일 어휘 -->
+  <g transform="translate(150 110)">
+    <circle r="4" fill="var(--c-accent-2)"/>
+    <circle cx="16" r="4" fill="var(--c-accent-2)" opacity="0.6"/>
+    <circle cx="32" r="4" fill="var(--c-accent-2)" opacity="0.3"/>
+  </g>
+  <g transform="translate(1040 480)" opacity="0.65">
+    <circle r="44" fill="none" stroke="var(--c-accent-4)" stroke-width="1.5"/>
+    <circle r="24" fill="none" stroke="var(--c-accent-4)" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  <g transform="translate(1010 130) rotate(-14)" opacity="0.7">
+    <rect x="-22" y="-22" width="44" height="44" fill="none" stroke="var(--c-accent-2)" stroke-width="1.6"/>
+  </g>
+
+  <text x="1130" y="575" class="num" text-anchor="end">01</text>
+</svg>
