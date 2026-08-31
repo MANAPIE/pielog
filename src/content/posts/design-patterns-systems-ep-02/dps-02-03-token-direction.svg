@@ -1,0 +1,180 @@
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-tokdir">
+  <title id="t-tokdir">디자인 토큰의 단방향 흐름과 역류</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .pane-ok {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .pane-bad {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .node {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.6;
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .nm {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        fill: var(--c-fg);
+      }
+
+      .bad {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        fill: var(--c-accent-2);
+        font-weight: 700;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-ok" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="var(--c-accent)" />
+    </marker>
+    <marker id="a-back" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="520" />
+
+  <!-- 상단: 정상 흐름 -->
+  <g transform="translate(24 20)">
+    <rect class="pane-ok" width="752" height="196" rx="8" />
+    <text x="20" y="26" class="lbl" fill="var(--c-accent)">FORWARD: 단방향</text>
+    <text x="20" y="50" class="ttl">토큰 → 컴포넌트 → 화면</text>
+
+    <g transform="translate(40 76)">
+      <rect width="180" height="77" rx="6" class="node" />
+      <text x="90" y="28" class="nm" text-anchor="middle">토큰</text>
+      <text x="90" y="48" class="code" text-anchor="middle">color.brand.primary</text>
+      <text x="90" y="64" class="cap" text-anchor="middle">컴포넌트를 모릅니다</text>
+    </g>
+
+    <line x1="228" y1="112" x2="288" y2="112" stroke="var(--c-accent)" stroke-width="2.4" marker-end="url(#a-ok)" />
+
+    <g transform="translate(296 76)">
+      <rect width="180" height="77" rx="6" class="node" />
+      <text x="90" y="28" class="nm" text-anchor="middle">컴포넌트</text>
+      <text x="90" y="48" class="code" text-anchor="middle">Button</text>
+      <text x="90" y="64" class="cap" text-anchor="middle">화면을 모릅니다</text>
+    </g>
+
+    <line x1="484" y1="112" x2="544" y2="112" stroke="var(--c-accent)" stroke-width="2.4" marker-end="url(#a-ok)" />
+
+    <g transform="translate(552 76)">
+      <rect width="180" height="77" rx="6" class="node" />
+      <text x="90" y="28" class="nm" text-anchor="middle">화면</text>
+      <text x="90" y="48" class="code" text-anchor="middle">CheckoutPage</text>
+      <text x="90" y="64" class="cap" text-anchor="middle">컴포넌트와 토큰 둘 다 압니다</text>
+    </g>
+  </g>
+
+  <!-- 하단: 역류 -->
+  <g transform="translate(24 236)">
+    <rect class="pane-bad" width="752" height="196" rx="8" />
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-2)">BACKFLOW: 역류</text>
+    <text x="20" y="50" class="ttl">화면이 시스템을 알기 시작할 때</text>
+
+    <g transform="translate(40 76)">
+      <rect width="180" height="77" rx="6" class="node" stroke="var(--c-accent-2)" />
+      <text x="90" y="28" class="nm" text-anchor="middle">토큰</text>
+      <text x="90" y="50" class="bad" text-anchor="middle">color.checkout.cta</text>
+      <text x="90" y="66" class="cap" text-anchor="middle">화면 이름이 들어옴</text>
+    </g>
+
+    <g transform="translate(296 76)">
+      <rect width="180" height="77" rx="6" class="node" stroke="var(--c-accent-2)" />
+      <text x="90" y="28" class="nm" text-anchor="middle">컴포넌트</text>
+      <text x="90" y="50" class="bad" text-anchor="middle">isCheckoutPage</text>
+      <text x="90" y="66" class="cap" text-anchor="middle">화면을 알게 됨</text>
+    </g>
+
+    <g transform="translate(552 76)">
+      <rect width="180" height="77" rx="6" class="node" />
+      <text x="90" y="28" class="nm" text-anchor="middle">화면</text>
+      <text x="90" y="50" class="code" text-anchor="middle">CheckoutPage</text>
+    </g>
+
+    <!-- 역류 화살표 -->
+    <path d="M 552 100 L 484 100" stroke="var(--c-accent-2)" stroke-width="2.4" marker-end="url(#a-back)" />
+    <path d="M 552 155 Q 380 210 228 155" fill="none" stroke="var(--c-accent-2)" stroke-width="2.4"
+      stroke-dasharray="6 4" marker-end="url(#a-back)" />
+  </g>
+
+  <!-- 하단 이름 심사 -->
+  <g transform="translate(24 448)">
+    <text x="0" y="14" class="ttl" font-size="13">역류의 첫 신호는 이름입니다</text>
+    <text x="0" y="38" class="cap">통과: <tspan class="mono">color.brand.primary</tspan> · <tspan class="mono">color.danger</tspan> · <tspan class="mono">spacing.4</tspan></text>
+    <text x="0" y="56" class="cap">정지: <tspan class="mono">color.checkout.cta</tspan> · <tspan class="mono">spacing.orderCardGap</tspan> · <tspan class="mono">isCheckoutPage</tspan></text>
+  </g>
+</svg>
