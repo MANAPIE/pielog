@@ -1,0 +1,90 @@
+<svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-map">
+  <title id="t-map">자료구조 시리즈와 알고리즘 시리즈의 관계도</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.10); --c-soft-2: rgba(194,112,61,0.10);
+        --c-soft-3: rgba(99,102,168,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.14); --c-soft-2: rgba(224,154,107,0.14);
+          --c-soft-3: rgba(149,152,212,0.16); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+      .nm { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .cardL { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.6; }
+      .cardR { fill: var(--c-card); stroke: var(--c-accent-3); stroke-width: 1.6; }
+      .dep { stroke: var(--c-accent-2); stroke-width: 1.6; fill: none; }
+      .band { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 5 4; }
+      .tick { stroke: var(--c-divider); stroke-width: 1; stroke-dasharray: 3 3; }
+      .bl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-accent-2); }
+    </style>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="540"/>
+
+  <text x="24" y="30" class="ttl">자료구조를 먼저 두고, 알고리즘을 그 위에 올립니다</text>
+  <text x="24" y="50" class="sub">왼쪽을 모르면 오른쪽 비용을 계산할 수 없습니다</text>
+
+  <text x="60" y="82" class="hd" fill="var(--c-accent)">자료구조 시리즈</text>
+  <text x="520" y="82" class="hd" fill="var(--c-accent-3)">알고리즘 시리즈</text>
+
+  <!-- 왼쪽: 자료구조 -->
+  <g transform="translate(60 96)">
+    <g><rect width="220" height="44" rx="6" class="cardL"/><text x="16" y="25" class="nm">배열</text></g>
+    <g transform="translate(0 56)"><rect width="220" height="44" rx="6" class="cardL"/><text x="16" y="25" class="nm">해시 테이블</text></g>
+    <g transform="translate(0 112)"><rect width="220" height="44" rx="6" class="cardL"/><text x="16" y="25" class="nm">정렬된 배열</text></g>
+    <g transform="translate(0 168)"><rect width="220" height="44" rx="6" class="cardL"/><text x="16" y="25" class="nm">트리</text></g>
+    <g transform="translate(0 224)"><rect width="220" height="44" rx="6" class="cardL"/><text x="16" y="25" class="nm">힙</text></g>
+    <g transform="translate(0 280)"><rect width="220" height="44" rx="6" class="cardL"/><text x="16" y="25" class="nm">세그먼트 트리</text></g>
+  </g>
+
+  <!-- 오른쪽: 알고리즘 -->
+  <g transform="translate(520 96)">
+    <g><rect width="220" height="44" rx="6" class="cardR"/><text x="16" y="25" class="nm">그래프 탐색</text></g>
+    <g transform="translate(0 56)"><rect width="220" height="44" rx="6" class="cardR"/><text x="16" y="25" class="nm">이분탐색</text></g>
+    <g transform="translate(0 112)"><rect width="220" height="44" rx="6" class="cardR"/><text x="16" y="25" class="nm">그리디</text></g>
+    <g transform="translate(0 168)"><rect width="220" height="44" rx="6" class="cardR"/><text x="16" y="25" class="nm">동적 계획법</text></g>
+    <g transform="translate(0 224)"><rect width="220" height="44" rx="6" class="cardR"/><text x="16" y="25" class="nm">문자열 매칭</text></g>
+    <g transform="translate(0 280)"><rect width="220" height="44" rx="6" class="cardR"/><text x="16" y="25" class="nm">정수론</text></g>
+  </g>
+
+  <!-- 의존 관계 -->
+  <g class="dep">
+    <!-- 배열(118) -> 이분탐색(174) -->
+    <path d="M280 118 C 380 118, 420 174, 516 174" marker-end="url(#ar)"/>
+    <!-- 정렬된 배열(230) -> 그리디(230) -->
+    <path d="M280 230 C 380 230, 420 230, 516 230" marker-end="url(#ar)"/>
+    <!-- 트리(286) -> 그래프 탐색(118) -->
+    <path d="M280 286 C 400 286, 400 118, 516 118" marker-end="url(#ar)"/>
+    <!-- 힙(342) -> 그래프 탐색(118) -->
+    <path d="M280 342 C 420 342, 430 126, 516 126" marker-end="url(#ar)"/>
+    <!-- 해시 테이블(174) -> 문자열 매칭(342) -->
+    <path d="M280 174 C 390 174, 400 342, 516 342" marker-end="url(#ar)"/>
+  </g>
+
+  <!-- 공통 축: 시간 복잡도 -->
+  <g class="tick">
+    <line x1="170" y1="420" x2="170" y2="452"/>
+    <line x1="630" y1="420" x2="630" y2="452"/>
+  </g>
+  <g transform="translate(24 452)">
+    <rect width="752" height="52" rx="8" class="band"/>
+    <text x="20" y="24" class="bl">공통 축 · 시간 복잡도</text>
+    <text x="20" y="42" class="sub">양쪽의 모든 항목이 이 축 위에 놓입니다. 이름을 아는 것과 비용을 아는 것은 다릅니다.</text>
+  </g>
+</svg>
