@@ -1,0 +1,224 @@
+<svg viewBox="0 0 800 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-opt">
+  <title id="t-opt">낙관적 업데이트와 롤백 시퀀스</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-4: rgba(61, 139, 122, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-4: rgba(111, 191, 168, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .lane {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .life {
+        stroke: var(--c-divider);
+        stroke-width: 1.4;
+        stroke-dasharray: 4 4;
+      }
+
+      .ok {
+        fill: var(--c-soft-4);
+        stroke: var(--c-accent-4);
+        stroke-width: 1.5;
+      }
+
+      .bad {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.5;
+      }
+
+      .hd {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .step {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-o1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)" />
+    </marker>
+    <marker id="a-o2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)" />
+    </marker>
+    <marker id="a-o3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-4)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="620" />
+
+  <!-- 3 레인 헤더 -->
+  <g transform="translate(24 24)">
+    <rect width="224" height="32" rx="5" class="lane" />
+    <text x="112" y="21" class="hd" text-anchor="middle">사용자</text>
+  </g>
+  <g transform="translate(288 24)">
+    <rect width="224" height="32" rx="5" class="lane" />
+    <text x="112" y="21" class="hd" text-anchor="middle">화면</text>
+  </g>
+  <g transform="translate(552 24)">
+    <rect width="224" height="32" rx="5" class="lane" />
+    <text x="112" y="21" class="hd" text-anchor="middle">서버</text>
+  </g>
+
+  <!-- 생명선 -->
+  <line x1="136" y1="60" x2="136" y2="290" class="life" />
+  <line x1="400" y1="60" x2="400" y2="290" class="life" />
+  <line x1="664" y1="60" x2="664" y2="290" class="life" />
+
+  <!-- 1. 클릭 -->
+  <g transform="translate(24 72)">
+    <rect width="224" height="38" rx="5" class="lane" />
+    <text x="16" y="24" class="step">좋아요 버튼을 누름</text>
+  </g>
+  <line x1="248" y1="91" x2="288" y2="91" stroke="var(--c-line)" stroke-width="1.8" marker-end="url(#a-o1)" />
+
+  <!-- 2. 즉시 반영 -->
+  <g transform="translate(288 72)">
+    <rect width="224" height="38" rx="5" class="ok" />
+    <text x="16" y="24" class="step">하트를 즉시 채움</text>
+    <text x="208" y="24" class="cap mono" text-anchor="end">0ms</text>
+  </g>
+  <line x1="512" y1="91" x2="552" y2="91" stroke="var(--c-line)" stroke-width="1.8" stroke-dasharray="5 4"
+    marker-end="url(#a-o1)" />
+
+  <!-- 3. 서버 요청 -->
+  <g transform="translate(552 72)">
+    <rect width="224" height="38" rx="5" class="lane" />
+    <text x="16" y="24" class="step"><tspan class="mono">POST /likes</tspan> 도착</text>
+  </g>
+
+  <!-- 분기 라벨 -->
+  <text x="24" y="150" class="lbl" fill="var(--c-accent-4)">SUCCESS PATH</text>
+
+  <!-- 성공 경로 -->
+  <g transform="translate(552 160)">
+    <rect width="224" height="38" rx="5" class="ok" />
+    <text x="16" y="24" class="step mono">200 OK</text>
+  </g>
+  <line x1="552" y1="179" x2="512" y2="179" stroke="var(--c-accent-4)" stroke-width="1.8" marker-end="url(#a-o3)" />
+  <g transform="translate(288 160)">
+    <rect width="224" height="38" rx="5" class="ok" />
+    <text x="16" y="24" class="step">그대로 유지 · 아무 일 없음</text>
+  </g>
+
+  <text x="24" y="238" class="lbl" fill="var(--c-accent-2)">FAILURE PATH</text>
+
+  <!-- 실패 경로 -->
+  <g transform="translate(552 248)">
+    <rect width="224" height="38" rx="5" class="bad" />
+    <text x="16" y="24" class="step mono">500 Internal Error</text>
+  </g>
+  <line x1="552" y1="267" x2="512" y2="267" stroke="var(--c-accent-2)" stroke-width="1.8" marker-end="url(#a-o2)" />
+  <g transform="translate(288 248)">
+    <rect width="224" height="38" rx="5" class="bad" />
+    <text x="16" y="24" class="step">하트를 다시 비움 (롤백)</text>
+  </g>
+  <line x1="288" y1="267" x2="248" y2="267" stroke="var(--c-accent-2)" stroke-width="1.8" marker-end="url(#a-o2)" />
+  <g transform="translate(24 248)">
+    <rect width="224" height="38" rx="5" class="bad" />
+    <text x="16" y="24" class="step">토스트 표시</text>
+  </g>
+
+  <!-- 경고 -->
+  <g transform="translate(24 304)">
+    <rect width="752" height="76" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5"
+      stroke-dasharray="5 4" />
+    <text x="20" y="28" class="ttl">아무 말 없이 되돌리면 사용자는 자기가 잘못 눌렀다고 생각합니다</text>
+    <text x="20" y="47" class="cap">시스템이 실패했다는 사실이 화면에 남지 않으면, 실패의 책임이 사용자에게 넘어갑니다</text>
+    <text x="20" y="63" class="cap">"반영하지 못했습니다"는 시스템이 하는 말이고, 아무 표시 없는 롤백은 사용자가 하는 오해입니다</text>
+  </g>
+
+  <!-- 하단: 행동 무게별 기준 -->
+  <text x="24" y="414" class="ttl">롤백의 무게는 행동의 무게에 비례해야 합니다</text>
+
+  <g transform="translate(24 428)">
+    <rect width="224" height="112" rx="8" class="lane" />
+    <text x="16" y="26" class="hd">가벼움</text>
+    <text x="16" y="48" class="step">좋아요 · 북마크 · 팔로우</text>
+    <line x1="16" y1="60" x2="208" y2="60" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="80" class="cap">토스트 한 줄이면 충분합니다</text>
+    <text x="16" y="98" class="cap">되돌려도 손실이 없습니다</text>
+  </g>
+
+  <g transform="translate(288 428)">
+    <rect width="224" height="112" rx="8" class="lane" />
+    <text x="16" y="26" class="hd">중간</text>
+    <text x="16" y="48" class="step">장바구니 · 임시 저장 · 설정</text>
+    <line x1="16" y1="60" x2="208" y2="60" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="80" class="cap">눈에 띄는 알림이 필요합니다</text>
+    <text x="16" y="98" class="cap">다시 시도할 수 있어야 합니다</text>
+  </g>
+
+  <g transform="translate(552 428)">
+    <rect width="224" height="112" rx="8" class="lane" stroke="var(--c-accent-2)" stroke-width="1.6" />
+    <text x="16" y="26" class="hd">무거움</text>
+    <text x="16" y="48" class="step">결제 · 예약 확정 · 삭제</text>
+    <line x1="16" y1="60" x2="208" y2="60" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="80" class="cap" fill="var(--c-accent-2)">낙관적으로 처리하지 않습니다</text>
+    <text x="16" y="98" class="cap">확정될 때까지 기다립니다</text>
+  </g>
+
+  <text x="400" y="568" class="ttl" text-anchor="middle">되돌릴 수 있는 행동만 낙관적으로 처리합니다</text>
+  <text x="400" y="592" class="cap" text-anchor="middle">이 원칙은 ep.09의 보상 트랜잭션과 같은 문제의 프론트엔드 버전입니다</text>
+</svg>

@@ -1,0 +1,309 @@
+---
+title: "네트워크 경계와 회복 탄력성 - 디자인 패턴, 시스템 수준 편 ep.05"
+description: 로컬 호출과 원격 호출의 차이는 속도가 아닙니다. 원격 호출은 실패할 수 있고, 실패했는지조차 모를 수 있습니다.
+summary: Timeout, Retry, Circuit Breaker, Bulkhead, Fallback을 TypeScript로 정리하고 워터폴과 병렬 페칭의 차이를 짚습니다. 로딩·에러·빈 상태 3종 세트와 재시도 버튼의 정직함, 낙관적 업데이트의 롤백을 사용자에게 어떻게 알릴 것인가를 함께 봅니다.
+date: 2026-08-23
+tags:
+  - series
+  - develop
+  - frontend
+  - backend
+  - architecture
+  - system-design
+  - typescript
+  - resilience
+  - circuit-breaker
+  - error-handling
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+로컬 함수는 호출하면 돌아온다. 원격 함수는 돌아오지 않을 수 있다. 심지어 돌아오지 않았는지조차 모를 수 있다.
+
+---
+
+## 이 경계는 무엇을 청구하는가
+
+이 경계는 이 시리즈에서 가장 비싼 경계입니다.
+
+같은 프로세스 안의 함수 호출은 나노초 단위입니다. 실패하는 방식도 단순합니다. 예외가 던져지거나, 값을 돌려줍니다. 네트워크를 넘는 호출은 다릅니다.
+
+- **느립니다.** 같은 데이터센터 안이어도 밀리초 단위, 대륙을 건너면 수백 밀리초입니다.
+- **실패합니다.** 서버가 죽었을 수도, 네트워크가 끊겼을 수도, 방화벽이 막았을 수도 있습니다.
+- **가장 나쁜 경우, 실패했는지 알 수 없습니다.** 요청은 도착했는데 응답이 오는 길에 끊겼다면, 호출한 쪽은 그 작업이 수행되었는지 알 방법이 없습니다.
+
+원격 호출의 결과는 성공과 실패 두 가지가 아니라, **성공·실패·알 수 없음** 세 가지입니다.
+
+**네트워크 경계가 답하는 질문은 하나입니다. 호출이 실패한다는 사실을 어디까지 인정할 것인가.**
+
+---
+
+## 이 경계에 붙어 있는 이름들
+
+### 분산 컴퓨팅의 오류
+
+1990년대에 Sun Microsystems의 엔지니어들이 정리한 목록이 있습니다. **분산 컴퓨팅의 여덟 가지 오류(Fallacies of Distributed Computing)** 입니다. 분산 시스템을 처음 만드는 사람들이 반복해서 믿는 잘못된 전제들입니다.
+
+> 네트워크는 안정적이다. 지연은 0이다. 대역폭은 무한하다. 네트워크는 안전하다. 토폴로지는 변하지 않는다. 관리자는 한 명이다. 전송 비용은 0이다. 네트워크는 균질하다.
+
+30년이 지났고 여덟 개 모두 여전히 거짓입니다. 그런데 많은 코드에서는 이 전제들을 굳게 믿고 있는 건지 대개 아무런 대책이 없습니다.
+
+```ts
+// 이 코드는 여덟 가지 오류를 전부 믿고 있습니다
+const data = await fetch('/api/orders').then(r => r.json())
+```
+
+타임아웃이 없습니다. 재시도가 없습니다. 실패했을 때의 계획이 없습니다. 응답이 그 모양이라는 보장도 없습니다(참고: [ep.03 계약 경계](/design-patterns-systems-ep-03/)).
+
+![로컬 호출과 원격 호출의 실패 모드 대조 다이어그램. 좌측은 로컬 함수 호출로, 호출자에서 함수로 가는 화살표가 있고 실패 지점은 '함수 내부 예외' 하나만 짧은 표시선으로 찍혀 있습니다. 결과는 성공 또는 예외 두 가지로만 갈립니다. 소요 시간은 나노초 단위로 표시됩니다. 우측은 원격 호출로, 호출자에서 네트워크를 건너 서버로 가는 긴 화살표가 있고 그 경로에 여러 실패 지점이 표시됩니다. DNS 조회 실패, 연결 거부, 타임아웃, 서버 에러, 응답 유실입니다. 결과는 성공, 실패, 그리고 알 수 없음 세 가지로 갈립니다. 알 수 없음 경우는 별도로 강조되어, 요청은 도착했으나 응답이 유실된 상황에서 호출자가 작업 수행 여부를 판단할 수 없다는 점이 설명됩니다. 하단에는 소요 시간이 밀리초에서 수백 밀리초 단위임이 표시됩니다.](dps-05-01-local-vs-remote.svg)
+
+### Timeout
+
+가장 먼저 세워야 할 것은 타임아웃입니다. 타임아웃이 없는 호출은 **무한히 기다릴 수 있는 호출**입니다.
+
+```ts
+async function fetchWithTimeout(
+  url: string,
+  ms: number = 3000,
+): Promise<Response> {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), ms)
+
+  try {
+    return await fetch(url, { signal: controller.signal })
+  } finally {
+    clearTimeout(timer)
+  }
+}
+```
+
+타임아웃 값은 **사용자가 기다릴 수 있는 시간**에서 역산합니다. 서버의 평균 응답 시간이 아닙니다. 화면이 3초 안에 뭔가 보여줘야 한다면, 그 안의 호출은 3초보다 짧아야 합니다.
+
+### Retry
+
+실패했을 때 다시 시도하는 것은 자연스럽습니다. 다만 조건이 붙습니다.
+
+**첫째, 재시도해도 되는 실패만 재시도합니다.**
+
+| 상황 | 재시도 | 이유 |
+|---|---|---|
+| 타임아웃 · 연결 실패 | 함 | 일시적일 수 있습니다 |
+| 5xx 서버 에러 | 함 | 서버 쪽 일시 장애일 수 있습니다 |
+| 429 Too Many Requests | 함 (대기 후) | `Retry-After` 헤더를 존중합니다 |
+| 400 Bad Request | 안 함 | 같은 요청은 또 실패합니다 |
+| 401 · 403 | 안 함 | 권한 문제는 재시도로 해결되지 않습니다 |
+| 404 | 안 함 | 없는 것은 계속 없습니다 |
+
+**둘째, 간격을 벌립니다.**
+
+즉시 재시도하면 이미 힘든 서버를 더 때립니다. **지수 백오프(exponential backoff)** 로 간격을 늘리고, 거기에 **지터(jitter)** 를 섞습니다.
+
+```ts
+async function retryWithBackoff<T>(
+  fn: () => Promise<T>,
+  maxAttempts = 3,
+): Promise<T> {
+  let lastError: unknown
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    try {
+      return await fn()
+    } catch (error) {
+      lastError = error
+      if (!isRetryable(error)) throw error
+
+      // 1s, 2s, 4s + 무작위 지터
+      const base = 1000 * 2 ** attempt
+      const jitter = Math.random() * base * 0.3
+      await sleep(base + jitter)
+    }
+  }
+  throw lastError
+}
+```
+
+지터가 없으면 **재시도 폭풍**이 생깁니다. 장애가 나서 수천 개의 클라이언트가 동시에 실패하면, 정확히 1초 뒤에 수천 개가 동시에 재시도합니다. 서버가 막 일어나려다 다시 쓰러집니다. 무작위 지연을 섞으면 재시도가 흩어집니다.
+
+**셋째, 안전하지 않은 요청은 재시도하지 않거나 멱등키를 씁니다.**
+
+결제 요청을 재시도했는데 첫 요청이 사실 성공했다면, 두 번 결제됩니다. 이 문제는 [ep.06 시간의 경계](/design-patterns-systems-ep-06/)에서 멱등성으로 다시 다룹니다.
+
+### Circuit Breaker
+
+서버가 완전히 죽었을 때, 재시도는 오히려 해롭습니다. 아무도 응답받지 못하는데 모두가 계속 두드립니다.
+
+**Circuit Breaker(회로 차단기)** 는 실패가 일정 수준을 넘으면 아예 호출을 멈춥니다. 전기 차단기에서 온 이름입니다.
+
+세 가지 상태를 가집니다.
+
+- **Closed(닫힘)**: 정상입니다. 호출이 통과합니다. 실패 수를 세고 있습니다.
+- **Open(열림)**: 실패가 임계치를 넘었습니다. 호출을 시도조차 하지 않고 즉시 실패시킵니다.
+- **Half-Open(반열림)**: 일정 시간 뒤, 시험 삼아 한 번만 통과시킵니다. 성공하면 Closed로, 실패하면 다시 Open으로 전환합니다.
+
+```ts
+type BreakerState = 'closed' | 'open' | 'half-open'
+
+class CircuitBreaker {
+  private state: BreakerState = 'closed'
+  private failures = 0
+  private openedAt = 0
+
+  constructor(
+    private threshold = 5,
+    private cooldownMs = 30_000,
+  ) {}
+
+  async call<T>(fn: () => Promise<T>): Promise<T> {
+    if (this.state === 'open') {
+      if (Date.now() - this.openedAt < this.cooldownMs) {
+        // 시도조차 하지 않습니다 — 빠르게 실패합니다
+        throw new Error('circuit open')
+      }
+      this.state = 'half-open'
+    }
+
+    try {
+      const result = await fn()
+      this.state = 'closed'
+      this.failures = 0
+      return result
+    } catch (error) {
+      this.failures++
+      if (this.state === 'half-open' || this.failures >= this.threshold) {
+        this.state = 'open'
+        this.openedAt = Date.now()
+      }
+      throw error
+    }
+  }
+}
+```
+
+Circuit Breaker의 진짜 이득은 **빠른 실패**입니다. 죽은 서버를 3초씩 기다리는 대신 즉시 실패하고, 그 시간에 폴백을 보여줍니다.
+
+![Circuit Breaker의 상태 머신 다이어그램. 세 개의 상태 노드가 삼각 배치되어 있습니다. 좌측의 Closed 상태는 정상으로 호출이 통과하며 실패를 세고 있습니다. 실패가 임계치를 넘으면 우측의 Open 상태로 전이하는 화살표가 있고 '실패 5회 도달'이라는 라벨이 붙습니다. Open 상태에서는 호출을 시도조차 하지 않고 즉시 실패시킵니다. 일정 시간이 지나면 하단의 Half-Open 상태로 전이하며 '쿨다운 30초 경과'라는 라벨이 붙습니다. Half-Open에서는 시험 호출 한 번만 통과시키며, 성공하면 Closed로 돌아가는 화살표와 실패하면 다시 Open으로 가는 화살표가 각각 그려져 있습니다. 각 상태 아래에는 그 상태에서 사용자가 보는 화면이 작게 표시되어, Closed는 정상 데이터, Open은 폴백 화면, Half-Open은 재시도 중 표시임을 보여줍니다.](dps-05-02-circuit-breaker.svg)
+
+### Bulkhead
+
+**격벽(bulkhead)** 은 배의 구조에서 온 이름입니다. 한 구획에 물이 차도 배 전체가 가라앉지 않도록 벽을 세웁니다.
+
+시스템에서는 자원을 나누는 것을 뜻합니다. 추천 서비스가 느려져서 커넥션 풀을 다 먹으면, 결제 요청도 커넥션을 못 얻습니다. 두 서비스에 별도의 풀을 배정하면 추천이 죽어도 결제는 삽니다.
+
+프론트엔드에도 같은 개념이 있습니다. 리액트의 Error Boundary가 격벽입니다. 추천 위젯이 던진 예외로 결제 화면 전체가 하얗게 변하지 않도록, 위젯마다 경계를 둡니다.
+
+### 워터폴과 병렬
+
+실패만이 아니라 **순서**도 이 경계의 문제입니다.
+
+```ts
+// 워터폴 — 순차 실행. 세 번의 왕복이 더해집니다
+const user = await fetchUser(id) // 200ms
+const orders = await fetchOrders(user.id) // 300ms
+const coupons = await fetchCoupons(user.id) // 150ms
+// 총 지연 = 200ms + 300ms + 150ms = 650ms
+```
+
+```ts
+// 병렬 — 의존이 없는 것들은 동시에
+const user = await fetchUser(id) // 200ms
+const [orders, coupons] = await Promise.all([
+  fetchOrders(user.id), // 300ms
+  fetchCoupons(user.id), // 150ms
+])
+// 총 지연 = 200ms + max(300ms, 150ms) = 500ms
+```
+
+React에서 워터폴은 코드가 아니라 **컴포넌트 트리**에서 만들어집니다. 부모가 데이터를 받아 렌더한 뒤에야 자식이 마운트되고, 그때 자식의 요청이 시작됩니다. 이것이 컴포넌트 단위 데이터 페칭의 구조적 함정입니다.
+
+해결책은 두 가지입니다.
+
+- **끌어올리기(Preloading / Data Fetching Hoisting)**: 필요한 요청을 라우트 레벨에서 미리 시작합니다.
+- **프리페치(Prefetch)**: 사용자가 링크에 마우스를 올리는 순간 다음 페이지의 데이터를 미리 받습니다.
+
+### 안티패턴
+
+**전부 재시도**: 400 에러는 세 번 재시도하면 세 번 실패합니다. 시간만 낭비합니다.
+
+**무한 재시도**: 상한이 없으면 실패한 요청이 영원히 자원을 붙잡습니다.
+
+**타임아웃 없는 재시도**: 각 시도에 타임아웃이 없으면 3회 재시도가 무한정 걸릴 수 있습니다.
+
+**폴백이 원본만큼 무거운 경우**: 폴백은 가볍고 확실해야 합니다. 폴백 자체가 네트워크 호출이면 그것도 실패합니다.
+
+---
+
+## 이 경계가 화면에 드러나는 자리
+
+이 경계는 화면에 **로딩·에러·빈 상태**로 나타납니다. 흔히 3종 세트라고 부르지만, 실제로는 더 세분화가 필요합니다.
+
+| 상태 | 사용자에게 보여야 할 것 | 흔한 실수 |
+|---|---|---|
+| 로딩 (첫 진입) | 스켈레톤 | 스피너만 돌려서 구조를 못 보여줌 |
+| 로딩 (갱신) | 기존 데이터 + 갱신 표시 | 화면을 비우고 스켈레톤으로 되돌림 |
+| 빈 데이터 | 왜 비었는지 + 다음 행동 | 에러와 같은 화면을 보여줌 |
+| 부분 실패 | 성공한 부분 + 실패 영역만 표시 | 전체를 에러 화면으로 덮음 |
+| 전체 실패 | 원인 + 재시도 + 대안 | "오류가 발생했습니다"만 표시 |
+| 오프라인 | 오프라인임을 명시 | 일반 에러와 구분하지 않음 |
+
+**빈 데이터와 에러를 구분하지 않는 것**이 가장 흔한 실수입니다. 주문 내역이 없는 신규 사용자와, 주문 내역을 불러오지 못한 사용자는 전혀 다른 상황입니다. 전자에게는 "첫 주문을 해보세요"가 맞고, 후자에게는 "다시 시도"가 맞습니다.
+
+### 재시도 버튼의 정직함
+
+"다시 시도" 버튼을 누르면 무슨 일이 일어나는지가 사용자에게 정확히 전달되어야 합니다.
+
+- Circuit Breaker가 Open 상태라면, 버튼을 눌러도 요청이 나가지 않습니다. 이 경우 "다시 시도"하라는 건 거짓말입니다. **"잠시 후 다시 시도해 주세요 (약 30초)"** 처럼 실제 상황을 말해야 합니다.
+- 이미 백그라운드에서 자동 재시도 중이라면, 사용자가 버튼을 누를 필요가 없습니다. **"재연결 중..."** 이 정확합니다.
+- 서버가 완전히 죽었다면 재시도해도 소용없습니다. 상태 페이지 링크가 재시도 버튼보다 유용합니다.
+
+**시스템의 상태와 버튼의 문구가 어긋나면, 사용자는 같은 버튼을 수없이 다시 눌러보게 됩니다.**
+
+### 낙관적 업데이트와 롤백
+
+좋아요 버튼을 누르면 즉시 색이 바뀝니다. 서버 응답을 기다리지 않습니다. 이렇게 화면을 먼저 바꾸는 방식이 **낙관적 업데이트(optimistic update)** 입니다.
+
+```ts
+// 화면을 먼저 바꾸고, 실패하면 되돌립니다
+async function toggleLike(postId: string) {
+  const previous = getLikeState(postId)
+  setLikeState(postId, !previous)      // 즉시 반영
+
+  try {
+    await api.toggleLike(postId)
+  } catch {
+    setLikeState(postId, previous)     // 롤백
+    showToast('좋아요를 반영하지 못했습니다')
+  }
+}
+```
+
+문제는 롤백할 때 생깁니다. **사용자에게 아무 말 없이 되돌리면, 사용자는 자기가 잘못 눌렀다고 생각합니다.**
+
+롤백의 무게는 행동의 무게에 비례해야 합니다.
+
+- 좋아요 취소가 롤백되었다 → 토스트 한 줄이면 충분합니다.
+- 장바구니 담기가 롤백되었다 → 눈에 띄는 알림이 필요합니다.
+- 결제가 롤백되었다 → **애초에 낙관적으로 처리하면 안 됩니다.**
+
+**되돌릴 수 있는 행동만 낙관적으로 처리합니다.** 이 원칙은 [ep.09 일관성 경계](/design-patterns-systems-ep-09/)의 보상 트랜잭션과 같은 문제의 프론트엔드 버전입니다.
+
+![낙관적 업데이트의 롤백 시퀀스 다이어그램. 세로축은 시간이고, 좌측에 사용자, 중앙에 화면, 우측에 서버가 배치되어 있습니다. 첫 단계에서 사용자가 좋아요 버튼을 누르고, 화면은 즉시 하트를 채워진 상태로 바꿉니다. 동시에 서버로 요청이 나갑니다. 성공 경로에서는 서버가 200을 응답하고 화면 상태가 그대로 유지됩니다. 실패 경로에서는 서버가 500을 응답하고 화면이 하트를 다시 빈 상태로 되돌리며 토스트가 표시됩니다. 다이어그램 하단에는 행동의 무게에 따른 롤백 처리 기준이 세 단계로 정리되어 있습니다. 가벼운 행동은 토스트 한 줄, 중간 무게는 눈에 띄는 알림, 무거운 행동인 결제는 애초에 낙관적으로 처리하지 않는다는 내용입니다.](dps-05-03-optimistic-rollback.svg)
+
+---
+
+## 참고 자료
+
+- Nygard, M. (2018). *Release It!* (2nd ed.). Pragmatic Bookshelf.
+- Fowler, M. (2014). CircuitBreaker. https://martinfowler.com/bliki/CircuitBreaker.html
+- Deutsch, P. (1994). The Eight Fallacies of Distributed Computing.
+- AWS Architecture Blog. (2015). Exponential Backoff And Jitter. https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/
+- Nielsen, J. (1993). Response Times: The 3 Important Limits. https://www.nngroup.com/articles/response-times-3-important-limits/
+
+---
+
+## 다음 편 예고
+
+> [ep.06 - 시간의 경계와 이벤트 기반 처리](/design-patterns-systems-ep-06/)
+
+지금까지는 호출이 돌아오기를 기다리는 이야기였습니다. 기다리지 않기로 하면 어떻게 될까요. 응답을 돌려주는 시점과 일이 끝나는 시점이 갈라지는 순간, 사용자에게 무엇을 말할지가 설계 문제가 됩니다.

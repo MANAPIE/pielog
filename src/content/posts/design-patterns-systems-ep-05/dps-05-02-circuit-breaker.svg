@@ -1,0 +1,128 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-cb">
+  <title id="t-cb">Circuit Breaker의 세 상태와 각 상태의 사용자 화면</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15); --c-skel: rgba(107,114,128,0.22);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18); --c-skel: rgba(139,146,160,0.28);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .st-closed { fill: var(--c-soft-4); stroke: var(--c-accent-4); stroke-width: 2.4; }
+      .st-open { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 2.4; }
+      .st-half { fill: var(--c-card); stroke: var(--c-line); stroke-width: 2.4; stroke-dasharray: 6 4; }
+      .screen { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; }
+      .skel { fill: var(--c-skel); }
+      .st-nm { font-family: 'Inter',system-ui,sans-serif; font-size: 15px; font-weight: 700; fill: var(--c-fg); }
+      .st-sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .edge { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .scr-t { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+    <marker id="a-c1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+    <marker id="a-c2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+    <marker id="a-c3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-4)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="600"/>
+
+  <!-- 상태 머신 -->
+  <!-- Closed (좌상) -->
+  <g transform="translate(24 60)">
+    <rect width="200" height="88" rx="10" class="st-closed"/>
+    <text x="100" y="34" class="st-nm" text-anchor="middle">Closed</text>
+    <text x="100" y="56" class="st-sub" text-anchor="middle">호출이 통과합니다</text>
+    <text x="100" y="74" class="st-sub" text-anchor="middle">실패를 세고 있습니다</text>
+  </g>
+
+  <!-- Open (우상) -->
+  <g transform="translate(576 60)">
+    <rect width="200" height="88" rx="10" class="st-open"/>
+    <text x="100" y="34" class="st-nm" text-anchor="middle">Open</text>
+    <text x="100" y="56" class="st-sub" text-anchor="middle">시도조차 하지 않습니다</text>
+    <text x="100" y="74" class="st-sub" text-anchor="middle">즉시 실패시킵니다</text>
+  </g>
+
+  <!-- Half-Open (중하) -->
+  <g transform="translate(300 232)">
+    <rect width="200" height="88" rx="10" class="st-half"/>
+    <text x="100" y="34" class="st-nm" text-anchor="middle">Half-Open</text>
+    <text x="100" y="56" class="st-sub" text-anchor="middle">시험 호출 한 번</text>
+    <text x="100" y="74" class="st-sub" text-anchor="middle">결과에 따라 갈립니다</text>
+  </g>
+
+  <!-- 전이: Closed → Open -->
+  <line x1="228" y1="104" x2="568" y2="104" stroke="var(--c-accent-2)" stroke-width="2.2" marker-end="url(#a-c1)"/>
+  <text x="398" y="94" class="edge" text-anchor="middle">실패 5회 도달</text>
+
+  <!-- 전이: Open → Half-Open -->
+  <path d="M 620 152 Q 596 224 506 268" fill="none" stroke="var(--c-line)" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#a-c2)"/>
+  <text x="616" y="224" class="edge">쿨다운 30초 경과</text>
+
+  <!-- 전이: Half-Open → Closed (성공) -->
+  <path d="M 296 266 Q 168 226 120 152" fill="none" stroke="var(--c-accent-4)" stroke-width="2.2" marker-end="url(#a-c3)"/>
+  <text x="168" y="230" class="edge" text-anchor="end">성공</text>
+
+  <!-- 전이: Half-Open → Open (실패) -->
+  <path d="M 466 232 Q 600 196 672 156" fill="none" stroke="var(--c-accent-2)" stroke-width="2.2" stroke-dasharray="4 4" marker-end="url(#a-c1)"/>
+  <text x="548" y="188" class="edge" fill="var(--c-accent-2)" text-anchor="middle">실패</text>
+
+  <!-- 각 상태의 사용자 화면 -->
+  <text x="24" y="366" class="ttl">각 상태에서 사용자가 보는 것</text>
+
+  <g transform="translate(24 380)">
+    <rect width="240" height="144" rx="8" class="screen" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="16" y="26" class="scr-t">Closed: 정상 데이터</text>
+    <rect x="16" y="40" width="208" height="14" rx="4" fill="var(--c-accent-4)" opacity="0.35"/>
+    <rect x="16" y="62" width="176" height="14" rx="4" fill="var(--c-accent-4)" opacity="0.25"/>
+    <rect x="16" y="84" width="196" height="14" rx="4" fill="var(--c-accent-4)" opacity="0.2"/>
+    <text x="16" y="116" class="cap">평소 화면 그대로입니다</text>
+    <text x="16" y="132" class="cap">달라지는 것이 아무것도 없습니다</text>
+  </g>
+
+  <g transform="translate(280 380)">
+    <rect width="240" height="144" rx="8" class="screen" stroke="var(--c-accent-2)" stroke-width="1.6"/>
+    <text x="16" y="26" class="scr-t">Open: 폴백</text>
+    <rect x="16" y="40" width="208" height="58" rx="5" fill="none" stroke="var(--c-accent-2)" stroke-width="1.3" stroke-dasharray="4 3"/>
+    <text x="120" y="64" class="cap" text-anchor="middle">추천을 불러오지 못했습니다</text>
+    <text x="120" y="82" class="cap" text-anchor="middle">잠시 후 다시 시도해 주세요 (약 30초)</text>
+    <text x="16" y="116" class="cap">"다시 시도" 버튼은 거짓말입니다</text>
+    <text x="16" y="132" class="cap">요청이 나가지 않기 때문입니다</text>
+  </g>
+
+  <g transform="translate(536 380)">
+    <rect width="240" height="144" rx="8" class="screen" stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text x="16" y="26" class="scr-t">Half-Open: 재연결 중</text>
+    <rect x="16" y="40" width="208" height="14" rx="4" class="skel"/>
+    <rect x="16" y="62" width="176" height="14" rx="4" class="skel"/>
+    <g transform="translate(16 91)">
+      <circle cx="6" cy="0" r="4" fill="var(--c-line)" opacity="0.7"/>
+      <circle cx="20" cy="0" r="4" fill="var(--c-line)" opacity="0.45"/>
+      <circle cx="34" cy="0" r="4" fill="var(--c-line)" opacity="0.2"/>
+      <text x="50" y="4" class="cap">재연결 중</text>
+    </g>
+    <text x="16" y="116" class="cap">사용자가 버튼을 누를 필요가 없습니다</text>
+    <text x="16" y="132" class="cap">복구되면 알아서 돌아옵니다</text>
+  </g>
+
+  <text x="400" y="552" class="ttl" text-anchor="middle">Circuit Breaker의 진짜 이득은 빠른 실패입니다</text>
+  <text x="400" y="574" class="cap" text-anchor="middle">죽은 서버를 3초씩 기다리는 대신 즉시 실패하고, 그 시간에 폴백을 보여줍니다</text>
+</svg>
