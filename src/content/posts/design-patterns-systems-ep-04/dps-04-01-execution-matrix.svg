@@ -1,0 +1,136 @@
+<svg viewBox="0 0 800 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-mx">
+  <title id="t-mx">실행 지점의 사분면과 렌더링 전략의 좌표</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .quad { stroke: var(--c-divider); stroke-width: 1; }
+      .quad-empty { fill: none; stroke: var(--c-muted); stroke-width: 1.2; stroke-dasharray: 5 5; }
+      .chip { fill: var(--c-card); stroke-width: 1.8; }
+      .axis { stroke: var(--c-line); stroke-width: 2; opacity: 0.4; }
+      .div { stroke: var(--c-divider); stroke-width: 1; }
+      .ax { font-family: 'Inter',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-muted); }
+      .grad { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+    <linearGradient id="g-tradeoff" gradientUnits="userSpaceOnUse" x1="76" y1="0" x2="724" y2="0">
+      <stop offset="0" stop-color="var(--c-accent-2)"/>
+      <stop offset="1" stop-color="var(--c-accent-4)"/>
+    </linearGradient>
+    <marker id="a-m" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="var(--c-accent-4)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="580"/>
+
+  <!-- 축 라벨: 상단(어디서) -->
+  <text x="400" y="24" class="ax" text-anchor="middle">어디서: WHERE</text>
+  <text x="234" y="46" class="ax" text-anchor="middle" style="fill:var(--c-accent-2)">서버</text>
+  <text x="566" y="46" class="ax" text-anchor="middle" style="fill:var(--c-accent-4)">클라이언트</text>
+
+  <!-- 축 라벨: 좌측(언제) -->
+  <g transform="translate(26 270) rotate(-90)">
+    <text x="0" y="0" class="ax" text-anchor="middle">언제: WHEN</text>
+  </g>
+  <text x="70" y="166" class="ax" text-anchor="end">빌드</text>
+  <text x="70" y="382" class="ax" text-anchor="end">런타임</text>
+
+  <!-- 축선 -->
+  <line x1="400" y1="56" x2="400" y2="484" class="axis"/>
+  <line x1="70" y1="270" x2="730" y2="270" class="axis"/>
+
+  <!-- 좌상: 빌드 × 서버 -->
+  <g transform="translate(76 62)">
+    <rect width="316" height="200" rx="8" class="quad" fill="var(--c-soft-2)"/>
+    <g transform="translate(20 18)">
+      <rect width="130" height="56" rx="6" class="chip" stroke="var(--c-accent-2)"/>
+      <text x="14" y="24" class="nm">SSG</text>
+      <text x="14" y="42" class="sub">빌드 시점 고정</text>
+    </g>
+    <g transform="translate(166 18)">
+      <rect width="130" height="56" rx="6" class="chip" stroke="var(--c-accent-2)"/>
+      <text x="14" y="24" class="nm">ISR</text>
+      <text x="14" y="42" class="sub">주기적 재생성</text>
+    </g>
+    <text x="20" y="100" class="cap">요청이 오면 만들어 둔 파일을 내려줍니다</text>
+    <text x="20" y="120" class="cap">가장 빠름 · 가장 낡음</text>
+    <line x1="20" y1="136" x2="296" y2="136" class="div"/>
+    <text x="20" y="158" class="sub">최신성: 빌드 시점 · 재검증 주기</text>
+    <text x="20" y="178" class="sub">첫 화면: 가장 빠름</text>
+  </g>
+
+  <!-- 우상: 빌드 × 클라이언트 (빈 사분면) -->
+  <g transform="translate(408 62)">
+    <rect width="316" height="200" rx="8" class="quad-empty"/>
+    <g transform="translate(158 72)">
+      <line x1="-24" y1="-24" x2="24" y2="24" stroke="var(--c-muted)" stroke-width="2.4"/>
+      <line x1="24" y1="-24" x2="-24" y2="24" stroke="var(--c-muted)" stroke-width="2.4"/>
+    </g>
+    <text x="158" y="130" class="cap" text-anchor="middle">빌드 시점에는</text>
+    <text x="158" y="150" class="cap" text-anchor="middle">브라우저가 존재하지 않습니다</text>
+  </g>
+
+  <!-- 좌하: 런타임 × 서버 -->
+  <g transform="translate(76 278)">
+    <rect width="316" height="200" rx="8" class="quad" fill="var(--c-soft-2)"/>
+    <g transform="translate(20 18)">
+      <rect width="130" height="56" rx="6" class="chip" stroke="var(--c-accent-2)"/>
+      <text x="14" y="24" class="nm">SSR</text>
+      <text x="14" y="42" class="sub">요청 시점 렌더</text>
+    </g>
+    <g transform="translate(166 18)">
+      <rect width="130" height="56" rx="6" class="chip" stroke="var(--c-accent-2)"/>
+      <text x="14" y="24" class="nm">RSC</text>
+      <text x="14" y="42" class="sub">JS 미전송</text>
+    </g>
+    <text x="20" y="100" class="cap">요청마다 서버가 화면을 만듭니다</text>
+    <text x="20" y="120" class="cap">항상 최신 · 서버 부하</text>
+    <line x1="20" y1="136" x2="296" y2="136" class="div"/>
+    <text x="20" y="158" class="sub">최신성: 항상 최신</text>
+    <text x="20" y="178" class="sub">첫 화면: 서버 응답 후</text>
+  </g>
+
+  <!-- 우하: 런타임 × 클라이언트 -->
+  <g transform="translate(408 278)">
+    <rect width="316" height="200" rx="8" class="quad" fill="var(--c-soft-4)"/>
+    <g transform="translate(20 18)">
+      <rect width="130" height="56" rx="6" class="chip" stroke="var(--c-accent-4)"/>
+      <text x="14" y="24" class="nm">CSR</text>
+      <text x="14" y="42" class="sub">브라우저 렌더</text>
+    </g>
+    <g transform="translate(166 18)">
+      <rect width="130" height="56" rx="6" class="chip" stroke="var(--c-accent-4)"/>
+      <text x="14" y="24" class="nm">Islands</text>
+      <text x="14" y="42" class="sub">부분 hydration</text>
+    </g>
+    <text x="20" y="100" class="cap">브라우저가 도착한 뒤 화면을 그립니다</text>
+    <text x="20" y="120" class="cap">개인화 가능 · 첫 화면 지연</text>
+    <line x1="20" y1="136" x2="296" y2="136" class="div"/>
+    <text x="20" y="158" class="sub">최신성: 항상 최신 · HTML 생성 전략에 따름</text>
+    <text x="20" y="178" class="sub">첫 화면: 가장 느림 · Islands는 빠름</text>
+  </g>
+
+  <!-- 대각 트레이드오프 -->
+  <line x1="76" y1="520" x2="724" y2="520" stroke="url(#g-tradeoff)" stroke-width="2.4" marker-end="url(#a-m)"/>
+  <text x="76" y="506" class="grad">빠르고 낡음</text>
+  <text x="724" y="506" class="grad" text-anchor="end">최신이고 느림</text>
+  <text x="400" y="550" class="cap" text-anchor="middle">이름을 외우는 대신 좌표로 이해하면, 새 이름이 나와도 자리를 찾을 수 있습니다</text>
+</svg>
