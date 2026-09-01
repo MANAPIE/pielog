@@ -1,0 +1,181 @@
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-erase">
+  <title id="t-erase">타입 소거와 as 단언이 통과시키는 값들</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .box {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.4;
+      }
+
+      .box-warn {
+        fill: var(--c-card);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.5;
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11.5px;
+        fill: var(--c-fg);
+      }
+
+      .code-mute {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .code-warn {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11.5px;
+        fill: var(--c-accent-2);
+        font-weight: 700;
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .warn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-e" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="var(--c-line)" />
+    </marker>
+    <marker id="a-w" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="520" />
+
+  <!-- 좌: 작성 코드 -->
+  <g transform="translate(24 24)">
+    <text x="0" y="14" class="lbl" fill="var(--c-accent)">WRITTEN: TypeScript</text>
+    <rect y="26" width="316" height="176" rx="6" class="box" />
+    <text x="16" y="52" class="code-mute">type User = {</text>
+    <text x="16" y="70" class="code"> id: string</text>
+    <text x="16" y="88" class="code"> name: string</text>
+    <text x="16" y="106" class="code"> age: number</text>
+    <text x="16" y="124" class="code-mute">}</text>
+    <text x="16" y="150" class="code">const res = await fetch(...)</text>
+    <text x="16" y="172" class="code">return res.json() <tspan class="code-warn">as User</tspan></text>
+    <text x="16" y="190" class="cap">이 단언에는 근거가 없습니다</text>
+  </g>
+
+  <!-- 컴파일 화살표 -->
+  <g transform="translate(356 130)">
+    <line x1="0" y1="0" x2="60" y2="0" stroke="var(--c-line)" stroke-width="2" marker-end="url(#a-e)" />
+    <text x="32" y="-12" class="lbl" fill="var(--c-muted)" text-anchor="middle">tsc</text>
+    <text x="32" y="24" class="cap" text-anchor="middle">타입 제거</text>
+  </g>
+
+  <!-- 우: 컴파일 결과 -->
+  <g transform="translate(460 24)">
+    <text x="0" y="14" class="lbl" fill="var(--c-muted)">COMPILED: JavaScript</text>
+    <rect y="26" width="316" height="176" rx="6" class="box" stroke-dasharray="4 3" />
+    <text x="16" y="60" class="code-mute">// 타입이 전부 사라졌습니다</text>
+    <text x="16" y="86" class="code">const res = await fetch(...)</text>
+    <text x="16" y="108" class="code">return res.json()</text>
+    <text x="16" y="146" class="cap">런타임에는 어떤 검사도</text>
+    <text x="16" y="164" class="cap">남아 있지 않습니다</text>
+  </g>
+
+  <!-- 하단: 통과하는 값들 -->
+  <g transform="translate(24 232)">
+    <rect width="752" height="200" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2"
+      stroke-dasharray="4 3" />
+    <text x="20" y="28" class="warn">as User를 그대로 통과하는 응답들</text>
+
+    <g transform="translate(20 44)">
+      <rect width="176" height="70" rx="5" class="box" />
+      <text x="12" y="22" class="code" font-size="10.5">{ id, name, age: 30 }</text>
+      <text x="12" y="42" class="cap">정상</text>
+      <text x="12" y="58" class="cap">기대한 형태</text>
+    </g>
+
+    <g transform="translate(208 44)">
+      <rect width="176" height="70" rx="5" class="box-warn" />
+      <text x="12" y="22" class="code-warn" font-size="10.5">{ id, name, age: "30" }</text>
+      <text x="12" y="42" class="cap">타입 불일치</text>
+      <text x="12" y="58" class="cap">age가 문자열</text>
+    </g>
+
+    <g transform="translate(396 44)">
+      <rect width="176" height="70" rx="5" class="box-warn" />
+      <text x="12" y="22" class="code-warn" font-size="10.5">{ id, age: 30 }</text>
+      <text x="12" y="42" class="cap">필드 누락</text>
+      <text x="12" y="58" class="cap">name이 undefined</text>
+    </g>
+
+    <g transform="translate(584 44)">
+      <rect width="148" height="70" rx="5" class="box-warn" />
+      <text x="12" y="22" class="code-warn" font-size="10.5">{ error: "500" }</text>
+      <text x="12" y="42" class="cap">에러 객체</text>
+      <text x="12" y="58" class="cap">전혀 다른 형태</text>
+    </g>
+
+    <!-- 결과 화살표 -->
+    <line x1="376" y1="122" x2="376" y2="146" stroke="var(--c-accent-2)" stroke-width="2" marker-end="url(#a-w)" />
+
+    <g transform="translate(20 152)">
+      <text x="0" y="14" class="ttl">네 가지 모두 컴파일과 런타임을 통과합니다</text>
+      <text x="0" y="34" class="cap">실패는 이 지점이 아니라, 값을 마지막으로 만진 컴포넌트에서 터집니다</text>
+    </g>
+  </g>
+
+  <text x="400" y="470" class="ttl" text-anchor="middle">any를 특정 타입으로 단언하는 것은 검증이 아니라 검증의 포기입니다</text>
+  <text x="400" y="494" class="cap" text-anchor="middle"><tspan class="mono">res.json()</tspan>의 반환 타입이 <tspan class="mono">any</tspan>인 것은 우연이 아닙니다</text>
+</svg>

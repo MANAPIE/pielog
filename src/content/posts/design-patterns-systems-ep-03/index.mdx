@@ -1,0 +1,315 @@
+---
+title: "계약 경계와 런타임 타입 검증 - 디자인 패턴, 시스템 수준 편 ep.03"
+description: TypeScript 타입은 컴파일이 끝나면 사라집니다. 경계를 넘어온 데이터가 그 모양이라는 보장은 다른 곳에 있어야 합니다.
+summary: 타입 소거와 as 단언의 위험을 짚고, Parse don't validate 원칙과 zod 기반 파싱을 TypeScript로 정리합니다. 스키마 우선과 코드 우선, codegen과 tRPC가 실제로 보장하는 것을 구분하고, 컴포넌트 계약과 headless·slot 확장점 설계, 디자인 토큰 계약까지 함께 봅니다.
+date: 2026-08-22
+tags:
+  - series
+  - develop
+  - frontend
+  - backend
+  - architecture
+  - system-design
+  - typescript
+  - zod
+  - schema
+  - design-system
+draft: false
+thumbnail: ./cover.svg
+---
+
+![](./cover.svg)
+
+타입은 컴파일이 끝나는 순간 사라진지고, 사라진 것은 아무것도 보장하지 않는다.
+
+---
+
+## 이 경계는 무엇을 청구하는가
+
+[앞 편](/design-patterns-systems-ep-02/)에서 화살표의 방향을 정리했습니다. 이제 그 화살표를 타고 실제 데이터가 건너옵니다.
+
+계약 경계는 **경계를 넘은 데이터가 무엇을 보장하는가**를 다룹니다. 함수 호출 하나를 생각해 봅니다. 같은 모듈 안에서 함수를 부를 때, 인자의 타입은 컴파일러가 확인해 줍니다. 그러나 네트워크에서, 파일에서, `localStorage`에서, 사용자 입력에서 데이터가 프로세스 경계를 넘어올 땐 컴파일러는 아무 것도 하지 못합니다.
+
+이 경계가 청구하는 것은 **검증 비용**입니다. 경계마다 파싱과 검증 코드가 필요하고, 스키마를 정의하고 관리해야 합니다.
+
+이 비용을 내지 않으면 다른 비용을 내야 합니다. `undefined is not a function`이 프로덕션에서 터지고, 스택 트레이스는 데이터가 들어온 지점이 아니라 그 값을 마지막으로 만진 컴포넌트를 가리킵니다. **잘못된 데이터는 들어온 자리에서 멀어질수록 진단이 어려워집니다.**
+
+**계약 경계가 답하는 질문은 하나입니다. 이 값이 그 타입이라는 것을 무엇이 보장하는가.**
+
+---
+
+## 이 경계에 붙어 있는 이름들
+
+### 타입은 런타임에 없습니다
+
+TypeScript의 타입은 컴파일 시점에만 존재합니다. `tsc`가 끝나면 타입 주석은 전부 지워지고 순수한 JavaScript만 남습니다. 이것을 **타입 소거(type erasure)** 라고 합니다.
+
+```ts
+// 작성한 코드
+type User = { id: string; name: string; age: number }
+
+async function getUser(): Promise<User> {
+  const res = await fetch('/api/user')
+  return res.json() as User    // ← 이 단언에는 근거가 없습니다
+}
+```
+
+```js
+// 컴파일 결과 — 타입이 전부 사라졌습니다
+async function getUser() {
+  const res = await fetch('/api/user')
+  return res.json()
+}
+```
+
+`as User`는 컴파일러에게 "이건 User야, 믿어"라고 말하는 문법입니다. 검사하지 않습니다. 서버가 `age`를 문자열로 보내도, `name` 필드를 빼먹어도, 아예 에러 객체를 보내도 이 코드는 그대로 통과합니다.
+
+`res.json()`의 실제 반환 타입이 `Promise<any>`인 것은, **네트워크에서 온 것은 정말로 무엇이든 될 수 있기 때문입니다.** `any`를 특정 타입으로 단언만 하는 순간, 우리는 검증을 한 것이 아니라 검증을 포기한 것입니다.
+
+![타입 소거를 보여주는 다이어그램. 좌측에는 작성한 TypeScript 코드가 표시되며 User 타입 정의와 as User 단언이 강조되어 있습니다. 중앙에는 컴파일 화살표와 함께 tsc라는 라벨이 있고, 그 아래에 '타입 주석이 전부 제거됨'이라는 설명이 붙어 있습니다. 우측에는 컴파일 결과인 JavaScript 코드가 표시되며, 타입 정의와 단언이 모두 사라진 모습입니다. 다이어그램 하단에는 런타임에 실제로 도착할 수 있는 값의 예시 네 가지가 나열되어 있습니다. 정상 응답, age가 문자열인 응답, name이 없는 응답, 에러 객체입니다. 네 가지 모두 as User 단언을 통과한다는 점이 붉은 표시로 강조되어 있습니다.](dps-03-01-type-erasure.svg)
+
+### Parse, don't validate
+
+Alexis King이 2019년에 쓴 글의 제목인 **"Parse, don't validate(검증하지 말고 파싱하라)"** 가 여기서 자주 인용됩니다.
+
+차이는 반환 타입에 있습니다.
+
+```ts
+// validate — boolean을 돌려줍니다
+function isUser(data: unknown): boolean {
+  return typeof data === 'object' && data !== null && 'id' in data
+}
+
+if (isUser(raw)) {
+  // raw는 여전히 unknown입니다. 타입 정보가 남지 않습니다.
+}
+```
+
+```ts
+// parse — 타입이 붙은 값을 돌려줍니다
+function parseUser(data: unknown): User {
+  // 검사에 실패하면 던집니다. 성공하면 User가 나옵니다.
+}
+
+const user = parseUser(raw)
+// 이 아래로는 user가 User라는 것이 코드 구조로 보장됩니다
+```
+
+검증은 정보를 버립니다. "맞다"는 사실만 알려주고, 그 사실을 타입 시스템에 남기지 않습니다.
+
+파싱은 정보를 만듭니다. 통과한 값은 **더 좁은, 더 확실한 타입**을 갖고 나옵니다.
+
+### zod로 경계 세우기
+
+TypeScript 생태계에서 이 일을 하는 도구가 여럿 있습니다. zod, valibot, arktype, TypeBox 등입니다. 여기서는 zod로 예시를 들겠습니다.
+
+```ts
+import { z } from 'zod'
+
+// 스키마가 곧 타입의 근거입니다
+const UserSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string().min(1),
+  age: z.number().int().nonnegative(),
+  role: z.enum(['admin', 'member', 'guest']),
+})
+
+// 타입은 스키마에서 파생됩니다 — 두 벌을 관리하지 않습니다
+export type User = z.infer<typeof UserSchema>
+
+export async function getUser(): Promise<User> {
+  const res = await fetch('/api/user')
+  const raw = await res.json()
+
+  // 여기가 경계입니다. 통과하지 못하면 여기서 멈춥니다.
+  return UserSchema.parse(raw)
+}
+```
+
+`z.infer`가 핵심입니다. 스키마와 타입을 따로 관리하면 둘이 어긋납니다. 스키마 하나에서 타입을 뽑으면 어긋날 방법이 없습니다.
+
+에러를 던지고 싶지 않을 때는 `safeParse`를 씁니다.
+
+```ts
+const result = UserSchema.safeParse(raw)
+
+if (!result.success) {
+  // result.error에 어느 필드가 왜 틀렸는지 들어 있습니다
+  logger.warn('user schema mismatch', { issues: result.error.issues })
+  return null
+}
+
+return result.data
+```
+
+### 경계는 어디에 세우는가
+
+모든 함수 입구마다 파싱하면 비용이 큽니다. 파싱은 **경계에서만** 합니다. 프로그램의 바깥에서 들어오는 자리, 즉 다음 지점들입니다.
+
+| 입력 지점 | 파싱 필요 | 이유 |
+|---|---|---|
+| HTTP 응답 | 필수 | 서버가 언제든 바뀔 수 있습니다 |
+| HTTP 요청 바디 (서버) | 필수 | 클라이언트를 신뢰할 수 없습니다 |
+| localStorage · 쿠키 | 필수 | 사용자가 직접 고칠 수 있고, 옛 버전이 남아 있습니다 |
+| URL 쿼리스트링 | 필수 | 손으로 조작 가능합니다 |
+| 환경 변수 | 권장 | 부팅 시 한 번 검사하면 배포 사고를 줄입니다 |
+| 파일 · CSV 업로드 | 필수 | 형식이 보장되지 않습니다 |
+| 내부 함수 호출 | 불필요 | 컴파일러가 이미 확인합니다 |
+
+`localStorage`는 특히 자주 놓치는 자리입니다. 6개월 전 버전의 앱이 저장해 둔 데이터가 현재의 코드에 들어옵니다. 그 사이 필드 이름이 바뀌었다면 저장된 값은 지금 타입과 맞지 않습니다.
+
+```ts
+const DraftSchema = z.object({
+  content: z.string(),
+  updatedAt: z.coerce.date(),
+})
+
+export function loadDraft(): Draft | null {
+  const raw = localStorage.getItem('draft')
+  if (!raw) return null
+
+  const parsed = DraftSchema.safeParse(JSON.parse(raw))
+  if (!parsed.success) {
+    // 옛 버전 데이터는 조용히 버립니다
+    localStorage.removeItem('draft')
+    return null
+  }
+  return parsed.data
+}
+```
+
+![검증과 파싱의 차이를 보여주는 다이어그램. 상단은 validate 방식으로, unknown 타입의 데이터가 isUser 함수를 통과한 뒤에도 여전히 unknown으로 남아 있는 흐름이 그려져 있습니다. 함수는 boolean만 반환하며, 통과 이후에도 타입 정보가 없다는 점이 표시됩니다. 하단은 parse 방식으로, unknown 타입의 데이터가 UserSchema.parse를 통과하면 User 타입이 되어 나오는 흐름이 그려져 있습니다. 실패 시에는 에러로 분기되어 경계에서 멈추는 경로가 별도로 표시됩니다. 우측에는 파싱을 세워야 하는 경계 지점 목록이 표로 정리되어 있습니다. HTTP 응답, 요청 바디, localStorage, URL 쿼리스트링, 환경 변수, 파일 업로드는 필요하고, 내부 함수 호출은 불필요하다고 구분되어 있습니다.](dps-03-02-parse-vs-validate.svg)
+
+### 스키마 우선인가 코드 우선인가
+
+계약을 어디에 두느냐에 따라 두 흐름이 갈립니다.
+
+**스키마 우선(schema-first)**: OpenAPI나 GraphQL 스키마를 먼저 합의하고, 양쪽이 그것을 코드로 생성합니다. 계약이 코드 바깥에 있으므로 프론트엔드와 백엔드가 병렬로 작업할 수 있습니다. 스키마가 곧 문서이자 협상 테이블입니다.
+
+**코드 우선(code-first)**: 서버 코드에서 타입을 뽑아 클라이언트로 전달합니다. tRPC가 대표적입니다. 중복이 적고 빠릅니다. 대신 서버와 클라이언트가 같은 저장소, 같은 언어를 써야 합니다.
+
+**codegen과 tRPC가 보장하는 것은 "빌드 시점에 두 코드가 같은 타입을 본다"이지, "런타임에 실제로 그 데이터가 온다"가 아닙니다.** tRPC를 써도, 서버가 배포된 버전과 클라이언트가 배포된 버전이 다르면 클라이언트는 존재하지 않는 필드를 기대할 수 있습니다.
+
+타입 공유는 **개발 시점의 오타**를 막습니다. **배포 시점의 버전 차이**는 막지 못합니다. 그래서 codegen을 쓰더라도, 진짜 경계(특히 배포 주기가 다른 시스템 사이)에는 런타임 파싱이 여전히 필요합니다.
+
+그리고 [앞 편](/design-patterns-systems-ep-02/)에서 말했듯, **codegen이 만드는 타입은 백엔드의 모양입니다.** 그것을 그대로 컴포넌트가 쓰면 의존 방향이 다시 뒤집힙니다. 생성 타입은 파싱과 매핑의 입력으로 쓰고, 화면은 자기 타입을 갖는 편이 낫습니다.
+
+### 안티패턴
+
+**경계 안쪽에서 다시 파싱**: 이미 파싱된 값을 하위 함수에서 또 파싱하는 코드가 생기면, 그 함수의 시그니처를 신뢰하지 않는다는 뜻입니다. 파싱은 경계에서 한 번만 하고, 안쪽에선 타입을 믿습니다.
+
+**`any`로 탈출**: 파싱이 귀찮아 `any`로 흘려보내면 그 타입은 코드 전체로 퍼집니다. `unknown`을 쓰면 컴파일러가 사용 전에 좁히기를 강제합니다.
+
+**너무 엄격한 스키마**: 서버가 필드를 하나 추가했다고 클라이언트가 죽으면 안 됩니다. zod는 기본적으로 알 수 없는 키를 무시합니다(`strip`). 이 기본값이 대개 옳습니다. `.strict()`는 정말 필요한 자리에만 씁니다.
+
+**에러를 무시하고 넘어가기**: `safeParse`가 실패했을 때 조용히 `null`을 돌려주고 끝내면, 스키마가 어긋났다는 사실을 아무도 모릅니다. 실패는 반드시 로그에 남깁니다. 이 로그가 [ep.13 관측 경계](/design-patterns-systems-ep-13/)에서 다시 중요해집니다.
+
+---
+
+## 이 경계가 화면에 드러나는 자리
+
+계약은 데이터에만 있는 것이 아닙니다. **컴포넌트의 props도 계약입니다.**
+
+`<Button variant="primary" size="md">`라고 쓸 때, 우리는 Button이라는 모듈과 계약을 맺습니다. `variant`에 무엇을 넣을 수 있는지, 무엇이 필수인지가 그 계약의 내용입니다.
+
+### 컴포넌트 계약의 두 얼굴
+
+디자인 시스템 컴포넌트의 props는 **막는 것**과 **열어주는 것**을 동시에 해야 합니다.
+
+```tsx
+// 막는 쪽 — 불가능한 조합을 타입으로 차단
+type ButtonProps =
+  | { variant: 'primary' | 'secondary'; href?: never; onClick: () => void }
+  | { variant: 'link'; href: string; onClick?: never }
+
+// variant가 'link'인데 onClick만 주면 컴파일 에러입니다
+```
+
+이 타입 정의가 계약의 **막는 면**입니다. 잘못된 사용을 런타임이 아니라 편집기에서 잡습니다. [ep.10 State](/design-patterns-objects-ep-10/)에서 본 "불가능한 상태를 표현 불가능하게 만든다"와 같은 접근입니다.
+
+문제는 막기만 하면 시스템이 너무 경직되어버린다는 점입니다. 예외 상황은 언제나 옵니다. 마케팅 페이지의 특수 버튼, A/B 테스트 변형, 새 브랜드 캠페인 같은 경우에는 계약이 열어주는 면도 필요합니다.
+
+### 확장점: headless와 slot
+
+**열어주는 방법**은 크게 두 가지입니다.
+
+**첫째, 동작과 표현을 분리합니다.** 접근성·키보드 조작·포커스 관리 같은 동작만 제공하고, 생김새는 사용하는 쪽이 정합니다. Radix UI, Headless UI, React Aria가 이 방식입니다.
+
+```tsx
+// headless — 동작은 라이브러리, 스타일은 사용자
+<Dialog.Root>
+  <Dialog.Trigger asChild>
+    <Button variant="primary">열기</Button>
+  </Dialog.Trigger>
+  <Dialog.Content className="my-custom-dialog">
+    ...
+  </Dialog.Content>
+</Dialog.Root>
+```
+
+`asChild`가 확장점입니다. Dialog는 "트리거가 되는 요소"라는 자리만 정의하고, 그 자리에 무엇이 들어올지는 열어 둡니다.
+
+**둘째, 자리를 열어 둡니다.** 슬롯 방식입니다.
+
+```tsx
+type CardProps = {
+  header?: React.ReactNode      // 열린 자리
+  footer?: React.ReactNode      // 열린 자리
+  children: React.ReactNode
+  variant?: 'flat' | 'elevated' // 닫힌 선택지
+}
+```
+
+`variant`는 정해진 값 중에서 고르는 **닫힌 계약**이고, `header`는 무엇이든 넣을 수 있는 **열린 계약**입니다. 좋은 컴포넌트 API는 이 둘을 의도적으로 배치합니다.
+
+**무엇을 닫고 무엇을 열 것인가**가 디자인 쪽에서 고민할 질문입니다. 판단 기준은 [ep.01 모듈 경계](/design-patterns-systems-ep-01/)의 기준과 이어집니다.
+
+- 시스템의 일관성이 걸린 것 → 닫습니다. (eg. 색, 간격, 폰트, 상태별 스타일)
+- 프로덕트마다 다를 수밖에 없는 것 → 엽니다. (eg. 내용, 배치 순서, 아이콘 선택, 추가 액션)
+
+색을 열어 두면(`color` prop) 일관성이 무너집니다. 내용을 닫아 두면(`title: string`만 허용) 프로덕트가 시스템을 우회할 일이 생깁니다.
+
+### 토큰도 계약입니다
+
+디자인 토큰에도 같은 문제가 있습니다. Figma에서 정의한 변수와 코드의 토큰이 같다는 보장은 어디에 있을까요.
+
+대개는 아무 데도 없습니다. 사람이 눈으로 맞추고, 오타는 빌드가 아니라 QA에서 발견됩니다.
+
+```ts
+// 토큰 이름 오타 — 런타임에 조용히 실패합니다
+<div className="bg-brand-primry" />    // 스타일이 안 먹습니다
+style={{ color: tokens.color.brnad.primary }}   // undefined가 뜹니다
+```
+
+Style Dictionary 같은 도구가 하는 일이 정확히 이 경계를 세우는 것입니다. 토큰 소스를 하나 두고, 거기서 CSS 변수·TypeScript 타입·iOS·Android 값을 **생성**합니다. 손으로 옮기지 않으므로 어긋날 수가 없습니다.
+
+```ts
+// 생성된 타입 — 없는 토큰을 쓰면 컴파일 에러
+export type ColorToken =
+  | 'color.brand.primary'
+  | 'color.brand.secondary'
+  | 'color.text.default'
+  // ...
+```
+
+![디자인 토큰의 계약 체인 다이어그램. 좌측에 Figma 변수가 있고, 중앙에 토큰 소스 파일이, 우측에 세 개의 생성 결과물이 배치되어 있습니다. 생성 결과물은 CSS 변수, TypeScript 타입, 네이티브 플랫폼 값입니다. Figma에서 토큰 소스로 향하는 화살표에는 '동기화'라는 라벨이, 토큰 소스에서 세 결과물로 향하는 화살표에는 '생성'이라는 라벨이 붙어 있습니다. 하단에는 이 체인이 없을 때 발생하는 문제가 대비되어 표시됩니다. 사람이 손으로 옮기는 경로가 점선으로 그려지고, 그 위에 오타 예시 bg-brand-primry가 붉게 표시되며 '빌드는 통과하고 QA에서 발견됨'이라는 경고가 붙어 있습니다.](dps-03-03-token-contract.svg)
+
+컴포넌트 props의 계약, 토큰 이름의 계약, API 응답의 계약, 이 세 가지는 다른 자리에 있지만 같은 질문에 답합니다. **경계를 넘는 것의 모양을 어디에 적어 두고, 누가 그것을 확인할 것인가.**
+
+---
+
+## 참고 자료
+
+- King, A. (2019). Parse, don't validate. https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/
+- Zod. https://zod.dev/
+- TypeScript Handbook. Type Assertions. https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+- Style Dictionary. https://styledictionary.com/
+- Radix UI. Composition (asChild). https://www.radix-ui.com/primitives/docs/guides/composition
+
+---
+
+## 다음 편 예고
+
+> [ep.04 - 실행 경계와 렌더링 전략](/design-patterns-systems-ep-04/)
+
+여기까지가 코드가 정지해 있을 때의 경계였습니다. 이제 코드가 움직입니다. 같은 함수라도 빌드 타임에 도는지 서버에서 도는지 브라우저에서 도는지에 따라 전혀 다른 것이 됩니다.

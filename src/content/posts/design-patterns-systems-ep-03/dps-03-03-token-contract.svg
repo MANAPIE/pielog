@@ -1,0 +1,202 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-tokc">
+  <title id="t-tokc">디자인 토큰의 계약 체인</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .box {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.4;
+      }
+
+      .box-src {
+        fill: var(--c-card);
+        stroke: var(--c-accent);
+        stroke-width: 2.2;
+      }
+
+      .box-out {
+        fill: var(--c-card);
+        stroke: var(--c-accent-4);
+        stroke-width: 1.6;
+      }
+
+      .pane-bad {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .nm {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10.5px;
+        fill: var(--c-muted);
+      }
+
+      .code-bad {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11.5px;
+        fill: var(--c-accent-2);
+        font-weight: 700;
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .edge {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.06em;
+      }
+    </style>
+    <marker id="a-t" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-4)" />
+    </marker>
+    <marker id="a-s" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)" />
+    </marker>
+    <marker id="a-bd" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="500" />
+
+  <text x="24" y="30" class="lbl" fill="var(--c-accent)">GENERATED CHAIN: 손으로 옮기지 않음</text>
+
+  <!-- Figma -->
+  <g transform="translate(24 52)">
+    <rect width="164" height="88" rx="6" class="box" />
+    <text x="82" y="30" class="nm" text-anchor="middle">Figma 변수</text>
+    <text x="82" y="52" class="code" text-anchor="middle">brand/primary</text>
+    <text x="82" y="70" class="cap" text-anchor="middle">디자인 원본</text>
+  </g>
+
+  <line x1="196" y1="96" x2="256" y2="96" stroke="var(--c-accent)" stroke-width="2" marker-end="url(#a-s)" />
+  <text x="226" y="86" class="edge" text-anchor="middle">동기화</text>
+
+  <!-- 토큰 소스 -->
+  <g transform="translate(264 40)">
+    <rect width="180" height="112" rx="6" class="box-src" />
+    <text x="90" y="28" class="nm" text-anchor="middle">토큰 소스</text>
+    <text x="90" y="50" class="code" text-anchor="middle">tokens.json</text>
+    <line x1="16" y1="60" x2="164" y2="60" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="90" y="78" class="cap" text-anchor="middle">단일 진실 공급원</text>
+    <text x="90" y="94" class="cap" text-anchor="middle">Style Dictionary</text>
+  </g>
+
+  <!-- 생성 화살표 3갈래 -->
+  <line x1="452" y1="72" x2="512" y2="60" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-t)" />
+  <line x1="452" y1="96" x2="512" y2="152" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-t)" />
+  <line x1="452" y1="120" x2="512" y2="244" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-t)" />
+  <text x="482" y="44" class="edge" text-anchor="middle">생성</text>
+
+  <!-- 결과물 3개 -->
+  <g transform="translate(520 24)">
+    <rect width="256" height="72" rx="6" class="box-out" />
+    <text x="14" y="30" class="nm" font-size="12">CSS 변수</text>
+    <text x="14" y="50" class="code">--color-brand-primary: #4A5FD9</text>
+  </g>
+  <g transform="translate(520 116)">
+    <rect width="256" height="72" rx="6" class="box-out" />
+    <text x="14" y="22" class="nm" font-size="12">TypeScript 타입</text>
+    <text x="14" y="42" class="code">type ColorToken =</text>
+    <text x="14" y="58" class="code">'color.brand.primary' | ...</text>
+  </g>
+  <g transform="translate(520 208)">
+    <rect width="256" height="72" rx="6" class="box-out" />
+    <text x="14" y="30" class="nm" font-size="12">네이티브 값</text>
+    <text x="14" y="50" class="code">iOS · Android 리소스</text>
+  </g>
+
+  <!-- 하단: 체인이 없을 때 -->
+  <g transform="translate(24 312)">
+    <rect width="752" height="164" rx="8" class="pane-bad" />
+    <text x="20" y="28" class="lbl" fill="var(--c-accent-2)">NO CHAIN: 손으로 옮길 때</text>
+
+    <g transform="translate(20 44)">
+      <rect width="150" height="52" rx="5" class="box" />
+      <text x="75" y="22" class="nm" text-anchor="middle" font-size="12">Figma 변수</text>
+      <text x="75" y="40" class="code" text-anchor="middle">brand/primary</text>
+    </g>
+
+    <line x1="178" y1="70" x2="252" y2="70" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 4"
+      marker-end="url(#a-bd)" />
+    <text x="215" y="60" class="edge" text-anchor="middle" fill="var(--c-accent-2)">사람이 옮김</text>
+
+    <g transform="translate(260 44)">
+      <rect width="230" height="52" rx="5" class="box" stroke="var(--c-accent-2)" />
+      <text x="14" y="22" class="code-bad">bg-brand-primry</text>
+      <text x="14" y="40" class="cap">오타 · 스타일이 먹지 않습니다</text>
+    </g>
+
+    <g transform="translate(510 44)">
+      <rect width="222" height="52" rx="5" class="box" />
+      <text x="14" y="22" class="cap">빌드 통과</text>
+      <text x="14" y="40" class="cap">QA에서 발견 · 운이 나쁘면 배포 후</text>
+    </g>
+
+    <text x="20" y="126" class="ttl">토큰 이름도 계약입니다</text>
+    <text x="20" y="146" class="cap">계약을 확인하는 주체가 사람이면, 확인은 배포 뒤로 밀립니다</text>
+  </g>
+</svg>
