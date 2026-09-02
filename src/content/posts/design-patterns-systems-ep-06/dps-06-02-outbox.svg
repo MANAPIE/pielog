@@ -1,0 +1,145 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-ob">
+  <title id="t-ob">Outbox 패턴의 흐름</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .tx { fill: var(--c-soft-4); stroke: var(--c-accent-4); stroke-width: 2; stroke-dasharray: 6 4; }
+      .bad { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10.5px; fill: var(--c-muted); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .edge { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.06em; }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+    </style>
+    <marker id="a-b1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+    <marker id="a-b2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-4)"/>
+    </marker>
+    <marker id="a-b3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <text x="24" y="28" class="lbl" fill="var(--c-accent-4)">TRANSACTIONAL OUTBOX</text>
+
+  <!-- 애플리케이션 -->
+  <g transform="translate(24 44)">
+    <rect width="150" height="52" rx="6" class="box"/>
+    <text x="75" y="24" class="nm" text-anchor="middle">애플리케이션</text>
+    <text x="75" y="42" class="code" text-anchor="middle">placeOrder()</text>
+  </g>
+  <line x1="99" y1="100" x2="99" y2="130" stroke="var(--c-line)" stroke-width="2" marker-end="url(#a-b1)"/>
+
+  <!-- 트랜잭션 경계 -->
+  <g transform="translate(24 136)">
+    <rect width="352" height="160" rx="8" class="tx"/>
+    <text x="18" y="26" class="lbl" fill="var(--c-accent-4)">ONE TRANSACTION</text>
+
+    <g transform="translate(18 40)">
+      <rect width="150" height="60" rx="5" class="box"/>
+      <text x="75" y="24" class="nm" text-anchor="middle" font-size="12">orders</text>
+      <text x="75" y="44" class="code" text-anchor="middle">INSERT 주문</text>
+    </g>
+    <g transform="translate(184 40)">
+      <rect width="150" height="60" rx="5" class="box" stroke="var(--c-accent-4)" stroke-width="2"/>
+      <text x="75" y="24" class="nm" text-anchor="middle" font-size="12">outbox</text>
+      <text x="75" y="44" class="code" text-anchor="middle">INSERT 이벤트</text>
+    </g>
+
+    <text x="176" y="128" class="cap" text-anchor="middle">둘 다 저장되거나 둘 다 롤백됩니다</text>
+    <text x="176" y="146" class="cap" text-anchor="middle">같은 데이터베이스이므로 원자성이 보장됩니다</text>
+  </g>
+
+  <!-- 릴레이 -->
+  <line x1="384" y1="216" x2="428" y2="216" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-b2)"/>
+  <text x="406" y="206" class="edge" text-anchor="middle">폴링</text>
+
+  <g transform="translate(436 158)">
+    <rect width="160" height="116" rx="6" class="box" stroke="var(--c-accent-4)" stroke-width="1.8"/>
+    <text x="80" y="26" class="nm" text-anchor="middle">릴레이</text>
+    <line x1="16" y1="38" x2="144" y2="38" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="16" y="58" class="code">status = 'pending'</text>
+    <text x="16" y="76" class="code">→ publish</text>
+    <text x="16" y="94" class="code">→ status = 'sent'</text>
+  </g>
+
+  <line x1="604" y1="216" x2="640" y2="216" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-b2)"/>
+  <text x="622" y="206" class="edge" text-anchor="middle">발행</text>
+
+  <g transform="translate(648 158)">
+    <rect width="128" height="116" rx="6" class="box"/>
+    <text x="64" y="26" class="nm" text-anchor="middle">브로커</text>
+    <line x1="16" y1="38" x2="112" y2="38" stroke="var(--c-divider)" stroke-width="1"/>
+    <rect x="24" y="52" width="80" height="16" rx="4" fill="var(--c-accent-4)" opacity="0.7"/>
+    <rect x="24" y="74" width="80" height="16" rx="4" fill="var(--c-accent-4)" opacity="0.45"/>
+    <rect x="24" y="96" width="80" height="16" rx="4" fill="var(--c-accent-4)" opacity="0.25"/>
+  </g>
+
+  <!-- at-least-once 설명 -->
+  <g transform="translate(24 312)">
+    <rect width="752" height="76" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="24" class="ttl">발행 후 상태 업데이트 전에 죽으면 같은 메시지가 다시 나갑니다</text>
+    <text x="20" y="45" class="cap">그래서 at-least-once이고, 그래서 소비자가 멱등해야 합니다. 두 개념은 짝을 이룹니다</text>
+    <text x="20" y="63" class="cap">소비자는 처리한 이벤트 ID를 기록하고, 이미 본 ID면 아무것도 하지 않습니다</text>
+  </g>
+
+  <!-- 하단: Outbox 없을 때 -->
+  <g transform="translate(24 404)">
+    <rect width="752" height="132" rx="8" class="bad"/>
+    <text x="20" y="28" class="warn">Outbox를 쓰지 않았을 때</text>
+
+    <g transform="translate(20 44)">
+      <rect width="144" height="48" rx="5" class="box"/>
+      <text x="72" y="20" class="nm" text-anchor="middle" font-size="11.5">① 주문 저장</text>
+      <text x="72" y="40" class="cap" text-anchor="middle">성공</text>
+    </g>
+    <line x1="172" y1="68" x2="204" y2="68" stroke="var(--c-accent-2)" stroke-width="2" marker-end="url(#a-b3)"/>
+
+    <g transform="translate(212 44)">
+      <rect width="144" height="48" rx="5" class="box" stroke="var(--c-accent-2)"/>
+      <g transform="translate(72 19)">
+        <line x1="-9" y1="-9" x2="9" y2="9" stroke="var(--c-accent-2)" stroke-width="2.6"/>
+        <line x1="9" y1="-9" x2="-9" y2="9" stroke="var(--c-accent-2)" stroke-width="2.6"/>
+      </g>
+      <text x="72" y="40" class="cap" text-anchor="middle">프로세스 종료</text>
+    </g>
+    <line x1="364" y1="68" x2="396" y2="68" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#a-b3)"/>
+
+    <g transform="translate(404 44)">
+      <rect width="144" height="48" rx="5" class="box" stroke="var(--c-muted)" stroke-dasharray="4 3"/>
+      <text x="72" y="20" class="nm" text-anchor="middle" font-size="11.5" fill="var(--c-muted)">② 이벤트 발행</text>
+      <text x="72" y="40" class="cap" text-anchor="middle">일어나지 않음</text>
+    </g>
+
+    <g transform="translate(576 44)">
+      <text x="0" y="16" class="warn" font-size="11">결과</text>
+      <text x="0" y="36" class="cap">주문은 있는데</text>
+      <text x="0" y="52" class="cap">아무도 모릅니다</text>
+    </g>
+
+    <text x="20" y="118" class="cap">데이터베이스 트랜잭션과 메시지 발행은 하나의 트랜잭션으로 묶이지 않습니다. 서로 다른 시스템이기 때문입니다</text>
+  </g>
+</svg>

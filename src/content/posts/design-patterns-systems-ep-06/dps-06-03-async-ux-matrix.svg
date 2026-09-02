@@ -1,0 +1,133 @@
+<svg viewBox="0 0 800 552" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-aux">
+  <title id="t-aux">비동기 작업의 소요 시간별 UX 대응</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .cell { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .cell-on { fill: var(--c-card); stroke-width: 2; }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; fill: var(--c-muted); }
+      .time { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .quote { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .head { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="552"/>
+
+  <!-- 열 헤더 -->
+  <g transform="translate(24 20)">
+    <text x="16" y="14" class="lbl">소요 시간</text>
+    <text x="140" y="14" class="lbl">대응 방식</text>
+    <text x="322" y="14" class="lbl">화면 문구</text>
+    <text x="576" y="14" class="lbl">사용자는</text>
+  </g>
+  <line x1="24" y1="30" x2="776" y2="30" stroke="var(--c-divider)" stroke-width="1"/>
+
+  <g transform="translate(24 40)">
+    <rect width="752" height="72" rx="6" class="cell-on" stroke="var(--c-accent-2)"/>
+    <text x="16" y="32" class="time">~ 1s</text>
+    <text x="16" y="52" class="cap">즉시</text>
+
+    <g transform="translate(140 16)">
+      <rect width="160" height="40" rx="5" fill="var(--c-accent-2)" opacity="0.18"/>
+      <text x="80" y="25" class="nm" text-anchor="middle">동기 처리</text>
+    </g>
+
+    <text x="322" y="32" class="quote">"저장되었습니다"</text>
+    <text x="322" y="52" class="cap">과거형이 정확합니다</text>
+
+    <text x="576" y="32" class="cap">기다리지 않습니다</text>
+    <text x="576" y="52" class="cap">비동기로 만들 이유가 없습니다</text>
+  </g>
+
+  <g transform="translate(24 120)">
+    <rect width="752" height="72" rx="6" class="cell-on" stroke="var(--c-accent)"/>
+    <text x="16" y="32" class="time">1 ~ 10s</text>
+    <text x="16" y="52" class="cap">짧은 대기</text>
+
+    <g transform="translate(140 16)">
+      <rect width="160" height="40" rx="5" fill="var(--c-accent)" opacity="0.18"/>
+      <text x="80" y="25" class="nm" text-anchor="middle">화면에서 폴링</text>
+    </g>
+
+    <text x="322" y="32" class="quote">"처리 중입니다"</text>
+    <text x="322" y="52" class="cap">진행률이 있으면 함께 표시</text>
+
+    <text x="576" y="32" class="cap">화면에 머무릅니다</text>
+    <text x="576" y="52" class="cap">떠나면 결과를 놓칩니다</text>
+  </g>
+
+  <g transform="translate(24 200)">
+    <rect width="752" height="72" rx="6" class="cell-on" stroke="var(--c-accent-3)"/>
+    <text x="16" y="32" class="time">10s ~ 수 분</text>
+    <text x="16" y="52" class="cap">중간 대기</text>
+
+    <g transform="translate(140 16)">
+      <rect width="160" height="40" rx="5" fill="var(--c-accent-3)" opacity="0.2"/>
+      <text x="80" y="25" class="nm" text-anchor="middle">푸시 알림</text>
+    </g>
+
+    <text x="322" y="32" class="quote">"변환 중입니다. 완료되면 알려드립니다"</text>
+    <text x="322" y="52" class="cap">떠나도 된다는 사실을 명시합니다</text>
+
+    <text x="576" y="32" class="cap">다른 일을 합니다</text>
+    <text x="576" y="52" class="cap">WebSocket · SSE · 웹 푸시</text>
+  </g>
+
+  <g transform="translate(24 280)">
+    <rect width="752" height="72" rx="6" class="cell-on" stroke="var(--c-accent-4)"/>
+    <text x="16" y="32" class="time">수 분 이상</text>
+    <text x="16" y="52" class="cap">긴 작업</text>
+
+    <g transform="translate(140 16)">
+      <rect width="160" height="40" rx="5" fill="var(--c-accent-4)" opacity="0.2"/>
+      <text x="80" y="25" class="nm" text-anchor="middle">알림 센터 · 메일</text>
+    </g>
+
+    <text x="322" y="32" class="quote">"작업을 예약했습니다. 결과는 알림으로 보내드립니다"</text>
+    <text x="322" y="52" class="cap">미래형이 정직합니다</text>
+
+    <text x="576" y="32" class="cap">화면을 떠납니다</text>
+    <text x="576" y="52" class="cap">나중에 확인합니다</text>
+  </g>
+
+  <!-- 정직한 문구 표 -->
+  <g transform="translate(24 372)">
+    <rect width="752" height="136" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="20" y="26" class="ttl">큐에 넣었을 뿐인데 완료라고 쓰면 거짓말이 됩니다</text>
+
+    <g transform="translate(20 40)">
+      <text x="0" y="14" class="head">부정확</text>
+      <text x="300" y="14" class="head">정확</text>
+      <line x1="0" y1="22" x2="712" y2="22" stroke="var(--c-divider)" stroke-width="1"/>
+
+      <text x="0" y="42" class="cap">업로드가 완료되었습니다</text>
+      <text x="300" y="42" class="quote">업로드를 시작했습니다</text>
+
+      <text x="0" y="62" class="cap">메일을 보냈습니다</text>
+      <text x="300" y="62" class="quote">메일을 곧 보내드립니다</text>
+
+      <text x="0" y="82" class="cap">저장되었습니다 (오프라인)</text>
+      <text x="300" y="82" class="quote">저장 대기 중 · 연결되면 전송됩니다</text>
+    </g>
+  </g>
+
+  <text x="400" y="530" class="ttl" text-anchor="middle">작업이 오래 걸린다면, 사용자를 화면에 붙잡아 두지 않는 것이 배려입니다</text>
+</svg>
