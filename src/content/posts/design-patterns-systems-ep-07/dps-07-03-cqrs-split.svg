@@ -1,0 +1,128 @@
+<svg viewBox="0 0 800 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-cqrs">
+  <title id="t-cqrs">CQRS - 쓰기 경로와 읽기 경로의 분리</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(74,95,217,0.08); --c-soft-3: rgba(139,122,184,0.12);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(141,160,255,0.14); --c-soft-3: rgba(176,160,218,0.16);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .pane-w { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-r { fill: var(--c-soft-3); stroke: var(--c-accent-3); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .trait { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-2); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-w7" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)"/>
+    </marker>
+    <marker id="a-r7" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-3)"/>
+    </marker>
+    <marker id="a-s7" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="580"/>
+
+  <!-- 쓰기 경로 -->
+  <g transform="translate(24 20)">
+    <rect class="pane-w" width="356" height="308" rx="8"/>
+    <text x="18" y="26" class="lbl" fill="var(--c-accent)">COMMAND: 쓰기</text>
+    <text x="18" y="48" class="ttl">정확해야 합니다</text>
+
+    <g transform="translate(18 62)">
+      <rect width="320" height="54" rx="5" class="box"/>
+      <text x="14" y="21" class="nm mono">PlaceOrderCommand</text>
+      <text x="14" y="39" class="code">{ userId, items }</text>
+    </g>
+    <line x1="178" y1="120" x2="178" y2="140" stroke="var(--c-accent)" stroke-width="2" marker-end="url(#a-w7)"/>
+
+    <g transform="translate(18 146)">
+      <rect width="320" height="54" rx="5" class="box" stroke="var(--c-accent)" stroke-width="2"/>
+      <text x="14" y="21" class="nm">도메인 모델</text>
+      <text x="14" y="39" class="code">불변식 검사 · 재고 확인 · 상태 전이</text>
+    </g>
+    <line x1="178" y1="204" x2="178" y2="224" stroke="var(--c-accent)" stroke-width="2" marker-end="url(#a-w7)"/>
+
+    <g transform="translate(18 230)">
+      <rect width="320" height="54" rx="5" class="box"/>
+      <text x="14" y="21" class="nm">정규화된 테이블</text>
+      <text x="14" y="39" class="code">orders · order_items · products</text>
+    </g>
+  </g>
+
+  <!-- 읽기 경로 -->
+  <g transform="translate(420 20)">
+    <rect class="pane-r" width="356" height="308" rx="8"/>
+    <text x="18" y="26" class="lbl" fill="var(--c-accent-3)">QUERY - 읽기</text>
+    <text x="18" y="48" class="ttl">빨라야 합니다</text>
+
+    <g transform="translate(18 62)">
+      <rect width="320" height="54" rx="5" class="box"/>
+      <text x="14" y="21" class="nm mono">getOrderList(userId)</text>
+      <text x="14" y="39" class="code">화면이 필요한 데이터를 직접 요청</text>
+    </g>
+    <line x1="178" y1="120" x2="178" y2="140" stroke="var(--c-accent-3)" stroke-width="2" marker-end="url(#a-r7)"/>
+
+    <g transform="translate(18 146)">
+      <rect width="320" height="54" rx="5" class="box" stroke="var(--c-accent-3)" stroke-width="2"/>
+      <text x="14" y="21" class="nm">읽기 모델 · 뷰</text>
+      <text x="14" y="39" class="code">도메인 객체를 거치지 않아도 됩니다</text>
+    </g>
+    <line x1="178" y1="204" x2="178" y2="224" stroke="var(--c-accent-3)" stroke-width="2" marker-end="url(#a-r7)"/>
+
+    <g transform="translate(18 230)">
+      <rect width="320" height="54" rx="5" class="box"/>
+      <text x="14" y="21" class="nm mono">OrderListView</text>
+      <text x="14" y="39" class="code">productNames · thumbnailUrl · statusLabel</text>
+    </g>
+  </g>
+
+  <!-- 두 경로 사이 동기화 -->
+  <line x1="364" y1="277" x2="436" y2="277" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a-s7)"/>
+  <text x="400" y="267" class="warn" text-anchor="middle" font-size="10">시차</text>
+
+  <!-- 특성 비교 -->
+  <g transform="translate(24 342)">
+    <rect width="752" height="110" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="26" class="ttl">하나의 모델로 둘 다 하려면 타협해야 합니다</text>
+
+    <g transform="translate(20 42)">
+      <text x="0" y="14" class="lbl" fill="var(--c-accent)">쓰기가 원하는 것</text>
+      <text x="0" y="34" class="trait">정규화 · 트랜잭션 · 불변식 · 중복 없음</text>
+      <text x="0" y="52" class="cap">정규화를 지키면 읽을 때 조인이 여섯 개가 됩니다</text>
+
+      <text x="380" y="14" class="lbl" fill="var(--c-accent-3)">읽기가 원하는 것</text>
+      <text x="380" y="34" class="trait">비정규화 · 조인 최소 · 미리 조립된 형태</text>
+      <text x="380" y="52" class="cap">읽기를 위해 비정규화하면 쓸 때 정합성이 어려워집니다</text>
+    </g>
+  </g>
+
+  <!-- 하단 오해 -->
+  <g transform="translate(24 466)">
+    <rect width="752" height="90" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.5"/>
+    <text x="20" y="28" class="ttl">CQRS는 데이터베이스를 두 개 쓰는 것이 아닙니다</text>
+    <text x="20" y="52" class="cap">같은 데이터베이스에서 쓰기 모델과 읽기 모델을 나누는 것만으로도 CQRS입니다.</text>
+    <text x="20" y="72" class="cap">읽기 전용 복제본이나 별도 저장소는 규모가 커졌을 때의 선택지이지 전제가 아닙니다.</text>
+  </g>
+</svg>

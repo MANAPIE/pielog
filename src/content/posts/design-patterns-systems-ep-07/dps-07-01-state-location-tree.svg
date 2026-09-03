@@ -1,0 +1,203 @@
+<svg viewBox="0 0 800 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-stree">
+  <title id="t-stree">상태 위치 결정 트리</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-3: rgba(139, 122, 184, 0.12);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-3: rgba(176, 160, 218, 0.16);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .q {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.5;
+      }
+
+      .dest {
+        fill: var(--c-soft-3);
+        stroke: var(--c-accent-3);
+        stroke-width: 1.8;
+      }
+
+      .qt {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .dn {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-muted);
+      }
+
+      .yn {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .note {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .step {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-muted);
+      }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-y" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-3)" />
+    </marker>
+    <marker id="a-n" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="620" />
+
+  <text x="24" y="30" class="ttl">이 값은 어디에 두어야 하는가</text>
+  <text x="24" y="50" class="note">위에서 아래로 내려오며 첫 번째로 맞는 곳에 둡니다</text>
+
+  <!-- 5단계 -->
+  <!-- 1 -->
+  <g transform="translate(24 66)">
+    <text x="0" y="-2" class="step">01</text>
+    <rect y="6" width="400" height="52" rx="6" class="q" />
+    <text x="18" y="28" class="qt">링크로 공유되어야 하는가</text>
+    <text x="18" y="46" class="cap">남에게 이 화면을 그대로 보여줄 일이 있는가</text>
+  </g>
+  <line x1="428" y1="98" x2="492" y2="98" stroke="var(--c-accent-3)" stroke-width="2" marker-end="url(#a-y)" />
+  <text x="460" y="90" class="yn" fill="var(--c-accent-3)" text-anchor="middle">예</text>
+  <g transform="translate(500 72)">
+    <rect width="276" height="52" rx="6" class="dest" />
+    <text x="16" y="22" class="dn">URL</text>
+    <text x="16" y="40" class="cap">페이지 이동까지 · 공유·뒤로가기·새 탭 지원</text>
+  </g>
+  <line x1="120" y1="124" x2="120" y2="152" stroke="var(--c-muted)" stroke-width="1.6" stroke-dasharray="4 4"
+    marker-end="url(#a-n)" />
+  <text x="132" y="144" class="yn" fill="var(--c-muted)">아니오</text>
+
+  <!-- 2 -->
+  <g transform="translate(24 158)">
+    <text x="0" y="-2" class="step">02</text>
+    <rect y="6" width="400" height="52" rx="6" class="q" />
+    <text x="18" y="28" class="qt">다른 기기에서도 보여야 하는가</text>
+    <text x="18" y="46" class="cap">폰에서 바꾸면 노트북에도 반영되어야 하는가</text>
+  </g>
+  <line x1="428" y1="190" x2="492" y2="190" stroke="var(--c-accent-3)" stroke-width="2" marker-end="url(#a-y)" />
+  <text x="460" y="182" class="yn" fill="var(--c-accent-3)" text-anchor="middle">예</text>
+  <g transform="translate(500 164)">
+    <rect width="276" height="52" rx="6" class="dest" />
+    <text x="16" y="22" class="dn">서버</text>
+    <text x="16" y="40" class="cap">영구 · 계정 기준으로 모든 기기에서 공유</text>
+  </g>
+  <line x1="120" y1="216" x2="120" y2="244" stroke="var(--c-muted)" stroke-width="1.6" stroke-dasharray="4 4"
+    marker-end="url(#a-n)" />
+
+  <!-- 3 -->
+  <g transform="translate(24 250)">
+    <text x="0" y="-2" class="step">03</text>
+    <rect y="6" width="400" height="52" rx="6" class="q" />
+    <text x="18" y="28" class="qt">새로고침 후에도 남아야 하는가</text>
+    <text x="18" y="46" class="cap">탭을 닫았다 열어도 유지되어야 하는가</text>
+  </g>
+  <line x1="428" y1="282" x2="492" y2="282" stroke="var(--c-accent-3)" stroke-width="2" marker-end="url(#a-y)" />
+  <text x="460" y="274" class="yn" fill="var(--c-accent-3)" text-anchor="middle">예</text>
+  <g transform="translate(500 256)">
+    <rect width="276" height="52" rx="6" class="dest" />
+    <text x="16" y="22" class="dn mono">localStorage · sessionStorage</text>
+    <text x="16" y="40" class="cap">스키마 파싱 필수: 옛 버전 데이터가 남습니다</text>
+  </g>
+  <line x1="120" y1="308" x2="120" y2="336" stroke="var(--c-muted)" stroke-width="1.6" stroke-dasharray="4 4"
+    marker-end="url(#a-n)" />
+
+  <!-- 4 -->
+  <g transform="translate(24 342)">
+    <text x="0" y="-2" class="step">04</text>
+    <rect y="6" width="400" height="52" rx="6" class="q" />
+    <text x="18" y="28" class="qt">여러 화면이 함께 봐야 하는가</text>
+    <text x="18" y="46" class="cap">멀리 떨어진 컴포넌트가 같은 값을 읽는가</text>
+  </g>
+  <line x1="428" y1="374" x2="492" y2="374" stroke="var(--c-accent-3)" stroke-width="2" marker-end="url(#a-y)" />
+  <text x="460" y="366" class="yn" fill="var(--c-accent-3)" text-anchor="middle">예</text>
+  <g transform="translate(500 348)">
+    <rect width="276" height="52" rx="6" class="dest" />
+    <text x="16" y="22" class="dn">전역 스토어</text>
+    <text x="16" y="40" class="cap">탭이 닫힐 때까지 · 서버 상태는 넣지 않습니다</text>
+  </g>
+  <line x1="120" y1="400" x2="120" y2="428" stroke="var(--c-muted)" stroke-width="1.6" stroke-dasharray="4 4"
+    marker-end="url(#a-n)" />
+
+  <!-- 5 -->
+  <g transform="translate(24 434)">
+    <text x="0" y="-2" class="step">05</text>
+    <rect y="6" width="400" height="52" rx="6" class="q" stroke="var(--c-accent-4)" stroke-width="2" />
+    <text x="18" y="28" class="qt">그 외 전부</text>
+    <text x="18" y="46" class="cap">기본값입니다. 대부분의 상태가 여기에 속합니다</text>
+  </g>
+  <line x1="428" y1="466" x2="492" y2="466" stroke="var(--c-accent-3)" stroke-width="2" marker-end="url(#a-y)" />
+  <g transform="translate(500 440)">
+    <rect width="276" height="52" rx="6" class="dest" stroke="var(--c-accent-4)" />
+    <text x="16" y="22" class="dn">컴포넌트 로컬</text>
+    <text x="16" y="40" class="cap">언마운트까지 · 가장 좁고 가장 안전합니다</text>
+  </g>
+
+  <!-- 하단 경고 -->
+  <g transform="translate(24 512)">
+    <rect width="752" height="82" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5"
+      stroke-dasharray="5 4" />
+    <text x="20" y="28" class="ttl">아래에서 위로 올라가지 않습니다</text>
+    <text x="20" y="50" class="note">대부분의 상태 관리 부채는 "일단 전역에 두고 나중에 정리하자"에서 시작합니다.</text>
+    <text x="20" y="66" class="note">한 번 위로 올라간 상태는 내려오지 않습니다. 참조하는 곳이 계속 늘어나기 때문입니다.</text>
+  </g>
+</svg>
