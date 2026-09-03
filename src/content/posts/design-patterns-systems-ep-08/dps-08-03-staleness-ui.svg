@@ -1,0 +1,159 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-stl">
+  <title id="t-stl">낡은 데이터를 드러내는 세 가지 UI 패턴</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-divider: rgba(26,31,46,0.15); --c-skel: rgba(107,114,128,0.22);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-divider: rgba(232,230,225,0.18); --c-skel: rgba(139,146,160,0.28);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .ui { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .skel { fill: var(--c-skel); }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .val { font-family: 'Inter',system-ui,sans-serif; font-size: 20px; font-weight: 700; fill: var(--c-fg); }
+      .meta { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .msg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .bad { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .btn { font-family: 'Inter',system-ui,sans-serif; font-size: 10px; font-weight: 700; fill: var(--c-accent); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <!-- 패턴 1 -->
+  <g transform="translate(24 20)">
+    <rect width="240" height="240" rx="8" class="card"/>
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-4)">PATTERN 1</text>
+    <text x="16" y="48" class="ttl">갱신 시점 명시</text>
+
+    <g transform="translate(16 62)">
+      <rect width="208" height="102" rx="6" class="ui"/>
+      <text x="14" y="22" class="meta">오늘 매출</text>
+      <text x="14" y="52" class="val">₩12,480,000</text>
+      <line x1="14" y1="66" x2="194" y2="66" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="14" y="86" class="meta">마지막 갱신 5분 전</text>
+      <g transform="translate(150 78)">
+        <rect width="44" height="16" rx="8" fill="none" stroke="var(--c-accent)" stroke-width="1.2"/>
+        <text x="22" y="12" class="btn" text-anchor="middle">갱신</text>
+      </g>
+    </g>
+
+    <text x="16" y="196" class="cap">대시보드 · 시세 · 모니터링처럼</text>
+    <text x="16" y="212" class="cap">숫자의 신선도가 의사결정에</text>
+    <text x="16" y="228" class="cap">영향을 주는 곳에서는 필수입니다</text>
+  </g>
+
+  <!-- 패턴 2 -->
+  <g transform="translate(280 20)">
+    <rect width="240" height="240" rx="8" class="card"/>
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-3)">PATTERN 2</text>
+    <text x="16" y="48" class="ttl">갱신 중임을 표시</text>
+
+    <g transform="translate(16 62)" opacity="0.6">
+      <rect width="208" height="60" rx="6" class="ui"/>
+      <text x="14" y="23" class="meta">상품 가격</text>
+      <text x="14" y="47" class="val">₩45,000</text>
+      <g transform="translate(168 32)">
+        <circle cx="0" cy="0" r="3.5" fill="var(--c-line)" opacity="0.7"/>
+        <circle cx="10" cy="0" r="3.5" fill="var(--c-line)" opacity="0.45"/>
+        <circle cx="20" cy="0" r="3.5" fill="var(--c-line)" opacity="0.2"/>
+      </g>
+    </g>
+    <text x="16" y="138" class="cap">투명도를 살짝 낮추는 정도로 충분</text>
+
+    <!-- 잘못된 예 -->
+    <g transform="translate(16 148)">
+      <rect width="208" height="48" rx="6" class="ui" stroke="var(--c-accent-2)" stroke-dasharray="4 3"/>
+      <rect x="14" y="12" width="120" height="10" rx="5" class="skel"/>
+      <rect x="14" y="28" width="80" height="10" rx="5" class="skel"/>
+      <text x="150" y="28" class="bad">잘못된 예</text>
+    </g>
+    <text x="16" y="212" class="bad">스켈레톤으로 되돌리지 않습니다</text>
+    <text x="16" y="228" class="cap">보여준 데이터를 지우는 것은 후퇴입니다</text>
+  </g>
+
+  <!-- 패턴 3 -->
+  <g transform="translate(536 20)">
+    <rect width="240" height="240" rx="8" class="card"/>
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-2)">PATTERN 3</text>
+    <text x="16" y="48" class="ttl">낙관적 · 확정 구분</text>
+
+    <g transform="translate(16 62)">
+      <!-- 확정 메시지 -->
+      <rect width="208" height="34" rx="6" class="ui"/>
+      <text x="12" y="20" class="msg">내일 3시에 봬요</text>
+      <g transform="translate(184 17)">
+        <polyline points="-6,0 -2,4 6,-5" fill="none" stroke="var(--c-accent-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <!-- 확정 메시지 2 -->
+      <g transform="translate(0 42)">
+        <rect width="208" height="34" rx="6" class="ui"/>
+        <text x="12" y="20" class="msg">자료 보내드렸습니다</text>
+        <g transform="translate(184 17)">
+          <polyline points="-6,0 -2,4 6,-5" fill="none" stroke="var(--c-accent-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </g>
+
+      <!-- 전송 중 메시지 -->
+      <g transform="translate(0 84)" opacity="0.55">
+        <rect width="208" height="34" rx="6" class="ui" stroke-dasharray="4 3"/>
+        <text x="12" y="20" class="msg">확인해 볼게요</text>
+        <g transform="translate(184 17)">
+          <circle r="6" fill="none" stroke="var(--c-muted)" stroke-width="1.4"/>
+          <line x1="0" y1="0" x2="0" y2="-3.5" stroke="var(--c-muted)" stroke-width="1.4"/>
+          <line x1="0" y1="0" x2="2.6" y2="1.6" stroke="var(--c-muted)" stroke-width="1.4"/>
+        </g>
+      </g>
+    </g>
+
+    <text x="16" y="212" class="cap">전송 중은 회색 + 시계</text>
+    <text x="16" y="228" class="cap">확정은 일반 색 + 체크</text>
+  </g>
+
+  <!-- 하단: 새로고침 어포던스 -->
+  <g transform="translate(24 276)">
+    <rect width="752" height="104" rx="8" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.5"/>
+    <text x="20" y="28" class="ttl">새로고침 버튼은 실제로 캐시를 우회해야 합니다</text>
+    <text x="20" y="52" class="cap">버튼을 눌렀는데 같은 캐시를 다시 읽어 같은 값이 나오면, 그 버튼은 없느니만 못합니다.</text>
+    <text x="20" y="72" class="cap mono">queryClient.invalidateQueries({ queryKey: ['dashboard'] })</text>
+    <text x="20" y="92" class="cap">브라우저 새로고침으로 대신할 수 없습니다. 사용자가 원한 것은 이 카드의 숫자만 다시 받는 것입니다.</text>
+  </g>
+
+  <!-- 하단: 개발 환경 착시 -->
+  <g transform="translate(24 396)">
+    <rect width="752" height="142" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="20" y="28" class="ttl">개발 환경에서는 캐시 문제가 잘 보이지 않습니다</text>
+    <text x="20" y="52" class="cap">혼자 쓰는 로컬에서는 내가 바꾸고 내가 조회합니다. 어긋나는 순간이 잘 생기지 않습니다.</text>
+
+    <g transform="translate(20 64)">
+      <rect width="230" height="60" rx="5" class="ui"/>
+      <text x="12" y="22" class="msg">관리자가 가격을 바꿈</text>
+      <text x="12" y="42" class="cap">사용자는 옛 가격을 봅니다</text>
+    </g>
+    <g transform="translate(262 64)">
+      <rect width="230" height="60" rx="5" class="ui"/>
+      <text x="12" y="22" class="msg">A가 댓글을 지움</text>
+      <text x="12" y="42" class="cap">B에게는 아직 보입니다</text>
+    </g>
+    <g transform="translate(504 64)">
+      <rect width="228" height="60" rx="5" class="ui"/>
+      <text x="12" y="22" class="msg">재고가 0이 됨</text>
+      <text x="12" y="42" class="cap">다른 탭은 구매 가능으로 보입니다</text>
+    </g>
+  </g>
+</svg>
