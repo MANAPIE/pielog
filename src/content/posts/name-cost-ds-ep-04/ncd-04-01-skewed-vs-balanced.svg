@@ -1,0 +1,95 @@
+<svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-bal">
+  <title id="t-bal">편향 트리와 균형 트리 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.10); --c-soft-2: rgba(194,112,61,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.14); --c-soft-2: rgba(224,154,107,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .nA { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 2; }
+      .nB { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 2; }
+      .nv { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .edA { stroke: var(--c-accent-2); stroke-width: 1.8; }
+      .edB { stroke: var(--c-accent); stroke-width: 1.8; }
+      .ghost { fill: none; stroke: var(--c-divider); stroke-width: 1.2; stroke-dasharray: 3 3; }
+      .met { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; }
+      .mid { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="480"/>
+
+  <text x="24" y="28" class="ttl">같은 값, 같은 규칙인데 넣은 순서만 다릅니다</text>
+  <text x="24" y="48" class="sub">이진 탐색 트리는 규칙만으로 성능을 보장하지 않습니다</text>
+
+  <!-- 왼쪽: 편향 트리 -->
+  <g transform="translate(24 66)">
+    <rect width="330" height="330" rx="8" class="pane"/>
+    <text x="18" y="26" class="hd" fill="var(--c-accent-2)">SKEWED · 1,2,3,4,5 순서로 삽입</text>
+
+    <g class="edA">
+      <line x1="63" y1="62" x2="108" y2="118"/>
+      <line x1="108" y1="118" x2="153" y2="174"/>
+      <line x1="153" y1="174" x2="198" y2="230"/>
+      <line x1="198" y1="230" x2="243" y2="286"/>
+    </g>
+
+    <g><circle cx="63" cy="62" r="17" class="nA"/><text x="63" y="67" class="nv" text-anchor="middle">1</text></g>
+    <g><circle cx="108" cy="118" r="17" class="nA"/><text x="108" y="123" class="nv" text-anchor="middle">2</text></g>
+    <g><circle cx="153" cy="174" r="17" class="nA"/><text x="153" y="179" class="nv" text-anchor="middle">3</text></g>
+    <g><circle cx="198" cy="230" r="17" class="nA"/><text x="198" y="235" class="nv" text-anchor="middle">4</text></g>
+    <g><circle cx="243" cy="286" r="17" class="nA"/><text x="243" y="291" class="nv" text-anchor="middle">5</text></g>
+
+    <text x="18" y="312" class="met" fill="var(--c-accent-2)">높이 5 · 탐색 O(N)</text>
+  </g>
+
+  <!-- 가운데 문구 -->
+  <g transform="translate(374 66)">
+    <line x1="26" y1="14" x2="26" y2="316" stroke="var(--c-divider)" stroke-width="1" stroke-dasharray="4 4"/>
+    <text x="26" y="140" class="mid" text-anchor="middle">같은</text>
+    <text x="26" y="162" class="mid" text-anchor="middle">값</text>
+    <text x="26" y="184" class="mid" text-anchor="middle">다섯</text>
+    <text x="26" y="206" class="mid" text-anchor="middle">개</text>
+  </g>
+
+  <!-- 오른쪽: 균형 트리 -->
+  <g transform="translate(446 66)">
+    <rect width="330" height="330" rx="8" class="pane"/>
+    <text x="18" y="26" class="hd" fill="var(--c-accent)">BALANCED · 3,2,4,1,5 순서로 삽입</text>
+
+    <g class="edB">
+      <line x1="165" y1="62" x2="95" y2="132"/>
+      <line x1="165" y1="62" x2="235" y2="132"/>
+      <line x1="95" y1="132" x2="51" y2="198"/>
+      <line x1="235" y1="132" x2="279" y2="198"/>
+    </g>
+
+    <g><circle cx="165" cy="62" r="17" class="nB"/><text x="165" y="67" class="nv" text-anchor="middle">3</text></g>
+    <g><circle cx="95" cy="132" r="17" class="nB"/><text x="95" y="137" class="nv" text-anchor="middle">2</text></g>
+    <g><circle cx="235" cy="132" r="17" class="nB"/><text x="235" y="137" class="nv" text-anchor="middle">4</text></g>
+    <g><circle cx="51" cy="198" r="17" class="nB"/><text x="51" y="203" class="nv" text-anchor="middle">1</text></g>
+    <g><circle cx="279" cy="198" r="17" class="nB"/><text x="279" y="203" class="nv" text-anchor="middle">5</text></g>
+
+    <text x="18" y="312" class="met" fill="var(--c-accent)">높이 3 · 탐색 O(log N)</text>
+  </g>
+
+  <text x="24" y="428" class="sub">왼쪽은 사실상 연결 리스트입니다. 이름은 트리인데 비용은 배열입니다.</text>
+  <text x="24" y="450" class="sub">정렬된 데이터를 그대로 넣으면 매번 이 모양이 됩니다. 그래서 균형 트리가 필요합니다.</text>
+</svg>
