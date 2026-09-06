@@ -1,0 +1,178 @@
+<svg viewBox="0 0 800 602" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-hd">
+  <title id="t-hd">숨김과 비활성화의 선택 기준</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10); --c-divider: rgba(26,31,46,0.15);
+        --c-dis: rgba(107,114,128,0.20);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14); --c-divider: rgba(232,230,225,0.18);
+          --c-dis: rgba(139,146,160,0.24);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ui { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .btn { fill: var(--c-accent); }
+      .btn-dis { fill: var(--c-dis); }
+      .btn-out { fill: none; stroke: var(--c-accent); stroke-width: 1.3; }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .h { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .btxt { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; font-weight: 700; }
+      .row { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .good { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-4); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="602"/>
+
+  <!-- 세 가지 표현 -->
+  <g transform="translate(24 20)">
+    <rect width="240" height="214" rx="8" class="card"/>
+    <text x="16" y="20" class="lbl" fill="var(--c-accent-4)">HIDE</text>
+    <text x="16" y="42" class="h">숨김</text>
+
+    <g transform="translate(16 62)">
+      <rect width="208" height="100" rx="6" class="ui"/>
+      <text x="14" y="24" class="cap">주문 #8842</text>
+      <g transform="translate(14 38)">
+        <rect width="60" height="24" rx="5" class="btn-out"/>
+        <text x="30" y="15" class="btxt" text-anchor="middle" fill="var(--c-accent)">상세</text>
+      </g>
+      <g transform="translate(82 38)">
+        <rect width="60" height="24" rx="5" class="btn-out"/>
+        <text x="30" y="15" class="btxt" text-anchor="middle" fill="var(--c-accent)">영수증</text>
+      </g>
+    </g>
+
+    <text x="16" y="184" class="cap">삭제 버튼이 아예 없습니다</text>
+    <text x="16" y="200" class="cap">존재를 알 필요가 없을 때</text>
+  </g>
+
+  <g transform="translate(280 20)">
+    <rect width="240" height="214" rx="8" class="card"/>
+    <text x="16" y="20" class="lbl" fill="var(--c-accent-3)">DISABLE + REASON</text>
+    <text x="16" y="42" class="h">비활성화 + 이유</text>
+
+    <g transform="translate(16 62)">
+      <rect width="208" height="100" rx="6" class="ui"/>
+      <text x="14" y="24" class="cap">주문 #8842</text>
+      <g transform="translate(14 38)">
+        <rect width="60" height="24" rx="5" class="btn-out"/>
+        <text x="30" y="15" class="btxt" text-anchor="middle" fill="var(--c-accent)">상세</text>
+      </g>
+      <g transform="translate(82 38)">
+        <rect width="60" height="24" rx="5" class="btn-dis"/>
+        <text x="30" y="15" class="btxt" text-anchor="middle" fill="var(--c-muted)">취소</text>
+      </g>
+        <!-- 비활성화 이유 -->
+        <text x="14" y="86" class="cap">배송이 시작된 주문은 취소할 수 없습니다</text>
+    </g>
+
+    <text x="16" y="184" class="cap">왜 못 쓰는지 알 수 있습니다</text>
+    <text x="16" y="200" class="cap">이유 없는 비활성화는 좌절만 남깁니다</text>
+  </g>
+
+  <g transform="translate(536 20)">
+    <rect width="240" height="214" rx="8" class="card"/>
+    <text x="16" y="20" class="lbl" fill="var(--c-accent-2)">SHOW + EXPLAIN</text>
+    <text x="16" y="42" class="h">보여주고 안내</text>
+
+    <g transform="translate(16 62)">
+      <rect width="208" height="100" rx="6" class="ui"/>
+      <text x="14" y="24" class="cap">대량 내보내기</text>
+      <g transform="translate(14 38)">
+        <rect width="96" height="24" rx="5" class="btn"/>
+        <text x="48" y="15" class="btxt" text-anchor="middle" fill="var(--c-bg)">CSV 내보내기</text>
+      </g>
+      <g transform="translate(120 38)">
+        <rect width="72" height="24" rx="12" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1"/>
+        <text x="36" y="15" class="btxt" text-anchor="middle" fill="var(--c-accent-2)">Pro</text>
+      </g>
+    </g>
+
+    <text x="16" y="184" class="cap">누르면 업그레이드 경로로 유도합니다</text>
+    <text x="16" y="200" class="cap">기능의 가치를 먼저 보여줍니다</text>
+  </g>
+
+  <!-- 선택 기준 표 -->
+  <g transform="translate(24 250)">
+    <rect width="752" height="160" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="26" class="ttl">상황별 권장</text>
+
+    <line x1="20" y1="38" x2="732" y2="38" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="56" class="th">상황</text>
+    <text x="330" y="56" class="th">권장</text>
+    <text x="470" y="56" class="th">이유</text>
+
+    <g transform="translate(20 78)">
+      <text x="0" y="0" class="row">권한 자체가 없음 (일반 사용자에게 관리자 기능)</text>
+      <text x="310" y="0" class="row" fill="var(--c-accent-4)">숨김</text>
+      <text x="450" y="0" class="cap">존재를 알 필요가 없습니다</text>
+    </g>
+    <g transform="translate(20 100)">
+      <text x="0" y="0" class="row">조건이 안 맞음 (배송 시작 후 취소)</text>
+      <text x="310" y="0" class="row" fill="var(--c-accent-3)">비활성화 + 이유</text>
+      <text x="450" y="0" class="cap">왜 안 되는지 알아야 합니다</text>
+    </g>
+    <g transform="translate(20 122)">
+      <text x="0" y="0" class="row">상위 플랜에서 가능</text>
+      <text x="310" y="0" class="row" fill="var(--c-accent-2)">보여주고 안내</text>
+      <text x="450" y="0" class="cap">업그레이드 경로로 유도합니다</text>
+    </g>
+    <g transform="translate(20 144)">
+      <text x="0" y="0" class="row">지금은 안 되지만 나중엔 됨</text>
+      <text x="310" y="0" class="row" fill="var(--c-accent-3)">비활성화 + 시점 안내</text>
+      <text x="450" y="0" class="cap">포기나 기약 없는 기다림을 막아야 합니다</text>
+    </g>
+  </g>
+
+  <!-- 원칙 -->
+  <g transform="translate(24 426)">
+    <rect width="366" height="72" rx="8" fill="var(--c-soft-4)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="18" y="22" class="good">권한이 없는 것과 조건이 안 맞는 것은 다릅니다</text>
+    <text x="18" y="44" class="cap">전자는 숨기고, 후자는 설명합니다.</text>
+    <text x="18" y="60" class="cap">둘을 같게 다루면 사용자가 길을 잃습니다.</text>
+  </g>
+
+  <g transform="translate(410 426)">
+    <rect width="366" height="72" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.6"/>
+    <text x="18" y="22" class="warn">화면 처리는 UI 편의이지 보안이 아닙니다</text>
+    <text x="18" y="44" class="cap">버튼을 숨겨도 API는 열려 있습니다.</text>
+    <text x="18" y="60" class="cap">서버가 같은 검사를 반드시 해야 합니다.</text>
+  </g>
+
+  <!-- 마찰 단계 -->
+  <g transform="translate(24 514)">
+    <text x="0" y="14" class="ttl">위험한 행동 앞의 마찰은 위험도에 비례합니다</text>
+    <g transform="translate(0 26)">
+      <rect width="176" height="46" rx="6" class="card"/>
+      <text x="14" y="17" class="row" font-size="11">① 확인 다이얼로그</text>
+      <text x="14" y="34" class="cap">되돌릴 수 있지만 번거로운 작업</text>
+
+      <rect x="192" width="176" height="46" rx="6" class="card"/>
+      <text x="206" y="17" class="row" font-size="11">② 타이핑 확인</text>
+      <text x="206" y="34" class="cap">되돌릴 수 없는 작업</text>
+
+      <rect x="384" width="176" height="46" rx="6" class="card"/>
+      <text x="398" y="17" class="row" font-size="11">③ 재인증</text>
+      <text x="398" y="34" class="cap">계정에 영향을 주는 작업</text>
+
+      <rect x="576" width="176" height="46" rx="6" class="card"/>
+      <text x="590" y="17" class="row" font-size="11">④ 2단계 인증</text>
+      <text x="590" y="34" class="cap">금전이 오가거나 권한 이양</text>
+    </g>
+  </g>
+</svg>

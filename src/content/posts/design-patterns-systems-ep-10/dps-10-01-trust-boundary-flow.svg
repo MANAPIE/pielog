@@ -1,0 +1,144 @@
+<svg viewBox="0 0 800 616" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-tb">
+  <title id="t-tb">신뢰 경계를 넘는 요청의 검증 단계</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-3: rgba(139,122,184,0.12);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-3: rgba(176,160,218,0.16);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .untrusted { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .trusted { fill: var(--c-soft-3); stroke: var(--c-accent-3); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .step { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .gate { stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; }
+      .flow { stroke: var(--c-line); stroke-width: 1.6; fill: none; }
+      .req { stroke: var(--c-accent-2); stroke-width: 2.2; fill: none; }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-flow" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)"/>
+    </marker>
+    <marker id="a-req" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto">
+      <polygon points="0,0 11,5.5 0,11" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="616"/>
+
+  <!-- 브라우저 레인: 전부 사용자가 조작할 수 있는 영역 -->
+  <g transform="translate(24 20)">
+    <rect class="untrusted" width="752" height="126" rx="8"/>
+    <text x="20" y="24" class="lbl" fill="var(--c-accent-2)">BROWSER</text>
+    <text x="732" y="24" class="warn" text-anchor="end">전부 사용자가 조작할 수 있습니다</text>
+    <text x="732" y="40" class="cap" text-anchor="end">우리가 쓴 JavaScript가 보낸 값도 마찬가지입니다</text>
+
+    <g transform="translate(20 56)">
+      <rect width="160" height="52" rx="5" class="step"/>
+      <text x="14" y="22" class="nm">폼 입력</text>
+      <text x="14" y="40" class="cap">사용자가 직접 씁니다</text>
+    </g>
+    <line x1="184" y1="82" x2="200" y2="82" class="flow" marker-end="url(#a-flow)"/>
+    <g transform="translate(204 56)">
+      <rect width="160" height="52" rx="5" class="step"/>
+      <text x="14" y="22" class="nm">클라이언트 검증</text>
+      <text x="14" y="40" class="cap">즉시 피드백 · UX 목적</text>
+    </g>
+    <line x1="368" y1="82" x2="384" y2="82" class="flow" marker-end="url(#a-flow)"/>
+    <g transform="translate(388 56)">
+      <rect width="160" height="52" rx="5" class="step"/>
+      <text x="14" y="22" class="nm">요청 조립</text>
+      <text x="14" y="40" class="cap">개발자 도구로 수정 가능</text>
+    </g>
+  </g>
+
+  <!-- 요청이 경계를 넘는 경로: 요청 조립 → 경계 → ① 형태 검증 -->
+  <path d="M 492 128 V 162 H 124 V 246" class="req" marker-end="url(#a-req)"/>
+  <text x="116" y="198" class="cap" text-anchor="end" fill="var(--c-accent-2)">요청</text>
+
+  <!-- 신뢰 경계 -->
+  <line x1="24" y1="180" x2="776" y2="180" class="gate"/>
+  <text x="756" y="172" class="lbl" text-anchor="end" fill="var(--c-accent)">TRUST BOUNDARY</text>
+
+  <!-- 서버 레인: 네 단계 검증 -->
+  <g transform="translate(24 210)">
+    <rect class="trusted" width="752" height="152" rx="8"/>
+    <text x="20" y="24" class="lbl" fill="var(--c-accent-3)">SERVER</text>
+    <text x="732" y="24" class="cap" text-anchor="end">경계를 넘어온 값은 네 단계로 거릅니다</text>
+
+    <g transform="translate(20 40)">
+      <rect width="160" height="52" rx="5" class="step"/>
+      <text x="14" y="22" class="nm">① 형태 검증</text>
+      <text x="14" y="40" class="cap">스키마 파싱</text>
+      <text x="0" y="72" class="code">실패 시 400</text>
+    </g>
+    <line x1="184" y1="66" x2="200" y2="66" class="flow" marker-end="url(#a-flow)"/>
+    <g transform="translate(204 40)">
+      <rect width="160" height="52" rx="5" class="step"/>
+      <text x="14" y="22" class="nm">② 인증</text>
+      <text x="14" y="40" class="cap">누구인가 · 한 번</text>
+      <text x="0" y="72" class="code">실패 시 401</text>
+    </g>
+    <line x1="368" y1="66" x2="384" y2="66" class="flow" marker-end="url(#a-flow)"/>
+    <g transform="translate(388 40)">
+      <rect width="160" height="52" rx="5" class="step" stroke="var(--c-accent-3)" stroke-width="2"/>
+      <text x="14" y="22" class="nm">③ 인가</text>
+      <text x="14" y="40" class="cap">무엇을 해도 되는가</text>
+      <text x="0" y="72" class="code">실패 시 404 (403 아님)</text>
+    </g>
+    <line x1="552" y1="66" x2="568" y2="66" class="flow" marker-end="url(#a-flow)"/>
+    <g transform="translate(572 40)">
+      <rect width="160" height="52" rx="5" class="step"/>
+      <text x="14" y="22" class="nm">④ 비즈니스 규칙</text>
+      <text x="14" y="40" class="cap">재고 · 잔액 · 상태 전이</text>
+      <text x="0" y="72" class="code">실패 시 409 · 422</text>
+    </g>
+
+    <text x="20" y="136" class="cap">인증은 한 번, 인가는 요청마다 · 자원마다 확인합니다</text>
+    <text x="732" y="136" class="cap" text-anchor="end">네 관문을 모두 통과해야 처리합니다</text>
+  </g>
+
+  <!-- 403 대신 404 설명 -->
+  <g transform="translate(24 380)">
+    <rect width="752" height="76" rx="8" fill="var(--c-card)" stroke="var(--c-accent-3)" stroke-width="1.5"/>
+    <text x="20" y="22" class="ttl">인가 실패에 403 대신 404를 쓰는 이유</text>
+    <text x="20" y="46" class="cap">403은 "그 주문은 존재하지만 당신 것이 아닙니다"를 알려줍니다. ID를 하나씩 바꿔가며 요청하면 어느 ID가 실재하는지 알아낼 수 있습니다.</text>
+    <text x="20" y="64" class="cap">존재 자체를 숨겨야 하는 자원에는 404가 안전합니다. 이 취약점의 이름은 IDOR입니다.</text>
+  </g>
+
+  <!-- 두 검증의 목적 -->
+  <g transform="translate(24 472)">
+    <rect width="366" height="124" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.6"/>
+    <text x="18" y="26" class="lbl" fill="var(--c-accent-2)">CLIENT VALIDATION</text>
+    <text x="18" y="50" class="ttl">목적은 UX입니다</text>
+    <text x="18" y="74" class="cap">사용자가 실수를 빨리 알게 합니다</text>
+    <text x="18" y="92" class="cap">서버 왕복 없이 즉시 피드백합니다</text>
+    <text x="18" y="110" class="warn">이것만 있으면 보안이 없습니다</text>
+  </g>
+
+  <g transform="translate(410 472)">
+    <rect width="366" height="124" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="18" y="26" class="lbl" fill="var(--c-accent-4)">SERVER VALIDATION</text>
+    <text x="18" y="50" class="ttl">목적은 보안입니다</text>
+    <text x="18" y="74" class="cap">시스템이 잘못된 상태가 되지 않게 합니다</text>
+    <text x="18" y="92" class="cap">우회할 수 없는 유일한 검증입니다</text>
+    <text x="18" y="110" class="cap">이것만 있으면 UX가 나쁩니다: 둘 다 필요합니다</text>
+  </g>
+</svg>
