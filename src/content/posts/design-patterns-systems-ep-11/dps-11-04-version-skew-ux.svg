@@ -1,0 +1,97 @@
+<svg viewBox="0 0 800 382" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-vs">
+  <title id="t-vs">한 화면의 버전 균열과 점진 롤아웃의 UX</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .panel { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .ui { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.3; }
+      .card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="382"/>
+  <!-- 화면 균열 -->
+  <g transform="translate(24 24)">
+    <rect width="752" height="172" rx="8" class="panel"/>
+    <text x="20" y="26" class="ttl">한 화면에 두 버전이 섞일 때</text>
+    <g transform="translate(20 44)">
+      <rect width="340" height="106" rx="6" class="ui"/>
+      <text x="12" y="20" class="cap">주문하기</text>
+      <g transform="translate(12 28)">
+        <rect width="150" height="64" rx="10" fill="none" stroke="var(--c-accent-4)" stroke-width="1.5"/>
+        <text x="10" y="18" class="cap">결제 위젯 · DS v2</text>
+        <rect x="10" y="28" width="70" height="22" rx="11" fill="var(--c-accent-4)" opacity="0.75"/>
+      </g>
+      <g transform="translate(174 28)">
+        <rect width="154" height="64" rx="3" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5"/>
+        <text x="10" y="18" class="cap">검색 위젯 · DS v1</text>
+        <rect x="10" y="28" width="70" height="22" rx="3" fill="var(--c-accent-3)" opacity="0.75"/>
+      </g>
+    </g>
+    <text x="380" y="50" class="cap">모서리 반경이 다르고, 파란색 톤이 미묘하게 다릅니다.</text>
+    <text x="380" y="68" class="cap">사용자는 지적하지 못해도 "어설프다"고 느낍니다.</text>
+    <text x="380" y="96" class="nm">대응 세 가지</text>
+    <text x="380" y="120" class="cap">토큰만 공유: 색·간격은 셸이 하나만 제공합니다</text>
+    <text x="380" y="138" class="cap">시각적 분리: 다른 팀 위젯을 나란히 두지 않습니다</text>
+    <text x="380" y="156" class="cap">버전 차이 상한: "메이저 차이는 최대 1까지"</text>
+  </g>
+
+  <!-- 점진 롤아웃 UX -->
+  <g transform="translate(24 212)">
+    <rect width="752" height="146" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="20" y="26" class="ttl">점진 롤아웃에는 UX 결정이 따라옵니다</text>
+    <g transform="translate(20 44)">
+      <rect width="166" height="86" rx="5" class="card"/>
+      <text x="14" y="22" class="nm">같은 쪽에 고정</text>
+      <text x="14" y="40" class="cap">새로고침마다 화면이</text>
+      <text x="14" y="56" class="cap">바뀌면 혼란스럽습니다</text>
+      <text x="14" y="72" class="cap">사용자 ID 해시로 고정</text>
+    </g>
+    <g transform="translate(202 44)">
+      <rect width="166" height="86" rx="5" class="card"/>
+      <text x="14" y="22" class="nm">말할 수 있게</text>
+      <text x="14" y="40" class="cap">"새 결제 화면 사용 중"</text>
+      <text x="14" y="56" class="cap">피드백 경로가 있으면</text>
+      <text x="14" y="72" class="cap">문제를 일찍 발견합니다</text>
+    </g>
+    <g transform="translate(384 44)">
+      <rect width="166" height="86" rx="5" class="card"/>
+      <text x="14" y="22" class="nm">되돌아갈 수 있는가</text>
+      <text x="14" y="40" class="cap">베타라면 이전 버전으로</text>
+      <text x="14" y="56" class="cap">되돌아갈 수 없다면</text>
+      <text x="14" y="72" class="cap">그렇게 말해야 합니다</text>
+    </g>
+    <g transform="translate(566 44)">
+      <rect width="166" height="86" rx="5" class="card"/>
+      <text x="14" y="22" class="nm">도움말 동기화</text>
+      <text x="14" y="40" class="cap">절반이 새 화면을 볼 때</text>
+      <text x="14" y="56" class="cap">고객센터 문서는</text>
+      <text x="14" y="72" class="cap">어느 쪽을 설명하는가</text>
+    </g>
+  </g>
+</svg>

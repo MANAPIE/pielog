@@ -1,0 +1,255 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-flag">
+  <title id="t-flag">feature flag의 수명 주기</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-4: rgba(61, 139, 122, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-4: rgba(111, 191, 168, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .panel {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .nm {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-muted);
+      }
+
+      .th {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.08em;
+      }
+
+      .td {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-fg);
+      }
+
+      .warn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-muted);
+      }
+
+      .stage {
+        fill: var(--c-card);
+        stroke: var(--c-accent-4);
+        stroke-width: 1.8;
+      }
+
+      .stage-last {
+        fill: var(--c-card);
+        stroke: var(--c-accent-2);
+        stroke-width: 2;
+        stroke-dasharray: 5 4;
+      }
+
+      .bar-bg {
+        fill: var(--c-divider);
+      }
+
+      .bar {
+        fill: var(--c-accent-4);
+        opacity: 0.7;
+      }
+
+      .pct {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .flow {
+        stroke: var(--c-accent-4);
+        stroke-width: 2;
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      }
+    </style>
+    <marker id="a-fl" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-4)" />
+    </marker>
+    <marker id="a-rb" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="560" />
+  <text x="24" y="36" class="ttl">배포와 출시를 분리합니다</text>
+
+  <!-- 5단계: 코드 배포 → 플래그 제거 -->
+  <g transform="translate(24 52)">
+    <rect width="144" height="86" rx="6" class="stage" />
+    <text x="14" y="22" class="nm">코드 배포</text>
+    <text x="14" y="40" class="cap">플래그는 꺼진 상태</text>
+    <text x="14" y="70" class="pct">0%</text>
+    <rect x="46" y="61" width="84" height="12" rx="6" class="bar-bg" />
+  </g>
+  <line x1="170" y1="95" x2="182" y2="95" class="flow" marker-end="url(#a-fl)" />
+  <g transform="translate(184 52)">
+    <rect width="144" height="86" rx="6" class="stage" />
+    <text x="14" y="22" class="nm">내부 공개</text>
+    <text x="14" y="40" class="cap">팀·베타 사용자</text>
+    <text x="14" y="70" class="pct">5%</text>
+    <rect x="46" y="61" width="84" height="12" rx="6" class="bar-bg" />
+    <rect x="46" y="61" width="5" height="12" rx="2.5" class="bar" />
+  </g>
+  <line x1="330" y1="95" x2="342" y2="95" class="flow" marker-end="url(#a-fl)" />
+  <g transform="translate(344 52)">
+    <rect width="144" height="86" rx="6" class="stage" stroke-width="2.4" />
+    <text x="14" y="22" class="nm">점진 롤아웃</text>
+    <text x="14" y="40" class="cap">관찰하며 늘립니다</text>
+    <text x="14" y="70" class="pct">50%</text>
+    <rect x="46" y="61" width="84" height="12" rx="6" class="bar-bg" />
+    <rect x="46" y="61" width="42" height="12" rx="6" class="bar" />
+  </g>
+  <line x1="490" y1="95" x2="502" y2="95" class="flow" marker-end="url(#a-fl)" />
+  <g transform="translate(504 52)">
+    <rect width="144" height="86" rx="6" class="stage" />
+    <text x="14" y="22" class="nm">전체 공개</text>
+    <text x="14" y="40" class="cap">모든 사용자</text>
+    <text x="14" y="70" class="pct">100%</text>
+    <rect x="46" y="61" width="84" height="12" rx="6" class="bar-bg" />
+    <rect x="46" y="61" width="84" height="12" rx="6" class="bar" />
+  </g>
+  <line x1="650" y1="95" x2="662" y2="95" class="flow" marker-end="url(#a-fl)" />
+  <g transform="translate(664 52)">
+    <rect width="112" height="86" rx="6" class="stage-last" />
+    <text x="14" y="22" class="nm">플래그 제거</text>
+    <text x="14" y="40" class="cap">분기 삭제</text>
+    <text x="14" y="56" class="cap">코드 정리</text>
+  </g>
+
+  <!-- 롤백 경로: 점진 롤아웃 → 코드 배포 -->
+  <path d="M 416 138 V 160 H 96 V 142" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 4"
+    marker-end="url(#a-rb)" />
+  <text x="256" y="178" class="warn" text-anchor="middle">문제 발생 시 플래그를 끕니다: 재배포 없이 10초</text>
+
+  <!-- 종류별 수명 -->
+  <g transform="translate(24 196)">
+    <rect width="752" height="160" rx="8" class="panel" />
+    <text x="20" y="26" class="ttl">종류마다 수명이 다릅니다</text>
+    <line x1="20" y1="38" x2="732" y2="38" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="20" y="56" class="th">종류</text>
+    <text x="200" y="56" class="th">목적</text>
+    <text x="450" y="56" class="th">수명</text>
+    <g transform="translate(20 78)">
+      <text x="0" y="0" class="td">릴리스 플래그</text>
+      <text x="180" y="0" class="td">점진 출시</text>
+      <text x="430" y="0" class="td" fill="var(--c-accent-2)">며칠~몇 주: 반드시 제거</text>
+    </g>
+    <g transform="translate(20 100)">
+      <text x="0" y="0" class="td">실험 플래그</text>
+      <text x="180" y="0" class="td">A/B 테스트</text>
+      <text x="430" y="0" class="td" fill="var(--c-accent-2)">실험 기간: 반드시 제거</text>
+    </g>
+    <g transform="translate(20 122)">
+      <text x="0" y="0" class="td">운영 플래그</text>
+      <text x="180" y="0" class="td">부하 시 기능 차단</text>
+      <text x="430" y="0" class="td">영구</text>
+    </g>
+    <g transform="translate(20 144)">
+      <text x="0" y="0" class="td">권한 플래그</text>
+      <text x="180" y="0" class="td">플랜별 기능</text>
+      <text x="430" y="0" class="td">영구</text>
+    </g>
+  </g>
+
+  <!-- 부채 경고 -->
+  <g transform="translate(24 372)">
+    <rect width="368" height="164" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2"
+      stroke-dasharray="4 3" />
+    <text x="20" y="26" class="warn">제거하지 않으면 부채가 됩니다</text>
+    <text x="20" y="50" class="cap">플래그 30개 = 조합 10억 가지</text>
+    <text x="20" y="68" class="cap">어떤 조합이 실제로 테스트되었는지</text>
+    <text x="20" y="86" class="cap">아무도 모릅니다</text>
+    <g transform="translate(20 100)">
+      <rect width="328" height="48" rx="5" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+      <text x="12" y="18" class="code">'new-checkout': { owner, expiresAt: '2026-09-30' }</text>
+      <text x="12" y="34" class="cap">만료일이 지나면 CI가 경고합니다</text>
+    </g>
+  </g>
+
+  <!-- 클라이언트 플래그 주의 -->
+  <g transform="translate(408 372)">
+    <rect width="368" height="164" rx="8" fill="var(--c-card)" stroke="var(--c-accent-3)" stroke-width="1.6" />
+    <g transform="translate(0 5)">
+      <text x="20" y="26" class="ttl">꺼진 기능의 코드는 브라우저에 있습니다</text>
+      <text x="20" y="50" class="cap">클라이언트에서 판정하는 플래그는</text>
+      <text x="20" y="68" class="cap">꺼진 쪽 코드까지 번들에 포함됩니다.</text>
+      <text x="20" y="94" class="cap">아직 공개하지 않은 가격표가 들어 있으면</text>
+      <text x="20" y="112" class="cap">개발자 도구로 볼 수 있습니다.</text>
+      <text x="20" y="138" class="warn">미공개 정보는 서버에서 판정합니다</text>
+    </g>
+  </g>
+</svg>
