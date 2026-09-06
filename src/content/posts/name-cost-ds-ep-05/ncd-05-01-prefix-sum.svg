@@ -1,0 +1,96 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-pre">
+  <title id="t-pre">누적합으로 구간 합을 뺄셈 한 번으로 바꾸는 과정</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-on: rgba(47,125,110,0.18); --c-on2: rgba(194,112,61,0.20);
+        --c-dim: rgba(107,114,128,0.34); --c-divider: rgba(26,31,46,0.14);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-on: rgba(111,195,176,0.22); --c-on2: rgba(224,154,107,0.24);
+          --c-dim: rgba(139,146,160,0.36); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .cell { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.2; }
+      .on { fill: var(--c-on); stroke: var(--c-accent); stroke-width: 2.4; }
+      .on2 { fill: var(--c-on2); stroke: var(--c-accent-2); stroke-width: 2.4; }
+      .br { fill: none; stroke: var(--c-accent); stroke-width: 1.5; }
+      .bl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; }
+      .v { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .rg { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; fill: var(--c-muted); }
+      .eq { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="420"/>
+
+  <text x="24" y="28" class="ttl">구간 합을 뺄셈 한 번으로 바꾸는 방법</text>
+  <text x="24" y="48" class="sub">배열 3 1 4 1 5 9 2 · prefix[i]는 앞에서부터 i개를 더한 값입니다</text>
+
+  <!-- 배열과 누적합 -->
+  <g transform="translate(24 62)">
+    <rect width="752" height="166" rx="8" class="pane"/>
+
+    <text x="20" y="26" class="hd" fill="var(--c-accent)">원본 배열 arr</text>
+    <path class="br" d="M262 36 v-6 h130 v6"/>
+    <text x="327" y="24" class="rg" text-anchor="middle" fill="var(--c-accent)">구간 [2,4]</text>
+    <g transform="translate(170 44)">
+      <text x="19" y="-4" class="rg" text-anchor="middle">0</text><text x="65" y="-4" class="rg" text-anchor="middle">1</text><text x="111" y="-4" class="rg" text-anchor="middle">2</text><text x="157" y="-4" class="rg" text-anchor="middle">3</text><text x="203" y="-4" class="rg" text-anchor="middle">4</text><text x="249" y="-4" class="rg" text-anchor="middle">5</text><text x="295" y="-4" class="rg" text-anchor="middle">6</text>
+      <g><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">3</text></g>
+      <g transform="translate(46 0)"><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">1</text></g>
+      <g transform="translate(92 0)"><rect width="38" height="30" rx="5" class="on"/><text x="19" y="20" class="v" text-anchor="middle">4</text></g>
+      <g transform="translate(138 0)"><rect width="38" height="30" rx="5" class="on"/><text x="19" y="20" class="v" text-anchor="middle">1</text></g>
+      <g transform="translate(184 0)"><rect width="38" height="30" rx="5" class="on"/><text x="19" y="20" class="v" text-anchor="middle">5</text></g>
+      <g transform="translate(230 0)"><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">9</text></g>
+      <g transform="translate(276 0)"><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">2</text></g>
+    </g>
+
+    <text x="20" y="116" class="hd" fill="var(--c-accent-2)">누적합 prefix</text>
+    <g transform="translate(170 126)">
+      <text x="19" y="-4" class="rg" text-anchor="middle">0</text><text x="65" y="-4" class="rg" text-anchor="middle">1</text><text x="111" y="-4" class="rg" text-anchor="middle">2</text><text x="157" y="-4" class="rg" text-anchor="middle">3</text><text x="203" y="-4" class="rg" text-anchor="middle">4</text><text x="249" y="-4" class="rg" text-anchor="middle">5</text><text x="295" y="-4" class="rg" text-anchor="middle">6</text><text x="341" y="-4" class="rg" text-anchor="middle">7</text>
+      <g><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">0</text></g>
+      <g transform="translate(46 0)"><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">3</text></g>
+      <g transform="translate(92 0)"><rect width="38" height="30" rx="5" class="on2"/><text x="19" y="20" class="v" text-anchor="middle">4</text></g>
+      <g transform="translate(138 0)"><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">8</text></g>
+      <g transform="translate(184 0)"><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">9</text></g>
+      <g transform="translate(230 0)"><rect width="38" height="30" rx="5" class="on2"/><text x="19" y="20" class="v" text-anchor="middle">14</text></g>
+      <g transform="translate(276 0)"><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">23</text></g>
+      <g transform="translate(322 0)"><rect width="38" height="30" rx="5" class="cell"/><text x="19" y="20" class="v" text-anchor="middle">25</text></g>
+    </g>
+
+    <text x="560" y="70" class="sub">prefix[0]은 0으로 시작합니다.</text>
+    <text x="560" y="88" class="sub">prefix[i + 1] = prefix[i] + arr[i]</text>
+    <text x="560" y="134" class="sub">색칠된 두 칸을 빼면</text>
+    <text x="560" y="152" class="sub">구간 [2,4]의 합이 나옵니다.</text>
+  </g>
+
+  <!-- 비교: 반복문 vs 누적합 -->
+  <g transform="translate(24 244)">
+    <rect width="366" height="120" rx="8" class="pane"/>
+    <text x="20" y="26" class="hd" fill="var(--c-accent)">반복문 · 직접 더하기</text>
+    <text x="20" y="54" class="eq">4 + 1 + 5 = 10</text>
+    <text x="20" y="78" class="sub">덧셈 3번 · 구간 길이만큼 늘어나 O(N)</text>
+    <text x="20" y="96" class="sub">질의 십만 번이면 최대 백억 번</text>
+  </g>
+  <g transform="translate(410 244)">
+    <rect width="366" height="120" rx="8" class="pane"/>
+    <text x="20" y="26" class="hd" fill="var(--c-accent-2)">누적합 · 뺄셈 한 번</text>
+    <text x="20" y="54" class="eq">prefix[5] - prefix[2] = 14 - 4 = 10</text>
+    <text x="20" y="78" class="sub">뺄셈 1번 · 구간 길이와 무관해 O(1)</text>
+    <text x="20" y="96" class="sub">질의 십만 번이면 전처리 N번에 뺄셈 십만 번</text>
+  </g>
+
+  <text x="24" y="392" class="sub">구간 [l, r]의 합은 항상 prefix[r + 1] - prefix[l]입니다. prefix[0]이 0이라 구간이 0부터 시작해도 같은 식으로 계산합니다.</text>
+</svg>

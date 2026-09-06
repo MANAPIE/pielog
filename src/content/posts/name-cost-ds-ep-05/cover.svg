@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="자료구조의 이름과 비용 ep.05 cover">
+  <style>
+  :root {
+    --c-bg: #f4f7f6;
+    --c-fg: #0f1f1c;
+    --c-muted: #5b7a73;
+    --c-accent: #2F7D6E; --c-accent-2: #4F9E8C; --c-accent-3: #7FBFB0;
+    --c-num: rgba(47,125,110,0.14);
+    --c-dot: rgba(47,125,110,0.10);
+    --c-line: rgba(47,125,110,0.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0b1614;
+      --c-fg: #e2eeea;
+      --c-muted: #8fada6;
+      --c-accent: #6FC3B0; --c-accent-2: #4A9E8C; --c-accent-3: #35867A;
+      --c-num: rgba(111,195,176,0.22);
+      --c-dot: rgba(111,195,176,0.10);
+      --c-line: rgba(111,195,176,0.24);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+  .ln { stroke: var(--c-line); stroke-width: 1.5; fill: none; }
+  .ac { stroke: var(--c-accent); }
+  .a2 { stroke: var(--c-accent-2); }
+  .a3 { stroke: var(--c-accent-3); }
+</style>
+  <defs>
+    <pattern id="dtds05" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="hAds05" cx="0.16" cy="0.84" r="0.58">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="hBds05" cx="0.86" cy="0.14" r="0.56">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dtds05)"/>
+  <rect width="1200" height="630" fill="url(#hAds05)"/>
+  <rect width="1200" height="630" fill="url(#hBds05)"/>
+
+  <circle cx="1210" cy="560" r="330" class="ln"/>
+  <rect x="-200" y="-140" width="480" height="480" rx="36" class="ln" transform="rotate(-11 40 100)"/>
+
+  <g>
+<rect x="180" y="110" width="760" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 560 133)"/><rect x="180" y="196" width="372" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(0 366 219)"/><rect x="568" y="196" width="372" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(0 754 219)"/><rect x="180" y="282" width="178" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent-3)" stroke-width="2" transform="rotate(0 269 305)"/><rect x="376" y="282" width="178" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent-3)" stroke-width="2" transform="rotate(0 465 305)"/><rect x="572" y="282" width="178" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent-3)" stroke-width="2" transform="rotate(0 661 305)"/><rect x="768" y="282" width="178" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent-3)" stroke-width="2" transform="rotate(0 857 305)"/><rect x="180" y="368" width="78" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-line)" stroke-width="2" transform="rotate(-7 219 391)"/><rect x="276" y="368" width="78" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-line)" stroke-width="2" transform="rotate(0 315 391)"/><rect x="372" y="368" width="78" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-line)" stroke-width="2" transform="rotate(0 411 391)"/><rect x="468" y="368" width="78" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-line)" stroke-width="2" transform="rotate(-7 507 391)"/><rect x="564" y="368" width="78" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-line)" stroke-width="2" transform="rotate(0 603 391)"/><rect x="660" y="368" width="78" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-line)" stroke-width="2" transform="rotate(0 699 391)"/><rect x="756" y="368" width="78" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-line)" stroke-width="2" transform="rotate(-7 795 391)"/><rect x="852" y="368" width="78" height="46" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-line)" stroke-width="2" transform="rotate(0 891 391)"/><line x1="360" y1="156" x2="360" y2="192" stroke="var(--c-line)" stroke-width="2" opacity="0.85" stroke-linecap="round"/><line x1="740" y1="156" x2="740" y2="192" stroke="var(--c-line)" stroke-width="2" opacity="0.85" stroke-linecap="round"/><circle cx="1030" cy="470" r="62" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 6" opacity="0.75"/><circle cx="1030" cy="470" r="38" fill="none" stroke="var(--c-accent-3)" stroke-width="2" opacity="0.7"/><circle cx="200" cy="500" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="222" cy="500" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="244" cy="500" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="266" cy="500" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><path d="M0 0 L 26 14 L 0 29 Z" fill="var(--c-accent-2)" fill-opacity="0.85" transform="translate(980 130) rotate(90)"/><path d="M560 500 l 14 15 l 30 -34" fill="none" stroke="var(--c-accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="1148" y="602" class="ep-number" text-anchor="end">05</text>
+</svg>
