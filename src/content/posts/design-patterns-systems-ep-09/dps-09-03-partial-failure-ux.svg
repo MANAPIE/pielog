@@ -1,0 +1,223 @@
+<svg viewBox="0 0 800 690" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-pf">
+  <title id="t-pf">부분 실패 상황의 화면 설계</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .screen {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.6;
+      }
+
+      .screen-bad {
+        fill: var(--c-card);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.6;
+        stroke-dasharray: 5 4;
+      }
+
+      .btn {
+        fill: none;
+        stroke: var(--c-accent);
+        stroke-width: 1.4;
+      }
+
+      .btn-solid {
+        fill: var(--c-accent);
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .h {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .body {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-muted);
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .btxt {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .th {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.08em;
+      }
+
+      .td {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-fg);
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="690" />
+
+  <!-- 나쁜 예 -->
+  <g transform="translate(24 20)">
+    <text x="0" y="14" class="lbl" fill="var(--c-accent-2)">BAD</text>
+    <rect y="24" width="330" height="120" rx="8" class="screen-bad" />
+    <text x="20" y="56" class="h">오류가 발생했습니다</text>
+    <text x="20" y="80" class="cap">잠시 후 다시 시도해 주세요.</text>
+    <g transform="translate(20 96)">
+      <rect width="70" height="26" rx="5" class="btn" />
+      <text x="35" y="16" class="btxt" text-anchor="middle" fill="var(--c-accent)">확인</text>
+    </g>
+
+    <text x="0" y="172" class="cap">이 화면을 본 사용자는</text>
+    <text x="0" y="190" class="cap">카드 앱을 열어 결제 여부를 확인하고</text>
+    <text x="0" y="208" class="cap">다시 시도할지 고민하고</text>
+    <text x="0" y="226" class="cap">두 번 결제될까 봐 두려워합니다</text>
+  </g>
+
+  <!-- 좋은 예 -->
+  <g transform="translate(392 20)">
+    <text x="0" y="14" class="lbl" fill="var(--c-accent-4)">GOOD</text>
+    <rect y="24" width="384" height="256" rx="8" class="screen" />
+    <text x="20" y="56" class="h">주문을 완료하지 못했습니다</text>
+
+    <line x1="20" y1="70" x2="364" y2="70" stroke="var(--c-divider)" stroke-width="1" />
+
+    <text x="20" y="92" class="lbl" fill="var(--c-accent-4)">① 무엇이 되었는가</text>
+    <text x="20" y="110" class="body">결제는 정상 처리되었습니다.</text>
+
+    <text x="20" y="134" class="lbl" fill="var(--c-accent-2)">② 무엇이 안 되었는가</text>
+    <text x="20" y="152" class="body">주문서 생성에 실패했습니다.</text>
+
+    <text x="20" y="176" class="lbl" fill="var(--c-accent)">③ 지금 무슨 일이 일어나는가</text>
+    <text x="20" y="194" class="body">45,000원은 자동 환불되며 3영업일 내 반영됩니다.</text>
+
+    <text x="20" y="218" class="code">환불 확인번호: RF-8842-01</text>
+
+    <g transform="translate(20 232)">
+      <rect width="80" height="26" rx="5" class="btn-solid" />
+      <text x="40" y="16" class="btxt" text-anchor="middle" fill="var(--c-bg)">다시 주문</text>
+    </g>
+    <g transform="translate(108 232)">
+      <rect width="76" height="26" rx="5" class="btn" />
+      <text x="38" y="16" class="btxt" text-anchor="middle" fill="var(--c-accent)">환불 내역</text>
+    </g>
+
+    <text x="0" y="308" class="cap">확인번호가 있어야 나중에 문의할 때 알려줄 것이 있습니다</text>
+  </g>
+
+  <!-- 보상 진행 단계 문구 -->
+  <g transform="translate(24 352)">
+    <rect width="752" height="162" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="20" y="26" class="ttl">보상 진행 단계별 문구</text>
+
+    <line x1="20" y1="38" x2="732" y2="38" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="20" y="56" class="th">진행 상태</text>
+    <text x="240" y="56" class="th">화면 문구</text>
+
+    <g transform="translate(20 78)">
+      <text x="0" y="0" class="td">보상 시작 전</text>
+      <text x="220" y="0" class="td">주문 처리 중 문제가 발생했습니다. 확인 중입니다.</text>
+    </g>
+    <g transform="translate(20 100)">
+      <text x="0" y="0" class="td">보상 진행 중</text>
+      <text x="220" y="0" class="td">환불을 처리하고 있습니다.</text>
+    </g>
+    <g transform="translate(20 122)">
+      <text x="0" y="0" class="td">보상 완료</text>
+      <text x="220" y="0" class="td">환불이 완료되었습니다. (확인번호 포함)</text>
+    </g>
+    <g transform="translate(20 144)">
+      <text x="0" y="0" class="td" fill="var(--c-accent-2)">보상 실패</text>
+      <text x="220" y="0" class="td" fill="var(--c-accent-2)">자동 환불에 실패했습니다. 고객센터에서 확인 중이며 24시간 내 연락드리겠습니다.</text>
+    </g>
+  </g>
+
+  <!-- 되돌릴 지점 -->
+  <g transform="translate(24 530)">
+    <rect width="752" height="136" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2"
+      stroke-dasharray="4 3" />
+    <text x="20" y="26" class="ttl">되돌릴 수 없는 지점 앞에만 마찰을 둡니다</text>
+
+    <g transform="translate(20 44)">
+      <rect width="140" height="34" rx="5" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.4" />
+      <text x="70" y="22" class="body" text-anchor="middle">장바구니</text>
+      <rect x="152" width="140" height="34" rx="5" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.4" />
+      <text x="222" y="22" class="body" text-anchor="middle">주문서 작성</text>
+
+      <line x1="304" y1="-8" x2="304" y2="44" stroke="var(--c-accent-2)" stroke-width="3" />
+      <text x="304" y="58" class="lbl" text-anchor="middle" fill="var(--c-accent-2)">경계</text>
+
+      <rect x="316" width="140" height="34" rx="5" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.8" />
+      <text x="386" y="22" class="body" text-anchor="middle">결제 확인</text>
+      <rect x="468" width="240" height="34" rx="5" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.4"
+        stroke-dasharray="4 3" />
+      <text x="588" y="22" class="body" text-anchor="middle">결제 완료: 취소·환불이라는 새 절차 필요</text>
+    </g>
+
+    <text x="20" y="122" class="cap">확인 화면의 개수는 되돌릴 수 없는 지점의 개수와 같아야 합니다. 남발하면 정작 결제 확인도 무시당합니다.</text>
+  </g>
+</svg>
