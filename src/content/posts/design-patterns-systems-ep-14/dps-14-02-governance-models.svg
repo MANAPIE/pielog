@@ -1,0 +1,330 @@
+<svg viewBox="0 0 800 622" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-gov">
+  <title id="t-gov">디자인 시스템 거버넌스 세 모델</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-4: rgba(61, 139, 122, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-4: rgba(111, 191, 168, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .panel {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .nm {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-muted);
+      }
+
+      .th {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.08em;
+      }
+
+      .td {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-fg);
+      }
+
+      .warn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-muted);
+      }
+
+      .pane {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .core {
+        fill: var(--c-card);
+        stroke-width: 2.4;
+      }
+
+      .node {
+        fill: var(--c-card);
+        stroke: var(--c-muted);
+        stroke-width: 1.6;
+      }
+
+      .tiny {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .tiny-l {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .bn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      }
+    </style>
+    <marker id="a-g1" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0,0 7,3.5 0,7" fill="var(--c-accent)" />
+    </marker>
+    <marker id="a-g2" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0,0 7,3.5 0,7" fill="var(--c-accent-3)" />
+    </marker>
+    <marker id="a-g3" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0,0 7,3.5 0,7" fill="var(--c-accent-4)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="622" />
+  <!-- 1. 중앙집중 -->
+  <g transform="translate(24 24)">
+    <rect width="240" height="306" rx="8" class="pane" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent)">CENTRALIZED</text>
+    <text x="16" y="46" class="nm">중앙집중형</text>
+    <g transform="translate(120 138)">
+      <g class="node" transform="translate(-84 -60)">
+        <rect x="-26" y="-14" width="52" height="28" rx="5" />
+      </g>
+      <text x="-84" y="-56" class="tiny" text-anchor="middle">팀A</text>
+      <g class="node" transform="translate(84 -60)">
+        <rect x="-26" y="-14" width="52" height="28" rx="5" />
+      </g>
+      <text x="84" y="-56" class="tiny" text-anchor="middle">팀B</text>
+      <g class="node" transform="translate(-84 60)">
+        <rect x="-26" y="-14" width="52" height="28" rx="5" />
+      </g>
+      <text x="-84" y="64" class="tiny" text-anchor="middle">팀C</text>
+      <g class="node" transform="translate(84 60)">
+        <rect x="-26" y="-14" width="52" height="28" rx="5" />
+      </g>
+      <text x="84" y="64" class="tiny" text-anchor="middle">팀D</text>
+      <g stroke="var(--c-accent)" stroke-width="1.8">
+        <line x1="-62" y1="-52" x2="-24" y2="-20" marker-end="url(#a-g1)" />
+        <line x1="62" y1="-52" x2="24" y2="-20" marker-end="url(#a-g1)" />
+        <line x1="-62" y1="52" x2="-24" y2="20" marker-end="url(#a-g1)" />
+        <line x1="62" y1="52" x2="24" y2="20" marker-end="url(#a-g1)" />
+      </g>
+      <rect x="-44" y="-24" width="88" height="48" rx="6" class="core" stroke="var(--c-accent)" />
+      <text x="0" y="-5" class="tiny-l" text-anchor="middle">시스템팀</text>
+      <text x="0" y="11" class="cap" text-anchor="middle">모든 요청</text>
+      <circle r="60" fill="none" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-dasharray="3 5" opacity="0.75" />
+      <text x="0" y="90" class="bn" text-anchor="middle">병목</text>
+    </g>
+    <line x1="16" y1="234" x2="224" y2="234" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="254" class="th">일관성</text>
+    <text x="110" y="254" class="td">높음</text>
+    <text x="16" y="272" class="th">속도</text>
+    <text x="110" y="272" class="td">낮음</text>
+    <text x="16" y="290" class="th">적합 규모</text>
+    <text x="110" y="290" class="td">소~중</text>
+  </g>
+
+  <!-- 2. 연합 -->
+  <g transform="translate(280 24)">
+    <rect width="240" height="306" rx="8" class="pane" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-3)">FEDERATED</text>
+    <text x="16" y="46" class="nm">연합형</text>
+    <g transform="translate(120 138)">
+      <g class="node" transform="translate(0 -68)">
+        <rect x="-24" y="-13" width="48" height="26" rx="5" />
+      </g>
+      <text x="0" y="-64" class="tiny" text-anchor="middle">대표A</text>
+      <g class="node" transform="translate(66 -20)">
+        <rect x="-24" y="-13" width="48" height="26" rx="5" />
+      </g>
+      <text x="66" y="-16" class="tiny" text-anchor="middle">대표B</text>
+      <g class="node" transform="translate(40 58)">
+        <rect x="-24" y="-13" width="48" height="26" rx="5" />
+      </g>
+      <text x="40" y="62" class="tiny" text-anchor="middle">대표C</text>
+      <g class="node" transform="translate(-40 58)">
+        <rect x="-24" y="-13" width="48" height="26" rx="5" />
+      </g>
+      <text x="-40" y="62" class="tiny" text-anchor="middle">대표D</text>
+      <g class="node" transform="translate(-66 -20)">
+        <rect x="-24" y="-13" width="48" height="26" rx="5" />
+      </g>
+      <text x="-66" y="-16" class="tiny" text-anchor="middle">대표E</text>
+      <circle r="30" class="core" stroke="var(--c-accent-3)" />
+      <text x="0" y="-4" class="tiny" text-anchor="middle">결정</text>
+      <text x="0" y="8" class="tiny" text-anchor="middle">회의</text>
+      <g stroke="var(--c-accent-3)" stroke-width="1.6" stroke-dasharray="3 3">
+        <line x1="0" y1="-55" x2="0" y2="-34" marker-end="url(#a-g2)" />
+        <line x1="50" y1="-22" x2="27" y2="-13" marker-end="url(#a-g2)" />
+        <line x1="30" y1="46" x2="17" y2="26" marker-end="url(#a-g2)" />
+        <line x1="-30" y1="46" x2="-17" y2="26" marker-end="url(#a-g2)" />
+        <line x1="-50" y1="-22" x2="-27" y2="-13" marker-end="url(#a-g2)" />
+      </g>
+      <text x="0" y="90" class="bn" text-anchor="middle">의사결정 경로가 깁니다</text>
+    </g>
+    <line x1="16" y1="234" x2="224" y2="234" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="254" class="th">일관성</text>
+    <text x="110" y="254" class="td">중간</text>
+    <text x="16" y="272" class="th">속도</text>
+    <text x="110" y="272" class="td">중간</text>
+    <text x="16" y="290" class="th">적합 규모</text>
+    <text x="110" y="290" class="td">중~대</text>
+  </g>
+
+  <!-- 3. 커뮤니티 -->
+  <g transform="translate(536 24)">
+    <rect width="240" height="306" rx="8" class="pane" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-4)">COMMUNITY</text>
+    <text x="16" y="46" class="nm">커뮤니티형</text>
+    <g transform="translate(120 138)">
+      <g class="node" transform="translate(-78 -66)">
+        <rect x="-24" y="-12" width="48" height="24" rx="5" />
+      </g>
+      <text x="-78" y="-62" class="tiny" text-anchor="middle">팀A</text>
+      <g class="node" transform="translate(-78 -22)">
+        <rect x="-24" y="-12" width="48" height="24" rx="5" />
+      </g>
+      <text x="-78" y="-18" class="tiny" text-anchor="middle">팀B</text>
+      <g class="node" transform="translate(-78 22)">
+        <rect x="-24" y="-12" width="48" height="24" rx="5" />
+      </g>
+      <text x="-78" y="26" class="tiny" text-anchor="middle">팀C</text>
+      <g class="node" transform="translate(-78 66)">
+        <rect x="-24" y="-12" width="48" height="24" rx="5" />
+      </g>
+      <text x="-78" y="70" class="tiny" text-anchor="middle">팀D</text>
+      <g transform="translate(-4 0)">
+        <line x1="0" y1="-76" x2="0" y2="76" stroke="var(--c-accent-4)" stroke-width="3" stroke-linecap="round" />
+        <circle r="15" class="core" stroke="var(--c-accent-4)" />
+        <polyline points="-6,0 -1,5 7,-6" fill="none" stroke="var(--c-accent-4)" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <text x="-4" y="90" class="bn" text-anchor="middle">리뷰가 유일한 관문</text>
+      <g stroke="var(--c-accent-4)" stroke-width="1.6">
+        <line x1="-52" y1="-66" x2="-14" y2="-24" marker-end="url(#a-g3)" />
+        <line x1="-52" y1="-22" x2="-22" y2="-8" marker-end="url(#a-g3)" />
+        <line x1="-52" y1="22" x2="-22" y2="8" marker-end="url(#a-g3)" />
+        <line x1="-52" y1="66" x2="-14" y2="24" marker-end="url(#a-g3)" />
+      </g>
+      <g transform="translate(66 0)">
+        <rect x="-34" y="-30" width="68" height="60" rx="6" class="core" stroke="var(--c-accent-4)" />
+        <text x="0" y="-6" class="tiny" text-anchor="middle">시스템</text>
+        <text x="0" y="8" class="tiny" text-anchor="middle">저장소</text>
+      </g>
+    </g>
+    <line x1="16" y1="234" x2="224" y2="234" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="254" class="th">일관성</text>
+    <text x="110" y="254" class="td">낮음</text>
+    <text x="16" y="272" class="th">속도</text>
+    <text x="110" y="272" class="td">높음</text>
+    <text x="16" y="290" class="th">적합 규모</text>
+    <text x="110" y="290" class="td">대</text>
+  </g>
+
+  <!-- 혼합형 -->
+  <g transform="translate(24 346)">
+    <rect width="752" height="152" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6" />
+    <text x="20" y="26" class="ttl">실무에서는 층마다 다른 모델을 씁니다</text>
+    <g transform="translate(20 44)">
+      <rect width="224" height="92" rx="6" fill="none" stroke="var(--c-accent)" stroke-width="1.5" />
+      <text x="14" y="22" class="nm">토큰</text>
+      <text x="14" y="42" class="td">중앙집중</text>
+      <text x="14" y="62" class="cap">바뀌면 모두에게 영향이 갑니다</text>
+      <text x="14" y="78" class="cap">기여를 받지 않습니다</text>
+    </g>
+    <g transform="translate(264 44)">
+      <rect width="224" height="92" rx="6" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" />
+      <text x="14" y="22" class="nm">시스템 컴포넌트</text>
+      <text x="14" y="42" class="td">중앙집중 + 기여 허용</text>
+      <text x="14" y="62" class="cap">시스템팀이 소유하되</text>
+      <text x="14" y="78" class="cap">PR은 누구나 열 수 있습니다</text>
+    </g>
+    <g transform="translate(508 44)">
+      <rect width="224" height="92" rx="6" fill="none" stroke="var(--c-accent-4)" stroke-width="1.5" />
+      <text x="14" y="22" class="nm">프로덕트 컴포넌트</text>
+      <text x="14" y="42" class="td">각 팀 소유</text>
+      <text x="14" y="62" class="cap">한 프로덕트에서만 쓰는 것은</text>
+      <text x="14" y="78" class="cap">그 팀이 자유롭게 만듭니다</text>
+    </g>
+  </g>
+
+  <!-- 하단 -->
+  <g transform="translate(24 514)">
+    <rect width="752" height="84" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5"
+      stroke-dasharray="5 4" />
+    <text x="20" y="26" class="ttl">플랫폼팀이 게이트키퍼가 되면 병목이자 원망의 대상이 됩니다</text>
+    <text x="20" y="50" class="cap">모든 배포가 승인을 거치는 구조 대신, 안전한 기본값과 자동 검사로 대체합니다.</text>
+    <text x="20" y="68" class="cap">플랫폼팀의 목표는 자기 없이도 다른 팀이 일할 수 있게 만드는 것입니다.</text>
+  </g>
+</svg>
