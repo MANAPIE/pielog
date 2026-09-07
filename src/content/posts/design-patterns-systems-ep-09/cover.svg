@@ -1,0 +1,128 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cover-title">
+  <title id="cover-title">일관성 경계와 Saga 패턴: ep.09 커버</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .num { fill: var(--c-num); font-family: 'Inter',system-ui,sans-serif; font-weight: 800; font-size: 220px; letter-spacing: -0.04em; }
+    </style>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="g1" cx="24%" cy="28%" r="48%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="80%" cy="76%" r="46%">
+      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent-2)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <circle cx="90" cy="560" r="230" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.12"/>
+  <rect x="880" y="-130" width="500" height="350" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.11" transform="rotate(8 1130 45)"/>
+
+  <!-- 메타포: 앞으로 가다 되돌아오는 사슬 -->
+  <g transform="translate(600 315)">
+    <!-- 전진 경로 -->
+    <g transform="translate(0 -80)">
+      <!-- 1 -->
+      <g transform="translate(-330 0) rotate(-5)">
+        <rect x="-62" y="-42" width="124" height="84" rx="7" fill="var(--c-bg)" stroke="var(--c-accent-4)" stroke-width="2.8"/>
+        <polyline points="-24,4 -8,20 26,-18" fill="none" stroke="var(--c-accent-4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <!-- 2 -->
+      <g transform="translate(-110 -16) rotate(4)">
+        <rect x="-62" y="-42" width="124" height="84" rx="7" fill="var(--c-bg)" stroke="var(--c-accent-4)" stroke-width="2.8"/>
+        <polyline points="-24,4 -8,20 26,-18" fill="none" stroke="var(--c-accent-4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <!-- 3 실패 -->
+      <g transform="translate(115 -4) rotate(-6)">
+        <rect x="-62" y="-42" width="124" height="84" rx="7" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="3.2"/>
+        <line x1="-20" y1="-20" x2="20" y2="20" stroke="var(--c-accent-2)" stroke-width="5" stroke-linecap="round"/>
+        <line x1="20" y1="-20" x2="-20" y2="20" stroke="var(--c-accent-2)" stroke-width="5" stroke-linecap="round"/>
+        <rect x="-78" y="-58" width="156" height="116" rx="9" fill="none" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-dasharray="2 5" opacity="0.65"/>
+      </g>
+      <!-- 4 미실행 -->
+      <g transform="translate(330 10) rotate(5)" opacity="0.35">
+        <rect x="-62" y="-42" width="124" height="84" rx="7" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2" stroke-dasharray="5 5"/>
+        <rect x="-34" y="-8" width="68" height="9" rx="4.5" fill="var(--c-line)" opacity="0.35"/>
+        <rect x="-34" y="8" width="44" height="9" rx="4.5" fill="var(--c-line)" opacity="0.2"/>
+      </g>
+
+      <!-- 전진 화살표 -->
+      <g stroke="var(--c-line)" stroke-width="2.4" opacity="0.6">
+        <line x1="-262" y1="-4" x2="-180" y2="-12"/>
+        <line x1="-42" y1="-12" x2="46" y2="-6"/>
+      </g>
+      <polygon points="-180,-12 -192,-17 -191,-6" fill="var(--c-line)" opacity="0.6"/>
+      <polygon points="46,-6 34,-11 33,0" fill="var(--c-line)" opacity="0.6"/>
+    </g>
+
+    <!-- 되돌아오는 보상 경로 (아래 곡선) -->
+    <path d="M 110 -30 Q 60 130 -110 118 Q -260 106 -330 30"
+          fill="none" stroke="var(--c-accent-2)" stroke-width="3.4" stroke-dasharray="12 8" stroke-linecap="round"/>
+    <polygon points="-330,30 -320,42 -338,42" fill="var(--c-accent-2)" transform="rotate(-40 -330 30)"/>
+
+    <!-- 보상 노드 2개 -->
+    <g transform="translate(-40 128) rotate(3)">
+      <rect x="-56" y="-30" width="112" height="60" rx="6" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.4"/>
+      <!-- 되감기 화살표 -->
+      <path d="M -20 6 A 22 22 0 1 1 -4 22" fill="none" stroke="var(--c-accent-2)" stroke-width="3" stroke-linecap="round"/>
+      <polygon points="-4,22 -16,20 -10,32" fill="var(--c-accent-2)"/>
+      <rect x="8" y="-16" width="32" height="7" rx="3.5" fill="var(--c-accent-2)" opacity="0.5"/>
+    </g>
+    <g transform="translate(-250 90) rotate(-4)">
+      <rect x="-56" y="-30" width="112" height="60" rx="6" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.4"/>
+      <path d="M -20 6 A 22 22 0 1 1 -4 22" fill="none" stroke="var(--c-accent-2)" stroke-width="3" stroke-linecap="round"/>
+      <polygon points="-4,22 -16,20 -10,32" fill="var(--c-accent-2)"/>
+      <rect x="8" y="-16" width="32" height="7" rx="3.5" fill="var(--c-accent-2)" opacity="0.5"/>
+    </g>
+
+    <!-- 남은 잔여물 (환불 흔적) -->
+    <g transform="translate(300 190) rotate(-8)">
+      <rect x="-70" y="-30" width="140" height="60" rx="6" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.2"/>
+      <rect x="-50" y="-14" width="60" height="8" rx="4" fill="var(--c-accent-3)" opacity="0.7"/>
+      <rect x="-50" y="2" width="88" height="8" rx="4" fill="var(--c-accent-3)" opacity="0.4"/>
+      <circle cx="44" cy="-16" r="6" fill="var(--c-accent-3)" opacity="0.6"/>
+    </g>
+
+    <!-- 좌상단 미니 바 -->
+    <g transform="translate(-420 -220) rotate(-8)">
+      <rect width="94" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.8"/>
+      <rect y="20" width="62" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.45"/>
+    </g>
+  </g>
+
+  <!-- 디테일 -->
+  <g transform="translate(1040 140)">
+    <circle r="4" fill="var(--c-accent)"/>
+    <circle cx="16" r="4" fill="var(--c-accent)" opacity="0.6"/>
+    <circle cx="32" r="4" fill="var(--c-accent)" opacity="0.3"/>
+  </g>
+  <g transform="translate(140 180) rotate(-14)" opacity="0.7">
+    <rect x="-20" y="-20" width="40" height="40" fill="none" stroke="var(--c-accent-3)" stroke-width="1.6"/>
+  </g>
+  <g transform="translate(1090 470)" opacity="0.6">
+    <circle r="46" fill="none" stroke="var(--c-accent-4)" stroke-width="1.5"/>
+    <circle r="26" fill="none" stroke="var(--c-accent-4)" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <text x="1130" y="575" class="num" text-anchor="end">09</text>
+</svg>

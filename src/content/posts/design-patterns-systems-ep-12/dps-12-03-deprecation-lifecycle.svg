@@ -1,0 +1,243 @@
+<svg viewBox="0 0 800 562" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-dep">
+  <title id="t-dep">디자인 시스템 deprecation 정책과 릴리스 노트</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-4: rgba(61, 139, 122, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-4: rgba(111, 191, 168, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .panel {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .nm {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-muted);
+      }
+
+      .th {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.08em;
+      }
+
+      .td {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-fg);
+      }
+
+      .warn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-muted);
+      }
+
+      .stage {
+        fill: var(--c-card);
+        stroke: var(--c-accent-3);
+        stroke-width: 1.8;
+      }
+
+      .stage-end {
+        fill: var(--c-card);
+        stroke: var(--c-accent-2);
+        stroke-width: 2;
+      }
+
+      .doc {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.4;
+      }
+
+      .md {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-fg);
+      }
+
+      .md-mute {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-muted);
+      }
+
+      .md-warn {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-accent-2);
+        font-weight: 700;
+      }
+
+      .num {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-accent-4);
+      }
+
+      .flow {
+        stroke: var(--c-accent-3);
+        stroke-width: 2;
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      }
+    </style>
+    <marker id="a-d12" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-3)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="562" />
+  <text x="24" y="36" class="ttl">폐기 절차를 문서로 정해 두면 매번 협상하지 않아도 됩니다</text>
+
+  <!-- 4단계 -->
+  <g transform="translate(24 52)">
+    <rect width="176" height="106" rx="6" class="stage" />
+    <text x="14" y="24" class="lbl" fill="var(--c-accent-3)">STEP 1: 예고</text>
+    <text x="14" y="46" class="nm">릴리스 시점</text>
+    <line x1="14" y1="58" x2="162" y2="58" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="76" class="cap">릴리스 노트에 명시</text>
+    <text x="14" y="92" class="cap">대체 방법 안내</text>
+  </g>
+  <line x1="202" y1="105" x2="214" y2="105" class="flow" marker-end="url(#a-d12)" />
+  <g transform="translate(216 52)">
+    <rect width="176" height="106" rx="6" class="stage" />
+    <text x="14" y="24" class="lbl" fill="var(--c-accent-3)">STEP 2: 경고</text>
+    <text x="14" y="46" class="nm">3개월</text>
+    <line x1="14" y1="58" x2="162" y2="58" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="76" class="cap">개발 환경 콘솔 경고</text>
+    <text x="14" y="92" class="cap">코드모드 제공</text>
+  </g>
+  <line x1="394" y1="105" x2="406" y2="105" class="flow" marker-end="url(#a-d12)" />
+  <g transform="translate(408 52)">
+    <rect width="176" height="106" rx="6" class="stage" />
+    <text x="14" y="24" class="lbl" fill="var(--c-accent-3)">STEP 3: 최종</text>
+    <text x="14" y="46" class="nm">1개월</text>
+    <line x1="14" y1="58" x2="162" y2="58" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="76" class="cap">사용 중인 팀에</text>
+    <text x="14" y="92" class="cap">직접 연락</text>
+  </g>
+  <line x1="586" y1="105" x2="598" y2="105" class="flow" marker-end="url(#a-d12)" />
+  <g transform="translate(600 52)">
+    <rect width="176" height="106" rx="6" class="stage-end" />
+    <text x="14" y="24" class="lbl" fill="var(--c-accent-2)">STEP 4: 제거</text>
+    <text x="14" y="46" class="nm">메이저 버전</text>
+    <line x1="14" y1="58" x2="162" y2="58" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="76" class="cap">삭제</text>
+    <text x="14" y="92" class="cap">가이드는 유지</text>
+  </g>
+
+  <!-- 릴리스 노트 -->
+  <g transform="translate(24 174)">
+    <rect width="368" height="246" rx="8" class="doc" />
+    <text x="20" y="24" class="lbl" fill="var(--c-accent)">RELEASE NOTES = 계약 변경 통지</text>
+    <text x="20" y="50" class="md">## v2.0.0</text>
+    <text x="20" y="78" class="md-warn">### 파괴적 변경</text>
+    <text x="20" y="94" class="md-mute">- Button의 variant="cta" 제거</text>
+    <text x="20" y="110" class="md-mute"> → variant="primary" 사용</text>
+    <text x="20" y="126" class="md"> 코드모드: npx @ds/codemod button-variant-v2</text>
+    <text x="20" y="142" class="md-mute">- Modal의 onClose 필수화</text>
+    <text x="20" y="170" class="md" fill="var(--c-accent-4)">### 추가</text>
+    <text x="20" y="186" class="md-mute">- Button에 loading prop</text>
+    <text x="20" y="214" class="md" fill="var(--c-accent-3)">### Deprecated (v3에서 제거: 2026-12)</text>
+    <text x="20" y="230" class="md-mute">- Card의 shadow prop → elevation 사용</text>
+  </g>
+
+  <!-- 세 항목 -->
+  <g transform="translate(408 174)">
+    <rect width="368" height="246" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6" />
+    <text x="20" y="26" class="ttl">세 가지가 있어야 합니다</text>
+    <g transform="translate(0 10)">
+      <text x="20" y="56" class="num">1</text>
+      <text x="38" y="56" class="nm">무엇이 깨지는가</text>
+      <text x="38" y="74" class="cap">어느 prop, 어느 필드, 어느 동작인지</text>
+      <text x="20" y="108" class="num">2</text>
+      <text x="38" y="108" class="nm">무엇으로 바꾸는가</text>
+      <text x="38" y="126" class="cap">대체 방법과 코드모드 명령</text>
+      <text x="20" y="160" class="num" fill="var(--c-accent-2)">3</text>
+      <text x="38" y="160" class="nm">언제까지 유예되는가</text>
+      <text x="38" y="178" class="cap">가장 자주 빠지는 항목입니다</text>
+      <text x="38" y="194" class="cap">기한이 없으면 쓰는 쪽은 미룹니다</text>
+      <text x="38" y="210" class="cap">기한을 적는 순간 그것이 일정이 됩니다</text>
+    </g>
+  </g>
+
+  <!-- 코드모드 책임 -->
+  <g transform="translate(24 436)">
+    <rect width="752" height="102" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2"
+      stroke-dasharray="4 3" />
+    <text x="20" y="26" class="warn">코드모드를 함께 제공하는 것이 디자인 시스템 팀의 책임입니다</text>
+    <text x="20" y="50" class="cap">"v2로 올리세요"라고만 하면 각 팀이 각자 고생하고, 결국 아무도 올리지 않습니다.</text>
+    <text x="20" y="68" class="cap">버튼 variant 하나를 바꾸는 일이 서른 개 프로덕트에서 이천 곳을 고치는 일이 됩니다.</text>
+    <text x="20" y="86" class="cap">코드모드가 모든 것을 잡지는 못합니다. 동적 값은 놓치므로, 자동 변환 후 남은 것을 목록으로 뽑아 주는 것까지가 도구의 몫입니다.</text>
+  </g>
+</svg>

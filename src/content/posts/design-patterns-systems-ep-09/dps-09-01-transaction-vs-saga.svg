@@ -1,0 +1,135 @@
+<svg viewBox="0 0 800 608" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-tx">
+  <title id="t-tx">트랜잭션이 닿는 범위와 닿지 않는 범위</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-4: rgba(61,139,122,0.10); --c-soft-2: rgba(217,119,87,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-4: rgba(111,191,168,0.14); --c-soft-2: rgba(232,147,118,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .txbox { fill: var(--c-soft-4); stroke: var(--c-accent-4); stroke-width: 2.4; }
+      .tbl { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .ext { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.8; stroke-dasharray: 5 4; }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .ok { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-4); }
+      .no { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-2); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-x9" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="608"/>
+
+  <!-- 트랜잭션 경계 안 -->
+  <g transform="translate(24 24)">
+    <rect width="360" height="196" rx="10" class="txbox"/>
+    <text x="20" y="28" class="lbl" fill="var(--c-accent-4)">TRANSACTION BOUNDARY</text>
+    <text x="20" y="50" class="ttl">하나의 데이터베이스</text>
+
+    <g transform="translate(20 64)">
+      <rect width="152" height="52" rx="5" class="tbl"/>
+      <text x="76" y="22" class="nm mono" text-anchor="middle">orders</text>
+      <text x="76" y="40" class="cap" text-anchor="middle">주문 기록 생성</text>
+    </g>
+    <g transform="translate(188 64)">
+      <rect width="152" height="52" rx="5" class="tbl"/>
+      <text x="76" y="22" class="nm mono" text-anchor="middle">stocks</text>
+      <text x="76" y="40" class="cap" text-anchor="middle">재고 차감</text>
+    </g>
+
+    <g transform="translate(20 128)">
+      <rect width="320" height="48" rx="5" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.4"/>
+      <text x="14" y="18" class="nm mono">BEGIN … COMMIT</text>
+      <text x="14" y="36" class="cap">전부 일어나거나, 전부 일어나지 않습니다</text>
+    </g>
+  </g>
+
+  <!-- 바깥 시스템들 -->
+  <g transform="translate(436 24)">
+    <text x="0" y="28" class="lbl" fill="var(--c-accent-2)">OUT OF REACH</text>
+
+    <g transform="translate(0 42)">
+      <rect width="340" height="72" rx="6" class="ext"/>
+      <text x="170" y="30" class="nm" text-anchor="middle">외부 결제사</text>
+      <text x="170" y="50" class="cap" text-anchor="middle">우리 트랜잭션에 참여하지 않습니다</text>
+    </g>
+
+    <g transform="translate(0 124)">
+      <rect width="340" height="72" rx="6" class="ext"/>
+      <text x="170" y="30" class="nm" text-anchor="middle">마케팅 서비스</text>
+      <text x="170" y="50" class="cap" text-anchor="middle">별도 DB · 쿠폰 사용 처리</text>
+    </g>
+  </g>
+
+  <!-- 네트워크 호출: 경계 밖으로 나가는 요청 -->
+  <line x1="388" y1="102" x2="432" y2="102" stroke="var(--c-accent-2)" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#a-x9)"/>
+  <line x1="388" y1="184" x2="432" y2="184" stroke="var(--c-accent-2)" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#a-x9)"/>
+
+  <!-- 중간 상태 -->
+  <g transform="translate(24 236)">
+    <rect width="752" height="48" rx="6" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="16" y="29" class="warn">중간 상태가 실재합니다</text>
+    <text x="180" y="29" class="cap">결제는 됐는데 주문은 안 된 상태입니다. 없앨 수는 없고, 다룰 수만 있습니다.</text>
+  </g>
+
+  <!-- 사정거리 표 -->
+  <g transform="translate(24 300)">
+    <rect width="752" height="160" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="26" class="ttl">트랜잭션의 사정거리</text>
+
+    <line x1="20" y1="38" x2="732" y2="38" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="56" class="th">범위</text>
+    <text x="280" y="56" class="th">원자성</text>
+    <text x="400" y="56" class="th">방법</text>
+
+    <g transform="translate(20 78)">
+      <text x="0" y="0" class="td">같은 테이블</text>
+      <text x="260" y="0" class="ok">보장됨</text>
+      <text x="380" y="0" class="cap">기본 동작</text>
+    </g>
+    <g transform="translate(20 100)">
+      <text x="0" y="0" class="td">같은 DB의 여러 테이블</text>
+      <text x="260" y="0" class="ok">보장됨</text>
+      <text x="380" y="0" class="cap mono">BEGIN ~ COMMIT</text>
+    </g>
+    <g transform="translate(20 122)">
+      <text x="0" y="0" class="td">다른 데이터베이스</text>
+      <text x="260" y="0" class="no">어려움</text>
+      <text x="380" y="0" class="cap">2PC: 코디네이터가 죽으면 잠금이 남습니다</text>
+    </g>
+    <g transform="translate(20 144)">
+      <text x="0" y="0" class="td">외부 API</text>
+      <text x="260" y="0" class="no">불가능</text>
+      <text x="380" y="0" class="cap">보상 트랜잭션으로 다룹니다</text>
+    </g>
+  </g>
+
+  <!-- 결론 -->
+  <g transform="translate(24 476)">
+    <rect width="752" height="108" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="20" y="28" class="ttl">원자성을 포기하고, 되돌리는 방법을 준비합니다</text>
+    <text x="20" y="52" class="cap">2단계 커밋은 이론적으로 원자성을 보장하지만 실무에서 잘 쓰지 않습니다.</text>
+    <text x="20" y="72" class="cap">코디네이터가 죽으면 참가자들이 잠금을 붙든 채 멈추고, 하나가 느리면 전체가 느려집니다.</text>
+    <text x="20" y="92" class="cap">그리고 외부 결제사가 우리의 2PC에 참여해 줄 리가 없습니다.</text>
+  </g>
+</svg>

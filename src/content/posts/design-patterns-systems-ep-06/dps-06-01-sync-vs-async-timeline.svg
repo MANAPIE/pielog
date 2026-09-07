@@ -1,0 +1,208 @@
+<svg viewBox="0 0 800 530" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-sa">
+  <title id="t-sa">동기 처리와 비동기 처리의 시간축 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-4: rgba(61, 139, 122, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-4: rgba(111, 191, 168, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .row {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .must {
+        fill: var(--c-accent-2);
+        opacity: 0.75;
+      }
+
+      .later {
+        fill: var(--c-accent-4);
+        opacity: 0.6;
+      }
+
+      .gap {
+        fill: var(--c-accent-2);
+        opacity: 0.16;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+
+      .task {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10px;
+        fill: var(--c-bg);
+        font-weight: 700;
+      }
+
+      .mark {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .time {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .warn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+    </style>
+    <marker id="a-t6" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="530" />
+
+  <!-- 범례 -->
+  <g transform="translate(24 26)">
+    <rect x="0" y="-10" width="14" height="12" rx="2" class="must" />
+    <text x="22" y="0" class="cap">지금 끝나야 하는 것</text>
+    <rect x="164" y="-10" width="14" height="12" rx="2" class="later" />
+    <text x="186" y="0" class="cap">나중에 해도 되는 것</text>
+    <rect x="328" y="-10" width="14" height="12" rx="2" class="gap" />
+    <text x="350" y="0" class="cap">응답 이후 · 아직 안 끝난 구간</text>
+  </g>
+
+  <!-- 동기 -->
+  <g transform="translate(24 48)">
+    <rect width="752" height="150" rx="8" class="row" />
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-2)">SYNCHRONOUS</text>
+    <text x="20" y="48" class="ttl">응답 시점 = 완료 시점</text>
+
+    <g transform="translate(20 62)">
+      <line x1="0" y1="52" x2="662" y2="52" stroke="var(--c-divider)" stroke-width="1.4" />
+
+      <rect x="0" y="14" width="86" height="26" rx="3" class="must" />
+      <text x="43" y="31" class="task" text-anchor="middle">재고 차감</text>
+      <rect x="88" y="14" width="110" height="26" rx="3" class="must" />
+      <text x="143" y="31" class="task" text-anchor="middle">결제 승인</text>
+      <rect x="200" y="14" width="74" height="26" rx="3" class="must" />
+      <text x="237" y="31" class="task" text-anchor="middle">주문 저장</text>
+      <rect x="276" y="14" width="114" height="26" rx="3" class="later" />
+      <text x="333" y="31" class="task" text-anchor="middle">확인 메일</text>
+      <rect x="392" y="14" width="132" height="26" rx="3" class="later" />
+      <text x="458" y="31" class="task" text-anchor="middle">배송사 접수</text>
+      <rect x="526" y="14" width="136" height="26" rx="3" class="later" />
+      <text x="594" y="31" class="task" text-anchor="middle">추천 모델</text>
+
+      <line x1="0" y1="6" x2="0" y2="60" stroke="var(--c-line)" stroke-width="2" />
+      <text x="4" y="4" class="mark">요청</text>
+      <line x1="662" y1="6" x2="662" y2="60" stroke="var(--c-line)" stroke-width="2.4" />
+      <text x="658" y="4" class="mark" text-anchor="end">응답 = 완료</text>
+
+      <text x="0" y="74" class="cap">나중에 해도 되는 것까지 응답 안에 들어 있습니다</text>
+      <text x="662" y="74" class="time" text-anchor="end">8.0s</text>
+    </g>
+  </g>
+
+  <!-- 비동기 -->
+  <g transform="translate(24 214)">
+    <rect width="752" height="190" rx="8" class="row" />
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-4)">ASYNCHRONOUS</text>
+    <text x="20" y="48" class="ttl">응답 시점 ≠ 완료 시점</text>
+
+    <g transform="translate(20 62)">
+      <!-- 간극: 응답 이후 아직 안 끝난 구간 -->
+      <rect x="314" y="6" width="398" height="90" rx="3" class="gap" />
+
+      <line x1="0" y1="52" x2="712" y2="52" stroke="var(--c-divider)" stroke-width="1.4" />
+
+      <rect x="0" y="14" width="86" height="26" rx="3" class="must" />
+      <text x="43" y="31" class="task" text-anchor="middle">재고 차감</text>
+      <rect x="88" y="14" width="110" height="26" rx="3" class="must" />
+      <text x="143" y="31" class="task" text-anchor="middle">결제 승인</text>
+      <rect x="200" y="14" width="74" height="26" rx="3" class="must" />
+      <text x="237" y="31" class="task" text-anchor="middle">주문 저장</text>
+      <rect x="276" y="14" width="36" height="26" rx="3" fill="var(--c-line)" opacity="0.5" />
+      <text x="294" y="31" class="task" text-anchor="middle">큐</text>
+
+      <rect x="326" y="66" width="114" height="24" rx="3" class="later" />
+      <text x="383" y="82" class="task" text-anchor="middle">확인 메일</text>
+      <rect x="442" y="66" width="132" height="24" rx="3" class="later" />
+      <text x="508" y="82" class="task" text-anchor="middle">배송사 접수</text>
+      <rect x="576" y="66" width="136" height="24" rx="3" class="later" />
+      <text x="644" y="82" class="task" text-anchor="middle">추천 모델</text>
+
+      <line x1="0" y1="6" x2="0" y2="60" stroke="var(--c-line)" stroke-width="2" />
+      <text x="4" y="4" class="mark">요청</text>
+      <line x1="314" y1="6" x2="314" y2="60" stroke="var(--c-accent-2)" stroke-width="2.6" />
+      <text x="318" y="4" class="mark" fill="var(--c-accent-2)">응답</text>
+      <line x1="712" y1="60" x2="712" y2="96" stroke="var(--c-accent-4)" stroke-width="2.4" />
+
+      <line x1="322" y1="10" x2="704" y2="10" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-dasharray="5 4"
+        marker-end="url(#a-t6)" />
+
+      <text x="0" y="110" class="cap">응답 이후의 실패는 사용자에게 보이지 않습니다</text>
+      <text x="318" y="110" class="time">1.2s</text>
+      <text x="708" y="110" class="mark" text-anchor="end" fill="var(--c-accent-4)">실제 완료</text>
+    </g>
+  </g>
+
+  <!-- 하단 경고 -->
+  <g transform="translate(24 420)">
+    <rect width="752" height="90" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2"
+      stroke-dasharray="4 3" />
+    <text x="20" y="28" class="warn">사용자는 완료되었다고 알고 있지만, 사실 아직 끝나지 않은 구간입니다</text>
+    <text x="20" y="52" class="cap">이 구간에서 실패가 일어나면 사용자는 알 방법이 없습니다. 화면은 이미 "완료"를 지나갔기 때문입니다</text>
+    <text x="20" y="72" class="cap">어디까지가 "완료"인지를 정의하는 것이 이 경계의 첫 작업입니다</text>
+  </g>
+</svg>

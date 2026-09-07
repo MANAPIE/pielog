@@ -1,0 +1,225 @@
+<svg viewBox="0 0 800 592" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-sf">
+  <title id="t-sf">Strangler Fig 마이그레이션 타임라인</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-4: rgba(61, 139, 122, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-4: rgba(111, 191, 168, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .panel {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .nm {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-muted);
+      }
+
+      .th {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.08em;
+      }
+
+      .td {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-fg);
+      }
+
+      .warn {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        fill: var(--c-accent-2);
+      }
+
+      .code {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-muted);
+      }
+
+      .legacy {
+        fill: var(--c-muted);
+        opacity: 0.35;
+      }
+
+      .newsys {
+        fill: var(--c-accent-4);
+        opacity: 0.65;
+      }
+
+      .facade {
+        fill: none;
+        stroke: var(--c-accent-2);
+        stroke-width: 2.4;
+      }
+
+      .card {
+        fill: var(--c-card);
+        stroke: var(--c-divider);
+        stroke-width: 1;
+      }
+
+      .mark {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="592" />
+  <!-- 범례 -->
+  <g transform="translate(24 36)">
+    <rect x="0" y="-10" width="14" height="12" rx="2" class="legacy" />
+    <text x="22" y="0" class="cap">레거시 시스템</text>
+    <rect x="118" y="-10" width="14" height="12" rx="2" class="newsys" />
+    <text x="140" y="0" class="cap">새 시스템</text>
+    <rect x="222" y="-10" width="14" height="12" rx="2" fill="none" stroke="var(--c-accent-2)" stroke-width="1.6" />
+    <text x="244" y="0" class="cap">파사드 (라우팅 결정)</text>
+  </g>
+
+  <!-- 타임라인 -->
+  <g transform="translate(24 52)">
+    <rect width="752" height="202" rx="8" class="panel" />
+    <text x="20" y="24" class="lbl" fill="var(--c-accent-4)">MIGRATION TIMELINE</text>
+    <g transform="translate(20 40)">
+      <g transform="translate(0 0)">
+        <rect y="0" width="120" height="110" rx="5" class="legacy" />
+        <text x="60" y="130" class="mark" text-anchor="middle">T0</text>
+        <text x="60" y="146" class="cap" text-anchor="middle">전부 레거시</text>
+      </g>
+      <g transform="translate(146 0)">
+        <rect y="0" width="120" height="16" rx="4" class="newsys" />
+        <rect y="20" width="120" height="90" rx="5" class="legacy" />
+        <rect x="-8" y="-8" width="136" height="126" rx="7" class="facade" />
+        <text x="60" y="130" class="mark" text-anchor="middle">T1</text>
+        <text x="60" y="146" class="cap" text-anchor="middle">파사드 · 상품 조회</text>
+      </g>
+      <g transform="translate(292 0)">
+        <rect y="0" width="120" height="46" rx="5" class="newsys" />
+        <rect y="50" width="120" height="60" rx="5" class="legacy" />
+        <rect x="-8" y="-8" width="136" height="126" rx="7" class="facade" />
+        <text x="60" y="130" class="mark" text-anchor="middle">T2</text>
+        <text x="60" y="146" class="cap" text-anchor="middle">+ 검색</text>
+      </g>
+      <g transform="translate(438 0)">
+        <rect y="0" width="120" height="82" rx="5" class="newsys" />
+        <rect y="86" width="120" height="24" rx="5" class="legacy" />
+        <rect x="-8" y="-8" width="136" height="126" rx="7" class="facade" />
+        <text x="60" y="130" class="mark" text-anchor="middle">T3</text>
+        <text x="60" y="146" class="cap" text-anchor="middle">+ 주문</text>
+      </g>
+      <g transform="translate(584 0)">
+        <rect y="0" width="128" height="110" rx="5" class="newsys" />
+        <text x="64" y="130" class="mark" text-anchor="middle">T4</text>
+        <text x="64" y="146" class="cap" text-anchor="middle">파사드도 제거</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 파사드 코드 -->
+  <g transform="translate(24 270)">
+    <rect width="368" height="138" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5" />
+    <text x="20" y="26" class="ttl">파사드가 하는 일</text>
+    <text x="20" y="50" class="code">if (MIGRATED_ROUTES.includes(path))</text>
+    <text x="30" y="66" class="code"> return newSystem.handle(req)</text>
+    <text x="20" y="82" class="code">return legacySystem.handle(req)</text>
+    <text x="20" y="104" class="cap">경로 목록에 한 줄씩 추가하며 옮깁니다</text>
+  </g>
+  <g transform="translate(408 270)">
+    <rect width="368" height="138" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.5" />
+    <text x="20" y="26" class="ttl">언제든 멈출 수 있습니다</text>
+    <text x="20" y="50" class="cap">절반쯤 옮긴 상태에서도 시스템은 동작합니다.</text>
+    <text x="20" y="68" class="cap">예산이 끊기거나 우선순위가 바뀌어도</text>
+    <text x="20" y="86" class="cap">지금까지의 작업이 낭비되지 않습니다.</text>
+    <text x="20" y="104" class="cap">통째로 다시 만드는 Big Bang 방식은</text>
+    <text x="20" y="122" class="cap">롤백이 전부 아니면 전무입니다.</text>
+  </g>
+
+  <!-- 주의사항 -->
+  <g transform="translate(24 424)">
+    <rect width="752" height="144" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2"
+      stroke-dasharray="4 3" />
+    <text x="20" y="26" class="warn">주의할 것 두 가지</text>
+    <g transform="translate(20 42)">
+      <rect width="348" height="86" rx="5" class="card" />
+      <text x="14" y="22" class="nm">중간 상태가 오래갑니다</text>
+      <text x="14" y="40" class="cap">"일단 반만 옮기고 나중에"가 3년이 되는 일이</text>
+      <text x="14" y="56" class="cap">흔합니다. 완료 기한을 정하고 로드맵에</text>
+      <text x="14" y="72" class="cap">넣어야 실제로 끝납니다.</text>
+    </g>
+    <g transform="translate(384 42)">
+      <rect width="348" height="86" rx="5" class="card" />
+      <text x="14" y="22" class="nm">데이터가 문제입니다</text>
+      <text x="14" y="40" class="cap">라우팅은 쉽지만, 두 시스템이 같은 데이터를</text>
+      <text x="14" y="56" class="cap">봐야 하는 경우가 대부분입니다. 데이터 계층을</text>
+      <text x="14" y="72" class="cap">먼저 공유하고 애플리케이션부터 옮깁니다.</text>
+    </g>
+  </g>
+</svg>

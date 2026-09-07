@@ -1,0 +1,118 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cover-title">
+  <title id="cover-title">관측 경계와 분산 추적: ep.13 커버</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .num { fill: var(--c-num); font-family: 'Inter',system-ui,sans-serif; font-weight: 800; font-size: 220px; letter-spacing: -0.04em; }
+    </style>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="g1" cx="20%" cy="26%" r="50%">
+      <stop offset="0%" stop-color="var(--c-accent-4)" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="var(--c-accent-4)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="80%" cy="78%" r="46%">
+      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent-2)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <circle cx="1130" cy="90" r="240" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.12"/>
+  <rect x="-150" y="410" width="500" height="350" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.11" transform="rotate(-9 100 585)"/>
+
+  <!-- 메타포: 여러 겹의 벽을 관통하는 하나의 실 -->
+  <g transform="translate(600 315)">
+    <!-- 여러 겹의 불투명한 벽 (경계) -->
+    <g>
+      <rect x="-400" y="-210" width="90" height="420" rx="6" fill="var(--c-line)" opacity="0.10"/>
+      <rect x="-400" y="-210" width="90" height="420" rx="6" fill="none" stroke="var(--c-line)" stroke-width="1.6" opacity="0.35"/>
+
+      <rect x="-280" y="-190" width="90" height="380" rx="6" fill="var(--c-line)" opacity="0.10"/>
+      <rect x="-280" y="-190" width="90" height="380" rx="6" fill="none" stroke="var(--c-line)" stroke-width="1.6" opacity="0.35"/>
+
+      <rect x="-160" y="-210" width="90" height="420" rx="6" fill="var(--c-line)" opacity="0.10"/>
+      <rect x="-160" y="-210" width="90" height="420" rx="6" fill="none" stroke="var(--c-line)" stroke-width="1.6" opacity="0.35"/>
+
+      <rect x="-40" y="-190" width="90" height="380" rx="6" fill="var(--c-line)" opacity="0.10"/>
+      <rect x="-40" y="-190" width="90" height="380" rx="6" fill="none" stroke="var(--c-line)" stroke-width="1.6" opacity="0.35"/>
+
+      <rect x="80" y="-210" width="90" height="420" rx="6" fill="var(--c-line)" opacity="0.10"/>
+      <rect x="80" y="-210" width="90" height="420" rx="6" fill="none" stroke="var(--c-line)" stroke-width="1.6" opacity="0.35"/>
+
+      <rect x="200" y="-190" width="90" height="380" rx="6" fill="var(--c-line)" opacity="0.10"/>
+      <rect x="200" y="-190" width="90" height="380" rx="6" fill="none" stroke="var(--c-line)" stroke-width="1.6" opacity="0.35"/>
+
+      <rect x="320" y="-210" width="90" height="420" rx="6" fill="var(--c-line)" opacity="0.10"/>
+      <rect x="320" y="-210" width="90" height="420" rx="6" fill="none" stroke="var(--c-line)" stroke-width="1.6" opacity="0.35"/>
+    </g>
+
+    <!-- 관통하는 실 (correlation ID) -->
+    <path d="M -450 -40 Q -340 -90 -230 -30 Q -110 40 0 -20 Q 120 -80 230 -10 Q 340 60 460 0"
+          fill="none" stroke="var(--c-accent-4)" stroke-width="4.4" stroke-linecap="round"/>
+
+    <!-- 실 위의 노드 (스팬) -->
+    <g fill="var(--c-bg)" stroke="var(--c-accent-4)" stroke-width="3">
+      <circle cx="-355" cy="-58" r="11"/>
+      <circle cx="-235" cy="-31" r="11"/>
+      <circle cx="-115" cy="19" r="11"/>
+      <circle cx="5" cy="-19" r="11"/>
+      <circle cx="125" cy="-53" r="11"/>
+      <circle cx="245" cy="-2" r="11"/>
+      <circle cx="365" cy="30" r="11"/>
+    </g>
+
+    <!-- 스팬 바 (하단, 타임라인) -->
+    <g transform="translate(-400 150)">
+      <rect width="800" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.75"/>
+      <rect x="60" y="20" width="240" height="10" rx="5" fill="var(--c-accent)" opacity="0.7"/>
+      <rect x="320" y="20" width="180" height="10" rx="5" fill="var(--c-accent-3)" opacity="0.7"/>
+      <rect x="90" y="40" width="120" height="10" rx="5" fill="var(--c-accent)" opacity="0.45"/>
+      <rect x="230" y="40" width="60" height="10" rx="5" fill="var(--c-accent)" opacity="0.45"/>
+      <rect x="340" y="40" width="140" height="10" rx="5" fill="var(--c-accent-2)" opacity="0.6"/>
+    </g>
+
+    <!-- 에러 스팬 강조 (포커스 링) -->
+    <g transform="translate(245 -2)">
+      <circle r="30" fill="none" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-dasharray="3 5" opacity="0.75"/>
+      <circle r="6" fill="var(--c-accent-2)"/>
+    </g>
+
+    <!-- 상단 좌측 점 무리 -->
+    <g transform="translate(-420 -250)">
+      <circle r="5" fill="var(--c-accent-2)"/>
+      <circle cx="20" r="5" fill="var(--c-accent-2)" opacity="0.6"/>
+      <circle cx="40" r="5" fill="var(--c-accent-2)" opacity="0.3"/>
+    </g>
+
+    <!-- 우상단 회전 사각형 -->
+    <g transform="translate(400 -240) rotate(12)">
+      <rect x="-20" y="-20" width="40" height="40" fill="none" stroke="var(--c-accent-3)" stroke-width="1.8"/>
+    </g>
+  </g>
+
+  <!-- 디테일 -->
+  <g transform="translate(1050 480)" opacity="0.6">
+    <circle r="44" fill="none" stroke="var(--c-accent)" stroke-width="1.5"/>
+    <circle r="24" fill="none" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <text x="1130" y="575" class="num" text-anchor="end">13</text>
+</svg>

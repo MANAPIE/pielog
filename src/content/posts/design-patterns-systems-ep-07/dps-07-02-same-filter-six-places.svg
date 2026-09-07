@@ -1,0 +1,133 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-six">
+  <title id="t-six">같은 필터 조건이 여섯 곳에 저장된 상황</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .core { fill: var(--c-card); stroke: var(--c-accent-3); stroke-width: 3; }
+      .slot { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .sync { stroke: var(--c-accent-2); stroke-width: 1; opacity: 0.4; }
+      .link { stroke: var(--c-accent-3); stroke-width: 1.4; stroke-dasharray: 4 4; opacity: 0.6; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-fg); }
+      .why { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .core-t { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .badge { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-2); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="600"/>
+
+  <text x="24" y="30" class="ttl">같은 필터 조건 · 여섯 개의 사본</text>
+
+  <g transform="translate(400 250)">
+    <!-- 동기화 그물 -->
+    <g class="sync">
+      <line x1="-250" y1="-130" x2="0" y2="-170"/>
+      <line x1="0" y1="-170" x2="250" y2="-130"/>
+      <line x1="250" y1="-130" x2="250" y2="90"/>
+      <line x1="250" y1="90" x2="0" y2="140"/>
+      <line x1="0" y1="140" x2="-250" y2="90"/>
+      <line x1="-250" y1="90" x2="-250" y2="-130"/>
+      <line x1="-250" y1="-130" x2="250" y2="90"/>
+      <line x1="250" y1="-130" x2="-250" y2="90"/>
+      <line x1="0" y1="-170" x2="0" y2="140"/>
+      <line x1="-250" y1="-130" x2="0" y2="140"/>
+      <line x1="250" y1="-130" x2="0" y2="140"/>
+      <line x1="0" y1="-170" x2="-250" y2="90"/>
+      <line x1="0" y1="-170" x2="250" y2="90"/>
+      <line x1="-250" y1="90" x2="250" y2="90"/>
+      <line x1="-250" y1="-130" x2="250" y2="-130"/>
+    </g>
+
+    <!-- 중앙 값 -->
+    <g>
+      <rect x="-96" y="-37" width="192" height="74" rx="8" class="core"/>
+      <text x="0" y="-13" class="core-t" text-anchor="middle">category=shoes</text>
+      <text x="0" y="5" class="core-t" text-anchor="middle">sort=price_asc</text>
+      <text x="0" y="21" class="why" text-anchor="middle">필터 조건</text>
+    </g>
+
+    <!-- 6개 슬롯 -->
+    <g transform="translate(-250 -130)">
+      <rect x="-84" y="-35" width="168" height="70" rx="6" class="slot"/>
+      <text x="0" y="-13" class="nm" text-anchor="middle">컴포넌트 <tspan class="mono">useState</tspan></text>
+      <text x="0" y="5" class="why" text-anchor="middle">처음 만들 때 기본값</text>
+      <text x="0" y="21" class="why" text-anchor="middle">언마운트하면 사라집니다</text>
+    </g>
+
+    <g transform="translate(0 -170)">
+      <rect x="-84" y="-35" width="168" height="70" rx="6" class="slot"/>
+      <text x="0" y="-13" class="nm" text-anchor="middle">전역 스토어</text>
+      <text x="0" y="5" class="why" text-anchor="middle">다른 화면에서도 보이게</text>
+      <text x="0" y="21" class="why" text-anchor="middle">탭 닫으면 사라집니다</text>
+    </g>
+
+    <g transform="translate(250 -130)">
+      <rect x="-84" y="-35" width="168" height="70" rx="6" class="slot" stroke="var(--c-accent-3)" stroke-width="2.2"/>
+      <text x="0" y="-13" class="nm" text-anchor="middle">URL 쿼리스트링</text>
+      <text x="0" y="5" class="why" text-anchor="middle">링크를 공유할 수 있게</text>
+      <text x="0" y="21" class="why" text-anchor="middle">여기만 있으면 충분한 경우가 많습니다</text>
+    </g>
+
+    <g transform="translate(250 90)">
+      <rect x="-84" y="-35" width="168" height="70" rx="6" class="slot"/>
+      <text x="0" y="-13" class="nm" text-anchor="middle">쿼리 캐시 키</text>
+      <text x="0" y="5" class="why" text-anchor="middle">요청을 구분하려고</text>
+      <text x="0" y="21" class="why" text-anchor="middle">사실 URL에서 파생해도 됩니다</text>
+    </g>
+
+    <g transform="translate(0 140)">
+      <rect x="-84" y="-35" width="168" height="70" rx="6" class="slot"/>
+      <text x="0" y="-13" class="nm mono" text-anchor="middle">sessionStorage</text>
+      <text x="0" y="5" class="why" text-anchor="middle">새로고침해도 유지되게</text>
+      <text x="0" y="21" class="why" text-anchor="middle">URL이 이미 하는 일입니다</text>
+    </g>
+
+    <g transform="translate(-250 90)">
+      <rect x="-84" y="-35" width="168" height="70" rx="6" class="slot"/>
+      <text x="0" y="-13" class="nm" text-anchor="middle">서버 사용자 설정</text>
+      <text x="0" y="5" class="why" text-anchor="middle">다음 방문에도 남게</text>
+      <text x="0" y="21" class="why" text-anchor="middle">기기 간 공유가 필요할 때만</text>
+    </g>
+
+    <!-- 연결선 (중앙 ↔ 슬롯) -->
+    <g class="link">
+      <line x1="-96" y1="-18" x2="-202" y2="-95"/>
+      <line x1="-30" y1="-37" x2="-8" y2="-135"/>
+      <line x1="96" y1="-18" x2="202" y2="-95"/>
+      <line x1="96" y1="18" x2="175" y2="55"/>
+      <line x1="10" y1="37" x2="3" y2="105"/>
+      <line x1="-96" y1="18" x2="-175" y2="55"/>
+    </g>
+  </g>
+
+  <!-- 배지 -->
+  <g transform="translate(568 442)">
+    <rect width="208" height="34" rx="17" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.4"/>
+    <text x="104" y="21" class="badge" text-anchor="middle">동기화 경로 15개</text>
+  </g>
+
+  <!-- 하단 -->
+  <g transform="translate(24 490)">
+    <rect width="752" height="90" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="20" y="28" class="ttl">각각을 추가한 시점에는 모두 이유가 있었습니다</text>
+    <text x="20" y="52" class="cap">문제는 여섯이 어긋났을 때 어느 것이 진짜인지 정하는 규칙이 없다는 점입니다.</text>
+    <text x="20" y="72" class="cap">소유자를 하나로 정하고 나머지는 파생시킵니다. 파생 값은 계산하고, 저장하지 않습니다.</text>
+  </g>
+</svg>

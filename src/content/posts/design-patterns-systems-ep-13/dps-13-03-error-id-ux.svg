@@ -1,0 +1,161 @@
+<svg viewBox="0 0 800 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-eid">
+  <title id="t-eid">에러 화면의 정보 설계</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .panel { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .screen { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.6; }
+      .screen-bad { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.4; stroke-dasharray: 5 4; }
+      .card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .btn { fill: var(--c-accent); }
+      .btn-out { fill: none; stroke: var(--c-accent); stroke-width: 1.3; }
+      .h { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .body { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .id { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono-bad { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; fill: var(--c-accent-2); }
+      .btxt { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; }
+      .num { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-4); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="620"/>
+  <text x="24" y="36" class="lbl" fill="var(--c-accent-2)">TOO MUCH</text>
+  <text x="288" y="36" class="lbl" fill="var(--c-accent-2)">TOO LITTLE</text>
+  <text x="512" y="36" class="lbl" fill="var(--c-accent-4)">GOOD</text>
+
+  <!-- 나쁜 예 1: 너무 많이 말함 -->
+  <g transform="translate(24 52)">
+    <rect width="248" height="162" rx="8" class="screen-bad"/>
+    <text x="16" y="26" class="h">Internal Server Error</text>
+    <text x="16" y="46" class="mono-bad">relation "users" does not exist</text>
+    <text x="16" y="60" class="mono-bad">  at Query.run (/app/db/client.js:42)</text>
+    <text x="16" y="74" class="mono-bad">  at OrderService.place (/app/svc/o.js:88)</text>
+    <text x="16" y="148" class="cap">공격자에게 지도를 주는 것입니다</text>
+  </g>
+
+  <!-- 나쁜 예 2: 너무 적게 말함 -->
+  <g transform="translate(288 52)">
+    <rect width="208" height="162" rx="8" class="screen-bad"/>
+    <text x="16" y="26" class="h">오류가 발생했습니다</text>
+    <g transform="translate(16 40)">
+      <rect width="60" height="24" rx="5" class="btn-out"/>
+      <text x="30" y="15" class="btxt" text-anchor="middle" fill="var(--c-accent)">확인</text>
+    </g>
+    <text x="16" y="148" class="cap">사용자가 할 수 있는 게 없습니다</text>
+  </g>
+
+  <!-- 좋은 예 -->
+  <g transform="translate(512 52)">
+    <rect width="264" height="162" rx="8" class="screen"/>
+    <text x="16" y="26" class="h">문제가 발생했습니다</text>
+    <text x="16" y="48" class="body">요청을 처리하지 못했습니다.</text>
+    <text x="16" y="64" class="body">잠시 후 다시 시도해 주세요.</text>
+    <text x="16" y="80" class="cap">계속되면 아래 번호와 함께 문의해 주세요.</text>
+    <g transform="translate(16 90)">
+      <rect width="232" height="26" rx="5" fill="none" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="10" y="17" class="id">요청 ID: 7F3A-2B81</text>
+      <g transform="translate(180 5)">
+        <rect width="44" height="16" rx="8" class="btn-out"/>
+        <text x="22" y="12" class="btxt" text-anchor="middle" fill="var(--c-accent)">복사</text>
+      </g>
+    </g>
+    <g transform="translate(16 126)">
+      <rect width="70" height="22" rx="5" class="btn"/>
+      <text x="35" y="14" class="btxt" text-anchor="middle" fill="var(--c-bg)">다시 시도</text>
+      <rect x="78" width="80" height="22" rx="5" class="btn-out"/>
+      <text x="118" y="14" class="btxt" text-anchor="middle" fill="var(--c-accent)">고객센터</text>
+    </g>
+  </g>
+
+  <!-- 4가지 설계 고려사항 -->
+  <g transform="translate(24 230)">
+    <rect width="752" height="166" rx="8" class="panel"/>
+    <text x="20" y="26" class="ttl">에러 ID 설계 시 고려할 것</text>
+    <g transform="translate(20 44)">
+      <rect width="166" height="106" rx="5" fill="none" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="12" y="22" class="num">1</text>
+      <text x="28" y="22" class="h">읽을 수 있을 것</text>
+      <text x="12" y="40" class="cap">UUID 36자는 전화로</text>
+      <text x="12" y="56" class="cap">불러 주기 어렵습니다</text>
+      <text x="12" y="76" class="cap">혼동 문자(0/O, 1/l) 제외</text>
+      <text x="12" y="92" class="cap">8자 정도로 축약</text>
+    </g>
+    <g transform="translate(202 44)">
+      <rect width="166" height="106" rx="5" fill="none" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="12" y="22" class="num">2</text>
+      <text x="28" y="22" class="h">복사할 수 있을 것</text>
+      <text x="12" y="40" class="cap">손으로 옮겨 적게 하면</text>
+      <text x="12" y="56" class="cap">오타가 납니다</text>
+      <text x="12" y="76" class="cap">복사 버튼 하나가</text>
+      <text x="12" y="92" class="cap">문의 처리 시간을 줄입니다</text>
+    </g>
+    <g transform="translate(384 44)">
+      <rect width="166" height="106" rx="5" fill="none" stroke="var(--c-divider)" stroke-width="1"/>
+      <text x="12" y="22" class="num">3</text>
+      <text x="28" y="22" class="h">추적 가능할 것</text>
+      <text x="12" y="40" class="cap">이 ID로 검색하면</text>
+      <text x="12" y="56" class="cap">전체 흐름이 나와야 합니다</text>
+      <text x="12" y="76" class="cap">에러 트레이스는 샘플링 제외</text>
+      <text x="12" y="92" class="cap">보관 기간 &gt; 문의 접수 기간</text>
+    </g>
+    <g transform="translate(566 44)">
+      <rect width="166" height="106" rx="5" fill="none" stroke="var(--c-accent-2)" stroke-width="1.2"/>
+      <text x="12" y="22" class="num" fill="var(--c-accent-2)">4</text>
+      <text x="28" y="22" class="h">흘리지 말 것</text>
+      <text x="12" y="40" class="cap">ID 자체에 사용자 ID나</text>
+      <text x="12" y="56" class="cap">내부 정보를</text>
+      <text x="12" y="72" class="cap">인코딩하지 않습니다</text>
+    </g>
+  </g>
+
+  <!-- 앞 편들과의 연결 -->
+  <g transform="translate(24 412)">
+    <rect width="752" height="184" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="20" y="26" class="ttl">시스템이 자기 상태를 알아야 사용자에게 정직하게 말할 수 있습니다</text>
+    <g transform="translate(20 44)">
+      <rect width="348" height="54" rx="5" class="card"/>
+      <text x="14" y="22" class="body" font-weight="700">ep.05 - 브레이커가 열려 있다</text>
+      <text x="14" y="40" class="cap">"약 30초 후 다시 시도해 주세요"</text>
+    </g>
+    <g transform="translate(384 44)">
+      <rect width="348" height="54" rx="5" class="card"/>
+      <text x="14" y="22" class="body" font-weight="700">ep.06 - 큐에서 처리 중이다</text>
+      <text x="14" y="40" class="cap">"변환 중입니다. 완료되면 알려드립니다"</text>
+    </g>
+    <g transform="translate(20 114)">
+      <rect width="348" height="54" rx="5" class="card"/>
+      <text x="14" y="22" class="body" font-weight="700">ep.08 - 캐시가 낡았다</text>
+      <text x="14" y="40" class="cap">"마지막 갱신 5분 전"</text>
+    </g>
+    <g transform="translate(384 114)">
+      <rect width="348" height="54" rx="5" class="card"/>
+      <text x="14" y="22" class="body" font-weight="700">ep.09 - 보상이 진행 중이다</text>
+      <text x="14" y="40" class="cap">"환불을 처리하고 있습니다"</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,151 @@
+<svg viewBox="0 0 800 590" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-spec">
+  <title id="t-spec">배포 단위의 스펙트럼</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .panel { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .col { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .unit { fill: var(--c-card); stroke: var(--c-accent-4); stroke-width: 1.8; }
+      .grad { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-l11" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-4)"/>
+    </marker>
+    <marker id="a-r11" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="590"/>
+  <!-- 4개 열: 배포 단위 스펙트럼 -->
+  <g transform="translate(24 24)">
+    <rect width="176" height="266" rx="8" class="col"/>
+    <text x="16" y="24" class="nm">모놀리스</text>
+    <text x="16" y="42" class="cap">배포 단위 1</text>
+    <g transform="translate(28 60)">
+      <rect width="120" height="90" rx="6" class="unit"/>
+      <line x1="0" y1="30" x2="120" y2="30" stroke="var(--c-divider)" stroke-width="1"/>
+      <line x1="0" y1="60" x2="120" y2="60" stroke="var(--c-divider)" stroke-width="1"/>
+      <rect x="14" y="10" width="50" height="8" rx="4" fill="var(--c-accent-4)" opacity="0.5"/>
+      <rect x="14" y="40" width="66" height="8" rx="4" fill="var(--c-accent-4)" opacity="0.4"/>
+      <rect x="14" y="70" width="40" height="8" rx="4" fill="var(--c-accent-4)" opacity="0.3"/>
+    </g>
+    <text x="16" y="172" class="th">계약</text>
+    <text x="16" y="190" class="cap">불필요</text>
+    <text x="16" y="214" class="th">적합한 조건</text>
+    <text x="16" y="232" class="cap">팀이 하나이거나</text>
+    <text x="16" y="250" class="cap">릴리스 주기가 같음</text>
+  </g>
+  <g transform="translate(216 24)">
+    <rect width="176" height="266" rx="8" class="col" stroke="var(--c-accent-4)" stroke-width="2"/>
+    <text x="16" y="24" class="nm">모듈러 모놀리스</text>
+    <text x="16" y="42" class="cap">배포 단위 1 · 모듈 다수</text>
+    <g transform="translate(28 60)">
+      <rect width="120" height="90" rx="6" class="unit"/>
+      <rect x="8" y="8" width="48" height="34" rx="4" fill="none" stroke="var(--c-accent-4)" stroke-width="1.4" stroke-dasharray="3 3"/>
+      <rect x="64" y="8" width="48" height="34" rx="4" fill="none" stroke="var(--c-accent-4)" stroke-width="1.4" stroke-dasharray="3 3"/>
+      <rect x="8" y="48" width="48" height="34" rx="4" fill="none" stroke="var(--c-accent-4)" stroke-width="1.4" stroke-dasharray="3 3"/>
+      <rect x="64" y="48" width="48" height="34" rx="4" fill="none" stroke="var(--c-accent-4)" stroke-width="1.4" stroke-dasharray="3 3"/>
+    </g>
+    <text x="16" y="172" class="th">계약</text>
+    <text x="16" y="190" class="cap">코드 내부 규약</text>
+    <text x="16" y="214" class="th">적합한 조건</text>
+    <text x="16" y="232" class="cap">경계는 필요하지만</text>
+    <text x="16" y="250" class="cap">독립 배포는 아직</text>
+  </g>
+  <g transform="translate(408 24)">
+    <rect width="176" height="266" rx="8" class="col"/>
+    <text x="16" y="24" class="nm">서비스 몇 개</text>
+    <text x="16" y="42" class="cap">배포 단위 3~5</text>
+    <g transform="translate(18 60)">
+      <rect width="66" height="42" rx="5" class="unit"/>
+      <rect x="74" width="66" height="42" rx="5" class="unit"/>
+      <rect y="48" width="66" height="42" rx="5" class="unit"/>
+      <line x1="66" y1="21" x2="74" y2="21" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="3 3"/>
+      <line x1="33" y1="42" x2="33" y2="48" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="3 3"/>
+    </g>
+    <text x="16" y="172" class="th">계약</text>
+    <text x="16" y="190" class="cap">API</text>
+    <text x="16" y="214" class="th">적합한 조건</text>
+    <text x="16" y="232" class="cap">릴리스 주기가 다른</text>
+    <text x="16" y="250" class="cap">영역이 생김</text>
+  </g>
+  <g transform="translate(600 24)">
+    <rect width="176" height="266" rx="8" class="col"/>
+    <text x="16" y="24" class="nm">마이크로서비스</text>
+    <text x="16" y="42" class="cap">배포 단위 다수</text>
+    <g transform="translate(17 60)">
+      <rect width="42" height="28" rx="4" class="unit"/>
+      <rect x="50" width="42" height="28" rx="4" class="unit"/>
+      <rect x="100" width="42" height="28" rx="4" class="unit"/>
+      <rect y="34" width="42" height="28" rx="4" class="unit"/>
+      <rect x="50" y="34" width="42" height="28" rx="4" class="unit"/>
+      <rect x="100" y="34" width="42" height="28" rx="4" class="unit"/>
+      <rect y="68" width="42" height="28" rx="4" class="unit"/>
+      <rect x="50" y="68" width="42" height="28" rx="4" class="unit"/>
+      <rect x="100" y="68" width="42" height="28" rx="4" class="unit"/>
+    </g>
+    <text x="16" y="172" class="th">계약</text>
+    <text x="16" y="190" class="cap">API + 이벤트</text>
+    <text x="16" y="214" class="th">적합한 조건</text>
+    <text x="16" y="232" class="cap">팀이 많고</text>
+    <text x="16" y="250" class="cap">각자 배포해야 함</text>
+  </g>
+
+  <!-- 트레이드오프 화살표 -->
+  <g transform="translate(24 320)">
+    <line x1="720" y1="0" x2="32" y2="0" stroke="var(--c-accent-4)" stroke-width="2.2" marker-end="url(#a-l11)"/>
+    <text x="32" y="-10" class="grad">조율 비용 낮음 · 배포 무거움</text>
+    <line x1="32" y1="28" x2="720" y2="28" stroke="var(--c-accent)" stroke-width="2.2" marker-end="url(#a-r11)"/>
+    <text x="720" y="18" class="grad" text-anchor="end">독립 배포 · 계약 관리 비용</text>
+  </g>
+
+  <!-- 핵심 메시지 -->
+  <g transform="translate(24 364)">
+    <rect width="368" height="102" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="20" y="26" class="ttl">나눌 이유는 기술이 아닙니다</text>
+    <text x="20" y="50" class="cap">결제팀이 매일 배포하고 싶은데</text>
+    <text x="20" y="68" class="cap">검색팀 릴리스를 기다려야 한다</text>
+    <text x="20" y="86" class="cap">→ 그때 나눌 이유가 생깁니다</text>
+  </g>
+  <g transform="translate(408 364)">
+    <rect width="368" height="102" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="20" y="26" class="ttl">모듈러 모놀리스에서 시작합니다</text>
+    <text x="20" y="50" class="cap">경계가 이미 그어져 있으면</text>
+    <text x="20" y="68" class="cap">나중에 떼어내는 것은 어렵지 않습니다</text>
+    <text x="20" y="86" class="cap">반대로 경계 없이 나누면 분산 모놀리스가 됩니다</text>
+  </g>
+
+  <!-- 분산 모놀리스 경고 -->
+  <g transform="translate(24 482)">
+    <rect width="752" height="84" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="20" y="26" class="warn">분산 모놀리스: 나눈 비용은 다 내고 이득은 없는 상태</text>
+    <text x="20" y="50" class="cap">서비스는 열두 개인데, 하나를 배포하려면 다른 열한 개를 같이 배포해야 합니다.</text>
+    <text x="20" y="68" class="cap">공유 데이터베이스가 있으면 배포 경계는 데이터베이스 앞에서 무너집니다.</text>
+  </g>
+</svg>

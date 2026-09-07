@@ -1,0 +1,120 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cover-title">
+  <title id="cover-title">계약 경계와 런타임 타입 검증: ep.03 커버</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .num { fill: var(--c-num); font-family: 'Inter',system-ui,sans-serif; font-weight: 800; font-size: 220px; letter-spacing: -0.04em; }
+    </style>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="g1" cx="62%" cy="30%" r="48%">
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="22%" cy="76%" r="46%">
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <circle cx="90" cy="120" r="230" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.12"/>
+  <rect x="880" y="400" width="500" height="360" fill="none" stroke="var(--c-line)" stroke-width="1.5" opacity="0.11" transform="rotate(9 1130 580)"/>
+
+  <!-- 메타포: 체(sieve)를 통과하는 형태들 -->
+  <g transform="translate(600 315)">
+    <!-- 위쪽: 뒤섞인 입력 형태들 -->
+    <g transform="translate(0 -200)">
+      <circle cx="-190" cy="-10" r="20" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2"/>
+      <rect x="-110" y="-42" width="40" height="40" rx="4" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2" transform="rotate(-14 -90 -22)"/>
+      <polygon points="-10,-38 14,2 -34,2" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2"/>
+      <circle cx="80" cy="-24" r="16" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="3 3"/>
+      <rect x="140" y="-34" width="34" height="34" rx="3" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="3 3" transform="rotate(12 157 -17)"/>
+      <polygon points="230,-34 250,0 210,0" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2"/>
+    </g>
+
+    <!-- 낙하 경로 -->
+    <g stroke="var(--c-line)" stroke-width="1.3" stroke-dasharray="4 5" opacity="0.45">
+      <line x1="-190" y1="-186" x2="-160" y2="-70"/>
+      <line x1="-90" y1="-200" x2="-80" y2="-70"/>
+      <line x1="-10" y1="-198" x2="-6" y2="-70"/>
+      <line x1="80" y1="-224" x2="70" y2="-70"/>
+      <line x1="157" y1="-212" x2="146" y2="-70"/>
+      <line x1="230" y1="-200" x2="216" y2="-70"/>
+    </g>
+
+    <!-- 체(경계) -->
+    <g>
+      <rect x="-320" y="-60" width="640" height="56" rx="8" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
+      <!-- 구멍들: 원형만 통과하는 체 -->
+      <circle cx="-230" cy="-32" r="16" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
+      <circle cx="-140" cy="-32" r="16" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
+      <circle cx="-50" cy="-32" r="16" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
+      <circle cx="40" cy="-32" r="16" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
+      <circle cx="130" cy="-32" r="16" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
+      <circle cx="220" cy="-32" r="16" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
+      <!-- 포커스 링 -->
+      <rect x="-332" y="-72" width="664" height="80" rx="10" fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="2 5" opacity="0.55"/>
+    </g>
+
+    <!-- 튕겨나가는 것 (거부된 형태) -->
+    <g transform="translate(300 -40) rotate(28)">
+      <rect x="-17" y="-17" width="34" height="34" rx="3" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.4"/>
+      <line x1="-10" y1="-10" x2="10" y2="10" stroke="var(--c-accent-2)" stroke-width="2.4"/>
+      <line x1="10" y1="-10" x2="-10" y2="10" stroke="var(--c-accent-2)" stroke-width="2.4"/>
+    </g>
+    <path d="M 236 -46 Q 280 -70 300 -60" fill="none" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-dasharray="4 4"/>
+
+    <!-- 아래쪽: 통과한 균일한 원들 -->
+    <g transform="translate(0 90)">
+      <circle cx="-230" cy="0" r="24" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.6"/>
+      <circle cx="-230" cy="0" r="8" fill="var(--c-accent)" opacity="0.7"/>
+      <circle cx="-138" cy="10" r="24" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.6"/>
+      <circle cx="-138" cy="10" r="8" fill="var(--c-accent)" opacity="0.7"/>
+      <circle cx="-46" cy="-6" r="24" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.6"/>
+      <circle cx="-46" cy="-6" r="8" fill="var(--c-accent)" opacity="0.7"/>
+      <circle cx="46" cy="12" r="24" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.6"/>
+      <circle cx="46" cy="12" r="8" fill="var(--c-accent)" opacity="0.7"/>
+      <circle cx="138" cy="-4" r="24" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.6"/>
+      <circle cx="138" cy="-4" r="8" fill="var(--c-accent)" opacity="0.7"/>
+      <circle cx="230" cy="8" r="24" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.6"/>
+      <circle cx="230" cy="8" r="8" fill="var(--c-accent)" opacity="0.7"/>
+    </g>
+
+    <!-- 하단 미니 바 -->
+    <g transform="translate(-230 170)">
+      <rect width="80" height="9" rx="4.5" fill="var(--c-accent-4)" opacity="0.8"/>
+      <rect y="18" width="52" height="9" rx="4.5" fill="var(--c-accent-4)" opacity="0.45"/>
+    </g>
+  </g>
+
+  <!-- 디테일 -->
+  <g transform="translate(1010 130)">
+    <circle r="4" fill="var(--c-accent-4)"/>
+    <circle cx="16" r="4" fill="var(--c-accent-4)" opacity="0.6"/>
+    <circle cx="32" r="4" fill="var(--c-accent-4)" opacity="0.3"/>
+  </g>
+  <g transform="translate(120 520)" opacity="0.65">
+    <circle r="42" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
+    <circle r="24" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <text x="1130" y="575" class="num" text-anchor="end">03</text>
+</svg>

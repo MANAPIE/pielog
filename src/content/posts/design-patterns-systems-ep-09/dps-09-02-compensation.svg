@@ -1,0 +1,158 @@
+<svg viewBox="0 0 800 564" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-comp">
+  <title id="t-comp">Saga의 보상 트랜잭션 흐름</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-4: rgba(61,139,122,0.10); --c-soft-2: rgba(217,119,87,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-4: rgba(111,191,168,0.14); --c-soft-2: rgba(232,147,118,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .pane-ok { fill: var(--c-soft-4); stroke: var(--c-accent-4); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-bad { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .step-ok { fill: var(--c-card); stroke: var(--c-accent-4); stroke-width: 1.8; }
+      .step-fail { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 2.4; }
+      .step-skip { fill: var(--c-card); stroke: var(--c-muted); stroke-width: 1.4; stroke-dasharray: 4 4; }
+      .step-comp { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.8; }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .note { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .pair { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-fg); }
+      .rank { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; }
+    </style>
+    <marker id="a-f9" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto">
+      <polygon points="0,0 11,5.5 0,11" fill="var(--c-accent-4)"/>
+    </marker>
+    <marker id="a-b9" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto">
+      <polygon points="0,0 11,5.5 0,11" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="564"/>
+
+  <!-- 정상 흐름 -->
+  <g transform="translate(24 20)">
+    <rect class="pane-ok" width="752" height="112" rx="8"/>
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-4)">HAPPY PATH</text>
+
+    <g transform="translate(20 40)">
+      <rect width="152" height="54" rx="6" class="step-ok"/>
+      <text x="76" y="24" class="nm" text-anchor="middle">재고 예약</text>
+      <text x="76" y="42" class="cap" text-anchor="middle">되돌리기 쉬움</text>
+    </g>
+    <line x1="180" y1="67" x2="208" y2="67" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-f9)"/>
+    <g transform="translate(212 40)">
+      <rect width="152" height="54" rx="6" class="step-ok"/>
+      <text x="76" y="24" class="nm" text-anchor="middle">결제 승인</text>
+      <text x="76" y="42" class="cap" text-anchor="middle">되돌리기 비쌈</text>
+    </g>
+    <line x1="372" y1="67" x2="400" y2="67" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-f9)"/>
+    <g transform="translate(404 40)">
+      <rect width="152" height="54" rx="6" class="step-ok"/>
+      <text x="76" y="24" class="nm" text-anchor="middle">주문 생성</text>
+      <text x="76" y="42" class="cap" text-anchor="middle">되돌리기 쉬움</text>
+    </g>
+    <line x1="564" y1="67" x2="592" y2="67" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-f9)"/>
+    <g transform="translate(596 40)">
+      <rect width="136" height="54" rx="6" class="step-ok"/>
+      <text x="68" y="24" class="nm" text-anchor="middle">메일 발송</text>
+      <text x="68" y="42" class="cap" text-anchor="middle">되돌릴 수 없음</text>
+    </g>
+  </g>
+
+  <!-- 실패 흐름 -->
+  <g transform="translate(24 148)">
+    <rect class="pane-bad" width="752" height="208" rx="8"/>
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-2)">FAILURE PATH: 주문 생성 실패</text>
+
+    <!-- 전진 -->
+    <g transform="translate(20 40)">
+      <rect width="152" height="54" rx="6" class="step-ok"/>
+      <text x="76" y="24" class="nm" text-anchor="middle">재고 예약</text>
+      <text x="76" y="42" class="cap" text-anchor="middle">성공</text>
+    </g>
+    <line x1="180" y1="67" x2="208" y2="67" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-f9)"/>
+    <g transform="translate(212 40)">
+      <rect width="152" height="54" rx="6" class="step-ok"/>
+      <text x="76" y="24" class="nm" text-anchor="middle">결제 승인</text>
+      <text x="76" y="42" class="cap" text-anchor="middle">성공</text>
+    </g>
+    <line x1="372" y1="67" x2="400" y2="67" stroke="var(--c-accent-4)" stroke-width="2" marker-end="url(#a-f9)"/>
+    <g transform="translate(404 40)">
+      <rect width="152" height="54" rx="6" class="step-fail"/>
+      <text x="76" y="24" class="nm" text-anchor="middle" fill="var(--c-accent-2)">주문 생성</text>
+      <text x="76" y="42" class="cap" text-anchor="middle">실패</text>
+    </g>
+    <g transform="translate(596 40)">
+      <rect width="136" height="54" rx="6" class="step-skip"/>
+      <text x="68" y="24" class="nm" text-anchor="middle" fill="var(--c-muted)">메일 발송</text>
+      <text x="68" y="42" class="cap" text-anchor="middle">실행 안 됨</text>
+    </g>
+
+    <!-- 되돌아오는 화살표 -->
+    <path d="M 480 96 L 480 122 L 288 122 L 288 136" fill="none" stroke="var(--c-accent-2)" stroke-width="2.4" marker-end="url(#a-b9)"/>
+
+    <!-- 보상 -->
+    <g transform="translate(212 136)">
+      <rect width="152" height="54" rx="6" class="step-comp"/>
+      <text x="76" y="24" class="nm" text-anchor="middle">결제 환불</text>
+      <text x="76" y="42" class="cap" text-anchor="middle">새 거래가 생깁니다</text>
+    </g>
+    <line x1="204" y1="163" x2="176" y2="163" stroke="var(--c-accent-2)" stroke-width="2.4" marker-end="url(#a-b9)"/>
+    <g transform="translate(20 136)">
+      <rect width="152" height="54" rx="6" class="step-comp"/>
+      <text x="76" y="24" class="nm" text-anchor="middle">재고 해제</text>
+      <text x="76" y="42" class="cap" text-anchor="middle">대칭적으로 복구</text>
+    </g>
+
+    <text x="404" y="166" class="note">역순으로 보상합니다</text>
+    <text x="404" y="184" class="cap">보상도 실패할 수 있습니다: 그때는 사람이 봐야 합니다</text>
+  </g>
+
+  <!-- 대칭이 아니라는 설명 -->
+  <g transform="translate(24 372)">
+    <rect width="752" height="90" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="26" class="ttl">보상은 원래 작업의 정확한 역이 아닙니다</text>
+
+    <g transform="translate(20 40)">
+      <text x="0" y="14" class="pair">재고 10개 차감 → 10개 복구</text>
+      <text x="0" y="34" class="cap">대칭입니다</text>
+
+      <text x="250" y="14" class="pair">결제 → 환불</text>
+      <text x="250" y="34" class="cap">명세서에 결제와 환불이 둘 다 남습니다</text>
+
+      <text x="530" y="14" class="pair">메일 발송 → ?</text>
+      <text x="530" y="34" class="cap">"취소되었습니다" 메일을 한 통 더</text>
+    </g>
+  </g>
+
+  <!-- 순서 원칙 -->
+  <g transform="translate(24 478)">
+    <rect width="752" height="62" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="20" y="26" class="ttl">순서 설계 원칙</text>
+
+    <g transform="translate(20 44)">
+      <text x="0" y="0" class="rank" fill="var(--c-accent-4)">1</text>
+      <text x="16" y="0" class="note">되돌리기 쉬운 것: 재고 예약 · 임시 저장</text>
+
+      <text x="270" y="0" class="rank" fill="var(--c-accent-3)">2</text>
+      <text x="286" y="0" class="note">되돌리기 비싼 것: 결제</text>
+
+      <text x="510" y="0" class="rank" fill="var(--c-accent-2)">3</text>
+      <text x="526" y="0" class="note">되돌릴 수 없는 것: 메일 · 배송 접수</text>
+    </g>
+  </g>
+</svg>

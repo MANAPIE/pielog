@@ -1,0 +1,84 @@
+<svg viewBox="0 0 800 244" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-mf">
+  <title id="t-mf">Module Federation 구조와 공유 의존성 함정</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .panel { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .shell { fill: var(--c-soft-4); stroke: var(--c-accent-4); stroke-width: 2; }
+      .remote { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.6; }
+      .shared { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.8; stroke-dasharray: 5 4; }
+      .flow { stroke: var(--c-accent-4); stroke-width: 2; }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-m11" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-4)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="244"/>
+  <text x="24" y="36" class="lbl" fill="var(--c-accent-4)">RUNTIME COMPOSITION</text>
+
+  <!-- 셸: 원격 모듈 행(52~220)의 세로 중앙에 배치 -->
+  <g transform="translate(24 80)">
+    <rect width="200" height="112" rx="8" class="shell"/>
+    <text x="16" y="24" class="nm">Shell (호스트)</text>
+    <text x="16" y="44" class="code">remotes: { checkout, search }</text>
+    <line x1="16" y1="58" x2="184" y2="58" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="16" y="78" class="cap">라우팅 · 레이아웃</text>
+    <text x="16" y="96" class="cap">토큰 제공</text>
+  </g>
+  <line x1="230" y1="90" x2="258" y2="90" class="flow" marker-end="url(#a-m11)"/>
+  <line x1="230" y1="182" x2="258" y2="182" class="flow" marker-end="url(#a-m11)"/>
+  <text x="244" y="80" class="cap" text-anchor="middle">런타임</text>
+
+  <!-- 원격 모듈 2개 -->
+  <g transform="translate(264 52)">
+    <rect width="230" height="76" rx="8" class="remote"/>
+    <text x="16" y="24" class="nm">checkout</text>
+    <text x="16" y="44" class="code">checkout.example.com/remoteEntry.js</text>
+    <text x="16" y="62" class="cap">독립 배포 · DS v2</text>
+  </g>
+  <g transform="translate(264 144)">
+    <rect width="230" height="76" rx="8" class="remote"/>
+    <text x="16" y="24" class="nm">search</text>
+    <text x="16" y="44" class="code">search.example.com/remoteEntry.js</text>
+    <text x="16" y="62" class="cap">독립 배포 · DS v1</text>
+  </g>
+
+  <!-- 공유 의존성 -->
+  <g transform="translate(510 52)">
+    <rect width="266" height="168" rx="8" class="shared"/>
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-2)">SHARED - 함정</text>
+    <text x="16" y="46" class="nm mono">react (singleton: true)</text>
+    <text x="16" y="66" class="code">requiredVersion: '^18.0.0'</text>
+    <line x1="16" y1="80" x2="250" y2="80" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="16" y="98" class="cap">두 벌 로드하면 훅이 깨집니다</text>
+    <text x="16" y="118" class="warn">결제팀이 19로 올리면</text>
+    <text x="16" y="136" class="cap">검색팀은 테스트하지 않은</text>
+    <text x="16" y="152" class="cap">버전에서 돌게 됩니다</text>
+  </g>
+</svg>

@@ -1,0 +1,118 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-hyd">
+  <title id="t-hyd">hydration 비용 비교 타임라인</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .row { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .seg-html { fill: var(--c-accent); opacity: 0.7; }
+      .seg-js { fill: var(--c-accent-3); opacity: 0.7; }
+      .seg-dead { fill: var(--c-accent-2); opacity: 0.35; }
+      .seg-live { fill: var(--c-accent-4); opacity: 0.75; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .ax { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .bar-lbl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <!-- 범례 -->
+  <g transform="translate(24 24)">
+    <rect x="0" y="-10" width="16" height="12" rx="2" class="seg-html"/>
+    <text x="24" y="0" class="lg">HTML 도착</text>
+    <rect x="120" y="-10" width="16" height="12" rx="2" class="seg-js"/>
+    <text x="144" y="0" class="lg">JS 다운로드·실행</text>
+    <rect x="296" y="-10" width="16" height="12" rx="2" class="seg-dead"/>
+    <text x="320" y="0" class="lg">보이지만 눌리지 않음</text>
+    <rect x="482" y="-10" width="16" height="12" rx="2" class="seg-live"/>
+    <text x="506" y="0" class="lg">사용 가능</text>
+  </g>
+
+  <!-- 열 머리말 -->
+  <text x="564" y="60" class="ax" text-anchor="end">시간 →</text>
+  <text x="600" y="60" class="ax">전송 JS</text>
+
+  <!-- 1. 전체 hydration -->
+  <g transform="translate(24 74)">
+    <rect width="752" height="128" rx="8" class="row"/>
+    <text x="20" y="30" class="ttl">전체 hydration</text>
+    <text x="20" y="50" class="sub">이벤트를 붙이려고, 컴포넌트 트리 전체를 다시 실행합니다</text>
+
+    <g transform="translate(20 66)">
+      <rect x="0" y="0" width="80" height="26" rx="3" class="seg-html"/>
+      <rect x="80" y="0" width="300" height="26" rx="3" class="seg-js"/>
+      <rect x="380" y="0" width="140" height="26" rx="3" class="seg-live"/>
+      <rect x="80" y="32" width="300" height="14" rx="3" class="seg-dead"/>
+      <text x="520" y="43" class="bar-lbl" text-anchor="end" fill="var(--c-muted)">페이지 전체가 길게</text>
+    </g>
+
+    <g transform="translate(576 66)">
+      <rect width="120" height="26" rx="3" class="seg-js" opacity="0.85"/>
+      <text x="128" y="18" class="bar-lbl">100%</text>
+    </g>
+  </g>
+
+  <!-- 2. Islands -->
+  <g transform="translate(24 218)">
+    <rect width="752" height="128" rx="8" class="row"/>
+    <text x="20" y="30" class="ttl">Islands Architecture</text>
+    <text x="20" y="50" class="sub">정적 영역은 JS를 받지 않고, 인터랙션 조각만 hydration 합니다</text>
+
+    <g transform="translate(20 66)">
+      <rect x="0" y="0" width="80" height="26" rx="3" class="seg-html"/>
+      <rect x="80" y="0" width="440" height="26" rx="3" class="seg-live"/>
+      <rect x="110" y="4" width="42" height="18" rx="2" class="seg-js"/>
+      <rect x="220" y="4" width="42" height="18" rx="2" class="seg-js"/>
+      <rect x="330" y="4" width="42" height="18" rx="2" class="seg-js"/>
+      <rect x="110" y="32" width="42" height="14" rx="3" class="seg-dead"/>
+      <rect x="220" y="32" width="42" height="14" rx="3" class="seg-dead"/>
+      <rect x="330" y="32" width="42" height="14" rx="3" class="seg-dead"/>
+      <text x="520" y="43" class="bar-lbl" text-anchor="end" fill="var(--c-muted)">조각마다 짧게</text>
+    </g>
+
+    <g transform="translate(576 66)">
+      <rect width="42" height="26" rx="3" class="seg-js" opacity="0.85"/>
+      <text x="50" y="18" class="bar-lbl">35%</text>
+    </g>
+  </g>
+
+  <!-- 3. Streaming + RSC -->
+  <g transform="translate(24 362)">
+    <rect width="752" height="128" rx="8" class="row"/>
+    <text x="20" y="30" class="ttl">Streaming SSR + RSC</text>
+    <text x="20" y="50" class="sub">준비된 조각부터 흘려보내고, 서버 컴포넌트는 hydration 하지 않습니다</text>
+
+    <g transform="translate(20 66)">
+      <rect x="0" y="0" width="70" height="26" rx="3" class="seg-html"/>
+      <rect x="70" y="0" width="450" height="26" rx="3" class="seg-live"/>
+      <rect x="140" y="0" width="14" height="26" rx="3" class="seg-html"/>
+      <rect x="214" y="0" width="14" height="26" rx="3" class="seg-html"/>
+      <rect x="290" y="4" width="50" height="18" rx="2" class="seg-js"/>
+      <rect x="290" y="32" width="50" height="14" rx="3" class="seg-dead"/>
+      <text x="520" y="43" class="bar-lbl" text-anchor="end" fill="var(--c-muted)">클라이언트 조각만 짧게</text>
+    </g>
+
+    <g transform="translate(576 66)">
+      <rect width="24" height="26" rx="3" class="seg-js" opacity="0.85"/>
+      <text x="32" y="18" class="bar-lbl">20%</text>
+    </g>
+  </g>
+
+  <!-- 하단 -->
+  <text x="400" y="520" class="ttl" text-anchor="middle">서버가 보낸 HTML은 그림이고, 눌리려면 JavaScript가 붙어야 합니다</text>
+  <text x="400" y="542" class="sub" text-anchor="middle">화면이 완성되어 보이는데 반응이 없는 구간이 가장 답답한 순간입니다</text>
+</svg>

@@ -1,0 +1,147 @@
+<svg viewBox="0 0 800 660" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-inv">
+  <title id="t-inv">TTL·이벤트 기반·stale-while-revalidate 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .row { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .fresh { fill: var(--c-accent-4); opacity: 0.6; }
+      .stale { fill: var(--c-accent-2); opacity: 0.45; }
+      .revalid { fill: var(--c-accent-3); opacity: 0.5; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .mark { font-family: 'Inter',system-ui,sans-serif; font-size: 10px; font-weight: 700; fill: var(--c-fg); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-i8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="660"/>
+
+  <!-- 범례 -->
+  <g transform="translate(24 24)">
+    <rect x="0" y="-10" width="14" height="12" rx="2" class="fresh"/>
+    <text x="22" y="0" class="cap">신선한 캐시</text>
+    <rect x="112" y="-10" width="14" height="12" rx="2" class="stale"/>
+    <text x="134" y="0" class="cap">낡은 값을 반환 중</text>
+    <rect x="260" y="-10" width="14" height="12" rx="2" class="revalid"/>
+    <text x="282" y="0" class="cap">백그라운드 갱신</text>
+    <circle cx="400" cy="-4" r="5" fill="var(--c-accent-2)"/>
+    <text x="412" y="0" class="cap">원본이 바뀐 시점</text>
+  </g>
+
+  <!-- 1. TTL -->
+  <g transform="translate(24 46)">
+    <rect width="752" height="140" rx="8" class="row"/>
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-2)">TTL</text>
+    <text x="20" y="46" class="ttl">시간이 지나면 버립니다</text>
+
+    <g transform="translate(20 64)">
+      <line x1="0" y1="42" x2="712" y2="42" stroke="var(--c-divider)" stroke-width="1.2"/>
+      <rect x="0" y="12" width="170" height="24" rx="3" class="fresh"/>
+      <rect x="174" y="12" width="170" height="24" rx="3" class="fresh"/>
+      <rect x="348" y="12" width="170" height="24" rx="3" class="fresh"/>
+      <rect x="522" y="12" width="170" height="24" rx="3" class="fresh"/>
+
+      <!-- 원본 변경 시점 -->
+      <circle cx="230" cy="4" r="5" fill="var(--c-accent-2)"/>
+      <line x1="230" y1="10" x2="230" y2="38" stroke="var(--c-accent-2)" stroke-width="1.6"/>
+      <!-- 실제 반영 시점 -->
+      <line x1="348" y1="10" x2="348" y2="38" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+      <!-- 지연 구간 -->
+      <rect x="230" y="0" width="118" height="8" fill="var(--c-accent-2)" opacity="0.25"/>
+      <line x1="232" y1="4" x2="344" y2="4" stroke="var(--c-accent-2)" stroke-width="1.4" marker-end="url(#a-i8)"/>
+      <text x="289" y="-4" class="mark" text-anchor="middle" fill="var(--c-accent-2)">최대 TTL만큼 낡음</text>
+
+      <text x="0" y="60" class="cap">가장 단순합니다. 60초 TTL은 "최대 60초까지 낡아도 괜찮다"는 선언입니다.</text>
+    </g>
+  </g>
+
+  <!-- 2. 이벤트 -->
+  <g transform="translate(24 194)">
+    <rect width="752" height="140" rx="8" class="row"/>
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-4)">EVENT-BASED</text>
+    <text x="20" y="46" class="ttl">원본이 바뀌면 즉시 버립니다</text>
+
+    <g transform="translate(20 64)">
+      <line x1="0" y1="42" x2="712" y2="42" stroke="var(--c-divider)" stroke-width="1.2"/>
+      <rect x="0" y="12" width="230" height="24" rx="3" class="fresh"/>
+      <rect x="238" y="12" width="454" height="24" rx="3" class="fresh"/>
+
+      <circle cx="230" cy="4" r="5" fill="var(--c-accent-2)"/>
+      <line x1="230" y1="10" x2="230" y2="38" stroke="var(--c-accent-2)" stroke-width="2"/>
+      <text x="238" y="-2" class="mark" fill="var(--c-accent-4)">즉시 무효화</text>
+
+      <text x="0" y="60" class="cap">정확합니다. 대신 쓰기 경로가 캐시의 존재를 알아야 합니다. 태그 기반이 실무적 형태입니다.</text>
+    </g>
+  </g>
+
+  <!-- 3. SWR -->
+  <g transform="translate(24 342)">
+    <rect width="752" height="172" rx="8" class="row"/>
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-3)">STALE-WHILE-REVALIDATE</text>
+    <text x="20" y="46" class="ttl">낡은 것을 먼저 주고 뒤에서 갱신합니다</text>
+
+    <g transform="translate(20 64)">
+      <line x1="0" y1="56" x2="712" y2="56" stroke="var(--c-divider)" stroke-width="1.2"/>
+      <!-- 사용자에게 반환되는 값 -->
+      <rect x="0" y="12" width="230" height="20" rx="3" class="fresh"/>
+      <rect x="234" y="12" width="200" height="20" rx="3" class="stale"/>
+      <rect x="438" y="12" width="254" height="20" rx="3" class="fresh"/>
+      <text x="-2" y="8" class="cap">반환</text>
+
+      <!-- 백그라운드 갱신 -->
+      <rect x="234" y="36" width="200" height="14" rx="3" class="revalid"/>
+      <text x="-2" y="47" class="cap">뒤에서</text>
+
+      <line x1="230" y1="6" x2="230" y2="32" stroke="var(--c-line)" stroke-width="1.6"/>
+      <text x="238" y="4" class="mark"><tspan class="mono">max-age</tspan> 만료</text>
+      <line x1="434" y1="6" x2="434" y2="50" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+      <text x="442" y="4" class="mark" fill="var(--c-accent-4)">새 값 도착</text>
+
+      <text x="0" y="74" class="cap">사용자는 기다리지 않습니다. 화면이 즉시 나오고, 잠시 뒤 값이 조용히 바뀝니다.</text>
+      <text x="0" y="92" class="cap mono">Cache-Control: max-age=60, stale-while-revalidate=300</text>
+    </g>
+  </g>
+
+  <!-- 비교표 -->
+  <g transform="translate(24 528)">
+    <rect width="752" height="114" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="22" class="th">전략</text>
+    <text x="180" y="22" class="th">정확성</text>
+    <text x="300" y="22" class="th">복잡도</text>
+    <text x="420" y="22" class="th">적합한 곳</text>
+    <line x1="20" y1="34" x2="732" y2="34" stroke="var(--c-divider)" stroke-width="1"/>
+
+    <text x="20" y="54" class="td">TTL</text>
+    <text x="180" y="54" class="td">낮음</text>
+    <text x="300" y="54" class="td">낮음</text>
+    <text x="420" y="54" class="td">통계 · 목록 · 낡아도 되는 것</text>
+
+    <text x="20" y="76" class="td">이벤트</text>
+    <text x="180" y="76" class="td">높음</text>
+    <text x="300" y="76" class="td">높음</text>
+    <text x="420" y="76" class="td">가격 · 재고 · 즉시 반영이 필요한 것</text>
+
+    <text x="20" y="98" class="td">태그</text>
+    <text x="180" y="98" class="td">높음</text>
+    <text x="300" y="98" class="td">중간</text>
+    <text x="420" y="98" class="td">연관된 여러 캐시를 함께 버릴 때</text>
+  </g>
+</svg>

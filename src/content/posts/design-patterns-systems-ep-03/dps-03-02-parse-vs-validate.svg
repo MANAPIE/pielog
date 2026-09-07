@@ -1,0 +1,149 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-pv">
+  <title id="t-pv">검증과 파싱의 차이, 그리고 경계를 세우는 자리</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(74,95,217,0.08); --c-soft-2: rgba(217,119,87,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(141,160,255,0.14); --c-soft-2: rgba(232,147,118,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .pane-v { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pane-p { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .pill { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .pill-typed { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 2; }
+      .pill-err { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.6; }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11.5px; fill: var(--c-fg); font-weight: 600; }
+      .code-mute { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-muted); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; fill: var(--c-fg); }
+      .yes { font-family: 'Inter',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent); }
+      .no { font-family: 'Inter',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-muted); }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-p" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)"/>
+    </marker>
+    <marker id="a-v" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <!-- 상단: validate -->
+  <g transform="translate(24 20)">
+    <rect class="pane-v" width="752" height="112" rx="8"/>
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-2)">VALIDATE: 정보를 버림</text>
+
+    <g transform="translate(28 44)">
+      <rect width="130" height="44" rx="22" class="pill"/>
+      <text x="65" y="28" class="code" text-anchor="middle">unknown</text>
+    </g>
+    <line x1="164" y1="66" x2="228" y2="66" stroke="var(--c-accent-2)" stroke-width="2" marker-end="url(#a-v)"/>
+    <g transform="translate(236 44)">
+      <rect width="160" height="44" rx="6" class="pill"/>
+      <text x="80" y="28" class="code" text-anchor="middle">isUser(data)</text>
+    </g>
+    <line x1="402" y1="66" x2="466" y2="66" stroke="var(--c-accent-2)" stroke-width="2" marker-end="url(#a-v)"/>
+    <g transform="translate(474 44)">
+      <rect width="130" height="44" rx="22" class="pill"/>
+      <text x="65" y="28" class="code" text-anchor="middle">unknown</text>
+    </g>
+
+    <text x="624" y="62" class="cap">boolean만 얻습니다</text>
+    <text x="624" y="80" class="cap">타입은 그대로입니다</text>
+  </g>
+
+  <!-- 중단: parse -->
+  <g transform="translate(24 148)">
+    <rect class="pane-p" width="752" height="152" rx="8"/>
+    <text x="20" y="26" class="lbl" fill="var(--c-accent)">PARSE - 정보를 만듦</text>
+
+    <g transform="translate(28 48)">
+      <rect width="130" height="44" rx="22" class="pill"/>
+      <text x="65" y="28" class="code" text-anchor="middle">unknown</text>
+    </g>
+    <line x1="164" y1="70" x2="228" y2="70" stroke="var(--c-accent)" stroke-width="2" marker-end="url(#a-p)"/>
+    <g transform="translate(236 48)">
+      <rect width="180" height="44" rx="6" class="pill-typed"/>
+      <text x="90" y="28" class="code" text-anchor="middle">UserSchema.parse</text>
+    </g>
+
+    <!-- 성공 분기 -->
+    <line x1="422" y1="60" x2="486" y2="44" stroke="var(--c-accent)" stroke-width="2" marker-end="url(#a-p)"/>
+    <g transform="translate(494 22)">
+      <rect width="130" height="44" rx="22" class="pill-typed"/>
+      <text x="65" y="28" class="code" text-anchor="middle" fill="var(--c-accent)">User</text>
+    </g>
+    <text x="640" y="42" class="cap">이 아래로는</text>
+    <text x="640" y="58" class="cap">타입이 보장됩니다</text>
+
+    <!-- 실패 분기 -->
+    <line x1="422" y1="82" x2="486" y2="106" stroke="var(--c-accent-2)" stroke-width="2" marker-end="url(#a-v)"/>
+    <g transform="translate(494 88)">
+      <rect width="130" height="44" rx="6" class="pill-err"/>
+      <text x="65" y="28" class="code" text-anchor="middle" fill="var(--c-accent-2)">ZodError</text>
+    </g>
+    <text x="640" y="108" class="cap">경계에서 멈춥니다</text>
+    <text x="640" y="124" class="cap">로그에 남깁니다</text>
+  </g>
+
+  <!-- 하단: 경계 지점 표 -->
+  <g transform="translate(24 316)">
+    <rect width="752" height="196" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="26" class="ttl">파싱을 세워야 하는 자리</text>
+
+    <line x1="20" y1="38" x2="732" y2="38" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="56" class="th">입력 지점</text>
+    <text x="300" y="56" class="th">필요</text>
+    <text x="380" y="56" class="th">이유</text>
+
+    <g transform="translate(20 76)">
+      <text x="0" y="0" class="td">HTTP 응답</text>
+      <text x="280" y="0" class="yes">필수</text>
+      <text x="360" y="0" class="cap">서버는 언제든 바뀝니다</text>
+    </g>
+    <g transform="translate(20 98)">
+      <text x="0" y="0" class="td">요청 바디 (서버)</text>
+      <text x="280" y="0" class="yes">필수</text>
+      <text x="360" y="0" class="cap">클라이언트를 신뢰할 수 없습니다</text>
+    </g>
+    <g transform="translate(20 120)">
+      <text x="0" y="0" class="td"><tspan class="mono">localStorage</tspan> · 쿠키</text>
+      <text x="280" y="0" class="yes">필수</text>
+      <text x="360" y="0" class="cap">옛 버전 데이터가 남아 있습니다</text>
+    </g>
+    <g transform="translate(20 142)">
+      <text x="0" y="0" class="td">URL 쿼리스트링</text>
+      <text x="280" y="0" class="yes">필수</text>
+      <text x="360" y="0" class="cap">손으로 조작 가능합니다</text>
+    </g>
+    <g transform="translate(20 164)">
+      <text x="0" y="0" class="td">환경 변수</text>
+      <text x="280" y="0" class="yes">권장</text>
+      <text x="360" y="0" class="cap">부팅 시 한 번 검사하면 사고를 줄입니다</text>
+    </g>
+    <g transform="translate(20 186)">
+      <text x="0" y="0" class="td" fill="var(--c-muted)">내부 함수 호출</text>
+      <text x="280" y="0" class="no">불필요</text>
+      <text x="360" y="0" class="cap">컴파일러가 이미 확인합니다</text>
+    </g>
+  </g>
+
+  <text x="400" y="540" class="cap" text-anchor="middle">파싱은 경계에서 한 번. 안쪽은 타입을 믿습니다.</text>
+</svg>

@@ -1,0 +1,259 @@
+<svg viewBox="0 0 800 616" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-lvf">
+  <title id="t-lvf">Package by Layer와 Package by Feature 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .pane-l {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .pane-f {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.2;
+        stroke-dasharray: 4 3;
+      }
+
+      .col {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.3;
+      }
+
+      .chip-a {
+        fill: var(--c-accent);
+        opacity: 0.75;
+      }
+
+      .chip-c {
+        fill: var(--c-accent-2);
+        opacity: 0.85;
+      }
+
+      .chip-p {
+        fill: var(--c-accent-4);
+        opacity: 0.75;
+      }
+
+      .cut {
+        stroke: var(--c-accent-2);
+        stroke-width: 2.4;
+        stroke-dasharray: 6 4;
+        fill: none;
+      }
+
+      .cut-ok {
+        stroke: var(--c-accent);
+        stroke-width: 2.4;
+        fill: none;
+      }
+
+      .lbl {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .colname {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 11px;
+        fill: var(--c-fg);
+        font-weight: 600;
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        fill: var(--c-muted);
+      }
+
+      .legend {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-fg);
+      }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="ar-l" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)" />
+    </marker>
+    <marker id="ar-f" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="616" />
+
+  <!-- 범례 -->
+  <g transform="translate(28 22)">
+    <rect x="0" y="-9" width="14" height="14" rx="3" class="chip-a" />
+    <text x="22" y="3" class="legend">auth</text>
+    <rect x="80" y="-9" width="14" height="14" rx="3" class="chip-c" />
+    <text x="102" y="3" class="legend">checkout</text>
+    <rect x="186" y="-9" width="14" height="14" rx="3" class="chip-p" />
+    <text x="208" y="3" class="legend">products</text>
+  </g>
+
+  <!-- 좌: Layer -->
+  <g transform="translate(28 48)">
+    <rect class="pane-l" width="360" height="290" rx="8" />
+    <text x="18" y="26" class="lbl" fill="var(--c-accent-2)">PACKAGE BY LAYER</text>
+    <text x="18" y="48" class="ttl">기술 역할로 나눔</text>
+
+    <!-- 4 기둥 -->
+    <g transform="translate(18 66)">
+      <g transform="translate(0 0)">
+        <rect width="76" height="164" rx="5" class="col" />
+        <text x="38" y="20" class="colname" text-anchor="middle">components</text>
+        <rect x="14" y="34" width="48" height="20" rx="3" class="chip-a" />
+        <rect x="14" y="60" width="48" height="20" rx="3" class="chip-c" />
+        <rect x="14" y="86" width="48" height="20" rx="3" class="chip-p" />
+      </g>
+      <g transform="translate(86 0)">
+        <rect width="76" height="164" rx="5" class="col" />
+        <text x="38" y="20" class="colname" text-anchor="middle">hooks</text>
+        <rect x="14" y="34" width="48" height="20" rx="3" class="chip-a" />
+        <rect x="14" y="60" width="48" height="20" rx="3" class="chip-c" />
+        <rect x="14" y="86" width="48" height="20" rx="3" class="chip-p" />
+      </g>
+      <g transform="translate(172 0)">
+        <rect width="76" height="164" rx="5" class="col" />
+        <text x="38" y="20" class="colname" text-anchor="middle">api</text>
+        <rect x="14" y="34" width="48" height="20" rx="3" class="chip-a" />
+        <rect x="14" y="60" width="48" height="20" rx="3" class="chip-c" />
+        <rect x="14" y="86" width="48" height="20" rx="3" class="chip-p" />
+      </g>
+      <g transform="translate(258 0)">
+        <rect width="76" height="164" rx="5" class="col" />
+        <text x="38" y="20" class="colname" text-anchor="middle">types</text>
+        <rect x="14" y="34" width="48" height="20" rx="3" class="chip-a" />
+        <rect x="14" y="60" width="48" height="20" rx="3" class="chip-c" />
+        <rect x="14" y="86" width="48" height="20" rx="3" class="chip-p" />
+      </g>
+
+      <!-- 결제 변경이 가로지르는 선 -->
+      <path d="M 4 70 L 330 70" class="cut" marker-end="url(#ar-l)" />
+    </g>
+
+    <text x="180" y="266" class="cap" text-anchor="middle">결제 수정 = 네 폴더를 가로지름</text>
+  </g>
+
+  <!-- 우: Feature -->
+  <g transform="translate(412 48)">
+    <rect class="pane-f" width="360" height="290" rx="8" />
+    <text x="18" y="26" class="lbl" fill="var(--c-accent)">PACKAGE BY FEATURE</text>
+    <text x="18" y="48" class="ttl">변경 이유로 나눔</text>
+
+    <g transform="translate(18 66)">
+      <!-- 3 덩어리 -->
+      <g transform="translate(0 0)">
+        <rect width="324" height="42" rx="5" class="col" />
+        <text x="12" y="26" class="colname">features/auth</text>
+        <rect x="140" y="11" width="38" height="20" rx="3" class="chip-a" />
+        <rect x="184" y="11" width="38" height="20" rx="3" class="chip-a" opacity="0.55" />
+        <rect x="228" y="11" width="38" height="20" rx="3" class="chip-a" opacity="0.4" />
+        <rect x="272" y="11" width="38" height="20" rx="3" class="chip-a" opacity="0.28" />
+      </g>
+      <g transform="translate(0 50)">
+        <rect width="324" height="42" rx="5" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="2" />
+        <text x="12" y="26" class="colname">features/checkout</text>
+        <rect x="140" y="11" width="38" height="20" rx="3" class="chip-c" />
+        <rect x="184" y="11" width="38" height="20" rx="3" class="chip-c" opacity="0.6" />
+        <rect x="228" y="11" width="38" height="20" rx="3" class="chip-c" opacity="0.45" />
+        <rect x="272" y="11" width="38" height="20" rx="3" class="chip-c" opacity="0.3" />
+      </g>
+      <g transform="translate(0 100)">
+        <rect width="324" height="42" rx="5" class="col" />
+        <text x="12" y="26" class="colname">features/products</text>
+        <rect x="140" y="11" width="38" height="20" rx="3" class="chip-p" />
+        <rect x="184" y="11" width="38" height="20" rx="3" class="chip-p" opacity="0.55" />
+        <rect x="228" y="11" width="38" height="20" rx="3" class="chip-p" opacity="0.4" />
+        <rect x="272" y="11" width="38" height="20" rx="3" class="chip-p" opacity="0.28" />
+      </g>
+
+      <!-- shared -->
+      <g transform="translate(0 152)">
+        <rect width="324" height="34" rx="5" fill="var(--c-card)" stroke="var(--c-muted)" stroke-width="1.2"
+          stroke-dasharray="4 3" />
+        <text x="12" y="22" class="colname" fill="var(--c-muted)">shared/ui · lib · config</text>
+      </g>
+
+      <!-- 결제 변경 표시 (한 줄 안에서) -->
+      <path d="M 132 71 L 320 71" class="cut-ok" marker-end="url(#ar-f)" />
+    </g>
+
+    <text x="180" y="272" class="cap" text-anchor="middle">결제 수정 = 한 폴더 안에서 끝남</text>
+  </g>
+
+  <!-- 하단: 공개 표면 설명 -->
+  <g transform="translate(28 358)">
+    <rect width="744" height="151" rx="8" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.5" />
+    <text x="20" y="28" class="lbl" fill="var(--c-accent)">PUBLIC SURFACE: <tspan class="mono">index.ts</tspan></text>
+
+    <g transform="translate(20 46)">
+      <rect width="330" height="86" rx="5" fill="none" stroke="var(--c-line)" stroke-width="1.3" />
+      <text x="14" y="22" class="colname">features/checkout/index.ts</text>
+      <text x="14" y="40" class="cap mono">export CheckoutForm · useCheckout</text>
+      <text x="14" y="56" class="cap mono">export CheckoutState</text>
+      <text x="14" y="72" class="cap">내부 구현은 내보내지 않습니다</text>
+    </g>
+
+    <g transform="translate(378 46)">
+      <rect width="346" height="86" rx="5" fill="none" stroke="var(--c-muted)" stroke-width="1.3"
+        stroke-dasharray="4 3" />
+      <text x="14" y="22" class="colname" fill="var(--c-muted)">내부 (밖에서 보이지 않음)</text>
+      <text x="14" y="40" class="cap mono">calculateTax · validateCardNumber</text>
+      <text x="14" y="56" class="cap">자유롭게 바뀌어도 외부는 깨지지 않습니다</text>
+    </g>
+  </g>
+
+  <!-- 결론 -->
+  <text x="400" y="550" class="ttl" text-anchor="middle" font-size="13">삭제 가능성이 경계의 품질을 재는 자입니다</text>
+  <text x="400" y="574" class="cap" text-anchor="middle">폴더를 통째로 지울 수 있다면, 경계가 제대로 그어진 것입니다</text>
+</svg>

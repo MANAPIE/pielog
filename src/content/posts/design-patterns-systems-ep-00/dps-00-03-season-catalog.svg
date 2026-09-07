@@ -1,0 +1,233 @@
+<svg viewBox="0 0 800 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-cat">
+  <title id="t-cat">시스템 수준 편 전체 카탈로그</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(74, 95, 217, 0.08);
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-soft-3: rgba(139, 122, 184, 0.12);
+        --c-soft-4: rgba(61, 139, 122, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(141, 160, 255, 0.14);
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-soft-3: rgba(176, 160, 218, 0.16);
+          --c-soft-4: rgba(111, 191, 168, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .card {
+        fill: var(--c-card);
+        stroke-width: 1.6;
+      }
+
+      .grp-label {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+      }
+
+      .grp-title {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .grp-sub {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        fill: var(--c-muted);
+      }
+
+      .ep {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10.5px;
+        font-weight: 700;
+      }
+
+      .nm {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .pat {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-muted);
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="760" />
+
+  <!-- I군 -->
+  <g transform="translate(24 20)">
+    <rect width="752" height="152" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1"
+      stroke-dasharray="4 3" />
+    <text x="20" y="28" class="grp-label" fill="var(--c-accent)">I. STRUCTURE</text>
+    <text x="20" y="52" class="grp-title">구조의 경계</text>
+    <text x="20" y="72" class="grp-sub">코드가 자리에 있을 때</text>
+
+    <g transform="translate(224 26)">
+      <rect width="168" height="100" rx="6" class="card" stroke="var(--c-accent)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent)">EP.01</text>
+      <text x="14" y="48" class="nm">모듈 경계</text>
+      <text x="14" y="70" class="pat">Package by Feature</text>
+      <text x="14" y="86" class="pat">응집도·결합도</text>
+    </g>
+    <g transform="translate(404 26)">
+      <rect width="168" height="100" rx="6" class="card" stroke="var(--c-accent)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent)">EP.02</text>
+      <text x="14" y="48" class="nm">의존 방향</text>
+      <text x="14" y="70" class="pat">Hexagonal</text>
+      <text x="14" y="86" class="pat">Ports &amp; Adapters</text>
+    </g>
+    <g transform="translate(584 26)">
+      <rect width="152" height="100" rx="6" class="card" stroke="var(--c-accent)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent)">EP.03</text>
+      <text x="14" y="48" class="nm">계약 경계</text>
+      <text x="14" y="70" class="pat">Parse, don't validate</text>
+      <text x="14" y="86" class="pat">스키마 우선</text>
+    </g>
+  </g>
+
+  <!-- II군 -->
+  <g transform="translate(24 188)">
+    <rect width="752" height="152" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1"
+      stroke-dasharray="4 3" />
+    <text x="20" y="28" class="grp-label" fill="var(--c-accent-2)">II. EXECUTION</text>
+    <text x="20" y="52" class="grp-title">실행의 경계</text>
+    <text x="20" y="72" class="grp-sub">코드가 움직일 때</text>
+
+    <g transform="translate(224 26)">
+      <rect width="168" height="100" rx="6" class="card" stroke="var(--c-accent-2)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent-2)">EP.04</text>
+      <text x="14" y="48" class="nm">실행 경계</text>
+      <text x="14" y="70" class="pat">SSG·ISR·SSR·RSC</text>
+      <text x="14" y="86" class="pat">BFF</text>
+    </g>
+    <g transform="translate(404 26)">
+      <rect width="168" height="100" rx="6" class="card" stroke="var(--c-accent-2)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent-2)">EP.05</text>
+      <text x="14" y="48" class="nm">네트워크 경계</text>
+      <text x="14" y="70" class="pat">Circuit Breaker</text>
+      <text x="14" y="86" class="pat">Retry · Bulkhead</text>
+    </g>
+    <g transform="translate(584 26)">
+      <rect width="152" height="100" rx="6" class="card" stroke="var(--c-accent-2)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent-2)">EP.06</text>
+      <text x="14" y="48" class="nm">시간의 경계</text>
+      <text x="14" y="70" class="pat">Event-Driven</text>
+      <text x="14" y="86" class="pat">Outbox · 멱등성</text>
+    </g>
+  </g>
+
+  <!-- III군 -->
+  <g transform="translate(24 356)">
+    <rect width="752" height="240" rx="8" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1"
+      stroke-dasharray="4 3" />
+    <text x="20" y="28" class="grp-label" fill="var(--c-accent-3)">III. DATA</text>
+    <text x="20" y="52" class="grp-title">데이터의 경계</text>
+    <text x="20" y="72" class="grp-sub">값이 흐를 때</text>
+
+    <g transform="translate(224 26)">
+      <rect width="168" height="100" rx="6" class="card" stroke="var(--c-accent-3)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent-3)">EP.07</text>
+      <text x="14" y="48" class="nm">상태의 경계</text>
+      <text x="14" y="70" class="pat">CQRS</text>
+      <text x="14" y="86" class="pat">서버 상태 분리</text>
+    </g>
+    <g transform="translate(404 26)">
+      <rect width="168" height="100" rx="6" class="card" stroke="var(--c-accent-3)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent-3)">EP.08</text>
+      <text x="14" y="48" class="nm">캐시 경계</text>
+      <text x="14" y="70" class="pat">SWR · TTL</text>
+      <text x="14" y="86" class="pat">무효화 전략</text>
+    </g>
+    <g transform="translate(584 26)">
+      <rect width="152" height="100" rx="6" class="card" stroke="var(--c-accent-3)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent-3)">EP.09</text>
+      <text x="14" y="48" class="nm">일관성 경계</text>
+      <text x="14" y="70" class="pat">Saga</text>
+      <text x="14" y="86" class="pat">보상 트랜잭션</text>
+    </g>
+    <g transform="translate(224 140)">
+      <rect width="168" height="80" rx="6" class="card" stroke="var(--c-accent-3)" />
+      <text x="14" y="24" class="ep" fill="var(--c-accent-3)">EP.10</text>
+      <text x="14" y="48" class="nm">신뢰 경계</text>
+      <text x="14" y="68" class="pat">인증·인가 · 최소 권한</text>
+    </g>
+  </g>
+
+  <!-- IV군 -->
+  <g transform="translate(24 612)">
+    <rect width="752" height="60" rx="8" fill="var(--c-soft-4)" stroke="var(--c-accent-4)" stroke-width="1"
+      stroke-dasharray="4 3" />
+    <text x="20" y="24" class="grp-label" fill="var(--c-accent-4)">IV. LIFETIME</text>
+    <text x="20" y="46" class="grp-title">수명의 경계</text>
+
+    <g transform="translate(224 10)">
+      <rect width="168" height="40" rx="6" class="card" stroke="var(--c-accent-4)" />
+      <text x="14" y="17" class="ep" fill="var(--c-accent-4)">EP.11</text>
+      <text x="70" y="27" class="nm" font-size="12.5">배포 경계</text>
+    </g>
+    <g transform="translate(404 10)">
+      <rect width="168" height="40" rx="6" class="card" stroke="var(--c-accent-4)" />
+      <text x="14" y="17" class="ep" fill="var(--c-accent-4)">EP.12</text>
+      <text x="70" y="27" class="nm" font-size="12.5">변경 경계</text>
+    </g>
+    <g transform="translate(584 10)">
+      <rect width="152" height="40" rx="6" class="card" stroke="var(--c-accent-4)" />
+      <text x="14" y="17" class="ep" fill="var(--c-accent-4)">EP.13</text>
+      <text x="66" y="27" class="nm" font-size="12.5">관측 경계</text>
+    </g>
+  </g>
+
+  <!-- 부록 -->
+  <g transform="translate(24 688)">
+    <rect width="752" height="56" rx="8" fill="var(--c-muted-soft)" stroke="var(--c-muted)" stroke-width="1"
+      stroke-dasharray="3 3" />
+    <text x="20" y="24" class="grp-label" fill="var(--c-muted)">APPENDIX</text>
+    <text x="20" y="44" class="grp-title" font-size="13">부록</text>
+
+    <g transform="translate(224 8)">
+      <rect width="512" height="40" rx="6" fill="var(--c-card)" stroke="var(--c-muted)" stroke-width="1.4"
+        stroke-dasharray="3 3" />
+      <text x="14" y="17" class="ep" fill="var(--c-muted)">EP.14</text>
+      <text x="70" y="26" class="nm" font-size="12.5">조직 경계</text>
+      <text x="180" y="26" class="pat">콘웨이의 법칙 · 팀 토폴로지 · 거버넌스 3모델</text>
+    </g>
+  </g>
+</svg>

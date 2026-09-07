@@ -1,0 +1,170 @@
+<svg viewBox="0 0 800 644" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-tp">
+  <title id="t-tp">correlation ID의 전파 경로와 스팬 트리</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .panel { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .node { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .node-q { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.6; stroke-dasharray: 5 4; }
+      .tag { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; font-weight: 700; fill: var(--c-accent-4); }
+      .span-l { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-fg); }
+      .ms { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; fill: var(--c-muted); }
+      .grid { stroke: var(--c-divider); stroke-width: 1; stroke-dasharray: 2 3; }
+      .flow { stroke: var(--c-accent-4); stroke-width: 2; }
+      .flow-q { stroke: var(--c-accent-2); stroke-width: 2; stroke-dasharray: 4 4; }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+    <marker id="a-t13" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-4)"/>
+    </marker>
+    <marker id="a-q13" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="644"/>
+  <text x="24" y="36" class="lbl" fill="var(--c-accent-4)">PROPAGATION: 동기 경로</text>
+
+  <!-- 동기 전파 경로 -->
+  <g transform="translate(24 56)">
+    <rect width="130" height="52" rx="6" class="node"/>
+    <text x="14" y="22" class="nm">브라우저</text>
+    <text x="14" y="40" class="cap"><tspan class="mono">traceId</tspan> 생성</text>
+  </g>
+  <line x1="158" y1="82" x2="216" y2="82" class="flow" marker-end="url(#a-t13)"/>
+  <text x="190" y="74" class="tag" text-anchor="middle">x-trace-id</text>
+  <g transform="translate(224 56)">
+    <rect width="130" height="52" rx="6" class="node"/>
+    <text x="14" y="22" class="nm">BFF</text>
+    <text x="14" y="40" class="cap">이어받아 전달</text>
+  </g>
+  <line x1="358" y1="70" x2="380" y2="46" class="flow" marker-end="url(#a-t13)"/>
+  <line x1="358" y1="82" x2="380" y2="82" class="flow" marker-end="url(#a-t13)"/>
+  <line x1="358" y1="94" x2="380" y2="118" class="flow" marker-end="url(#a-t13)"/>
+  <g transform="translate(388 23)">
+    <rect width="150" height="34" rx="5" class="node"/>
+    <text x="14" y="21" class="nm">주문 서비스</text>
+  </g>
+  <g transform="translate(388 65)">
+    <rect width="150" height="34" rx="5" class="node"/>
+    <text x="14" y="21" class="nm">결제 서비스</text>
+  </g>
+  <g transform="translate(388 107)">
+    <rect width="150" height="34" rx="5" class="node"/>
+    <text x="14" y="21" class="nm">재고 서비스</text>
+  </g>
+
+  <!-- 비동기 경로 -->
+  <text x="570" y="36" class="lbl" fill="var(--c-accent-2)">비동기 경로</text>
+  <line x1="540" y1="44" x2="578" y2="70" class="flow-q" marker-end="url(#a-q13)"/>
+  <g transform="translate(584 56)">
+    <rect width="88" height="52" rx="6" class="node-q"/>
+    <text x="14" y="22" class="nm">큐</text>
+    <text x="14" y="40" class="cap">_meta에 포함</text>
+  </g>
+  <line x1="676" y1="82" x2="704" y2="82" class="flow-q" marker-end="url(#a-q13)"/>
+  <g transform="translate(708 56)">
+    <rect width="68" height="52" rx="6" class="node-q"/>
+    <text x="14" y="22" class="nm">워커</text>
+    <text x="14" y="40" class="cap">이어받음</text>
+  </g>
+  <text x="776" y="128" class="warn" text-anchor="end">메시지에 안 넣으면 여기서 흐름이 끊깁니다</text>
+
+  <!-- 스팬 트리: 0~1200ms 시간축 (0.4px/ms) -->
+  <g transform="translate(24 160)">
+    <rect width="752" height="260" rx="8" class="panel"/>
+    <text x="20" y="24" class="lbl" fill="var(--c-accent)">SPAN TREE: 수집된 트레이스</text>
+    <line x1="236" y1="50" x2="236" y2="248" class="grid"/>
+    <text x="236" y="44" class="ms" text-anchor="middle">0</text>
+    <line x1="356" y1="50" x2="356" y2="248" class="grid"/>
+    <text x="356" y="44" class="ms" text-anchor="middle">300</text>
+    <line x1="476" y1="50" x2="476" y2="248" class="grid"/>
+    <text x="476" y="44" class="ms" text-anchor="middle">600</text>
+    <line x1="596" y1="50" x2="596" y2="248" class="grid"/>
+    <text x="596" y="44" class="ms" text-anchor="middle">900</text>
+    <line x1="716" y1="50" x2="716" y2="248" class="grid"/>
+    <text x="716" y="44" class="ms" text-anchor="middle">1200ms</text>
+    <g transform="translate(0 56)">
+      <text x="20" y="14" class="span-l">POST /orders</text>
+      <rect x="236" y="4" width="472" height="16" rx="4" fill="var(--c-accent-4)" opacity="0.7"/>
+      <text x="700" y="16" class="ms" text-anchor="end" fill="var(--c-bg)">1180ms</text>
+    </g>
+    <g transform="translate(0 84)">
+      <text x="36" y="14" class="span-l">├ validateInput</text>
+      <rect x="236" y="4" width="8" height="16" rx="4" fill="var(--c-accent)" opacity="0.65"/>
+      <text x="252" y="16" class="ms">18ms</text>
+    </g>
+    <g transform="translate(0 112)">
+      <text x="36" y="14" class="span-l">├ reserveStock</text>
+      <rect x="243" y="4" width="57" height="16" rx="4" fill="var(--c-accent)" opacity="0.65"/>
+      <text x="308" y="16" class="ms">142ms</text>
+    </g>
+    <g transform="translate(0 140)">
+      <text x="36" y="14" class="span-l" fill="var(--c-accent-2)">├ chargePayment</text>
+      <rect x="300" y="4" width="297" height="16" rx="4" fill="var(--c-accent-2)" opacity="0.7"/>
+      <circle cx="589" cy="12" r="5" fill="var(--c-accent-2)"/>
+      <text x="605" y="16" class="ms">742ms</text>
+    </g>
+    <g transform="translate(0 168)">
+      <text x="56" y="14" class="span-l" fill="var(--c-muted)">│  ├ attempt 1 (timeout)</text>
+      <rect x="300" y="4" width="120" height="16" rx="4" fill="var(--c-accent-2)" opacity="0.4"/>
+      <text x="428" y="16" class="ms">300ms</text>
+    </g>
+    <g transform="translate(0 196)">
+      <text x="56" y="14" class="span-l" fill="var(--c-muted)">│  └ attempt 2 (ok)</text>
+      <rect x="420" y="4" width="165" height="16" rx="4" fill="var(--c-accent-2)" opacity="0.55"/>
+      <text x="593" y="16" class="ms">412ms</text>
+    </g>
+    <g transform="translate(0 224)">
+      <text x="36" y="14" class="span-l">└ createOrder</text>
+      <rect x="597" y="4" width="111" height="16" rx="4" fill="var(--c-accent)" opacity="0.65"/>
+      <text x="700" y="16" class="ms" text-anchor="end" fill="var(--c-bg)">278ms</text>
+    </g>
+  </g>
+
+  <!-- 해석 -->
+  <g transform="translate(24 436)">
+    <rect width="368" height="84" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="20" y="26" class="ttl">트리를 보면 바로 읽힙니다</text>
+    <text x="20" y="50" class="cap">742ms 중 300ms가 타임아웃 후 재시도였습니다.</text>
+    <text x="20" y="68" class="cap">병목은 결제 서비스이고, 원인은 첫 시도의 실패입니다.</text>
+  </g>
+  <g transform="translate(408 436)">
+    <rect width="368" height="84" rx="8" fill="var(--c-card)" stroke="var(--c-accent)" stroke-width="1.6"/>
+    <text x="20" y="26" class="ttl">세 신호의 역할</text>
+    <text x="20" y="50" class="cap">메트릭: 에러율이 올랐다는 알람</text>
+    <text x="20" y="68" class="cap">트레이스: 어느 구간이 느린지 찾기 · 로그: 확인</text>
+  </g>
+
+  <!-- 샘플링 -->
+  <g transform="translate(24 536)">
+    <rect width="752" height="84" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="20" y="26" class="warn">모든 요청을 추적하면 비용이 큽니다</text>
+    <text x="20" y="50" class="cap">정상 요청은 샘플링하고, 에러가 난 요청은 100% 남깁니다.</text>
+    <text x="20" y="68" class="cap">사용자에게 준 요청 ID로 나중에 검색할 수 있어야 하므로, 에러 트레이스는 샘플링에서 제외합니다.</text>
+  </g>
+</svg>

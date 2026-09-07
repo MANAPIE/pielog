@@ -1,0 +1,235 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-cl">
+  <title id="t-cl">다섯 계층의 캐시와 무효화 주체</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4A5FD9;
+        --c-accent-2: #D97757;
+        --c-accent-3: #8B7AB8;
+        --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft-2: rgba(217, 119, 87, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #8DA0FF;
+          --c-accent-2: #E89376;
+          --c-accent-3: #B0A0DA;
+          --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft-2: rgba(232, 147, 118, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .layer {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.5;
+      }
+
+      .layer-ours {
+        fill: var(--c-card);
+        stroke: var(--c-accent-3);
+        stroke-width: 2;
+      }
+
+      .nm {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .meta {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-muted);
+      }
+
+      .issue {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        fill: var(--c-accent-2);
+      }
+
+      .th {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-muted);
+        letter-spacing: 0.08em;
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .cap {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .end {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      }
+    </style>
+    <marker id="a-c8" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-line)" />
+    </marker>
+    <marker id="a-p8" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="560" />
+
+  <!-- 양 끝 -->
+  <g transform="translate(24 60)">
+    <rect width="76" height="220" rx="6" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1.8" />
+    <text x="38" y="106" class="end" text-anchor="middle">사용자</text>
+  </g>
+  <g transform="translate(700 60)">
+    <rect width="76" height="220" rx="6" fill="var(--c-card)" stroke="var(--c-line)" stroke-width="1.8" />
+    <text x="38" y="113" class="end" text-anchor="middle">DB</text>
+  </g>
+
+  <!-- 헤더 -->
+  <text x="112" y="34" class="th">캐시 층</text>
+  <text x="112" y="50" class="meta">무효화 주체 · 범위 · 위험</text>
+
+  <!-- 5개 층 -->
+  <g transform="translate(112 60)">
+    <rect width="110" height="220" rx="6" class="layer" />
+    <text x="55" y="26" class="nm" text-anchor="middle">브라우저</text>
+    <text x="55" y="42" class="nm" text-anchor="middle">캐시</text>
+    <line x1="12" y1="56" x2="98" y2="56" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="12" y="76" class="meta">주체: 헤더</text>
+    <text x="12" y="94" class="meta">범위: 그 사용자</text>
+    <text x="12" y="126" class="issue">우리가</text>
+    <text x="12" y="142" class="issue">비울 수 없습니다</text>
+    <text x="12" y="176" class="meta">
+      <tspan class="mono">max-age</tspan>로만
+    </text>
+    <text x="12" y="192" class="meta">제어됩니다</text>
+  </g>
+
+  <g transform="translate(230 60)">
+    <rect width="110" height="220" rx="6" class="layer-ours" />
+    <text x="55" y="26" class="nm" text-anchor="middle">CDN</text>
+    <text x="55" y="42" class="nm" text-anchor="middle">엣지</text>
+    <line x1="12" y1="56" x2="98" y2="56" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="12" y="76" class="meta">주체: 퍼지 API</text>
+    <text x="12" y="94" class="meta">범위: 전 사용자</text>
+    <text x="12" y="126" class="meta">우리가 비울 수</text>
+    <text x="12" y="142" class="meta">있습니다</text>
+    <text x="12" y="176" class="meta">
+      <tspan class="mono">s-maxage</tspan>로
+    </text>
+    <text x="12" y="192" class="meta">따로 제어</text>
+  </g>
+
+  <g transform="translate(348 60)">
+    <rect width="110" height="220" rx="6" class="layer-ours" />
+    <text x="55" y="26" class="nm" text-anchor="middle">리버스</text>
+    <text x="55" y="42" class="nm" text-anchor="middle">프록시</text>
+    <line x1="12" y1="56" x2="98" y2="56" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="12" y="76" class="meta">주체: 직접 제어</text>
+    <text x="12" y="94" class="meta">범위: 전 사용자</text>
+    <text x="12" y="126" class="meta">우리 인프라라</text>
+    <text x="12" y="142" class="meta">가장 다루기 쉽습니다</text>
+  </g>
+
+  <g transform="translate(466 60)">
+    <rect width="110" height="220" rx="6" class="layer-ours" />
+    <text x="55" y="26" class="nm" text-anchor="middle">애플리케이션</text>
+    <text x="55" y="42" class="nm" text-anchor="middle">캐시</text>
+    <line x1="12" y1="56" x2="98" y2="56" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="12" y="76" class="meta">주체: 코드</text>
+    <text x="12" y="94" class="meta">범위: 전 사용자</text>
+    <text x="12" y="126" class="meta">Redis · 메모리</text>
+    <text x="12" y="158" class="issue">쓰기 경로가</text>
+    <text x="12" y="174" class="issue">캐시를 알아야 합니다</text>
+  </g>
+
+  <g transform="translate(584 60)">
+    <rect width="110" height="220" rx="6" class="layer" />
+    <text x="55" y="26" class="nm" text-anchor="middle">쿼리 캐시</text>
+    <text x="55" y="42" class="nm" text-anchor="middle">(클라이언트)</text>
+    <line x1="12" y1="56" x2="98" y2="56" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="12" y="76" class="meta">주체: 코드</text>
+    <text x="12" y="94" class="meta">범위: 그 탭</text>
+    <text x="12" y="126" class="meta">TanStack Query</text>
+    <text x="12" y="142" class="meta">SWR</text>
+    <text x="12" y="174" class="issue">다른 탭은</text>
+    <text x="12" y="190" class="issue">따로 낡습니다</text>
+  </g>
+
+  <!-- 요청 흐름 -->
+  <line x1="104" y1="305" x2="694" y2="305" stroke="var(--c-line)" stroke-width="2" marker-end="url(#a-c8)" />
+  <text x="400" y="297" class="cap" text-anchor="middle">요청은 왼쪽에서 오른쪽으로, 첫 히트에서 멈춥니다</text>
+
+  <!-- 무효화가 흐르지 않음 -->
+  <g transform="translate(24 322)">
+    <rect width="752" height="94" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2"
+      stroke-dasharray="4 3" />
+    <text x="20" y="28" class="ttl">무효화 명령은 위에서 아래로 흐르지 않습니다</text>
+
+    <g transform="translate(430 40)">
+      <text x="0" y="0" class="cap">CDN 퍼지</text>
+      <line x1="60" y1="-4" x2="130" y2="-4" stroke="var(--c-accent-2)" stroke-width="2" marker-end="url(#a-p8)" />
+      <text x="140" y="0" class="cap">CDN만 비워집니다</text>
+      <g transform="translate(0 24)">
+        <text x="0" y="0" class="issue">이미 브라우저에 내려간 사본</text>
+        <text x="138" y="0" class="issue">→ 그대로 남습니다</text>
+      </g>
+    </g>
+
+    <text x="20" y="56" class="cap">각 층은 독립적으로 낡습니다.</text>
+    <text x="20" y="76" class="cap">그래서 층마다 다른 전략이 필요합니다.</text>
+  </g>
+
+  <!-- 전략 -->
+  <g transform="translate(24 430)">
+    <rect width="366" height="106" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.5" />
+    <text x="18" y="26" class="ttl" font-size="12.5">바꿀 수 없는 것</text>
+    <text x="18" y="48" class="cap">해시가 붙은 정적 파일: <tspan class="mono">app.a3f21b.js</tspan></text>
+    <text x="18" y="68" class="cap">내용이 바뀌면 이름이 바뀝니다</text>
+    <text x="18" y="92" class="meta mono">max-age=31536000,
+      immutable</text>
+  </g>
+
+  <g transform="translate(410 430)">
+    <rect width="366" height="106" rx="8" fill="var(--c-card)" stroke="var(--c-accent-2)" stroke-width="1.5" />
+    <text x="18" y="26" class="ttl" font-size="12.5">바뀔 수 있는 것</text>
+    <text x="18" y="48" class="cap">상품 가격 · 재고 · 목록</text>
+    <text x="18" y="68" class="cap">우리가 퍼지할 수 있는 층에만 둡니다</text>
+    <text x="18" y="92" class="meta mono">max-age=0,
+      s-maxage=60</text>
+  </g>
+</svg>

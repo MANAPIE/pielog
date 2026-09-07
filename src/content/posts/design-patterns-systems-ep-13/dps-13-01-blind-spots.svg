@@ -1,0 +1,158 @@
+<svg viewBox="0 0 800 792" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-bs">
+  <title id="t-bs">열두 경계가 만든 사각지대</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft-2: rgba(217,119,87,0.10); --c-soft-4: rgba(61,139,122,0.10);
+        --c-divider: rgba(26,31,46,0.15); --c-shadow: rgba(107,114,128,0.16);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft-2: rgba(232,147,118,0.14); --c-soft-4: rgba(111,191,168,0.14);
+          --c-divider: rgba(232,230,225,0.18); --c-shadow: rgba(139,146,160,0.20);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .panel { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .code { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .bd { fill: var(--c-card); stroke-width: 1.6; }
+      .shade { fill: var(--c-shadow); }
+      .ep { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; }
+      .q { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .thread { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-accent-4); letter-spacing: 0.08em; }
+      .mono { font-family: 'JetBrains Mono','SF Mono',monospace; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="792"/>
+  <text x="24" y="36" class="ttl">경계를 그으면 그 너머가 보이지 않습니다</text>
+  <text x="24" y="54" class="cap">이것은 부작용이 아니라 경계의 정의입니다</text>
+
+  <!-- 12개 행: 경계마다 보이지 않는 질문 -->
+  <g transform="translate(24 70)">
+    <g transform="translate(0 0)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent)">EP.01</text>
+      <text x="12" y="32" class="nm">모듈</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">어느 모듈에서 시간이 갔는가</text>
+    </g>
+    <g transform="translate(0 52)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent)">EP.02</text>
+      <text x="12" y="32" class="nm">의존 방향</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">어댑터가 실제로 무엇을 반환했는가</text>
+    </g>
+    <g transform="translate(0 104)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent)">EP.03</text>
+      <text x="12" y="32" class="nm">계약</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">스키마 검증이 언제 얼마나 실패했는가</text>
+    </g>
+    <g transform="translate(0 156)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-2)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-2)">EP.04</text>
+      <text x="12" y="32" class="nm">실행</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">서버와 클라이언트 중 어디가 느렸는가</text>
+    </g>
+    <g transform="translate(0 208)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-2)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-2)">EP.05</text>
+      <text x="12" y="32" class="nm">네트워크</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">재시도가 몇 번 있었고 브레이커가 열렸는가</text>
+    </g>
+    <g transform="translate(0 260)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-2)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-2)">EP.06</text>
+      <text x="12" y="32" class="nm">시간</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">큐에 넣은 일이 결국 처리되었는가</text>
+    </g>
+    <g transform="translate(0 312)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-3)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-3)">EP.07</text>
+      <text x="12" y="32" class="nm">상태</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">어느 사본을 읽었는가</text>
+    </g>
+    <g transform="translate(0 364)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-3)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-3)">EP.08</text>
+      <text x="12" y="32" class="nm">캐시</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">이 응답이 캐시 히트인가 미스인가</text>
+    </g>
+    <g transform="translate(0 416)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-3)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-3)">EP.09</text>
+      <text x="12" y="32" class="nm">일관성</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">Saga가 어디까지 갔고 보상은 성공했는가</text>
+    </g>
+    <g transform="translate(0 468)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-3)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-3)">EP.10</text>
+      <text x="12" y="32" class="nm">신뢰</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">인가가 거부된 요청이 늘고 있는가</text>
+    </g>
+    <g transform="translate(0 520)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-4)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-4)">EP.11</text>
+      <text x="12" y="32" class="nm">배포</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">이 사용자는 어느 버전을 봤는가</text>
+    </g>
+    <g transform="translate(0 572)">
+      <rect width="140" height="44" rx="5" class="bd" stroke="var(--c-accent-4)"/>
+      <text x="12" y="17" class="ep" fill="var(--c-accent-4)">EP.12</text>
+      <text x="12" y="32" class="nm">변경</text>
+      <rect x="148" width="530" height="44" rx="5" class="shade"/>
+      <text x="162" y="27" class="q">옛 경로를 아직 쓰는 곳이 있는가</text>
+    </g>
+  </g>
+
+  <!-- 관통하는 선: correlation ID -->
+  <line x1="700" y1="64" x2="700" y2="692" stroke="var(--c-accent-4)" stroke-width="4" stroke-linecap="round"/>
+  <g fill="var(--c-bg)" stroke="var(--c-accent-4)" stroke-width="2.6">
+    <circle cx="700" cy="92" r="7"/>
+    <circle cx="700" cy="144" r="7"/>
+    <circle cx="700" cy="196" r="7"/>
+    <circle cx="700" cy="248" r="7"/>
+    <circle cx="700" cy="300" r="7"/>
+    <circle cx="700" cy="352" r="7"/>
+    <circle cx="700" cy="404" r="7"/>
+    <circle cx="700" cy="456" r="7"/>
+    <circle cx="700" cy="508" r="7"/>
+    <circle cx="700" cy="560" r="7"/>
+    <circle cx="700" cy="612" r="7"/>
+    <circle cx="700" cy="664" r="7"/>
+  </g>
+  <g transform="translate(728 378) rotate(-90)">
+    <text x="0" y="0" class="thread" text-anchor="middle">CORRELATION ID</text>
+  </g>
+
+  <!-- 하단 -->
+  <g transform="translate(24 702)">
+    <rect width="752" height="66" rx="8" fill="var(--c-card)" stroke="var(--c-accent-4)" stroke-width="1.6"/>
+    <text x="20" y="26" class="ttl">관측은 경계를 관통하는 유일한 수단입니다</text>
+    <text x="20" y="50" class="cap">메트릭으로 알아채고, 트레이스로 좁히고, 로그로 확인합니다.</text>
+  </g>
+</svg>
