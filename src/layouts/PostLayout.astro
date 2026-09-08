@@ -3,6 +3,7 @@ import type { ImageMetadata } from "astro";
 import BaseLayout from "./BaseLayout.astro";
 import Giscus from "../components/Giscus.astro";
 import TableOfContents from "../components/TableOfContents.astro";
+import ProofDrawer from "../components/dev/ProofDrawer.astro";
 
 interface Props {
     title: string;
@@ -92,6 +93,7 @@ const {
         </div>
     </article>
     <Giscus />
+    {import.meta.env.DEV && <ProofDrawer />}
     <TableOfContents headings={headings} slot="aside" />
 </BaseLayout>
 
