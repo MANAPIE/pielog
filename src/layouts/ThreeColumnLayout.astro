@@ -135,7 +135,8 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
   syncBody();
 
   sidebar?.addEventListener("pointerenter", (e) => {
-    if (e.pointerType === "touch") return;
+    // 드래그 선택 중(버튼 눌린 채) 진입은 hover가 아니다
+    if (e.pointerType === "touch" || e.buttons !== 0) return;
     reveal(sidebar);
   });
   sidebar?.addEventListener("pointerleave", (e) => {
@@ -143,7 +144,7 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
     closePanel(sidebar);
   });
   asidePanel?.addEventListener("pointerenter", (e) => {
-    if (e.pointerType === "touch") return;
+    if (e.pointerType === "touch" || e.buttons !== 0) return;
     reveal(asidePanel);
   });
   asidePanel?.addEventListener("pointerleave", (e) => {
@@ -249,10 +250,15 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
     return false;
   }
 
+  function hasTextSelection(): boolean {
+    const selection = document.getSelection();
+    return !!selection && !selection.isCollapsed;
+  }
+
   document.addEventListener(
     "touchstart",
     (e) => {
-      if (hasHorizontalScrollableAncestor(e.target)) {
+      if (hasHorizontalScrollableAncestor(e.target) || hasTextSelection()) {
         isSwiping = false;
         return;
       }
@@ -269,6 +275,8 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
     (e) => {
       if (!isSwiping) return;
       isSwiping = false;
+      // 롱프레스 선택은 touchstart 뒤에 생기므로 여기서도 걸러야 한다
+      if (hasTextSelection()) return;
 
       const touch = e.changedTouches[0];
       const dx = touch.clientX - touchStartX;
