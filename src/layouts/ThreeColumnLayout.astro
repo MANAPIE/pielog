@@ -135,7 +135,6 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
   syncBody();
 
   sidebar?.addEventListener("pointerenter", (e) => {
-    // 드래그 선택 중(버튼 눌린 채) 진입은 hover가 아니다
     if (e.pointerType === "touch" || e.buttons !== 0) return;
     reveal(sidebar);
   });
@@ -275,7 +274,6 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
     (e) => {
       if (!isSwiping) return;
       isSwiping = false;
-      // 롱프레스 선택은 touchstart 뒤에 생기므로 여기서도 걸러야 한다
       if (hasTextSelection()) return;
 
       const touch = e.changedTouches[0];

@@ -85,7 +85,6 @@ function newId(): string {
   if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
-  // randomUUID는 보안 컨텍스트 전용 — http LAN 접속 대비
   return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
 }
 

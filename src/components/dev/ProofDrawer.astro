@@ -88,6 +88,10 @@
   const TOAST_MS = 2000;
   const SELECTION_GRACE_MS = 600;
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const viewport = window.visualViewport;
+  const REVEAL_SETTLE_MS = 250;
+  const REVEAL_FALLBACK_MS = 700;
+  const SCROLL_SETTLE_MS = 350;
   const HIGHLIGHT_NAME = "proof-quote";
   const canHighlight =
     typeof CSS !== "undefined" && "highlights" in CSS && typeof Highlight === "function";
@@ -131,12 +135,13 @@
   const slug = location.pathname.replace(/^\/|\/$/g, "");
 
   let store = loadStore();
-  // prune 결과를 바로 저장 — 다른 탭이 만료 항목을 되살리지 않도록
   saveStore(store);
 
   let cachedSelection = null;
   let composerSelection = null;
   let selectionTimer;
+  let settleCallback = null;
+  let settleTimer;
   let toastTimer;
   let clearSelectionTimer;
 
@@ -237,8 +242,8 @@
     syncFab();
     try {
       localStorage.setItem(OPEN_KEY, open ? "1" : "0");
-    } catch {
-      // 편의 기능 — 실패해도 무시한다
+    } catch (error) {
+      console.debug("[proof] open state not saved", error);
     }
   }
 
@@ -328,6 +333,39 @@
     selectionButton.hidden = true;
   }
 
+  function revealRange(range) {
+    const rect = range.getBoundingClientRect();
+    if (rect.width === 0 && rect.height === 0) return false;
+    const visibleTop = viewport ? viewport.offsetTop : 0;
+    const visibleHeight = viewport ? viewport.height : window.innerHeight;
+    const cardHeight = composer.hidden ? 0 : composer.getBoundingClientRect().height + 24;
+    const margin = 16;
+    const inView =
+      rect.top >= visibleTop + margin &&
+      rect.bottom <= visibleTop + visibleHeight - cardHeight - margin;
+    if (inView) return false;
+    window.scrollBy({ top: rect.top - (visibleTop + visibleHeight * 0.3), behavior: "smooth" });
+    return true;
+  }
+
+  function afterViewportSettles(callback) {
+    settleCallback = callback;
+    restartSettleTimer(finePointer.matches ? 0 : REVEAL_FALLBACK_MS);
+  }
+
+  function restartSettleTimer(wait) {
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(() => {
+      const callback = settleCallback;
+      settleCallback = null;
+      callback?.();
+    }, wait);
+  }
+
+  function showComposer() {
+    composer.classList.remove("is-preparing");
+  }
+
   function openComposer(selected) {
     const alreadyOpen = !composer.hidden;
     composerSelection = selected;
@@ -336,18 +374,26 @@
       noteInput.value = "";
       setOpen(false);
       composer.hidden = false;
+      composer.classList.toggle("is-preparing", !finePointer.matches);
       syncFab();
     }
     hideSelectionButton();
-    noteInput.focus();
+    noteInput.focus({ preventScroll: true });
+    afterViewportSettles(() => {
+      const scrolled = composerSelection ? revealRange(composerSelection.range) : false;
+      setTimeout(showComposer, scrolled ? SCROLL_SETTLE_MS : 0);
+    });
   }
 
   function closeComposer() {
+    const range = composerSelection?.range ?? null;
     clearHighlight();
+    document.getSelection()?.removeAllRanges();
     composer.hidden = true;
     composerSelection = null;
     noteInput.value = "";
     syncFab();
+    if (range) afterViewportSettles(() => revealRange(range));
   }
 
   function requestCloseComposer() {
@@ -363,10 +409,16 @@
       return;
     }
     if (canHighlight) {
-      CSS.highlights.set(HIGHLIGHT_NAME, new Highlight(composerSelection.range));
+      showHighlight();
       noteInput.placeholder = `표시된 문장에 대한 코멘트${shortcuts}`;
     } else {
       noteInput.placeholder = `“${previewText(composerSelection.quote)}”에 대한 코멘트${shortcuts}`;
+    }
+  }
+
+  function showHighlight() {
+    if (canHighlight && composerSelection) {
+      CSS.highlights.set(HIGHLIGHT_NAME, new Highlight(composerSelection.range));
     }
   }
 
@@ -454,6 +506,18 @@
   });
   closeButton.addEventListener("click", () => setOpen(false));
   document.addEventListener("selectionchange", scheduleCapture);
+
+  function syncKeyboardInset() {
+    const inset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+    root.style.setProperty("--proof-keyboard-inset", `${Math.round(inset)}px`);
+  }
+  if (viewport) {
+    viewport.addEventListener("resize", () => {
+      syncKeyboardInset();
+      if (settleCallback) restartSettleTimer(REVEAL_SETTLE_MS);
+    });
+    viewport.addEventListener("scroll", syncKeyboardInset);
+  }
   window.addEventListener(
     "scroll",
     () => {
@@ -466,7 +530,6 @@
     store = loadStore();
     render();
   });
-  // ThreeColumnLayout의 스와이프 감지에서 서랍 안 터치를 제외
   for (const type of ["touchstart", "touchend"]) {
     root.addEventListener(type, (event) => event.stopPropagation(), { passive: true });
   }
@@ -481,6 +544,7 @@
     --proof-radius: 10px;
     --proof-danger: #b3402f;
     --proof-yellow: #f2c94c;
+    --proof-keyboard-inset: 0px;
     --proof-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.85rem;
     line-height: 1.5;
@@ -491,7 +555,6 @@
     --proof-yellow: #f4e39a;
   }
 
-  /* ::highlight는 본문 요소에서 변수를 읽으므로 --proof-mark는 :root에 둔다 */
   :root {
     --proof-mark: #ffe066;
     --proof-mark-text: #1a1a1a;
@@ -511,7 +574,69 @@
     display: none !important;
   }
 
-  /* body.panel-active .main-content { pointer-events: none } 안에서도 조작 가능하게 */
+  .proof-fab,
+  .proof-panel,
+  .proof-composer,
+  .proof-toast {
+    transition-property: opacity, transform, display;
+    transition-duration: 0.2s, 0.25s, 0.25s;
+    transition-timing-function: ease;
+    transition-behavior: allow-discrete;
+  }
+
+  .proof-composer {
+    transition-property: opacity, transform, display, bottom;
+    transition-duration: 0.2s, 0.25s, 0.25s, 0.25s;
+  }
+
+  .proof-panel[hidden],
+  .proof-composer[hidden],
+  .proof-composer.is-preparing {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .proof-composer.is-preparing {
+    pointer-events: none;
+  }
+
+  .proof-fab[hidden] {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .proof-toast[hidden] {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+
+  @starting-style {
+    .proof-panel:not([hidden]),
+    .proof-composer:not([hidden]) {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .proof-fab:not([hidden]) {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .proof-toast:not([hidden]) {
+      opacity: 0;
+      transform: translate(-50%, -8px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .proof-fab,
+    .proof-panel,
+    .proof-composer,
+    .proof-toast {
+      transition-duration: 0s;
+    }
+  }
+
   .proof-drawer > * {
     pointer-events: auto;
   }
@@ -678,7 +803,7 @@
   .proof-composer {
     position: fixed;
     right: 16px;
-    bottom: 16px;
+    bottom: calc(16px + var(--proof-keyboard-inset));
     z-index: calc(var(--proof-z) + 1);
     display: flex;
     flex-direction: column;
@@ -701,7 +826,6 @@
     background: var(--color-bg);
     color: var(--color-text);
     font: inherit;
-    /* 16px 미만이면 iOS가 포커스 시 확대한다 */
     font-size: 16px;
     line-height: 1.5;
     resize: vertical;
@@ -879,28 +1003,23 @@
   }
 
   @media (max-width: 599px) {
-    .proof-panel {
-      right: 0;
-      bottom: 0;
-      left: 0;
+    .proof-panel,
+    .proof-composer {
+      right: 12px;
+      left: 12px;
       width: auto;
       max-width: none;
-      max-height: 90vh;
-      max-height: 90dvh;
-      padding-bottom: env(safe-area-inset-bottom);
-      border-bottom: 0;
-      border-radius: 12px 12px 0 0;
+      border-radius: 14px;
+    }
+
+    .proof-panel {
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      max-height: 85vh;
+      max-height: 85dvh;
     }
 
     .proof-composer {
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: auto;
-      max-width: none;
-      padding-bottom: calc(12px + env(safe-area-inset-bottom));
-      border-bottom: 0;
-      border-radius: 12px 12px 0 0;
+      bottom: calc(12px + env(safe-area-inset-bottom) + var(--proof-keyboard-inset));
     }
 
     .proof-fab {
