@@ -1,0 +1,251 @@
+<svg viewBox="0 0 800 388" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-dij">
+  <title id="t-dij">다익스트라가 정점을 하나씩 확정하며 이웃 거리를 갱신하는 네 단계</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #2F7D6E;
+        --c-accent-2: #C2703D;
+        --c-accent-3: #6366A8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(47, 125, 110, 0.16);
+        --c-soft-2: rgba(194, 112, 61, 0.16);
+        --c-dim: rgba(107, 114, 128, 0.30);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #6FC3B0;
+          --c-accent-2: #E09A6B;
+          --c-accent-3: #9598D4;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(111, 195, 176, 0.20);
+          --c-soft-2: rgba(224, 154, 107, 0.20);
+          --c-dim: rgba(139, 146, 160, 0.34);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .sub {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .hd {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .pane {
+        fill: none;
+        stroke: var(--c-divider);
+        stroke-width: 1.2;
+      }
+
+      .lg {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-fg);
+      }
+
+      .cl {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.1;
+      }
+
+      .t {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.4;
+      }
+
+      .f {
+        fill: var(--c-card);
+        stroke: var(--c-dim);
+        stroke-width: 1.1;
+      }
+
+      .st {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 2;
+      }
+
+      .n {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .m {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-muted);
+      }
+
+      .mk {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .ed {
+        stroke: var(--c-line);
+        stroke-width: 1.3;
+        fill: none;
+        opacity: 0.5;
+      }
+
+      .edd {
+        stroke: var(--c-dim);
+        stroke-width: 1.2;
+        fill: none;
+        stroke-dasharray: 3 2;
+      }
+
+      .kl {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+    </style>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+  <rect class="bg" width="800" height="388" />
+  <text x="24" y="28" class="ttl">가장 가까운 것부터 확정하고, 거쳐 가면 짧아지는 이웃만 갱신합니다</text>
+  <text x="24" y="48" class="sub">정점 A B C D · 간선 A-B 1, A-C 4, B-C 2, B-D 6, C-D 3 · 시작은 A</text>
+  <g transform="translate(24 62)">
+    <rect width="182" height="240" rx="8" class="pane" />
+    <text x="14" y="24" class="hd" fill="var(--c-accent)">STEP 1</text>
+    <g transform="translate(-10 -15)">
+      <line x1="77" y1="86" x2="127" y2="86" class="ed" />
+      <text x="102" y="78" class="m" text-anchor="middle">1</text>
+      <line x1="62" y1="101" x2="62" y2="151" class="ed" />
+      <text x="54" y="130" class="m" text-anchor="end">4</text>
+      <line x1="131" y1="97" x2="73" y2="155" class="ed" />
+      <text x="112" y="130" class="m" text-anchor="start">2</text>
+      <line x1="142" y1="101" x2="142" y2="151" class="ed" />
+      <text x="150" y="130" class="m" text-anchor="start">6</text>
+      <line x1="77" y1="166" x2="127" y2="166" class="ed" />
+      <text x="102" y="186" class="m" text-anchor="middle">3</text>
+      <circle cx="62" cy="86" r="15" class="st" /><text x="62" y="90" class="n" text-anchor="middle">A</text>
+      <text x="40" y="91" class="mk" text-anchor="end" fill="var(--c-accent)">0</text>
+      <circle cx="142" cy="86" r="15" class="cl" /><text x="142" y="90" class="n" text-anchor="middle">B</text>
+      <text x="164" y="91" class="mk" text-anchor="start" fill="var(--c-accent)">∞</text>
+      <circle cx="62" cy="166" r="15" class="cl" /><text x="62" y="170" class="n" text-anchor="middle">C</text>
+      <text x="40" y="171" class="mk" text-anchor="end" fill="var(--c-accent)">∞</text>
+      <circle cx="142" cy="166" r="15" class="cl" /><text x="142" y="170" class="n" text-anchor="middle">D</text>
+      <text x="164" y="171" class="mk" text-anchor="start" fill="var(--c-accent)">∞</text>
+    </g>
+    <text x="14" y="206" class="m">A를 꺼내 확정합니다</text>
+    <text x="14" y="220" class="m">B는 1, C는 4로 갱신</text>
+  </g>
+  <g transform="translate(214 62)">
+    <rect width="182" height="240" rx="8" class="pane" />
+    <text x="14" y="24" class="hd" fill="var(--c-accent)">STEP 2</text>
+    <g transform="translate(-10 -15)">
+      <line x1="77" y1="86" x2="127" y2="86" class="ed" />
+      <text x="102" y="78" class="m" text-anchor="middle">1</text>
+      <line x1="62" y1="101" x2="62" y2="151" class="ed" />
+      <text x="54" y="130" class="m" text-anchor="end">4</text>
+      <line x1="131" y1="97" x2="73" y2="155" class="ed" />
+      <text x="112" y="130" class="m" text-anchor="start">2</text>
+      <line x1="142" y1="101" x2="142" y2="151" class="ed" />
+      <text x="150" y="130" class="m" text-anchor="start">6</text>
+      <line x1="77" y1="166" x2="127" y2="166" class="ed" />
+      <text x="102" y="186" class="m" text-anchor="middle">3</text>
+      <circle cx="62" cy="86" r="15" class="t" /><text x="62" y="90" class="n" text-anchor="middle">A</text>
+      <text x="40" y="91" class="mk" text-anchor="end" fill="var(--c-accent)">0</text>
+      <circle cx="142" cy="86" r="15" class="st" /><text x="142" y="90" class="n" text-anchor="middle">B</text>
+      <text x="164" y="91" class="mk" text-anchor="start" fill="var(--c-accent)">1</text>
+      <circle cx="62" cy="166" r="15" class="cl" /><text x="62" y="170" class="n" text-anchor="middle">C</text>
+      <text x="40" y="171" class="mk" text-anchor="end" fill="var(--c-accent)">4</text>
+      <circle cx="142" cy="166" r="15" class="cl" /><text x="142" y="170" class="n" text-anchor="middle">D</text>
+      <text x="164" y="171" class="mk" text-anchor="start" fill="var(--c-accent)">∞</text>
+    </g>
+    <text x="14" y="206" class="m">가장 짧은 B를 확정합니다</text>
+    <text x="14" y="220" class="m">C는 3으로 줄고 D는 7</text>
+  </g>
+  <g transform="translate(404 62)">
+    <rect width="182" height="240" rx="8" class="pane" />
+    <text x="14" y="24" class="hd" fill="var(--c-accent)">STEP 3</text>
+    <g transform="translate(-10 -15)">
+      <line x1="77" y1="86" x2="127" y2="86" class="ed" />
+      <text x="102" y="78" class="m" text-anchor="middle">1</text>
+      <line x1="62" y1="101" x2="62" y2="151" class="ed" />
+      <text x="54" y="130" class="m" text-anchor="end">4</text>
+      <line x1="131" y1="97" x2="73" y2="155" class="ed" />
+      <text x="112" y="130" class="m" text-anchor="start">2</text>
+      <line x1="142" y1="101" x2="142" y2="151" class="ed" />
+      <text x="150" y="130" class="m" text-anchor="start">6</text>
+      <line x1="77" y1="166" x2="127" y2="166" class="ed" />
+      <text x="102" y="186" class="m" text-anchor="middle">3</text>
+      <circle cx="62" cy="86" r="15" class="t" /><text x="62" y="90" class="n" text-anchor="middle">A</text>
+      <text x="40" y="91" class="mk" text-anchor="end" fill="var(--c-accent)">0</text>
+      <circle cx="142" cy="86" r="15" class="t" /><text x="142" y="90" class="n" text-anchor="middle">B</text>
+      <text x="164" y="91" class="mk" text-anchor="start" fill="var(--c-accent)">1</text>
+      <circle cx="62" cy="166" r="15" class="st" /><text x="62" y="170" class="n" text-anchor="middle">C</text>
+      <text x="40" y="171" class="mk" text-anchor="end" fill="var(--c-accent)">3</text>
+      <circle cx="142" cy="166" r="15" class="cl" /><text x="142" y="170" class="n" text-anchor="middle">D</text>
+      <text x="164" y="171" class="mk" text-anchor="start" fill="var(--c-accent)">7</text>
+    </g>
+    <text x="14" y="206" class="m">C를 확정합니다</text>
+    <text x="14" y="220" class="m">D는 6으로 줄어듭니다</text>
+  </g>
+  <g transform="translate(594 62)">
+    <rect width="182" height="240" rx="8" class="pane" />
+    <text x="14" y="24" class="hd" fill="var(--c-accent)">STEP 4</text>
+    <g transform="translate(-10 -15)">
+      <line x1="77" y1="86" x2="127" y2="86" class="ed" />
+      <text x="102" y="78" class="m" text-anchor="middle">1</text>
+      <line x1="62" y1="101" x2="62" y2="151" class="ed" />
+      <text x="54" y="130" class="m" text-anchor="end">4</text>
+      <line x1="131" y1="97" x2="73" y2="155" class="ed" />
+      <text x="112" y="130" class="m" text-anchor="start">2</text>
+      <line x1="142" y1="101" x2="142" y2="151" class="ed" />
+      <text x="150" y="130" class="m" text-anchor="start">6</text>
+      <line x1="77" y1="166" x2="127" y2="166" class="ed" />
+      <text x="102" y="186" class="m" text-anchor="middle">3</text>
+      <circle cx="62" cy="86" r="15" class="t" /><text x="62" y="90" class="n" text-anchor="middle">A</text>
+      <text x="40" y="91" class="mk" text-anchor="end" fill="var(--c-accent)">0</text>
+      <circle cx="142" cy="86" r="15" class="t" /><text x="142" y="90" class="n" text-anchor="middle">B</text>
+      <text x="164" y="91" class="mk" text-anchor="start" fill="var(--c-accent)">1</text>
+      <circle cx="62" cy="166" r="15" class="t" /><text x="62" y="170" class="n" text-anchor="middle">C</text>
+      <text x="40" y="171" class="mk" text-anchor="end" fill="var(--c-accent)">3</text>
+      <circle cx="142" cy="166" r="15" class="st" /><text x="142" y="170" class="n" text-anchor="middle">D</text>
+      <text x="164" y="171" class="mk" text-anchor="start" fill="var(--c-accent)">6</text>
+    </g>
+    <text x="14" y="206" class="m">D를 확정합니다</text>
+    <text x="14" y="220" class="m">모든 거리가 정해졌습니다</text>
+  </g>
+  <text x="24" y="328" class="sub">노드 옆 숫자가 현재까지 알려진 거리입니다. 초록은 확정된 정점, 주황은 이번에 꺼낸 정점입니다.</text>
+  <text x="24" y="348" class="sub">한 번 확정한 정점은 다시 보지 않습니다. 간선 비용이 음수가 아니어야 이 결정이 안전합니다.</text>
+  <text x="24" y="368" class="sub">C의 거리가 4에서 3으로 줄어든 것처럼, 직접 가는 길보다 다른 정점을 거치는 길이 짧을 수 있습니다.</text>
+</svg>
