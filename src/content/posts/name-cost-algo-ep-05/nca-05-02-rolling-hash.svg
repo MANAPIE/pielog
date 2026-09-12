@@ -1,0 +1,77 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-rk">
+  <title id="t-rk">롤링 해시가 앞 글자를 빼고 뒤 글자를 더해 다음 구간의 해시를 구하는 과정</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.16); --c-soft-2: rgba(194,112,61,0.16);
+        --c-dim: rgba(107,114,128,0.30); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.20); --c-soft-2: rgba(224,154,107,0.20);
+          --c-dim: rgba(139,146,160,0.34); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+      .cl { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.1; }
+      .t { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.4; }
+      .f { fill: var(--c-card); stroke: var(--c-dim); stroke-width: 1.1; }
+      .st { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 2; }
+      .n { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .m { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .mk { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; }
+      .ed { stroke: var(--c-line); stroke-width: 1.3; fill: none; opacity: 0.5; }
+      .edd { stroke: var(--c-dim); stroke-width: 1.2; fill: none; stroke-dasharray: 3 2; }
+      .kl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="var(--c-accent-2)"/></marker>
+  </defs>
+  <rect class="bg" width="800" height="340"/>
+  <text x="24" y="28" class="ttl">구간을 옮길 때 해시를 처음부터 다시 계산하지 않습니다</text>
+  <text x="24" y="48" class="sub">텍스트 A B C D E 에서 길이 3짜리 창을 한 칸씩 옮기는 경우</text>
+  <g transform="translate(24 72)">
+    <rect x="70" y="6" width="52" height="30" rx="5" class="t"/><text x="96" y="25" class="n" text-anchor="middle">A</text>
+    <rect x="130" y="6" width="52" height="30" rx="5" class="t"/><text x="156" y="25" class="n" text-anchor="middle">B</text>
+    <rect x="190" y="6" width="52" height="30" rx="5" class="t"/><text x="216" y="25" class="n" text-anchor="middle">C</text>
+    <rect x="250" y="6" width="52" height="30" rx="5" class="f"/><text x="276" y="25" class="n" text-anchor="middle">D</text>
+    <rect x="310" y="6" width="52" height="30" rx="5" class="f"/><text x="336" y="25" class="n" text-anchor="middle">E</text>
+    <text x="0" y="27" class="mk" fill="var(--c-accent)">1회</text>
+    <text x="400" y="27" class="lg">해시를 처음 계산합니다</text>
+  </g>
+  <g transform="translate(94 112)"><text x="0" y="12" class="m" fill="var(--c-accent-2)">− A</text></g>
+  <g transform="translate(252 112)"><text x="0" y="12" class="m" fill="var(--c-accent-2)">+ D</text></g>
+  <g transform="translate(24 138)">
+    <rect x="70" y="6" width="52" height="30" rx="5" class="f"/><text x="96" y="25" class="n" text-anchor="middle">A</text>
+    <rect x="130" y="6" width="52" height="30" rx="5" class="t"/><text x="156" y="25" class="n" text-anchor="middle">B</text>
+    <rect x="190" y="6" width="52" height="30" rx="5" class="t"/><text x="216" y="25" class="n" text-anchor="middle">C</text>
+    <rect x="250" y="6" width="52" height="30" rx="5" class="t"/><text x="276" y="25" class="n" text-anchor="middle">D</text>
+    <rect x="310" y="6" width="52" height="30" rx="5" class="f"/><text x="336" y="25" class="n" text-anchor="middle">E</text>
+    <text x="0" y="27" class="mk" fill="var(--c-accent)">2회</text>
+    <text x="400" y="27" class="lg">앞 글자 A를 빼고 뒤 글자 D를 더합니다</text>
+  </g>
+  <g transform="translate(154 178)"><text x="0" y="12" class="m" fill="var(--c-accent-2)">− B</text></g>
+  <g transform="translate(312 178)"><text x="0" y="12" class="m" fill="var(--c-accent-2)">+ E</text></g>
+  <g transform="translate(24 204)">
+    <rect x="70" y="6" width="52" height="30" rx="5" class="f"/><text x="96" y="25" class="n" text-anchor="middle">A</text>
+    <rect x="130" y="6" width="52" height="30" rx="5" class="f"/><text x="156" y="25" class="n" text-anchor="middle">B</text>
+    <rect x="190" y="6" width="52" height="30" rx="5" class="t"/><text x="216" y="25" class="n" text-anchor="middle">C</text>
+    <rect x="250" y="6" width="52" height="30" rx="5" class="t"/><text x="276" y="25" class="n" text-anchor="middle">D</text>
+    <rect x="310" y="6" width="52" height="30" rx="5" class="t"/><text x="336" y="25" class="n" text-anchor="middle">E</text>
+    <text x="0" y="27" class="mk" fill="var(--c-accent)">3회</text>
+    <text x="400" y="27" class="lg">다시 한 글자만 빼고 더합니다</text>
+  </g>
+  <text x="24" y="286" class="sub">창을 옮길 때마다 해시를 처음부터 계산하면 구간 길이 M이 매번 들어 전체가 O(N × M)입니다.</text>
+  <text x="24" y="306" class="sub">빼고 더하는 두 번의 연산으로 갱신하면 창 하나당 상수 시간이라 전체가 평균 O(N + M)이 됩니다.</text>
+  <text x="24" y="326" class="sub">해시가 같아도 실제 문자열은 다를 수 있으므로, 같을 때만 한 번 더 직접 비교합니다.</text>
+</svg>

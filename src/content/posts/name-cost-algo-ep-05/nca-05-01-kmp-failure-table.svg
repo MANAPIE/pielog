@@ -1,0 +1,151 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-kmp">
+  <title id="t-kmp">패턴 ABABC의 실패 함수와 KMP 매칭 동작</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-hit: rgba(47,125,110,0.26); --c-miss: rgba(194,112,61,0.24);
+        --c-soft-3: rgba(99,102,168,0.14); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-hit: rgba(111,195,176,0.28); --c-miss: rgba(224,154,107,0.26);
+          --c-soft-3: rgba(149,152,212,0.18); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .cl { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.2; }
+      .hit { fill: var(--c-hit); stroke: var(--c-accent); stroke-width: 1.6; }
+      .miss { fill: var(--c-miss); stroke: var(--c-accent-2); stroke-width: 1.8; }
+      .ch { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .ix { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; fill: var(--c-muted); }
+      .fv { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-accent-3); }
+      .lbl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; }
+      .br { stroke: var(--c-accent-3); stroke-width: 1.6; fill: none; }
+      .stp { font-family: 'Inter',system-ui,sans-serif; font-size: 10px; font-weight: 700; fill: var(--c-muted); }
+      .note { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <text x="24" y="28" class="ttl">이미 맞춰본 글자를 다시 보지 않는 방법</text>
+  <text x="24" y="48" class="sub">패턴 ABABC · 실패 함수는 "여기까지 왔다가 틀리면 어디로 돌아갈지"를 미리 적어 둔 표입니다</text>
+
+  <!-- 실패 함수 표 -->
+  <g transform="translate(24 66)">
+    <rect width="752" height="168" rx="8" class="pane"/>
+    <text x="24" y="26" class="hd" fill="var(--c-accent-3)">FAILURE FUNCTION · 접두사이면서 접미사인 가장 긴 길이</text>
+
+    <g transform="translate(24 40)">
+      <text x="-2" y="12" class="ix">인덱스</text>
+      <g transform="translate(52 0)">
+        <text x="20" y="12" class="ix" text-anchor="middle">0</text>
+        <text x="64" y="12" class="ix" text-anchor="middle">1</text>
+        <text x="108" y="12" class="ix" text-anchor="middle">2</text>
+        <text x="152" y="12" class="ix" text-anchor="middle">3</text>
+        <text x="196" y="12" class="ix" text-anchor="middle">4</text>
+      </g>
+      <text x="-2" y="42" class="ix">문자</text>
+      <g transform="translate(52 20)">
+        <g><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(44 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(88 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(132 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(176 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">C</text></g>
+      </g>
+      <text x="-2" y="78" class="ix">실패 함수</text>
+      <g transform="translate(52 62)">
+        <text x="20" y="16" class="fv" text-anchor="middle">0</text>
+        <text x="64" y="16" class="fv" text-anchor="middle">0</text>
+        <text x="108" y="16" class="fv" text-anchor="middle">1</text>
+        <text x="152" y="16" class="fv" text-anchor="middle">2</text>
+        <text x="196" y="16" class="fv" text-anchor="middle">0</text>
+      </g>
+
+      <!-- 인덱스 3의 근거 -->
+      <path class="br" d="M52 92 L 52 104 L 140 104"/>
+      <path class="br" d="M140 92 L 140 104"/>
+      <text x="96" y="120" class="lbl" fill="var(--c-accent-3)" text-anchor="middle">접두사 AB</text>
+      <path class="br" d="M140 92 L 140 104 L 228 104"/>
+      <path class="br" d="M228 92 L 228 104"/>
+      <text x="196" y="120" class="lbl" fill="var(--c-accent-3)" text-anchor="middle">접미사 AB</text>
+      <text x="264" y="106" class="note">둘이 같으니 인덱스 3의 값은 2입니다</text>
+    </g>
+
+    <g transform="translate(524 44)">
+      <text x="0" y="14" class="note">ABAB까지 맞춘 뒤 틀렸다면,</text>
+      <text x="0" y="34" class="note">뒤쪽 AB는 이미 맞다는 것을 압니다.</text>
+      <text x="0" y="54" class="note">그 두 글자는 다시 비교하지 않습니다.</text>
+      <text x="0" y="82" class="sub">이 표를 만드는 데 O(M),</text>
+      <text x="0" y="100" class="sub">매칭에 O(N), 합쳐서 O(N + M)</text>
+    </g>
+  </g>
+
+  <!-- 매칭 -->
+  <g transform="translate(24 246)">
+    <rect width="752" height="266" rx="8" class="pane"/>
+    <text x="24" y="26" class="hd" fill="var(--c-accent-2)">불일치가 났을 때 어디로 돌아가는가</text>
+
+    <g transform="translate(60 40)">
+      <text x="-36" y="24" class="stp">텍스트</text>
+      <g>
+        <g><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(44 0)"><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(88 0)"><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(132 0)"><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(176 0)"><rect width="40" height="34" rx="4" class="miss"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(220 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(264 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">C</text></g>
+      </g>
+      <text x="-36" y="66" class="stp">패턴</text>
+      <g transform="translate(0 44)">
+        <g><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(44 0)"><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(88 0)"><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(132 0)"><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(176 0)"><rect width="40" height="34" rx="4" class="miss"/><text x="20" y="23" class="ch" text-anchor="middle">C</text></g>
+      </g>
+      <text x="196" y="98" class="lbl" fill="var(--c-accent-2)" text-anchor="middle">✕ 여기서 불일치</text>
+    </g>
+
+    <!-- 나이브 -->
+    <g transform="translate(60 148)">
+      <text x="-36" y="24" class="stp">나이브</text>
+      <g opacity="0.55">
+        <g transform="translate(44 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(88 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(132 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(176 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(220 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">C</text></g>
+      </g>
+      <text x="284" y="23" class="note">한 칸만 밀고 처음부터 다시 비교합니다</text>
+      <text x="284" y="41" class="sub">텍스트 포인터가 뒤로 돌아갑니다: 최악 O(N×M)</text>
+    </g>
+
+    <!-- KMP -->
+    <g transform="translate(60 202)">
+      <text x="-36" y="24" class="stp">KMP</text>
+      <g>
+        <g transform="translate(88 0)"><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(132 0)"><rect width="40" height="34" rx="4" class="hit"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(176 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">A</text></g>
+        <g transform="translate(220 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">B</text></g>
+        <g transform="translate(264 0)"><rect width="40" height="34" rx="4" class="cl"/><text x="20" y="23" class="ch" text-anchor="middle">C</text></g>
+      </g>
+      <text x="330" y="23" class="note">실패 함수 값 2만큼 건너뜁니다</text>
+      <text x="330" y="41" class="sub">색칠된 AB는 이미 맞으므로 비교하지 않습니다: O(N + M)</text>
+    </g>
+  </g>
+
+  <text x="24" y="538" class="sub">핵심은 패턴을 얼마나 미느냐가 아니라, 텍스트 포인터가 절대 뒤로 가지 않는다는 점입니다.</text>
+</svg>
