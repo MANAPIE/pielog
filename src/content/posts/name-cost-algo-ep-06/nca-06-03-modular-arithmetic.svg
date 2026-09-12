@@ -1,0 +1,60 @@
+<svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-mod">
+  <title id="t-mod">곱셈에서 중간에 나머지를 취해도 결과가 같은 것을 보여주는 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.16); --c-soft-2: rgba(194,112,61,0.16);
+        --c-dim: rgba(107,114,128,0.30); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.20); --c-soft-2: rgba(224,154,107,0.20);
+          --c-dim: rgba(139,146,160,0.34); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+      .cl { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.1; }
+      .t { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.4; }
+      .f { fill: var(--c-card); stroke: var(--c-dim); stroke-width: 1.1; }
+      .st { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 2; }
+      .n { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .m { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .mk { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; }
+      .ed { stroke: var(--c-line); stroke-width: 1.3; fill: none; opacity: 0.5; }
+      .edd { stroke: var(--c-dim); stroke-width: 1.2; fill: none; stroke-dasharray: 3 2; }
+      .kl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="var(--c-accent-2)"/></marker>
+  </defs>
+  <rect class="bg" width="800" height="330"/>
+  <text x="24" y="28" class="ttl">중간에 나머지를 취해도 답이 같습니다</text>
+  <text x="24" y="48" class="sub">123 × 456을 7로 나눈 나머지 · 덧셈, 뺄셈, 곱셈에서 성립합니다</text>
+  <g transform="translate(24 62)"><rect width="366" height="176" rx="8" class="pane"/>
+    <text x="16" y="26" class="hd" fill="var(--c-accent-2)">끝까지 곱한 뒤 나누기</text>
+    <text x="16" y="60" class="n">123 × 456 = 56,088</text>
+    <text x="16" y="88" class="n">56,088 % 7 = 3</text>
+    <text x="16" y="128" class="lg">중간값이 커집니다. 수가 커지면</text>
+    <text x="16" y="148" class="lg">안전한 정수 범위를 넘습니다.</text>
+  </g>
+  <g transform="translate(410 62)"><rect width="366" height="176" rx="8" class="pane"/>
+    <text x="16" y="26" class="hd" fill="var(--c-accent)">먼저 나머지를 취하고 곱하기</text>
+    <text x="16" y="60" class="n">123 % 7 = 4 · 456 % 7 = 1</text>
+    <text x="16" y="88" class="n">(4 × 1) % 7 = 3</text>
+    <text x="16" y="128" class="lg">중간값이 작게 유지됩니다.</text>
+    <text x="16" y="148" class="lg">결과는 위와 같은 3입니다.</text>
+  </g>
+  <text x="24" y="268" class="sub">덧셈과 뺄셈, 곱셈은 이렇게 분배됩니다. 나눗셈은 성립하지 않아 모듈러 곱셈 역원이라는 별도의 개념이 필요합니다.</text>
+  <text x="24" y="288" class="sub">뺄셈은 결과가 음수가 될 수 있어 한 번 더 처리합니다. 자바스크립트의 나머지 연산자는 음수에 음수를 돌려줍니다.</text>
+  <text x="24" y="308" class="sub">그래서 큰 수를 다루는 문제는 계산 도중에 계속 나머지를 취해도 답이 달라지지 않습니다.</text>
+</svg>

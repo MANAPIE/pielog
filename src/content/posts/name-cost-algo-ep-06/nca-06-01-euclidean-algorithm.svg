@@ -1,0 +1,182 @@
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-gcd">
+  <title id="t-gcd">유클리드 호제법으로 48과 18의 최대공약수를 구하는 단계</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #2F7D6E;
+        --c-accent-2: #C2703D;
+        --c-accent-3: #6366A8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(47, 125, 110, 0.16);
+        --c-soft-2: rgba(194, 112, 61, 0.16);
+        --c-dim: rgba(107, 114, 128, 0.30);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #6FC3B0;
+          --c-accent-2: #E09A6B;
+          --c-accent-3: #9598D4;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(111, 195, 176, 0.20);
+          --c-soft-2: rgba(224, 154, 107, 0.20);
+          --c-dim: rgba(139, 146, 160, 0.34);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg {
+        fill: var(--c-bg);
+      }
+
+      .ttl {
+        font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .sub {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11.5px;
+        fill: var(--c-muted);
+      }
+
+      .hd {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .pane {
+        fill: none;
+        stroke: var(--c-divider);
+        stroke-width: 1.2;
+      }
+
+      .lg {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--c-fg);
+      }
+
+      .cl {
+        fill: var(--c-card);
+        stroke: var(--c-line);
+        stroke-width: 1.1;
+      }
+
+      .t {
+        fill: var(--c-soft);
+        stroke: var(--c-accent);
+        stroke-width: 1.4;
+      }
+
+      .f {
+        fill: var(--c-card);
+        stroke: var(--c-dim);
+        stroke-width: 1.1;
+      }
+
+      .st {
+        fill: var(--c-soft-2);
+        stroke: var(--c-accent-2);
+        stroke-width: 2;
+      }
+
+      .n {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+
+      .m {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        fill: var(--c-muted);
+      }
+
+      .mk {
+        font-family: 'JetBrains Mono', 'SF Mono', monospace;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .ed {
+        stroke: var(--c-line);
+        stroke-width: 1.3;
+        fill: none;
+        opacity: 0.5;
+      }
+
+      .edd {
+        stroke: var(--c-dim);
+        stroke-width: 1.2;
+        fill: none;
+        stroke-dasharray: 3 2;
+      }
+
+      .kl {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+        font-size: 10.5px;
+        font-weight: 700;
+        fill: var(--c-fg);
+      }
+    </style>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-accent-2)" />
+    </marker>
+  </defs>
+  <rect class="bg" width="800" height="320" />
+  <text x="24" y="28" class="ttl">나머지로 바꿔가며 줄이면 금방 끝납니다</text>
+  <text x="24" y="48" class="sub">48과 18의 최대공약수 · a와 b의 최대공약수는 b와 a를 b로 나눈 나머지의 최대공약수와 같습니다</text>
+  <g transform="translate(24 72)">
+    <text x="0" y="26" class="mk" fill="var(--c-muted)">1회</text>
+    <rect x="60" y="6" width="68" height="34" rx="5" class="cl" /><text x="94" y="27" class="n"
+      text-anchor="middle">48</text>
+    <rect x="144" y="6" width="68" height="34" rx="5" class="t" /><text x="178" y="27" class="n"
+      text-anchor="middle">18</text>
+    <text x="268" y="28" class="m" text-anchor="end">나머지</text>
+    <rect x="276" y="6" width="68" height="34" rx="5" class="cl" /><text x="310" y="27" class="n"
+      text-anchor="middle">12</text>
+    <text x="368" y="28" class="lg">48 = 18 × 2 + 12</text>
+    <path d="M 310 40 q 0 0 -95 25" class="ed" marker-end="url(#ar)" />
+  </g>
+  <g transform="translate(24 130)">
+    <text x="0" y="26" class="mk" fill="var(--c-muted)">2회</text>
+    <rect x="60" y="6" width="68" height="34" rx="5" class="cl" /><text x="94" y="27" class="n"
+      text-anchor="middle">18</text>
+    <rect x="144" y="6" width="68" height="34" rx="5" class="t" /><text x="178" y="27" class="n"
+      text-anchor="middle">12</text>
+    <text x="268" y="28" class="m" text-anchor="end">나머지</text>
+    <rect x="276" y="6" width="68" height="34" rx="5" class="cl" /><text x="310" y="27" class="n"
+      text-anchor="middle">6</text>
+    <text x="368" y="28" class="lg">18 = 12 × 1 + 6</text>
+    <path d="M 310 40 q 0 0 -95 25" class="ed" marker-end="url(#ar)" />
+  </g>
+  <g transform="translate(24 188)">
+    <text x="0" y="26" class="mk" fill="var(--c-muted)">3회</text>
+    <rect x="60" y="6" width="68" height="34" rx="5" class="cl" /><text x="94" y="27" class="n"
+      text-anchor="middle">12</text>
+    <rect x="144" y="6" width="68" height="34" rx="5" class="t" /><text x="178" y="27" class="n"
+      text-anchor="middle">6</text>
+    <text x="268" y="28" class="m" text-anchor="end">나머지</text>
+    <rect x="276" y="6" width="68" height="34" rx="5" class="st" /><text x="310" y="27" class="n"
+      text-anchor="middle">0</text>
+    <text x="368" y="28" class="lg">12 = 6 × 2 + 0</text>
+  </g>
+  <text x="24" y="252" class="lg">나머지가 0이 되는 순간의 나눈 수 6이 최대공약수입니다.</text>
+  <text x="24" y="276" class="sub">두 단계마다 값이 최소 절반 이하로 떨어지므로 반복 횟수가 O(log(min(a, b)))입니다. 48과 18은 세 번 만에 끝났습니다.</text>
+  <text x="24" y="296" class="sub">약수를 나열해 비교하면 48의 약수 10개와 18의 약수 6개를 모두 구해야 합니다.</text>
+</svg>
