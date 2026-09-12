@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="알고리즘의 이름과 비용 ep.06 cover">
+  <style>
+  :root {
+    --c-bg: #f6f4fa;
+    --c-fg: #1b1430;
+    --c-muted: #6c6280;
+    --c-accent: #7A5AA8; --c-accent-2: #9179BE; --c-accent-3: #AF9DD2;
+    --c-num: rgba(122,90,168,0.14);
+    --c-dot: rgba(122,90,168,0.10);
+    --c-line: rgba(122,90,168,0.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #120e1c;
+      --c-fg: #ece7f5;
+      --c-muted: #a99fc0;
+      --c-accent: #B3A0D8; --c-accent-2: #8E76BE; --c-accent-3: #6E5A9C;
+      --c-num: rgba(179,160,216,0.22);
+      --c-dot: rgba(179,160,216,0.10);
+      --c-line: rgba(179,160,216,0.24);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+  .ln { stroke: var(--c-line); stroke-width: 1.5; fill: none; }
+  .ac { stroke: var(--c-accent); }
+  .a2 { stroke: var(--c-accent-2); }
+  .a3 { stroke: var(--c-accent-3); }
+</style>
+  <defs>
+    <pattern id="dtalgo06" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="hAalgo06" cx="0.16" cy="0.84" r="0.58">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="hBalgo06" cx="0.86" cy="0.14" r="0.56">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dtalgo06)"/>
+  <rect width="1200" height="630" fill="url(#hAalgo06)"/>
+  <rect width="1200" height="630" fill="url(#hBalgo06)"/>
+
+  <rect x="-160" y="330" width="520" height="520" rx="44" class="ln" transform="rotate(8 100 590)"/>
+  <circle cx="1180" cy="80" r="260" class="ln"/>
+
+  <g>
+<rect x="150" y="120" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 185 155)"/><circle cx="267" cy="155" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="314" y="120" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 349 155)"/><circle cx="431" cy="155" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="478" y="120" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 513 155)"/><circle cx="595" cy="155" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="642" y="120" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 677 155)"/><circle cx="759" cy="155" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="841" cy="155" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="923" cy="155" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="150" y="202" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 185 237)"/><circle cx="267" cy="237" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="314" y="202" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 349 237)"/><circle cx="431" cy="237" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="513" cy="237" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="595" cy="237" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="642" y="202" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 677 237)"/><circle cx="759" cy="237" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="841" cy="237" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="923" cy="237" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="185" cy="319" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="267" cy="319" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="314" y="284" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 349 319)"/><circle cx="431" cy="319" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="478" y="284" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 513 319)"/><circle cx="595" cy="319" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="677" cy="319" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="759" cy="319" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="841" cy="319" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="923" cy="319" r="7" fill="var(--c-line)" fill-opacity="0.9"/><rect x="150" y="366" width="70" height="70" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 185 401)"/><circle cx="267" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="349" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="431" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="513" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="595" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="677" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="759" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="841" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="923" cy="401" r="7" fill="var(--c-line)" fill-opacity="0.9"/><circle cx="1010" cy="520" r="58" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 6" opacity="0.75"/><circle cx="1010" cy="520" r="35" fill="none" stroke="var(--c-accent-3)" stroke-width="2" opacity="0.7"/><circle cx="160" cy="566" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="182" cy="566" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="204" cy="566" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><path d="M880 546 l 14 15 l 30 -34" fill="none" stroke="var(--c-accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M0 0 L 26 14 L 0 29 Z" fill="var(--c-accent-2)" fill-opacity="0.85" transform="translate(1120 150) rotate(90)"/>
+  </g>
+
+  <text x="1148" y="602" class="ep-number" text-anchor="end">06</text>
+</svg>

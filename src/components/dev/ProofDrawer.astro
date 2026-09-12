@@ -1,0 +1,1029 @@
+---
+// dev 전용. <script>/<style>은 반드시 is:inline — 처리형이면 렌더되지 않아도 프로덕션에 실린다
+---
+
+<div class="proof-drawer" id="proof-drawer" data-pagefind-ignore="all">
+  <button
+    type="button"
+    class="proof-fab"
+    id="proof-fab"
+    aria-expanded="false"
+    aria-controls="proof-panel"
+  >
+    ✎ <span id="proof-fab-label">교정</span> <span id="proof-fab-count">0</span>
+  </button>
+
+  <section class="proof-panel" id="proof-panel" aria-label="교정 코멘트" hidden>
+    <header class="proof-panel-header">
+      <div class="proof-panel-title">
+        <strong>교정 코멘트</strong>
+        <code id="proof-slug"></code>
+      </div>
+      <div class="proof-panel-actions">
+        <button type="button" class="proof-btn" id="proof-new">＋ 코멘트</button>
+        <button
+          type="button"
+          class="proof-btn proof-btn-icon"
+          id="proof-close"
+          aria-label="서랍 닫기"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button
+        >
+      </div>
+    </header>
+
+    <div class="proof-panel-body">
+      <ol class="proof-list" id="proof-list"></ol>
+      <p class="proof-empty" id="proof-empty">본문을 드래그한 뒤 "선택 영역에 코멘트"를 누르세요.</p>
+    </div>
+
+    <footer class="proof-panel-footer">
+      <button type="button" class="proof-btn proof-btn-primary" id="proof-copy-post">전체 복사</button>
+      <button type="button" class="proof-btn proof-btn-danger" id="proof-clear-post">전체 삭제</button>
+    </footer>
+
+    <details class="proof-others" id="proof-others">
+      <summary>다른 글 <span id="proof-others-count">0</span></summary>
+      <ul id="proof-others-list"></ul>
+      <button type="button" class="proof-btn" id="proof-copy-all">모든 글 복사</button>
+    </details>
+  </section>
+
+  <form class="proof-composer" id="proof-composer" aria-label="코멘트 작성" hidden>
+    <textarea id="proof-composer-note" rows="3"></textarea>
+    <div class="proof-composer-actions">
+      <button type="submit" class="proof-btn proof-btn-primary">저장</button>
+      <button type="button" class="proof-btn" id="proof-composer-cancel">취소</button>
+    </div>
+  </form>
+
+  <template id="proof-icon-trash"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path></svg></template>
+
+  <button type="button" class="proof-selection-btn" id="proof-selection-btn" hidden>코멘트</button>
+
+  <div class="proof-toast" id="proof-toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog class="proof-fallback" id="proof-fallback">
+    <p>클립보드에 접근할 수 없습니다. 아래 텍스트를 직접 복사하세요.</p>
+    <textarea id="proof-fallback-text" rows="12" readonly></textarea>
+    <form method="dialog">
+      <button type="submit" class="proof-btn">닫기</button>
+    </form>
+  </dialog>
+</div>
+
+<script type="module" is:inline>
+  import {
+    STORAGE_KEY,
+    addComment,
+    clearPost,
+    formatAll,
+    formatPost,
+    loadStore,
+    normalizeQuote,
+    removeComment,
+    saveStore,
+  } from "/src/lib/proofComments.ts";
+
+  const OPEN_KEY = "pielog:proof:open";
+  const SELECTION_DEBOUNCE_MS = 120;
+  const TOAST_MS = 2000;
+  const SELECTION_GRACE_MS = 600;
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const viewport = window.visualViewport;
+  const REVEAL_SETTLE_MS = 250;
+  const REVEAL_FALLBACK_MS = 700;
+  const SCROLL_SETTLE_MS = 350;
+  const HIGHLIGHT_NAME = "proof-quote";
+  const canHighlight =
+    typeof CSS !== "undefined" && "highlights" in CSS && typeof Highlight === "function";
+
+  function byId(id) {
+    const element = document.getElementById(id);
+    if (!element) throw new Error(`[proof] #${id} 요소가 없습니다`);
+    return element;
+  }
+
+  const content = document.querySelector(".post-content");
+  if (!content) {
+    throw new Error("[proof] .post-content가 없어 교정 서랍을 초기화할 수 없습니다");
+  }
+
+  const root = byId("proof-drawer");
+  const fab = byId("proof-fab");
+  const fabCount = byId("proof-fab-count");
+  const fabLabel = byId("proof-fab-label");
+  const panel = byId("proof-panel");
+  const slugLabel = byId("proof-slug");
+  const newButton = byId("proof-new");
+  const closeButton = byId("proof-close");
+  const composer = byId("proof-composer");
+  const noteInput = byId("proof-composer-note");
+  const cancelButton = byId("proof-composer-cancel");
+  const list = byId("proof-list");
+  const emptyMessage = byId("proof-empty");
+  const copyPostButton = byId("proof-copy-post");
+  const clearPostButton = byId("proof-clear-post");
+  const others = byId("proof-others");
+  const othersCount = byId("proof-others-count");
+  const othersList = byId("proof-others-list");
+  const copyAllButton = byId("proof-copy-all");
+  const selectionButton = byId("proof-selection-btn");
+  const toastElement = byId("proof-toast");
+  const fallbackDialog = byId("proof-fallback");
+  const fallbackText = byId("proof-fallback-text");
+  const trashIcon = byId("proof-icon-trash");
+
+  const slug = location.pathname.replace(/^\/|\/$/g, "");
+
+  let store = loadStore();
+  saveStore(store);
+
+  let cachedSelection = null;
+  let composerSelection = null;
+  let selectionTimer;
+  let settleCallback = null;
+  let settleTimer;
+  let toastTimer;
+  let clearSelectionTimer;
+
+  function render() {
+    const comments = store[slug] ?? [];
+    slugLabel.textContent = slug;
+    fabCount.textContent = String(comments.length);
+    list.replaceChildren(...comments.map(renderItem));
+    emptyMessage.hidden = comments.length > 0;
+    copyPostButton.disabled = comments.length === 0;
+    clearPostButton.disabled = comments.length === 0;
+    renderOthers();
+  }
+
+  function renderItem(comment) {
+    const item = document.createElement("li");
+    item.className = "proof-item";
+
+    if (comment.quote) {
+      const quote = document.createElement("blockquote");
+      quote.textContent = comment.quote;
+      item.append(quote);
+    }
+
+    const note = document.createElement("p");
+    note.className = "proof-item-note";
+    note.textContent = comment.note || "(코멘트 없음)";
+    item.append(note);
+
+    const remove = button("proof-btn proof-btn-icon proof-item-remove", "", () => {
+      if (!confirm(`이 코멘트를 삭제할까요?\n\n${previewText(comment.note || comment.quote)}`)) return;
+      store = removeComment(store, slug, comment.id);
+      persist("삭제됨");
+    });
+    remove.setAttribute("aria-label", "이 코멘트 삭제");
+    remove.append(trashIcon.content.cloneNode(true));
+    item.append(remove);
+    return item;
+  }
+
+  function renderOthers() {
+    const entries = Object.entries(store).filter(([key]) => key !== slug);
+    others.hidden = entries.length === 0;
+    othersCount.textContent = String(entries.length);
+    othersList.replaceChildren(
+      ...entries.map(([otherSlug, comments]) => {
+        const row = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `/${otherSlug}/`;
+        link.textContent = otherSlug;
+        const count = document.createElement("span");
+        count.className = "proof-others-badge";
+        count.textContent = `${comments.length}건`;
+        const copy = button("proof-btn", "복사", () => {
+          void copyText(formatPost(otherSlug, comments), otherSlug);
+        });
+        const clear = button("proof-btn proof-btn-danger", "삭제", () => {
+          if (!confirm(`'${otherSlug}'의 코멘트 ${comments.length}건을 삭제할까요?`)) return;
+          store = clearPost(store, otherSlug);
+          persist("삭제됨");
+        });
+        row.append(link, count, copy, clear);
+        return row;
+      }),
+    );
+  }
+
+  function previewText(source) {
+    return source.length > 40 ? `${source.slice(0, 39)}…` : source;
+  }
+
+  function button(className, label, onClick) {
+    const element = document.createElement("button");
+    element.type = "button";
+    element.className = className;
+    element.textContent = label;
+    element.addEventListener("click", onClick);
+    return element;
+  }
+
+  function persist(successMessage) {
+    const saved = saveStore(store);
+    render();
+    if (!saved) {
+      toast("저장하지 못했습니다 — localStorage에 쓸 수 없습니다");
+    } else if (successMessage) {
+      toast(successMessage);
+    }
+  }
+
+  function syncFab() {
+    fab.hidden = !panel.hidden || !composer.hidden;
+  }
+
+  function setOpen(open) {
+    panel.hidden = !open;
+    fab.setAttribute("aria-expanded", String(open));
+    syncFab();
+    try {
+      localStorage.setItem(OPEN_KEY, open ? "1" : "0");
+    } catch (error) {
+      console.debug("[proof] open state not saved", error);
+    }
+  }
+
+  function readOpen() {
+    try {
+      return localStorage.getItem(OPEN_KEY) === "1";
+    } catch {
+      return false;
+    }
+  }
+
+  function scheduleCapture() {
+    clearTimeout(selectionTimer);
+    selectionTimer = setTimeout(captureSelection, SELECTION_DEBOUNCE_MS);
+  }
+
+  function captureSelection() {
+    const selection = document.getSelection();
+    const range =
+      selection && !selection.isCollapsed && selection.rangeCount > 0
+        ? selection.getRangeAt(0)
+        : null;
+    const quote =
+      range && content.contains(range.commonAncestorContainer)
+        ? normalizeQuote(selection.toString())
+        : "";
+
+    if (!range || !quote) {
+      hideSelectionButton();
+      clearTimeout(clearSelectionTimer);
+      clearSelectionTimer = setTimeout(clearCachedSelection, SELECTION_GRACE_MS);
+      return;
+    }
+
+    clearTimeout(clearSelectionTimer);
+    cachedSelection = { quote, heading: nearestHeading(range), range: range.cloneRange() };
+    updateAffordance();
+    if (finePointer.matches) {
+      showSelectionButton(range);
+    } else {
+      hideSelectionButton();
+    }
+  }
+
+  function clearCachedSelection() {
+    clearTimeout(clearSelectionTimer);
+    cachedSelection = null;
+    updateAffordance();
+  }
+
+  function updateAffordance() {
+    const selecting = cachedSelection !== null;
+    fab.classList.toggle("is-selecting", selecting);
+    fabLabel.textContent = selecting ? "선택 영역에 코멘트" : "교정";
+    fabCount.hidden = selecting;
+    newButton.classList.toggle("proof-btn-primary", selecting);
+    newButton.textContent = selecting ? "＋ 선택 영역에 코멘트" : "＋ 코멘트";
+  }
+
+  function nearestHeading(range) {
+    let found = "";
+    for (const heading of content.querySelectorAll("h2, h3, h4")) {
+      const position = heading.compareDocumentPosition(range.startContainer);
+      if (!(position & Node.DOCUMENT_POSITION_FOLLOWING)) break;
+      const level = Number(heading.tagName.charAt(1));
+      found = `${"#".repeat(level)} ${heading.textContent?.trim() ?? ""}`;
+    }
+    return found;
+  }
+
+  function showSelectionButton(range) {
+    const rects = range.getClientRects();
+    const anchor = rects.length > 0 ? rects[rects.length - 1] : range.getBoundingClientRect();
+    selectionButton.hidden = false;
+    const size = selectionButton.getBoundingClientRect();
+    const margin = 8;
+    const left = Math.min(
+      Math.max(margin, anchor.right - size.width),
+      window.innerWidth - size.width - margin,
+    );
+    const top = Math.min(anchor.bottom + margin, window.innerHeight - size.height - margin);
+    selectionButton.style.left = `${left}px`;
+    selectionButton.style.top = `${top}px`;
+  }
+
+  function hideSelectionButton() {
+    selectionButton.hidden = true;
+  }
+
+  function revealRange(range) {
+    const rect = range.getBoundingClientRect();
+    if (rect.width === 0 && rect.height === 0) return false;
+    const visibleTop = viewport ? viewport.offsetTop : 0;
+    const visibleHeight = viewport ? viewport.height : window.innerHeight;
+    const cardHeight = composer.hidden ? 0 : composer.getBoundingClientRect().height + 24;
+    const margin = 16;
+    const inView =
+      rect.top >= visibleTop + margin &&
+      rect.bottom <= visibleTop + visibleHeight - cardHeight - margin;
+    if (inView) return false;
+    window.scrollBy({ top: rect.top - (visibleTop + visibleHeight * 0.3), behavior: "smooth" });
+    return true;
+  }
+
+  function afterViewportSettles(callback) {
+    settleCallback = callback;
+    restartSettleTimer(finePointer.matches ? 0 : REVEAL_FALLBACK_MS);
+  }
+
+  function restartSettleTimer(wait) {
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(() => {
+      const callback = settleCallback;
+      settleCallback = null;
+      callback?.();
+    }, wait);
+  }
+
+  function showComposer() {
+    composer.classList.remove("is-preparing");
+  }
+
+  function openComposer(selected) {
+    const alreadyOpen = !composer.hidden;
+    composerSelection = selected;
+    renderComposerContext();
+    if (!alreadyOpen) {
+      noteInput.value = "";
+      setOpen(false);
+      composer.hidden = false;
+      composer.classList.toggle("is-preparing", !finePointer.matches);
+      syncFab();
+    }
+    hideSelectionButton();
+    noteInput.focus({ preventScroll: true });
+    afterViewportSettles(() => {
+      const scrolled = composerSelection ? revealRange(composerSelection.range) : false;
+      setTimeout(showComposer, scrolled ? SCROLL_SETTLE_MS : 0);
+    });
+  }
+
+  function closeComposer() {
+    const range = composerSelection?.range ?? null;
+    clearHighlight();
+    document.getSelection()?.removeAllRanges();
+    composer.hidden = true;
+    composerSelection = null;
+    noteInput.value = "";
+    syncFab();
+    if (range) afterViewportSettles(() => revealRange(range));
+  }
+
+  function requestCloseComposer() {
+    if (noteInput.value.trim() !== "" && !confirm("작성 중인 코멘트를 버릴까요?")) return;
+    closeComposer();
+  }
+
+  function renderComposerContext() {
+    const shortcuts = finePointer.matches ? " — Cmd/Ctrl+Enter 저장, Esc 취소" : "";
+    if (!composerSelection) {
+      clearHighlight();
+      noteInput.placeholder = `글 전체에 대한 코멘트${shortcuts}`;
+      return;
+    }
+    if (canHighlight) {
+      showHighlight();
+      noteInput.placeholder = `표시된 문장에 대한 코멘트${shortcuts}`;
+    } else {
+      noteInput.placeholder = `“${previewText(composerSelection.quote)}”에 대한 코멘트${shortcuts}`;
+    }
+  }
+
+  function showHighlight() {
+    if (canHighlight && composerSelection) {
+      CSS.highlights.set(HIGHLIGHT_NAME, new Highlight(composerSelection.range));
+    }
+  }
+
+  function clearHighlight() {
+    if (canHighlight) CSS.highlights.delete(HIGHLIGHT_NAME);
+  }
+
+  composer.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const note = noteInput.value.trim();
+    if (!note && !composerSelection) {
+      toast("인용이나 코멘트 중 하나는 있어야 합니다");
+      return;
+    }
+    store = addComment(store, slug, {
+      quote: composerSelection?.quote ?? "",
+      heading: composerSelection?.heading ?? "",
+      note,
+    });
+    clearCachedSelection();
+    closeComposer();
+    persist("저장됨");
+  });
+
+  noteInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
+      event.preventDefault();
+      composer.requestSubmit();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      requestCloseComposer();
+    }
+  });
+
+  cancelButton.addEventListener("click", requestCloseComposer);
+
+  selectionButton.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+    openComposer(cachedSelection);
+  });
+
+  newButton.addEventListener("click", () => openComposer(cachedSelection));
+
+  async function copyText(text, label) {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast(`${label} 복사됨`);
+    } catch (error) {
+      console.warn("[proof] 클립보드 쓰기 실패, 수동 복사로 대체합니다", error);
+      fallbackText.value = text;
+      fallbackDialog.showModal();
+      fallbackText.focus();
+      fallbackText.select();
+    }
+  }
+
+  copyPostButton.addEventListener("click", () => {
+    void copyText(formatPost(slug, store[slug] ?? []), "전체");
+  });
+  copyAllButton.addEventListener("click", () => {
+    void copyText(formatAll(store), "모든 글");
+  });
+  clearPostButton.addEventListener("click", () => {
+    const count = (store[slug] ?? []).length;
+    if (!confirm(`이 글의 코멘트 ${count}건을 삭제할까요?`)) return;
+    store = clearPost(store, slug);
+    persist("삭제됨");
+  });
+
+  function toast(message) {
+    toastElement.textContent = message;
+    toastElement.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toastElement.hidden = true;
+    }, TOAST_MS);
+  }
+
+  fab.addEventListener("click", () => {
+    if (cachedSelection) {
+      openComposer(cachedSelection);
+    } else {
+      setOpen(true);
+    }
+  });
+  closeButton.addEventListener("click", () => setOpen(false));
+  document.addEventListener("selectionchange", scheduleCapture);
+
+  function syncKeyboardInset() {
+    const inset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+    root.style.setProperty("--proof-keyboard-inset", `${Math.round(inset)}px`);
+  }
+  if (viewport) {
+    viewport.addEventListener("resize", () => {
+      syncKeyboardInset();
+      if (settleCallback) restartSettleTimer(REVEAL_SETTLE_MS);
+    });
+    viewport.addEventListener("scroll", syncKeyboardInset);
+  }
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!selectionButton.hidden) scheduleCapture();
+    },
+    { passive: true },
+  );
+  window.addEventListener("storage", (event) => {
+    if (event.key !== null && event.key !== STORAGE_KEY) return;
+    store = loadStore();
+    render();
+  });
+  for (const type of ["touchstart", "touchend"]) {
+    root.addEventListener(type, (event) => event.stopPropagation(), { passive: true });
+  }
+
+  setOpen(readOpen());
+  render();
+</script>
+
+<style is:inline>
+  .proof-drawer {
+    --proof-z: 85;
+    --proof-radius: 10px;
+    --proof-danger: #b3402f;
+    --proof-yellow: #f2c94c;
+    --proof-keyboard-inset: 0px;
+    --proof-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  [data-theme="dark"] .proof-drawer {
+    --proof-danger: #e58a72;
+    --proof-yellow: #f4e39a;
+  }
+
+  :root {
+    --proof-mark: #ffe066;
+    --proof-mark-text: #1a1a1a;
+  }
+
+  [data-theme="dark"] {
+    --proof-mark: #f4e39a;
+    --proof-mark-text: #1a1a1a;
+  }
+
+  ::highlight(proof-quote) {
+    background-color: var(--proof-mark);
+    color: var(--proof-mark-text);
+  }
+
+  .proof-drawer [hidden] {
+    display: none !important;
+  }
+
+  .proof-fab,
+  .proof-panel,
+  .proof-composer,
+  .proof-toast {
+    transition-property: opacity, transform, display;
+    transition-duration: 0.2s, 0.25s, 0.25s;
+    transition-timing-function: ease;
+    transition-behavior: allow-discrete;
+  }
+
+  .proof-composer {
+    transition-property: opacity, transform, display, bottom;
+    transition-duration: 0.2s, 0.25s, 0.25s, 0.25s;
+  }
+
+  .proof-panel[hidden],
+  .proof-composer[hidden],
+  .proof-composer.is-preparing {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .proof-composer.is-preparing {
+    pointer-events: none;
+  }
+
+  .proof-fab[hidden] {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .proof-toast[hidden] {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+
+  @starting-style {
+    .proof-panel:not([hidden]),
+    .proof-composer:not([hidden]) {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .proof-fab:not([hidden]) {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .proof-toast:not([hidden]) {
+      opacity: 0;
+      transform: translate(-50%, -8px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .proof-fab,
+    .proof-panel,
+    .proof-composer,
+    .proof-toast {
+      transition-duration: 0s;
+    }
+  }
+
+  .proof-drawer > * {
+    pointer-events: auto;
+  }
+
+  .proof-drawer button {
+    font: inherit;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .proof-drawer blockquote {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 0;
+    padding: 2px 0 2px 10px;
+    border-left: 3px solid var(--color-accent-2);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    overflow: hidden;
+  }
+
+  .proof-fab {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: var(--proof-z);
+    padding: 8px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: 0 4px 14px var(--color-shadow);
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .proof-fab:hover {
+    border-color: var(--color-accent);
+  }
+
+  .proof-fab:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .proof-fab.is-selecting {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  .proof-panel {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: var(--proof-z);
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    max-height: 85vh;
+    border: 2px solid var(--proof-yellow);
+    border-radius: var(--proof-radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: 0 12px 32px var(--color-shadow-hover);
+    overflow: hidden;
+  }
+
+  .proof-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .proof-panel-title {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .proof-panel-title code {
+    font-family: var(--proof-mono);
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .proof-panel-actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: 6px;
+  }
+
+  .proof-panel-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+    padding: 10px 12px;
+    overflow-y: auto;
+  }
+
+  .proof-btn {
+    padding: 5px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .proof-btn:hover:not(:disabled) {
+    background: var(--color-surface);
+  }
+
+  .proof-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  .proof-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .proof-btn-primary {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .proof-btn-danger {
+    color: var(--proof-danger);
+  }
+
+  .proof-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 7px;
+    border-color: transparent;
+    color: var(--color-text-muted);
+  }
+
+  .proof-btn-icon svg {
+    display: block;
+  }
+
+  .proof-btn-icon:hover:not(:disabled) {
+    color: var(--color-text);
+  }
+
+  .proof-composer {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + var(--proof-keyboard-inset));
+    z-index: calc(var(--proof-z) + 1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    padding: 12px;
+    border: 2px solid var(--proof-yellow);
+    border-radius: var(--proof-radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: 0 12px 32px var(--color-shadow-hover);
+  }
+
+  .proof-composer textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: vertical;
+  }
+
+  .proof-composer-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .proof-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .proof-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-right: 28px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--color-border);
+  }
+
+  .proof-item-remove {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+  }
+
+  .proof-item-remove:hover:not(:disabled) {
+    color: var(--proof-danger);
+  }
+
+  .proof-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .proof-item-note {
+    margin: 0;
+    white-space: pre-wrap;
+  }
+
+  .proof-empty {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .proof-panel-footer {
+    display: flex;
+    gap: 6px;
+    padding: 10px 12px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .proof-panel-footer .proof-btn {
+    flex: 1;
+  }
+
+  .proof-others {
+    padding: 8px 12px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .proof-others summary {
+    cursor: pointer;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+  }
+
+  .proof-others ul {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 8px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .proof-others li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .proof-others a {
+    flex: 1;
+    min-width: 0;
+    font-family: var(--proof-mono);
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .proof-others-badge {
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  .proof-others > .proof-btn {
+    width: 100%;
+  }
+
+  .proof-selection-btn {
+    position: fixed;
+    z-index: calc(var(--proof-z) + 1);
+    padding: 6px 12px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    box-shadow: 0 4px 14px var(--color-shadow-hover);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .proof-toast {
+    position: fixed;
+    top: 62px;
+    left: 50%;
+    z-index: calc(var(--proof-z) + 2);
+    transform: translateX(-50%);
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    box-shadow: 0 4px 14px var(--color-shadow);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .proof-fallback {
+    width: min(90vw, 560px);
+    padding: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--proof-radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  .proof-fallback::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .proof-fallback p {
+    margin: 0 0 10px;
+  }
+
+  .proof-fallback textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-code-bg);
+    color: var(--color-text);
+    font-family: var(--proof-mono);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .proof-fallback form {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 599px) {
+    .proof-panel,
+    .proof-composer {
+      right: 12px;
+      left: 12px;
+      width: auto;
+      max-width: none;
+      border-radius: 14px;
+    }
+
+    .proof-panel {
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      max-height: 85vh;
+      max-height: 85dvh;
+    }
+
+    .proof-composer {
+      bottom: calc(12px + env(safe-area-inset-bottom) + var(--proof-keyboard-inset));
+    }
+
+    .proof-fab {
+      bottom: calc(16px + env(safe-area-inset-bottom));
+    }
+  }
+</style>

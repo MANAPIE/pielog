@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="알고리즘의 이름과 비용 ep.02 cover">
+  <style>
+  :root {
+    --c-bg: #f6f4fa;
+    --c-fg: #1b1430;
+    --c-muted: #6c6280;
+    --c-accent: #7A5AA8; --c-accent-2: #9179BE; --c-accent-3: #AF9DD2;
+    --c-num: rgba(122,90,168,0.14);
+    --c-dot: rgba(122,90,168,0.10);
+    --c-line: rgba(122,90,168,0.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #120e1c;
+      --c-fg: #ece7f5;
+      --c-muted: #a99fc0;
+      --c-accent: #B3A0D8; --c-accent-2: #8E76BE; --c-accent-3: #6E5A9C;
+      --c-num: rgba(179,160,216,0.22);
+      --c-dot: rgba(179,160,216,0.10);
+      --c-line: rgba(179,160,216,0.24);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+  .ln { stroke: var(--c-line); stroke-width: 1.5; fill: none; }
+  .ac { stroke: var(--c-accent); }
+  .a2 { stroke: var(--c-accent-2); }
+  .a3 { stroke: var(--c-accent-3); }
+</style>
+  <defs>
+    <pattern id="dtalgo02" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="hAalgo02" cx="0.16" cy="0.84" r="0.58">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="hBalgo02" cx="0.86" cy="0.14" r="0.56">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dtalgo02)"/>
+  <rect width="1200" height="630" fill="url(#hAalgo02)"/>
+  <rect width="1200" height="630" fill="url(#hBalgo02)"/>
+
+  <circle cx="1210" cy="560" r="330" class="ln"/>
+  <rect x="-200" y="-140" width="480" height="480" rx="36" class="ln" transform="rotate(-11 40 100)"/>
+
+  <g>
+<rect x="140" y="120" width="900" height="56" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 590 148)"/><rect x="140" y="220" width="540" height="48" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(0 410 244)"/><rect x="700" y="220" width="340" height="48" rx="10" fill="var(--c-bg)" fill-opacity="0.10" stroke="var(--c-line)" stroke-width="2" transform="rotate(0 870 244)"/><rect x="140" y="306" width="300" height="48" rx="10" fill="var(--c-bg)" fill-opacity="0.10" stroke="var(--c-line)" stroke-width="2" transform="rotate(0 290 330)"/><rect x="460" y="306" width="220" height="48" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent-2)" stroke-width="2" transform="rotate(0 570 330)"/><rect x="460" y="392" width="96" height="48" rx="10" fill="var(--c-bg)" fill-opacity="0.92" stroke="var(--c-accent)" stroke-width="3" transform="rotate(0 508 416)"/><line x1="600" y1="176" x2="600" y2="216" stroke="var(--c-accent-2)" stroke-width="2.5" opacity="0.85" stroke-dasharray="6 6" stroke-linecap="round"/><line x1="590" y1="268" x2="560" y2="302" stroke="var(--c-accent-2)" stroke-width="2.5" opacity="0.85" stroke-dasharray="6 6" stroke-linecap="round"/><line x1="512" y1="354" x2="508" y2="388" stroke="var(--c-accent-2)" stroke-width="2.5" opacity="0.85" stroke-dasharray="6 6" stroke-linecap="round"/><path d="M508 460 L 508 500" stroke="var(--c-accent)" stroke-width="4"/><path d="M0 0 L 24 13 L 0 26 Z" fill="var(--c-accent-2)" fill-opacity="0.85" transform="translate(496 500) rotate(90)"/><circle cx="980" cy="470" r="66" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 6" opacity="0.75"/><circle cx="980" cy="470" r="40" fill="none" stroke="var(--c-accent-3)" stroke-width="2" opacity="0.7"/><circle cx="160" cy="560" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="182" cy="560" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="204" cy="560" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="226" cy="560" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><path d="M700 546 l 14 15 l 30 -34" fill="none" stroke="var(--c-accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="1148" y="602" class="ep-number" text-anchor="end">02</text>
+</svg>

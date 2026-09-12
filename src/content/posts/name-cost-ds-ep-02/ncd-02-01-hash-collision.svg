@@ -1,0 +1,117 @@
+<svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-hash">
+  <title id="t-hash">해시 충돌 처리: 체이닝과 개방 주소법 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.10); --c-soft-2: rgba(194,112,61,0.10);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.14); --c-soft-2: rgba(224,154,107,0.14);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+      .bk { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .bkh { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 2; }
+      .idx { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+      .nd { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.5; }
+      .nd2 { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.5; }
+      .kv { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .arr { stroke: var(--c-accent); stroke-width: 1.6; fill: none; }
+      .arr2 { stroke: var(--c-accent-2); stroke-width: 1.6; fill: none; stroke-dasharray: 4 3; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .tr { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+    </style>
+    <marker id="h-a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-accent)"/>
+    </marker>
+    <marker id="h-b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="540"/>
+
+  <text x="24" y="28" class="ttl">같은 자리에 두 키가 오면: 밖으로 잇거나, 옆으로 밀거나</text>
+  <text x="24" y="48" class="sub">apple · grape · melon이 모두 2번 버킷으로 해싱된 상황</text>
+
+  <!-- 왼쪽: 체이닝 -->
+  <g transform="translate(24 66)">
+    <rect width="366" height="252" rx="8" class="pane"/>
+    <text x="18" y="24" class="hd" fill="var(--c-accent)">CHAINING · 밖으로 잇기</text>
+    <g transform="translate(18 40)">
+      <g><text x="-4" y="22" class="idx">0</text><rect x="12" width="64" height="30" rx="4" class="bk"/></g>
+      <g transform="translate(0 38)"><text x="-4" y="22" class="idx">1</text><rect x="12" width="64" height="30" rx="4" class="bk"/></g>
+      <g transform="translate(0 76)">
+        <text x="-4" y="22" class="idx">2</text><rect x="12" width="64" height="30" rx="4" class="bkh"/>
+        <g transform="translate(100 0)"><rect width="70" height="30" rx="4" class="nd"/><text x="35" y="20" class="kv" text-anchor="middle">apple</text></g>
+        <g transform="translate(196 0)"><rect width="70" height="30" rx="4" class="nd"/><text x="35" y="20" class="kv" text-anchor="middle">grape</text></g>
+        <g transform="translate(292 0)"><rect width="70" height="30" rx="4" class="nd"/><text x="35" y="20" class="kv" text-anchor="middle">melon</text></g>
+        <g class="arr">
+          <line x1="76" y1="15" x2="96" y2="15" marker-end="url(#h-a)"/>
+          <line x1="170" y1="15" x2="192" y2="15" marker-end="url(#h-a)"/>
+          <line x1="266" y1="15" x2="288" y2="15" marker-end="url(#h-a)"/>
+        </g>
+      </g>
+      <g transform="translate(0 114)"><text x="-4" y="22" class="idx">3</text><rect x="12" width="64" height="30" rx="4" class="bk"/></g>
+      <g transform="translate(0 152)"><text x="-4" y="22" class="idx">4</text><rect x="12" width="64" height="30" rx="4" class="bk"/></g>
+    </g>
+    <text x="18" y="240" class="sub">버킷은 목록의 머리만 들고, 실제 값은 바깥 노드에 있습니다</text>
+  </g>
+
+  <!-- 오른쪽: 개방 주소법 -->
+  <g transform="translate(410 66)">
+    <rect width="366" height="252" rx="8" class="pane"/>
+    <text x="18" y="24" class="hd" fill="var(--c-accent-2)">OPEN ADDRESSING · 옆으로 밀기</text>
+    <g transform="translate(18 40)">
+      <g><text x="-4" y="22" class="idx">0</text><rect x="12" width="150" height="30" rx="4" class="bk"/></g>
+      <g transform="translate(0 38)"><text x="-4" y="22" class="idx">1</text><rect x="12" width="150" height="30" rx="4" class="bk"/></g>
+      <g transform="translate(0 76)">
+        <text x="-4" y="22" class="idx">2</text><rect x="12" width="150" height="30" rx="4" class="bkh"/>
+        <text x="87" y="20" class="kv" text-anchor="middle">apple</text>
+      </g>
+      <g transform="translate(0 114)">
+        <text x="-4" y="22" class="idx">3</text><rect x="12" width="150" height="30" rx="4" class="nd2"/>
+        <text x="87" y="20" class="kv" text-anchor="middle">grape</text>
+      </g>
+      <g transform="translate(0 152)">
+        <text x="-4" y="22" class="idx">4</text><rect x="12" width="150" height="30" rx="4" class="nd2"/>
+        <text x="87" y="20" class="kv" text-anchor="middle">melon</text>
+      </g>
+      <g class="arr2">
+        <path d="M172 92 C 210 92, 210 122, 172 128" marker-end="url(#h-b)"/>
+        <path d="M172 130 C 214 130, 214 160, 172 166" marker-end="url(#h-b)"/>
+      </g>
+      <text x="226" y="100" class="sub">충돌 → 다음 빈 칸</text>
+      <text x="226" y="138" class="sub">또 충돌 → 그다음</text>
+    </g>
+    <text x="18" y="240" class="sub">값이 배열 안에 그대로 들어가고, 자리가 밀립니다</text>
+  </g>
+
+  <!-- 특성 비교 -->
+  <g transform="translate(24 336)">
+    <rect width="752" height="122" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="26" class="ttl" font-size="13">같은 문제의 비용을 다르게 치릅니다</text>
+    <g transform="translate(20 42)">
+      <text x="0" y="16" class="hd" fill="var(--c-accent)">체이닝</text>
+      <text x="0" y="38" class="tr">추가 메모리 필요 · 삭제 단순 · 캐시 효율 낮음</text>
+      <text x="0" y="58" class="sub">노드가 흩어져 있어 포인터를 따라가야 합니다</text>
+      <text x="376" y="16" class="hd" fill="var(--c-accent-2)">개방 주소법</text>
+      <text x="376" y="38" class="tr">추가 메모리 없음 · 삭제 복잡 · 캐시 효율 높음</text>
+      <text x="376" y="58" class="sub">지운 자리에 표식을 남기지 않으면 탐색이 끊깁니다</text>
+    </g>
+  </g>
+
+  <text x="24" y="484" class="sub">적재율이 높아지면 둘 다 무너집니다. 그래서 리해싱이 필요합니다.</text>
+</svg>

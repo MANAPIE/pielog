@@ -1,0 +1,122 @@
+<svg viewBox="0 0 800 554" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-greedy">
+  <title id="t-greedy">그리디가 실패하는 동전 거스름돈 반례</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.12); --c-soft-2: rgba(194,112,61,0.14);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.16); --c-soft-2: rgba(224,154,107,0.18);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .coin { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .coinA { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 2; }
+      .coinB { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 2; }
+      .cv { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .stp { font-family: 'Inter',system-ui,sans-serif; font-size: 10px; font-weight: 700; fill: var(--c-muted); }
+      .rem { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-fg); }
+      .big { font-family: 'Inter',system-ui,sans-serif; font-size: 30px; font-weight: 800; }
+      .eq { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; }
+      .warn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .ln { stroke: var(--c-accent-2); stroke-width: 1.6; fill: none; stroke-dasharray: 5 4; }
+    </style>
+    <marker id="gr-a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="554"/>
+
+  <text x="24" y="28" class="ttl">매 순간 최선이 전체 최선은 아닙니다</text>
+  <text x="24" y="48" class="sub">액면가 1 · 3 · 4로 6원을 만들기</text>
+
+  <!-- 조건 -->
+  <g transform="translate(24 62)">
+    <rect width="752" height="52" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="32" class="hd" fill="var(--c-muted)">가진 동전</text>
+    <g transform="translate(110 12)">
+      <g><circle cx="14" cy="14" r="14" class="coin"/><text x="14" y="19" class="cv" text-anchor="middle">1</text></g>
+      <g transform="translate(38 0)"><circle cx="14" cy="14" r="14" class="coin"/><text x="14" y="19" class="cv" text-anchor="middle">3</text></g>
+      <g transform="translate(76 0)"><circle cx="14" cy="14" r="14" class="coin"/><text x="14" y="19" class="cv" text-anchor="middle">4</text></g>
+    </g>
+    <text x="256" y="32" class="hd" fill="var(--c-muted)">목표</text>
+    <text x="310" y="34" class="cv" font-size="16">6원</text>
+  </g>
+
+  <!-- 그리디 -->
+  <g transform="translate(24 130)">
+    <rect width="366" height="278" rx="8" class="pane"/>
+    <text x="18" y="26" class="hd" fill="var(--c-accent-2)">GREEDY · 항상 가장 큰 동전부터</text>
+
+    <g transform="translate(20 42)">
+      <text x="0" y="12" class="stp">1단계: 가장 큰 4를 고릅니다</text>
+      <g transform="translate(0 20)">
+        <circle cx="14" cy="14" r="14" class="coinA"/><text x="14" y="19" class="cv" text-anchor="middle">4</text>
+        <text x="44" y="19" class="rem">남은 금액 2</text>
+        <text x="152" y="19" class="warn" font-size="10.5">← 여기서 갈립니다</text>
+      </g>
+      <text x="0" y="80" class="stp">2단계: 4는 못 쓰니 1을 고릅니다</text>
+      <g transform="translate(0 88)">
+        <circle cx="14" cy="14" r="14" class="coinA"/><text x="14" y="19" class="cv" text-anchor="middle">1</text>
+        <text x="44" y="19" class="rem">남은 금액 1</text>
+      </g>
+      <text x="0" y="148" class="stp">3단계: 다시 1을 고릅니다</text>
+      <g transform="translate(0 156)">
+        <circle cx="14" cy="14" r="14" class="coinA"/><text x="14" y="19" class="cv" text-anchor="middle">1</text>
+        <text x="44" y="19" class="rem">남은 금액 0</text>
+      </g>
+    </g>
+    <text x="20" y="258" class="eq" fill="var(--c-accent-2)">4 + 1 + 1</text>
+  </g>
+
+  <!-- 최적해 -->
+  <g transform="translate(410 130)">
+    <rect width="366" height="278" rx="8" class="pane"/>
+    <text x="18" y="26" class="hd" fill="var(--c-accent)">OPTIMAL · 4를 아예 쓰지 않습니다</text>
+
+    <g transform="translate(20 42)">
+      <text x="0" y="12" class="stp">1단계: 3을 고릅니다</text>
+      <g transform="translate(0 20)">
+        <circle cx="14" cy="14" r="14" class="coinB"/><text x="14" y="19" class="cv" text-anchor="middle">3</text>
+        <text x="44" y="19" class="rem">남은 금액 3</text>
+      </g>
+      <text x="0" y="80" class="stp">2단계: 3을 한 번 더 고릅니다</text>
+      <g transform="translate(0 88)">
+        <circle cx="14" cy="14" r="14" class="coinB"/><text x="14" y="19" class="cv" text-anchor="middle">3</text>
+        <text x="44" y="19" class="rem">남은 금액 0</text>
+      </g>
+      <text x="0" y="148" class="sub">가장 큰 동전을 포기한 대가로</text>
+      <text x="0" y="166" class="sub">동전 하나를 아꼈습니다</text>
+    </g>
+    <text x="20" y="258" class="eq" fill="var(--c-accent)">3 + 3</text>
+  </g>
+
+  <!-- 결과 대비 -->
+  <g transform="translate(24 424)">
+    <rect width="366" height="60" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.4"/>
+    <text x="20" y="42" class="big" fill="var(--c-accent-2)">3개</text>
+    <text x="96" y="38" class="sub">그리디가 낸 답</text>
+  </g>
+  <g transform="translate(410 424)">
+    <rect width="366" height="60" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.4"/>
+    <text x="20" y="42" class="big" fill="var(--c-accent)">2개</text>
+    <text x="96" y="38" class="sub">실제 최적해</text>
+  </g>
+
+  <text x="24" y="516" class="warn">첫 단계에서 4를 고른 순간, 최적해가 있는 가지에서 이미 벗어났습니다.</text>
+  <text x="24" y="536" class="sub">그리디를 쓰려면 이 선택을 되돌릴 필요가 없다는 것을 먼저 증명해야 합니다.</text>
+</svg>

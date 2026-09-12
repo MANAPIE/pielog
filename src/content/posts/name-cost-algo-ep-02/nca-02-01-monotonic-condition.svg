@@ -1,0 +1,86 @@
+<svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-mono">
+  <title id="t-mono">정렬된 배열의 값 찾기와 일반 판정 문제가 모두 단조성 위에서 이분탐색되는 것을 보여주는 다이어그램</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.16); --c-soft-2: rgba(194,112,61,0.16);
+        --c-dim: rgba(107,114,128,0.30); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.20); --c-soft-2: rgba(224,154,107,0.20);
+          --c-dim: rgba(139,146,160,0.34); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+      .cl { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.1; }
+      .t { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.4; }
+      .f { fill: var(--c-card); stroke: var(--c-dim); stroke-width: 1.1; }
+      .st { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 2; }
+      .off { fill: var(--c-card); stroke: var(--c-dim); stroke-width: 1.1; }
+      .n { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .nd { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; fill: var(--c-muted); }
+      .m { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .mk { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; }
+      .ed { stroke: var(--c-line); stroke-width: 1.3; fill: none; opacity: 0.5; }
+      .edd { stroke: var(--c-dim); stroke-width: 1.2; fill: none; stroke-dasharray: 3 2; }
+      .kl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="var(--c-accent-2)"/></marker>
+  </defs>
+  <rect class="bg" width="800" height="330"/>
+  <text x="24" y="28" class="ttl">이분탐색의 조건은 정렬이 아니라 단조성입니다</text>
+  <text x="24" y="48" class="sub">판정이 한 번만 뒤집히면 절반을 버릴 수 있습니다</text>
+  <g transform="translate(24 62)"><rect width="752" height="112" rx="8" class="pane"/>
+    <text x="16" y="22" class="hd" fill="var(--c-accent)">정렬된 배열에서 7 이상인 첫 위치 찾기</text>
+    <text x="16" y="52" class="m">값</text>
+<rect x="60" y="34" width="52" height="26" rx="5" class="cl"/><text x="86" y="51" class="n" text-anchor="middle">1</text>
+    <rect x="116" y="34" width="52" height="26" rx="5" class="cl"/><text x="142" y="51" class="n" text-anchor="middle">3</text>
+    <rect x="172" y="34" width="52" height="26" rx="5" class="cl"/><text x="198" y="51" class="n" text-anchor="middle">4</text>
+    <rect x="228" y="34" width="52" height="26" rx="5" class="cl"/><text x="254" y="51" class="n" text-anchor="middle">7</text>
+    <rect x="284" y="34" width="52" height="26" rx="5" class="cl"/><text x="310" y="51" class="n" text-anchor="middle">9</text>
+    <rect x="340" y="34" width="52" height="26" rx="5" class="cl"/><text x="366" y="51" class="n" text-anchor="middle">12</text>
+    <rect x="396" y="34" width="52" height="26" rx="5" class="cl"/><text x="422" y="51" class="n" text-anchor="middle">15</text>
+    <text x="16" y="86" class="m">7 이상?</text>
+<rect x="60" y="68" width="52" height="26" rx="5" class="f"/><text x="86" y="85" class="kl" text-anchor="middle">거짓</text>
+    <rect x="116" y="68" width="52" height="26" rx="5" class="f"/><text x="142" y="85" class="kl" text-anchor="middle">거짓</text>
+    <rect x="172" y="68" width="52" height="26" rx="5" class="f"/><text x="198" y="85" class="kl" text-anchor="middle">거짓</text>
+    <rect x="228" y="68" width="52" height="26" rx="5" class="t"/><text x="254" y="85" class="kl" text-anchor="middle">참</text>
+    <rect x="284" y="68" width="52" height="26" rx="5" class="t"/><text x="310" y="85" class="kl" text-anchor="middle">참</text>
+    <rect x="340" y="68" width="52" height="26" rx="5" class="t"/><text x="366" y="85" class="kl" text-anchor="middle">참</text>
+    <rect x="396" y="68" width="52" height="26" rx="5" class="t"/><text x="422" y="85" class="kl" text-anchor="middle">참</text>
+    <line x1="226" y1="30" x2="226" y2="100" class="edd"/><text x="226" y="108" class="mk" text-anchor="middle" fill="var(--c-accent-2)">경계 = 답</text>
+  </g>
+  <g transform="translate(24 188)"><rect width="752" height="112" rx="8" class="pane"/>
+    <text x="16" y="22" class="hd" fill="var(--c-accent)">배열이 아니어도 · 길이 x로 M개를 만들 수 있는가</text>
+    <text x="16" y="52" class="m">x</text>
+<rect x="60" y="34" width="52" height="26" rx="5" class="cl"/><text x="86" y="51" class="n" text-anchor="middle">1</text>
+    <rect x="116" y="34" width="52" height="26" rx="5" class="cl"/><text x="142" y="51" class="n" text-anchor="middle">2</text>
+    <rect x="172" y="34" width="52" height="26" rx="5" class="cl"/><text x="198" y="51" class="n" text-anchor="middle">3</text>
+    <rect x="228" y="34" width="52" height="26" rx="5" class="cl"/><text x="254" y="51" class="n" text-anchor="middle">4</text>
+    <rect x="284" y="34" width="52" height="26" rx="5" class="cl"/><text x="310" y="51" class="n" text-anchor="middle">5</text>
+    <rect x="340" y="34" width="52" height="26" rx="5" class="cl"/><text x="366" y="51" class="n" text-anchor="middle">6</text>
+    <rect x="396" y="34" width="52" height="26" rx="5" class="cl"/><text x="422" y="51" class="n" text-anchor="middle">7</text>
+    <text x="16" y="86" class="m">가능?</text>
+<rect x="60" y="68" width="52" height="26" rx="5" class="t"/><text x="86" y="85" class="kl" text-anchor="middle">참</text>
+    <rect x="116" y="68" width="52" height="26" rx="5" class="t"/><text x="142" y="85" class="kl" text-anchor="middle">참</text>
+    <rect x="172" y="68" width="52" height="26" rx="5" class="t"/><text x="198" y="85" class="kl" text-anchor="middle">참</text>
+    <rect x="228" y="68" width="52" height="26" rx="5" class="t"/><text x="254" y="85" class="kl" text-anchor="middle">참</text>
+    <rect x="284" y="68" width="52" height="26" rx="5" class="f"/><text x="310" y="85" class="kl" text-anchor="middle">거짓</text>
+    <rect x="340" y="68" width="52" height="26" rx="5" class="f"/><text x="366" y="85" class="kl" text-anchor="middle">거짓</text>
+    <rect x="396" y="68" width="52" height="26" rx="5" class="f"/><text x="422" y="85" class="kl" text-anchor="middle">거짓</text>
+    <line x1="282" y1="30" x2="282" y2="100" class="edd"/><text x="282" y="108" class="mk" text-anchor="middle" fill="var(--c-accent-2)">경계 = 답 4</text>
+  </g>
+  <text x="24" y="320" class="sub">왼쪽이 전부 거짓이고 오른쪽이 전부 참이든 그 반대든, 한 번만 바뀌면 됩니다. 정렬된 배열에서 값 찾기는 이 조건의 특수한 경우입니다.</text>
+</svg>

@@ -1,0 +1,147 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-sel">
+  <title id="t-sel">문제의 신호에서 접근 방법으로 이어지는 선택 트리</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.12); --c-soft-2: rgba(194,112,61,0.14);
+        --c-soft-3: rgba(99,102,168,0.12); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.16); --c-soft-2: rgba(224,154,107,0.18);
+          --c-soft-3: rgba(149,152,212,0.16); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; }
+      .q { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .root { fill: var(--c-soft-3); stroke: var(--c-accent-3); stroke-width: 2; }
+      .dest { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.8; }
+      .done { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.8; }
+      .qt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .dn { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .ep { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; font-weight: 700; fill: var(--c-accent); }
+      .yn { font-family: 'Inter',system-ui,sans-serif; font-size: 10px; font-weight: 700; }
+      .ed { stroke: var(--c-muted); stroke-width: 1.4; fill: none; }
+      .cap { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+    </style>
+    <marker id="t-a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-muted)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="600"/>
+
+  <text x="24" y="28" class="ttl">먼저 세고, 안 되면 그때 이름을 찾습니다</text>
+  <text x="24" y="48" class="sub">위에서 아래로 내려오며 처음 걸리는 신호를 따릅니다</text>
+
+  <!-- 루트 -->
+  <g transform="translate(24 66)">
+    <rect width="300" height="44" rx="6" class="root"/>
+    <text x="18" y="27" class="qt">경우의 수를 셀 수 있는가</text>
+  </g>
+  <path class="ed" d="M174 110 L 174 128" marker-end="url(#t-a)"/>
+
+  <g transform="translate(24 132)">
+    <rect width="300" height="44" rx="6" class="q"/>
+    <text x="18" y="27" class="qt">완전탐색이 시간 안에 통과하는가</text>
+  </g>
+
+  <!-- 예 -> 종결 -->
+  <text x="344" y="150" class="yn" fill="var(--c-accent-2)">예</text>
+  <path class="ed" d="M324 154 L 376 154" marker-end="url(#t-a)"/>
+  <g transform="translate(382 132)">
+    <rect width="394" height="44" rx="6" class="done"/>
+    <text x="18" y="27" class="dn">완전탐색 그대로 씁니다</text>
+    <text x="230" y="27" class="cap">더 빠른 방법을 찾을 이유가 없습니다</text>
+  </g>
+
+  <!-- 아니오 -> 네 갈래 -->
+  <text x="50" y="196" class="yn" fill="var(--c-muted)">아니오</text>
+
+  <g transform="translate(24 208)">
+    <g>
+      <path class="ed" d="M16 22 L 30 22" marker-end="url(#t-a)"/>
+      <g transform="translate(36 0)">
+        <rect width="286" height="44" rx="6" class="q"/>
+        <text x="16" y="27" class="qt">원소 사이에 연결 관계가 있는가</text>
+      </g>
+      <path class="ed" d="M322 22 L 346 22" marker-end="url(#t-a)"/>
+      <g transform="translate(352 0)">
+        <rect width="200" height="44" rx="6" class="dest"/>
+        <text x="16" y="20" class="dn">그래프 탐색</text>
+        <text x="16" y="35" class="ep">ep.01</text>
+      </g>
+    </g>
+
+    <g transform="translate(0 60)">
+      <path class="ed" d="M16 22 L 30 22" marker-end="url(#t-a)"/>
+      <g transform="translate(36 0)">
+        <rect width="286" height="44" rx="6" class="q"/>
+        <text x="16" y="27" class="qt">정렬하면 조건이 한 방향으로 바뀌는가</text>
+      </g>
+      <path class="ed" d="M322 22 L 346 22" marker-end="url(#t-a)"/>
+      <g transform="translate(352 0)">
+        <rect width="200" height="44" rx="6" class="dest"/>
+        <text x="16" y="20" class="dn">이분탐색 · 투 포인터</text>
+        <text x="16" y="35" class="ep">ep.02</text>
+      </g>
+    </g>
+
+    <g transform="translate(0 120)">
+      <path class="ed" d="M16 22 L 30 22" marker-end="url(#t-a)"/>
+      <g transform="translate(36 0)">
+        <rect width="286" height="44" rx="6" class="q"/>
+        <text x="16" y="27" class="qt">매 순간 최선이 전체 최선인가</text>
+      </g>
+      <path class="ed" d="M322 22 L 346 22" marker-end="url(#t-a)"/>
+      <g transform="translate(352 0)">
+        <rect width="200" height="44" rx="6" class="dest"/>
+        <text x="16" y="20" class="dn">그리디</text>
+        <text x="16" y="35" class="ep">ep.03</text>
+      </g>
+    </g>
+
+    <g transform="translate(0 180)">
+      <path class="ed" d="M16 22 L 30 22" marker-end="url(#t-a)"/>
+      <g transform="translate(36 0)">
+        <rect width="286" height="44" rx="6" class="q"/>
+        <text x="16" y="27" class="qt">같은 부분 문제가 반복되는가</text>
+      </g>
+      <path class="ed" d="M322 22 L 346 22" marker-end="url(#t-a)"/>
+      <g transform="translate(352 0)">
+        <rect width="200" height="44" rx="6" class="dest"/>
+        <text x="16" y="20" class="dn">동적 계획법</text>
+        <text x="16" y="35" class="cap">겹치는 부분 문제 + 최적 부분 구조</text>
+      </g>
+    </g>
+    <line x1="16" y1="-32" x2="16" y2="202" class="ed"/>
+  </g>
+
+  <!-- 자료형 전용 분기 -->
+  <g transform="translate(24 470)">
+    <rect width="752" height="106" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="26" class="hd" fill="var(--c-accent-3)">위 갈래와 무관하게, 다루는 대상이 정해져 있을 때</text>
+
+    <g transform="translate(20 38)">
+      <rect width="352" height="46" rx="6" class="q"/>
+      <text x="16" y="20" class="qt">문자열 안에서 찾는 문제인가</text>
+      <text x="16" y="37" class="cap">패턴 매칭 · 접미사 구조</text>
+      <text x="332" y="30" class="ep" text-anchor="end">ep.05</text>
+    </g>
+    <g transform="translate(388 38)">
+      <rect width="344" height="46" rx="6" class="q"/>
+      <text x="16" y="20" class="qt">정수의 성질을 쓰는 문제인가</text>
+      <text x="16" y="37" class="cap">소수 · 약수 · 모듈러</text>
+      <text x="324" y="30" class="ep" text-anchor="end">ep.06</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,70 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-dp">
+  <title id="t-dp">계단 오르기 점화식으로 dp 배열을 왼쪽부터 채우는 과정</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-soft: rgba(47,125,110,0.16); --c-soft-2: rgba(194,112,61,0.16);
+        --c-dim: rgba(107,114,128,0.30); --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-soft: rgba(111,195,176,0.20); --c-soft-2: rgba(224,154,107,0.20);
+          --c-dim: rgba(139,146,160,0.34); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+      .cl { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.1; }
+      .t { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.4; }
+      .f { fill: var(--c-card); stroke: var(--c-dim); stroke-width: 1.1; }
+      .st { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 2; }
+      .n { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .m { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .mk { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; }
+      .ed { stroke: var(--c-line); stroke-width: 1.3; fill: none; opacity: 0.5; }
+      .edd { stroke: var(--c-dim); stroke-width: 1.2; fill: none; stroke-dasharray: 3 2; }
+      .kl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="var(--c-accent-2)"/></marker>
+  </defs>
+  <rect class="bg" width="800" height="300"/>
+  <text x="24" y="28" class="ttl">상태를 정하면 표를 채우는 순서가 따라옵니다</text>
+  <text x="24" y="48" class="sub">dp의 i번째 = i번째 계단에 도달하는 방법의 수 · 한 번에 한 칸 또는 두 칸</text>
+  <g transform="translate(24 66)"><rect width="752" height="132" rx="8" class="pane"/>
+    <text x="20" y="30" class="m">i</text>
+    <text x="146" y="30" class="m" text-anchor="middle">0</text><text x="238" y="30" class="m" text-anchor="middle">1</text><text x="330" y="30" class="m" text-anchor="middle">2</text><text x="422" y="30" class="m" text-anchor="middle">3</text><text x="514" y="30" class="m" text-anchor="middle">4</text><text x="606" y="30" class="m" text-anchor="middle">5</text><text x="698" y="30" class="m" text-anchor="middle">6</text>
+    <text x="20" y="62" class="lg">dp</text>
+    <rect x="112" y="42" width="68" height="30" rx="5" class="t"/><text x="146" y="61" class="n" text-anchor="middle">1</text>
+    <rect x="204" y="42" width="68" height="30" rx="5" class="t"/><text x="238" y="61" class="n" text-anchor="middle">1</text>
+    <rect x="296" y="42" width="68" height="30" rx="5" class="cl"/><text x="330" y="61" class="n" text-anchor="middle">2</text>
+    <rect x="388" y="42" width="68" height="30" rx="5" class="cl"/><text x="422" y="61" class="n" text-anchor="middle">3</text>
+    <rect x="480" y="42" width="68" height="30" rx="5" class="cl"/><text x="514" y="61" class="n" text-anchor="middle">5</text>
+    <rect x="572" y="42" width="68" height="30" rx="5" class="cl"/><text x="606" y="61" class="n" text-anchor="middle">8</text>
+    <rect x="664" y="42" width="68" height="30" rx="5" class="st"/><text x="698" y="61" class="n" text-anchor="middle">13</text>
+    <path d="M 238 78 q 46 26 92 0" class="ed" marker-end="url(#ar)" fill="none"/>
+    <path d="M 146 78 q 92 40 184 0" class="edd" marker-end="url(#ar)" fill="none"/>
+    <path d="M 330 78 q 46 26 92 0" class="ed" marker-end="url(#ar)" fill="none"/>
+    <path d="M 238 78 q 92 40 184 0" class="edd" marker-end="url(#ar)" fill="none"/>
+    <path d="M 422 78 q 46 26 92 0" class="ed" marker-end="url(#ar)" fill="none"/>
+    <path d="M 330 78 q 92 40 184 0" class="edd" marker-end="url(#ar)" fill="none"/>
+    <path d="M 514 78 q 46 26 92 0" class="ed" marker-end="url(#ar)" fill="none"/>
+    <path d="M 422 78 q 92 40 184 0" class="edd" marker-end="url(#ar)" fill="none"/>
+    <path d="M 606 78 q 46 26 92 0" class="ed" marker-end="url(#ar)" fill="none"/>
+    <path d="M 514 78 q 92 40 184 0" class="edd" marker-end="url(#ar)" fill="none"/>
+    <text x="112" y="112" class="m">초기값</text><text x="204" y="112" class="m">초기값</text>
+    <text x="560" y="122" class="lg">한 칸 앞(실선)과 두 칸 앞(점선)을 더합니다</text>
+  </g>
+  <text x="24" y="228" class="lg">상태: i번째 계단에 도달하는 방법의 수 · 전이: dp의 i번째는 i-1번째와 i-2번째의 합</text>
+  <text x="24" y="250" class="lg">초기값: 0번째와 1번째는 1 · 순서: 작은 인덱스부터 채웁니다</text>
+  <text x="24" y="282" class="sub">전이에 필요한 값이 왼쪽에 이미 있으므로 왼쪽부터 채우면 됩니다. 순서를 거꾸로 잡으면 아직 없는 값을 참조하게 됩니다.</text>
+</svg>

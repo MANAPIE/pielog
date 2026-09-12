@@ -1,0 +1,211 @@
+<svg viewBox="0 0 800 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-sieve">
+  <title id="t-sieve">에라토스테네스의 체가 2부터 30까지를 걸러내는 과정</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-pr: rgba(47,125,110,0.34); --c-pr-b: #2F7D6E;
+        --c-out: rgba(107,114,128,0.14); --c-out-t: rgba(107,114,128,0.75);
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-pr: rgba(111,195,176,0.34); --c-pr-b: #6FC3B0;
+          --c-out: rgba(139,146,160,0.14); --c-out-t: rgba(139,146,160,0.70);
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .u { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .p { fill: var(--c-pr); stroke: var(--c-pr-b); stroke-width: 1.8; }
+      .x { fill: var(--c-out); stroke: none; }
+      .n { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .nx { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; fill: var(--c-out-t); }
+      .np { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 700; fill: var(--c-pr-b); }
+      .note { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="580"/>
+
+  <text x="24" y="28" class="ttl">지울 수를 세는 것이 아니라, 남는 수를 세는 방법</text>
+  <text x="24" y="48" class="sub">2부터 30까지 · 남은 가장 작은 수가 곧 다음 소수입니다</text>
+
+  <!-- 1단계 -->
+  <g transform="translate(24 66)">
+    <rect width="366" height="164" rx="8" class="pane"/>
+    <text x="42" y="24" class="hd" fill="var(--c-accent)">STEP 1 · 2를 확정하고 2의 배수를 지웁니다</text>
+    <g transform="translate(42 36)">
+      <rect width="26" height="26" rx="3" class="p"/><text x="13" y="17" class="np" text-anchor="middle">2</text>
+      <rect x="28" width="26" height="26" rx="3" class="u"/><text x="41" y="17" class="n" text-anchor="middle">3</text>
+      <rect x="56" width="26" height="26" rx="3" class="x"/><text x="69" y="17" class="nx" text-anchor="middle">4</text>
+      <rect x="84" width="26" height="26" rx="3" class="u"/><text x="97" y="17" class="n" text-anchor="middle">5</text>
+      <rect x="112" width="26" height="26" rx="3" class="x"/><text x="125" y="17" class="nx" text-anchor="middle">6</text>
+      <rect x="140" width="26" height="26" rx="3" class="u"/><text x="153" y="17" class="n" text-anchor="middle">7</text>
+      <rect x="168" width="26" height="26" rx="3" class="x"/><text x="181" y="17" class="nx" text-anchor="middle">8</text>
+      <rect x="196" width="26" height="26" rx="3" class="u"/><text x="209" y="17" class="n" text-anchor="middle">9</text>
+      <rect x="224" width="26" height="26" rx="3" class="x"/><text x="237" y="17" class="nx" text-anchor="middle">10</text>
+      <rect x="252" width="26" height="26" rx="3" class="u"/><text x="265" y="17" class="n" text-anchor="middle">11</text>
+
+      <rect y="28" width="26" height="26" rx="3" class="x"/><text x="13" y="45" class="nx" text-anchor="middle">12</text>
+      <rect x="28" y="28" width="26" height="26" rx="3" class="u"/><text x="41" y="45" class="n" text-anchor="middle">13</text>
+      <rect x="56" y="28" width="26" height="26" rx="3" class="x"/><text x="69" y="45" class="nx" text-anchor="middle">14</text>
+      <rect x="84" y="28" width="26" height="26" rx="3" class="u"/><text x="97" y="45" class="n" text-anchor="middle">15</text>
+      <rect x="112" y="28" width="26" height="26" rx="3" class="x"/><text x="125" y="45" class="nx" text-anchor="middle">16</text>
+      <rect x="140" y="28" width="26" height="26" rx="3" class="u"/><text x="153" y="45" class="n" text-anchor="middle">17</text>
+      <rect x="168" y="28" width="26" height="26" rx="3" class="x"/><text x="181" y="45" class="nx" text-anchor="middle">18</text>
+      <rect x="196" y="28" width="26" height="26" rx="3" class="u"/><text x="209" y="45" class="n" text-anchor="middle">19</text>
+      <rect x="224" y="28" width="26" height="26" rx="3" class="x"/><text x="237" y="45" class="nx" text-anchor="middle">20</text>
+      <rect x="252" y="28" width="26" height="26" rx="3" class="u"/><text x="265" y="45" class="n" text-anchor="middle">21</text>
+
+      <rect y="56" width="26" height="26" rx="3" class="x"/><text x="13" y="73" class="nx" text-anchor="middle">22</text>
+      <rect x="28" y="56" width="26" height="26" rx="3" class="u"/><text x="41" y="73" class="n" text-anchor="middle">23</text>
+      <rect x="56" y="56" width="26" height="26" rx="3" class="x"/><text x="69" y="73" class="nx" text-anchor="middle">24</text>
+      <rect x="84" y="56" width="26" height="26" rx="3" class="u"/><text x="97" y="73" class="n" text-anchor="middle">25</text>
+      <rect x="112" y="56" width="26" height="26" rx="3" class="x"/><text x="125" y="73" class="nx" text-anchor="middle">26</text>
+      <rect x="140" y="56" width="26" height="26" rx="3" class="u"/><text x="153" y="73" class="n" text-anchor="middle">27</text>
+      <rect x="168" y="56" width="26" height="26" rx="3" class="x"/><text x="181" y="73" class="nx" text-anchor="middle">28</text>
+      <rect x="196" y="56" width="26" height="26" rx="3" class="u"/><text x="209" y="73" class="n" text-anchor="middle">29</text>
+      <rect x="224" y="56" width="26" height="26" rx="3" class="x"/><text x="237" y="73" class="nx" text-anchor="middle">30</text>
+    </g>
+    <text x="42" y="150" class="note">4부터 시작합니다 (2×2)</text>
+  </g>
+
+  <!-- 2단계 -->
+  <g transform="translate(410 66)">
+    <rect width="366" height="164" rx="8" class="pane"/>
+    <text x="42" y="24" class="hd" fill="var(--c-accent)">STEP 2 · 남은 가장 작은 수 3을 확정합니다</text>
+    <g transform="translate(42 36)">
+      <rect width="26" height="26" rx="3" class="p"/><text x="13" y="17" class="np" text-anchor="middle">2</text>
+      <rect x="28" width="26" height="26" rx="3" class="p"/><text x="41" y="17" class="np" text-anchor="middle">3</text>
+      <rect x="56" width="26" height="26" rx="3" class="x"/><text x="69" y="17" class="nx" text-anchor="middle">4</text>
+      <rect x="84" width="26" height="26" rx="3" class="u"/><text x="97" y="17" class="n" text-anchor="middle">5</text>
+      <rect x="112" width="26" height="26" rx="3" class="x"/><text x="125" y="17" class="nx" text-anchor="middle">6</text>
+      <rect x="140" width="26" height="26" rx="3" class="u"/><text x="153" y="17" class="n" text-anchor="middle">7</text>
+      <rect x="168" width="26" height="26" rx="3" class="x"/><text x="181" y="17" class="nx" text-anchor="middle">8</text>
+      <rect x="196" width="26" height="26" rx="3" class="x"/><text x="209" y="17" class="nx" text-anchor="middle">9</text>
+      <rect x="224" width="26" height="26" rx="3" class="x"/><text x="237" y="17" class="nx" text-anchor="middle">10</text>
+      <rect x="252" width="26" height="26" rx="3" class="u"/><text x="265" y="17" class="n" text-anchor="middle">11</text>
+
+      <rect y="28" width="26" height="26" rx="3" class="x"/><text x="13" y="45" class="nx" text-anchor="middle">12</text>
+      <rect x="28" y="28" width="26" height="26" rx="3" class="u"/><text x="41" y="45" class="n" text-anchor="middle">13</text>
+      <rect x="56" y="28" width="26" height="26" rx="3" class="x"/><text x="69" y="45" class="nx" text-anchor="middle">14</text>
+      <rect x="84" y="28" width="26" height="26" rx="3" class="x"/><text x="97" y="45" class="nx" text-anchor="middle">15</text>
+      <rect x="112" y="28" width="26" height="26" rx="3" class="x"/><text x="125" y="45" class="nx" text-anchor="middle">16</text>
+      <rect x="140" y="28" width="26" height="26" rx="3" class="u"/><text x="153" y="45" class="n" text-anchor="middle">17</text>
+      <rect x="168" y="28" width="26" height="26" rx="3" class="x"/><text x="181" y="45" class="nx" text-anchor="middle">18</text>
+      <rect x="196" y="28" width="26" height="26" rx="3" class="u"/><text x="209" y="45" class="n" text-anchor="middle">19</text>
+      <rect x="224" y="28" width="26" height="26" rx="3" class="x"/><text x="237" y="45" class="nx" text-anchor="middle">20</text>
+      <rect x="252" y="28" width="26" height="26" rx="3" class="x"/><text x="265" y="45" class="nx" text-anchor="middle">21</text>
+
+      <rect y="56" width="26" height="26" rx="3" class="x"/><text x="13" y="73" class="nx" text-anchor="middle">22</text>
+      <rect x="28" y="56" width="26" height="26" rx="3" class="u"/><text x="41" y="73" class="n" text-anchor="middle">23</text>
+      <rect x="56" y="56" width="26" height="26" rx="3" class="x"/><text x="69" y="73" class="nx" text-anchor="middle">24</text>
+      <rect x="84" y="56" width="26" height="26" rx="3" class="u"/><text x="97" y="73" class="n" text-anchor="middle">25</text>
+      <rect x="112" y="56" width="26" height="26" rx="3" class="x"/><text x="125" y="73" class="nx" text-anchor="middle">26</text>
+      <rect x="140" y="56" width="26" height="26" rx="3" class="x"/><text x="153" y="73" class="nx" text-anchor="middle">27</text>
+      <rect x="168" y="56" width="26" height="26" rx="3" class="x"/><text x="181" y="73" class="nx" text-anchor="middle">28</text>
+      <rect x="196" y="56" width="26" height="26" rx="3" class="u"/><text x="209" y="73" class="n" text-anchor="middle">29</text>
+      <rect x="224" y="56" width="26" height="26" rx="3" class="x"/><text x="237" y="73" class="nx" text-anchor="middle">30</text>
+    </g>
+    <text x="42" y="150" class="note">9부터 시작합니다. 6은 2가 이미 지웠습니다</text>
+  </g>
+
+  <!-- 3단계 -->
+  <g transform="translate(24 242)">
+    <rect width="366" height="164" rx="8" class="pane"/>
+    <text x="42" y="24" class="hd" fill="var(--c-accent)">STEP 3 · 5를 확정합니다</text>
+    <g transform="translate(42 36)">
+      <rect width="26" height="26" rx="3" class="p"/><text x="13" y="17" class="np" text-anchor="middle">2</text>
+      <rect x="28" width="26" height="26" rx="3" class="p"/><text x="41" y="17" class="np" text-anchor="middle">3</text>
+      <rect x="56" width="26" height="26" rx="3" class="x"/><text x="69" y="17" class="nx" text-anchor="middle">4</text>
+      <rect x="84" width="26" height="26" rx="3" class="p"/><text x="97" y="17" class="np" text-anchor="middle">5</text>
+      <rect x="112" width="26" height="26" rx="3" class="x"/><text x="125" y="17" class="nx" text-anchor="middle">6</text>
+      <rect x="140" width="26" height="26" rx="3" class="u"/><text x="153" y="17" class="n" text-anchor="middle">7</text>
+      <rect x="168" width="26" height="26" rx="3" class="x"/><text x="181" y="17" class="nx" text-anchor="middle">8</text>
+      <rect x="196" width="26" height="26" rx="3" class="x"/><text x="209" y="17" class="nx" text-anchor="middle">9</text>
+      <rect x="224" width="26" height="26" rx="3" class="x"/><text x="237" y="17" class="nx" text-anchor="middle">10</text>
+      <rect x="252" width="26" height="26" rx="3" class="u"/><text x="265" y="17" class="n" text-anchor="middle">11</text>
+
+      <rect y="28" width="26" height="26" rx="3" class="x"/><text x="13" y="45" class="nx" text-anchor="middle">12</text>
+      <rect x="28" y="28" width="26" height="26" rx="3" class="u"/><text x="41" y="45" class="n" text-anchor="middle">13</text>
+      <rect x="56" y="28" width="26" height="26" rx="3" class="x"/><text x="69" y="45" class="nx" text-anchor="middle">14</text>
+      <rect x="84" y="28" width="26" height="26" rx="3" class="x"/><text x="97" y="45" class="nx" text-anchor="middle">15</text>
+      <rect x="112" y="28" width="26" height="26" rx="3" class="x"/><text x="125" y="45" class="nx" text-anchor="middle">16</text>
+      <rect x="140" y="28" width="26" height="26" rx="3" class="u"/><text x="153" y="45" class="n" text-anchor="middle">17</text>
+      <rect x="168" y="28" width="26" height="26" rx="3" class="x"/><text x="181" y="45" class="nx" text-anchor="middle">18</text>
+      <rect x="196" y="28" width="26" height="26" rx="3" class="u"/><text x="209" y="45" class="n" text-anchor="middle">19</text>
+      <rect x="224" y="28" width="26" height="26" rx="3" class="x"/><text x="237" y="45" class="nx" text-anchor="middle">20</text>
+      <rect x="252" y="28" width="26" height="26" rx="3" class="x"/><text x="265" y="45" class="nx" text-anchor="middle">21</text>
+
+      <rect y="56" width="26" height="26" rx="3" class="x"/><text x="13" y="73" class="nx" text-anchor="middle">22</text>
+      <rect x="28" y="56" width="26" height="26" rx="3" class="u"/><text x="41" y="73" class="n" text-anchor="middle">23</text>
+      <rect x="56" y="56" width="26" height="26" rx="3" class="x"/><text x="69" y="73" class="nx" text-anchor="middle">24</text>
+      <rect x="84" y="56" width="26" height="26" rx="3" class="x"/><text x="97" y="73" class="nx" text-anchor="middle">25</text>
+      <rect x="112" y="56" width="26" height="26" rx="3" class="x"/><text x="125" y="73" class="nx" text-anchor="middle">26</text>
+      <rect x="140" y="56" width="26" height="26" rx="3" class="x"/><text x="153" y="73" class="nx" text-anchor="middle">27</text>
+      <rect x="168" y="56" width="26" height="26" rx="3" class="x"/><text x="181" y="73" class="nx" text-anchor="middle">28</text>
+      <rect x="196" y="56" width="26" height="26" rx="3" class="u"/><text x="209" y="73" class="n" text-anchor="middle">29</text>
+      <rect x="224" y="56" width="26" height="26" rx="3" class="x"/><text x="237" y="73" class="nx" text-anchor="middle">30</text>
+    </g>
+    <text x="42" y="150" class="note">25부터 시작합니다. 10, 15, 20은 이미 지워졌습니다</text>
+  </g>
+
+  <!-- 4단계 -->
+  <g transform="translate(410 242)">
+    <rect width="366" height="164" rx="8" class="pane"/>
+    <text x="42" y="24" class="hd" fill="var(--c-accent-2)">STEP 4 · 7 이후로는 지울 것이 없습니다</text>
+    <g transform="translate(42 36)">
+      <rect width="26" height="26" rx="3" class="p"/><text x="13" y="17" class="np" text-anchor="middle">2</text>
+      <rect x="28" width="26" height="26" rx="3" class="p"/><text x="41" y="17" class="np" text-anchor="middle">3</text>
+      <rect x="56" width="26" height="26" rx="3" class="x"/><text x="69" y="17" class="nx" text-anchor="middle">4</text>
+      <rect x="84" width="26" height="26" rx="3" class="p"/><text x="97" y="17" class="np" text-anchor="middle">5</text>
+      <rect x="112" width="26" height="26" rx="3" class="x"/><text x="125" y="17" class="nx" text-anchor="middle">6</text>
+      <rect x="140" width="26" height="26" rx="3" class="p"/><text x="153" y="17" class="np" text-anchor="middle">7</text>
+      <rect x="168" width="26" height="26" rx="3" class="x"/><text x="181" y="17" class="nx" text-anchor="middle">8</text>
+      <rect x="196" width="26" height="26" rx="3" class="x"/><text x="209" y="17" class="nx" text-anchor="middle">9</text>
+      <rect x="224" width="26" height="26" rx="3" class="x"/><text x="237" y="17" class="nx" text-anchor="middle">10</text>
+      <rect x="252" width="26" height="26" rx="3" class="p"/><text x="265" y="17" class="np" text-anchor="middle">11</text>
+
+      <rect y="28" width="26" height="26" rx="3" class="x"/><text x="13" y="45" class="nx" text-anchor="middle">12</text>
+      <rect x="28" y="28" width="26" height="26" rx="3" class="p"/><text x="41" y="45" class="np" text-anchor="middle">13</text>
+      <rect x="56" y="28" width="26" height="26" rx="3" class="x"/><text x="69" y="45" class="nx" text-anchor="middle">14</text>
+      <rect x="84" y="28" width="26" height="26" rx="3" class="x"/><text x="97" y="45" class="nx" text-anchor="middle">15</text>
+      <rect x="112" y="28" width="26" height="26" rx="3" class="x"/><text x="125" y="45" class="nx" text-anchor="middle">16</text>
+      <rect x="140" y="28" width="26" height="26" rx="3" class="p"/><text x="153" y="45" class="np" text-anchor="middle">17</text>
+      <rect x="168" y="28" width="26" height="26" rx="3" class="x"/><text x="181" y="45" class="nx" text-anchor="middle">18</text>
+      <rect x="196" y="28" width="26" height="26" rx="3" class="p"/><text x="209" y="45" class="np" text-anchor="middle">19</text>
+      <rect x="224" y="28" width="26" height="26" rx="3" class="x"/><text x="237" y="45" class="nx" text-anchor="middle">20</text>
+      <rect x="252" y="28" width="26" height="26" rx="3" class="x"/><text x="265" y="45" class="nx" text-anchor="middle">21</text>
+
+      <rect y="56" width="26" height="26" rx="3" class="x"/><text x="13" y="73" class="nx" text-anchor="middle">22</text>
+      <rect x="28" y="56" width="26" height="26" rx="3" class="p"/><text x="41" y="73" class="np" text-anchor="middle">23</text>
+      <rect x="56" y="56" width="26" height="26" rx="3" class="x"/><text x="69" y="73" class="nx" text-anchor="middle">24</text>
+      <rect x="84" y="56" width="26" height="26" rx="3" class="x"/><text x="97" y="73" class="nx" text-anchor="middle">25</text>
+      <rect x="112" y="56" width="26" height="26" rx="3" class="x"/><text x="125" y="73" class="nx" text-anchor="middle">26</text>
+      <rect x="140" y="56" width="26" height="26" rx="3" class="x"/><text x="153" y="73" class="nx" text-anchor="middle">27</text>
+      <rect x="168" y="56" width="26" height="26" rx="3" class="x"/><text x="181" y="73" class="nx" text-anchor="middle">28</text>
+      <rect x="196" y="56" width="26" height="26" rx="3" class="p"/><text x="209" y="73" class="np" text-anchor="middle">29</text>
+      <rect x="224" y="56" width="26" height="26" rx="3" class="x"/><text x="237" y="73" class="nx" text-anchor="middle">30</text>
+    </g>
+    <text x="42" y="150" class="note">7×7 = 49는 30을 넘으므로 남은 수가 전부 소수입니다</text>
+  </g>
+
+  <!-- 설명 -->
+  <g transform="translate(24 418)">
+    <rect width="752" height="106" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1"/>
+    <text x="20" y="28" class="ttl" font-size="13">왜 p × p부터 지워도 되는가</text>
+    <text x="20" y="52" class="sub">p보다 작은 소수 q가 있다면, p × q는 q 차례에 이미 지워졌습니다. 그래서 p × p 앞은 볼 필요가 없습니다.</text>
+    <text x="20" y="72" class="sub">같은 이유로 p × p가 범위를 넘으면 그 뒤로는 지울 것이 없습니다. 이것이 바깥 반복을 √N에서 멈추는 근거입니다.</text>
+    <text x="20" y="92" class="sub">전체 비용은 O(N log log N)입니다. 소수 하나를 판정하는 것과 범위 전체를 거르는 것은 다른 문제입니다.</text>
+  </g>
+</svg>

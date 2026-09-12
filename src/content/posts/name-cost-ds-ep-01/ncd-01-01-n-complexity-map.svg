@@ -1,0 +1,149 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-nmap">
+  <title id="t-nmap">입력 크기 N과 허용 복잡도의 매핑 표</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-safe: rgba(47,125,110,0.20); --c-safe-b: #2F7D6E;
+        --c-warn: rgba(194,112,61,0.22); --c-warn-b: #C2703D;
+        --c-dang: rgba(180,69,60,0.18); --c-dang-b: #B4453C;
+        --c-divider: rgba(26,31,46,0.15);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-safe: rgba(111,195,176,0.22); --c-safe-b: #6FC3B0;
+          --c-warn: rgba(224,154,107,0.24); --c-warn-b: #E09A6B;
+          --c-dang: rgba(224,115,106,0.22); --c-dang-b: #E0736A;
+          --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-muted); }
+      .hd { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; fill: var(--c-fg); }
+      .rl { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .sym { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 700; }
+      .safe { fill: var(--c-safe); stroke: var(--c-safe-b); stroke-width: 1; }
+      .warn { fill: var(--c-warn); stroke: var(--c-warn-b); stroke-width: 1; }
+      .dang { fill: var(--c-dang); stroke: var(--c-dang-b); stroke-width: 1; }
+      .bound { stroke: var(--c-accent-3); stroke-width: 2.4; fill: none; stroke-dasharray: 6 4; }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <text x="24" y="28" class="ttl">입력 크기가 허용 복잡도를 결정합니다</text>
+  <text x="24" y="48" class="sub">1초 · 약 1억 연산 기준 · ○ 안전  △ 경계  × 위험</text>
+
+  <!-- 열 머리말 -->
+  <g transform="translate(120 72)">
+    <text x="46" y="12" class="hd" text-anchor="middle">O(log N)</text>
+    <text x="138" y="12" class="hd" text-anchor="middle">O(N)</text>
+    <text x="230" y="12" class="hd" text-anchor="middle">O(N log N)</text>
+    <text x="322" y="12" class="hd" text-anchor="middle">O(N²)</text>
+    <text x="414" y="12" class="hd" text-anchor="middle">O(N³)</text>
+    <text x="506" y="12" class="hd" text-anchor="middle">O(2ᴺ)</text>
+    <text x="598" y="12" class="hd" text-anchor="middle">O(N!)</text>
+  </g>
+
+  <!-- 행: 왼쪽 라벨 + 7칸 -->
+  <g transform="translate(24 84)">
+    <g transform="translate(0 0)">
+      <text x="88" y="30" class="rl" text-anchor="end">10</text>
+      <g transform="translate(96 6)">
+        <rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text>
+        <g transform="translate(92 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(184 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(276 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(368 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(460 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(552 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+      </g>
+    </g>
+    <g transform="translate(0 48)">
+      <text x="88" y="30" class="rl" text-anchor="end">20</text>
+      <g transform="translate(96 6)">
+        <rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text>
+        <g transform="translate(92 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(184 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(276 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(368 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(460 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(552 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+      </g>
+    </g>
+    <g transform="translate(0 96)">
+      <text x="88" y="30" class="rl" text-anchor="end">500</text>
+      <g transform="translate(96 6)">
+        <rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text>
+        <g transform="translate(92 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(184 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(276 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(368 0)"><rect width="88" height="40" rx="4" class="warn"/><text x="44" y="25" class="sym" fill="var(--c-warn-b)" text-anchor="middle">△</text></g>
+        <g transform="translate(460 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(552 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+      </g>
+    </g>
+    <g transform="translate(0 144)">
+      <text x="88" y="30" class="rl" text-anchor="end">5,000</text>
+      <g transform="translate(96 6)">
+        <rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text>
+        <g transform="translate(92 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(184 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(276 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(368 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(460 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(552 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+      </g>
+    </g>
+    <g transform="translate(0 192)">
+      <text x="88" y="30" class="rl" text-anchor="end">100,000</text>
+      <g transform="translate(96 6)">
+        <rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text>
+        <g transform="translate(92 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(184 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(276 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(368 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(460 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(552 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+      </g>
+    </g>
+    <g transform="translate(0 240)">
+      <text x="88" y="30" class="rl" text-anchor="end">1,000,000</text>
+      <g transform="translate(96 6)">
+        <rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text>
+        <g transform="translate(92 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(184 0)"><rect width="88" height="40" rx="4" class="warn"/><text x="44" y="25" class="sym" fill="var(--c-warn-b)" text-anchor="middle">△</text></g>
+        <g transform="translate(276 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(368 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(460 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(552 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+      </g>
+    </g>
+    <g transform="translate(0 288)">
+      <text x="88" y="30" class="rl" text-anchor="end">10,000,000</text>
+      <g transform="translate(96 6)">
+        <rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text>
+        <g transform="translate(92 0)"><rect width="88" height="40" rx="4" class="safe"/><text x="44" y="25" class="sym" fill="var(--c-safe-b)" text-anchor="middle">○</text></g>
+        <g transform="translate(184 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(276 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(368 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(460 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+        <g transform="translate(552 0)"><rect width="88" height="40" rx="4" class="dang"/><text x="44" y="25" class="sym" fill="var(--c-dang-b)" text-anchor="middle">×</text></g>
+      </g>
+    </g>
+  </g>
+
+  <!-- 허용 경계선 -->
+  <path class="bound" d="M760 90 L 760 134 L 668 134 L 668 182 L 484 182 L 484 278 L 392 278 L 392 326 L 300 326 L 300 418"/>
+
+  <text x="24" y="470" class="lg">경계선 왼쪽이 통과 가능한 영역입니다. 입력이 커질수록 쓸 수 있는 복잡도가 빠르게 줄어듭니다.</text>
+  <text x="24" y="492" class="sub">N이 10일 때는 무엇을 써도 됩니다. 완전탐색을 버릴 이유가 없습니다.</text>
+  <text x="24" y="512" class="sub">N이 10만을 넘으면 O(N log N)이 사실상 상한입니다. 정렬 한 번이 마지노선입니다.</text>
+</svg>

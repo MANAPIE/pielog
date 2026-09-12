@@ -1,0 +1,186 @@
+<svg viewBox="0 0 800 768" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-sort">
+  <title id="t-sort">퀵 정렬, 병합 정렬, 힙 정렬의 동작 방식 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #2F7D6E; --c-accent-2: #C2703D; --c-accent-3: #6366A8;
+        --c-line: #1A1F2E; --c-card: #FFFFFF;
+        --c-pv: rgba(194,112,61,0.18); --c-mg: rgba(99,102,168,0.16);
+        --c-hp: rgba(47,125,110,0.16); --c-divider: rgba(26,31,46,0.14);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #6FC3B0; --c-accent-2: #E09A6B; --c-accent-3: #9598D4;
+          --c-line: #E8E6E1; --c-card: #161B22;
+          --c-pv: rgba(224,154,107,0.22); --c-mg: rgba(149,152,212,0.20);
+          --c-hp: rgba(111,195,176,0.20); --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; }
+      .pane { fill: none; stroke: var(--c-divider); stroke-width: 1.2; }
+      .cell { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.2; }
+      .pv { fill: var(--c-pv); stroke: var(--c-accent-2); stroke-width: 2.2; }
+      .mg { fill: var(--c-mg); stroke: var(--c-accent-3); stroke-width: 2; }
+      .hp { fill: var(--c-hp); stroke: var(--c-accent); stroke-width: 2; }
+      .v { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .stp { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; fill: var(--c-muted); }
+      .ed { stroke: var(--c-divider); stroke-width: 1.4; fill: none; }
+      .ik { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .iv { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .ic { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+    </style>
+    <marker id="mv" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
+      <polygon points="0,0 8,0 4,8" fill="var(--c-accent-3)"/>
+    </marker>
+    <marker id="mh" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-accent)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="768"/>
+
+  <text x="24" y="28" class="ttl">셋 다 O(N log N)이지만 지불하는 것이 다릅니다</text>
+  <text x="24" y="48" class="sub">같은 배열 5 3 8 1 9를 세 방식으로 정렬합니다</text>
+
+  <!-- QUICK -->
+  <g transform="translate(24 62)">
+    <rect width="752" height="226" rx="8" class="pane"/>
+    <text x="20" y="26" class="hd" fill="var(--c-accent-2)">QUICK SORT</text>
+    <text x="130" y="26" class="sub">기준 하나를 정하고 좌우로 가릅니다</text>
+
+    <g transform="translate(28 40)">
+      <text x="0" y="10" class="stp">1단계 · 피벗 5</text>
+      <g transform="translate(0 16)">
+        <g><rect width="42" height="32" rx="5" class="pv"/><text x="21" y="21" class="v" text-anchor="middle">5</text></g>
+        <g transform="translate(46 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">3</text></g>
+        <g transform="translate(92 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">8</text></g>
+        <g transform="translate(138 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">1</text></g>
+        <g transform="translate(184 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">9</text></g>
+      </g>
+      <path class="ed" d="M113 64 L 113 76 L 44 76 L 44 88"/>
+      <path class="ed" d="M113 76 L 205 76 L 205 88"/>
+
+      <text x="0" y="106" class="stp">2단계 · 작은 쪽과 큰 쪽으로 나뉩니다</text>
+      <g transform="translate(0 112)">
+        <g><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">3</text></g>
+        <g transform="translate(46 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">1</text></g>
+        <g transform="translate(100 0)"><rect width="42" height="32" rx="5" class="pv"/><text x="21" y="21" class="v" text-anchor="middle">5</text></g>
+        <g transform="translate(154 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">8</text></g>
+        <g transform="translate(200 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">9</text></g>
+      </g>
+
+      <text x="292" y="106" class="stp">3단계 · 각 조각을 다시 가릅니다</text>
+      <g transform="translate(292 112)">
+        <g><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">1</text></g>
+        <g transform="translate(46 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">3</text></g>
+        <g transform="translate(100 0)"><rect width="42" height="32" rx="5" class="pv"/><text x="21" y="21" class="v" text-anchor="middle">5</text></g>
+        <g transform="translate(154 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">8</text></g>
+        <g transform="translate(200 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">9</text></g>
+      </g>
+      <path class="ed" d="M254 128 L 286 128" marker-end="url(#mh)"/>
+    </g>
+
+    <g transform="translate(576 52)">
+      <text x="0" y="12" class="ik">평균 O(N log N)</text>
+      <text x="0" y="34" class="ik">최악 O(N²)</text>
+      <text x="0" y="52" class="ic">피벗이 계속 치우칠 때</text>
+      <text x="0" y="80" class="iv">추가 공간 O(log N)</text>
+      <text x="0" y="98" class="iv">불안정</text>
+      <text x="0" y="126" class="ic">제자리에서 처리해</text>
+      <text x="0" y="144" class="ic">상수가 작습니다</text>
+    </g>
+  </g>
+
+  <!-- MERGE -->
+  <g transform="translate(24 300)">
+    <rect width="752" height="216" rx="8" class="pane"/>
+    <text x="20" y="26" class="hd" fill="var(--c-accent-3)">MERGE SORT</text>
+    <text x="136" y="26" class="sub">끝까지 쪼갠 뒤 합치면서 정렬합니다</text>
+
+    <g transform="translate(28 40)">
+      <g transform="translate(92 0)">
+        <g><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">5</text></g>
+        <g transform="translate(46 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">3</text></g>
+        <g transform="translate(92 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">8</text></g>
+        <g transform="translate(138 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">1</text></g>
+      </g>
+      <path class="ed" d="M182 32 L 182 46 L 113 46 L 113 60"/>
+      <path class="ed" d="M182 46 L 251 46 L 251 60"/>
+      <text x="300" y="52" class="stp">절반씩 쪼갭니다</text>
+
+      <g transform="translate(46 60)">
+        <g><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">5</text></g>
+        <g transform="translate(46 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">3</text></g>
+        <g transform="translate(138 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">8</text></g>
+        <g transform="translate(184 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">1</text></g>
+      </g>
+
+      <path class="ed" d="M113 92 L 113 106 L 251 106 L 251 92"/>
+      <path class="ed" d="M182 106 L 182 118" marker-end="url(#mv)"/>
+      <text x="300" y="130" class="stp">두 조각을 하나로 합칩니다</text>
+
+      <g transform="translate(92 122)">
+        <g><rect width="42" height="32" rx="5" class="mg"/><text x="21" y="21" class="v" text-anchor="middle">1</text></g>
+        <g transform="translate(46 0)"><rect width="42" height="32" rx="5" class="mg"/><text x="21" y="21" class="v" text-anchor="middle">3</text></g>
+        <g transform="translate(92 0)"><rect width="42" height="32" rx="5" class="mg"/><text x="21" y="21" class="v" text-anchor="middle">5</text></g>
+        <g transform="translate(138 0)"><rect width="42" height="32" rx="5" class="mg"/><text x="21" y="21" class="v" text-anchor="middle">8</text></g>
+      </g>
+    </g>
+
+    <g transform="translate(576 52)">
+      <text x="0" y="12" class="ik">평균 O(N log N)</text>
+      <text x="0" y="34" class="ik">최악 O(N log N)</text>
+      <text x="0" y="52" class="ic">입력과 무관하게 일정</text>
+      <text x="0" y="80" class="iv">추가 공간 O(N)</text>
+      <text x="0" y="98" class="iv">안정</text>
+      <text x="0" y="126" class="ic">합칠 배열이 따로 필요해</text>
+      <text x="0" y="144" class="ic">메모리를 씁니다</text>
+    </g>
+  </g>
+
+  <!-- HEAP -->
+  <g transform="translate(24 528)">
+    <rect width="752" height="216" rx="8" class="pane"/>
+    <text x="20" y="26" class="hd" fill="var(--c-accent)">HEAP SORT</text>
+    <text x="126" y="26" class="sub">최댓값을 꺼내 뒤에서부터 채웁니다</text>
+
+    <g transform="translate(40 44)">
+      <text x="0" y="10" class="stp">최대 힙</text>
+      <line x1="66" y1="42" x2="38" y2="70" class="ed"/>
+      <line x1="82" y1="42" x2="110" y2="70" class="ed"/>
+      <circle cx="74" cy="34" r="16" class="hp"/><text x="74" y="39" class="v" text-anchor="middle">9</text>
+      <circle cx="30" cy="82" r="16" class="hp"/><text x="30" y="87" class="v" text-anchor="middle">5</text>
+      <circle cx="118" cy="82" r="16" class="hp"/><text x="118" y="87" class="v" text-anchor="middle">8</text>
+
+      <path class="ed" d="M148 60 L 186 60" marker-end="url(#mh)"/>
+      <text x="196" y="46" class="stp">루트를 꺼내</text>
+      <text x="196" y="62" class="stp">결과 끝에 놓고</text>
+      <text x="196" y="78" class="stp">힙을 다시 정리</text>
+
+      <text x="272" y="10" class="stp">결과 배열 · 뒤에서부터 확정됩니다</text>
+      <g transform="translate(272 20)">
+        <g><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">1</text></g>
+        <g transform="translate(46 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">3</text></g>
+        <g transform="translate(92 0)"><rect width="42" height="32" rx="5" class="cell"/><text x="21" y="21" class="v" text-anchor="middle">5</text></g>
+        <g transform="translate(138 0)"><rect width="42" height="32" rx="5" class="hp"/><text x="21" y="21" class="v" text-anchor="middle">8</text></g>
+        <g transform="translate(184 0)"><rect width="42" height="32" rx="5" class="hp"/><text x="21" y="21" class="v" text-anchor="middle">9</text></g>
+      </g>
+      <text x="272" y="76" class="ic">색칠된 칸이 이미 확정된 자리입니다</text>
+    </g>
+
+    <g transform="translate(576 52)">
+      <text x="0" y="12" class="ik">평균 O(N log N)</text>
+      <text x="0" y="34" class="ik">최악 O(N log N)</text>
+      <text x="0" y="52" class="ic">보장됩니다</text>
+      <text x="0" y="80" class="iv">추가 공간 O(1)</text>
+      <text x="0" y="98" class="iv">불안정</text>
+      <text x="0" y="126" class="ic">캐시 지역성이 나빠</text>
+      <text x="0" y="144" class="ic">실측은 느린 편입니다</text>
+    </g>
+  </g>
+</svg>
