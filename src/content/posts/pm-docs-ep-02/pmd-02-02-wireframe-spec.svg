@@ -1,0 +1,134 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-wf">
+  <title id="t-wf">Receipt 영수증 업로드 화면 와이어프레임과 주석</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-wire: rgba(107,114,128,0.16); --c-wire-b: rgba(107,114,128,0.55);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-wire: rgba(139,146,160,0.18); --c-wire-b: rgba(139,146,160,0.6);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .phone { fill: var(--c-card); stroke: var(--c-line); stroke-width: 2; }
+      .w { fill: var(--c-wire); stroke: var(--c-wire-b); stroke-width: 1; }
+      .wt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9px; fill: var(--c-muted); }
+      .cta { fill: var(--c-accent); }
+      .ctat { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-bg); }
+      .bal { fill: var(--c-accent-2); }
+      .bn { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 800; fill: var(--c-bg); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; fill: var(--c-muted); }
+      .tl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .rule { stroke: var(--c-divider); stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="600"/>
+
+  <text x="24" y="28" class="ttl">와이어프레임은 그림이 아니라 번호 붙은 계약서입니다</text>
+  <text x="24" y="48" class="sub">영수증 업로드 화면 · 박스마다 라벨·동작·상태를 적어야 개발이 물어보지 않습니다</text>
+
+  <!-- 폰 -->
+  <g transform="translate(48 66)">
+    <rect width="236" height="500" rx="18" class="phone"/>
+
+    <!-- 1 헤더 -->
+    <rect x="12" y="14" width="212" height="34" rx="6" class="w"/>
+    <rect x="22" y="24" width="52" height="14" rx="3" fill="var(--c-wire-b)"/>
+    <circle cx="208" cy="31" r="7" fill="none" stroke="var(--c-wire-b)" stroke-width="1.4"/>
+    <g transform="translate(232 18)"><circle r="10" class="bal"/><text y="3.5" class="bn" text-anchor="middle">1</text></g>
+
+    <!-- 2 카메라 -->
+    <rect x="12" y="58" width="212" height="128" rx="8" class="w"/>
+    <rect x="86" y="96" width="64" height="48" rx="6" fill="none" stroke="var(--c-wire-b)" stroke-width="1.6" stroke-dasharray="5 4"/>
+    <text x="118" y="170" class="wt" text-anchor="middle">영수증을 프레임 안에 맞춰 주세요</text>
+    <g transform="translate(232 66)"><circle r="10" class="bal"/><text y="3.5" class="bn" text-anchor="middle">2</text></g>
+
+    <!-- 3 추출 정보 카드 -->
+    <rect x="12" y="196" width="212" height="112" rx="8" class="w"/>
+    <text x="24" y="216" class="wt">가맹점</text><rect x="24" y="222" width="188" height="18" rx="4" fill="var(--c-card)" stroke="var(--c-wire-b)" stroke-width="1"/>
+    <text x="24" y="256" class="wt">금액</text><rect x="24" y="262" width="88" height="18" rx="4" fill="var(--c-card)" stroke="var(--c-wire-b)" stroke-width="1"/>
+    <text x="124" y="256" class="wt">날짜</text><rect x="124" y="262" width="88" height="18" rx="4" fill="var(--c-card)" stroke="var(--c-wire-b)" stroke-width="1"/>
+    <text x="24" y="298" class="wt">OCR 신뢰도 92%</text>
+    <g transform="translate(232 204)"><circle r="10" class="bal"/><text y="3.5" class="bn" text-anchor="middle">3</text></g>
+
+    <!-- 4 카테고리 -->
+    <rect x="12" y="318" width="212" height="34" rx="6" class="w"/>
+    <text x="24" y="339" class="wt">카테고리 선택</text>
+    <path d="M204 331 l 6 6 l 6 -6" fill="none" stroke="var(--c-wire-b)" stroke-width="1.6"/>
+    <g transform="translate(232 326)"><circle r="10" class="bal"/><text y="3.5" class="bn" text-anchor="middle">4</text></g>
+
+    <!-- 5 메모 -->
+    <rect x="12" y="362" width="212" height="56" rx="6" class="w"/>
+    <text x="24" y="382" class="wt">메모 (선택)</text>
+    <g transform="translate(232 370)"><circle r="10" class="bal"/><text y="3.5" class="bn" text-anchor="middle">5</text></g>
+
+    <!-- 6 상태 안내 -->
+    <rect x="12" y="428" width="212" height="18" rx="4" fill="var(--c-accent-2)" fill-opacity="0.16"/>
+    <text x="118" y="441" class="wt" text-anchor="middle">금액을 확인해 주세요</text>
+    <g transform="translate(232 437)"><circle r="10" class="bal"/><text y="3.5" class="bn" text-anchor="middle">6</text></g>
+
+    <!-- 7 신청 버튼 -->
+    <rect x="12" y="456" width="212" height="32" rx="8" class="cta"/>
+    <text x="118" y="476" class="ctat" text-anchor="middle">신청하기</text>
+    <g transform="translate(232 464)"><circle r="10" class="bal"/><text y="3.5" class="bn" text-anchor="middle">7</text></g>
+  </g>
+
+  <!-- 주석 표 -->
+  <g transform="translate(320 66)">
+    <text x="0" y="12" class="th">NO</text>
+    <text x="34" y="12" class="th">라벨</text>
+    <text x="150" y="12" class="th">동작</text>
+    <text x="316" y="12" class="th">상태</text>
+    <line x1="0" y1="20" x2="456" y2="20" class="rule"/>
+
+    <g transform="translate(0 30)">
+      <g><circle cx="9" cy="10" r="9" class="bal"/><text x="9" y="13.5" class="bn" text-anchor="middle">1</text>
+        <text x="34" y="14" class="tl">헤더</text>
+        <text x="150" y="14" class="td">로고 탭: 홈 이동</text>
+        <text x="316" y="14" class="td">알림 뱃지 0/N</text></g>
+
+      <g transform="translate(0 64)"><circle cx="9" cy="10" r="9" class="bal"/><text x="9" y="13.5" class="bn" text-anchor="middle">2</text>
+        <text x="34" y="14" class="tl">카메라 미리보기</text>
+        <text x="150" y="14" class="td">자동 초점, 촬영 시 OCR 시작</text>
+        <text x="316" y="14" class="td">대기 · 인식 중 · 완료 · 실패</text></g>
+
+      <g transform="translate(0 128)"><circle cx="9" cy="10" r="9" class="bal"/><text x="9" y="13.5" class="bn" text-anchor="middle">3</text>
+        <text x="34" y="14" class="tl">추출 정보</text>
+        <text x="150" y="14" class="td">필드 탭하면 직접 수정 가능</text>
+        <text x="316" y="14" class="td">신뢰도 80% 미만은 앰버 표시</text></g>
+
+      <g transform="translate(0 192)"><circle cx="9" cy="10" r="9" class="bal"/><text x="9" y="13.5" class="bn" text-anchor="middle">4</text>
+        <text x="34" y="14" class="tl">카테고리</text>
+        <text x="150" y="14" class="td">드롭다운, OCR이 추천값 선택</text>
+        <text x="316" y="14" class="td">미선택이면 신청 불가</text></g>
+
+      <g transform="translate(0 256)"><circle cx="9" cy="10" r="9" class="bal"/><text x="9" y="13.5" class="bn" text-anchor="middle">5</text>
+        <text x="34" y="14" class="tl">메모</text>
+        <text x="150" y="14" class="td">선택 입력, 200자 제한</text>
+        <text x="316" y="14" class="td">기본 접힘</text></g>
+
+      <g transform="translate(0 320)"><circle cx="9" cy="10" r="9" class="bal"/><text x="9" y="13.5" class="bn" text-anchor="middle">6</text>
+        <text x="34" y="14" class="tl">상태 안내</text>
+        <text x="150" y="14" class="td">검증 실패 이유를 한 줄로</text>
+        <text x="316" y="14" class="td">문제 없으면 숨김</text></g>
+
+      <g transform="translate(0 384)"><circle cx="9" cy="10" r="9" class="bal"/><text x="9" y="13.5" class="bn" text-anchor="middle">7</text>
+        <text x="34" y="14" class="tl">신청하기</text>
+        <text x="150" y="14" class="td">탭 시 결재 라인으로 전송</text>
+        <text x="316" y="14" class="td">필수값 빠지면 비활성</text></g>
+    </g>
+  </g>
+
+  <text x="24" y="588" class="sub">상태 열이 비어 있는 박스는 아직 설계가 끝나지 않은 것입니다. 개발 착수 전에 전부 채웁니다.</text>
+</svg>

@@ -1,0 +1,115 @@
+<svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-us">
+  <title id="t-us">Receipt 유저 스토리 카드 6장</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-p0: #B85C4A; --c-p1: #C8963E; --c-p2: #6B7280;
+        --c-p0s: rgba(184,92,74,0.14); --c-p1s: rgba(200,150,62,0.16); --c-p2s: rgba(107,114,128,0.12);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-p0: #E08A78; --c-p1: #E0B45A; --c-p2: #8B92A0;
+          --c-p0s: rgba(224,138,120,0.18); --c-p1s: rgba(224,180,90,0.18); --c-p2s: rgba(139,146,160,0.16);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.4; }
+      .who { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; }
+      .k { font-family: 'Inter',system-ui,sans-serif; font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; fill: var(--c-muted); }
+      .t { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .pr { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 800; }
+      .pt { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; fill: var(--c-muted); }
+      .rule { stroke: var(--c-divider); stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="540"/>
+
+  <text x="24" y="28" class="ttl">누가, 무엇을, 왜: 세 줄이면 요구사항이 됩니다</text>
+  <text x="24" y="48" class="sub">Receipt v1 백로그 상위 6장 · 우선순위와 예상 포인트를 함께 적습니다</text>
+
+  <!-- 1행 -->
+  <g transform="translate(24 66)">
+    <rect width="240" height="196" rx="8" class="card"/>
+    <rect x="14" y="14" width="64" height="20" rx="10" fill="var(--c-accent)" fill-opacity="0.14"/>
+    <text x="46" y="28" class="who" fill="var(--c-accent)" text-anchor="middle">일반 사원</text>
+    <line x1="14" y1="46" x2="226" y2="46" class="rule"/>
+    <text x="14" y="66" class="k">AS A</text><text x="14" y="82" class="t">일반 사원으로서</text>
+    <text x="14" y="104" class="k">I WANT</text><text x="14" y="120" class="t">영수증을 사진으로 업로드하고 싶다</text>
+    <text x="14" y="142" class="k">SO THAT</text><text x="14" y="158" class="t">손으로 입력하지 않아도 된다</text>
+    <rect x="14" y="170" width="30" height="16" rx="8" fill="var(--c-p0s)"/><text x="29" y="182" class="pr" fill="var(--c-p0)" text-anchor="middle">P0</text>
+    <text x="226" y="182" class="pt" text-anchor="end">5 pt</text>
+  </g>
+
+  <g transform="translate(280 66)">
+    <rect width="240" height="196" rx="8" class="card"/>
+    <rect x="14" y="14" width="64" height="20" rx="10" fill="var(--c-accent)" fill-opacity="0.14"/>
+    <text x="46" y="28" class="who" fill="var(--c-accent)" text-anchor="middle">일반 사원</text>
+    <line x1="14" y1="46" x2="226" y2="46" class="rule"/>
+    <text x="14" y="66" class="k">AS A</text><text x="14" y="82" class="t">일반 사원으로서</text>
+    <text x="14" y="104" class="k">I WANT</text><text x="14" y="120" class="t">신청 상태를 한눈에 보고 싶다</text>
+    <text x="14" y="142" class="k">SO THAT</text><text x="14" y="158" class="t">결재가 어디까지 갔는지 알 수 있다</text>
+    <rect x="14" y="170" width="30" height="16" rx="8" fill="var(--c-p1s)"/><text x="29" y="182" class="pr" fill="var(--c-p1)" text-anchor="middle">P1</text>
+    <text x="226" y="182" class="pt" text-anchor="end">3 pt</text>
+  </g>
+
+  <g transform="translate(536 66)">
+    <rect width="240" height="196" rx="8" class="card"/>
+    <rect x="14" y="14" width="64" height="20" rx="10" fill="var(--c-accent-3)" fill-opacity="0.14"/>
+    <text x="46" y="28" class="who" fill="var(--c-accent-3)" text-anchor="middle">재무팀장</text>
+    <line x1="14" y1="46" x2="226" y2="46" class="rule"/>
+    <text x="14" y="66" class="k">AS A</text><text x="14" y="82" class="t">재무팀장으로서</text>
+    <text x="14" y="104" class="k">I WANT</text><text x="14" y="120" class="t">신청 목록을 상태별로 걸러 보고 싶다</text>
+    <text x="14" y="142" class="k">SO THAT</text><text x="14" y="158" class="t">예외 건만 골라서 볼 수 있다</text>
+    <rect x="14" y="170" width="30" height="16" rx="8" fill="var(--c-p0s)"/><text x="29" y="182" class="pr" fill="var(--c-p0)" text-anchor="middle">P0</text>
+    <text x="226" y="182" class="pt" text-anchor="end">5 pt</text>
+  </g>
+
+  <!-- 2행 -->
+  <g transform="translate(24 278)">
+    <rect width="240" height="196" rx="8" class="card"/>
+    <rect x="14" y="14" width="56" height="20" rx="10" fill="var(--c-accent-2)" fill-opacity="0.16"/>
+    <text x="42" y="28" class="who" fill="var(--c-accent-2)" text-anchor="middle">결재자</text>
+    <line x1="14" y1="46" x2="226" y2="46" class="rule"/>
+    <text x="14" y="66" class="k">AS A</text><text x="14" y="82" class="t">결재자로서</text>
+    <text x="14" y="104" class="k">I WANT</text><text x="14" y="120" class="t">모바일 알림에서 바로 승인하고 싶다</text>
+    <text x="14" y="142" class="k">SO THAT</text><text x="14" y="158" class="t">자리를 비워도 결재가 밀리지 않는다</text>
+    <rect x="14" y="170" width="30" height="16" rx="8" fill="var(--c-p1s)"/><text x="29" y="182" class="pr" fill="var(--c-p1)" text-anchor="middle">P1</text>
+    <text x="226" y="182" class="pt" text-anchor="end">5 pt</text>
+  </g>
+
+  <g transform="translate(280 278)">
+    <rect width="240" height="196" rx="8" class="card"/>
+    <rect x="14" y="14" width="64" height="20" rx="10" fill="var(--c-accent-3)" fill-opacity="0.14"/>
+    <text x="46" y="28" class="who" fill="var(--c-accent-3)" text-anchor="middle">재무팀장</text>
+    <line x1="14" y1="46" x2="226" y2="46" class="rule"/>
+    <text x="14" y="66" class="k">AS A</text><text x="14" y="82" class="t">재무팀장으로서</text>
+    <text x="14" y="104" class="k">I WANT</text><text x="14" y="120" class="t">OCR 신뢰도가 낮은 건을 표시해 주면 좋겠다</text>
+    <text x="14" y="142" class="k">SO THAT</text><text x="14" y="158" class="t">검토가 필요한 건부터 볼 수 있다</text>
+    <rect x="14" y="170" width="30" height="16" rx="8" fill="var(--c-p1s)"/><text x="29" y="182" class="pr" fill="var(--c-p1)" text-anchor="middle">P1</text>
+    <text x="226" y="182" class="pt" text-anchor="end">3 pt</text>
+  </g>
+
+  <g transform="translate(536 278)">
+    <rect width="240" height="196" rx="8" class="card"/>
+    <rect x="14" y="14" width="64" height="20" rx="10" fill="var(--c-accent)" fill-opacity="0.14"/>
+    <text x="46" y="28" class="who" fill="var(--c-accent)" text-anchor="middle">일반 사원</text>
+    <line x1="14" y1="46" x2="226" y2="46" class="rule"/>
+    <text x="14" y="66" class="k">AS A</text><text x="14" y="82" class="t">일반 사원으로서</text>
+    <text x="14" y="104" class="k">I WANT</text><text x="14" y="120" class="t">반려 사유를 신청 화면에서 바로 보고 싶다</text>
+    <text x="14" y="142" class="k">SO THAT</text><text x="14" y="158" class="t">다시 낼 때 무엇을 고칠지 안다</text>
+    <rect x="14" y="170" width="30" height="16" rx="8" fill="var(--c-p2s)"/><text x="29" y="182" class="pr" fill="var(--c-p2)" text-anchor="middle">P2</text>
+    <text x="226" y="182" class="pt" text-anchor="end">2 pt</text>
+  </g>
+
+  <text x="24" y="504" class="sub">P0는 없으면 출시를 못 하는 것, P1은 출시 후 첫 달 안에, P2는 여유가 생기면 하는 것입니다.</text>
+  <text x="24" y="522" class="sub">포인트는 시간이 아니라 상대적 크기입니다. 카드끼리 비교할 때만 의미가 있습니다.</text>
+</svg>
