@@ -1,0 +1,134 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-issue">
+  <title id="t-issue">Receipt 이슈 라이프사이클: 다섯 단계와 각 단계의 기록 항목</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-soft: rgba(74,124,89,0.14);
+        --c-hi: #B85C4A; --c-md: #C8963E; --c-lo: #6B7280;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-soft: rgba(125,184,143,0.18);
+          --c-hi: #E08A78; --c-md: #E0B45A; --c-lo: #8B92A0;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .st { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.4; }
+      .sta { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 2; }
+      .sn { font-family: 'Inter',system-ui,sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; fill: var(--c-muted); }
+      .sl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12.5px; font-weight: 700; fill: var(--c-fg); }
+      .sd { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9.5px; fill: var(--c-muted); }
+      .rec { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9.5px; fill: var(--c-fg); }
+      .rk { font-family: 'Inter',system-ui,sans-serif; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; fill: var(--c-accent-3); }
+      .arr { stroke: var(--c-muted); stroke-width: 1.6; }
+      .tick { stroke: var(--c-divider); stroke-width: 1; stroke-dasharray: 3 3; }
+      .bd { font-family: 'Inter',system-ui,sans-serif; font-size: 9px; font-weight: 800; letter-spacing: 0.04em; fill: #FFFFFF; }
+    </style>
+    <marker id="ia" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-muted)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="400"/>
+
+  <text x="24" y="28" class="ttl">이슈는 상태보다 기록이 남아야 합니다</text>
+  <text x="24" y="48" class="sub">단계마다 적어야 할 것이 정해져 있으면 나중에 회고가 됩니다</text>
+
+  <!-- 심각도 배지 -->
+  <g transform="translate(596 20)">
+    <rect width="48" height="18" rx="9" fill="var(--c-hi)"/><text x="24" y="12.5" class="bd" text-anchor="middle">HIGH</text>
+    <rect x="56" width="60" height="18" rx="9" fill="var(--c-md)"/><text x="86" y="12.5" class="bd" text-anchor="middle">MEDIUM</text>
+    <rect x="124" width="44" height="18" rx="9" fill="var(--c-lo)"/><text x="146" y="12.5" class="bd" text-anchor="middle">LOW</text>
+  </g>
+
+  <!-- 단계 5개: 폭 132, 간격 22 → x 24, 178, 332, 486, 640 -->
+  <!-- 각 단계 위: 기록 항목 -->
+  <g transform="translate(24 76)">
+    <text x="0" y="0" class="rk">기록</text>
+    <text x="0" y="16" class="rec">발견자 · 발견일</text>
+    <text x="0" y="30" class="rec">현상</text>
+    <line x1="66" y1="40" x2="66" y2="64" class="tick"/>
+  </g>
+  <g transform="translate(178 76)">
+    <text x="0" y="0" class="rk">기록</text>
+    <text x="0" y="16" class="rec">심각도 · 담당자</text>
+    <text x="0" y="30" class="rec">예상 조치</text>
+    <line x1="66" y1="40" x2="66" y2="64" class="tick"/>
+  </g>
+  <g transform="translate(332 76)">
+    <text x="0" y="0" class="rk">기록</text>
+    <text x="0" y="16" class="rec">진행 상황 코멘트</text>
+    <line x1="66" y1="40" x2="66" y2="64" class="tick"/>
+  </g>
+  <g transform="translate(486 76)">
+    <text x="0" y="0" class="rk">기록</text>
+    <text x="0" y="16" class="rec">조치 내역</text>
+    <text x="0" y="30" class="rec">원인</text>
+    <line x1="66" y1="40" x2="66" y2="64" class="tick"/>
+  </g>
+  <g transform="translate(640 76)">
+    <text x="0" y="0" class="rk">기록</text>
+    <text x="0" y="16" class="rec">검증 결과</text>
+    <text x="0" y="30" class="rec">배운 점</text>
+    <line x1="66" y1="40" x2="66" y2="64" class="tick"/>
+  </g>
+
+  <!-- 단계 박스 -->
+  <g transform="translate(24 142)">
+    <rect width="132" height="68" rx="7" class="st"/>
+    <text x="14" y="20" class="sn">1</text>
+    <text x="14" y="40" class="sl">Open</text>
+    <text x="14" y="56" class="sd">신규 발견 · 미배정</text>
+  </g>
+  <line x1="158" y1="176" x2="174" y2="176" class="arr" marker-end="url(#ia)"/>
+
+  <g transform="translate(178 142)">
+    <rect width="132" height="68" rx="7" class="st"/>
+    <text x="14" y="20" class="sn">2</text>
+    <text x="14" y="40" class="sl">Triaged</text>
+    <text x="14" y="56" class="sd">심각도 · 담당자 배정</text>
+  </g>
+  <line x1="312" y1="176" x2="328" y2="176" class="arr" marker-end="url(#ia)"/>
+
+  <g transform="translate(332 142)">
+    <rect width="132" height="68" rx="7" class="sta"/>
+    <text x="14" y="20" class="sn">3</text>
+    <text x="14" y="40" class="sl">In Progress</text>
+    <text x="14" y="56" class="sd">작업 중</text>
+  </g>
+  <line x1="466" y1="176" x2="482" y2="176" class="arr" marker-end="url(#ia)"/>
+
+  <g transform="translate(486 142)">
+    <rect width="132" height="68" rx="7" class="st"/>
+    <text x="14" y="20" class="sn">4</text>
+    <text x="14" y="40" class="sl">Resolved</text>
+    <text x="14" y="56" class="sd">조치 완료 · 검증 대기</text>
+  </g>
+  <line x1="620" y1="176" x2="636" y2="176" class="arr" marker-end="url(#ia)"/>
+
+  <g transform="translate(640 142)">
+    <rect width="132" height="68" rx="7" class="st"/>
+    <text x="14" y="20" class="sn">5</text>
+    <text x="14" y="40" class="sl">Closed</text>
+    <text x="14" y="56" class="sd">검증 완료 · 종결</text>
+  </g>
+
+  <!-- 되돌아가는 경로 -->
+  <path d="M552 210 L 552 236 L 398 236 L 398 214" fill="none" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ia)"/>
+  <text x="475" y="252" class="sd" text-anchor="middle">검증 실패 시 다시 작업</text>
+
+  <g transform="translate(24 284)">
+    <rect width="752" height="90" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1.2"/>
+    <text x="20" y="26" class="ttl" font-size="12.5">Resolved와 Closed를 나누는 이유</text>
+    <text x="20" y="50" class="sub">고친 사람과 확인한 사람이 달라야 합니다. 같은 사람이 둘 다 하면 검증이 생략됩니다.</text>
+    <text x="20" y="70" class="sub">Closed에 "배운 점"이 비어 있으면 같은 이슈가 다음 프로젝트에서 다시 열립니다.</text>
+  </g>
+</svg>

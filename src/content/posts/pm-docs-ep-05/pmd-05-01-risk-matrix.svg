@@ -1,0 +1,122 @@
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-risk">
+  <title id="t-risk">Receipt 리스크 확률-영향 매트릭스</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-lo: rgba(74,124,89,0.20); --c-md: rgba(200,150,62,0.26); --c-hi: rgba(184,92,74,0.30);
+        --c-lo-t: #4A7C59; --c-md-t: #9A6E22; --c-hi-t: #B85C4A;
+        --c-dot: #1A1F2E;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-lo: rgba(125,184,143,0.22); --c-md: rgba(224,180,90,0.26); --c-hi: rgba(224,138,120,0.30);
+          --c-lo-t: #7DB88F; --c-md-t: #E0B45A; --c-hi-t: #E08A78;
+          --c-dot: #E8E6E1;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .cell { stroke: var(--c-bg); stroke-width: 2; }
+      .lo { fill: var(--c-lo); } .md { fill: var(--c-md); } .hi { fill: var(--c-hi); }
+      .sc { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; fill: var(--c-muted); }
+      .ax { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .axn { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; fill: var(--c-muted); }
+      .pt { fill: var(--c-card); stroke: var(--c-dot); stroke-width: 2; }
+      .pl { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; font-weight: 700; fill: var(--c-fg); }
+      .rid { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; }
+      .rn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .rs { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; fill: var(--c-muted); }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="520"/>
+
+  <text x="24" y="28" class="ttl">확률 곱하기 영향, 그 숫자가 순서를 정합니다</text>
+  <text x="24" y="48" class="sub">Receipt 리스크 6개 · 10점 이상은 대응 계획이 있어야 합니다</text>
+
+  <!-- 격자: 셀 66, 좌하단 원점. 확률은 위로, 영향은 오른쪽으로 -->
+  <g transform="translate(96 70)">
+    <!-- 행: 확률 5 (맨 위) -> 1 (맨 아래). 열: 영향 1 -> 5 -->
+    <!-- 확률 5 -->
+    <rect x="0"   y="0" width="66" height="66" class="cell md"/><text x="6" y="12" class="sc">5</text>
+    <rect x="66"  y="0" width="66" height="66" class="cell hi"/><text x="72" y="12" class="sc">10</text>
+    <rect x="132" y="0" width="66" height="66" class="cell hi"/><text x="138" y="12" class="sc">15</text>
+    <rect x="198" y="0" width="66" height="66" class="cell hi"/><text x="204" y="12" class="sc">20</text>
+    <rect x="264" y="0" width="66" height="66" class="cell hi"/><text x="270" y="12" class="sc">25</text>
+    <!-- 확률 4 -->
+    <rect x="0"   y="66" width="66" height="66" class="cell lo"/><text x="6" y="78" class="sc">4</text>
+    <rect x="66"  y="66" width="66" height="66" class="cell md"/><text x="72" y="78" class="sc">8</text>
+    <rect x="132" y="66" width="66" height="66" class="cell hi"/><text x="138" y="78" class="sc">12</text>
+    <rect x="198" y="66" width="66" height="66" class="cell hi"/><text x="204" y="78" class="sc">16</text>
+    <rect x="264" y="66" width="66" height="66" class="cell hi"/><text x="270" y="78" class="sc">20</text>
+    <!-- 확률 3 -->
+    <rect x="0"   y="132" width="66" height="66" class="cell lo"/><text x="6" y="144" class="sc">3</text>
+    <rect x="66"  y="132" width="66" height="66" class="cell md"/><text x="72" y="144" class="sc">6</text>
+    <rect x="132" y="132" width="66" height="66" class="cell md"/><text x="138" y="144" class="sc">9</text>
+    <rect x="198" y="132" width="66" height="66" class="cell hi"/><text x="204" y="144" class="sc">12</text>
+    <rect x="264" y="132" width="66" height="66" class="cell hi"/><text x="270" y="144" class="sc">15</text>
+    <!-- 확률 2 -->
+    <rect x="0"   y="198" width="66" height="66" class="cell lo"/><text x="6" y="210" class="sc">2</text>
+    <rect x="66"  y="198" width="66" height="66" class="cell lo"/><text x="72" y="210" class="sc">4</text>
+    <rect x="132" y="198" width="66" height="66" class="cell md"/><text x="138" y="210" class="sc">6</text>
+    <rect x="198" y="198" width="66" height="66" class="cell md"/><text x="204" y="210" class="sc">8</text>
+    <rect x="264" y="198" width="66" height="66" class="cell hi"/><text x="270" y="210" class="sc">10</text>
+    <!-- 확률 1 -->
+    <rect x="0"   y="264" width="66" height="66" class="cell lo"/><text x="6" y="276" class="sc">1</text>
+    <rect x="66"  y="264" width="66" height="66" class="cell lo"/><text x="72" y="276" class="sc">2</text>
+    <rect x="132" y="264" width="66" height="66" class="cell lo"/><text x="138" y="276" class="sc">3</text>
+    <rect x="198" y="264" width="66" height="66" class="cell lo"/><text x="204" y="276" class="sc">4</text>
+    <rect x="264" y="264" width="66" height="66" class="cell md"/><text x="270" y="276" class="sc">5</text>
+
+    <!-- 리스크 점: 셀 중심 = (영향-1)*66+33, (5-확률)*66+33 -->
+    <g transform="translate(297 99)"><circle r="13" class="pt"/><text y="3.5" class="pl" text-anchor="middle">R-01</text></g>
+    <g transform="translate(231 99)"><circle r="13" class="pt"/><text y="3.5" class="pl" text-anchor="middle">R-02</text></g>
+    <g transform="translate(165 165)"><circle r="13" class="pt"/><text y="3.5" class="pl" text-anchor="middle">R-03</text></g>
+    <g transform="translate(231 231)"><circle r="13" class="pt"/><text y="3.5" class="pl" text-anchor="middle">R-04</text></g>
+    <g transform="translate(297 231)"><circle r="13" class="pt"/><text y="3.5" class="pl" text-anchor="middle">R-05</text></g>
+    <g transform="translate(99 165)"><circle r="13" class="pt"/><text y="3.5" class="pl" text-anchor="middle">R-06</text></g>
+
+    <!-- 축 -->
+    <text x="-12" y="37" class="axn" text-anchor="end">5</text>
+    <text x="-12" y="103" class="axn" text-anchor="end">4</text>
+    <text x="-12" y="169" class="axn" text-anchor="end">3</text>
+    <text x="-12" y="235" class="axn" text-anchor="end">2</text>
+    <text x="-12" y="301" class="axn" text-anchor="end">1</text>
+    <text x="-40" y="158" class="ax" text-anchor="middle">확</text>
+    <text x="-40" y="174" class="ax" text-anchor="middle">률</text>
+    <text x="33" y="348" class="axn" text-anchor="middle">1</text>
+    <text x="99" y="348" class="axn" text-anchor="middle">2</text>
+    <text x="165" y="348" class="axn" text-anchor="middle">3</text>
+    <text x="231" y="348" class="axn" text-anchor="middle">4</text>
+    <text x="297" y="348" class="axn" text-anchor="middle">5</text>
+    <text x="165" y="370" class="ax" text-anchor="middle">영향</text>
+  </g>
+
+  <!-- 리스크 목록 -->
+  <g transform="translate(470 74)">
+    <g><text x="0" y="12" class="rid" fill="var(--c-hi-t)">R-01</text><text x="44" y="12" class="rn">OCR 정확도 미달</text><text x="300" y="12" class="rs" text-anchor="end">4 × 5 = 20</text></g>
+    <g transform="translate(0 30)"><text x="0" y="12" class="rid" fill="var(--c-hi-t)">R-02</text><text x="44" y="12" class="rn">보안팀 검토 지연</text><text x="300" y="12" class="rs" text-anchor="end">4 × 4 = 16</text></g>
+    <g transform="translate(0 60)"><text x="0" y="12" class="rid" fill="var(--c-hi-t)">R-05</text><text x="44" y="12" class="rn">핵심 개발자 이탈</text><text x="300" y="12" class="rs" text-anchor="end">2 × 5 = 10</text></g>
+    <line x1="0" y1="86" x2="300" y2="86" stroke="var(--c-divider)" stroke-width="1"/>
+    <g transform="translate(0 96)"><text x="0" y="12" class="rid" fill="var(--c-md-t)">R-03</text><text x="44" y="12" class="rn">사용자 학습곡선</text><text x="300" y="12" class="rs" text-anchor="end">3 × 3 = 9</text></g>
+    <g transform="translate(0 126)"><text x="0" y="12" class="rid" fill="var(--c-md-t)">R-04</text><text x="44" y="12" class="rn">외부 OCR API 장애</text><text x="300" y="12" class="rs" text-anchor="end">2 × 4 = 8</text></g>
+    <g transform="translate(0 156)"><text x="0" y="12" class="rid" fill="var(--c-md-t)">R-06</text><text x="44" y="12" class="rn">모바일 환경 호환성</text><text x="300" y="12" class="rs" text-anchor="end">3 × 2 = 6</text></g>
+
+    <g transform="translate(0 210)">
+      <rect width="20" height="14" rx="3" class="hi"/><text x="28" y="11" class="lg">10 이상: 대응 계획 필수</text>
+      <rect y="22" width="20" height="14" rx="3" class="md"/><text x="28" y="33" class="lg">5 ~ 9: 감시</text>
+      <rect y="44" width="20" height="14" rx="3" class="lo"/><text x="28" y="55" class="lg">4 이하: 기록만</text>
+    </g>
+  </g>
+
+  <text x="24" y="470" class="sub">R-05는 확률이 낮아도 영향이 커서 빨강 영역입니다. 확률만 보면 놓치는 리스크입니다.</text>
+  <text x="24" y="490" class="sub">점수는 매달 다시 매깁니다. R-01은 8월 OCR 테스트 결과에 따라 자리를 옮길 수 있습니다.</text>
+</svg>
