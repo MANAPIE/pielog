@@ -1,0 +1,149 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-gantt">
+  <title id="t-gantt">Receipt 프로젝트 간트 차트: 2026년 6월부터 11월까지</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-grid: rgba(26,31,46,0.08); --c-grp: rgba(74,124,89,0.10);
+        --c-bar: #5B6B8C; --c-crit: #B85C4A;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-grid: rgba(232,230,225,0.08); --c-grp: rgba(125,184,143,0.14);
+          --c-bar: #93A3C9; --c-crit: #E08A78;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .mon { font-family: 'Inter',system-ui,sans-serif; font-size: 10px; font-weight: 700; fill: var(--c-muted); }
+      .grid { stroke: var(--c-grid); stroke-width: 1; }
+      .grp { fill: var(--c-grp); }
+      .gt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-accent); }
+      .rn { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; fill: var(--c-muted); }
+      .rt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-fg); }
+      .bar { fill: var(--c-bar); opacity: 0.85; }
+      .crit { fill: var(--c-crit); }
+      .dep { stroke: var(--c-muted); stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; }
+      .ms { fill: var(--c-accent-2); }
+      .mst { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; fill: var(--c-fg); }
+      .ct { font-family: 'Inter',system-ui,sans-serif; font-size: 8.5px; font-weight: 800; letter-spacing: 0.06em; fill: var(--c-crit); }
+      .note { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+    </style>
+    <marker id="dp" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0,0 7,3.5 0,7" fill="var(--c-muted)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <text x="24" y="28" class="ttl">순서와 겹침이 보여야 일정입니다</text>
+  <text x="24" y="48" class="sub">WBS의 항목 12개를 시간 위에 놓았습니다 · 붉은 막대가 임계 경로입니다</text>
+
+  <!-- 월 헤더와 세로 격자 (x=184 기준, 월당 100) -->
+  <g transform="translate(184 66)">
+    <text x="50" y="12" class="mon" text-anchor="middle">6월</text>
+    <text x="150" y="12" class="mon" text-anchor="middle">7월</text>
+    <text x="250" y="12" class="mon" text-anchor="middle">8월</text>
+    <text x="350" y="12" class="mon" text-anchor="middle">9월</text>
+    <text x="450" y="12" class="mon" text-anchor="middle">10월</text>
+    <text x="550" y="12" class="mon" text-anchor="middle">11월</text>
+    <g class="grid">
+      <line x1="0" y1="20" x2="0" y2="392"/>
+      <line x1="100" y1="20" x2="100" y2="392"/>
+      <line x1="200" y1="20" x2="200" y2="392"/>
+      <line x1="300" y1="20" x2="300" y2="392"/>
+      <line x1="400" y1="20" x2="400" y2="392"/>
+      <line x1="500" y1="20" x2="500" y2="392"/>
+      <line x1="600" y1="20" x2="600" y2="392"/>
+    </g>
+  </g>
+
+  <!-- 행 (행 높이 22, 시작 y=90) -->
+  <!-- 그룹 1.0 -->
+  <rect x="24" y="90" width="760" height="22" class="grp"/>
+  <text x="32" y="105" class="gt">1.0 인프라</text>
+  <g transform="translate(0 112)">
+    <text x="32" y="15" class="rn">1.1</text><text x="58" y="15" class="rt">서버 구축</text>
+    <rect x="184" y="5" width="63" height="12" rx="3" class="bar"/>
+  </g>
+  <g transform="translate(0 134)">
+    <text x="32" y="15" class="rn">1.2</text><text x="58" y="15" class="rt">인증 연동</text>
+    <rect x="214" y="5" width="83" height="12" rx="3" class="bar"/>
+  </g>
+  <g transform="translate(0 156)">
+    <text x="32" y="15" class="rn">1.3</text><text x="58" y="15" class="rt">모니터링</text>
+    <rect x="247" y="5" width="67" height="12" rx="3" class="bar"/>
+  </g>
+
+  <!-- 그룹 2.0 -->
+  <rect x="24" y="178" width="760" height="22" class="grp"/>
+  <text x="32" y="193" class="gt">2.0 영수증 처리</text>
+  <g transform="translate(0 200)">
+    <text x="32" y="15" class="rn">2.1</text><text x="58" y="15" class="rt">OCR API 통합</text>
+    <rect x="284" y="5" width="147" height="12" rx="3" class="crit"/>
+  </g>
+  <g transform="translate(0 222)">
+    <text x="32" y="15" class="rn">2.2</text><text x="58" y="15" class="rt">분류 엔진</text>
+    <rect x="347" y="5" width="150" height="12" rx="3" class="bar"/>
+  </g>
+  <g transform="translate(0 244)">
+    <text x="32" y="15" class="rn">2.3</text><text x="58" y="15" class="rt">신뢰도 표시</text>
+    <rect x="431" y="5" width="100" height="12" rx="3" class="bar"/>
+  </g>
+
+  <!-- 그룹 3.0 -->
+  <rect x="24" y="266" width="760" height="22" class="grp"/>
+  <text x="32" y="281" class="gt">3.0 결재 워크플로</text>
+  <g transform="translate(0 288)">
+    <text x="32" y="15" class="rn">3.1</text><text x="58" y="15" class="rt">결재 라인 설정</text>
+    <rect x="384" y="5" width="130" height="12" rx="3" class="crit"/>
+  </g>
+  <g transform="translate(0 310)">
+    <text x="32" y="15" class="rn">3.2</text><text x="58" y="15" class="rt">모바일 알림</text>
+    <rect x="447" y="5" width="117" height="12" rx="3" class="bar"/>
+  </g>
+  <g transform="translate(0 332)">
+    <text x="32" y="15" class="rn">3.3</text><text x="58" y="15" class="rt">반려 처리</text>
+    <rect x="514" y="5" width="83" height="12" rx="3" class="bar"/>
+  </g>
+
+  <!-- 그룹 4.0 -->
+  <rect x="24" y="354" width="760" height="22" class="grp"/>
+  <text x="32" y="369" class="gt">4.0 출시 준비</text>
+  <g transform="translate(0 376)">
+    <text x="32" y="15" class="rn">4.1</text><text x="58" y="15" class="rt">베타 테스트</text>
+    <rect x="531" y="5" width="116" height="12" rx="3" class="crit"/>
+  </g>
+  <g transform="translate(0 398)">
+    <text x="32" y="15" class="rn">4.2</text><text x="58" y="15" class="rt">매뉴얼 작성</text>
+    <rect x="584" y="5" width="130" height="12" rx="3" class="bar"/>
+  </g>
+  <g transform="translate(0 420)">
+    <text x="32" y="15" class="rn">4.3</text><text x="58" y="15" class="rt">사내 공지</text>
+    <rect x="684" y="5" width="80" height="12" rx="3" class="bar"/>
+  </g>
+
+  <!-- 의존 화살표: 막대 끝 -> 다음 막대 시작 -->
+  <g class="dep">
+    <path d="M297 145 L 322 145 L 322 202 L 284 202 L 284 205" marker-end="url(#dp)"/>
+    <path d="M431 211 L 540 211 L 540 290 L 384 290 L 384 293" marker-end="url(#dp)"/>
+    <path d="M514 299 L 605 299 L 605 378 L 531 378 L 531 381" marker-end="url(#dp)"/>
+  </g>
+
+  <!-- 마일스톤 -->
+  <g transform="translate(184 456)">
+    <line x1="0" y1="0" x2="600" y2="0" stroke="var(--c-divider)" stroke-width="1"/>
+    <g transform="translate(0 0)"><rect x="-6" y="-6" width="12" height="12" transform="rotate(45)" class="ms"/><text x="0" y="24" class="mst" text-anchor="start">개발 시작 6/1</text></g>
+    <g transform="translate(347 0)"><rect x="-6" y="-6" width="12" height="12" transform="rotate(45)" class="ms"/><text x="0" y="24" class="mst" text-anchor="middle">베타 9/15</text></g>
+    <g transform="translate(597 0)"><rect x="-6" y="-6" width="12" height="12" transform="rotate(45)" class="ms"/><text x="0" y="24" class="mst" text-anchor="end">출시 11/30</text></g>
+  </g>
+
+  <text x="24" y="514" class="note">임계 경로는 OCR 통합에서 결재 라인, 베타 테스트로 이어집니다. 여기서 하루 밀리면 출시가 하루 밀립니다.</text>
+  <text x="24" y="534" class="note">나머지 작업에는 여유가 있습니다. 여유가 있는 곳의 지연은 보고 대상이 아닙니다.</text>
+</svg>

@@ -1,0 +1,137 @@
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-wbs">
+  <title id="t-wbs">Receipt v1 WBS 트리: 4개 페이즈와 12개 작업 패키지</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-soft: rgba(74,124,89,0.12);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-soft: rgba(125,184,143,0.16);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .root { fill: var(--c-accent); }
+      .rt { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 800; fill: var(--c-bg); }
+      .rs { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; fill: var(--c-bg); opacity: 0.85; }
+      .ph { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.8; }
+      .pn { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; font-weight: 700; fill: var(--c-accent); }
+      .pt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .lf { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; }
+      .ln { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; fill: var(--c-muted); }
+      .lt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .ed { stroke: var(--c-divider); stroke-width: 1.4; fill: none; }
+      .note { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="520"/>
+
+  <text x="24" y="28" class="ttl">하위를 다 더하면 상위와 같아야 합니다</text>
+  <text x="24" y="48" class="sub">100% 규칙 · 빠진 것도 겹친 것도 없어야 일정과 예산이 맞습니다</text>
+
+  <!-- 루트 -->
+  <g transform="translate(322 66)">
+    <rect width="156" height="46" rx="7" class="root"/>
+    <text x="78" y="20" class="rt" text-anchor="middle">Receipt v1</text>
+    <text x="78" y="36" class="rs" text-anchor="middle">0.0 PROJECT</text>
+  </g>
+
+  <!-- 루트 -> 페이즈 -->
+  <path class="ed" d="M400 112 L 400 130"/>
+  <path class="ed" d="M112 130 L 688 130"/>
+  <path class="ed" d="M112 130 L 112 148"/>
+  <path class="ed" d="M304 130 L 304 148"/>
+  <path class="ed" d="M496 130 L 496 148"/>
+  <path class="ed" d="M688 130 L 688 148"/>
+
+  <!-- 페이즈 4개 (x 중심 112 / 304 / 496 / 688) -->
+  <g transform="translate(32 148)">
+    <rect width="160" height="46" rx="6" class="ph"/>
+    <text x="12" y="18" class="pn">1.0</text>
+    <text x="12" y="36" class="pt">인프라</text>
+  </g>
+  <g transform="translate(224 148)">
+    <rect width="160" height="46" rx="6" class="ph"/>
+    <text x="12" y="18" class="pn">2.0</text>
+    <text x="12" y="36" class="pt">영수증 처리</text>
+  </g>
+  <g transform="translate(416 148)">
+    <rect width="160" height="46" rx="6" class="ph"/>
+    <text x="12" y="18" class="pn">3.0</text>
+    <text x="12" y="36" class="pt">결재 워크플로</text>
+  </g>
+  <g transform="translate(608 148)">
+    <rect width="160" height="46" rx="6" class="ph"/>
+    <text x="12" y="18" class="pn">4.0</text>
+    <text x="12" y="36" class="pt">출시 준비</text>
+  </g>
+
+  <!-- 페이즈 -> 작업 패키지 (세로선 + 가지) -->
+  <g class="ed">
+    <path d="M112 194 L 112 340"/>
+    <path d="M304 194 L 304 340"/>
+    <path d="M496 194 L 496 340"/>
+    <path d="M688 194 L 688 340"/>
+    <path d="M112 234 L 128 234"/><path d="M112 288 L 128 288"/><path d="M112 342 L 128 342"/>
+    <path d="M304 234 L 320 234"/><path d="M304 288 L 320 288"/><path d="M304 342 L 320 342"/>
+    <path d="M496 234 L 512 234"/><path d="M496 288 L 512 288"/><path d="M496 342 L 512 342"/>
+    <path d="M688 234 L 704 234"/><path d="M688 288 L 704 288"/><path d="M688 342 L 704 342"/>
+  </g>
+
+  <!-- 1.x -->
+  <g transform="translate(128 214)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">1.1</text><text x="10" y="31" class="lt">서버 구축</text>
+  </g>
+  <g transform="translate(128 268)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">1.2</text><text x="10" y="31" class="lt">인증 연동</text>
+  </g>
+  <g transform="translate(128 322)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">1.3</text><text x="10" y="31" class="lt">모니터링</text>
+  </g>
+  <!-- 2.x -->
+  <g transform="translate(320 214)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">2.1</text><text x="10" y="31" class="lt">OCR 통합</text>
+  </g>
+  <g transform="translate(320 268)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">2.2</text><text x="10" y="31" class="lt">분류 엔진</text>
+  </g>
+  <g transform="translate(320 322)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">2.3</text><text x="10" y="31" class="lt">신뢰도 표시</text>
+  </g>
+  <!-- 3.x -->
+  <g transform="translate(512 214)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">3.1</text><text x="10" y="31" class="lt">결재 라인</text>
+  </g>
+  <g transform="translate(512 268)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">3.2</text><text x="10" y="31" class="lt">모바일 알림</text>
+  </g>
+  <g transform="translate(512 322)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">3.3</text><text x="10" y="31" class="lt">반려 처리</text>
+  </g>
+  <!-- 4.x -->
+  <g transform="translate(704 214)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">4.1</text><text x="10" y="31" class="lt">베타 테스트</text>
+  </g>
+  <g transform="translate(704 268)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">4.2</text><text x="10" y="31" class="lt">매뉴얼 작성</text>
+  </g>
+  <g transform="translate(704 322)">
+    <rect width="64" height="40" rx="5" class="lf"/><text x="10" y="16" class="ln">4.3</text><text x="10" y="31" class="lt">사내 공지</text>
+  </g>
+
+  <g transform="translate(24 400)">
+    <rect width="752" height="96" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1.2"/>
+    <text x="20" y="28" class="ttl" font-size="12.5">작업 패키지 하나가 곧 일정표의 한 줄입니다</text>
+    <text x="20" y="52" class="note">작업 패키지는 담당자 한 명이 2주 안에 끝낼 수 있는 크기로 자릅니다. 더 크면 추정이 틀리고, 더 잘게 자르면 관리 비용이 일을 넘습니다.</text>
+    <text x="20" y="72" class="note">4.2 매뉴얼 작성과 4.3 사내 공지는 출시 직전에 빠뜨리기 쉬운 항목입니다. WBS에 없으면 일정에도 없습니다.</text>
+  </g>
+</svg>
