@@ -1,0 +1,165 @@
+<svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-raci">
+  <title id="t-raci">Receipt RACI 매트릭스: 8개 활동과 8개 역할</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-r: #4A7C59; --c-a: #C8963E; --c-c: rgba(91,107,140,0.20); --c-i: rgba(107,114,128,0.10);
+        --c-ct: #5B6B8C; --c-it: #6B7280;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-r: #4A7C59; --c-a: #C8963E; --c-c: rgba(147,163,201,0.24); --c-i: rgba(139,146,160,0.12);
+          --c-ct: #93A3C9; --c-it: #8B92A0;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .hd { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .hs { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9px; fill: var(--c-muted); }
+      .act { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .acs { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 8.5px; fill: var(--c-muted); }
+      .cR { fill: var(--c-r); } .cA { fill: var(--c-a); } .cC { fill: var(--c-c); } .cI { fill: var(--c-i); }
+      .tR, .tA { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 800; fill: #FFFFFF; }
+      .tC { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 800; fill: var(--c-ct); }
+      .tI { font-family: 'Inter',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-it); }
+      .rule { stroke: var(--c-divider); stroke-width: 1; }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-fg); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="540"/>
+
+  <text x="24" y="28" class="ttl">A는 한 칸에 한 명입니다</text>
+  <text x="24" y="48" class="sub">R 실행 · A 최종 책임(별 표시, 활동당 한 명) · C 사전 자문 · I 사후 통보</text>
+
+  <!-- 열 머리 (x=176 시작, 열 폭 74) -->
+  <g transform="translate(176 66)">
+    <g transform="translate(0 0)"><text x="37" y="14" class="hd" text-anchor="middle">PM</text></g>
+    <g transform="translate(74 0)"><text x="37" y="14" class="hd" text-anchor="middle">재무이사</text><text x="37" y="27" class="hs" text-anchor="middle">스폰서</text></g>
+    <g transform="translate(148 0)"><text x="37" y="14" class="hd" text-anchor="middle">재무팀장</text></g>
+    <g transform="translate(222 0)"><text x="37" y="14" class="hd" text-anchor="middle">프론트엔드</text></g>
+    <g transform="translate(296 0)"><text x="37" y="14" class="hd" text-anchor="middle">백엔드</text></g>
+    <g transform="translate(370 0)"><text x="37" y="14" class="hd" text-anchor="middle">디자이너</text></g>
+    <g transform="translate(444 0)"><text x="37" y="14" class="hd" text-anchor="middle">IT 운영</text></g>
+    <g transform="translate(518 0)"><text x="37" y="14" class="hd" text-anchor="middle">QA</text></g>
+  </g>
+  <line x1="24" y1="102" x2="776" y2="102" class="rule"/>
+
+  <!-- 행: 행 높이 40, 시작 y=104. 셀 rect 66x28 at (x+4, y+6) -->
+  <g transform="translate(0 104)">
+    <!-- 차터 작성 -->
+    <g>
+      <text x="24" y="19" class="act">차터 작성</text><text x="24" y="31" class="acs">ep.01</text>
+      <g transform="translate(176 0)">
+        <rect x="4" y="6" width="66" height="28" rx="5" class="cR"/><text x="37" y="24" class="tR" text-anchor="middle">R</text>
+        <rect x="78" y="6" width="66" height="28" rx="5" class="cA"/><text x="111" y="24" class="tA" text-anchor="middle">A ★</text>
+        <rect x="152" y="6" width="66" height="28" rx="5" class="cC"/><text x="185" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="226" y="6" width="66" height="28" rx="5" class="cI"/><text x="259" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="300" y="6" width="66" height="28" rx="5" class="cI"/><text x="333" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="374" y="6" width="66" height="28" rx="5" class="cI"/><text x="407" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="448" y="6" width="66" height="28" rx="5" class="cI"/><text x="481" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="522" y="6" width="66" height="28" rx="5" class="cI"/><text x="555" y="24" class="tI" text-anchor="middle">I</text>
+      </g>
+    </g>
+    <!-- PRD 작성 -->
+    <g transform="translate(0 40)">
+      <text x="24" y="19" class="act">PRD 작성</text><text x="24" y="31" class="acs">ep.02</text>
+      <g transform="translate(176 0)">
+        <rect x="4" y="6" width="66" height="28" rx="5" class="cA"/><text x="37" y="24" class="tA" text-anchor="middle">R / A ★</text>
+        <rect x="78" y="6" width="66" height="28" rx="5" class="cI"/><text x="111" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="152" y="6" width="66" height="28" rx="5" class="cC"/><text x="185" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="226" y="6" width="66" height="28" rx="5" class="cC"/><text x="259" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="300" y="6" width="66" height="28" rx="5" class="cC"/><text x="333" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="374" y="6" width="66" height="28" rx="5" class="cC"/><text x="407" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="448" y="6" width="66" height="28" rx="5" class="cC"/><text x="481" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="522" y="6" width="66" height="28" rx="5" class="cI"/><text x="555" y="24" class="tI" text-anchor="middle">I</text>
+      </g>
+    </g>
+    <!-- OCR API 통합 -->
+    <g transform="translate(0 80)">
+      <text x="24" y="19" class="act">OCR API 통합</text><text x="24" y="31" class="acs">WBS 2.1</text>
+      <g transform="translate(176 0)">
+        <rect x="4" y="6" width="66" height="28" rx="5" class="cI"/><text x="37" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="226" y="6" width="66" height="28" rx="5" class="cI"/><text x="259" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="300" y="6" width="66" height="28" rx="5" class="cA"/><text x="333" y="24" class="tA" text-anchor="middle">R / A ★</text>
+        <rect x="448" y="6" width="66" height="28" rx="5" class="cC"/><text x="481" y="24" class="tC" text-anchor="middle">C</text>
+      </g>
+    </g>
+    <!-- 결재 시스템 연동 -->
+    <g transform="translate(0 120)">
+      <text x="24" y="19" class="act">결재 시스템 연동</text><text x="24" y="31" class="acs">WBS 3.1</text>
+      <g transform="translate(176 0)">
+        <rect x="4" y="6" width="66" height="28" rx="5" class="cI"/><text x="37" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="152" y="6" width="66" height="28" rx="5" class="cC"/><text x="185" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="226" y="6" width="66" height="28" rx="5" class="cI"/><text x="259" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="300" y="6" width="66" height="28" rx="5" class="cA"/><text x="333" y="24" class="tA" text-anchor="middle">R / A ★</text>
+        <rect x="448" y="6" width="66" height="28" rx="5" class="cC"/><text x="481" y="24" class="tC" text-anchor="middle">C</text>
+      </g>
+    </g>
+    <!-- 모바일 UI 디자인 -->
+    <g transform="translate(0 160)">
+      <text x="24" y="19" class="act">모바일 UI 디자인</text><text x="24" y="31" class="acs">WBS 2.3, 3.2</text>
+      <g transform="translate(176 0)">
+        <rect x="4" y="6" width="66" height="28" rx="5" class="cC"/><text x="37" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="152" y="6" width="66" height="28" rx="5" class="cI"/><text x="185" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="226" y="6" width="66" height="28" rx="5" class="cC"/><text x="259" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="374" y="6" width="66" height="28" rx="5" class="cA"/><text x="407" y="24" class="tA" text-anchor="middle">R / A ★</text>
+      </g>
+    </g>
+    <!-- 보안 검토 -->
+    <g transform="translate(0 200)">
+      <text x="24" y="19" class="act">보안 검토</text><text x="24" y="31" class="acs">전 단계</text>
+      <g transform="translate(176 0)">
+        <rect x="4" y="6" width="66" height="28" rx="5" class="cI"/><text x="37" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="78" y="6" width="66" height="28" rx="5" class="cI"/><text x="111" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="300" y="6" width="66" height="28" rx="5" class="cC"/><text x="333" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="448" y="6" width="66" height="28" rx="5" class="cA"/><text x="481" y="24" class="tA" text-anchor="middle">R / A ★</text>
+      </g>
+    </g>
+    <!-- 베타 운영 -->
+    <g transform="translate(0 240)">
+      <text x="24" y="19" class="act">베타 운영</text><text x="24" y="31" class="acs">WBS 4.1</text>
+      <g transform="translate(176 0)">
+        <rect x="4" y="6" width="66" height="28" rx="5" class="cA"/><text x="37" y="24" class="tA" text-anchor="middle">R / A ★</text>
+        <rect x="78" y="6" width="66" height="28" rx="5" class="cI"/><text x="111" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="152" y="6" width="66" height="28" rx="5" class="cC"/><text x="185" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="226" y="6" width="66" height="28" rx="5" class="cI"/><text x="259" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="300" y="6" width="66" height="28" rx="5" class="cI"/><text x="333" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="374" y="6" width="66" height="28" rx="5" class="cI"/><text x="407" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="448" y="6" width="66" height="28" rx="5" class="cI"/><text x="481" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="522" y="6" width="66" height="28" rx="5" class="cC"/><text x="555" y="24" class="tC" text-anchor="middle">C</text>
+      </g>
+    </g>
+    <!-- 사용자 매뉴얼 -->
+    <g transform="translate(0 280)">
+      <text x="24" y="19" class="act">사용자 매뉴얼</text><text x="24" y="31" class="acs">WBS 4.2</text>
+      <g transform="translate(176 0)">
+        <rect x="4" y="6" width="66" height="28" rx="5" class="cA"/><text x="37" y="24" class="tA" text-anchor="middle">R / A ★</text>
+        <rect x="78" y="6" width="66" height="28" rx="5" class="cI"/><text x="111" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="152" y="6" width="66" height="28" rx="5" class="cI"/><text x="185" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="226" y="6" width="66" height="28" rx="5" class="cI"/><text x="259" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="300" y="6" width="66" height="28" rx="5" class="cI"/><text x="333" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="374" y="6" width="66" height="28" rx="5" class="cC"/><text x="407" y="24" class="tC" text-anchor="middle">C</text>
+        <rect x="448" y="6" width="66" height="28" rx="5" class="cI"/><text x="481" y="24" class="tI" text-anchor="middle">I</text>
+        <rect x="522" y="6" width="66" height="28" rx="5" class="cI"/><text x="555" y="24" class="tI" text-anchor="middle">I</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 범례 -->
+  <g transform="translate(24 448)">
+    <rect width="26" height="18" rx="4" class="cR"/><text x="34" y="13" class="lg">R 실행</text>
+    <rect x="100" width="26" height="18" rx="4" class="cA"/><text x="134" y="13" class="lg">A 책임 (한 명)</text>
+    <rect x="240" width="26" height="18" rx="4" class="cC"/><text x="274" y="13" class="lg">C 사전 자문</text>
+    <rect x="370" width="26" height="18" rx="4" class="cI"/><text x="404" y="13" class="lg">I 사후 통보</text>
+  </g>
+  <text x="24" y="494" class="sub">빈 칸은 관여하지 않는다는 뜻입니다. 모든 칸을 채우면 표가 아니라 소음이 됩니다.</text>
+  <text x="24" y="514" class="sub">A가 두 명인 행이 있으면 결정이 안 납니다. A가 없는 행이 있으면 아무도 책임지지 않습니다.</text>
+</svg>
