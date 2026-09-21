@@ -227,9 +227,13 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
   });
 
   const SWIPE_THRESHOLD = 50;
+  // 줌 배율에서 생기는 소수점 오차를 흡수하는 여유
+  const EDGE_TOLERANCE = 2;
+  type PanRoom = { left: number; right: number };
   let touchStartX = 0;
   let touchStartY = 0;
   let isSwiping = false;
+  let startPanRoom: PanRoom = { left: 0, right: 0 };
 
   function hasHorizontalScrollableAncestor(target: EventTarget | null): boolean {
     let node = target as HTMLElement | null;
@@ -249,6 +253,27 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
     return false;
   }
 
+  // 문서를 좌·우로 더 움직일 수 있는 여유(CSS px).
+  // 핀치 줌 패닝은 document 스크롤이 아니라 visual viewport 오프셋으로 나타나므로 함께 계산한다.
+  function horizontalPanRoom(): PanRoom {
+    const root = document.documentElement;
+    const viewport = window.visualViewport;
+    const viewLeft = viewport ? viewport.pageLeft : window.scrollX;
+    const viewWidth = viewport ? viewport.width : root.clientWidth;
+    const contentWidth = Math.max(root.scrollWidth, root.clientWidth);
+    return {
+      left: Math.max(0, viewLeft),
+      right: Math.max(0, contentWidth - (viewLeft + viewWidth)),
+    };
+  }
+
+  // dx 방향으로 제스처 시작·종료 시점 모두 더 움직일 여유가 없었는지
+  function atPanEdge(dx: number, start: PanRoom, end: PanRoom): boolean {
+    const room =
+      dx > 0 ? Math.max(start.left, end.left) : Math.max(start.right, end.right);
+    return room <= EDGE_TOLERANCE;
+  }
+
   function hasTextSelection(): boolean {
     const selection = document.getSelection();
     return !!selection && !selection.isCollapsed;
@@ -264,6 +289,7 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
       const touch = e.touches[0];
       touchStartX = touch.clientX;
       touchStartY = touch.clientY;
+      startPanRoom = horizontalPanRoom();
       isSwiping = true;
     },
     { passive: true },
@@ -285,6 +311,11 @@ const { pageType = "home", sidebarOpacity = 1 } = Astro.props;
 
       const sidebarActive = sidebar?.classList.contains("is-active");
       const asideActive = asidePanel?.classList.contains("is-active");
+
+      // 패널을 여는 스와이프는 가로로 더 움직일 여지가 없을 때만 인정한다.
+      // 닫는 스와이프는 면제 — 확대 상태에서 패널을 못 닫는 상황을 막는다.
+      const closing = dx > 0 ? !!asideActive : !!sidebarActive;
+      if (!closing && !atPanEdge(dx, startPanRoom, horizontalPanRoom())) return;
 
       if (dx > 0) {
         if (asideActive) {
