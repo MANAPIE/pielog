@@ -1,13 +1,13 @@
 ---
 export const prerender = true;
 
-import { getCollection } from "astro:content";
+import { getVisiblePosts } from "../lib/posts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
 import FeaturedPost from "../components/FeaturedPost.astro";
 import AsideHomepage from "../components/AsideHomepage.astro";
 
-const posts = await getCollection("posts", ({ data }) => !data.draft);
+const posts = await getVisiblePosts();
 const sortedPosts = posts.sort((a, b) => {
 	const dateDiff = b.data.date.getTime() - a.data.date.getTime();
 	if (dateDiff !== 0) return dateDiff;
