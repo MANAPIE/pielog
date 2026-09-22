@@ -1,0 +1,99 @@
+<svg viewBox="0 0 800 572" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-charter">
+  <title id="t-charter">Receipt 프로젝트 차터 한 페이지 모형</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-soft: rgba(74,124,89,0.10); --c-soft-2: rgba(200,150,62,0.12);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-soft: rgba(125,184,143,0.14); --c-soft-2: rgba(224,180,90,0.16);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .doc { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.4; }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 17px; font-weight: 800; fill: var(--c-fg); }
+      .one { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .hd { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; fill: var(--c-accent); }
+      .hd2 { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; fill: var(--c-accent-2); }
+      .hd3 { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; fill: var(--c-accent-3); }
+      .b { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .m { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .k { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9.5px; fill: var(--c-muted); }
+      .v { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .rule { stroke: var(--c-divider); stroke-width: 1; }
+      .dot { fill: var(--c-accent); }
+      .dot2 { fill: var(--c-accent-2); }
+      .dotx { fill: none; stroke: var(--c-muted); stroke-width: 1.2; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="572"/>
+
+  <!-- 문서 한 장 -->
+  <g transform="translate(40 24)">
+    <rect width="720" height="524" rx="10" class="doc"/>
+
+    <!-- 머리 -->
+    <text x="32" y="44" class="ttl">Receipt v1</text>
+    <text x="32" y="66" class="one">사내 비용 정산을 영수증 업로드 30분 이내로 줄입니다</text>
+    <rect x="32" y="82" width="656" height="4" rx="2" fill="var(--c-accent)"/>
+
+    <!-- 좌: 배경·목적·목표 -->
+    <g transform="translate(32 104)">
+      <text x="0" y="0" class="hd">배경</text>
+      <text x="0" y="20" class="b">영수증 정산이 사람 손을 세 번 거칩니다.</text>
+      <text x="0" y="36" class="b">평균 처리 시간이 4일이고 대조 오류가 매달 반복됩니다.</text>
+
+      <text x="0" y="66" class="hd">목적</text>
+      <text x="0" y="86" class="b">사원은 사진 한 장으로 신청하고,</text>
+      <text x="0" y="102" class="b">재무팀은 대조 대신 예외만 봅니다.</text>
+
+      <text x="0" y="132" class="hd">측정 가능한 목표</text>
+      <circle cx="5" cy="149" r="3" class="dot"/><text x="16" y="153" class="b">처리 시간 평균 30분 이내</text>
+      <circle cx="5" cy="169" r="3" class="dot"/><text x="16" y="173" class="b">재무팀 수동 대조 작업 70% 감소</text>
+      <circle cx="5" cy="189" r="3" class="dot"/><text x="16" y="193" class="b">사용자 만족도 4.0 / 5.0 이상</text>
+    </g>
+
+    <line x1="356" y1="104" x2="356" y2="304" class="rule"/>
+
+    <!-- 우: 범위 / 범위 외 -->
+    <g transform="translate(380 104)">
+      <text x="0" y="0" class="hd">범위</text>
+      <circle cx="5" cy="17" r="3" class="dot"/><text x="16" y="21" class="b">영수증 OCR</text>
+      <circle cx="5" cy="37" r="3" class="dot"/><text x="16" y="41" class="b">자동 분류</text>
+      <circle cx="5" cy="57" r="3" class="dot"/><text x="16" y="61" class="b">결재 라인 연동</text>
+      <circle cx="5" cy="77" r="3" class="dot"/><text x="16" y="81" class="b">모바일 업로드</text>
+
+      <text x="0" y="112" class="hd2">범위 외</text>
+      <circle cx="5" cy="129" r="3" class="dotx"/><text x="16" y="133" class="m">해외 출장비</text>
+      <circle cx="5" cy="149" r="3" class="dotx"/><text x="16" y="153" class="m">법인카드 발급</text>
+      <circle cx="5" cy="169" r="3" class="dotx"/><text x="16" y="173" class="m">ERP 마이그레이션</text>
+    </g>
+
+    <line x1="32" y1="324" x2="688" y2="324" class="rule"/>
+
+    <!-- 바닥: 메타 -->
+    <g transform="translate(32 344)">
+      <text x="0" y="0" class="k">스폰서</text><text x="0" y="18" class="v">재무이사</text>
+      <text x="120" y="0" class="k">PM</text><text x="120" y="18" class="v">안 PM</text>
+      <text x="220" y="0" class="k">시작</text><text x="220" y="18" class="v">2026년 6월</text>
+      <text x="330" y="0" class="k">종료 목표</text><text x="330" y="18" class="v">2026년 11월</text>
+      <text x="450" y="0" class="k">예산</text><text x="450" y="18" class="v">1.2억원</text>
+    </g>
+
+    <g transform="translate(32 400)">
+      <rect width="656" height="94" rx="7" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.2"/>
+      <text x="16" y="22" class="hd2">핵심 리스크 3가지</text>
+      <circle cx="21" cy="40" r="3" class="dot2"/><text x="32" y="44" class="b">OCR 정확도가 한글 영수증에서 목표에 못 미칠 수 있습니다</text>
+      <circle cx="21" cy="58" r="3" class="dot2"/><text x="32" y="62" class="b">보안팀 검토가 늦어지면 결재 연동 일정이 밀립니다</text>
+      <circle cx="21" cy="76" r="3" class="dot2"/><text x="32" y="80" class="b">사용자 학습곡선이 초기 도입률을 떨어뜨릴 수 있습니다</text>
+    </g>
+  </g>
+</svg>

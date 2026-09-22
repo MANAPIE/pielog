@@ -1,0 +1,145 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-ll">
+  <title id="t-ll">Receipt 프로젝트 레슨런 카드 6장</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; }
+      .cat { font-family: 'Inter',system-ui,sans-serif; font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .id { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; font-weight: 700; fill: var(--c-muted); }
+      .h { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .k { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9px; font-weight: 700; fill: var(--c-accent-3); }
+      .t { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9.5px; fill: var(--c-fg); }
+      .src { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 8px; fill: var(--c-muted); }
+      .rule { stroke: var(--c-divider); stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="600"/>
+
+  <text x="24" y="28" class="ttl">상황과 교훈을 나눠 적어야 다음 프로젝트가 꺼내 씁니다</text>
+  <text x="24" y="48" class="sub">Receipt v1 종료 시점 · 카드 한 장에 교훈 하나</text>
+
+  <!-- 1행 -->
+  <g transform="translate(24 66)">
+    <rect width="240" height="250" rx="8" class="card"/>
+    <text x="14" y="20" class="cat" fill="var(--c-accent-2)">외부 의존성</text>
+    <text x="14" y="42" class="id">L-01</text>
+    <text x="14" y="58" class="h">외부 OCR API의 학습 데이터 부족</text>
+    <line x1="14" y1="68" x2="226" y2="68" class="rule"/>
+    <text x="14" y="86" class="k">상황</text>
+    <text x="14" y="100" class="t">외부 OCR이 한글 영수증에서</text>
+    <text x="14" y="113" class="t">78% 정확도로 시작했습니다</text>
+    <text x="14" y="136" class="k">교훈</text>
+    <text x="14" y="150" class="t">외부 API의 일반 성능과</text>
+    <text x="14" y="163" class="t">우리 도메인 성능은 다릅니다</text>
+    <text x="14" y="186" class="k">적용</text>
+    <text x="14" y="200" class="t">외부 API 도입 시 우리 데이터</text>
+    <text x="14" y="213" class="t">1000건 테스트를 1주차에 합니다</text>
+    <text x="14" y="238" class="src">Receipt v1 · 2026.11.30 · PM</text>
+  </g>
+
+  <g transform="translate(280 66)">
+    <rect width="240" height="250" rx="8" class="card"/>
+    <text x="14" y="20" class="cat" fill="var(--c-accent-3)">보안 거버넌스</text>
+    <text x="14" y="42" class="id">L-02</text>
+    <text x="14" y="58" class="h">보안 검토는 후순위가 아니라 게이트</text>
+    <line x1="14" y1="68" x2="226" y2="68" class="rule"/>
+    <text x="14" y="86" class="k">상황</text>
+    <text x="14" y="100" class="t">보안 검토를 8월에 요청해</text>
+    <text x="14" y="113" class="t">3주를 대기로 보냈습니다</text>
+    <text x="14" y="136" class="k">교훈</text>
+    <text x="14" y="150" class="t">보안팀 일정은 우리 일정에</text>
+    <text x="14" y="163" class="t">맞춰지지 않습니다</text>
+    <text x="14" y="186" class="k">적용</text>
+    <text x="14" y="200" class="t">킥오프 주에 보안팀 검토 일정을</text>
+    <text x="14" y="213" class="t">먼저 잡습니다</text>
+    <text x="14" y="238" class="src">Receipt v1 · 2026.11.30 · PM</text>
+  </g>
+
+  <g transform="translate(536 66)">
+    <rect width="240" height="250" rx="8" class="card"/>
+    <text x="14" y="20" class="cat" fill="var(--c-accent)">변경 관리</text>
+    <text x="14" y="42" class="id">L-03</text>
+    <text x="14" y="58" class="h">영향 분석 없는 변경은 일정을 먹습니다</text>
+    <line x1="14" y1="68" x2="226" y2="68" class="rule"/>
+    <text x="14" y="86" class="k">상황</text>
+    <text x="14" y="100" class="t">범위 외 요청 4건이 스프린트</text>
+    <text x="14" y="113" class="t">중간에 들어왔습니다</text>
+    <text x="14" y="136" class="k">교훈</text>
+    <text x="14" y="150" class="t">"작은 요청"의 크기는</text>
+    <text x="14" y="163" class="t">요청한 사람이 정하지 않습니다</text>
+    <text x="14" y="186" class="k">적용</text>
+    <text x="14" y="200" class="t">변경 요청 템플릿에 영향 분석</text>
+    <text x="14" y="213" class="t">칸을 필수로 둡니다</text>
+    <text x="14" y="238" class="src">Receipt v1 · 2026.11.30 · PM</text>
+  </g>
+
+  <!-- 2행 -->
+  <g transform="translate(24 332)">
+    <rect width="240" height="250" rx="8" class="card"/>
+    <text x="14" y="20" class="cat" fill="var(--c-accent-2)">사용자 학습</text>
+    <text x="14" y="42" class="id">L-04</text>
+    <text x="14" y="58" class="h">직관적이라는 판단은 만든 사람의 것</text>
+    <line x1="14" y1="68" x2="226" y2="68" class="rule"/>
+    <text x="14" y="86" class="k">상황</text>
+    <text x="14" y="100" class="t">베타 첫 주 문의의 60%가</text>
+    <text x="14" y="113" class="t">"어디를 눌러야 하나"였습니다</text>
+    <text x="14" y="136" class="k">교훈</text>
+    <text x="14" y="150" class="t">화면을 만든 사람은 처음 보는</text>
+    <text x="14" y="163" class="t">사람의 눈을 잃습니다</text>
+    <text x="14" y="186" class="k">적용</text>
+    <text x="14" y="200" class="t">온보딩 화면 3장을 출시 전에</text>
+    <text x="14" y="213" class="t">넣습니다</text>
+    <text x="14" y="238" class="src">Receipt v1 · 2026.11.30 · PM</text>
+  </g>
+
+  <g transform="translate(280 332)">
+    <rect width="240" height="250" rx="8" class="card"/>
+    <text x="14" y="20" class="cat" fill="var(--c-accent-3)">데이터 준비</text>
+    <text x="14" y="42" class="id">L-05</text>
+    <text x="14" y="58" class="h">데이터 준비는 개발보다 앞에 옵니다</text>
+    <line x1="14" y1="68" x2="226" y2="68" class="rule"/>
+    <text x="14" y="86" class="k">상황</text>
+    <text x="14" y="100" class="t">분류 엔진 학습용 라벨 데이터가</text>
+    <text x="14" y="113" class="t">7월에야 준비됐습니다</text>
+    <text x="14" y="136" class="k">교훈</text>
+    <text x="14" y="150" class="t">데이터 없이 만든 엔진은</text>
+    <text x="14" y="163" class="t">테스트할 수 없습니다</text>
+    <text x="14" y="186" class="k">적용</text>
+    <text x="14" y="200" class="t">WBS에 데이터 준비를</text>
+    <text x="14" y="213" class="t">별도 항목으로 둡니다</text>
+    <text x="14" y="238" class="src">Receipt v1 · 2026.11.30 · PM</text>
+  </g>
+
+  <g transform="translate(536 332)">
+    <rect width="240" height="250" rx="8" class="card"/>
+    <text x="14" y="20" class="cat" fill="var(--c-accent)">팀 협업</text>
+    <text x="14" y="42" class="id">L-06</text>
+    <text x="14" y="58" class="h">구두 합의는 통합 시점에 터집니다</text>
+    <line x1="14" y1="68" x2="226" y2="68" class="rule"/>
+    <text x="14" y="86" class="k">상황</text>
+    <text x="14" y="100" class="t">프론트와 백엔드가 API 계약을</text>
+    <text x="14" y="113" class="t">말로만 맞췄습니다</text>
+    <text x="14" y="136" class="k">교훈</text>
+    <text x="14" y="150" class="t">병렬 개발은 계약 문서가</text>
+    <text x="14" y="163" class="t">있을 때만 병렬입니다</text>
+    <text x="14" y="186" class="k">적용</text>
+    <text x="14" y="200" class="t">API 스펙을 1주차에</text>
+    <text x="14" y="213" class="t">문서로 고정합니다</text>
+    <text x="14" y="238" class="src">Receipt v1 · 2026.11.30 · PM</text>
+  </g>
+</svg>

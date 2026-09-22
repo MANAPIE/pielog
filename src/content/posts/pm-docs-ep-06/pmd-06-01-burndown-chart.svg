@@ -1,0 +1,137 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-bd">
+  <title id="t-bd">Receipt Sprint 03 번다운 차트</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-grid: rgba(26,31,46,0.08); --c-soft: rgba(74,124,89,0.10);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-grid: rgba(232,230,225,0.08); --c-soft: rgba(125,184,143,0.14);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .grid { stroke: var(--c-grid); stroke-width: 1; }
+      .ax { stroke: var(--c-divider); stroke-width: 1.2; }
+      .tk { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; fill: var(--c-muted); }
+      .al { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .ideal { stroke: var(--c-muted); stroke-width: 1.6; stroke-dasharray: 6 5; fill: none; }
+      .actual { stroke: var(--c-accent); stroke-width: 2.6; fill: none; stroke-linejoin: round; }
+      .dotA { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 2; }
+      .star { fill: var(--c-accent-2); }
+      .info { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; }
+      .ik { font-family: 'Inter',system-ui,sans-serif; font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; fill: var(--c-muted); }
+      .iv { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .lg { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-fg); }
+      .bar { fill: var(--c-accent-3); opacity: 0.75; }
+      .note { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-accent-2); font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <text x="24" y="28" class="ttl">선이 위에 있으면 늦고, 아래에 있으면 빠릅니다</text>
+  <text x="24" y="48" class="sub">Sprint 03 · 남은 포인트를 매일 찍습니다</text>
+
+  <!-- 스프린트 정보 -->
+  <g transform="translate(560 62)">
+    <rect width="216" height="88" rx="7" class="info"/>
+    <text x="14" y="18" class="ik">SPRINT 03</text>
+    <text x="14" y="36" class="iv">2026.07.13 - 07.24</text>
+    <text x="14" y="58" class="ik">목표 40 pt</text>
+    <text x="14" y="76" class="iv">완료 35 pt · 남음 5 pt</text>
+  </g>
+
+  <!-- 메인 차트: x 80~620 (일당 54), y 80~360 (pt당 7) -->
+  <g transform="translate(80 80)">
+    <!-- 격자 -->
+    <g class="grid">
+      <line x1="0" y1="0" x2="540" y2="0"/><line x1="0" y1="70" x2="540" y2="70"/>
+      <line x1="0" y1="140" x2="540" y2="140"/><line x1="0" y1="210" x2="540" y2="210"/>
+    </g>
+    <line x1="0" y1="0" x2="0" y2="280" class="ax"/>
+    <line x1="0" y1="280" x2="540" y2="280" class="ax"/>
+    <!-- y 눈금 -->
+    <text x="-8" y="4" class="tk" text-anchor="end">40</text>
+    <text x="-8" y="74" class="tk" text-anchor="end">30</text>
+    <text x="-8" y="144" class="tk" text-anchor="end">20</text>
+    <text x="-8" y="214" class="tk" text-anchor="end">10</text>
+    <text x="-8" y="284" class="tk" text-anchor="end">0</text>
+    <text x="-44" y="136" class="al" text-anchor="middle">남은</text>
+    <text x="-44" y="150" class="al" text-anchor="middle">pt</text>
+    <!-- x 눈금 -->
+    <text x="0" y="298" class="tk" text-anchor="middle">D0</text>
+    <text x="54" y="298" class="tk" text-anchor="middle">D1</text>
+    <text x="108" y="298" class="tk" text-anchor="middle">D2</text>
+    <text x="162" y="298" class="tk" text-anchor="middle">D3</text>
+    <text x="216" y="298" class="tk" text-anchor="middle">D4</text>
+    <text x="270" y="298" class="tk" text-anchor="middle">D5</text>
+    <text x="324" y="298" class="tk" text-anchor="middle">D6</text>
+    <text x="378" y="298" class="tk" text-anchor="middle">D7</text>
+    <text x="432" y="298" class="tk" text-anchor="middle">D8</text>
+    <text x="486" y="298" class="tk" text-anchor="middle">D9</text>
+    <text x="540" y="298" class="tk" text-anchor="middle">D10</text>
+
+    <!-- 이상선 40 -> 0 -->
+    <line x1="0" y1="0" x2="540" y2="280" class="ideal"/>
+
+    <!-- 실제선: D0 40, D1 38, D2 36, D3 33, D4 29, D5 20, D6 19, D7 21, D8 12, D9 8, D10 5 -->
+    <polyline class="actual" points="0,0 54,14 108,28 162,49 216,77 270,140 324,147 378,133 432,196 486,224 540,245"/>
+    <g>
+      <circle cx="0" cy="0" r="3.5" class="dotA"/><circle cx="54" cy="14" r="3.5" class="dotA"/>
+      <circle cx="108" cy="28" r="3.5" class="dotA"/><circle cx="162" cy="49" r="3.5" class="dotA"/>
+      <circle cx="216" cy="77" r="3.5" class="dotA"/><circle cx="270" cy="140" r="3.5" class="dotA"/>
+      <circle cx="324" cy="147" r="3.5" class="dotA"/><circle cx="432" cy="196" r="3.5" class="dotA"/>
+      <circle cx="486" cy="224" r="3.5" class="dotA"/><circle cx="540" cy="245" r="3.5" class="dotA"/>
+    </g>
+    <!-- D7 스코프 변경 별 -->
+    <path transform="translate(378 133)" d="M0,-8 L2.4,-2.5 L8,-2.5 L3.5,1.2 L5,7 L0,3.6 L-5,7 L-3.5,1.2 L-8,-2.5 L-2.4,-2.5 Z" class="star"/>
+    <text x="392" y="122" class="note">스코프 +2 pt</text>
+  </g>
+
+  <!-- 범례 -->
+  <g transform="translate(80 400)">
+    <line x1="0" y1="6" x2="28" y2="6" class="ideal"/><text x="36" y="10" class="lg">이상선</text>
+    <line x1="90" y1="6" x2="118" y2="6" class="actual"/><text x="126" y="10" class="lg">실제 남은 포인트</text>
+    <path transform="translate(230 6)" d="M0,-6 L1.8,-1.9 L6,-1.9 L2.6,0.9 L3.8,5.2 L0,2.7 L-3.8,5.2 L-2.6,0.9 L-6,-1.9 L-1.8,-1.9 Z" class="star"/><text x="242" y="10" class="lg">스코프 변경</text>
+  </g>
+
+  <!-- 일별 완료량 -->
+  <g transform="translate(80 430)">
+    <text x="0" y="0" class="ik">일별 완료 포인트</text>
+    <g transform="translate(27 8)">
+      <!-- 막대 폭 30, 일당 54 간격, 높이 = pt*5 (최대 9pt=45) -->
+      <rect x="0"   y="35" width="30" height="10" class="bar"/>
+      <rect x="54"  y="35" width="30" height="10" class="bar"/>
+      <rect x="108" y="30" width="30" height="15" class="bar"/>
+      <rect x="162" y="25" width="30" height="20" class="bar"/>
+      <rect x="216" y="0"  width="30" height="45" class="bar"/>
+      <rect x="270" y="40" width="30" height="5"  class="bar"/>
+      <rect x="324" y="45" width="30" height="0"  class="bar"/>
+      <rect x="378" y="0"  width="30" height="45" class="bar"/>
+      <rect x="432" y="25" width="30" height="20" class="bar"/>
+      <rect x="486" y="30" width="30" height="15" class="bar"/>
+      <line x1="-4" y1="45" x2="520" y2="45" class="ax"/>
+      <text x="15" y="60" class="tk" text-anchor="middle">2</text>
+      <text x="69" y="60" class="tk" text-anchor="middle">2</text>
+      <text x="123" y="60" class="tk" text-anchor="middle">3</text>
+      <text x="177" y="60" class="tk" text-anchor="middle">4</text>
+      <text x="231" y="60" class="tk" text-anchor="middle">9</text>
+      <text x="285" y="60" class="tk" text-anchor="middle">1</text>
+      <text x="339" y="60" class="tk" text-anchor="middle">0</text>
+      <text x="393" y="60" class="tk" text-anchor="middle">9</text>
+      <text x="447" y="60" class="tk" text-anchor="middle">4</text>
+      <text x="501" y="60" class="tk" text-anchor="middle">3</text>
+    </g>
+  </g>
+
+  <text x="24" y="536" class="sub">D6~D7에서 멈춘 것은 스코프가 늘어서가 아니라 리뷰 대기가 쌓여서였습니다. 선만 보면 원인은 모릅니다. 막대와 같이 봅니다.</text>
+</svg>

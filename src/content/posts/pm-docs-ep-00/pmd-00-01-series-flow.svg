@@ -1,0 +1,127 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-flow">
+  <title id="t-flow">PM 문서 가이드 시리즈 흐름: 일곱 단계와 각 단계가 답하는 질문</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-s1: #4A7C59; --c-s2: #C8963E; --c-s3: #5B6B8C; --c-s4: #8C5B6B;
+        --c-s5: #B85C4A; --c-s6: #3E8C8C; --c-s7: #7A6B4A;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-s1: #7DB88F; --c-s2: #E0B45A; --c-s3: #93A3C9; --c-s4: #C48EA0;
+          --c-s5: #E08A78; --c-s6: #6FBFBF; --c-s7: #B8A88A;
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .card { fill: var(--c-card); stroke-width: 2; }
+      .num { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 13px; font-weight: 700; fill: var(--c-fg); }
+      .doc { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .q { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; }
+      .arr { stroke: var(--c-divider); stroke-width: 1.6; }
+    </style>
+    <marker id="fa" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0,0 7,3.5 0,7" fill="var(--c-muted)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="300"/>
+
+  <text x="24" y="28" class="ttl">문서는 질문 순서대로 나옵니다</text>
+  <text x="24" y="48" class="sub">각 단계는 앞 단계의 답을 전제로 합니다. 순서를 건너뛰면 뒤 문서를 쓸 근거가 없어집니다.</text>
+
+  <g transform="translate(28 70)">
+    <!-- 01 정렬 -->
+    <g>
+      <rect width="96" height="120" rx="7" class="card" stroke="var(--c-s1)"/>
+      <text x="12" y="20" class="num" fill="var(--c-s1)">01</text>
+      <text x="12" y="42" class="nm">정렬</text>
+      <text x="12" y="66" class="doc">차터</text>
+      <text x="12" y="82" class="doc">BRD</text>
+      <text x="12" y="98" class="doc">이해관계자</text>
+    </g>
+    <line x1="98" y1="60" x2="106" y2="60" class="arr" marker-end="url(#fa)"/>
+
+    <!-- 02 정의 -->
+    <g transform="translate(108 0)">
+      <rect width="96" height="120" rx="7" class="card" stroke="var(--c-s2)"/>
+      <text x="12" y="20" class="num" fill="var(--c-s2)">02</text>
+      <text x="12" y="42" class="nm">정의</text>
+      <text x="12" y="66" class="doc">PRD</text>
+      <text x="12" y="82" class="doc">유저 스토리</text>
+    </g>
+    <line x1="206" y1="60" x2="214" y2="60" class="arr" marker-end="url(#fa)"/>
+
+    <!-- 03 분해 -->
+    <g transform="translate(216 0)">
+      <rect width="96" height="120" rx="7" class="card" stroke="var(--c-s3)"/>
+      <text x="12" y="20" class="num" fill="var(--c-s3)">03</text>
+      <text x="12" y="42" class="nm">분해</text>
+      <text x="12" y="66" class="doc">WBS</text>
+      <text x="12" y="82" class="doc">간트</text>
+    </g>
+    <line x1="314" y1="60" x2="322" y2="60" class="arr" marker-end="url(#fa)"/>
+
+    <!-- 04 분담 -->
+    <g transform="translate(324 0)">
+      <rect width="96" height="120" rx="7" class="card" stroke="var(--c-s4)"/>
+      <text x="12" y="20" class="num" fill="var(--c-s4)">04</text>
+      <text x="12" y="42" class="nm">분담</text>
+      <text x="12" y="66" class="doc">RACI</text>
+      <text x="12" y="82" class="doc">커뮤니케이션</text>
+    </g>
+    <line x1="422" y1="60" x2="430" y2="60" class="arr" marker-end="url(#fa)"/>
+
+    <!-- 05 통제 -->
+    <g transform="translate(432 0)">
+      <rect width="96" height="120" rx="7" class="card" stroke="var(--c-s5)"/>
+      <text x="12" y="20" class="num" fill="var(--c-s5)">05</text>
+      <text x="12" y="42" class="nm">통제</text>
+      <text x="12" y="66" class="doc">리스크</text>
+      <text x="12" y="82" class="doc">이슈</text>
+    </g>
+    <line x1="530" y1="60" x2="538" y2="60" class="arr" marker-end="url(#fa)"/>
+
+    <!-- 06 가시화 -->
+    <g transform="translate(540 0)">
+      <rect width="96" height="120" rx="7" class="card" stroke="var(--c-s6)"/>
+      <text x="12" y="20" class="num" fill="var(--c-s6)">06</text>
+      <text x="12" y="42" class="nm">가시화</text>
+      <text x="12" y="66" class="doc">상태 보고</text>
+      <text x="12" y="82" class="doc">번다운</text>
+      <text x="12" y="98" class="doc">대시보드</text>
+    </g>
+    <line x1="638" y1="60" x2="646" y2="60" class="arr" marker-end="url(#fa)"/>
+
+    <!-- 07 종결 -->
+    <g transform="translate(648 0)">
+      <rect width="96" height="120" rx="7" class="card" stroke="var(--c-s7)"/>
+      <text x="12" y="20" class="num" fill="var(--c-s7)">07</text>
+      <text x="12" y="42" class="nm">종결</text>
+      <text x="12" y="66" class="doc">종료 보고</text>
+      <text x="12" y="82" class="doc">회고</text>
+      <text x="12" y="98" class="doc">레슨런</text>
+    </g>
+
+    <!-- 각 단계가 답하는 질문 -->
+    <g transform="translate(0 140)">
+      <text x="48" y="14" class="q" fill="var(--c-s1)" text-anchor="middle">왜</text>
+      <text x="156" y="14" class="q" fill="var(--c-s2)" text-anchor="middle">무엇을</text>
+      <text x="264" y="14" class="q" fill="var(--c-s3)" text-anchor="middle">어떻게 쪼개는가</text>
+      <text x="372" y="14" class="q" fill="var(--c-s4)" text-anchor="middle">누가</text>
+      <text x="480" y="14" class="q" fill="var(--c-s5)" text-anchor="middle">무엇이 흔들리는가</text>
+      <text x="588" y="14" class="q" fill="var(--c-s6)" text-anchor="middle">잘 가고 있는가</text>
+      <text x="696" y="14" class="q" fill="var(--c-s7)" text-anchor="middle">무엇을 남기는가</text>
+    </g>
+  </g>
+
+  <text x="24" y="270" class="sub">앞의 넷은 계획, 뒤의 셋은 실행입니다. 계획 문서가 부실하면 실행 문서는 비교할 기준이 없습니다.</text>
+</svg>

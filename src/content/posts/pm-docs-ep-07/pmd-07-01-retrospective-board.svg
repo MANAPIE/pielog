@@ -1,0 +1,132 @@
+<svg viewBox="0 0 800 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-kpt">
+  <title id="t-kpt">Receipt v1 프로젝트 회고 KPT 보드</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-k: rgba(74,124,89,0.10); --c-p: rgba(200,150,62,0.12); --c-t: rgba(91,107,140,0.10);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-k: rgba(125,184,143,0.14); --c-p: rgba(224,180,90,0.16); --c-t: rgba(147,163,201,0.14);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .col { stroke: var(--c-divider); stroke-width: 1.2; }
+      .ch { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; }
+      .cs { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9.5px; fill: var(--c-muted); }
+      .card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1; }
+      .ct { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-fg); }
+      .vote { fill: var(--c-accent-2); }
+      .vn { font-family: 'Inter',system-ui,sans-serif; font-size: 10px; font-weight: 800; fill: #1A1F2E; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="470"/>
+
+  <text x="24" y="28" class="ttl">계속할 것, 문제였던 것, 다음에 시도할 것</text>
+  <text x="24" y="48" class="sub">Receipt v1 프로젝트 회고 · 우상단 숫자는 투표 결과입니다</text>
+
+  <!-- KEEP -->
+  <g transform="translate(24 64)">
+    <rect width="240" height="336" rx="8" fill="var(--c-k)" class="col"/>
+    <text x="14" y="24" class="ch" fill="var(--c-accent)">KEEP</text>
+    <text x="14" y="40" class="cs">잘 됐고 계속할 것</text>
+    <g transform="translate(12 52)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">격주 스폰서 1:1 미팅 유지</text>
+      <text x="12" y="42" class="ct">의사결정이 하루 안에 났습니다</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">5</text>
+    </g>
+    <g transform="translate(12 120)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">회의록의 결정·액션 칸 분리</text>
+      <text x="12" y="42" class="ct">누가 뭘 하는지 안 잊습니다</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">4</text>
+    </g>
+    <g transform="translate(12 188)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">디자인 검토를 스프린트</text>
+      <text x="12" y="42" class="ct">직전에 배치</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">3</text>
+    </g>
+    <g transform="translate(12 256)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">OCR 신뢰도 UI 패턴</text>
+      <text x="12" y="42" class="ct">사용자가 검토할 곳을 압니다</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">2</text>
+    </g>
+  </g>
+
+  <!-- PROBLEM -->
+  <g transform="translate(280 64)">
+    <rect width="240" height="336" rx="8" fill="var(--c-p)" class="col"/>
+    <text x="14" y="24" class="ch" fill="var(--c-accent-2)">PROBLEM</text>
+    <text x="14" y="40" class="cs">막혔거나 늦었던 것</text>
+    <g transform="translate(12 52)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">OCR 학습 데이터 부족을</text>
+      <text x="12" y="42" class="ct">8월에야 발견</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">6</text>
+    </g>
+    <g transform="translate(12 120)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">보안팀 검토 일정을 늦게 잡음</text>
+      <text x="12" y="42" class="ct">3주를 대기로 보냈습니다</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">5</text>
+    </g>
+    <g transform="translate(12 188)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">범위 외 변경 요청의</text>
+      <text x="12" y="42" class="ct">영향 분석 시간 부족</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">3</text>
+    </g>
+    <g transform="translate(12 256)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">베타 사용자 모집 안내 늦음</text>
+      <text x="12" y="42" class="ct">첫 주 참여가 절반밖에 안 되었습니다</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">2</text>
+    </g>
+  </g>
+
+  <!-- TRY -->
+  <g transform="translate(536 64)">
+    <rect width="240" height="336" rx="8" fill="var(--c-t)" class="col"/>
+    <text x="14" y="24" class="ch" fill="var(--c-accent-3)">TRY</text>
+    <text x="14" y="40" class="cs">다음에 바꿔 볼 것</text>
+    <g transform="translate(12 52)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">다음 프로젝트는 1주차에</text>
+      <text x="12" y="42" class="ct">베이스라인 데이터 확보</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">7</text>
+    </g>
+    <g transform="translate(12 120)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">보안팀과 킥오프 시점</text>
+      <text x="12" y="42" class="ct">사전 미팅</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">5</text>
+    </g>
+    <g transform="translate(12 188)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">변경 요청 표준</text>
+      <text x="12" y="42" class="ct">영향 분석 템플릿</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">4</text>
+    </g>
+    <g transform="translate(12 256)">
+      <rect width="216" height="58" rx="6" class="card"/>
+      <text x="12" y="24" class="ct">베타 모집 D-30 시작</text>
+      <text x="12" y="42" class="ct">공지 두 번, 리마인드 한 번</text>
+      <circle cx="202" cy="14" r="9" class="vote"/><text x="202" y="17.5" class="vn" text-anchor="middle">3</text>
+    </g>
+  </g>
+
+  <text x="24" y="428" class="sub">Try 칸은 투표 상위 두 장만 다음 프로젝트로 가져갑니다. 전부 하려 하면 하나도 안 됩니다.</text>
+  <text x="24" y="448" class="sub">Problem의 1위와 Try의 1위가 짝을 이룹니다. 짝이 없는 Problem은 원인을 더 파야 합니다.</text>
+</svg>

@@ -1,0 +1,117 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-stk">
+  <title id="t-stk">이해관계자 매트릭스: 관심도와 영향력에 따른 2×2 분류</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-q1: rgba(91,107,140,0.10); --c-q2: rgba(74,124,89,0.14);
+        --c-q3: rgba(107,114,128,0.08); --c-q4: rgba(200,150,62,0.12);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-q1: rgba(147,163,201,0.14); --c-q2: rgba(125,184,143,0.18);
+          --c-q3: rgba(139,146,160,0.10); --c-q4: rgba(224,180,90,0.16);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .quad { stroke: var(--c-divider); stroke-width: 1.2; }
+      .qh { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 12px; font-weight: 700; }
+      .qe { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 600; letter-spacing: 0.04em; fill: var(--c-muted); }
+      .qd { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .nd { fill: var(--c-card); stroke-width: 2.2; }
+      .nn { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .nr { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9px; fill: var(--c-muted); }
+      .ax { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; font-weight: 700; fill: var(--c-fg); }
+      .axm { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .axl { stroke: var(--c-line); stroke-width: 1.4; }
+    </style>
+    <marker id="ax-a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="var(--c-line)"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <text x="24" y="28" class="ttl">누구에게 얼마나 자주 말할지가 여기서 정해집니다</text>
+  <text x="24" y="48" class="sub">영향력이 크고 관심도 높은 사람부터 시간을 씁니다</text>
+
+  <!-- 축 -->
+  <g transform="translate(90 70)">
+    <!-- 사분면 배경 -->
+    <rect x="0" y="0" width="310" height="190" fill="var(--c-q1)" class="quad"/>
+    <rect x="310" y="0" width="310" height="190" fill="var(--c-q2)" class="quad"/>
+    <rect x="0" y="190" width="310" height="190" fill="var(--c-q3)" class="quad"/>
+    <rect x="310" y="190" width="310" height="190" fill="var(--c-q4)" class="quad"/>
+
+    <!-- 사분면 라벨 -->
+    <g transform="translate(16 20)">
+      <text x="0" y="0" class="qh" fill="var(--c-accent-3)">만족시켜라</text>
+      <text x="0" y="16" class="qe">KEEP SATISFIED</text>
+      <text x="0" y="34" class="qd">막히면 프로젝트가 멈추는 사람</text>
+    </g>
+    <g transform="translate(326 20)">
+      <text x="0" y="0" class="qh" fill="var(--c-accent)">긴밀히 관리하라</text>
+      <text x="0" y="16" class="qe">MANAGE CLOSELY</text>
+      <text x="0" y="34" class="qd">결정권과 관심을 둘 다 가진 사람</text>
+    </g>
+    <g transform="translate(16 210)">
+      <text x="0" y="0" class="qh" fill="var(--c-muted)">모니터하라</text>
+      <text x="0" y="16" class="qe">MONITOR</text>
+      <text x="0" y="34" class="qd">지금은 조용하지만 언제든 바뀔 수 있는 사람</text>
+    </g>
+    <g transform="translate(326 210)">
+      <text x="0" y="0" class="qh" fill="var(--c-accent-2)">정보를 제공하라</text>
+      <text x="0" y="16" class="qe">KEEP INFORMED</text>
+      <text x="0" y="34" class="qd">쓰는 사람, 그래서 알고 싶은 사람</text>
+    </g>
+
+    <!-- 인물 노드 -->
+    <g transform="translate(150 118)">
+      <circle r="24" class="nd" stroke="var(--c-accent-3)"/>
+      <text y="4" class="nn" text-anchor="middle">IT 운영팀</text>
+      <text y="40" class="nr" text-anchor="middle">게이트키퍼</text>
+    </g>
+    <g transform="translate(440 108)">
+      <circle r="26" class="nd" stroke="var(--c-accent)"/>
+      <text y="4" class="nn" text-anchor="middle">재무이사</text>
+      <text y="42" class="nr" text-anchor="middle">스폰서</text>
+    </g>
+    <g transform="translate(540 132)">
+      <circle r="24" class="nd" stroke="var(--c-accent)"/>
+      <text y="4" class="nn" text-anchor="middle">재무팀장</text>
+      <text y="40" class="nr" text-anchor="middle">핵심 사용자</text>
+    </g>
+    <g transform="translate(120 318)">
+      <circle r="22" class="nd" stroke="var(--c-muted)"/>
+      <text y="4" class="nn" text-anchor="middle">경영진</text>
+    </g>
+    <g transform="translate(430 318)">
+      <circle r="22" class="nd" stroke="var(--c-accent-2)"/>
+      <text y="4" class="nn" text-anchor="middle">일반 사원</text>
+    </g>
+    <g transform="translate(530 306)">
+      <circle r="22" class="nd" stroke="var(--c-accent-2)"/>
+      <text y="4" class="nn" text-anchor="middle">팀장 그룹</text>
+    </g>
+
+    <!-- 축선과 라벨 -->
+    <line x1="0" y1="380" x2="630" y2="380" class="axl" marker-end="url(#ax-a)"/>
+    <line x1="0" y1="380" x2="0" y2="-10" class="axl" marker-end="url(#ax-a)"/>
+    <text x="310" y="404" class="ax" text-anchor="middle">관심도</text>
+    <text x="8" y="404" class="axm">낮음</text>
+    <text x="612" y="404" class="axm" text-anchor="end">높음</text>
+    <text x="-44" y="176" class="ax" text-anchor="middle">영</text><text x="-44" y="192" class="ax" text-anchor="middle">향</text><text x="-44" y="208" class="ax" text-anchor="middle">력</text>
+    <text x="-8" y="374" class="axm" text-anchor="end">낮음</text>
+    <text x="-8" y="8" class="axm" text-anchor="end">높음</text>
+  </g>
+
+  <text x="24" y="510" class="sub">같은 사분면이라도 사람에 따라 채널과 빈도가 다릅니다. 이 표는 시작점이지 결론이 아닙니다.</text>
+  <text x="24" y="530" class="sub">프로젝트가 진행되면 사람이 사분면을 옮겨 다닙니다. 마일스톤마다 다시 그립니다.</text>
+</svg>

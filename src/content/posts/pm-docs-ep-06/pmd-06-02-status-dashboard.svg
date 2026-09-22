@@ -1,0 +1,140 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-dash">
+  <title id="t-dash">Receipt v1 KPI 대시보드 목업</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-grid: rgba(26,31,46,0.08); --c-ok: #4A7C59; --c-warn: #C8963E; --c-bad: #B85C4A;
+        --c-track: rgba(26,31,46,0.08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-grid: rgba(232,230,225,0.08); --c-ok: #7DB88F; --c-warn: #E0B45A; --c-bad: #E08A78;
+          --c-track: rgba(232,230,225,0.10);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .card { fill: var(--c-card); stroke: var(--c-divider); stroke-width: 1.2; }
+      .kl { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-muted); }
+      .kv { font-family: 'Inter',system-ui,sans-serif; font-size: 24px; font-weight: 800; fill: var(--c-fg); }
+      .ku { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .kt { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; }
+      .sh { font-family: 'Inter',system-ui,sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; fill: var(--c-muted); }
+      .grid { stroke: var(--c-grid); stroke-width: 1; }
+      .tk { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; fill: var(--c-muted); }
+      .ln { stroke: var(--c-accent); stroke-width: 2.2; fill: none; stroke-linejoin: round; }
+      .area { fill: var(--c-accent); opacity: 0.10; }
+      .ml { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .mp { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; font-weight: 700; fill: var(--c-fg); }
+      .track { fill: var(--c-track); }
+      .fill { fill: var(--c-accent); }
+      .it { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .ii { font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; fill: var(--c-muted); }
+      .bd { font-family: 'Inter',system-ui,sans-serif; font-size: 8.5px; font-weight: 800; fill: #FFFFFF; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <text x="24" y="28" class="ttl">숫자 넷이면 회의가 짧아집니다</text>
+  <text x="24" y="48" class="sub">Receipt v1 · 2026.09.30 기준 · 목표 대비로 읽습니다</text>
+
+  <!-- KPI 카드 4개: 폭 176, 간격 16 -->
+  <g transform="translate(24 64)">
+    <rect width="176" height="92" rx="8" class="card"/>
+    <text x="16" y="22" class="kl">누적 사용자</text>
+    <text x="16" y="54" class="kv">247</text><text x="70" y="54" class="ku">명</text>
+    <text x="16" y="78" class="kt" fill="var(--c-ok)">▲ 목표 300명 대비 82%</text>
+  </g>
+  <g transform="translate(216 64)">
+    <rect width="176" height="92" rx="8" class="card"/>
+    <text x="16" y="22" class="kl">평균 처리 시간</text>
+    <text x="16" y="54" class="kv">28</text><text x="52" y="54" class="ku">분</text>
+    <text x="16" y="78" class="kt" fill="var(--c-ok)">▲ 목표 30분 달성</text>
+  </g>
+  <g transform="translate(408 64)">
+    <rect width="176" height="92" rx="8" class="card"/>
+    <text x="16" y="22" class="kl">OCR 정확도</text>
+    <text x="16" y="54" class="kv">84</text><text x="52" y="54" class="ku">%</text>
+    <text x="16" y="78" class="kt" fill="var(--c-warn)">▶ 목표 90% 미달</text>
+  </g>
+  <g transform="translate(600 64)">
+    <rect width="176" height="92" rx="8" class="card"/>
+    <text x="16" y="22" class="kl">만족도</text>
+    <text x="16" y="54" class="kv">4.1</text><text x="62" y="54" class="ku">/ 5</text>
+    <text x="16" y="78" class="kt" fill="var(--c-ok)">▲ 목표 4.0 달성</text>
+  </g>
+
+  <!-- 좌: 일별 신청 건수 -->
+  <g transform="translate(24 172)">
+    <rect width="440" height="200" rx="8" class="card"/>
+    <text x="16" y="22" class="sh">일별 신청 건수 · 최근 14일</text>
+    <g transform="translate(40 44)">
+      <g class="grid">
+        <line x1="0" y1="0" x2="380" y2="0"/><line x1="0" y1="40" x2="380" y2="40"/>
+        <line x1="0" y1="80" x2="380" y2="80"/><line x1="0" y1="120" x2="380" y2="120"/>
+      </g>
+      <text x="-8" y="4" class="tk" text-anchor="end">60</text>
+      <text x="-8" y="44" class="tk" text-anchor="end">40</text>
+      <text x="-8" y="84" class="tk" text-anchor="end">20</text>
+      <text x="-8" y="124" class="tk" text-anchor="end">0</text>
+      <!-- 14일, x 간격 29.2, y = 120 - n*2 -->
+      <path class="area" d="M0,96 L29,90 L58,84 L88,88 L117,72 L146,66 L175,74 L204,60 L234,52 L263,56 L292,44 L321,38 L350,42 L380,30 L380,120 L0,120 Z"/>
+      <polyline class="ln" points="0,96 29,90 58,84 88,88 117,72 146,66 175,74 204,60 234,52 263,56 292,44 321,38 350,42 380,30"/>
+      <text x="0" y="138" class="tk">9/17</text>
+      <text x="380" y="138" class="tk" text-anchor="end">9/30</text>
+    </g>
+  </g>
+
+  <!-- 우: 마일스톤 진척 -->
+  <g transform="translate(480 172)">
+    <rect width="296" height="200" rx="8" class="card"/>
+    <text x="16" y="22" class="sh">마일스톤 진척</text>
+    <g transform="translate(16 40)">
+      <text x="0" y="12" class="ml">인프라</text><text x="264" y="12" class="mp" text-anchor="end">100%</text>
+      <rect y="18" width="264" height="8" rx="4" class="track"/><rect y="18" width="264" height="8" rx="4" class="fill"/>
+    </g>
+    <g transform="translate(16 78)">
+      <text x="0" y="12" class="ml">영수증 처리</text><text x="264" y="12" class="mp" text-anchor="end">88%</text>
+      <rect y="18" width="264" height="8" rx="4" class="track"/><rect y="18" width="232" height="8" rx="4" class="fill"/>
+    </g>
+    <g transform="translate(16 116)">
+      <text x="0" y="12" class="ml">결재 워크플로</text><text x="264" y="12" class="mp" text-anchor="end">75%</text>
+      <rect y="18" width="264" height="8" rx="4" class="track"/><rect y="18" width="198" height="8" rx="4" class="fill"/>
+    </g>
+    <g transform="translate(16 154)">
+      <text x="0" y="12" class="ml">출시 준비</text><text x="264" y="12" class="mp" text-anchor="end">30%</text>
+      <rect y="18" width="264" height="8" rx="4" class="track"/><rect y="18" width="79" height="8" rx="4" class="fill"/>
+    </g>
+  </g>
+
+  <!-- 하단: 최근 이슈 -->
+  <g transform="translate(24 388)">
+    <rect width="752" height="120" rx="8" class="card"/>
+    <text x="16" y="22" class="sh">최근 이슈 3건</text>
+    <g transform="translate(16 36)">
+      <rect width="42" height="16" rx="8" fill="var(--c-bad)"/><text x="21" y="11.5" class="bd" text-anchor="middle">HIGH</text>
+      <text x="54" y="12" class="it">한글 영수증 OCR 정확도 78% 구간 발생</text>
+      <text x="720" y="12" class="ii" text-anchor="end">In Progress · 백엔드</text>
+    </g>
+    <g transform="translate(16 64)">
+      <rect width="42" height="16" rx="8" fill="var(--c-warn)"/><text x="21" y="11.5" class="bd" text-anchor="middle">MED</text>
+      <text x="54" y="12" class="it">iOS 16 이하에서 카메라 권한 팝업 미표시</text>
+      <text x="720" y="12" class="ii" text-anchor="end">Triaged · 프론트엔드</text>
+    </g>
+    <g transform="translate(16 92)">
+      <rect width="42" height="16" rx="8" fill="var(--c-muted)"/><text x="21" y="11.5" class="bd" text-anchor="middle">LOW</text>
+      <text x="54" y="12" class="it">카테고리 드롭다운 정렬 순서 문의</text>
+      <text x="720" y="12" class="ii" text-anchor="end">Resolved · 디자이너</text>
+    </g>
+  </g>
+
+  <text x="24" y="536" class="sub">OCR 정확도만 노란색입니다. 한 화면에서 어디를 봐야 하는지가 색으로 정해져야 대시보드입니다.</text>
+</svg>

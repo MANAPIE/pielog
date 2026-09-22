@@ -1,0 +1,159 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-comm">
+  <title id="t-comm">Receipt 커뮤니케이션 플랜: 청중별 전략과 월별 타임라인</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #4A7C59; --c-accent-2: #C8963E; --c-accent-3: #5B6B8C;
+        --c-line: #1A1F2E; --c-card: #FFFFFF; --c-divider: rgba(26,31,46,0.14);
+        --c-grid: rgba(26,31,46,0.08); --c-rowa: rgba(74,124,89,0.06);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #7DB88F; --c-accent-2: #E0B45A; --c-accent-3: #93A3C9;
+          --c-line: #E8E6E1; --c-card: #161B22; --c-divider: rgba(232,230,225,0.18);
+          --c-grid: rgba(232,230,225,0.08); --c-rowa: rgba(125,184,143,0.08);
+        }
+      }
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter','Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 14px; font-weight: 700; fill: var(--c-fg); }
+      .sub { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 11px; fill: var(--c-muted); }
+      .th { font-family: 'Inter',system-ui,sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; fill: var(--c-muted); }
+      .aud { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .aus { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 9px; fill: var(--c-muted); }
+      .td { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; fill: var(--c-fg); }
+      .rule { stroke: var(--c-divider); stroke-width: 1; }
+      .rowa { fill: var(--c-rowa); }
+      .mon { font-family: 'Inter',system-ui,sans-serif; font-size: 9.5px; font-weight: 700; fill: var(--c-muted); }
+      .grid { stroke: var(--c-grid); stroke-width: 1; }
+      .tk { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; font-size: 10px; font-weight: 700; fill: var(--c-fg); }
+      .b1 { fill: var(--c-accent); } .b2 { fill: var(--c-accent-3); } .b3 { fill: var(--c-accent-2); }
+      .ms { fill: var(--c-accent-2); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="560"/>
+
+  <text x="24" y="28" class="ttl">누구에게, 무엇을, 얼마나 자주, 어디로</text>
+  <text x="24" y="48" class="sub">이해관계자 매트릭스에서 사분면이 정해지면 이 표의 행이 됩니다</text>
+
+  <!-- 표 머리 (좌측 청중 열 150, 이후 5열 × 120 = 600 → 174~774) -->
+  <g transform="translate(24 66)">
+    <text x="0" y="12" class="th">청중</text>
+    <text x="150" y="12" class="th">콘텐츠</text>
+    <text x="270" y="12" class="th">빈도</text>
+    <text x="390" y="12" class="th">채널</text>
+    <text x="510" y="12" class="th">책임자</text>
+    <text x="630" y="12" class="th">형식</text>
+    <line x1="0" y1="20" x2="752" y2="20" class="rule"/>
+
+    <!-- 행 높이 40 -->
+    <g transform="translate(0 20)">
+      <rect width="752" height="40" class="rowa"/>
+      <text x="0" y="17" class="aud">재무이사</text><text x="0" y="30" class="aus">스폰서</text>
+      <text x="150" y="24" class="td">진척 · 리스크 · 결정 요청</text>
+      <text x="270" y="24" class="td">격주</text>
+      <text x="390" y="24" class="td">1:1 미팅</text>
+      <text x="510" y="24" class="td">PM</text>
+      <text x="630" y="24" class="td">한 장 요약</text>
+    </g>
+    <g transform="translate(0 60)">
+      <text x="0" y="17" class="aud">재무팀장</text><text x="0" y="30" class="aus">핵심 사용자</text>
+      <text x="150" y="24" class="td">기능 확인 · 피드백 수집</text>
+      <text x="270" y="24" class="td">주간</text>
+      <text x="390" y="24" class="td">스프린트 리뷰</text>
+      <text x="510" y="24" class="td">PM · 디자이너</text>
+      <text x="630" y="24" class="td">데모 + 질의</text>
+    </g>
+    <g transform="translate(0 100)">
+      <rect width="752" height="40" class="rowa"/>
+      <text x="0" y="17" class="aud">IT 운영팀장</text><text x="0" y="30" class="aus">게이트키퍼</text>
+      <text x="150" y="24" class="td">보안 · 인프라 요청</text>
+      <text x="270" y="24" class="td">마일스톤마다</text>
+      <text x="390" y="24" class="td">검토 회의</text>
+      <text x="510" y="24" class="td">백엔드 리드</text>
+      <text x="630" y="24" class="td">체크리스트</text>
+    </g>
+    <g transform="translate(0 140)">
+      <text x="0" y="17" class="aud">일반 사원 · 팀장</text><text x="0" y="30" class="aus">사용자</text>
+      <text x="150" y="24" class="td">출시 일정 · 사용법</text>
+      <text x="270" y="24" class="td">격주</text>
+      <text x="390" y="24" class="td">사내 공지</text>
+      <text x="510" y="24" class="td">PM</text>
+      <text x="630" y="24" class="td">공지 글 + FAQ</text>
+    </g>
+    <g transform="translate(0 180)">
+      <rect width="752" height="40" class="rowa"/>
+      <text x="0" y="17" class="aud">경영진</text><text x="0" y="30" class="aus">모니터</text>
+      <text x="150" y="24" class="td">KPI 요약</text>
+      <text x="270" y="24" class="td">월간</text>
+      <text x="390" y="24" class="td">리포트 메일</text>
+      <text x="510" y="24" class="td">PM</text>
+      <text x="630" y="24" class="td">대시보드 캡처</text>
+    </g>
+    <line x1="0" y1="220" x2="752" y2="220" class="rule"/>
+  </g>
+
+  <!-- 타임라인 -->
+  <g transform="translate(24 320)">
+    <text x="0" y="12" class="th">6월부터 11월까지, 시간 위에 펼치면</text>
+    <g transform="translate(150 24)">
+      <text x="50" y="10" class="mon" text-anchor="middle">6월</text>
+      <text x="150" y="10" class="mon" text-anchor="middle">7월</text>
+      <text x="250" y="10" class="mon" text-anchor="middle">8월</text>
+      <text x="350" y="10" class="mon" text-anchor="middle">9월</text>
+      <text x="450" y="10" class="mon" text-anchor="middle">10월</text>
+      <text x="550" y="10" class="mon" text-anchor="middle">11월</text>
+      <g class="grid">
+        <line x1="0" y1="16" x2="0" y2="150"/><line x1="100" y1="16" x2="100" y2="150"/>
+        <line x1="200" y1="16" x2="200" y2="150"/><line x1="300" y1="16" x2="300" y2="150"/>
+        <line x1="400" y1="16" x2="400" y2="150"/><line x1="500" y1="16" x2="500" y2="150"/>
+        <line x1="600" y1="16" x2="600" y2="150"/>
+      </g>
+    </g>
+
+    <!-- 트랙 5개, 높이 26 -->
+    <g transform="translate(0 44)">
+      <text x="0" y="16" class="tk">격주 1:1</text>
+      <g transform="translate(150 0)">
+        <rect x="0" y="7" width="8" height="12" rx="2" class="b1"/><rect x="50" y="7" width="8" height="12" rx="2" class="b1"/>
+        <rect x="100" y="7" width="8" height="12" rx="2" class="b1"/><rect x="150" y="7" width="8" height="12" rx="2" class="b1"/>
+        <rect x="200" y="7" width="8" height="12" rx="2" class="b1"/><rect x="250" y="7" width="8" height="12" rx="2" class="b1"/>
+        <rect x="300" y="7" width="8" height="12" rx="2" class="b1"/><rect x="350" y="7" width="8" height="12" rx="2" class="b1"/>
+        <rect x="400" y="7" width="8" height="12" rx="2" class="b1"/><rect x="450" y="7" width="8" height="12" rx="2" class="b1"/>
+        <rect x="500" y="7" width="8" height="12" rx="2" class="b1"/><rect x="550" y="7" width="8" height="12" rx="2" class="b1"/>
+      </g>
+    </g>
+    <g transform="translate(0 70)">
+      <text x="0" y="16" class="tk">주간 리뷰</text>
+      <rect x="150" y="9" width="600" height="8" rx="4" class="b2" opacity="0.7"/>
+    </g>
+    <g transform="translate(0 96)">
+      <text x="0" y="16" class="tk">마일스톤 검토</text>
+      <g transform="translate(150 0)">
+        <rect x="-6" y="7" width="12" height="12" transform="rotate(45 0 13)" class="ms"/>
+        <rect x="341" y="7" width="12" height="12" transform="rotate(45 347 13)" class="ms"/>
+        <rect x="591" y="7" width="12" height="12" transform="rotate(45 597 13)" class="ms"/>
+      </g>
+    </g>
+    <g transform="translate(0 122)">
+      <text x="0" y="16" class="tk">격주 공지</text>
+      <g transform="translate(150 0)">
+        <rect x="300" y="7" width="8" height="12" rx="2" class="b3"/><rect x="350" y="7" width="8" height="12" rx="2" class="b3"/>
+        <rect x="400" y="7" width="8" height="12" rx="2" class="b3"/><rect x="450" y="7" width="8" height="12" rx="2" class="b3"/>
+        <rect x="500" y="7" width="8" height="12" rx="2" class="b3"/><rect x="550" y="7" width="8" height="12" rx="2" class="b3"/>
+      </g>
+    </g>
+    <g transform="translate(0 148)">
+      <text x="0" y="16" class="tk">월간 리포트</text>
+      <g transform="translate(150 0)">
+        <circle cx="96" cy="13" r="5" class="b2"/><circle cx="196" cy="13" r="5" class="b2"/><circle cx="296" cy="13" r="5" class="b2"/>
+        <circle cx="396" cy="13" r="5" class="b2"/><circle cx="496" cy="13" r="5" class="b2"/><circle cx="596" cy="13" r="5" class="b2"/>
+      </g>
+    </g>
+  </g>
+
+  <text x="24" y="522" class="sub">공지는 베타 시점부터 시작합니다. 아직 만질 수 없는 것을 알리면 관심만 소모됩니다.</text>
+  <text x="24" y="540" class="sub">이 표의 약속을 지키지 못하면 이해관계자는 표를 믿지 않습니다. 빈도는 지킬 수 있는 만큼만 적습니다.</text>
+</svg>
