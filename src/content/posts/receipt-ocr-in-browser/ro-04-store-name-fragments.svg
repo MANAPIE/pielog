@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="466" viewBox="0 0 500 466" role="img" aria-labelledby="t4 d4">
+<title id="t4">사용처 후보에서 안내 문구 떼어 내기</title>
+<desc id="d4">영수증 머리 부분 한 행에 안내 문구와 매장명이 함께 찍힌 경우. 처음 규칙: 행을 통째로 후보로 써서 ① 첫 줄인 주소(서울시 ○○구 ○○로 12)가 1순위, ② 안내 문구가 붙은 행(*최근영수증발행인쇄 CU ○○점)이 그대로 후보. 고친 뒤: 주소 줄과 대표자·전화 줄(대표 ○○○ TEL 02-000-0000)은 후보에서 빼고, 가운데 행을 기호(* : / #)로 나눠 * 는 기호, 최근영수증발행인쇄는 안내 단어 포함이라 버리고, '○○점'으로 끝나는 CU ○○점을 1순위로 고름. 결과: 1순위 정답 12장에서 14장, 후보 3개 안 12장에서 16장, 기호가 남은 후보 14개에서 0개</desc>
+
+<defs><style>
+:root{
+  --c-bg:#FAFAF7; --c-fg:#1A1F2E; --c-muted:#6B7280; --c-card:#FFFFFF;
+  --c-line:#C9CDD6; --c-divider:#E5E7EB;
+  --c-accent:#0B7A44; --c-accent-2:#1F63B5;
+  --c-soft:#E7F5EE; --c-soft-2:#E8F0FB;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --c-bg:#0F1419; --c-fg:#E8E6E1; --c-muted:#8B92A0; --c-card:#161B22;
+    --c-line:#3A4250; --c-divider:#2A313C;
+    --c-accent:#3DBE7A; --c-accent-2:#5EA1F0;
+    --c-soft:#12301F; --c-soft-2:#10253A;
+  }
+}
+text{font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",sans-serif;fill:var(--c-fg)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.frag{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.title{font-size:14px;font-weight:700}
+.desc{font-size:12px;fill:var(--c-muted)}
+.small{font-size:11px;fill:var(--c-muted)}
+.glabel{font-size:12px;font-weight:700;fill:var(--c-accent)}
+.glabel2{font-size:12px;font-weight:700;fill:var(--c-accent-2)}
+.pick{font-size:11px;font-weight:700;fill:var(--c-accent)}
+.box-axis{fill:var(--c-accent-2);fill-opacity:.14;stroke:var(--c-accent-2);stroke-width:1.5}
+.box-rot{fill:var(--c-accent);fill-opacity:.14;stroke:var(--c-accent);stroke-width:1.5}
+.strike{stroke:var(--c-muted);stroke-width:1.2}
+.note{fill:var(--c-card);stroke:var(--c-divider);stroke-width:1}
+.result{font-size:13px;font-weight:700;fill:var(--c-accent)}
+.ocr{font-size:12px;fill:var(--c-fg)}
+.ocr-off{font-size:12px;fill:var(--c-muted)}
+.mono{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace}
+</style></defs>
+<rect class="bg" x="0" y="0" width="500" height="466"/>
+<text class="title" x="24" y="38">사용처 후보에서 안내 문구 떼어 내기</text>
+<text class="desc" x="24" y="60">영수증 머리 부분 한 행에 안내 문구와 매장명이 함께 찍힌 경우입니다.</text>
+
+<text class="glabel2" x="24" y="92">처음 규칙: 행을 통째로 후보로 씀</text>
+<rect class="card" x="24" y="102" width="452" height="94" rx="8"/>
+<rect class="box-axis" x="38" y="115" width="131" height="20" rx="3"/>
+<text class="ocr mono" x="44" y="129">서울시 ○○구 ○○로 12</text>
+<text class="small" x="296" y="129">① 첫 줄이라서 주소가 1순위</text>
+<rect class="box-axis" x="38" y="139" width="170" height="20" rx="3"/>
+<text class="ocr mono" x="44" y="153">*최근영수증발행인쇄 CU ○○점</text>
+<text class="small" x="296" y="153">② 안내 문구가 붙은 채 후보</text>
+<text class="ocr mono" x="44" y="177">대표 ○○○  TEL 02-000-0000</text>
+
+<text class="glabel" x="24" y="222">고친 뒤: 한 행 안에서 조각을 나눠 고름</text>
+<rect class="card" x="24" y="232" width="452" height="150" rx="8"/>
+<text class="ocr-off mono" x="44" y="258">서울시 ○○구 ○○로 12</text>
+<line class="strike" x1="42" y1="254" x2="163" y2="254"/>
+<text class="small" x="296" y="258">주소 줄 → 후보에서 뺌</text>
+
+<rect class="frag" x="44" y="274" width="24" height="26" rx="4"/>
+<text class="ocr-off mono" x="56" y="292" text-anchor="middle">*</text>
+<rect class="frag" x="76" y="274" width="110" height="26" rx="4"/>
+<text class="ocr-off mono" x="84" y="292">최근영수증발행인쇄</text>
+<line class="strike" x1="82" y1="288" x2="180" y2="288"/>
+<rect class="box-rot" x="194" y="274" width="64" height="26" rx="4"/>
+<text class="ocr mono" x="202" y="292">CU ○○점</text>
+<text class="small" x="296" y="292">기호(* : / #)로 나눔</text>
+<text class="small" x="56" y="318" text-anchor="middle">기호</text>
+<text class="small" x="56" y="334" text-anchor="middle">→ 나눔</text>
+<text class="small" x="131" y="318" text-anchor="middle">안내 단어 포함</text>
+<text class="small" x="131" y="334" text-anchor="middle">→ 버림</text>
+<text class="small" x="226" y="318" text-anchor="middle">'○○점'으로 끝남</text>
+<text class="pick" x="226" y="334" text-anchor="middle">→ 1순위</text>
+
+<text class="ocr-off mono" x="44" y="364">대표 ○○○  TEL 02-000-0000</text>
+<line class="strike" x1="42" y1="360" x2="211" y2="360"/>
+<text class="small" x="296" y="364">대표자·전화 줄 → 뺌</text>
+
+<rect class="note" x="24" y="398" width="452" height="44" rx="6"/>
+<text class="result" x="36" y="416">1순위 정답 12장 → 14장, 후보 3개 안 12장 → 16장</text>
+<text class="small" x="36" y="432">기호가 남은 후보 14개 → 0개</text>
+</svg>

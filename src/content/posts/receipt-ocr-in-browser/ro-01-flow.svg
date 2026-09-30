@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="824" viewBox="0 0 500 824" role="img" aria-labelledby="t1 d1">
+<title id="t1">영수증 OCR 처리 흐름</title>
+<desc id="d1">사진 첨부부터 등록까지 다섯 단계. ① 사진 첨부(기존 코드가 최대 1920px로 압축) → ② 워커(별도 스레드): 디코드, 방향 판정, 글자 영역 검출(det), 회전 박스 후처리, 글자 인식(rec), 행 병합. 모델·실행 파일 32.6MB는 첫 사용 때만 내려받고 이후 Cache Storage에서 읽음 → 줄 단위 텍스트·위치·신뢰도 → ③ 메인 화면: 규칙 파서, 결제 블록 판정, 빈 칸만 채움, 후보 칩. ②와 ③은 기기 안에서 끝나며 외부 요청 0건 → ④ 등록하기, 등록 요청(기존과 같은 필드로 전송) → ⑤ 서버(기존과 같이 저장)</desc>
+
+<defs><style>
+:root{
+  --c-bg:#FAFAF7; --c-fg:#1A1F2E; --c-muted:#6B7280; --c-card:#FFFFFF;
+  --c-line:#C9CDD6; --c-divider:#E5E7EB;
+  --c-accent:#0B7A44; --c-accent-2:#1F63B5;
+  --c-soft:#E7F5EE; --c-soft-2:#E8F0FB;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --c-bg:#0F1419; --c-fg:#E8E6E1; --c-muted:#8B92A0; --c-card:#161B22;
+    --c-line:#3A4250; --c-divider:#2A313C;
+    --c-accent:#3DBE7A; --c-accent-2:#5EA1F0;
+    --c-soft:#12301F; --c-soft-2:#10253A;
+  }
+}
+text{font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",sans-serif;fill:var(--c-fg)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1}
+.outer{fill:none;stroke:var(--c-accent);stroke-width:1.5;stroke-dasharray:6 4}
+.title{font-size:14px;font-weight:700}
+.label{font-size:13px;font-weight:700}
+.desc{font-size:12px;fill:var(--c-muted)}
+.small{font-size:11px;fill:var(--c-muted)}
+.glabel{font-size:12px;font-weight:700;fill:var(--c-accent)}
+.glabel2{font-size:12px;font-weight:700;fill:var(--c-accent-2)}
+.arrow{stroke:var(--c-muted);stroke-width:1.5;fill:none}
+.arrowhead{fill:var(--c-muted)}
+.receipt{font-size:13px;fill:var(--c-fg)}
+.box-axis{fill:var(--c-accent-2);fill-opacity:.14;stroke:var(--c-accent-2);stroke-width:1.5}
+.box-rot{fill:var(--c-accent);fill-opacity:.14;stroke:var(--c-accent);stroke-width:1.5}
+.note{fill:var(--c-card);stroke:var(--c-divider);stroke-width:1}
+.result{font-size:13px;font-weight:700;fill:var(--c-accent)}
+</style></defs>
+<rect class="bg" x="0" y="0" width="500" height="824"/>
+<rect class="outer" x="24" y="100" width="452" height="604" rx="10"/>
+<rect class="soft" x="36" y="130" width="428" height="332" rx="8"/>
+<rect class="soft2" x="36" y="492" width="428" height="200" rx="8"/>
+<text class="title" x="24" y="38">영수증 OCR 처리 흐름</text>
+<rect class="card" x="24" y="52" width="452" height="34" rx="6"/>
+<text class="label" x="36" y="74">① 사진 첨부</text>
+<text class="desc" x="186" y="74">기존 코드가 최대 1920px로 압축</text>
+<line class="arrow" x1="84" y1="86" x2="84" y2="94"/>
+<polygon class="arrowhead" points="79,93 89,93 84,100"/>
+<text class="glabel" x="36" y="120">기기 안에서 끝남 · 외부 요청 0건</text>
+<text class="glabel" x="48" y="148">② 워커 (별도 스레드 · 화면은 멈추지 않음)</text>
+<rect class="card" x="48" y="158" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="180">디코드</text>
+<text class="desc" x="210" y="180">이미지 파일을 픽셀로</text>
+<rect class="card" x="48" y="200" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="222">방향 판정</text>
+<text class="desc" x="210" y="222">가로로 찍힌 영수증을 세로로</text>
+<rect class="card" x="48" y="242" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="264">글자 영역 검출(det)</text>
+<text class="desc" x="210" y="264">글자가 있는 곳을 찾는 모델</text>
+<rect class="card" x="48" y="284" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="306">회전 박스 후처리</text>
+<text class="desc" x="210" y="306">기울어진 줄을 기울기대로 오려 냄</text>
+<rect class="card" x="48" y="326" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="348">글자 인식(rec)</text>
+<text class="desc" x="210" y="348">조각을 글자로 바꿈, 한 줄씩</text>
+<rect class="card" x="48" y="368" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="390">행 병합</text>
+<text class="desc" x="210" y="390">같은 줄 조각을 한 줄 텍스트로</text>
+<rect class="note" x="48" y="410" width="404" height="40" rx="6"/>
+<text class="small" x="60" y="426">모델·실행 파일 32.6MB는 첫 사용 때만 내려받음</text>
+<text class="small" x="60" y="441">이후에는 Cache Storage(브라우저 저장소)에서 바로 읽음</text>
+
+<line class="arrow" x1="84" y1="462" x2="84" y2="486"/>
+<polygon class="arrowhead" points="79,485 89,485 84,492"/>
+<text class="small" x="96" y="481.0">줄 단위 텍스트 · 위치 · 신뢰도</text>
+<text class="glabel2" x="48" y="510">③ 메인 화면</text>
+<rect class="card" x="48" y="520" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="542">규칙 파서</text>
+<text class="desc" x="210" y="542">사용처·금액·일시·승인번호·카드 앞자리</text>
+<rect class="card" x="48" y="562" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="584">결제 블록 판정</text>
+<text class="desc" x="210" y="584">결제가 몇 건인지, 영수증이 몇 장인지</text>
+<rect class="card" x="48" y="604" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="626">빈 칸만 채움</text>
+<text class="desc" x="210" y="626">'자동' 표시 · 입력한 칸은 안 건드림</text>
+<rect class="card" x="48" y="646" width="404" height="34" rx="6"/>
+<text class="label" x="60" y="668">후보 칩</text>
+<text class="desc" x="210" y="668">사용처 후보 · 금액 추천 · 결제 선택</text>
+<line class="arrow" x1="84" y1="704" x2="84" y2="712"/>
+<polygon class="arrowhead" points="79,711 89,711 84,718"/>
+<rect class="card" x="24" y="718" width="452" height="34" rx="6"/>
+<text class="label" x="36" y="740">④ 등록하기 → 등록 요청</text>
+<text class="desc" x="200" y="740">기존과 같은 필드로 전송</text>
+<line class="arrow" x1="84" y1="752" x2="84" y2="760"/>
+<polygon class="arrowhead" points="79,759 89,759 84,766"/>
+<rect class="card" x="24" y="766" width="452" height="34" rx="6"/>
+<text class="label" x="36" y="788">⑤ 서버</text>
+<text class="desc" x="96" y="788">기존과 같이 저장</text>
+</svg>
