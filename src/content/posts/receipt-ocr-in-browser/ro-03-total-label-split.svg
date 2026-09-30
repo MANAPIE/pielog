@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="464" viewBox="0 0 500 464" role="img" aria-labelledby="t3 d3">
+<title id="t3">금액 라벨이 쪼개진 영수증</title>
+<desc id="d3">'합계' 라벨이 두 줄로 나뉘고 한 글자가 빠진 OCR 결과(예시 값): ○○초밥, 모둠초밥 A 8,000, 모둠초밥 B 8,000, 연어초밥 8,000, 우동 8,000, 합, 32,000, 신용승인, 승인금액 32,000, 받은금액 32,000. 라벨 규칙은 후보 0개. 영수증 전체에서 가장 많이 반복된 금액은 품목 단가 8,000(4회)이라 쓰면 틀림. 결제 구간(신용승인~받은금액) 안에서 두 번 반복된 32,000을 금액으로 채택. 결과: 단일 결제 금액 86%에서 95%, 나빠진 영수증 없음</desc>
+
+<defs><style>
+:root{
+  --c-bg:#FAFAF7; --c-fg:#1A1F2E; --c-muted:#6B7280; --c-card:#FFFFFF;
+  --c-line:#C9CDD6; --c-divider:#E5E7EB;
+  --c-accent:#0B7A44; --c-accent-2:#1F63B5;
+  --c-soft:#E7F5EE; --c-soft-2:#E8F0FB;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --c-bg:#0F1419; --c-fg:#E8E6E1; --c-muted:#8B92A0; --c-card:#161B22;
+    --c-line:#3A4250; --c-divider:#2A313C;
+    --c-accent:#3DBE7A; --c-accent-2:#5EA1F0;
+    --c-soft:#12301F; --c-soft-2:#10253A;
+  }
+}
+text{font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",sans-serif;fill:var(--c-fg)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.title{font-size:14px;font-weight:700}
+.sub{font-size:12px;font-weight:700}
+.desc{font-size:12px;fill:var(--c-muted)}
+.small{font-size:11px;fill:var(--c-muted)}
+.glabel{font-size:12px;font-weight:700;fill:var(--c-accent)}
+.glabel2{font-size:12px;font-weight:700;fill:var(--c-accent-2)}
+.box-axis{fill:var(--c-accent-2);fill-opacity:.14;stroke:var(--c-accent-2);stroke-width:1.5}
+.zone{fill:var(--c-accent);fill-opacity:.06;stroke:var(--c-accent);stroke-width:1.2;stroke-dasharray:4 3}
+.bracket{fill:none;stroke:var(--c-muted);stroke-width:1.2}
+.note{fill:var(--c-card);stroke:var(--c-divider);stroke-width:1}
+.result{font-size:13px;font-weight:700;fill:var(--c-accent)}
+.ocr{font-size:12px;fill:var(--c-fg)}
+.hit{font-weight:700;fill:var(--c-accent)}
+.mono{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace}
+</style></defs>
+<rect class="bg" x="0" y="0" width="500" height="464"/>
+<text class="title" x="24" y="38">금액 라벨이 쪼개진 영수증</text>
+<text class="desc" x="24" y="60">'합계' 라벨이 두 줄로 나뉘고 한 글자가 빠진 OCR 결과입니다.</text>
+<text class="desc" x="24" y="76">라벨 옆 숫자를 찾는 규칙으로는 금액 후보가 0개가 됩니다.</text>
+
+<rect class="card" x="24" y="92" width="452" height="288" rx="8"/>
+<text class="sub" x="44" y="118">OCR 결과(줄 단위, 예시 값)</text>
+
+<text class="ocr mono" x="44" y="146">○○초밥</text>
+<text class="ocr mono" x="44" y="168">모둠초밥 A</text>
+<text class="ocr mono" x="200" y="168" text-anchor="end">8,000</text>
+<text class="ocr mono" x="44" y="190">모둠초밥 B</text>
+<text class="ocr mono" x="200" y="190" text-anchor="end">8,000</text>
+<text class="ocr mono" x="44" y="212">연어초밥</text>
+<text class="ocr mono" x="200" y="212" text-anchor="end">8,000</text>
+<text class="ocr mono" x="44" y="234">우동</text>
+<text class="ocr mono" x="200" y="234" text-anchor="end">8,000</text>
+<path class="bracket" d="M206,156 H212 V238 H206 M212,197 H218"/>
+<text class="small" x="224" y="194">전체에서 가장 많이 반복: 8,000 ×4</text>
+<text class="small" x="224" y="210">→ 품목 단가라서 쓰면 틀림</text>
+
+<rect class="box-axis" x="36" y="242" width="176" height="44" rx="3"/>
+<text class="ocr mono" x="44" y="258">합</text>
+<text class="ocr mono" x="200" y="278" text-anchor="end">32,000</text>
+<text class="glabel2" x="224" y="262">라벨 규칙: 후보 0개</text>
+<text class="small" x="224" y="278">'합계'가 두 줄로 나뉘고 '계'가 빠짐</text>
+
+<rect class="zone" x="36" y="294" width="176" height="70" rx="3"/>
+<text class="ocr mono" x="44" y="312">신용승인</text>
+<text class="ocr mono" x="44" y="334">승인금액</text>
+<text class="ocr mono hit" x="200" y="334" text-anchor="end">32,000</text>
+<text class="ocr mono" x="44" y="356">받은금액</text>
+<text class="ocr mono hit" x="200" y="356" text-anchor="end">32,000</text>
+<text class="glabel" x="224" y="326">결제 구간 안 반복: 32,000 ×2</text>
+<text class="small" x="224" y="342">→ 금액으로 채택</text>
+
+<rect class="note" x="24" y="396" width="452" height="44" rx="6"/>
+<text class="result" x="36" y="414">단일 결제 금액 86% → 95%, 나빠진 영수증 없음</text>
+<text class="small" x="36" y="430">라벨을 못 찾을 때만 결제 구간(승인 정보 근처)의 반복 금액을 씀</text>
+</svg>

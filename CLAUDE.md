@@ -57,7 +57,9 @@ The API routes also tighten to `^/api/views/$` — the slash is no longer option
 - Posts live at `src/content/posts/<slug>/index.mdx`. **The directory name is the slug** (`post.id`) — it is reused everywhere: URLs, Redis keys (`views:<slug>`), 404 jaccard matching, OG metadata. Renaming the directory breaks the view counter.
 - Schema: [src/content.config.ts](src/content.config.ts)
   - `thumbnail` / `cover` / `ogImage` use Astro's `image()` helper → must be **relative paths to files co-located in the post directory**. External URLs and `public/` paths are rejected.
-  - `draft: true` is hidden by every page via `({ data }) => !data.draft`. Apply the same filter on any new page that lists posts.
+  - `draft: true` is hidden in production but **visible under `astro dev`**, so drafts can be previewed on localhost. The rule lives in exactly one place — `isVisible` in [src/lib/posts.ts](src/lib/posts.ts), which is `import.meta.env.DEV || !data.draft`. Vite folds that flag to `false` in every `astro build` (Vercel production *and* preview deploys included), so a draft can't leak into a static path, the RSS feed, or a sidebar count.
+  - **Never call `getCollection("posts", …)` directly.** Any page, component, or endpoint that lists posts uses `getVisiblePosts()` from [src/lib/posts.ts](src/lib/posts.ts) — that is what keeps the draft rule in one place instead of copied across nine files, which is what it used to be.
+  - A draft opened in dev still POSTs to `/api/views/` against the **production** Upstash instance, so `views:<slug>` starts above zero when the post goes live. Known and accepted; see the view-counter section.
 - MDX uses Shiki `github-dark` for syntax highlighting ([astro.config.mjs:43](astro.config.mjs#L43)).
 
 ## MDX content features

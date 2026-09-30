@@ -1,10 +1,10 @@
 export const prerender = true;
 
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { getVisiblePosts } from '../lib/posts';
 
 export async function GET(context: { site: string }) {
-    const posts = await getCollection('posts', ({ data }) => !data.draft);
+    const posts = await getVisiblePosts();
     return rss({
         title: 'PIElog',
         description: 'MANAPIE\'s thoughts & experiments',

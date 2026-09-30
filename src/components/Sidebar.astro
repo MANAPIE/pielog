@@ -1,9 +1,9 @@
 ---
-import { getCollection } from "astro:content";
+import { getVisiblePosts } from "../lib/posts";
 import ThemeToggle from "./ThemeToggle.astro";
 import SearchBox from "./Search.astro";
 
-const posts = await getCollection("posts", ({ data }) => !data.draft);
+const posts = await getVisiblePosts();
 const postCount = posts.length;
 const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
   post.data.tags?.forEach((tag) => {

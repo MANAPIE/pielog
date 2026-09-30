@@ -1,7 +1,7 @@
 ---
 export const prerender = true;
 
-import { getCollection } from "astro:content";
+import { getVisiblePosts } from "../../lib/posts";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCardWide from "../../components/PostCardWide.astro";
 import Pagination from "../../components/Pagination.astro";
@@ -9,7 +9,7 @@ import AsideHomepage from "../../components/AsideHomepage.astro";
 
 export async function getStaticPaths() {
 	const PAGE_SIZE = 50;
-	const posts = await getCollection("posts", ({ data }) => !data.draft);
+	const posts = await getVisiblePosts();
 	const sortedPosts = posts.sort((a, b) => {
 		const dateDiff = b.data.date.getTime() - a.data.date.getTime();
 		if (dateDiff !== 0) return dateDiff;

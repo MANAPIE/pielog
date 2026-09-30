@@ -1,12 +1,13 @@
 ---
 export const prerender = true;
 
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
+import { getVisiblePosts } from "../lib/posts";
 import PostLayout from "../layouts/PostLayout.astro";
 import { stripMarkdown, buildSearchIndex } from "../lib/koreanSearch";
 
 export async function getStaticPaths() {
-    const posts = await getCollection("posts", ({ data }) => !data.draft);
+    const posts = await getVisiblePosts();
     return posts.map((post) => ({
         params: { slug: post.id },
         props: post,

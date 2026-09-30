@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getVisiblePosts } from '../../lib/posts';
 import { redis } from '../../lib/redis';
 
 export const GET: APIRoute = async () => {
-  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  const posts = await getVisiblePosts();
   const slugs = posts.map((p) => p.id);
 
   if (slugs.length === 0) {

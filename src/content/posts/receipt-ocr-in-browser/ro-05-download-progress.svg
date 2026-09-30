@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="458" viewBox="0 0 500 458" role="img" aria-labelledby="t5 d5">
+<title id="t5">다운로드 퍼센트가 뒤로 가는 이유</title>
+<desc id="d5">개념도(실측 곡선 아님). 파일 4개를 차례로 받으면 다음 파일이 시작될 때마다 전체 크기가 커져서 비율이 뒤로 감. 가로축 시간, 세로축 0%·50%·100%. 차례로 받기(처음, 파란 점선)는 99%까지 올랐다가 34%로 떨어지고, 다시 오르다 50%로 한 번 더 떨어진 뒤 100%에 닿음. 동시에 받기 + 역행 방지(고친 뒤, 초록 실선)는 한 번도 내려가지 않고 100%까지 오름. 결과: 4개를 동시에 받고 합산 비율이 내려가지 않게 고정, 크기를 모르는 파일이 있으면 퍼센트 없이 안내만 표시. 처음에는 크기를 모르면 받는 내내 100%로 보였음</desc>
+
+<defs><style>
+:root{
+  --c-bg:#FAFAF7; --c-fg:#1A1F2E; --c-muted:#6B7280; --c-card:#FFFFFF;
+  --c-line:#C9CDD6; --c-divider:#E5E7EB;
+  --c-accent:#0B7A44; --c-accent-2:#1F63B5;
+  --c-soft:#E7F5EE; --c-soft-2:#E8F0FB;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --c-bg:#0F1419; --c-fg:#E8E6E1; --c-muted:#8B92A0; --c-card:#161B22;
+    --c-line:#3A4250; --c-divider:#2A313C;
+    --c-accent:#3DBE7A; --c-accent-2:#5EA1F0;
+    --c-soft:#12301F; --c-soft-2:#10253A;
+  }
+}
+text{font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",sans-serif;fill:var(--c-fg)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.title{font-size:14px;font-weight:700}
+.desc{font-size:12px;fill:var(--c-muted)}
+.small{font-size:11px;fill:var(--c-muted)}
+.leg{font-size:12px}
+.lab{font-size:11px}
+.grid{stroke:var(--c-divider);stroke-width:1}
+.axis{stroke:var(--c-line);stroke-width:1}
+.s-seq{fill:none;stroke:var(--c-accent-2);stroke-width:2;stroke-dasharray:6 4;stroke-linejoin:round}
+.s-par{fill:none;stroke:var(--c-accent);stroke-width:2;stroke-linecap:round}
+.note{fill:var(--c-card);stroke:var(--c-divider);stroke-width:1}
+.result{font-size:13px;font-weight:700;fill:var(--c-accent)}
+</style></defs>
+<rect class="bg" x="0" y="0" width="500" height="458"/>
+<text class="title" x="24" y="38">다운로드 퍼센트가 뒤로 가는 이유</text>
+<text class="desc" x="24" y="60">파일 4개를 차례로 받으면, 다음 파일이 시작될 때마다</text>
+<text class="desc" x="24" y="76">전체 크기가 커져서 비율이 뒤로 갑니다.</text>
+
+<line class="s-seq" x1="24" y1="100" x2="48" y2="100"/>
+<text class="leg" x="56" y="104">차례로 받기(처음)</text>
+<line class="s-par" x1="196" y1="100" x2="220" y2="100"/>
+<text class="leg" x="228" y="104">동시에 받기 + 역행 방지(고친 뒤)</text>
+
+<rect class="card" x="24" y="116" width="452" height="240" rx="8"/>
+<line class="grid" x1="72" y1="140" x2="452" y2="140"/>
+<line class="grid" x1="72" y1="230" x2="452" y2="230"/>
+<line class="axis" x1="72" y1="320" x2="452" y2="320"/>
+<text class="small" x="64" y="144" text-anchor="end">100%</text>
+<text class="small" x="64" y="234" text-anchor="end">50%</text>
+<text class="small" x="64" y="324" text-anchor="end">0%</text>
+<text class="small" x="72" y="342">개념도(실측 곡선 아님)</text>
+<text class="small" x="452" y="342" text-anchor="end">시간 →</text>
+
+<path class="s-par" d="M72,320 C170,262 300,168 430,140"/>
+<path class="s-seq" d="M72,320 L150,141.8 L150,258.8 L270,145.4 L270,230 L430,140"/>
+
+<text class="lab" x="80" y="162">차례로 받기</text>
+<text class="lab" x="158" y="156">99% → 34%</text>
+<text class="lab" x="220" y="270">동시에 받기</text>
+
+<rect class="note" x="24" y="372" width="452" height="62" rx="6"/>
+<text class="result" x="36" y="390">4개를 동시에 받고, 합산 비율이 내려가지 않게 고정</text>
+<text class="small" x="36" y="406">크기를 모르는 파일이 있으면 퍼센트 없이 안내만 표시</text>
+<text class="small" x="36" y="422">처음에는 크기를 모르면 받는 내내 100%로 보였음</text>
+</svg>
