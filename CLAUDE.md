@@ -176,7 +176,7 @@ The HLL member is `slug + ':' + Date.now()` — **every load registers as unique
 
 ## TOC
 
-[TableOfContents.astro](src/components/TableOfContents.astro) takes only depth 2–4 from `Astro.props.headings` and builds a tree by simple accumulation: depth-3 is pushed to the last depth-2's children, depth-4 to the last depth-3 of the last depth-2. **A non-sequential structure (e.g. an H3 with no preceding H2) drops headings.**
+[TableOfContents.astro](src/components/TableOfContents.astro) takes only depth 2–4 from `Astro.props.headings` and builds a tree by simple accumulation: depth-3 is pushed to the last depth-2's children, depth-4 to the last depth-3 of the last depth-2. **A non-sequential structure (e.g. an H3 with no preceding H2) drops headings.** The `footnote-label` heading — the sr-only `<h2>Footnotes</h2>` that remark-gfm inserts above a post's footnotes — is filtered out by slug so it never shows up in the TOC.
 
 Scroll handler:
 - The deepest heading whose `offsetTop - 100` is above `scrollY` becomes active
