@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="500" height="700" role="img" aria-labelledby="t1">
+  <title id="t1">PHP2Shell 유출부터 수정 릴리스까지의 타임라인</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #B4532A; --c-accent-2: #2A6F97;
+        --c-line: #C9CBD1; --c-card: #FFFFFF; --c-soft: #F3E9E3; --c-soft-2: #E6EEF4; --c-divider: #E3E4E8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #E08A5A; --c-accent-2: #6FB1DA;
+          --c-line: #3A4150; --c-card: #161B22; --c-soft: #2A1F18; --c-soft-2: #182430; --c-divider: #2A303B;
+        }
+      }
+      text { font-family: -apple-system, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .grp { font-size: 12px; font-weight: 700; fill: var(--c-accent-2); }
+      .grpline { stroke: var(--c-divider); stroke-width: 1; }
+      .num { font-size: 12px; font-weight: 700; fill: var(--c-card); }
+      .numbg { fill: var(--c-accent); }
+      .numbg2 { fill: var(--c-accent-2); }
+      .time { font-size: 11px; fill: var(--c-muted); }
+      .txt { font-size: 12px; }
+      .arrow { stroke: var(--c-muted); stroke-width: 1.2; fill: none; }
+      .arrowhead { fill: var(--c-muted); }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="700"/>
+
+  <!-- 구간 1 -->
+  <text class="grp" x="24" y="38">공개 전: 유출과 사전 공지</text>
+  <line class="grpline" x1="190" y1="34" x2="476" y2="34"/>
+
+  <g>
+    <rect class="card" x="24" y="48" width="452" height="64" rx="6"/>
+    <circle class="numbg" cx="46" cy="80" r="11"/>
+    <text class="num" x="46" y="84" text-anchor="middle">1</text>
+    <text class="time" x="68" y="66">10월 20일 15:00 UTC (10월 21일 00:00 KST)</text>
+    <text class="txt" x="68" y="84">CVE 번호가 포럼과 SNS에 유출</text>
+    <text class="txt" x="68" y="101">잘못된 릴리스 시각과 CVSS 10.0이 함께 유포, 기술 세부는 없음</text>
+  </g>
+  <line class="arrow" x1="250" y1="112" x2="250" y2="119"/><polygon class="arrowhead" points="246,118 254,118 250,124"/>
+
+  <g>
+    <rect class="card" x="24" y="126" width="452" height="64" rx="6"/>
+    <circle class="numbg" cx="46" cy="158" r="11"/>
+    <text class="num" x="46" y="162" text-anchor="middle">2</text>
+    <text class="time" x="68" y="144">10월 20일 19:30 UTC (10월 21일 04:30 KST)</text>
+    <text class="txt" x="68" y="162">PHP가 사전 공지 게시</text>
+    <text class="txt" x="68" y="179">릴리스를 10월 22일에서 10월 21일 14:00 UTC로 앞당김</text>
+  </g>
+  <line class="arrow" x1="250" y1="190" x2="250" y2="197"/><polygon class="arrowhead" points="246,196 254,196 250,202"/>
+
+  <g>
+    <rect class="card" x="24" y="204" width="452" height="64" rx="6"/>
+    <circle class="numbg" cx="46" cy="236" r="11"/>
+    <text class="num" x="46" y="240" text-anchor="middle">3</text>
+    <text class="time" x="68" y="222">10월 20일 20:00 UTC 무렵 (10월 21일 05:00 KST 무렵)</text>
+    <text class="txt" x="68" y="240">Calif가 PoC 시연 영상을 실수로 게시 (PHP 재단 설명)</text>
+    <text class="txt" x="68" y="257">삭제 뒤에도 복사본이 유통되어 PoC 개발이 빨라짐</text>
+  </g>
+
+  <!-- 구간 2 -->
+  <text class="grp" x="24" y="300">공개 전: 방어 측 준비와 조기 공개</text>
+  <line class="grpline" x1="238" y1="296" x2="476" y2="296"/>
+
+  <g>
+    <rect class="card" x="24" y="310" width="452" height="64" rx="6"/>
+    <circle class="numbg2" cx="46" cy="342" r="11"/>
+    <text class="num" x="46" y="346" text-anchor="middle">4</text>
+    <text class="time" x="68" y="328">10월 21일 03:02 UTC (12:02 KST)</text>
+    <text class="txt" x="68" y="346">Cloudflare가 WAF 기본 보호 적용</text>
+    <text class="txt" x="68" y="363">공개 약 9시간 전, 무료 플랜 포함</text>
+  </g>
+  <line class="arrow" x1="250" y1="374" x2="250" y2="381"/><polygon class="arrowhead" points="246,380 254,380 250,386"/>
+
+  <g>
+    <rect class="card" x="24" y="388" width="452" height="64" rx="6"/>
+    <circle class="numbg2" cx="46" cy="420" r="11"/>
+    <text class="num" x="46" y="424" text-anchor="middle">5</text>
+    <text class="time" x="68" y="406">10월 21일 07:41 UTC (16:41 KST)</text>
+    <text class="txt" x="68" y="424">Chainguard가 수정이 포함된 이미지를 먼저 공개 (PHP 재단 설명)</text>
+    <text class="txt" x="68" y="441">예정 시각보다 6시간 이상 앞섬</text>
+  </g>
+
+  <!-- 구간 3 -->
+  <text class="grp" x="24" y="484">공개 당일: 릴리스와 악용 시도</text>
+  <line class="grpline" x1="218" y1="480" x2="476" y2="480"/>
+
+  <g>
+    <rect class="card" x="24" y="494" width="452" height="64" rx="6"/>
+    <circle class="numbg" cx="46" cy="526" r="11"/>
+    <text class="num" x="46" y="530" text-anchor="middle">6</text>
+    <text class="time" x="68" y="512">10월 21일 13:30 UTC 무렵 (22:30 KST 무렵)</text>
+    <text class="txt" x="68" y="530">PHP 8.5.12, 8.4.27, 8.3.36, 8.2.35 릴리스</text>
+    <text class="txt" x="68" y="547">예정 시각 14:00 UTC보다 먼저 공개</text>
+  </g>
+  <line class="arrow" x1="250" y1="558" x2="250" y2="565"/><polygon class="arrowhead" points="246,564 254,564 250,570"/>
+
+  <g>
+    <rect class="card" x="24" y="572" width="452" height="64" rx="6"/>
+    <circle class="numbg" cx="46" cy="604" r="11"/>
+    <text class="num" x="46" y="608" text-anchor="middle">7</text>
+    <text class="time" x="68" y="590">릴리스 이후</text>
+    <text class="txt" x="68" y="608">여러 보안 업체가 익스플로잇 시도를 보고</text>
+    <text class="txt" x="68" y="625">성공 사례는 확인되지 않음 (10월 22일 오전 KST 기준)</text>
+  </g>
+
+  <text class="time" x="24" y="672">출처: PHP 재단, Cloudflare, CERT-EU, watchTowr. 시각은 각 출처 기준.</text>
+</svg>
