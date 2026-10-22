@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 520" width="500" height="520" role="img" aria-labelledby="t2">
+  <title id="t2">이전 요청이 남긴 전역 상태를 다음 요청이 사용하는 과정</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #B4532A; --c-accent-2: #2A6F97;
+        --c-line: #C9CBD1; --c-card: #FFFFFF; --c-soft: #F3E9E3; --c-soft-2: #E6EEF4; --c-divider: #E3E4E8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #E08A5A; --c-accent-2: #6FB1DA;
+          --c-line: #3A4150; --c-card: #161B22; --c-soft: #2A1F18; --c-soft-2: #182430; --c-divider: #2A303B;
+        }
+      }
+      text { font-family: -apple-system, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .hdrA { fill: var(--c-soft); }
+      .hdrB { fill: var(--c-soft-2); }
+      .hdrtxtA { font-size: 13px; font-weight: 700; fill: var(--c-accent); }
+      .hdrtxtB { font-size: 13px; font-weight: 700; fill: var(--c-accent-2); }
+      .num { font-size: 11px; font-weight: 700; fill: var(--c-card); }
+      .numA { fill: var(--c-accent); }
+      .numB { fill: var(--c-accent-2); }
+      .txt { font-size: 12px; }
+      .band { fill: none; stroke: var(--c-muted); stroke-width: 1; stroke-dasharray: 4 3; }
+      .bandtxt { font-size: 12px; font-weight: 700; fill: var(--c-muted); }
+      .note { font-size: 11px; fill: var(--c-muted); }
+      .notelbl { font-size: 11px; font-weight: 700; }
+      .arrow { stroke: var(--c-muted); stroke-width: 1.2; fill: none; }
+      .arrowhead { fill: var(--c-muted); }
+      .divider { stroke: var(--c-divider); stroke-width: 1; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="520"/>
+
+  <!-- 요청 A -->
+  <rect class="card" x="24" y="24" width="452" height="150" rx="6"/>
+  <path class="hdrA" d="M24,30 a6,6 0 0 1 6,-6 h440 a6,6 0 0 1 6,6 v22 h-452 z"/>
+  <text class="hdrtxtA" x="36" y="41">요청 A: 실패한 요청</text>
+
+  <circle class="numA" cx="44" cy="72" r="9"/><text class="num" x="44" y="76" text-anchor="middle">1</text>
+  <text class="txt" x="62" y="76">요청 메모리를 가리키는 전역 상태를 만듭니다</text>
+  <circle class="numA" cx="44" cy="100" r="9"/><text class="num" x="44" y="104" text-anchor="middle">2</text>
+  <text class="txt" x="62" y="104">처리 도중 OOM이나 치명적 오류로 중단됩니다</text>
+  <circle class="numA" cx="44" cy="128" r="9"/><text class="num" x="44" y="132" text-anchor="middle">3</text>
+  <text class="txt" x="62" y="132">정리 코드가 실행되지 않습니다</text>
+  <circle class="numA" cx="44" cy="156" r="9"/><text class="num" x="44" y="160" text-anchor="middle">4</text>
+  <text class="txt" x="62" y="160">요청 메모리는 해제되지만 전역 상태는 해제된 주소를 가리킨 채 남습니다</text>
+
+  <!-- 띠 -->
+  <line class="arrow" x1="250" y1="174" x2="250" y2="181"/><polygon class="arrowhead" points="246,180 254,180 250,186"/>
+  <rect class="band" x="24" y="188" width="452" height="30" rx="15"/>
+  <text class="bandtxt" x="250" y="207" text-anchor="middle">같은 워커 프로세스가 살아남아 다음 요청을 처리합니다</text>
+  <line class="arrow" x1="250" y1="218" x2="250" y2="225"/><polygon class="arrowhead" points="246,224 254,224 250,230"/>
+
+  <!-- 요청 B -->
+  <rect class="card" x="24" y="232" width="452" height="122" rx="6"/>
+  <path class="hdrB" d="M24,238 a6,6 0 0 1 6,-6 h440 a6,6 0 0 1 6,6 v22 h-452 z"/>
+  <text class="hdrtxtB" x="36" y="249">요청 B: 공격자의 다음 요청</text>
+
+  <circle class="numB" cx="44" cy="280" r="9"/><text class="num" x="44" y="284" text-anchor="middle">5</text>
+  <text class="txt" x="62" y="284">정상 초기화 전에 INI 진단이나 세션 업로드 진행률 처리가 전역 상태를 읽습니다</text>
+  <circle class="numB" cx="44" cy="308" r="9"/><text class="num" x="44" y="312" text-anchor="middle">6</text>
+  <text class="txt" x="62" y="312">해제된 메모리를 사용합니다 (해제 후 사용)</text>
+  <circle class="numB" cx="44" cy="336" r="9"/><text class="num" x="44" y="340" text-anchor="middle">7</text>
+  <text class="txt" x="62" y="340">메모리 손상이나 정보 노출로 이어지고, 조건이 맞으면 코드 실행에 이릅니다</text>
+
+  <!-- 메모 -->
+  <line class="divider" x1="24" y1="376" x2="476" y2="376"/>
+  <text class="notelbl" x="24" y="398">Apache mod_php</text>
+  <text class="note" x="24" y="415">요청 시작이 실패해도 종료 절차를 실행하므로 이 경로가 그대로 유지됩니다.</text>
+  <text class="note" x="24" y="431">애플리케이션 코드가 실행되기 전에 공격이 성립합니다.</text>
+
+  <text class="notelbl" x="24" y="459">PHP-FPM</text>
+  <text class="note" x="24" y="476">요청 시작이 실패하면 워커가 종료되어 이 경로가 끊깁니다.</text>
+  <text class="note" x="24" y="492">시작 이후 애플리케이션 코드에서 실패하면 같은 경로가 가능합니다.</text>
+</svg>

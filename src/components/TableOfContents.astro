@@ -4,7 +4,10 @@ interface Props {
 }
 
 const { headings } = Astro.props;
-const tocItems = headings.filter((h) => h.depth >= 2 && h.depth <= 4);
+// remark-gfm이 각주 섹션에 붙이는 sr-only 제목(<h2 id="footnote-label">Footnotes</h2>)은 목차에서 제외
+const tocItems = headings.filter(
+  (h) => h.depth >= 2 && h.depth <= 4 && h.slug !== "footnote-label",
+);
 
 interface TocNode {
   slug: string;
