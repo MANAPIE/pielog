@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 376" width="500" height="376" role="img" aria-labelledby="t">
+  <title id="t">2007년부터 2026년까지 스마트폰 화면비 변화</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-card: #FFFFFF;
+        --c-line: #C9CDD3; --c-divider: #E5E7EB;
+        --c-soft: #FDEEE4; --c-soft-2: #E6ECFB;
+        --c-accent: #C2410C; --c-accent-2: #1D4ED8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-card: #161B22;
+          --c-line: #4A525E; --c-divider: #262D36;
+          --c-soft: #2B1C12; --c-soft-2: #15213A;
+          --c-accent: #E8681A; --c-accent-2: #3B82F6;
+        }
+      }
+      text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .bg { fill: var(--c-bg); }
+      .grid { stroke: var(--c-divider); stroke-width: 1; }
+      .axis { stroke: var(--c-line); stroke-width: 1.5; }
+      .leader { stroke: var(--c-muted); stroke-width: 1; }
+      .line-a { fill: none; stroke: var(--c-accent-2); stroke-width: 2; stroke-linejoin: round; }
+      .line-b { fill: none; stroke: var(--c-accent); stroke-width: 2; stroke-linejoin: round; }
+      .dot-a { fill: var(--c-accent-2); stroke: var(--c-bg); stroke-width: 2; }
+      .dot-b { fill: var(--c-accent); stroke: var(--c-bg); stroke-width: 2; }
+      .ring-a { fill: var(--c-bg); stroke: var(--c-accent-2); stroke-width: 2; }
+      .ring-b { fill: var(--c-bg); stroke: var(--c-accent); stroke-width: 2; }
+      .t-fg { fill: var(--c-fg); }
+      .t-muted { fill: var(--c-muted); }
+      .tick { font-size: 11px; }
+      .lbl { font-size: 11px; }
+      .leg { font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="500" height="376"/>
+
+  <!-- 범례 -->
+  <line x1="24" y1="22" x2="44" y2="22" class="line-a"/>
+  <circle cx="34" cy="22" r="4" class="dot-a"/>
+  <text class="t-fg leg" x="50" y="26">아이폰</text>
+  <line x1="104" y1="22" x2="124" y2="22" class="line-b"/>
+  <circle cx="114" cy="22" r="4" class="dot-b"/>
+  <text class="t-fg leg" x="130" y="26">갤럭시 폴드 커버 화면</text>
+
+  <text class="t-muted tick" x="24" y="56">긴 변 ÷ 짧은 변</text>
+
+  <!-- 격자: 1.5, 2.0, 2.5 -->
+  <line class="grid" x1="60" y1="257.6" x2="360" y2="257.6"/>
+  <line class="grid" x1="60" y1="187.1" x2="360" y2="187.1"/>
+  <line class="grid" x1="60" y1="116.5" x2="360" y2="116.5"/>
+  <text class="t-muted tick" x="52" y="261.4" text-anchor="end">1.5</text>
+  <text class="t-muted tick" x="52" y="190.9" text-anchor="end">2.0</text>
+  <text class="t-muted tick" x="52" y="120.3" text-anchor="end">2.5</text>
+
+  <!-- x축 -->
+  <line class="axis" x1="60" y1="300" x2="360" y2="300"/>
+  <g class="axis">
+    <line x1="60" y1="300" x2="60" y2="304"/>
+    <line x1="138.9" y1="300" x2="138.9" y2="304"/>
+    <line x1="217.9" y1="300" x2="217.9" y2="304"/>
+    <line x1="296.8" y1="300" x2="296.8" y2="304"/>
+    <line x1="360" y1="300" x2="360" y2="304"/>
+  </g>
+  <text class="t-muted tick" x="60" y="318" text-anchor="middle">2007</text>
+  <text class="t-muted tick" x="138.9" y="318" text-anchor="middle">2012</text>
+  <text class="t-muted tick" x="217.9" y="318" text-anchor="middle">2017</text>
+  <text class="t-muted tick" x="296.8" y="318" text-anchor="middle">2022</text>
+  <text class="t-muted tick" x="360" y="318" text-anchor="middle">2026</text>
+
+  <!-- 아이폰: 3:2(1.50) → 16:9(1.78) → 19.5:9(2.17), 2026 아이폰 18 프로 2.17 -->
+  <path class="line-a" d="M60,257.6 H138.9 V218.1 H217.9 V163.1 H360"/>
+  <circle class="dot-a" cx="60" cy="257.6" r="4"/>
+  <circle class="dot-a" cx="138.9" cy="218.1" r="4"/>
+  <circle class="dot-a" cx="217.9" cy="163.1" r="4"/>
+  <text class="t-muted lbl" x="68" y="250">3:2</text>
+  <text class="t-muted lbl" x="147" y="211">16:9</text>
+  <text class="t-muted lbl" x="224" y="179">19.5:9</text>
+
+  <!-- 갤럭시 폴드 커버: 2019 2.33, 2.77, 2.73, 2.56, 2.56, 2.45, 2.33, 2026 폴드 8 기본형 1.58 -->
+  <polyline class="line-b" points="249.5,140.5 265.3,78.4 281.1,84 296.8,108 312.6,108 328.4,123.5 344.2,140.5 360,246.4"/>
+  <circle class="dot-b" cx="249.5" cy="140.5" r="4"/>
+  <circle class="dot-b" cx="265.3" cy="78.4" r="4"/>
+  <circle class="dot-b" cx="281.1" cy="84" r="4"/>
+  <circle class="dot-b" cx="296.8" cy="108" r="4"/>
+  <circle class="dot-b" cx="312.6" cy="108" r="4"/>
+  <circle class="dot-b" cx="328.4" cy="123.5" r="4"/>
+  <circle class="dot-b" cx="344.2" cy="140.5" r="4"/>
+
+  <!-- 2026년 점: 선 끝 두 개는 채운 원, 다른 화면 세 개는 빈 원 -->
+  <circle class="dot-a" cx="360" cy="163.1" r="4"/>
+  <circle class="dot-b" cx="360" cy="246.4" r="4"/>
+  <circle class="ring-a" cx="352" cy="264.7" r="4"/>
+  <circle class="ring-a" cx="364" cy="268.9" r="4"/>
+  <circle class="ring-b" cx="360" cy="283.1" r="4"/>
+
+  <!-- 오른쪽 라벨과 지시선 -->
+  <line class="leader" x1="365" y1="163.1" x2="372" y2="163.1"/>
+  <text class="t-fg lbl" x="376" y="167">18 프로 2.17</text>
+  <line class="leader" x1="365" y1="246.4" x2="372" y2="246.4"/>
+  <text class="t-fg lbl" x="376" y="250">폴드 8 커버 1.58</text>
+  <line class="leader" x1="356.5" y1="264" x2="372" y2="261.2"/>
+  <text class="t-fg lbl" x="376" y="265">듀오 외부 1.45</text>
+  <line class="leader" x1="368.5" y1="270.5" x2="372" y2="276.2"/>
+  <text class="t-fg lbl" x="376" y="280">듀오 내부 1.42</text>
+  <line class="leader" x1="364.5" y1="284.5" x2="372" y2="291.2"/>
+  <text class="t-fg lbl" x="376" y="295">폴드 8 메인 1.32</text>
+
+  <text class="t-muted tick" x="24" y="344">제조사 사양 기준이며, 폴드 8은 기본형입니다.</text>
+  <text class="t-muted tick" x="24" y="361">빈 원은 2026년 폴더블의 다른 화면입니다.</text>
+</svg>

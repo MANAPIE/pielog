@@ -16,6 +16,7 @@ MANAPIE's personal tech blog — thoughts & experiments.
 
 - MDX posts with syntax highlighting (Shiki `github-dark`)
 - Interactive components in posts (e.g. CodePlayground)
+- External links in posts open in a new tab, marked with a ↗ icon
 - Tag-based filtering
 - Table of Contents
 - View count & daily/total visitor tracking via Upstash Redis

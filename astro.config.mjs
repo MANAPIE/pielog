@@ -25,9 +25,30 @@ function remarkHeadingIds() {
   };
 }
 
+const SITE = 'https://pielog.me';
+
+// Opens external links in the post body in a new tab.
+// Note: a raw `<a>` written in `.mdx` is a JSX node, not a hast `element`, so
+// it is left as written — only Markdown `[label](url)` links are rewritten.
+function rehypeExternalLinks() {
+  const { hostname: siteHost } = new URL(SITE);
+  const visit = (node) => {
+    if (node.type === 'element' && node.tagName === 'a') {
+      const href = node.properties?.href;
+      if (typeof href === 'string' && /^https?:\/\//i.test(href) && URL.canParse(href)
+        && new URL(href).hostname !== siteHost) {
+        node.properties.target = '_blank';
+        node.properties.rel = ['noopener'];
+      }
+    }
+    node.children?.forEach(visit);
+  };
+  return visit;
+}
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://pielog.me',
+  site: SITE,
   trailingSlash: 'always',
   output: 'server',
   integrations: [
@@ -41,6 +62,7 @@ export default defineConfig({
   }),
   markdown: {
     remarkPlugins: [remarkHeadingIds],
+    rehypePlugins: [rehypeExternalLinks],
     shikiConfig: { theme: 'github-dark' },
   },
 });

@@ -60,7 +60,7 @@ The API routes also tighten to `^/api/views/$` — the slash is no longer option
   - `draft: true` is hidden in production but **visible under `astro dev`**, so drafts can be previewed on localhost. The rule lives in exactly one place — `isVisible` in [src/lib/posts.ts](src/lib/posts.ts), which is `import.meta.env.DEV || !data.draft`. Vite folds that flag to `false` in every `astro build` (Vercel production *and* preview deploys included), so a draft can't leak into a static path, the RSS feed, or a sidebar count.
   - **Never call `getCollection("posts", …)` directly.** Any page, component, or endpoint that lists posts uses `getVisiblePosts()` from [src/lib/posts.ts](src/lib/posts.ts) — that is what keeps the draft rule in one place instead of copied across nine files, which is what it used to be.
   - A draft opened in dev still POSTs to `/api/views/` against the **production** Upstash instance, so `views:<slug>` starts above zero when the post goes live. Known and accepted; see the view-counter section.
-- MDX uses Shiki `github-dark` for syntax highlighting ([astro.config.mjs:43](astro.config.mjs#L43)).
+- MDX uses Shiki `github-dark` for syntax highlighting ([astro.config.mjs:66](astro.config.mjs#L66)).
 
 ## MDX content features
 
@@ -68,7 +68,7 @@ The post body is `.mdx`, so the full MDX feature set is available. The pieces ac
 
 ### Mermaid diagrams
 
-`astro-mermaid` is registered first in `integrations` ([astro.config.mjs:33](astro.config.mjs#L33)). Any ```` ```mermaid ```` code block is rendered to SVG at runtime, client-side.
+`astro-mermaid` is registered first in `integrations` ([astro.config.mjs:55](astro.config.mjs#L55)). Any ```` ```mermaid ```` code block is rendered to SVG at runtime, client-side.
 
 ```mdx
 ```mermaid
@@ -102,7 +102,7 @@ Blank lines around the inner fenced block are required so the markdown parser se
 
 ### Heading anchors
 
-- `.md` files support `## Heading {#custom-id}` via the [`remarkHeadingIds`](astro.config.mjs#L11) plugin. **`.mdx` files do NOT** — MDX's JSX parser eats `{...}` as an expression and fails before any remark plugin runs.
+- `.md` files support `## Heading {#custom-id}` via the [`remarkHeadingIds`](astro.config.mjs#L12) plugin. **`.mdx` files do NOT** — MDX's JSX parser eats `{...}` as an expression and fails before any remark plugin runs.
 - Astro auto-generates a slug from heading text on every page, including `.mdx`. Korean works: `### 시스템 다이어그램` → `#시스템-다이어그램`. Link in-page anchors with `[label](#섹션-제목)`.
 
 ### React component hydration
@@ -116,7 +116,15 @@ Blank lines around the inner fenced block are required so the markdown parser se
 
 ### Code highlighting
 
-Shiki `github-dark` is the only theme ([astro.config.mjs:43](astro.config.mjs#L43)). Use a language tag (`python`, `typescript`, `yaml`, `text`, etc.). `mermaid` is special — it goes to the diagram renderer, not Shiki.
+Shiki `github-dark` is the only theme ([astro.config.mjs:66](astro.config.mjs#L66)). Use a language tag (`python`, `typescript`, `yaml`, `text`, etc.). `mermaid` is special — it goes to the diagram renderer, not Shiki.
+
+### External links
+
+The [`rehypeExternalLinks`](astro.config.mjs#L33) plugin adds `target="_blank" rel="noopener"` to every body link whose `href` is `http(s)://` on a host other than `pielog.me` — Markdown links, autolinks (`<https://…>`), and links inside footnotes alike. Internal paths, `#anchors`, footnote refs/backrefs, `mailto:`, and absolute `https://pielog.me/…` links are left alone. `.mdx` gets it too because `mdx()` inherits the `markdown` config (`extendMarkdownConfig` defaults to `true`). Nothing to write in the post — a plain `[label](https://…)` is enough.
+
+- **`rel` is `noopener` only, on purpose — don't add `nofollow` or `noreferrer`.** These are editorial citations, so they stay ordinary followed links (best for SEO); `noreferrer` would hide the referral from the linked site and has no SEO upside.
+- **Write external links as Markdown, not `<a href>`.** A raw `<a>` in `.mdx` is a JSX node (`mdxJsxTextElement`), not a hast `element`, so the plugin skips it — no new tab, no icon.
+- **The ↗ icon is CSS only** — `.markdown-body a[target="_blank"]::after` in [global.scss:703](src/styles/global.scss#L703). It is a `mask` filled with `currentColor`, so it follows the link color in both themes. A second `content: "" / "(새 탭에서 열림)"` gives screen readers alt text; browsers that don't know that syntax drop the line and keep the plain `content: ""` above it.
 
 ## Layout hierarchy
 

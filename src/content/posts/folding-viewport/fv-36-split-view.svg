@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 934" width="500" height="934" role="img" aria-labelledby="t">
+  <title id="t">스플릿 뷰에서 뒤집히는 레일</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-card: #FFFFFF;
+        --c-line: #C9CDD3; --c-divider: #E5E7EB;
+        --c-soft: #FDEEE4; --c-soft-2: #E6ECFB;
+        --c-accent: #C2410C; --c-accent-2: #1D4ED8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-card: #161B22;
+          --c-line: #4A525E; --c-divider: #262D36;
+          --c-soft: #2B1C12; --c-soft-2: #15213A;
+          --c-accent: #E8681A; --c-accent-2: #3B82F6;
+        }
+      }
+      text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .bg { fill: var(--c-bg); }
+      .screen { fill: var(--c-card); stroke: var(--c-fg); stroke-width: 1.5; }
+      .content { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1; }
+      .btn { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1; }
+      .btn-on { fill: var(--c-accent); }
+      .system { fill: url(#hatch); stroke: var(--c-line); stroke-width: 1; }
+      .hatch-line { stroke: var(--c-line); stroke-width: 1.5; }
+      .panel { fill: var(--c-divider); }
+      .sel { fill: var(--c-divider); }
+      .ph { fill: var(--c-line); }
+      .seg-box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .seg-on { fill: var(--c-divider); }
+      .shadow { fill: var(--c-line); opacity: 0.6; }
+      .fold { stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .problem { fill: none; stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 3 2; }
+      .dim { stroke: var(--c-muted); stroke-width: 0.8; }
+      .t-fg { fill: var(--c-fg); }
+      .t-muted { fill: var(--c-muted); }
+      .h { font-size: 14px; font-weight: 700; }
+      .seg { font-size: 12px; font-weight: 600; }
+      .note { font-size: 12px; }
+      .tiny { font-size: 10px; }
+      .tiny-b { font-size: 10px; font-weight: 600; }
+    </style>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="5" height="5" style="fill: var(--c-card)"/>
+      <line x1="0" y1="0" x2="0" y2="5" class="hatch-line"/>
+    </pattern>
+    <style>
+      .ghost { fill: none; stroke: var(--c-muted); stroke-width: 1; stroke-dasharray: 3 2; }
+      .arrow { stroke: var(--c-muted); stroke-width: 1.2; fill: none; }
+      .arrow-head { fill: var(--c-muted); }
+      .layer { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.5; }
+      .other { fill: var(--c-divider); }
+      .gap { fill: var(--c-line); }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="934"/>
+  <text class="t-fg h" x="24" y="28">스플릿 뷰에서 뒤집히는 레일</text>
+  <text class="t-muted note" x="24" y="48">펼침 가로 951 × 669를 반으로 나눈 화면이고, 축척은 0.45배입니다.</text>
+  <rect class="content" x="24" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="44" y="74">콘텐츠</text>
+  <rect class="btn" x="90" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="110" y="74">탭과 버튼</text>
+  <rect class="system" x="180" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="200" y="74">상태 표시</text>
+  <rect class="other" x="270" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="290" y="74">다른 앱</text>
+  <text class="t-fg seg" x="36" y="108">오른쪽 조각</text>
+  <text class="t-muted note" x="110" y="108">쿠랑이 오른쪽, 레일 96</text>
+  <clipPath id="scr-1"><rect x="36" y="146" width="427.95" height="301.05" rx="6.3"/></clipPath>
+  <rect class="screen" x="36" y="146" width="427.95" height="301.05" rx="6.3"/>
+  <g clip-path="url(#scr-1)">
+  <rect class="gap" x="247.05" y="146" width="5.85" height="301.05" rx="0"/>
+  <rect class="other" x="36" y="146" width="211.05" height="301.05" rx="0"/>
+  <rect class="seg-box" x="46.8" y="156.8" width="135" height="54" rx="5.4"/>
+  <rect class="seg-box" x="46.8" y="221.6" width="117" height="32.4" rx="5.4"/>
+  <rect class="seg-box" x="46.8" y="264.8" width="135" height="32.4" rx="5.4"/>
+  <rect class="seg-box" x="46.8" y="308" width="99" height="32.4" rx="5.4"/>
+  <rect class="screen" x="252.9" y="146" width="211.05" height="301.05" rx="0"/>
+  <text class="t-fg tiny-b" x="336.82" y="172.1" text-anchor="middle">글</text>
+  <rect class="content" x="263.7" y="182" width="146.25" height="221.85" rx="2.7"/>
+  <rect class="ph" x="270.9" y="189.2" width="40.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="270.9" y="200" width="63" height="3.6" rx="0.9"/>
+  <rect class="seg-box" x="263.7" y="408.35" width="113.85" height="19.8" rx="3.6"/>
+  <rect class="btn" x="381.15" y="408.35" width="28.8" height="19.8" rx="3.6"/>
+  <rect class="system" x="427.05" y="151.4" width="30.6" height="41.4" rx="3.6"/>
+  <rect class="btn" x="436.05" y="198.2" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="216.2" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="seg-box" x="431.55" y="304.4" width="21.6" height="133.2" rx="10.8"/>
+  <rect class="btn-on" x="436.05" y="310.7" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="335.9" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="361.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="386.3" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="411.5" width="12.6" height="12.6" rx="2.7"/>
+  </g>
+  <rect x="36" y="146" width="427.95" height="301.05" rx="6.3" style="fill: none; stroke: var(--c-fg); stroke-width: 1.5"/>
+  <line class="dim" x1="37" y1="138" x2="246.05" y2="138"/>
+  <line class="dim" x1="37" y1="135" x2="37" y2="141"/>
+  <line class="dim" x1="246.05" y1="135" x2="246.05" y2="141"/>
+  <text class="t-muted tiny" x="141.53" y="133" text-anchor="middle">다른 앱 469</text>
+  <line class="dim" x1="253.9" y1="138" x2="419.75" y2="138"/>
+  <line class="dim" x1="253.9" y1="135" x2="253.9" y2="141"/>
+  <line class="dim" x1="419.75" y1="135" x2="419.75" y2="141"/>
+  <text class="t-muted tiny" x="336.82" y="133" text-anchor="middle">콘텐츠 373</text>
+  <line class="dim" x1="421.75" y1="138" x2="462.95" y2="138"/>
+  <line class="dim" x1="421.75" y1="135" x2="421.75" y2="141"/>
+  <line class="dim" x1="462.95" y1="135" x2="462.95" y2="141"/>
+  <text class="t-muted tiny" x="442.35" y="133" text-anchor="middle">레일 96</text>
+  <text class="t-muted tiny" x="467.95" y="206.3">뒤로</text>
+  <text class="t-muted tiny" x="467.95" y="224.3">더보기</text>
+  <text class="t-muted note" x="36" y="472">상태 표시줄이 쿠랑 쪽 열에 있어 접힘 화면과 같은 배치이고,</text>
+  <text class="t-muted note" x="36" y="490">뒤로 가기와 더보기가 레일 맨 위, 상태 표시 아래에 놓입니다.</text>
+  <text class="t-fg seg" x="36" y="528">왼쪽 조각</text>
+  <text class="t-muted note" x="98" y="528">쿠랑이 왼쪽, 레일 72</text>
+  <clipPath id="scr-2"><rect x="36" y="566" width="427.95" height="301.05" rx="6.3"/></clipPath>
+  <rect class="screen" x="36" y="566" width="427.95" height="301.05" rx="6.3"/>
+  <g clip-path="url(#scr-2)">
+  <rect class="gap" x="247.05" y="566" width="5.85" height="301.05" rx="0"/>
+  <rect class="other" x="252.9" y="566" width="211.05" height="301.05" rx="0"/>
+  <rect class="seg-box" x="263.7" y="576.8" width="135" height="54" rx="5.4"/>
+  <rect class="seg-box" x="263.7" y="641.6" width="117" height="32.4" rx="5.4"/>
+  <rect class="seg-box" x="263.7" y="684.8" width="135" height="32.4" rx="5.4"/>
+  <rect class="seg-box" x="263.7" y="728" width="99" height="32.4" rx="5.4"/>
+  <rect class="system" x="427.95" y="571.4" width="30.6" height="41.4" rx="3.6"/>
+  <rect class="screen" x="36" y="566" width="211.05" height="301.05" rx="0"/>
+  <text class="t-fg tiny-b" x="157.73" y="581.3" text-anchor="middle">글</text>
+  <rect class="content" x="79.2" y="591.2" width="157.05" height="232.65" rx="2.7"/>
+  <rect class="ph" x="86.4" y="598.4" width="40.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="86.4" y="609.2" width="63" height="3.6" rx="0.9"/>
+  <rect class="seg-box" x="79.2" y="828.35" width="124.65" height="19.8" rx="3.6"/>
+  <rect class="btn" x="207.45" y="828.35" width="28.8" height="19.8" rx="3.6"/>
+  <rect class="btn" x="45.9" y="571.4" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="45.9" y="589.4" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="seg-box" x="41.4" y="724.4" width="21.6" height="133.2" rx="10.8"/>
+  <rect class="btn-on" x="45.9" y="730.7" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="45.9" y="755.9" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="45.9" y="781.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="45.9" y="806.3" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="45.9" y="831.5" width="12.6" height="12.6" rx="2.7"/>
+  <text class="t-muted tiny" x="72" y="579.95">뒤로 가기, 더보기</text>
+  </g>
+  <rect x="36" y="566" width="427.95" height="301.05" rx="6.3" style="fill: none; stroke: var(--c-fg); stroke-width: 1.5"/>
+  <line class="dim" x1="37" y1="558" x2="67.4" y2="558"/>
+  <line class="dim" x1="37" y1="555" x2="37" y2="561"/>
+  <line class="dim" x1="67.4" y1="555" x2="67.4" y2="561"/>
+  <text class="t-muted tiny" x="52.2" y="553" text-anchor="middle">레일 72</text>
+  <line class="dim" x1="69.4" y1="558" x2="246.05" y2="558"/>
+  <line class="dim" x1="69.4" y1="555" x2="69.4" y2="561"/>
+  <line class="dim" x1="246.05" y1="555" x2="246.05" y2="561"/>
+  <text class="t-muted tiny" x="157.73" y="553" text-anchor="middle">콘텐츠 397</text>
+  <line class="dim" x1="253.9" y1="558" x2="462.95" y2="558"/>
+  <line class="dim" x1="253.9" y1="555" x2="253.9" y2="561"/>
+  <line class="dim" x1="462.95" y1="555" x2="462.95" y2="561"/>
+  <text class="t-muted tiny" x="358.43" y="553" text-anchor="middle">다른 앱 469</text>
+  <text class="t-muted note" x="36" y="892">상태 표시줄이 없는 왼쪽 가장자리로 레일이 가고, 인셋이 0이라 폭은 72입니다.</text>
+  <text class="t-muted note" x="36" y="910">뒤로 가기와 더보기가 함께 레일 맨 위, 위 여백 12부터 놓입니다.</text>
+</svg>

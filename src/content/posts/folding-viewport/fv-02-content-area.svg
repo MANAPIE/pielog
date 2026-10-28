@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 530" width="500" height="530" role="img" aria-labelledby="t">
+  <title id="t">일반 아이폰과 아이폰 듀오 접힘 화면의 콘텐츠 영역 비교</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-card: #FFFFFF;
+        --c-line: #C9CDD3; --c-divider: #E5E7EB;
+        --c-soft: #FDEEE4; --c-soft-2: #E6ECFB;
+        --c-accent: #C2410C; --c-accent-2: #1D4ED8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-card: #161B22;
+          --c-line: #4A525E; --c-divider: #262D36;
+          --c-soft: #2B1C12; --c-soft-2: #15213A;
+          --c-accent: #E8681A; --c-accent-2: #3B82F6;
+        }
+      }
+      text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .bg { fill: var(--c-bg); }
+      .screen { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+      .content { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.5; }
+      .hatch-line { stroke: var(--c-line); stroke-width: 1.5; }
+      .system { fill: url(#hatch); }
+      .guide { stroke: var(--c-muted); stroke-width: 1.5; stroke-dasharray: 4 4; fill: none; }
+      .t-fg { fill: var(--c-fg); }
+      .t-muted { fill: var(--c-muted); }
+      .lbl { font-size: 13px; font-weight: 600; }
+      .cap { font-size: 13px; font-weight: 700; }
+      .sub { font-size: 12px; }
+    </style>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" style="fill: var(--c-card)"/>
+      <line x1="0" y1="0" x2="0" y2="6" class="hatch-line"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--c-muted)"/>
+    </marker>
+    <clipPath id="clipA"><rect x="54" y="40" width="156" height="337.6" rx="12"/></clipPath>
+    <clipPath id="clipB"><rect x="274.8" y="40" width="186.4" height="271.2" rx="12"/></clipPath>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="500" height="530"/>
+
+  <!-- 왼쪽: 일반 아이폰 세로 390 × 844, 축척 0.4 -->
+  <g clip-path="url(#clipA)">
+    <rect class="system" x="54" y="40" width="156" height="18.8"/>
+    <rect class="content" x="54" y="58.8" width="156" height="305.2"/>
+    <rect class="system" x="54" y="364" width="156" height="13.6"/>
+  </g>
+  <rect x="54" y="40" width="156" height="337.6" rx="12" style="fill:none; stroke: var(--c-line); stroke-width: 1.5"/>
+  <text class="t-fg lbl" x="132" y="215.6" text-anchor="middle">390 × 763</text>
+
+  <!-- 오른쪽: 듀오 접힘 466 × 678, 오른쪽 84 시스템 열, 하단 34 -->
+  <g clip-path="url(#clipB)">
+    <rect class="content" x="274.8" y="40" width="152.8" height="257.6"/>
+    <rect class="system" x="274.8" y="297.6" width="152.8" height="13.6"/>
+    <rect class="system" x="427.6" y="40" width="33.6" height="271.2"/>
+  </g>
+  <rect x="274.8" y="40" width="186.4" height="271.2" rx="12" style="fill:none; stroke: var(--c-line); stroke-width: 1.5"/>
+  <text class="t-fg lbl" x="351.2" y="173.4" text-anchor="middle">382 × 644</text>
+  <rect x="432.4" y="164" width="24" height="20" rx="4" style="fill: var(--c-card)"/>
+  <text class="t-fg lbl" x="444.4" y="179" text-anchor="middle">84</text>
+
+  <!-- 높이 비교 가이드: 왼쪽 콘텐츠 아래 끝 y=364 -->
+  <line class="guide" x1="214" y1="364" x2="461.2" y2="364"/>
+  <!-- 치수선: 오른쪽 콘텐츠 아래 끝(297.6)부터 가이드(364)까지 -->
+  <line x1="290" y1="301" x2="290" y2="360" style="stroke: var(--c-muted); stroke-width: 1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text class="t-fg lbl" x="300" y="342">높이 −16%</text>
+
+  <!-- 캡션: 두 패널 모두 같은 y에 정렬 -->
+  <text class="t-fg cap" x="132" y="404" text-anchor="middle">일반 아이폰 세로</text>
+  <text class="t-muted sub" x="132" y="423" text-anchor="middle">화면 390 × 844</text>
+  <text class="t-muted sub" x="132" y="441" text-anchor="middle">상단 47, 하단 34 제외</text>
+
+  <text class="t-fg cap" x="368" y="404" text-anchor="middle">듀오 접힘, 27.1 SDK 앱</text>
+  <text class="t-muted sub" x="368" y="423" text-anchor="middle">화면 466 × 678</text>
+  <text class="t-muted sub" x="368" y="441" text-anchor="middle">오른쪽 84, 하단 34 제외</text>
+
+  <!-- 범례 -->
+  <rect class="system" x="148" y="460" width="16" height="12" style="stroke: var(--c-line); stroke-width: 1"/>
+  <text class="t-muted sub" x="170" y="470.5">시스템 영역</text>
+  <rect class="content" x="262" y="460" width="16" height="12"/>
+  <text class="t-muted sub" x="284" y="470.5">콘텐츠 영역</text>
+
+  <text class="t-muted sub" x="250" y="496" text-anchor="middle">사파리에서는 웹 페이지가 382 × 580을 받습니다.</text>
+  <text class="t-muted sub" x="250" y="515" text-anchor="middle">듀오 수치는 Xcode 27.1 시뮬레이터 측정값입니다.</text>
+</svg>

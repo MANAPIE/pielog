@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 726" width="500" height="726" role="img" aria-labelledby="t">
+  <title id="t">폭 100%로 준 4:3 키패드의 높이</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-card: #FFFFFF;
+        --c-line: #C9CDD3; --c-divider: #E5E7EB;
+        --c-soft: #FDEEE4; --c-soft-2: #E6ECFB;
+        --c-accent: #C2410C; --c-accent-2: #1D4ED8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-card: #161B22;
+          --c-line: #4A525E; --c-divider: #262D36;
+          --c-soft: #2B1C12; --c-soft-2: #15213A;
+          --c-accent: #E8681A; --c-accent-2: #3B82F6;
+        }
+      }
+      text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .bg { fill: var(--c-bg); }
+      .screen { fill: var(--c-card); stroke: var(--c-fg); stroke-width: 1.5; }
+      .screen-line { fill: none; stroke: var(--c-fg); stroke-width: 1.5; }
+      .content { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .rail { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; }
+      .system { fill: url(#hatch); stroke: var(--c-line); stroke-width: 1.2; }
+      .hatch-line { stroke: var(--c-line); stroke-width: 1.5; }
+      .over { fill: none; stroke: var(--c-accent); stroke-width: 1.5; stroke-dasharray: 5 4; }
+      .over-fill { fill: var(--c-soft); opacity: 0.45; }
+      .key { stroke: var(--c-accent); stroke-width: 0.8; opacity: 0.6; }
+      .fold { stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .cta { fill: var(--c-accent); }
+      .bar { fill: var(--c-line); }
+      .t-fg { fill: var(--c-fg); }
+      .t-muted { fill: var(--c-muted); }
+      .t-accent { fill: var(--c-accent); }
+      .t-on-accent { fill: var(--c-card); }
+      .h { font-size: 14px; font-weight: 700; }
+      .title { font-size: 13px; font-weight: 700; }
+      .seg { font-size: 12px; font-weight: 600; }
+      .note { font-size: 12px; }
+      .tiny { font-size: 10px; font-weight: 600; }
+    </style>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" style="fill: var(--c-card)"/>
+      <line x1="0" y1="0" x2="0" y2="6" class="hatch-line"/>
+    </pattern>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="726"/>
+  <text class="t-fg h" x="24" y="28">폭 100%로 준 4:3 키패드의 높이</text>
+  <text class="t-muted note" x="24" y="48">같은 축척이고, 헤더와 입력 영역 176은 예시로 잡은 값입니다.</text>
+  <rect class="content" x="24" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="44" y="74">헤더와 입력</text>
+  <rect class="rail" x="134" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="154" y="74">키패드</text>
+  <rect class="over" x="208" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="228" y="74">화면 밖</text>
+  <text class="t-fg title" x="24" y="106">폭 100% 그대로</text>
+  <rect class="screen" x="24" y="120" width="101.4" height="219.44" rx="4"/>
+  <rect class="content" x="25" y="121" width="99.4" height="43.76" rx="2"/>
+  <rect class="rail" x="24" y="165.76" width="101.4" height="76.05" rx="2"/>
+  <line class="key" x1="57.8" y1="165.76" x2="57.8" y2="241.81"/>
+  <line class="key" x1="91.6" y1="165.76" x2="91.6" y2="241.81"/>
+  <line class="key" x1="24" y1="184.77" x2="125.4" y2="184.77"/>
+  <line class="key" x1="24" y1="203.78" x2="125.4" y2="203.78"/>
+  <line class="key" x1="24" y1="222.8" x2="125.4" y2="222.8"/>
+  <text class="t-fg seg" x="24" y="361">일반 폰 390 × 844</text>
+  <text class="t-muted note" x="24" y="379">키패드 390 × 292.5</text>
+  <text class="t-muted note" x="24" y="397">다 들어감</text>
+  <rect class="screen" x="200" y="120" width="212.16" height="160.16" rx="4"/>
+  <rect class="content" x="201" y="121" width="210.16" height="43.76" rx="2"/>
+  <rect class="rail" x="200" y="165.76" width="212.16" height="114.4" rx="2"/>
+  <line class="key" x1="270.72" y1="165.76" x2="270.72" y2="324.88"/>
+  <line class="key" x1="341.44" y1="165.76" x2="341.44" y2="324.88"/>
+  <line class="key" x1="200" y1="205.54" x2="412.16" y2="205.54"/>
+  <line class="key" x1="200" y1="245.32" x2="412.16" y2="245.32"/>
+  <line class="key" x1="200" y1="285.1" x2="412.16" y2="285.1"/>
+  <rect class="over-fill" x="200" y="280.16" width="212.16" height="44.72"/>
+  <rect class="over" x="200" y="280.16" width="212.16" height="44.72"/>
+  <text class="t-fg seg" x="200" y="361">폴드 8 메인 816 × 616</text>
+  <text class="t-muted note" x="200" y="379">키패드 816 × 612</text>
+  <text class="t-accent note" x="200" y="397">아래 172가 잘림</text>
+  <text class="t-fg title" x="24" y="424">높이를 45dvh로 묶으면</text>
+  <rect class="screen" x="24" y="438" width="101.4" height="219.44" rx="4"/>
+  <rect class="content" x="25" y="439" width="99.4" height="43.76" rx="2"/>
+  <rect class="rail" x="24" y="483.76" width="101.4" height="76.05" rx="2"/>
+  <line class="key" x1="57.8" y1="483.76" x2="57.8" y2="559.81"/>
+  <line class="key" x1="91.6" y1="483.76" x2="91.6" y2="559.81"/>
+  <line class="key" x1="24" y1="502.77" x2="125.4" y2="502.77"/>
+  <line class="key" x1="24" y1="521.78" x2="125.4" y2="521.78"/>
+  <line class="key" x1="24" y1="540.8" x2="125.4" y2="540.8"/>
+  <text class="t-fg seg" x="24" y="679">일반 폰 390 × 844</text>
+  <text class="t-muted note" x="24" y="697">키패드 390 × 292.5</text>
+  <text class="t-muted note" x="24" y="715">다 들어감</text>
+  <rect class="screen" x="200" y="438" width="212.16" height="160.16" rx="4"/>
+  <rect class="content" x="201" y="439" width="210.16" height="43.76" rx="2"/>
+  <rect class="rail" x="258.03" y="483.76" width="96.1" height="72.07" rx="2"/>
+  <line class="key" x1="290.06" y1="483.76" x2="290.06" y2="555.83"/>
+  <line class="key" x1="322.1" y1="483.76" x2="322.1" y2="555.83"/>
+  <line class="key" x1="258.03" y1="501.78" x2="354.13" y2="501.78"/>
+  <line class="key" x1="258.03" y1="519.8" x2="354.13" y2="519.8"/>
+  <line class="key" x1="258.03" y1="537.81" x2="354.13" y2="537.81"/>
+  <text class="t-fg seg" x="200" y="679">폴드 8 메인 816 × 616</text>
+  <text class="t-muted note" x="200" y="697">키패드 369.6 × 277.2</text>
+  <text class="t-muted note" x="200" y="715">다 들어감</text>
+</svg>
