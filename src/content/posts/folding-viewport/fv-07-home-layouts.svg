@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 384" width="500" height="384" role="img" aria-labelledby="t">
+  <title id="t">자세별 홈 화면의 독과 상태 표시 위치</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-card: #FFFFFF;
+        --c-line: #C9CDD3; --c-divider: #E5E7EB;
+        --c-soft: #FDEEE4; --c-soft-2: #E6ECFB;
+        --c-accent: #C2410C; --c-accent-2: #1D4ED8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-card: #161B22;
+          --c-line: #4A525E; --c-divider: #262D36;
+          --c-soft: #2B1C12; --c-soft-2: #15213A;
+          --c-accent: #E8681A; --c-accent-2: #3B82F6;
+        }
+      }
+      text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .bg { fill: var(--c-bg); }
+      .screen { fill: var(--c-card); stroke: var(--c-fg); stroke-width: 1.5; }
+      .content { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .dock { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; }
+      .system { fill: url(#hatch); stroke: var(--c-line); stroke-width: 1.2; }
+      .hatch-line { stroke: var(--c-line); stroke-width: 1.5; }
+      .fold { stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .icon { fill: var(--c-accent); }
+      .t-fg { fill: var(--c-fg); }
+      .t-muted { fill: var(--c-muted); }
+      .h { font-size: 14px; font-weight: 700; }
+      .seg { font-size: 12px; font-weight: 600; }
+      .note { font-size: 12px; }
+    </style>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" style="fill: var(--c-card)"/>
+      <line x1="0" y1="0" x2="0" y2="6" class="hatch-line"/>
+    </pattern>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="384"/>
+  <text class="t-fg h" x="24" y="28">자세별 홈 화면의 독과 상태 표시 위치</text>
+  <text class="t-muted note" x="24" y="48">축척은 0.2배이고, 단위는 pt입니다.</text>
+  <rect class="system" x="24" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="44" y="74">상태 표시</text>
+  <rect class="dock" x="122" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="142" y="74">독</text>
+  <rect class="content" x="196" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="216" y="74">앱과 위젯</text>
+
+  <!-- 접힘 466 × 678: 오른쪽 84 열 위쪽에 상태 표시(151까지), 가운데에 독(245~505) -->
+  <rect class="screen" x="24" y="154.6" width="93.2" height="135.6" rx="4"/>
+  <rect class="content" x="25" y="155.6" width="75.4" height="133.6" rx="2"/>
+  <rect class="system" x="101.4" y="155.6" width="14.8" height="29.2" rx="2"/>
+  <rect class="dock" x="102.4" y="203.6" width="12.8" height="52" rx="3"/>
+  <circle class="icon" cx="108.8" cy="210.1" r="2.6"/>
+  <circle class="icon" cx="108.8" cy="223.1" r="2.6"/>
+  <circle class="icon" cx="108.8" cy="236.1" r="2.6"/>
+  <circle class="icon" cx="108.8" cy="249.1" r="2.6"/>
+
+  <!-- 펼침 가로 951 × 669: 오른쪽 80 열 위쪽에 상태 표시(98까지), 가운데에 독(237~500), 접힘선 x 475.5 -->
+  <rect class="screen" x="138" y="156.4" width="190.2" height="133.8" rx="4"/>
+  <rect class="content" x="139" y="157.4" width="172.2" height="131.8" rx="2"/>
+  <rect class="system" x="312.2" y="157.4" width="15" height="18.6" rx="2"/>
+  <rect class="dock" x="313.3" y="203.8" width="12.8" height="52.6" rx="3"/>
+  <circle class="icon" cx="319.7" cy="210.4" r="2.6"/>
+  <circle class="icon" cx="319.7" cy="223.5" r="2.6"/>
+  <circle class="icon" cx="319.7" cy="236.7" r="2.6"/>
+  <circle class="icon" cx="319.7" cy="249.8" r="2.6"/>
+  <line class="fold" x1="233.1" y1="156.4" x2="233.1" y2="290.2"/>
+
+  <!-- 펼침 세로 669 × 951: 위쪽 x 550~642에 상태 표시, 아래쪽 가운데에 가로 독, 접힘선 y 475.5 -->
+  <rect class="screen" x="338.2" y="100" width="133.8" height="190.2" rx="4"/>
+  <rect class="content" x="339.2" y="116.4" width="131.8" height="150.6" rx="2"/>
+  <rect class="system" x="448.2" y="106.2" width="18.4" height="6" rx="2"/>
+  <rect class="dock" x="379" y="271" width="52.2" height="12.8" rx="3"/>
+  <circle class="icon" cx="385.5" cy="277.4" r="2.6"/>
+  <circle class="icon" cx="398.6" cy="277.4" r="2.6"/>
+  <circle class="icon" cx="411.6" cy="277.4" r="2.6"/>
+  <circle class="icon" cx="424.7" cy="277.4" r="2.6"/>
+  <line class="fold" x1="338.2" y1="195.1" x2="472" y2="195.1"/>
+
+  <text class="t-fg seg" x="24" y="318">접힘 466 × 678</text>
+  <text class="t-muted note" x="24" y="338">독: 오른쪽 열</text>
+  <text class="t-muted note" x="24" y="356">상태 표시: 열 위</text>
+
+  <text class="t-fg seg" x="138" y="318">펼침 가로 951 × 669</text>
+  <text class="t-muted note" x="138" y="338">독: 오른쪽 열</text>
+  <text class="t-muted note" x="138" y="356">상태 표시: 열 위</text>
+
+  <text class="t-fg seg" x="338.2" y="318">펼침 세로 669 × 951</text>
+  <text class="t-muted note" x="338.2" y="338">독: 아래쪽 가로</text>
+  <text class="t-muted note" x="338.2" y="356">상태 표시: 위쪽 오른편</text>
+</svg>

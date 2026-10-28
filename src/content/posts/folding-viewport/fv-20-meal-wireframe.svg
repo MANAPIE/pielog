@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 934" width="500" height="934" role="img" aria-labelledby="t">
+  <title id="t">학식 화면의 변경 전후</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-card: #FFFFFF;
+        --c-line: #C9CDD3; --c-divider: #E5E7EB;
+        --c-soft: #FDEEE4; --c-soft-2: #E6ECFB;
+        --c-accent: #C2410C; --c-accent-2: #1D4ED8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-card: #161B22;
+          --c-line: #4A525E; --c-divider: #262D36;
+          --c-soft: #2B1C12; --c-soft-2: #15213A;
+          --c-accent: #E8681A; --c-accent-2: #3B82F6;
+        }
+      }
+      text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .bg { fill: var(--c-bg); }
+      .screen { fill: var(--c-card); stroke: var(--c-fg); stroke-width: 1.5; }
+      .content { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1; }
+      .btn { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1; }
+      .btn-on { fill: var(--c-accent); }
+      .system { fill: url(#hatch); stroke: var(--c-line); stroke-width: 1; }
+      .hatch-line { stroke: var(--c-line); stroke-width: 1.5; }
+      .panel { fill: var(--c-divider); }
+      .sel { fill: var(--c-divider); }
+      .ph { fill: var(--c-line); }
+      .seg-box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .seg-on { fill: var(--c-divider); }
+      .shadow { fill: var(--c-line); opacity: 0.6; }
+      .fold { stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .problem { fill: none; stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 3 2; }
+      .dim { stroke: var(--c-muted); stroke-width: 0.8; }
+      .t-fg { fill: var(--c-fg); }
+      .t-muted { fill: var(--c-muted); }
+      .h { font-size: 14px; font-weight: 700; }
+      .seg { font-size: 12px; font-weight: 600; }
+      .note { font-size: 12px; }
+      .tiny { font-size: 10px; }
+      .tiny-b { font-size: 10px; font-weight: 600; }
+    </style>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="5" height="5" style="fill: var(--c-card)"/>
+      <line x1="0" y1="0" x2="0" y2="5" class="hatch-line"/>
+    </pattern>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="934"/>
+  <text class="t-fg h" x="24" y="28">학식 화면의 변경 전후</text>
+  <text class="t-muted note" x="24" y="48">951 × 669 펼침 가로 기준이고, 축척은 0.45배입니다.</text>
+  <rect class="content" x="24" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="44" y="74">코너</text>
+  <rect class="btn" x="88" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="108" y="74">탭과 버튼</text>
+  <rect class="system" x="178" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="198" y="74">상태 표시</text>
+  <line class="fold" x1="268" y1="70" x2="282" y2="70"/>
+  <text class="t-muted note" x="288" y="74">접힘선</text>
+  <text class="t-fg seg" x="36" y="108">변경 전</text>
+  <text class="t-muted note" x="86" y="108">가운데 열 768, 코너 2열</text>
+  <line class="dim" x1="37" y1="138" x2="76.18" y2="138"/>
+  <line class="dim" x1="37" y1="135" x2="37" y2="141"/>
+  <line class="dim" x1="76.18" y1="135" x2="76.18" y2="141"/>
+  <text class="t-muted tiny" x="56.59" y="133" text-anchor="middle">91.5</text>
+  <line class="dim" x1="78.18" y1="138" x2="421.78" y2="138"/>
+  <line class="dim" x1="78.18" y1="135" x2="78.18" y2="141"/>
+  <line class="dim" x1="421.78" y1="135" x2="421.78" y2="141"/>
+  <text class="t-muted tiny" x="249.98" y="133" text-anchor="middle">768</text>
+  <line class="dim" x1="423.78" y1="138" x2="462.95" y2="138"/>
+  <line class="dim" x1="423.78" y1="135" x2="423.78" y2="141"/>
+  <line class="dim" x1="462.95" y1="135" x2="462.95" y2="141"/>
+  <text class="t-muted tiny" x="443.36" y="133" text-anchor="middle">91.5</text>
+  <clipPath id="scr-a"><rect x="36" y="146" width="427.95" height="301.05" rx="6.3"/></clipPath>
+  <rect class="screen" x="36" y="146" width="427.95" height="301.05" rx="6.3"/>
+  <g clip-path="url(#scr-a)">
+  <rect class="btn" x="84.38" y="153.2" width="10.8" height="10.8" rx="2.7"/>
+  <text class="t-fg tiny-b" x="249.97" y="161.3" text-anchor="middle">학식</text>
+  <rect class="btn" x="383.18" y="153.2" width="32.4" height="10.8" rx="2.7"/>
+  <circle class="ph" cx="114.2" cy="182" r="2.7"/>
+  <circle class="ph" cx="159.46" cy="182" r="2.7"/>
+  <circle class="ph" cx="204.72" cy="182" r="2.7"/>
+  <circle class="btn-on" cx="249.97" cy="182" r="4.95"/>
+  <circle class="ph" cx="295.23" cy="182" r="2.7"/>
+  <circle class="ph" cx="340.49" cy="182" r="2.7"/>
+  <circle class="ph" cx="385.75" cy="182" r="2.7"/>
+  <rect class="seg-box" x="91.58" y="199.1" width="316.8" height="20.7" rx="3.6"/>
+  <rect class="seg-on" x="92.03" y="199.55" width="105.15" height="19.8" rx="3.15"/>
+  <line class="dim" x1="197.17" y1="199.1" x2="197.17" y2="219.8"/>
+  <line class="dim" x1="302.77" y1="199.1" x2="302.77" y2="219.8"/>
+  <circle class="btn-on" cx="93.38" cy="232.4" r="1.8"/>
+  <text class="t-fg tiny-b" x="97.88" y="236">학생회관 · 코너 4</text>
+  <rect class="ph" x="354.38" y="230.6" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="91.58" y="242.3" width="154.8" height="73.8" rx="2.7"/>
+  <rect class="ph" x="96.97" y="248.6" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="258.5" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="268.4" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="278.3" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="288.2" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="298.1" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="253.58" y="242.3" width="154.8" height="73.8" rx="2.7"/>
+  <rect class="ph" x="258.98" y="248.6" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="258.5" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="268.4" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="278.3" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="288.2" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="298.1" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="91.58" y="321.5" width="154.8" height="73.8" rx="2.7"/>
+  <rect class="ph" x="96.97" y="327.8" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="337.7" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="347.6" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="357.5" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="367.4" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="96.97" y="377.3" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="253.58" y="321.5" width="154.8" height="73.8" rx="2.7"/>
+  <rect class="ph" x="258.98" y="327.8" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="337.7" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="347.6" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="357.5" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="367.4" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="377.3" width="54" height="3.6" rx="0.9"/>
+  <circle class="btn-on" cx="93.38" cy="407" r="1.8"/>
+  <text class="t-fg tiny-b" x="97.88" y="410.6">우정원 · 코너 1</text>
+  <rect class="ph" x="354.38" y="405.2" width="54" height="3.6" rx="0.9"/>
+  <line class="dim" x1="77.18" y1="417.35" x2="422.78" y2="417.35"/>
+  <rect class="btn" x="105.44" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="174.56" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn-on" x="243.68" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="312.8" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="381.91" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="problem" x="240.08" y="420.5" width="19.8" height="19.8" rx="3"/>
+  <line class="fold" x1="249.97" y1="146" x2="249.97" y2="447.05"/>
+  </g>
+  <rect x="36" y="146" width="427.95" height="301.05" rx="6.3" style="fill: none; stroke: var(--c-fg); stroke-width: 1.5"/>
+  <text class="t-muted note" x="36" y="472">양옆 91.5가 비고, 코너 4개인 식당이 두 줄을 차지합니다.</text>
+  <text class="t-muted note" x="36" y="490">하단 탭바의 가운데 탭(주황 점선)이 접힘선 위에 놓입니다.</text>
+  <text class="t-fg seg" x="36" y="528">변경 후</text>
+  <text class="t-muted note" x="86" y="528">여백 96, 콘텐츠 759, 레일 96, 코너 1·2·4열</text>
+  <line class="dim" x1="37" y1="558" x2="78.2" y2="558"/>
+  <line class="dim" x1="37" y1="555" x2="37" y2="561"/>
+  <line class="dim" x1="78.2" y1="555" x2="78.2" y2="561"/>
+  <text class="t-muted tiny" x="57.6" y="553" text-anchor="middle">여백 96</text>
+  <line class="dim" x1="80.2" y1="558" x2="419.75" y2="558"/>
+  <line class="dim" x1="80.2" y1="555" x2="80.2" y2="561"/>
+  <line class="dim" x1="419.75" y1="555" x2="419.75" y2="561"/>
+  <text class="t-muted tiny" x="249.97" y="553" text-anchor="middle">콘텐츠 759</text>
+  <line class="dim" x1="421.75" y1="558" x2="462.95" y2="558"/>
+  <line class="dim" x1="421.75" y1="555" x2="421.75" y2="561"/>
+  <line class="dim" x1="462.95" y1="555" x2="462.95" y2="561"/>
+  <text class="t-muted tiny" x="442.35" y="553" text-anchor="middle">레일 96</text>
+  <clipPath id="scr-b"><rect x="36" y="566" width="427.95" height="301.05" rx="6.3"/></clipPath>
+  <rect class="screen" x="36" y="566" width="427.95" height="301.05" rx="6.3"/>
+  <g clip-path="url(#scr-b)">
+  <text class="t-fg tiny-b" x="249.97" y="581.3" text-anchor="middle">학식</text>
+  <circle class="ph" cx="112.85" cy="602" r="2.7"/>
+  <circle class="ph" cx="158.56" cy="602" r="2.7"/>
+  <circle class="ph" cx="204.27" cy="602" r="2.7"/>
+  <circle class="btn-on" cx="249.97" cy="602" r="4.95"/>
+  <circle class="ph" cx="295.68" cy="602" r="2.7"/>
+  <circle class="ph" cx="341.39" cy="602" r="2.7"/>
+  <circle class="ph" cx="387.1" cy="602" r="2.7"/>
+  <rect class="seg-box" x="90" y="619.1" width="319.95" height="20.7" rx="3.6"/>
+  <rect class="seg-on" x="90.45" y="619.55" width="106.2" height="19.8" rx="3.15"/>
+  <line class="dim" x1="196.65" y1="619.1" x2="196.65" y2="639.8"/>
+  <line class="dim" x1="303.3" y1="619.1" x2="303.3" y2="639.8"/>
+  <circle class="btn-on" cx="91.8" cy="652.4" r="1.8"/>
+  <text class="t-fg tiny-b" x="96.3" y="656">학생회관 · 코너 4</text>
+  <rect class="ph" x="355.95" y="650.6" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="90" y="662.3" width="74.59" height="73.8" rx="2.7"/>
+  <rect class="ph" x="95.4" y="668.6" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="678.5" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="688.4" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="698.3" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="708.2" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="718.1" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="171.79" y="662.3" width="74.59" height="73.8" rx="2.7"/>
+  <rect class="ph" x="177.19" y="668.6" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="177.19" y="678.5" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="177.19" y="688.4" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="177.19" y="698.3" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="177.19" y="708.2" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="177.19" y="718.1" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="253.58" y="662.3" width="74.59" height="73.8" rx="2.7"/>
+  <rect class="ph" x="258.98" y="668.6" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="678.5" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="688.4" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="698.3" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="708.2" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="718.1" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="335.36" y="662.3" width="74.59" height="73.8" rx="2.7"/>
+  <rect class="ph" x="340.76" y="668.6" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="340.76" y="678.5" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="340.76" y="688.4" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="340.76" y="698.3" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="340.76" y="708.2" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="340.76" y="718.1" width="54" height="3.6" rx="0.9"/>
+  <circle class="btn-on" cx="91.8" cy="746.9" r="1.8"/>
+  <text class="t-fg tiny-b" x="96.3" y="750.5">우정원 · 코너 1</text>
+  <rect class="ph" x="355.95" y="745.1" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="90" y="756.8" width="319.95" height="41.4" rx="2.7"/>
+  <rect class="ph" x="95.4" y="763.1" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="773" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="782.9" width="54" height="3.6" rx="0.9"/>
+  <circle class="btn-on" cx="91.8" cy="809" r="1.8"/>
+  <text class="t-fg tiny-b" x="96.3" y="812.6">제2기숙사 · 코너 2</text>
+  <rect class="ph" x="355.95" y="807.2" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="90" y="818.9" width="156.38" height="54" rx="2.7"/>
+  <rect class="ph" x="95.4" y="825.2" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="835.1" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="845" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="95.4" y="854.9" width="54" height="3.6" rx="0.9"/>
+  <rect class="content" x="253.58" y="818.9" width="156.38" height="54" rx="2.7"/>
+  <rect class="ph" x="258.98" y="825.2" width="31.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="835.1" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="845" width="54" height="3.6" rx="0.9"/>
+  <rect class="ph" x="258.98" y="854.9" width="54" height="3.6" rx="0.9"/>
+  <rect class="system" x="427.05" y="571.4" width="30.6" height="41.4" rx="3.6"/>
+  <rect class="btn" x="436.05" y="619.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="637.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="seg-box" x="431.55" y="724.4" width="21.6" height="133.2" rx="10.8"/>
+  <rect class="btn" x="436.05" y="730.7" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="755.9" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn-on" x="436.05" y="781.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="806.3" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="831.5" width="12.6" height="12.6" rx="2.7"/>
+  <line class="fold" x1="249.97" y1="566" x2="249.97" y2="867.05"/>
+  </g>
+  <rect x="36" y="566" width="427.95" height="301.05" rx="6.3" style="fill: none; stroke: var(--c-fg); stroke-width: 1.5"/>
+  <text class="t-muted note" x="36" y="892">코너 4개가 한 줄에 놓이고, 두 번째와 세 번째 코너 사이에 접힘선이 옵니다.</text>
+  <text class="t-muted note" x="36" y="910">캠퍼스 전환 버튼, 캠퍼스 표시와 탭은 오른쪽 레일로 옮겼습니다.</text>
+</svg>

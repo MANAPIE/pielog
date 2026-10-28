@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 684" width="500" height="684" role="img" aria-labelledby="t">
+  <title id="t">기기별 상태 표시 위치와 헤더 버튼 자리</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-card: #FFFFFF;
+        --c-line: #C9CDD3; --c-divider: #E5E7EB;
+        --c-soft: #FDEEE4; --c-soft-2: #E6ECFB;
+        --c-accent: #C2410C; --c-accent-2: #1D4ED8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-card: #161B22;
+          --c-line: #4A525E; --c-divider: #262D36;
+          --c-soft: #2B1C12; --c-soft-2: #15213A;
+          --c-accent: #E8681A; --c-accent-2: #3B82F6;
+        }
+      }
+      text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .bg { fill: var(--c-bg); }
+      .screen { fill: var(--c-card); stroke: var(--c-fg); stroke-width: 1.5; }
+      .screen-line { fill: none; stroke: var(--c-fg); stroke-width: 1.5; }
+      .content { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .rail { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1.2; }
+      .system { fill: url(#hatch); stroke: var(--c-line); stroke-width: 1.2; }
+      .hatch-line { stroke: var(--c-line); stroke-width: 1.5; }
+      .over { fill: none; stroke: var(--c-accent); stroke-width: 1.5; stroke-dasharray: 5 4; }
+      .over-fill { fill: var(--c-soft); opacity: 0.45; }
+      .key { stroke: var(--c-accent); stroke-width: 0.8; opacity: 0.6; }
+      .fold { stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .cta { fill: var(--c-accent); }
+      .bar { fill: var(--c-line); }
+      .t-fg { fill: var(--c-fg); }
+      .t-muted { fill: var(--c-muted); }
+      .t-accent { fill: var(--c-accent); }
+      .t-on-accent { fill: var(--c-card); }
+      .h { font-size: 14px; font-weight: 700; }
+      .title { font-size: 13px; font-weight: 700; }
+      .seg { font-size: 12px; font-weight: 600; }
+      .note { font-size: 12px; }
+      .tiny { font-size: 10px; font-weight: 600; }
+    </style>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" style="fill: var(--c-card)"/>
+      <line x1="0" y1="0" x2="0" y2="6" class="hatch-line"/>
+    </pattern>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="684"/>
+  <text class="t-fg h" x="24" y="28">기기별 상태 표시 위치와 헤더 버튼 자리</text>
+  <text class="t-muted note" x="24" y="48">축척은 0.225배이고, 단위는 pt입니다.</text>
+  <rect class="system" x="24" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="44" y="74">상태 표시</text>
+  <rect class="rail" x="122" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="142" y="74">탭과 버튼</text>
+  <rect class="content" x="220" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="240" y="74">콘텐츠</text>
+  <rect class="screen" x="24" y="100" width="183.6" height="138.6" rx="4"/>
+  <rect class="system" x="25" y="101" width="181.6" height="6.3" rx="1"/>
+  <rect class="system" x="25" y="234.1" width="181.6" height="3.5" rx="1"/>
+  <rect class="content" x="25" y="107.3" width="165.4" height="125.8" rx="2"/>
+  <rect class="rail" x="191.4" y="107.3" width="15.2" height="125.8" rx="2"/>
+  <circle class="cta" cx="199.5" cy="112.15" r="2.6"/>
+  <circle class="cta" cx="199.5" cy="122.05" r="2.6"/>
+  <line class="fold" x1="115.8" y1="100" x2="115.8" y2="238.6"/>
+  <text class="t-fg seg" x="24" y="290">폴드 8 메인 816 × 616</text>
+  <text class="t-muted note" x="24" y="308">상태 표시: 위쪽 가로줄 28</text>
+  <text class="t-muted note" x="24" y="326">버튼: 레일 맨 위, 28 + 12부터</text>
+  <rect class="screen" x="262" y="100" width="104.85" height="152.55" rx="4"/>
+  <rect class="content" x="263" y="101" width="83.95" height="150.55" rx="2"/>
+  <rect class="system" x="347.95" y="101" width="17.9" height="36" rx="2"/>
+  <rect class="rail" x="347.95" y="136.9" width="17.9" height="108" rx="2"/>
+  <circle class="cta" cx="357.4" cy="141.85" r="2.6"/>
+  <circle class="cta" cx="357.4" cy="151.75" r="2.6"/>
+  <text class="t-fg seg" x="262" y="290">듀오 접힘 466 × 678</text>
+  <text class="t-muted note" x="262" y="308">상태 표시: 오른쪽 열, 160까지</text>
+  <text class="t-muted note" x="262" y="326">버튼: 레일 맨 위, 160 + 12부터</text>
+  <rect class="screen" x="24" y="370" width="213.97" height="150.53" rx="4"/>
+  <rect class="content" x="25" y="371" width="193.08" height="148.53" rx="2"/>
+  <rect class="system" x="219.08" y="371" width="17.9" height="23.4" rx="2"/>
+  <rect class="rail" x="219.08" y="394.3" width="17.9" height="118.58" rx="2"/>
+  <circle class="cta" cx="228.53" cy="399.25" r="2.6"/>
+  <circle class="cta" cx="228.53" cy="409.15" r="2.6"/>
+  <line class="fold" x1="130.99" y1="370" x2="130.99" y2="520.52"/>
+  <text class="t-fg seg" x="24" y="620">듀오 펼침 가로 951 × 669</text>
+  <text class="t-muted note" x="24" y="638">상태 표시: 오른쪽 열, 104까지</text>
+  <text class="t-muted note" x="24" y="656">버튼: 레일 맨 위, 104 + 12부터</text>
+  <rect class="screen" x="262" y="370" width="150.53" height="213.97" rx="4"/>
+  <rect class="content" x="263" y="388.45" width="148.53" height="175.72" rx="2"/>
+  <rect class="system" x="385.75" y="378.1" width="20.7" height="5.4" rx="2"/>
+  <rect class="rail" x="267.4" y="377.2" width="114.75" height="7.2" rx="2"/>
+  <rect class="rail" x="263" y="564.17" width="148.53" height="18.8" rx="2"/>
+  <line class="fold" x1="262" y1="476.99" x2="412.52" y2="476.99"/>
+  <text class="t-fg seg" x="262" y="620">듀오 펼침 세로 669 × 951</text>
+  <text class="t-muted note" x="262" y="638">상태 표시: 위쪽, x축 기준 550 ~ 642</text>
+  <text class="t-muted note" x="262" y="656">버튼: 위쪽 인셋 안, 534까지</text>
+</svg>

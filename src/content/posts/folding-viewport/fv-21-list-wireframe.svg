@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 934" width="500" height="934" role="img" aria-labelledby="t">
+  <title id="t">게시글 목록의 변경 전후</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-card: #FFFFFF;
+        --c-line: #C9CDD3; --c-divider: #E5E7EB;
+        --c-soft: #FDEEE4; --c-soft-2: #E6ECFB;
+        --c-accent: #C2410C; --c-accent-2: #1D4ED8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-card: #161B22;
+          --c-line: #4A525E; --c-divider: #262D36;
+          --c-soft: #2B1C12; --c-soft-2: #15213A;
+          --c-accent: #E8681A; --c-accent-2: #3B82F6;
+        }
+      }
+      text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", sans-serif; }
+      .bg { fill: var(--c-bg); }
+      .screen { fill: var(--c-card); stroke: var(--c-fg); stroke-width: 1.5; }
+      .content { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1; }
+      .btn { fill: var(--c-soft); stroke: var(--c-accent); stroke-width: 1; }
+      .btn-on { fill: var(--c-accent); }
+      .system { fill: url(#hatch); stroke: var(--c-line); stroke-width: 1; }
+      .hatch-line { stroke: var(--c-line); stroke-width: 1.5; }
+      .panel { fill: var(--c-divider); }
+      .sel { fill: var(--c-divider); }
+      .ph { fill: var(--c-line); }
+      .seg-box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .seg-on { fill: var(--c-divider); }
+      .shadow { fill: var(--c-line); opacity: 0.6; }
+      .fold { stroke: var(--c-accent-2); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .problem { fill: none; stroke: var(--c-accent); stroke-width: 1.2; stroke-dasharray: 3 2; }
+      .dim { stroke: var(--c-muted); stroke-width: 0.8; }
+      .t-fg { fill: var(--c-fg); }
+      .t-muted { fill: var(--c-muted); }
+      .h { font-size: 14px; font-weight: 700; }
+      .seg { font-size: 12px; font-weight: 600; }
+      .note { font-size: 12px; }
+      .tiny { font-size: 10px; }
+      .tiny-b { font-size: 10px; font-weight: 600; }
+    </style>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="5" height="5" style="fill: var(--c-card)"/>
+      <line x1="0" y1="0" x2="0" y2="5" class="hatch-line"/>
+    </pattern>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="934"/>
+  <text class="t-fg h" x="24" y="28">게시글 목록의 변경 전후</text>
+  <text class="t-muted note" x="24" y="48">951 × 669 펼침 가로 기준이고, 축척은 0.45배입니다.</text>
+  <rect class="content" x="24" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="44" y="74">글과 본문</text>
+  <rect class="btn" x="108" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="128" y="74">탭과 버튼</text>
+  <rect class="system" x="198" y="64" width="14" height="12" rx="2"/>
+  <text class="t-muted note" x="218" y="74">상태 표시</text>
+  <line class="fold" x1="288" y1="70" x2="302" y2="70"/>
+  <text class="t-muted note" x="308" y="74">접힘선</text>
+  <text class="t-fg seg" x="36" y="108">변경 전</text>
+  <text class="t-muted note" x="86" y="108">가운데 열 768, 본문은 화면 전환</text>
+  <line class="dim" x1="37" y1="138" x2="76.18" y2="138"/>
+  <line class="dim" x1="37" y1="135" x2="37" y2="141"/>
+  <line class="dim" x1="76.18" y1="135" x2="76.18" y2="141"/>
+  <text class="t-muted tiny" x="56.59" y="133" text-anchor="middle">91.5</text>
+  <line class="dim" x1="78.18" y1="138" x2="421.78" y2="138"/>
+  <line class="dim" x1="78.18" y1="135" x2="78.18" y2="141"/>
+  <line class="dim" x1="421.78" y1="135" x2="421.78" y2="141"/>
+  <text class="t-muted tiny" x="249.98" y="133" text-anchor="middle">768</text>
+  <line class="dim" x1="423.78" y1="138" x2="462.95" y2="138"/>
+  <line class="dim" x1="423.78" y1="135" x2="423.78" y2="141"/>
+  <line class="dim" x1="462.95" y1="135" x2="462.95" y2="141"/>
+  <text class="t-muted tiny" x="443.36" y="133" text-anchor="middle">91.5</text>
+  <clipPath id="scr-a"><rect x="36" y="146" width="427.95" height="301.05" rx="6.3"/></clipPath>
+  <rect class="screen" x="36" y="146" width="427.95" height="301.05" rx="6.3"/>
+  <g clip-path="url(#scr-a)">
+  <rect class="panel" x="77.18" y="146" width="345.6" height="59.4" rx="0"/>
+  <text class="t-fg tiny-b" x="87.97" y="170.3">쿠랑</text>
+  <rect class="btn" x="399.38" y="160.4" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="381.38" y="160.4" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="363.38" y="160.4" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="seg-box" x="87.97" y="185.6" width="23.4" height="12.6" rx="6.3"/>
+  <rect class="seg-box" x="115.88" y="185.6" width="28.8" height="12.6" rx="6.3"/>
+  <rect class="seg-box" x="149.18" y="185.6" width="37.8" height="12.6" rx="6.3"/>
+  <rect class="seg-box" x="191.47" y="185.6" width="49.5" height="12.6" rx="6.3"/>
+  <rect class="btn" x="87.97" y="212.6" width="25.2" height="12.6" rx="6.3"/>
+  <rect class="btn" x="116.78" y="212.6" width="41.4" height="12.6" rx="6.3"/>
+  <rect class="btn" x="161.78" y="212.6" width="41.4" height="12.6" rx="6.3"/>
+  <rect class="btn" x="206.78" y="212.6" width="41.4" height="12.6" rx="6.3"/>
+  <rect class="btn" x="251.78" y="212.6" width="27" height="12.6" rx="6.3"/>
+  <rect class="btn" x="282.38" y="212.6" width="36" height="12.6" rx="6.3"/>
+  <rect class="btn" x="87.97" y="229.7" width="63" height="12.6" rx="6.3"/>
+  <rect class="btn" x="154.57" y="229.7" width="28.8" height="12.6" rx="6.3"/>
+  <rect class="btn" x="186.97" y="229.7" width="23.4" height="12.6" rx="6.3"/>
+  <rect class="btn" x="213.97" y="229.7" width="37.8" height="12.6" rx="6.3"/>
+  <rect class="btn" x="255.38" y="229.7" width="31.5" height="12.6" rx="6.3"/>
+  <rect class="ph" x="380.48" y="253.1" width="31.5" height="4.5" rx="0.9"/>
+  <rect class="content" x="87.97" y="272.9" width="324" height="64.8" rx="2.7"/>
+  <rect class="ph" x="93.38" y="279.2" width="27" height="3.6" rx="0.9"/>
+  <rect class="ph" x="93.38" y="290.9" width="270" height="3.6" rx="0.9"/>
+  <rect class="ph" x="93.38" y="302.6" width="270" height="3.6" rx="0.9"/>
+  <rect class="ph" x="93.38" y="314.3" width="189" height="3.6" rx="0.9"/>
+  <rect class="ph" x="368.78" y="279.2" width="37.8" height="37.8" rx="2.7"/>
+  <rect class="content" x="87.97" y="348.5" width="324" height="64.8" rx="2.7"/>
+  <rect class="ph" x="93.38" y="354.8" width="27" height="3.6" rx="0.9"/>
+  <rect class="ph" x="93.38" y="366.5" width="313.2" height="3.6" rx="0.9"/>
+  <rect class="ph" x="93.38" y="378.2" width="313.2" height="3.6" rx="0.9"/>
+  <rect class="ph" x="93.38" y="389.9" width="219.24" height="3.6" rx="0.9"/>
+  <line class="dim" x1="77.18" y1="417.35" x2="422.78" y2="417.35"/>
+  <rect class="btn-on" x="105.44" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="174.56" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="243.68" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="312.8" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="381.91" y="424.1" width="12.6" height="12.6" rx="2.7"/>
+  <line class="fold" x1="249.97" y1="146" x2="249.97" y2="447.05"/>
+  </g>
+  <rect x="36" y="146" width="427.95" height="301.05" rx="6.3" style="fill: none; stroke: var(--c-fg); stroke-width: 1.5"/>
+  <text class="t-muted note" x="36" y="472">양옆 91.5가 비고, 글을 누르면 본문 화면으로 바뀝니다.</text>
+  <text class="t-muted note" x="36" y="490">한 화면에 보이는 글은 2개입니다.</text>
+  <text class="t-fg seg" x="36" y="528">변경 후</text>
+  <text class="t-muted note" x="86" y="528">목록 320, 상세 535, 레일 96</text>
+  <line class="dim" x1="37" y1="558" x2="179" y2="558"/>
+  <line class="dim" x1="37" y1="555" x2="37" y2="561"/>
+  <line class="dim" x1="179" y1="555" x2="179" y2="561"/>
+  <text class="t-muted tiny" x="108" y="553" text-anchor="middle">목록 320</text>
+  <line class="dim" x1="181" y1="558" x2="419.75" y2="558"/>
+  <line class="dim" x1="181" y1="555" x2="181" y2="561"/>
+  <line class="dim" x1="419.75" y1="555" x2="419.75" y2="561"/>
+  <text class="t-muted tiny" x="300.38" y="553" text-anchor="middle">상세 535</text>
+  <line class="dim" x1="421.75" y1="558" x2="462.95" y2="558"/>
+  <line class="dim" x1="421.75" y1="555" x2="421.75" y2="561"/>
+  <line class="dim" x1="462.95" y1="555" x2="462.95" y2="561"/>
+  <text class="t-muted tiny" x="442.35" y="553" text-anchor="middle">레일 96</text>
+  <clipPath id="scr-b"><rect x="36" y="566" width="427.95" height="301.05" rx="6.3"/></clipPath>
+  <rect class="screen" x="36" y="566" width="427.95" height="301.05" rx="6.3"/>
+  <g clip-path="url(#scr-b)">
+  <rect class="panel" x="36" y="566" width="144" height="59.4" rx="0"/>
+  <text class="t-fg tiny-b" x="46.8" y="590.3">쿠랑</text>
+  <rect class="btn" x="156.6" y="580.4" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="138.6" y="580.4" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="120.6" y="580.4" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="seg-box" x="46.8" y="605.6" width="23.4" height="12.6" rx="6.3"/>
+  <rect class="seg-box" x="74.7" y="605.6" width="28.8" height="12.6" rx="6.3"/>
+  <rect class="seg-box" x="108" y="605.6" width="37.8" height="12.6" rx="6.3"/>
+  <rect class="btn" x="46.8" y="632.6" width="25.2" height="12.6" rx="6.3"/>
+  <rect class="btn" x="75.6" y="632.6" width="41.4" height="12.6" rx="6.3"/>
+  <rect class="btn" x="120.6" y="632.6" width="41.4" height="12.6" rx="6.3"/>
+  <rect class="btn" x="46.8" y="649.7" width="63" height="12.6" rx="6.3"/>
+  <rect class="btn" x="113.4" y="649.7" width="28.8" height="12.6" rx="6.3"/>
+  <rect class="btn" x="145.8" y="649.7" width="23.4" height="12.6" rx="6.3"/>
+  <rect class="ph" x="137.7" y="673.1" width="31.5" height="4.5" rx="0.9"/>
+  <rect class="sel" x="36" y="763.1" width="144" height="75.6" rx="0"/>
+  <rect class="content" x="46.8" y="692.9" width="122.4" height="64.8" rx="2.7"/>
+  <rect class="ph" x="52.2" y="699.2" width="27" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="710.9" width="68.4" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="722.6" width="68.4" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="734.3" width="47.88" height="3.6" rx="0.9"/>
+  <rect class="ph" x="126" y="699.2" width="37.8" height="37.8" rx="2.7"/>
+  <rect class="content" x="46.8" y="768.5" width="122.4" height="64.8" rx="2.7"/>
+  <rect class="ph" x="52.2" y="774.8" width="27" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="786.5" width="111.6" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="798.2" width="111.6" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="809.9" width="78.12" height="3.6" rx="0.9"/>
+  <rect class="content" x="46.8" y="844.1" width="122.4" height="64.8" rx="2.7"/>
+  <rect class="ph" x="52.2" y="850.4" width="27" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="862.1" width="68.4" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="873.8" width="68.4" height="3.6" rx="0.9"/>
+  <rect class="ph" x="52.2" y="885.5" width="47.88" height="3.6" rx="0.9"/>
+  <rect class="ph" x="126" y="850.4" width="37.8" height="37.8" rx="2.7"/>
+  <rect class="shadow" x="180" y="566" width="1.8" height="301.05" rx="0"/>
+  <text class="t-fg tiny-b" x="300.38" y="581.3" text-anchor="middle">글</text>
+  <rect class="content" x="190.8" y="591.2" width="219.15" height="240.3" rx="2.7"/>
+  <rect class="ph" x="198" y="598.4" width="40.5" height="3.6" rx="0.9"/>
+  <rect class="ph" x="198" y="609.2" width="63" height="3.6" rx="0.9"/>
+  <rect class="ph" x="198" y="622.7" width="63" height="63" rx="2.7"/>
+  <rect class="ph" x="266.4" y="622.7" width="63" height="63" rx="2.7"/>
+  <rect class="ph" x="198" y="696.5" width="204.75" height="3.6" rx="0.9"/>
+  <rect class="ph" x="198" y="708.2" width="204.75" height="3.6" rx="0.9"/>
+  <rect class="ph" x="198" y="719.9" width="135" height="3.6" rx="0.9"/>
+  <rect class="ph" x="198" y="731.6" width="204.75" height="3.6" rx="0.9"/>
+  <rect class="ph" x="198" y="743.3" width="180" height="3.6" rx="0.9"/>
+  <rect class="seg-box" x="194.4" y="838.7" width="162" height="19.8" rx="3.6"/>
+  <rect class="btn" x="361.8" y="838.7" width="43.2" height="19.8" rx="3.6"/>
+  <rect class="system" x="427.05" y="571.4" width="30.6" height="41.4" rx="3.6"/>
+  <rect class="btn" x="436.05" y="619.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="seg-box" x="431.55" y="724.4" width="21.6" height="133.2" rx="10.8"/>
+  <rect class="btn-on" x="436.05" y="730.7" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="755.9" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="781.1" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="806.3" width="12.6" height="12.6" rx="2.7"/>
+  <rect class="btn" x="436.05" y="831.5" width="12.6" height="12.6" rx="2.7"/>
+  <line class="fold" x1="249.97" y1="566" x2="249.97" y2="867.05"/>
+  </g>
+  <rect x="36" y="566" width="427.95" height="301.05" rx="6.3" style="fill: none; stroke: var(--c-fg); stroke-width: 1.5"/>
+  <text class="t-muted note" x="36" y="892">선택한 글은 목록 열 폭 전체를 회색으로 칠하고, 본문은 오른쪽 열에 띄웁니다.</text>
+  <text class="t-muted note" x="36" y="910">반쯤 접으면 목록 열을 접힘선까지 넓혀 두 열을 379.5씩 나눕니다.</text>
+</svg>
