@@ -695,6 +695,24 @@ h3.section-kicker {
 }
 
 /* ========================
+   Post body — external link icon
+   ======================== */
+// target="_blank"는 astro.config.mjs의 rehypeExternalLinks가 외부 링크에만 붙인다.
+// 아이콘은 mask라 링크 색(currentColor)을 따라 라이트/다크 모두 맞는다.
+// 두 번째 content의 대체 텍스트를 스크린리더가 읽고, 이 문법을 모르는 브라우저는 첫 줄로 폴백.
+.markdown-body a[target="_blank"]::after {
+    content: "";
+    content: "" / "(새 탭에서 열림)";
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    margin-left: 0.15em;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+/* ========================
    Dark Mode — Image Overrides
    ======================== */
 [data-theme="dark"] .sidebar-button,
