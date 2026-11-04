@@ -2,7 +2,7 @@
 export const prerender = true;
 
 import { render } from "astro:content";
-import { getVisiblePosts } from "../lib/posts";
+import { getVisiblePosts, ogImagePath } from "../lib/posts";
 import PostLayout from "../layouts/PostLayout.astro";
 import { stripMarkdown, buildSearchIndex } from "../lib/koreanSearch";
 
@@ -31,6 +31,7 @@ const searchIndex = buildSearchIndex(searchSource);
     description={post.data.description}
     date={post.data.date}
     tags={post.data.tags}
+    ogImage={ogImagePath(post)}
     headings={headings}
     searchIndex={searchIndex}
     summary={post.data.summary}
