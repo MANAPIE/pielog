@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 530" width="500" height="530" role="img" aria-labelledby="title">
+<title id="title">같은 워커를 거치는 요청 두 개</title>
+<defs><style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-accent:#B42318;--c-accent-2:#1D4ED8;--c-line:#C9CDD3;--c-card:#FFFFFF;--c-soft:#FEF3F2;--c-soft-2:#EFF6FF;--c-divider:#E5E7EB}
+@media (prefers-color-scheme: dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-accent:#EF6A5E;--c-accent-2:#5B9CF6;--c-line:#3A4250;--c-card:#161B22;--c-soft:#2A1514;--c-soft-2:#14213D;--c-divider:#273041}}
+text{font-family:Pretendard,'Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR',sans-serif;fill:var(--c-fg)}
+.mono{font-family:'JetBrains Mono',Menlo,Consolas,'Noto Sans Mono CJK KR',monospace}
+.t{font-size:15px;font-weight:700}
+.h{font-size:13px;font-weight:700}
+.l{font-size:12.5px}
+.s{font-size:11.5px;fill:var(--c-muted)}
+.b{font-weight:700}
+.fa{fill:var(--c-accent)}
+.fa2{fill:var(--c-accent-2)}
+.fm{fill:var(--c-muted)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.plain{fill:none;stroke:var(--c-line);stroke-width:1}
+.ln{stroke:var(--c-fg);stroke-width:1.4;fill:none}
+.lnm{stroke:var(--c-muted);stroke-width:1.2;fill:none}
+.lna{stroke:var(--c-accent);stroke-width:1.6;fill:none}
+.lna2{stroke:var(--c-accent-2);stroke-width:1.6;fill:none}
+.dash{stroke-dasharray:4 3}
+.grid{stroke:var(--c-divider);stroke-width:1}
+.bar{fill:var(--c-accent)}
+.mk{fill:var(--c-fg)}
+.mkm{fill:var(--c-muted)}
+.mka{fill:var(--c-accent)}
+.mka2{fill:var(--c-accent-2)}
+</style><marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mk"/></marker><marker id="mkm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mkm"/></marker><marker id="mka" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka"/></marker><marker id="mka2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka2"/></marker></defs>
+<rect class="bg" x="0" y="0" width="500" height="530"/>
+<text class="t" x="24" y="38">같은 워커를 거치는 요청 두 개</text>
+<rect class="plain" x="24" y="60" width="452" height="196" rx="10"/><text class="h" x="40" y="86" text-anchor="start">요청 1: 공격자의 준비 요청</text><text class="s" x="460" y="86" text-anchor="end">워커 A가 처리</text><g class="box"><rect class="card" x="40" y="100" width="420" height="30" rx="6"/>
+<text class="l" x="52" y="119.5" text-anchor="start">①  조작한 파일 업로드 요청이 도착</text></g><g class="box"><rect class="card" x="40" y="138" width="420" height="30" rx="6"/>
+<text class="l" x="52" y="157.5" text-anchor="start">②  업로드 진행률을 처리하다 메모리 한도를 넘음</text></g><g class="box"><rect class="card" x="40" y="176" width="420" height="30" rx="6"/>
+<text class="l" x="52" y="195.5" text-anchor="start">③  요청이 강제로 끝나고 정리 작업이 생략됨</text></g><g class="box"><rect class="soft" x="40" y="214" width="420" height="30" rx="6"/>
+<text class="l b fa" x="52" y="233.5" text-anchor="start">④  해제된 메모리를 가리키는 포인터가 워커에 남음</text></g><line class="ln" x1="250" y1="258" x2="250" y2="284" marker-end="url(#mk)"/><text class="s" x="262" y="276" text-anchor="start">워커 A는 종료되지 않고 다음 요청을 받음</text><rect class="plain" x="24" y="288" width="452" height="196" rx="10"/><text class="h" x="40" y="314" text-anchor="start">요청 2: 같은 워커로 다시 보낸 업로드 진행률 요청</text><text class="s" x="460" y="314" text-anchor="end">워커 A가 처리</text><g class="box"><rect class="card" x="40" y="328" width="420" height="30" rx="6"/>
+<text class="l" x="52" y="347.5" text-anchor="start">①  정상 초기화가 끝나기 전에 남은 포인터를 사용</text></g><g class="box"><rect class="card" x="40" y="366" width="420" height="30" rx="6"/>
+<text class="l" x="52" y="385.5" text-anchor="start">②  해제된 자리에 새로 채워진 데이터를 진짜 값으로 읽음</text></g><g class="box"><rect class="card" x="40" y="404" width="420" height="30" rx="6"/>
+<text class="l" x="52" y="423.5" text-anchor="start">③  그 자리에 공격자가 고른 값이 들어가 있으면</text></g><g class="box"><rect class="soft" x="40" y="442" width="420" height="30" rx="6"/>
+<text class="l b fa" x="52" y="461.5" text-anchor="start">④  메모리 내용 노출, 조건이 맞으면 코드 실행</text></g><text class="s" x="250" y="504" text-anchor="middle">반납한 사물함에 내 물건을 그대로 넣어두었다가</text><text class="s" x="250" y="520" text-anchor="middle">다른 사람이 그 사물함을 열 때 내 물건이 쓰이게끔 만든 셈입니다</text>
+</svg>

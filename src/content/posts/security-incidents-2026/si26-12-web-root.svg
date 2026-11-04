@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 370" width="500" height="370" role="img" aria-labelledby="title">
+<title id="title">웹에서 보이는 폴더의 범위</title>
+<defs><style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-accent:#B42318;--c-accent-2:#1D4ED8;--c-line:#C9CDD3;--c-card:#FFFFFF;--c-soft:#FEF3F2;--c-soft-2:#EFF6FF;--c-divider:#E5E7EB}
+@media (prefers-color-scheme: dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-accent:#EF6A5E;--c-accent-2:#5B9CF6;--c-line:#3A4250;--c-card:#161B22;--c-soft:#2A1514;--c-soft-2:#14213D;--c-divider:#273041}}
+text{font-family:Pretendard,'Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR',sans-serif;fill:var(--c-fg)}
+.mono{font-family:'JetBrains Mono',Menlo,Consolas,'Noto Sans Mono CJK KR',monospace}
+.t{font-size:15px;font-weight:700}
+.h{font-size:13px;font-weight:700}
+.l{font-size:12.5px}
+.s{font-size:11.5px;fill:var(--c-muted)}
+.b{font-weight:700}
+.fa{fill:var(--c-accent)}
+.fa2{fill:var(--c-accent-2)}
+.fm{fill:var(--c-muted)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.plain{fill:none;stroke:var(--c-line);stroke-width:1}
+.ln{stroke:var(--c-fg);stroke-width:1.4;fill:none}
+.lnm{stroke:var(--c-muted);stroke-width:1.2;fill:none}
+.lna{stroke:var(--c-accent);stroke-width:1.6;fill:none}
+.lna2{stroke:var(--c-accent-2);stroke-width:1.6;fill:none}
+.dash{stroke-dasharray:4 3}
+.grid{stroke:var(--c-divider);stroke-width:1}
+.bar{fill:var(--c-accent)}
+.mk{fill:var(--c-fg)}
+.mkm{fill:var(--c-muted)}
+.mka{fill:var(--c-accent)}
+.mka2{fill:var(--c-accent-2)}
+</style><marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mk"/></marker><marker id="mkm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mkm"/></marker><marker id="mka" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka"/></marker><marker id="mka2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka2"/></marker></defs>
+<rect class="bg" x="0" y="0" width="500" height="370"/>
+<text class="t" x="24" y="38">웹에서 보이는 폴더의 범위</text>
+<text class="h" x="131" y="70" text-anchor="middle">웹 루트 = public/</text><text class="h fa" x="369" y="70" text-anchor="middle">웹 루트 = 프로젝트 루트</text><rect class="soft2" x="46" y="108" width="180" height="74" rx="6"/><text class="s b fa2" x="220" y="128" text-anchor="end">웹에서 보임</text><text class="l mono" x="38" y="100" text-anchor="start">project/</text>
+<text class="l mono" x="54" y="124" text-anchor="start">public/</text>
+<text class="l mono" x="70" y="148" text-anchor="start">index.php</text>
+<text class="l mono" x="70" y="172" text-anchor="start">assets/</text>
+<text class="l mono" x="54" y="196" text-anchor="start">vendor/</text>
+<text class="l mono" x="70" y="220" text-anchor="start">phpunit/</text>
+<text class="l mono" x="86" y="244" text-anchor="start">eval-stdin.php</text>
+<text class="l mono" x="54" y="268" text-anchor="start">.env</text>
+<text class="l mono" x="54" y="292" text-anchor="start">storage/</text><rect class="soft" x="268" y="82" width="202" height="222" rx="6"/><text class="s b fa" x="458" y="98" text-anchor="end">전부 웹에서 보임</text><text class="l mono" x="276" y="100" text-anchor="start">project/</text>
+<text class="l mono" x="292" y="124" text-anchor="start">public/</text>
+<text class="l mono" x="308" y="148" text-anchor="start">index.php</text>
+<text class="l mono" x="308" y="172" text-anchor="start">assets/</text>
+<text class="l mono" x="292" y="196" text-anchor="start">vendor/</text>
+<text class="l mono" x="308" y="220" text-anchor="start">phpunit/</text>
+<text class="l mono b fa" x="324" y="244" text-anchor="start">eval-stdin.php</text>
+<text class="l mono b fa" x="292" y="268" text-anchor="start">.env</text>
+<text class="l mono" x="292" y="292" text-anchor="start">storage/</text><rect class="plain" x="24" y="82" width="214" height="222" rx="6"/><text class="s" x="36" y="330" text-anchor="start">vendor/·.env는 URL로 접근할 수 없음</text><text class="s" x="274" y="330" text-anchor="start">eval-stdin.php를 URL로 호출 가능</text>
+<text class="s" x="274" y="346" text-anchor="start">.env 내용도 노출될 수 있음</text>
+</svg>
