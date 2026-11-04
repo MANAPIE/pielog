@@ -32,6 +32,7 @@
     "three": "^0.184.0"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "pagefind": "^1.5.2",
     "sass": "^1.99.0"
   }

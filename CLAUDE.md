@@ -22,6 +22,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - [src/pages/search.astro](src/pages/search.astro)
 - [src/pages/about.astro](src/pages/about.astro)
 - [src/pages/rss.xml.ts](src/pages/rss.xml.ts)
+- [src/pages/og/[slug].png.ts](src/pages/og/[slug].png.ts)
 
 **Three** routes run as serverless functions: `src/pages/api/*` (two) and [src/pages/404.astro](src/pages/404.astro). 404 is deliberately *not* prerendered — it reads `Astro.url.pathname` at request time to feed the jaccard slug matcher, so it can't be static. Every 404 costs a function invocation.
 
@@ -125,6 +126,23 @@ The [`rehypeExternalLinks`](astro.config.mjs#L33) plugin adds `target="_blank" r
 - **`rel` is `noopener` only, on purpose — don't add `nofollow` or `noreferrer`.** These are editorial citations, so they stay ordinary followed links (best for SEO); `noreferrer` would hide the referral from the linked site and has no SEO upside.
 - **Write external links as Markdown, not `<a href>`.** A raw `<a>` in `.mdx` is a JSX node (`mdxJsxTextElement`), not a hast `element`, so the plugin skips it — no new tab, no icon.
 - **The ↗ icon is CSS only** — `.markdown-body a[target="_blank"]::after` in [global.scss:703](src/styles/global.scss#L703). It is a `mask` filled with `currentColor`, so it follows the link color in both themes. A second `content: "" / "(새 탭에서 열림)"` gives screen readers alt text; browsers that don't know that syntax drop the line and keep the plain `content: ""` above it.
+
+## OG images
+
+`ogImagePath()` in [src/lib/posts.ts](src/lib/posts.ts) picks each post's `og:image`. Pages that pass nothing fall back to [public/og-default.png](public/og-default.png) through the `BaseHead` default.
+
+| Post | `og:image` |
+|---|---|
+| SVG `thumbnail` | `/og/<slug>.png`, generated at build time |
+| Raster `thumbnail` | the image itself (`thumbnail.src`) |
+| No `thumbnail` | `/og-default.png` |
+
+[src/pages/og/[slug].png.ts](src/pages/og/[slug].png.ts) renders the PNGs from `cover.svg` through [src/lib/coverPng.ts](src/lib/coverPng.ts).
+
+- **An SVG cover must be named `cover.svg`.** Another name fails the build.
+- **PNGs always use the cover's light values.** `flattenCoverSvg` removes the dark `@media` block, then rewrites what resvg can't read: `var()` becomes its value and the `font: 900 240px …` shorthand becomes separate properties. A `var()` or `font:` form it can't rewrite fails the build on purpose, because the alternative is a wrong color or tiny text with no error.
+- **Fonts come only from [src/assets/og-fonts/](src/assets/og-fonts/).** System fonts are disabled so macOS and Vercel's Linux build produce the same image. The files are read at build time and never ship to clients. A cover character missing from both fonts renders as nothing or a box.
+- `astro dev` applies `trailingSlash: 'always'` to this dynamic route, so preview one at `/og/<slug>.png/`. The production file is `/og/<slug>.png`.
 
 ## Layout hierarchy
 
