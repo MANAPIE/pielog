@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 418" width="500" height="418" role="img" aria-labelledby="title">
+<title id="title">여러 레이어로 막는 구조</title>
+<defs><style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-accent:#B42318;--c-accent-2:#1D4ED8;--c-line:#C9CDD3;--c-card:#FFFFFF;--c-soft:#FEF3F2;--c-soft-2:#EFF6FF;--c-divider:#E5E7EB}
+@media (prefers-color-scheme: dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-accent:#EF6A5E;--c-accent-2:#5B9CF6;--c-line:#3A4250;--c-card:#161B22;--c-soft:#2A1514;--c-soft-2:#14213D;--c-divider:#273041}}
+text{font-family:Pretendard,'Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR',sans-serif;fill:var(--c-fg)}
+.mono{font-family:'JetBrains Mono',Menlo,Consolas,'Noto Sans Mono CJK KR',monospace}
+.t{font-size:15px;font-weight:700}
+.h{font-size:13px;font-weight:700}
+.l{font-size:12.5px}
+.s{font-size:11.5px;fill:var(--c-muted)}
+.b{font-weight:700}
+.fa{fill:var(--c-accent)}
+.fa2{fill:var(--c-accent-2)}
+.fm{fill:var(--c-muted)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.plain{fill:none;stroke:var(--c-line);stroke-width:1}
+.ln{stroke:var(--c-fg);stroke-width:1.4;fill:none}
+.lnm{stroke:var(--c-muted);stroke-width:1.2;fill:none}
+.lna{stroke:var(--c-accent);stroke-width:1.6;fill:none}
+.lna2{stroke:var(--c-accent-2);stroke-width:1.6;fill:none}
+.dash{stroke-dasharray:4 3}
+.grid{stroke:var(--c-divider);stroke-width:1}
+.bar{fill:var(--c-accent)}
+.mk{fill:var(--c-fg)}
+.mkm{fill:var(--c-muted)}
+.mka{fill:var(--c-accent)}
+.mka2{fill:var(--c-accent-2)}
+</style><marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mk"/></marker><marker id="mkm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mkm"/></marker><marker id="mka" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka"/></marker><marker id="mka2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka2"/></marker></defs>
+<rect class="bg" x="0" y="0" width="500" height="418"/>
+<text class="t" x="24" y="38">여러 레이어로 막는 구조</text>
+<rect class="soft2" x="196" y="64" width="28" height="220" rx="6"/><rect class="bg" x="194" y="142" width="32" height="20" rx="4"/><rect class="bg" x="194" y="190" width="32" height="20" rx="4"/><rect class="bg" x="194" y="238" width="32" height="20" rx="4"/><text class="l b" x="210" y="302" text-anchor="middle">①</text><rect class="soft2" x="252" y="64" width="28" height="220" rx="6"/><rect class="bg" x="250" y="190" width="32" height="20" rx="4"/><rect class="bg" x="250" y="238" width="32" height="20" rx="4"/><text class="l b" x="266" y="302" text-anchor="middle">②</text><rect class="soft2" x="308" y="64" width="28" height="220" rx="6"/><rect class="bg" x="306" y="190" width="32" height="20" rx="4"/><rect class="bg" x="306" y="238" width="32" height="20" rx="4"/><text class="l b" x="322" y="302" text-anchor="middle">③</text><rect class="soft2" x="364" y="64" width="28" height="220" rx="6"/><text class="l b" x="378" y="302" text-anchor="middle">④</text><rect class="soft2" x="420" y="64" width="28" height="220" rx="6"/><text class="l b" x="434" y="302" text-anchor="middle">⑤</text><text class="l" x="24" y="108" text-anchor="start">Axios 악성 버전</text><line class="lna" x1="160" y1="104" x2="193" y2="104" marker-end="url(#mka)"/><line class="lna" x1="194" y1="94" x2="194" y2="114"/><text class="l" x="24" y="156" text-anchor="start">node-ipc 악성 버전</text><line class="lna" x1="160" y1="152" x2="249" y2="152" marker-end="url(#mka)"/><line class="lna" x1="250" y1="142" x2="250" y2="162"/><text class="l" x="24" y="204" text-anchor="start">PackageGate 우회</text><line class="lna" x1="160" y1="200" x2="361" y2="200" marker-end="url(#mka)"/><line class="lna" x1="362" y1="190" x2="362" y2="210"/><text class="l" x="24" y="252" text-anchor="start">에이전트 외부 업로드</text><line class="lna" x1="160" y1="248" x2="361" y2="248" marker-end="url(#mka)"/><line class="lna" x1="362" y1="238" x2="362" y2="258"/><text class="s" x="24" y="336" text-anchor="start">① 설치 스크립트 차단</text>
+<text class="s" x="24" y="353" text-anchor="start">② 버전 고정·쿨다운</text>
+<text class="s" x="24" y="370" text-anchor="start">③ 비밀값 최소화</text><text class="s" x="250" y="336" text-anchor="start">④ 아웃바운드 차단</text>
+<text class="s" x="250" y="353" text-anchor="start">⑤ 행동 감시</text><text class="s" x="24" y="392" text-anchor="start">화살표가 멈춘 판이 그 시도를 막을 수 있는 첫 레이어</text><text class="s" x="24" y="408" text-anchor="start">한 레이어의 구멍은 다음 레이어가 덮습니다</text>
+</svg>

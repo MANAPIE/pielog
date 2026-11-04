@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 436" width="500" height="436" role="img" aria-labelledby="title">
+<title id="title">설치할 때 실행되는 코드와 불러올 때 실행되는 코드</title>
+<defs><style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-accent:#B42318;--c-accent-2:#1D4ED8;--c-line:#C9CDD3;--c-card:#FFFFFF;--c-soft:#FEF3F2;--c-soft-2:#EFF6FF;--c-divider:#E5E7EB}
+@media (prefers-color-scheme: dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-accent:#EF6A5E;--c-accent-2:#5B9CF6;--c-line:#3A4250;--c-card:#161B22;--c-soft:#2A1514;--c-soft-2:#14213D;--c-divider:#273041}}
+text{font-family:Pretendard,'Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR',sans-serif;fill:var(--c-fg)}
+.mono{font-family:'JetBrains Mono',Menlo,Consolas,'Noto Sans Mono CJK KR',monospace}
+.t{font-size:15px;font-weight:700}
+.h{font-size:13px;font-weight:700}
+.l{font-size:12.5px}
+.s{font-size:11.5px;fill:var(--c-muted)}
+.b{font-weight:700}
+.fa{fill:var(--c-accent)}
+.fa2{fill:var(--c-accent-2)}
+.fm{fill:var(--c-muted)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.plain{fill:none;stroke:var(--c-line);stroke-width:1}
+.ln{stroke:var(--c-fg);stroke-width:1.4;fill:none}
+.lnm{stroke:var(--c-muted);stroke-width:1.2;fill:none}
+.lna{stroke:var(--c-accent);stroke-width:1.6;fill:none}
+.lna2{stroke:var(--c-accent-2);stroke-width:1.6;fill:none}
+.dash{stroke-dasharray:4 3}
+.grid{stroke:var(--c-divider);stroke-width:1}
+.bar{fill:var(--c-accent)}
+.mk{fill:var(--c-fg)}
+.mkm{fill:var(--c-muted)}
+.mka{fill:var(--c-accent)}
+.mka2{fill:var(--c-accent-2)}
+</style><marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mk"/></marker><marker id="mkm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mkm"/></marker><marker id="mka" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka"/></marker><marker id="mka2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka2"/></marker></defs>
+<rect class="bg" x="0" y="0" width="500" height="436"/>
+<text class="t" x="24" y="38">설치할 때 실행되는 코드와 불러올 때 실행되는 코드</text>
+<text class="h" x="247" y="72" text-anchor="middle">Axios 악성 버전</text><text class="s" x="247" y="88" text-anchor="middle">2026년 3월</text><text class="h" x="405" y="72" text-anchor="middle">node-ipc 악성 버전</text><text class="s" x="405" y="88" text-anchor="middle">2026년 5월</text><rect class="soft2" x="18" y="172" width="464" height="76" rx="10"/><g class="box"><rect class="card" x="24" y="104" width="140" height="64" rx="8"/>
+<text class="l b" x="94" y="132" text-anchor="middle">패키지 내려받기</text>
+<text class="s mono" x="94" y="149" text-anchor="middle">npm install</text></g><g class="box"><rect class="card" x="24" y="178" width="140" height="64" rx="8"/>
+<text class="l b" x="94" y="206" text-anchor="middle">설치 스크립트 실행</text>
+<text class="s mono" x="94" y="223" text-anchor="middle">postinstall 등</text></g><g class="box"><rect class="card" x="24" y="252" width="140" height="64" rx="8"/>
+<text class="l b" x="94" y="280" text-anchor="middle">앱이 패키지를 불러옴</text>
+<text class="s mono" x="94" y="297" text-anchor="middle">require('…')</text></g><g class="box"><rect class="card" x="24" y="326" width="140" height="64" rx="8"/>
+<text class="l b" x="94" y="354" text-anchor="middle">앱 실행</text>
+<text class="s mono" x="94" y="371" text-anchor="middle">서비스·테스트·빌드</text></g><g class="box"><rect class="card" x="176" y="104" width="142" height="64" rx="8"/>
+<text class="s" x="247" y="140.1" text-anchor="middle">평소처럼 설치</text></g><g class="box"><rect class="soft" x="176" y="178" width="142" height="64" rx="8"/>
+<text class="l b fa" x="247" y="206" text-anchor="middle">setup.js 실행</text>
+<text class="s" x="247" y="223" text-anchor="middle">원격 조종 프로그램 설치</text></g><g class="box"><rect class="card" x="176" y="252" width="142" height="64" rx="8"/>
+<text class="s" x="247" y="288.1" text-anchor="middle">이미 감염된 뒤</text></g><g class="box"><rect class="card" x="176" y="326" width="142" height="64" rx="8"/>
+<text class="s" x="247" y="362.1" text-anchor="middle">-</text></g><g class="box"><rect class="card" x="334" y="104" width="142" height="64" rx="8"/>
+<text class="s" x="405" y="140.1" text-anchor="middle">평소처럼 설치</text></g><g class="box"><rect class="card" x="334" y="178" width="142" height="64" rx="8"/>
+<text class="s" x="405" y="205.6" text-anchor="middle">설치 스크립트 없음</text>
+<text class="s" x="405" y="222.6" text-anchor="middle">아무 일도 없음</text></g><g class="box"><rect class="soft" x="334" y="252" width="142" height="64" rx="8"/>
+<text class="l b fa" x="405" y="280" text-anchor="middle">node-ipc.cjs 로드 순간</text>
+<text class="s" x="405" y="297" text-anchor="middle">자격증명 수집 실행</text></g><g class="box"><rect class="card" x="334" y="326" width="142" height="64" rx="8"/>
+<text class="s" x="405" y="362.1" text-anchor="middle">불러올 때마다 반복</text></g><line class="lnm" x1="247" y1="168" x2="247" y2="176" marker-end="url(#mkm)"/><line class="lnm" x1="405" y1="168" x2="405" y2="176" marker-end="url(#mkm)"/><line class="lnm" x1="247" y1="242" x2="247" y2="250" marker-end="url(#mkm)"/><line class="lnm" x1="405" y1="242" x2="405" y2="250" marker-end="url(#mkm)"/><line class="lnm" x1="247" y1="316" x2="247" y2="324" marker-end="url(#mkm)"/><line class="lnm" x1="405" y1="316" x2="405" y2="324" marker-end="url(#mkm)"/><text class="s" x="250" y="418" text-anchor="middle">띠로 감싼 단계: --ignore-scripts가 막는 구간. Axios는 여기서 막히고 node-ipc는 지나감</text>
+</svg>

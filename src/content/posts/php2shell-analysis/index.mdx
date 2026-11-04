@@ -13,6 +13,9 @@ draft: false
 WordPress나 Laravel 같은 애플리케이션이 아니라 PHP 런타임의 결함이어서, 플러그인과 프레임워크를 최신으로 올려도 해결되지 않습니다.
 이 글은 어떤 구조의 문제였고 어떤 실행 방식이 더 위험한지, 그리고 지금 무엇을 해야 하는지를 정리합니다.
  
+**2026년 11월 4일 갱신**: 글을 올린 뒤 PHP2Shell을 이용한 실제 침해가 보고되었고, 패치한 서버에도 해당할 수 있는 권고(CVE-2026-115560)가 나왔습니다.
+[악용 현황](#지금-실제로-악용되고-있습니까)과 [패치 뒤 점검 항목](#패치한-뒤에도-점검해야-할-것들이-있습니다)을 함께 확인해야 합니다.
+ 
 ![PHP2Shell 유출부터 수정 릴리스까지의 타임라인입니다. 세로로 일곱 단계가 위에서 아래로 이어지고, 각 단계에는 UTC 시각과 괄호 안의 KST 시각이 적혀 있습니다. 일곱 단계는 세 구간으로 묶입니다. 첫 구간 '유출과 사전 공지'에는 1단계부터 3단계가, 둘째 구간 '방어 측 준비와 조기 공개'에는 4단계와 5단계가, 셋째 구간 '릴리스와 악용 시도'에는 6단계와 7단계가 들어갑니다. 1단계는 10월 20일 15:00 UTC(10월 21일 00:00 KST)로, CVE 번호가 포럼과 SNS에 유출되었고 잘못된 릴리스 시각과 CVSS 10.0이 함께 돌았습니다. 2단계는 10월 20일 19:30 UTC(10월 21일 04:30 KST)로, PHP가 사전 공지를 게시하고 릴리스를 10월 22일에서 10월 21일 14:00 UTC로 앞당겼습니다. 3단계는 10월 20일 20:00 UTC 무렵(10월 21일 05:00 KST 무렵)으로, PHP 재단에 따르면 Calif가 PoC 시연 영상을 실수로 게시했고 삭제 뒤에도 복사본이 유통되었습니다. 4단계는 10월 21일 03:02 UTC(12:02 KST)로, Cloudflare가 WAF 기본 보호를 적용했습니다. 5단계는 10월 21일 07:41 UTC(16:41 KST)로, PHP 재단에 따르면 Chainguard가 수정이 포함된 이미지를 먼저 공개했습니다. 6단계는 10월 21일 13:30 UTC 무렵(22:30 KST 무렵)으로, 예정보다 먼저 PHP 8.5.12, 8.4.27, 8.3.36, 8.2.35가 릴리스되었습니다. 7단계는 릴리스 이후로, 여러 보안 업체가 익스플로잇 시도를 보고했고 성공 사례는 확인되지 않았습니다. 단계 사이는 위에서 아래로 향하는 화살표로 연결됩니다.](./p2s-01-timeline.svg)
  
 ---
@@ -178,6 +181,21 @@ PHP 재단은 2024년에 이미 OOM 문제의 첫 징후를 발견했지만 수�
  
 ## 지금 실제로 악용되고 있습니까
  
+### 2026년 11월 4일 기준 현황
+ 
+글을 올린 뒤 악용 시도가 실제 침해까지 이어졌습니다.
+다만 [SecurityWeek](https://www.securityweek.com/php2shell-attacks-root-palo-alto-firewalls-but-fail-against-wordpress/)는 10월 30일 기준으로 확인된 침해가 아직 많지 않다고 정리했고, 성공 사례도 특정 환경에 몰려 있습니다.
+ 
+- **실제 침해**: [Dream Research](https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers)는 공격자가 PHP2Shell과 리눅스 커널 권한 상승 결함 Fragnesia(CVE-2026-46300)를 이어 미국, 일본, 대만, 한국에서 PAN-OS(Palo Alto Networks 방화벽 운영체제) 방화벽과 관리 서버 25대의 루트 권한을 얻었다고 보고했습니다. 공격자는 미국 정부 관련 환경의 서버 3대를 노렸고, 이후 내부 계정 관리 시스템인 Active Directory를 공격했습니다. [Unit 42](https://unit42.paloaltonetworks.com/cve-2026-109618-cve-2026-109619/)도 공격자의 도구와 결과를 독립적으로 확인했다고 밝혔습니다. 공격 대상은 인터넷에 열린 관리 인터페이스였고, Palo Alto Networks는 전체 설치 기반의 약 0.02%가 여기에 해당한다고 설명했습니다.
+- **허니팟의 RCE 증거**: Perplexity의 Adel Karimi는 10월 24일, 공격을 관찰하려고 일부러 열어 둔 미끼 서버인 **허니팟(honeypot)** 에서 Apache가 셸 명령 35개를 실행한 기록을 [공개했습니다](https://thenextweb.com/news/php2shell-flaws-exploited-cisa-kev). 대상은 PHP 8.4.26 mod_php였습니다. 공격에 유리하게 구성한 단일 워커 환경이어서 공격 신뢰도를 잰 결과는 아니라고 [본인이 밝혔습니다](https://www.bleepingcomputer.com/news/security/php2shell-security-flaws-now-sucessfully-exploited-in-the-wild/amp/).
+- **공개 전 시도**: [AWS](https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/)는 공개 4일 전인 10월 17일의 악용 시도를 허니팟 MadPot에서 확인했습니다. 공격자가 정보를 어떻게 얻었는지, 그 시도가 실제 시스템에서 성공했을지는 불분명하다고 덧붙였습니다.
+- **시도 규모**: Cloudflare CEO [Matthew Prince](https://x.com/eastdakota/status/2113079352682570051)는 공개 전 10시간 동안 수천 건, 공개 45분 뒤 수만 건, 2시간 안에 수십만 건이던 시도가 10월 22일에는 수백만 건에 이르렀다고 밝혔습니다.
+- **KEV 등재**: CISA는 10월 26일 두 CVE를 [KEV 목록](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)에 올렸고, 미국 연방 기관의 조치 기한을 10월 29일로 정했습니다. Fragnesia도 10월 28일에 같은 목록에 올랐습니다. [KEV의 악용 기준](https://www.cisa.gov/known-exploited-vulnerabilities)에는 실패한 시도도 포함되고, 등재 항목은 피해자를 밝히지 않습니다.
+- **WordPress**: Defiant는 10월 28일 기준 PHP2Shell 관련 요청을 77,000건 넘게 기록했지만, 이 결함으로 침해된 WordPress 사이트는 알지 못한다고 밝혔습니다(SecurityWeek 인용). 익스플로잇을 PHP 빌드, 확장 모듈, 메모리 한도 등에 맞춰 조정해야 하는 경우가 많다고 설명했고, 공격 도구가 계속 바뀌고 있으므로 PHP를 업데이트해야 한다고 경고했습니다.
+- **철회된 사례**: Unit 42는 유럽 정부기관 공격을 PHP2Shell 악용으로 보고했다가, 초기 침투가 이 결함 때문인지 확인할 수 없다며 10월 25일에 철회했습니다.
+ 
+### 2026년 10월 22일 기준 현황
+ 
 2026년 10월 22일 오전 6시(KST) 무렵까지 공개된 내용입니다.
 업체마다 관측 범위가 달라서 보고가 엇갈립니다.
  
@@ -189,10 +207,10 @@ PHP 재단은 2024년에 이미 OOM 문제의 첫 징후를 발견했지만 수�
 | Patchstack, Vega | [SecurityWeek](https://www.securityweek.com/php2shell-patches-land-as-first-exploitation-attempts-hit-sensors/)에 따르면 악용 시도를 관측했고, Vega는 공개 PoC를 사용한 시도를 확인했습니다 |
 | [Cisco Talos](https://blog.talosintelligence.com/two-critical-rces-in-php-core/) | 10월 21일 14:00 UTC 기준 실제 악용을 관측하지 못했고, Snort 룰 67359와 67360을 배포했습니다 |
 | [Huntress](https://www.huntress.com/blog/php2shell-leaked-critical-php-vulnerabilities) | 10월 21일 오전 10시(ET, 14:00 UTC) 기준 파트너 환경에서 악용을 관측하지 못했습니다 |
-| [CISA](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) | 경보 발행 시점에 악용을 관측하지 못했다고 밝히며 즉시 패치를 권고했고, 바로 패치할 수 없으면 PHP 기반 시스템을 오프라인으로 내리라고 했습니다. KEV 목록에는 오르지 않았습니다(watchTowr, 10월 21일 기준) |
+| [CISA](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) | 경보 발행 시점에 악용을 관측하지 못했다고 밝히며 즉시 패치를 권고했고, 바로 패치할 수 없으면 PHP 기반 시스템을 오프라인으로 내리라고 했습니다. 이 시점에는 KEV 목록에 오르지 않았고(watchTowr, 10월 21일 기준) 10월 26일에 등재되었습니다 |
 | [NCSC-NL](https://github.com/NCSC-NL/php2shell) | 10월 21일 기준 활발한 악용의 징후는 없지만 단기간에 대규모 악용이 일어날 가능성이 크다고 평가했습니다 |
  
-대부분은 악용 시도를 관측했다는 보고이고, 성공한 침해 사례를 근거와 함께 공개한 곳은 확인하지 못했습니다.
+이 시점에는 대부분 악용 시도를 관측했다는 보고였고, 성공한 침해 사례를 근거와 함께 공개한 곳은 확인하지 못했습니다.
 그렇다고 위험이 낮은 것은 아닙니다.
 공개 PoC가 유통되고 있고, Tenable은 검증되지 않은 익스플로잇 코드에 악성코드가 섞여 있을 수 있다고 경고했습니다.
 출처가 불분명한 PoC는 직접 실행하지 않아야 합니다.
@@ -200,8 +218,10 @@ PHP 재단은 2024년에 이미 OOM 문제의 첫 징후를 발견했지만 수�
 정부 기관의 권고도 같은 방향입니다.
 CERT-EU는 10월 21일 [권고 2026-018](https://cert.europa.eu/publications/security-advisories/2026-018)에서 즉시 패치를 권고하고, 패치가 어려우면 인터넷 노출 자원을 공용망에서 격리하라고 했습니다. 릴리스 시각은 이 권고가 13:30 UTC로 기록했습니다.
 [영국 NCSC](https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php)는 완화책 적용이 오래 걸리면 시스템을 오프라인으로 내리는 선택지를 언급했고, 즉시 업데이트할 수 없다면 침해 흔적부터 살피라고 권고했습니다.
+미국 FBI도 즉시 업데이트할 수 없다면 문제를 해결할 때까지 시스템을 오프라인으로 내리라고 [권고했습니다](https://www.newsweek.com/fbi-issues-advice-as-security-issue-hits-global-websites-12603155).
 국내에서는 AhnLab ASEC가 10월 21일 [긴급공지](https://asec.ahnlab.com/ko/95927/)를 냈습니다.
 KISA 보호나라도 같은 날 보안공지 ["PHP 제품 보안 업데이트 권고"](https://www.boho.or.kr/kr/bbs/view.do?bbsId=B0000133&menuNo=205020&nttId=72227)를 올려 8.2.35, 8.3.36, 8.4.27, 8.5.12 이상으로 업데이트하고 8.1 이하는 지원 버전으로 올리라고 권고했습니다.
+KISA는 다음 날인 10월 22일 [기업 대응 수칙](https://www.boho.or.kr/kr/bbs/view.do?bbsId=B0000133&menuNo=205020&nttId=72230)을 올렸고, 과학기술정보통신부는 같은 날 민간 분야 사이버위기 경보를 관심에서 주의로 [높였습니다](https://www.korea.kr/news/policyNewsView.do?newsId=148974113).
  
 ---
  
@@ -326,9 +346,10 @@ watchTowr는 .ini 변경을 포함한 완화책을 익스플로잇을 막는 수
 cgroup 같은 컨테이너 메모리 제한은 가용성 경계로 사용할 수 있지만, 워커 하나만 종료하는 정책이 아니면 마스터와 워커가 함께 죽을 수 있습니다.
  
 ```ini
-; 패치 전 임시 조치이며 패치를 대체하지 못합니다
+; 패치를 대체하지 못합니다
+; 런타임에 세션 핸들러를 바꾸는 앱은 패치 뒤에도 다음 정기 릴리스까지 유지합니다
 session.upload_progress.enabled = 0
-; PHP 8.5에서만 적용합니다
+; 패치 전 임시 조치이며 PHP 8.5에서만 적용합니다
 fatal_error_backtraces = 0
 ```
  
@@ -348,6 +369,13 @@ fatal_error_backtraces = 0
 PHP는 사용하지 않는 업로드 진행률 기능을 패치 뒤에도 꺼 두는 것이 신중한 선택이라고 안내했습니다.
 `post_max_size`를 낮게 유지하고 디코딩된 요청 크기를 프런트엔드에서 제한하는 것도 패치 뒤의 서비스 거부 위험을 줄입니다.
 PHP를 내장한 어플라이언스와 패키지 제품은 NCSC-NL이 운영하는 [제품 목록](https://github.com/NCSC-NL/php2shell)에서 확인할 수 있습니다.
+Palo Alto Networks [권고](https://security.paloaltonetworks.com/CVE-2026-109618)처럼 제조사 공지를 따로 확인해야 하고, 인터넷에 열린 관리 인터페이스는 신뢰하는 내부 IP로 제한해야 합니다.
+ 
+10월 23일에는 업로드 진행률 기능에 대해 더 구체적인 권고가 나왔습니다.
+PHP는 [정보성 권고](https://www.php.net/archive/2026.php#2026-10-23-1)에서 가능성이 낮은 RCE 경로(CVE-2026-115560)까지 완전히 막으려면 다음 정기 버그 수정 릴리스까지 `session.upload_progress.enabled=0`을 설정하라고 권고했습니다.
+이 결함은 `session.serialize_handler`를 설정에서 `php_binary`나 `php_serialize`로 둔 애플리케이션이 `session_start()` 전에 `ini_set()`으로 `php`로 바꾸고, 업로드 진행률도 켜 둔 경우에만 발생합니다.
+런타임에 핸들러를 바꾸지 않는 애플리케이션은 이 기능을 그대로 둘 수 있습니다.
+PHP는 정식 권고를 다음 릴리스와 함께 내겠다고 밝혔고, 2026년 11월 4일 기준 8.5의 최신 버전은 여전히 8.5.12입니다.
  
 ---
  
@@ -364,14 +392,17 @@ PHP를 내장한 어플라이언스와 패키지 제품은 NCSC-NL이 운영하�
  
 ## 마무리
  
-해야 할 일은 네 가지입니다.
+해야 할 일은 여섯 가지입니다.
  
 1. 웹 요청을 처리하는 PHP의 실제 버전과 실행 방식을 확인하고, 8.5.12, 8.4.27, 8.3.36, 8.2.35 이상으로 올립니다. 배포판 패키지는 배포판 공지로 수정 여부를 확인합니다.
 2. 업데이트 뒤에 실행 방식에 맞게 워커를 재시작하고, 이전 바이너리가 남은 프로세스가 없는지 확인합니다. 새 하드 메모리 한도 때문에 워커가 종료 코드 137로 죽는지도 며칠 지켜봅니다.
 3. 8.1 이하는 공급자의 백포트를 확인하거나 이전 일정을 잡고, 그 전까지는 인터넷 노출을 줄입니다.
-4. 노출 기간의 로그와 프로세스 이력을 점검하고, 시크릿을 교체할지 정합니다.
+4. 노출 기간의 로그와 프로세스 이력을 점검하고, 시크릿을 교체할지 정합니다. 공개 전 악용 시도가 있었으므로 로그는 적어도 10월 17일부터 확인합니다.
+5. 런타임에 `session.serialize_handler`를 바꾸는 애플리케이션은 다음 정기 릴리스까지 `session.upload_progress.enabled=0`을 유지합니다.
+6. 방화벽처럼 PHP를 내장한 장비는 제조사 패치를 적용하고, 관리 인터페이스를 인터넷에 열어 두지 않습니다.
 
-이 글은 2026년 10월 22일 오전을 기준으로 작성했으며, 악용 현황과 배포판 패키지 상태는 계속 바뀌고 있습니다.
+이 글은 2026년 10월 22일 오전을 기준으로 작성했고, 악용 현황과 패치 뒤 권고는 2026년 11월 4일에 갱신했습니다.
+배포판 패키지 표는 10월 21\~22일 상태 그대로이므로 배포판 공지를 직접 확인해야 합니다.
  
 ---
  
@@ -435,5 +466,19 @@ PHP를 내장한 어플라이언스와 패키지 제품은 NCSC-NL이 운영하�
 - Socket. (2026). *PHP Foundation Says Chainguard Broke Security Embargo Ahead of Emergency Patches*. Socket Blog. https://socket.dev/blog/php-embargo-dispute
 - Mallory. (2026). *PHP RCE in 8.5 and Earlier: CVE-2026-109618 and CVE-2026-109619*. Mallory Blog. https://mallory.ai/blog/php-rce-rapid-response
 - VirusTotal. (2026). *Sizing the PHP exposure window for CVE-2026-109618 and CVE-2026-109619 with VirusTotal*. VirusTotal Blog. https://blog.virustotal.com/2026/10/sizing-php-exposure-window-for-cve-2026.html
+- PHP. (2026). *Informational advisory: Session upload progress*. php.net. https://www.php.net/archive/2026.php#2026-10-23-1
+- Dream Research. (2026). *Chained PHP2Shell Exploit Roots 25 Servers, Including US Government Servers*. Dream. https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers
+- Unit 42. (2026). *Threat Brief: Critical Vulnerabilities in PHP: CVE-2026-109618, CVE-2026-109619*. Palo Alto Networks. https://unit42.paloaltonetworks.com/cve-2026-109618-cve-2026-109619/
+- Palo Alto Networks. (2026). *CVE-2026-109618 Impact of Critical Vulnerabilities in PHP (CVE-2026-109618, CVE-2026-109619) on Palo Alto Networks Products*. Palo Alto Networks Security Advisories. https://security.paloaltonetworks.com/CVE-2026-109618
+- Amazon Web Services. (2026). *Amazon Threat Intelligence Identifies PHP2Shell Exploitation Prior to Public Disclosure in MadPot*. AWS Security Blog. https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/
+- Prince, M. (2026). *Some stats on #php2shell*. X. https://x.com/eastdakota/status/2113079352682570051
+- Gatlan, S. (2026). *PHP2Shell security flaws now sucessfully exploited in the wild*. BleepingComputer. https://www.bleepingcomputer.com/news/security/php2shell-security-flaws-now-sucessfully-exploited-in-the-wild/amp/
+- The Next Web. (2026). *CISA confirms attackers are exploiting both PHP2Shell flaws*. The Next Web. https://thenextweb.com/news/php2shell-flaws-exploited-cisa-kev
+- SecurityWeek. (2026). *PHP2Shell Attacks Root Palo Alto Firewalls but Fail Against WordPress*. SecurityWeek. https://www.securityweek.com/php2shell-attacks-root-palo-alto-firewalls-but-fail-against-wordpress/
+- CISA. (2026). *Known Exploited Vulnerabilities Catalog*. CISA. https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+- CISA. *Reducing the Significant Risk of Known Exploited Vulnerabilities*. CISA. https://www.cisa.gov/known-exploited-vulnerabilities
+- Newsweek. (2026). *FBI Issues Advice As Security Issue Hits Global Websites*. Newsweek. https://www.newsweek.com/fbi-issues-advice-as-security-issue-hits-global-websites-12603155
+- KISA 보호나라. (2026). *PHP 보안취약점(PHP2Shell) 관련 기업 보안 대응 수칙*. 한국인터넷진흥원 KrCERT/CC. https://www.boho.or.kr/kr/bbs/view.do?bbsId=B0000133&menuNo=205020&nttId=72230
+- 과학기술정보통신부. (2026). *과기부, 'PHP' 심각한 보안 취약점…'보안 업데이트' 즉시 적용*. 대한민국 정책브리핑. https://www.korea.kr/news/policyNewsView.do?newsId=148974113
 
 [^1]: 공지와 릴리스는 10월 21일 13:30 UTC 무렵에 나왔지만, php.net 변경 로그와 소스의 NEWS 파일에는 릴리스 날짜가 22 Oct 2026으로 적혀 있습니다. 이 글은 공지 시각을 기준으로 10월 21일로 적습니다.

