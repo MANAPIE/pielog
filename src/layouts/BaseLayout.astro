@@ -24,5 +24,78 @@ const { title, description, ogImage, pageType = 'home', sidebarOpacity = 1 } = A
             <slot />
             <slot name="aside" slot="aside" />
         </ThreeColumnLayout>
+        <script>
+            // Bitmap covers have no theme variants and differ a lot in brightness, contrast and
+            // color, so each one is measured and pulled toward shared targets for each mode.
+            // Covers then read as one set. global.scss reads the values set here.
+            const LUMINANCE_RANGE = [0.28, 0.8];
+            const LIGHT = { band: [0.56, 0.74], opacity: [0.8, 0.93], background: 1, spread: 0.15, peakWeight: 0, chroma: 0.36, maxGain: 1.55, maxContrast: 1.35, minSaturation: 0.85, maxSaturation: 1.7 };
+            const DARK = { band: [0.3, 0.46], opacity: [1, 1], background: 0, spread: 0.12, peakWeight: 0.45, chroma: 0.42, maxGain: 1.3, maxContrast: 1.35, minSaturation: 1, maxSaturation: 1.35 };
+            const SIZE = 128;
+
+            type Mode = typeof LIGHT;
+            type Measure = { luminance: number; spread: number; peak: number; chroma: number };
+
+            const canvas = Object.assign(document.createElement("canvas"), { width: SIZE, height: SIZE });
+            const context = canvas.getContext("2d", { willReadFrequently: true })!;
+
+            const isCover = (img: HTMLImageElement) =>
+                /(\/|%2F)cover(-2x)?\./.test(img.src) && !img.src.includes(".svg");
+            const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+
+            function measure(img: HTMLImageElement): Measure {
+                context.drawImage(img, 0, 0, SIZE, SIZE);
+                const { data } = context.getImageData(0, 0, SIZE, SIZE);
+                const count = SIZE * SIZE;
+                const lumas = new Float32Array(count);
+                let sum = 0, squares = 0, chroma = 0;
+                for (let i = 0; i < data.length; i += 4) {
+                    const [r, g, b] = [data[i] / 255, data[i + 1] / 255, data[i + 2] / 255];
+                    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                    lumas[i / 4] = luma;
+                    sum += luma;
+                    squares += luma * luma;
+                    chroma += Math.max(r, g, b) - Math.min(r, g, b);
+                }
+                const luminance = sum / count;
+                return {
+                    luminance,
+                    spread: Math.sqrt(Math.max(0, squares / count - luminance * luminance)),
+                    peak: lumas.sort()[Math.floor(count * 0.98)],
+                    chroma: chroma / count,
+                };
+            }
+
+            // CSS contrast() pivots on 0.5, so brightness and contrast are solved together to hit
+            // the target mean and spread at once.
+            function solve(mode: Mode, { luminance, spread: measuredSpread, peak, chroma }: Measure) {
+                // A small, very bright subject barely moves the standard deviation but still glares.
+                const spread = Math.max(measuredSpread, (peak - luminance) * mode.peakWeight);
+                const [low, high] = LUMINANCE_RANGE;
+                const position = clamp((luminance - low) / (high - low), 0, 1);
+                const along = ([from, to]: number[]) => from + (to - from) * position;
+                const opacity = along(mode.opacity);
+                const mean = (along(mode.band) - mode.background * (1 - opacity)) / opacity;
+                const contrast = clamp(2 * (((mode.spread / opacity) * luminance) / Math.max(spread, 0.02) - mean + 0.5), 0.85, mode.maxContrast);
+                const gain = clamp(((mean - 0.5) / contrast + 0.5) / luminance, 0.45, mode.maxGain);
+                const saturation = clamp(mode.chroma / (Math.max(chroma, 0.02) * gain * contrast * opacity), mode.minSaturation, mode.maxSaturation);
+                return { filter: `brightness(${gain.toFixed(3)}) contrast(${contrast.toFixed(3)}) saturate(${saturation.toFixed(3)})`, opacity };
+            }
+
+            function tune(img: HTMLImageElement) {
+                if (!img.naturalWidth || !isCover(img)) return;
+                const measured = measure(img);
+                const light = solve(LIGHT, measured);
+                img.style.setProperty("--cover-filter-light", light.filter);
+                img.style.setProperty("--cover-opacity-light", light.opacity.toFixed(3));
+                img.style.setProperty("--cover-filter-dark", solve(DARK, measured).filter);
+            }
+
+            document.querySelectorAll("img").forEach(tune);
+            // load does not bubble, so capture it to catch lazy images and swapped sources.
+            document.addEventListener("load", (event) => {
+                if (event.target instanceof HTMLImageElement) tune(event.target);
+            }, true);
+        </script>
     </body>
 </html>

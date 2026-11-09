@@ -720,6 +720,19 @@ h3.section-kicker {
     background-image: url("/images/manapie-emblem-small-dark.svg") !important;
 }
 
+/* Bitmap covers have no theme variants. BaseLayout's script measures each cover and sets these
+   filters. SVG covers carry their own dark colors.
+   `%2F` matches the encoded path in astro dev's /_image URLs. */
+img:is([src*="/cover."], [src*="%2Fcover."], [src*="/cover-2x."], [src*="%2Fcover-2x."]):not([src*=".svg"]) {
+    filter: var(--cover-filter-light, none);
+    opacity: var(--cover-opacity-light, 1);
+
+    [data-theme="dark"] & {
+        filter: var(--cover-filter-dark, brightness(0.8));
+        opacity: 1;
+    }
+}
+
 /* ========================
    Reduced Motion
    ======================== */
