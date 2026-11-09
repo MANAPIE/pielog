@@ -4,11 +4,12 @@ description: "사내 포털의 법인카드 등록 화면에 영수증 사진을
 summary: "PaddleOCR과 Tesseract를 영수증 26장으로 실측해 고르고, onnxruntime-web과 웹 워커로 브라우저 안에서 돌린 과정을 적었습니다. 회전 박스 후처리 한 줄이 날짜 인식률을 69%에서 100%로 올린 이야기와, 카나리 오판·캐시·손상된 모델 파일처럼 실제로 막혔던 열한 곳을 원인과 함께 정리했습니다."
 date: 2026-09-30
 tags: [experience, develop, frontend, ai, ocr, paddleocr, tesseract, onnxruntime, webassembly, webgpu, web-worker, cache-storage]
-thumbnail: ./cover.jpg
+thumbnail: ./cover.svg
+ogImage: ./cover.jpg
 draft: false
 ---
 
-![](./cover-2x.jpg)
+![](./cover.svg)
 
 사내 포털의 법인카드 사용내역 등록 화면에 영수증 사진을 첨부하면, 브라우저가 사진 속 글자를 읽어 사용처와 금액을 채워 주는 기능을 만들었습니다. OCR을 위한 서버도 외부 API도 두지 않고 브라우저 안에서만 끝내는 것이 조건이었습니다. 엔진을 고른 근거와 실제로 막혔던 곳을 기록한 글입니다.
 

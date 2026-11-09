@@ -4,11 +4,12 @@ description: "배너용 오브젝트를 알파 PNG로 뽑는 AI 이미지 생성
 summary: "로컬 Mac mini M4에서 잡 1건에 96분이 걸리던 AI 이미지 생성기를 GCP Cloud Run GPU로 옮겼습니다. 첫 원격 잡은 59분 26초, $1.69였습니다. 원인은 처리량이 아니라 로컬 SSD를 가정한 기본값이었고, 세 가지 처방으로 8분 25초 · $0.24가 됐습니다. 알파 채널 확보 전략부터 메모리 경계, AWS·GCP 선택, 모델 80GB 이전, 유휴 과금까지 2주간의 결정과 함정을 정리합니다."
 date: 2026-07-30
 tags: ["experience", "develop", "ai", "infra", "devops", "comfyui", "cloudrun", "gcp", "gpu"]
-thumbnail: ./cover.jpg
+thumbnail: ./cover.svg
+ogImage: ./cover.jpg
 draft: false
 ---
 
-![](./cover-2x.jpg)
+![](./cover.svg)
 
 배너에 들어갈 그래픽 오브젝트를 잔뜩 만드는 팀을 보면서, AI의 도움을 받으면 제작 시간을 크게 줄이면 리서치나 아이데이션 같이 더 나은 기획을 할 수 있을 것이라고 생각했습니다. 그래서 AI를 활용해 배너에 들어갈 그래픽 오브젝트를 알파 PNG로 뽑는 도구를 만들었습니다.
 

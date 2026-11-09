@@ -4,11 +4,12 @@ description: "산발적인 503의 진짜 원인은 PM2도 OOM도 MongoDB도 아�
 summary: "Next.js 서비스에서 시간을 두고 접속하면 가끔 503이 떨어지던 문제를 추적했습니다. 처음에는 MongoDB 유휴 커넥션을 의심해 옵션을 다듬었고, 다음으로 OOM을 의심했지만 둘 다 원인이 아니었습니다. 진짜 원인은 PM2 데몬 자체가 systemd에 의해 통째로 강제 종료되고 있다는 사실이었고, 그 뿌리에는 SELinux의 사용자 홈 파일 접근 차단이 있었습니다."
 date: 2026-04-28
 tags: ["experience", "develop", "infra", "devops", "gce", "centos", "selinux", "pm2", "systemd"]
-thumbnail: ./cover.jpg
+thumbnail: ./cover.svg
+ogImage: ./cover.jpg
 draft: false
 ---
 
-![](./cover-2x.jpg)
+![](./cover.svg)
 
 런칭 전 라이브 테스트 중인 서비스에서 산발적으로 503이 뜨는 문제가 있어 추적을 해보았습니다.
 
