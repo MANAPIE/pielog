@@ -44,6 +44,10 @@ export function flattenCoverSvg(svg: string): string {
  * 로컬(macOS)과 Vercel(Linux)의 결과가 같다.
  */
 export function renderCoverPng(svg: string): Uint8Array {
+	// resvg는 WebP를 오류 없이 건너뛰어 물체가 빠진 PNG를 만든다.
+	if (svg.includes("data:image/webp")) {
+		throw new Error("WebP를 넣은 커버는 PNG로 변환할 수 없습니다. frontmatter에 ogImage를 지정하세요.");
+	}
 	const resvg = new Resvg(flattenCoverSvg(svg), {
 		fitTo: { mode: "width", value: OG_WIDTH },
 		font: {
