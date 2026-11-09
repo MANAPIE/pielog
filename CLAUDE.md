@@ -133,6 +133,7 @@ The [`rehypeExternalLinks`](astro.config.mjs#L33) plugin adds `target="_blank" r
 
 | Post | `og:image` |
 |---|---|
+| `ogImage` set | that image (`ogImage.src`); no PNG is generated |
 | SVG `thumbnail` | `/og/<slug>.png`, generated at build time |
 | Raster `thumbnail` | the image itself (`thumbnail.src`) |
 | No `thumbnail` | `/og-default.png` |
@@ -140,6 +141,7 @@ The [`rehypeExternalLinks`](astro.config.mjs#L33) plugin adds `target="_blank" r
 [src/pages/og/[slug].png.ts](src/pages/og/[slug].png.ts) renders the PNGs from `cover.svg` through [src/lib/coverPng.ts](src/lib/coverPng.ts).
 
 - **An SVG cover must be named `cover.svg`.** Another name fails the build.
+- **Standalone covers embed a WebP layer, which resvg skips without an error.** Those posts must set `ogImage: ./cover.jpg`. `renderCoverPng` fails the build if it meets a WebP cover, because the alternative is an OG image with the subject missing.
 - **PNGs always use the cover's light values.** `flattenCoverSvg` removes the dark `@media` block, then rewrites what resvg can't read: `var()` becomes its value and the `font: 900 240px …` shorthand becomes separate properties. A `var()` or `font:` form it can't rewrite fails the build on purpose, because the alternative is a wrong color or tiny text with no error.
 - **Fonts come only from [src/assets/og-fonts/](src/assets/og-fonts/).** System fonts are disabled so macOS and Vercel's Linux build produce the same image. The files are read at build time and never ship to clients. A cover character missing from both fonts renders as nothing or a box.
 - `astro dev` applies `trailingSlash: 'always'` to this dynamic route, so preview one at `/og/<slug>.png/`. The production file is `/og/<slug>.png`.
@@ -266,12 +268,13 @@ description: "One-line meta/OG"
 summary: "Optional summary shown on PostCard"
 date: 2026-04-20
 tags: ["tag1", "tag2"]
-thumbnail: ./cover.jpg
+thumbnail: ./cover.svg
 draft: false
 ---
 ```
 
 - Directory: `src/content/posts/<slug>/index.mdx`
+- Standalone posts also need `ogImage: ./cover.jpg` above `draft`. The `pielog-cover` skill makes both files and writes both lines
 - Pick the directory name carefully — it is the permanent URL, the Redis key, and the search meta
 - Adding a new tag (e.g. `mobile`) does **not** auto-surface it in the sidebar — edit `Sidebar.astro` to add the link. Write the new `href` **with a trailing slash** (see "URLs and trailing slash")
 - Cross-links to other posts in the body must be `[label](/other-slug/)` or `[label](/other-slug/#anchor)` — **with the trailing slash**. A no-slash link 404s in `astro dev` and costs a 308 hop in production

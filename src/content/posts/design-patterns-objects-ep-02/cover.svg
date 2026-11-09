@@ -3,15 +3,15 @@
   <defs>
     <style>
       :root {
-        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-bg: #FFF8FA; --c-fg: #1A1F2E; --c-muted: #6B7280;
         --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
-        --c-num: rgba(26, 31, 46, 0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+        --c-num: rgba(192, 45, 110, 0.14); --c-dot: #1A1F2E; --c-line: #1A1F2E;
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-bg: #0C141C; --c-fg: #E8E6E1; --c-muted: #8B92A0;
           --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
-          --c-num: rgba(232, 230, 225, 0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+          --c-num: rgba(236, 133, 181, 0.22); --c-dot: #E8E6E1; --c-line: #E8E6E1;
         }
       }
       .bg { fill: var(--c-bg); }
@@ -21,11 +21,11 @@
       <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
     </pattern>
     <radialGradient id="grad1" cx="20%" cy="75%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="grad2" cx="85%" cy="20%" r="50%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.22"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -49,70 +49,70 @@
   <!-- 우상단 동심원 -->
   <g transform="translate(1020 140)" opacity="0.7">
     <circle r="52" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
-    <circle r="32" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.6"/>
-    <circle r="14" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.4"/>
+    <circle r="32" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.85"/>
+    <circle r="14" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.85"/>
   </g>
 
   <!-- 단계 카드들: 좌→우, 작게 시작해서 점점 완성되는 모습 -->
   <!-- step 1: setUrl -->
   <g transform="translate(200 350) rotate(-6)">
-    <rect x="-90" y="-50" width="180" height="100" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <rect x="-90" y="-50" width="180" height="100" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.5"/><rect x="-90" y="-50" width="180" height="100" rx="5" fill="var(--c-accent)" fill-opacity="0.08"/>
     <text x="-70" y="-22" font-family="Inter, system-ui" font-size="12" font-weight="700" fill="var(--c-muted)" letter-spacing="0.06em">STEP 1</text>
-    <line x1="-70" y1="-5" x2="50" y2="-5" stroke="var(--c-line)" stroke-width="2.5"/>
+    <line x1="-70" y1="-5" x2="50" y2="-5" stroke="var(--c-accent)" stroke-width="2.5"/>
     <circle cx="-65" cy="25" r="3.5" fill="var(--c-accent)"/>
-    <circle cx="-50" cy="25" r="3.5" fill="var(--c-muted)" opacity="0.3"/>
-    <circle cx="-35" cy="25" r="3.5" fill="var(--c-muted)" opacity="0.3"/>
-    <circle cx="-20" cy="25" r="3.5" fill="var(--c-muted)" opacity="0.3"/>
+    <circle cx="-50" cy="25" r="3.5" fill="var(--c-accent)" opacity="0.85"/>
+    <circle cx="-35" cy="25" r="3.5" fill="var(--c-accent)" opacity="0.85"/>
+    <circle cx="-20" cy="25" r="3.5" fill="var(--c-accent)" opacity="0.85"/>
   </g>
 
   <!-- step 2: setMethod -->
   <g transform="translate(420 320) rotate(-3)">
-    <rect x="-95" y="-55" width="190" height="110" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <rect x="-95" y="-55" width="190" height="110" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.5"/><rect x="-95" y="-55" width="190" height="110" rx="5" fill="var(--c-accent)" fill-opacity="0.08"/>
     <text x="-75" y="-24" font-family="Inter, system-ui" font-size="12" font-weight="700" fill="var(--c-muted)" letter-spacing="0.06em">STEP 2</text>
-    <line x1="-75" y1="-8" x2="55" y2="-8" stroke="var(--c-line)" stroke-width="2.5"/>
-    <line x1="-75" y1="10" x2="35" y2="10" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-75" y1="-8" x2="55" y2="-8" stroke="var(--c-accent)" stroke-width="2.5"/>
+    <line x1="-75" y1="10" x2="35" y2="10" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
     <circle cx="-70" cy="35" r="3.5" fill="var(--c-accent)"/>
     <circle cx="-55" cy="35" r="3.5" fill="var(--c-accent)"/>
-    <circle cx="-40" cy="35" r="3.5" fill="var(--c-muted)" opacity="0.3"/>
-    <circle cx="-25" cy="35" r="3.5" fill="var(--c-muted)" opacity="0.3"/>
+    <circle cx="-40" cy="35" r="3.5" fill="var(--c-accent)" opacity="0.85"/>
+    <circle cx="-25" cy="35" r="3.5" fill="var(--c-accent)" opacity="0.85"/>
   </g>
 
   <!-- step 3: setHeader/Body -->
   <g transform="translate(640 290) rotate(2)">
-    <rect x="-100" y="-60" width="200" height="120" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.5"/>
+    <rect x="-100" y="-60" width="200" height="120" rx="5" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="1.5"/>
     <text x="-80" y="-28" font-family="Inter, system-ui" font-size="12" font-weight="700" fill="var(--c-muted)" letter-spacing="0.06em">STEP 3</text>
-    <line x1="-80" y1="-10" x2="60" y2="-10" stroke="var(--c-line)" stroke-width="2.5"/>
-    <line x1="-80" y1="8" x2="40" y2="8" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
-    <line x1="-80" y1="22" x2="50" y2="22" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
-    <circle cx="-75" cy="45" r="3.5" fill="var(--c-accent)"/>
-    <circle cx="-60" cy="45" r="3.5" fill="var(--c-accent)"/>
-    <circle cx="-45" cy="45" r="3.5" fill="var(--c-accent)"/>
-    <circle cx="-30" cy="45" r="3.5" fill="var(--c-muted)" opacity="0.3"/>
+    <line x1="-80" y1="-10" x2="60" y2="-10" stroke="var(--c-bg)" stroke-width="2.5"/>
+    <line x1="-80" y1="8" x2="40" y2="8" stroke="var(--c-bg)" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-80" y1="22" x2="50" y2="22" stroke="var(--c-bg)" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="-75" cy="45" r="3.5" fill="var(--c-bg)" opacity="1"/>
+    <circle cx="-60" cy="45" r="3.5" fill="var(--c-bg)" opacity="1"/>
+    <circle cx="-45" cy="45" r="3.5" fill="var(--c-bg)" opacity="1"/>
+    <circle cx="-30" cy="45" r="3.5" fill="var(--c-bg)" opacity="1"/>
   </g>
 
   <!-- step 4: build() — 완성, 강조 -->
   <g transform="translate(870 260) rotate(-2)">
     <!-- 외곽 포커스 링 -->
-    <rect x="-115" y="-78" width="230" height="156" rx="9" fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.55"/>
-    <rect x="-105" y="-70" width="210" height="140" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.2"/>
+    <rect x="-115" y="-78" width="230" height="156" rx="9" fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.85"/>
+    <rect x="-105" y="-70" width="210" height="140" rx="5" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="2.2"/>
     <text x="-85" y="-40" font-family="Inter, system-ui" font-size="12" font-weight="700" fill="var(--c-accent)" letter-spacing="0.06em">build()</text>
-    <line x1="-85" y1="-22" x2="65" y2="-22" stroke="var(--c-line)" stroke-width="2.8"/>
-    <line x1="-85" y1="-4" x2="45" y2="-4" stroke="var(--c-line)" stroke-width="1.5" opacity="0.6"/>
-    <line x1="-85" y1="10" x2="55" y2="10" stroke="var(--c-line)" stroke-width="1.5" opacity="0.6"/>
-    <line x1="-85" y1="24" x2="35" y2="24" stroke="var(--c-line)" stroke-width="1.5" opacity="0.6"/>
-    <polyline points="-80,50 -66,62 -45,40" fill="none" stroke="var(--c-accent-2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-85" y1="-22" x2="65" y2="-22" stroke="var(--c-bg)" stroke-width="2.8"/>
+    <line x1="-85" y1="-4" x2="45" y2="-4" stroke="var(--c-bg)" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-85" y1="10" x2="55" y2="10" stroke="var(--c-bg)" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-85" y1="24" x2="35" y2="24" stroke="var(--c-bg)" stroke-width="1.5" opacity="0.6"/>
+    <polyline points="-80,50 -66,62 -45,40" fill="none" stroke="var(--c-bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     <!-- 완성된 점 모두 채워짐 -->
-    <circle cx="50" cy="50" r="4" fill="var(--c-accent)"/>
-    <circle cx="65" cy="50" r="4" fill="var(--c-accent)"/>
-    <circle cx="80" cy="50" r="4" fill="var(--c-accent)"/>
-    <circle cx="95" cy="50" r="4" fill="var(--c-accent)"/>
+    <circle cx="50" cy="50" r="4" fill="var(--c-bg)" opacity="1"/>
+    <circle cx="65" cy="50" r="4" fill="var(--c-bg)" opacity="1"/>
+    <circle cx="80" cy="50" r="4" fill="var(--c-bg)" opacity="1"/>
+    <circle cx="95" cy="50" r="4" fill="var(--c-bg)" opacity="1"/>
   </g>
 
   <!-- 단계를 잇는 점선 화살표 -->
   <g opacity="0.55">
-    <path d="M 280 360 Q 340 350 320 340" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="3 4"/>
-    <path d="M 510 320 Q 555 305 535 295" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="3 4"/>
-    <path d="M 730 290 Q 780 275 755 270" fill="none" stroke="var(--c-line)" stroke-width="1.4" stroke-dasharray="3 4"/>
+    <path d="M 280 360 Q 340 350 320 340" fill="none" stroke="var(--c-accent)" stroke-width="1.4" stroke-dasharray="3 4"/>
+    <path d="M 510 320 Q 555 305 535 295" fill="none" stroke="var(--c-accent)" stroke-width="1.4" stroke-dasharray="3 4"/>
+    <path d="M 730 290 Q 780 275 755 270" fill="none" stroke="var(--c-accent)" stroke-width="1.4" stroke-dasharray="3 4"/>
   </g>
 
   <!-- 좌하단 회전 사각형 -->

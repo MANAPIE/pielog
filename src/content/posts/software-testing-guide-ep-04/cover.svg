@@ -1,23 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="통합 테스트 편 커버">
   <style>
     :root {
-      --c-bg: #FAFAF7;
+      --c-bg: #F2FDF9;
       --c-fg: #1F2A37;
-      --c-accent: #5B8C7B;
-      --c-accent-2: #3D6B5B;
-      --c-accent-3: #B8CCC2;
-      --c-num: rgba(91, 140, 123, 0.16);
+      --c-accent: #04919C;
+      --c-accent-2: #057157;
+      --c-accent-3: #7DDDB4;
+      --c-num: rgba(4, 145, 156, 0.14);
       --c-dot: #5B8C7B;
       --c-line: #C9D1CC;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #15191F;
+        --c-bg: #131922;
         --c-fg: #E6E8EB;
-        --c-accent: #7FB5A0;
-        --c-accent-2: #A8D0C0;
-        --c-accent-3: #4A6B5E;
-        --c-num: rgba(127, 181, 160, 0.18);
+        --c-accent: #20BDC8;
+        --c-accent-2: #7FDBBA;
+        --c-accent-3: #1D7359;
+        --c-num: rgba(32, 189, 200, 0.22);
         --c-dot: #7FB5A0;
         --c-line: #3D434D;
       }
@@ -37,11 +37,11 @@
       <circle cx="14" cy="14" r="1.1" class="dot" opacity="0.18"/>
     </pattern>
     <radialGradient id="rg-tl-04" cx="0" cy="0" r="0.55">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.31"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg-br-04" cx="1" cy="1" r="0.6">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.3"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -60,30 +60,30 @@
     <!-- 가운데 메인 노드 -->
     <g transform="translate(500 315)">
       <circle r="62" class="accent-fill" opacity="0.85"/>
-      <circle r="80" class="accent-stroke" stroke-width="1.5" opacity="0.55"/>
+      <circle r="80" class="accent-stroke" stroke-width="1.5" opacity="0.85"/>
       <circle r="100" class="accent-stroke" stroke-width="1" stroke-dasharray="3 4" opacity="0.35"/>
     </g>
 
     <!-- 주변 노드들 -->
     <g transform="translate(500 130)">
       <circle r="36" class="accent2-fill" opacity="0.85"/>
-      <circle r="48" class="accent-stroke" stroke-width="1.2" opacity="0.45"/>
+      <circle r="48" class="accent-stroke" stroke-width="1.2" opacity="0.85" style="fill: var(--c-accent)"/>
     </g>
     <g transform="translate(720 230)">
       <circle r="32" class="accent3-fill" opacity="0.85"/>
-      <circle r="42" class="accent-stroke" stroke-width="1.2" opacity="0.45"/>
+      <circle r="42" class="accent-stroke" stroke-width="1.2" opacity="0.85"/>
     </g>
     <g transform="translate(720 430)">
       <circle r="36" class="accent-fill" opacity="0.85"/>
-      <circle r="48" class="accent-stroke" stroke-width="1.2" opacity="0.45"/>
+      <circle r="48" class="accent-stroke" stroke-width="1.2" opacity="0.85"/>
     </g>
     <g transform="translate(280 430)">
       <circle r="32" class="accent3-fill" opacity="0.85"/>
-      <circle r="42" class="accent-stroke" stroke-width="1.2" opacity="0.45"/>
+      <circle r="42" class="accent-stroke" stroke-width="1.2" opacity="0.85"/>
     </g>
     <g transform="translate(280 230)">
       <circle r="34" class="accent2-fill" opacity="0.85"/>
-      <circle r="46" class="accent-stroke" stroke-width="1.2" opacity="0.45"/>
+      <circle r="46" class="accent-stroke" stroke-width="1.2" opacity="0.85"/>
     </g>
 
     <!-- 연결 선 -->
@@ -107,7 +107,7 @@
   </g>
 
   <!-- 우상단 회전 사각형 -->
-  <rect x="1000" y="80" width="100" height="100" class="line" stroke-width="1.5" fill="none" transform="rotate(15 1050 130)" opacity="0.6"/>
+  <rect x="1000" y="80" width="100" height="100" class="line" stroke-width="1.5" fill="none" transform="rotate(15 1050 130)" opacity="0.85" style="stroke: var(--c-accent)"/>
 
   <!-- 좌상단 작은 점 무리 -->
   <g class="accent2-fill" opacity="0.7">
@@ -126,7 +126,7 @@
 
   <!-- 우하단 포커스 링 -->
   <g transform="translate(920 480)">
-    <circle r="30" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.55"/>
+    <circle r="30" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.85"/>
     <circle r="12" class="accent2-fill" opacity="0.8"/>
   </g>
 

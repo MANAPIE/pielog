@@ -2,25 +2,25 @@
   <title id="title">ep.04 - 활성화와 온보딩</title>
   <style>
     :root {
-      --c-bg: #fafaf7;
+      --c-bg: #FEF9F5;
       --c-fg: #1a1a1a;
       --c-muted: #6b6b6b;
-      --c-accent: #c97f4a;
-      --c-accent-2: #2d4a3e;
-      --c-accent-3: #d9a47e;
-      --c-num: #c97f4a;
+      --c-accent: #DC7311;
+      --c-accent-2: #025039;
+      --c-accent-3: #E69E69;
+      --c-num: #DC7311;
       --c-dot: #1a1a1a;
       --c-line: #6b6b6b;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #0f0f0e;
+        --c-bg: #160D07;
         --c-fg: #ededea;
         --c-muted: #999996;
-        --c-accent: #e09a6a;
-        --c-accent-2: #7fb09a;
-        --c-accent-3: #d4a560;
-        --c-num: #e09a6a;
+        --c-accent: #E6975F;
+        --c-accent-2: #60B794;
+        --c-accent-3: #D4A560;
+        --c-num: #E6975F;
         --c-dot: #ededea;
         --c-line: #4a4a47;
       }
@@ -31,11 +31,11 @@
       <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
     </pattern>
     <radialGradient id="rg04a" cx="22%" cy="22%" r="60%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg04b" cx="82%" cy="82%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -54,52 +54,52 @@
   <!-- 메인 메타포: 체크리스트 카드 (활성화 단계) -->
   <g transform="translate(220, 130)">
     <!-- 큰 카드 외곽 -->
-    <rect x="0" y="0" width="500" height="340" fill="var(--c-bg)" stroke="var(--c-fg)" stroke-width="2" rx="2"/>
+    <rect x="0" y="0" width="500" height="340" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2" rx="2"/><rect x="0" y="0" width="500" height="340" rx="2" fill="var(--c-accent)" fill-opacity="0.08"/>
 
     <!-- 5개의 체크 항목 -->
     <!-- 항목 1: 체크됨 -->
     <g transform="translate(40, 50)">
       <rect x="0" y="0" width="28" height="28" fill="var(--c-accent-2)" stroke="var(--c-accent-2)" stroke-width="2" rx="2"/>
       <path d="M 6 14 L 12 20 L 22 8" fill="none" stroke="var(--c-bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="48" y="8" width="280" height="12" fill="var(--c-accent-2)" fill-opacity="0.3"/>
+      <rect x="48" y="8" width="280" height="12" fill="var(--c-accent-2)" fill-opacity="0.85"/>
     </g>
 
     <!-- 항목 2: 체크됨 -->
     <g transform="translate(40, 105)">
       <rect x="0" y="0" width="28" height="28" fill="var(--c-accent-2)" stroke="var(--c-accent-2)" stroke-width="2" rx="2"/>
       <path d="M 6 14 L 12 20 L 22 8" fill="none" stroke="var(--c-bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="48" y="8" width="320" height="12" fill="var(--c-accent-2)" fill-opacity="0.3"/>
+      <rect x="48" y="8" width="320" height="12" fill="var(--c-accent-2)" fill-opacity="0.85"/>
     </g>
 
     <!-- 항목 3: 체크됨 + 강조 (Aha moment) -->
     <g transform="translate(40, 160)">
       <rect x="0" y="0" width="28" height="28" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="2" rx="2"/>
       <path d="M 6 14 L 12 20 L 22 8" fill="none" stroke="var(--c-bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="48" y="8" width="260" height="12" fill="var(--c-accent)" fill-opacity="0.5"/>
+      <rect x="48" y="8" width="260" height="12" fill="var(--c-accent)" fill-opacity="0.85"/>
       <!-- 포커스 링 (Aha moment 강조) -->
       <circle cx="14" cy="14" r="26" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 2"/>
     </g>
 
     <!-- 항목 4: 미체크 -->
     <g transform="translate(40, 215)">
-      <rect x="0" y="0" width="28" height="28" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="2"/>
-      <rect x="48" y="8" width="240" height="12" fill="var(--c-fg)" fill-opacity="0.15"/>
+      <rect x="0" y="0" width="28" height="28" fill="none" stroke="var(--c-accent)" stroke-width="2" rx="2"/>
+      <rect x="48" y="8" width="240" height="12" fill="var(--c-accent)" fill-opacity="0.15"/>
     </g>
 
     <!-- 항목 5: 미체크 -->
     <g transform="translate(40, 270)">
-      <rect x="0" y="0" width="28" height="28" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="2"/>
-      <rect x="48" y="8" width="200" height="12" fill="var(--c-fg)" fill-opacity="0.15"/>
+      <rect x="0" y="0" width="28" height="28" fill="none" stroke="var(--c-accent)" stroke-width="2" rx="2"/>
+      <rect x="48" y="8" width="200" height="12" fill="var(--c-accent)" fill-opacity="0.15"/>
     </g>
   </g>
 
   <!-- 우측에 활성화 곡선 (작은 차트) -->
   <g transform="translate(780, 180)">
     <!-- 배경 카드 -->
-    <rect x="0" y="0" width="300" height="240" fill="var(--c-bg)" stroke="var(--c-fg)" stroke-width="1.5" rx="2"/>
+    <rect x="0" y="0" width="300" height="240" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.5" rx="2"/><rect x="0" y="0" width="300" height="240" rx="2" fill="var(--c-accent)" fill-opacity="0.08"/>
 
     <!-- X축 라인 -->
-    <line x1="20" y1="200" x2="280" y2="200" stroke="var(--c-fg)" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="20" y1="200" x2="280" y2="200" stroke="var(--c-accent)" stroke-width="1" stroke-opacity="0.4"/>
 
     <!-- 활성화 곡선 (가파르게 상승 후 평탄) -->
     <path d="M 20 180 Q 60 160 80 130 Q 100 100 140 70 Q 180 50 280 40"

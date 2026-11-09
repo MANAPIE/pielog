@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="자료구조의 이름과 비용 ep.01 cover">
   <style>
   :root {
-    --c-bg: #f4f7f6;
+    --c-bg: #EEF9F6;
     --c-fg: #0f1f1c;
     --c-muted: #5b7a73;
-    --c-accent: #2F7D6E; --c-accent-2: #4F9E8C; --c-accent-3: #7FBFB0;
-    --c-num: rgba(47,125,110,0.14);
-    --c-dot: rgba(47,125,110,0.10);
+    --c-accent: #04806E; --c-accent-2: #0BA48C; --c-accent-3: #53C7B0;
+    --c-num: rgba(4, 128, 110, 0.14);
+    --c-dot: rgba(4, 128, 110, 0.10);
     --c-line: rgba(47,125,110,0.18);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --c-bg: #0b1614;
+      --c-bg: #091614;
       --c-fg: #e2eeea;
       --c-muted: #8fada6;
-      --c-accent: #6FC3B0; --c-accent-2: #4A9E8C; --c-accent-3: #35867A;
-      --c-num: rgba(111,195,176,0.22);
-      --c-dot: rgba(111,195,176,0.10);
+      --c-accent: #45C9B0; --c-accent-2: #38A08C; --c-accent-3: #26887A;
+      --c-num: rgba(69, 201, 176, 0.22);
+      --c-dot: rgba(69, 201, 176, 0.10);
       --c-line: rgba(111,195,176,0.24);
     }
   }
@@ -35,11 +35,11 @@
       <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
     </pattern>
     <radialGradient id="hAds01" cx="0.16" cy="0.84" r="0.58">
-      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.31"/>
       <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="hBds01" cx="0.86" cy="0.14" r="0.56">
-      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.36"/>
       <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -53,7 +53,7 @@
   <circle cx="1180" cy="80" r="260" class="ln"/>
 
   <g>
-<path d="M120 520 C 380 512, 620 494, 1080 470" fill="none" stroke="var(--c-accent-3)" stroke-width="4" opacity="0.9"/><path d="M120 520 C 420 470, 700 400, 1080 300" fill="none" stroke="var(--c-accent-2)" stroke-width="4" opacity="0.9"/><path d="M120 520 C 380 430, 560 260, 700 90" fill="none" stroke="var(--c-accent)" stroke-width="5"/><path d="M120 520 C 260 440, 330 240, 372 70" fill="none" stroke="var(--c-accent)" stroke-width="3" stroke-dasharray="9 8" opacity="0.8"/><line x1="120" y1="520" x2="1120" y2="520" stroke="var(--c-line)" stroke-width="2" opacity="0.85" stroke-linecap="round"/><line x1="120" y1="520" x2="120" y2="70" stroke="var(--c-line)" stroke-width="2" opacity="0.85" stroke-linecap="round"/><rect x="880" y="460" width="16" height="40" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/><rect x="906" y="436" width="16" height="64" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/><rect x="932" y="408" width="16" height="92" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/><rect x="958" y="376" width="16" height="124" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/><circle cx="980" cy="180" r="62" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 6" opacity="0.75"/><circle cx="980" cy="180" r="38" fill="none" stroke="var(--c-accent-3)" stroke-width="2" opacity="0.7"/><circle cx="150" cy="578" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="172" cy="578" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="194" cy="578" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="216" cy="578" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><path d="M0 0 L 22 12 L 0 24 Z" fill="var(--c-accent-2)" fill-opacity="0.85" transform="translate(1108 508) rotate(-90)"/>
+<path d="M120 520 C 380 512, 620 494, 1080 470" fill="none" stroke="var(--c-accent-3)" stroke-width="4" opacity="0.9"/><path d="M120 520 C 420 470, 700 400, 1080 300" fill="none" stroke="var(--c-accent-2)" stroke-width="4" opacity="0.9"/><path d="M120 520 C 380 430, 560 260, 700 90" fill="none" stroke="var(--c-accent)" stroke-width="5"/><path d="M120 520 C 260 440, 330 240, 372 70" fill="none" stroke="var(--c-accent)" stroke-width="3" stroke-dasharray="9 8" opacity="0.85"/><line x1="120" y1="520" x2="1120" y2="520" stroke="var(--c-line)" stroke-width="2" opacity="0.85" stroke-linecap="round"/><line x1="120" y1="520" x2="120" y2="70" stroke="var(--c-line)" stroke-width="2" opacity="0.85" stroke-linecap="round"/><rect x="880" y="460" width="16" height="40" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/><rect x="906" y="436" width="16" height="64" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/><rect x="932" y="408" width="16" height="92" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/><rect x="958" y="376" width="16" height="124" rx="3" fill="var(--c-accent)" fill-opacity="0.85"/><circle cx="980" cy="180" r="62" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 6" opacity="0.85"/><circle cx="980" cy="180" r="38" fill="none" stroke="var(--c-accent-3)" stroke-width="2" opacity="0.85"/><circle cx="150" cy="578" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="172" cy="578" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="194" cy="578" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="216" cy="578" r="5" fill="var(--c-accent-2)" fill-opacity="0.8"/><path d="M0 0 L 22 12 L 0 24 Z" fill="var(--c-accent-2)" fill-opacity="0.85" transform="translate(1108 508) rotate(-90)"/>
   </g>
 
   <text x="1148" y="602" class="ep-number" text-anchor="end">01</text>

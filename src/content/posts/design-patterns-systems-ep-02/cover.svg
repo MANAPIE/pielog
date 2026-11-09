@@ -3,15 +3,15 @@
   <defs>
     <style>
       :root {
-        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
-        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
-        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+        --c-bg: #F8FAFE; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #1D68D8; --c-accent-2: #D97757; --c-accent-3: #8C77C0; --c-accent-4: #01907A;
+        --c-num: rgba(29, 104, 216, 0.14); --c-dot: #1A1F2E; --c-line: #1A1F2E;
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
-          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
-          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+          --c-bg: #0C141C; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #77A7FE; --c-accent-2: #E89376; --c-accent-3: #B09FDD; --c-accent-4: #6CC0A8;
+          --c-num: rgba(119, 167, 254, 0.22); --c-dot: #E8E6E1; --c-line: #E8E6E1;
         }
       }
       .bg { fill: var(--c-bg); }
@@ -21,11 +21,11 @@
       <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
     </pattern>
     <radialGradient id="g1" cx="50%" cy="46%" r="42%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="g2" cx="16%" cy="84%" r="44%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.24"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.29"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -42,19 +42,19 @@
   <g transform="translate(600 315)">
     <!-- 외곽 포커스 링(점선 육각형) -->
     <polygon points="0,-215 186,-107 186,107 0,215 -186,107 -186,-107"
-             fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="3 6" opacity="0.5"/>
+             fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="3 6" opacity="0.85"/>
 
     <!-- 본 육각형 -->
     <polygon points="0,-150 130,-75 130,75 0,150 -130,75 -130,-75"
              fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
 
     <!-- 내부 텍스처 -->
-    <line x1="-58" y1="-40" x2="58" y2="-40" stroke="var(--c-line)" stroke-width="3"/>
-    <line x1="-58" y1="-18" x2="30" y2="-18" stroke="var(--c-line)" stroke-width="1.4" opacity="0.45"/>
-    <line x1="-58" y1="2" x2="44" y2="2" stroke="var(--c-line)" stroke-width="1.4" opacity="0.45"/>
+    <line x1="-58" y1="-40" x2="58" y2="-40" stroke="var(--c-accent)" stroke-width="3"/>
+    <line x1="-58" y1="-18" x2="30" y2="-18" stroke="var(--c-accent)" stroke-width="1.4" opacity="0.85"/>
+    <line x1="-58" y1="2" x2="44" y2="2" stroke="var(--c-accent)" stroke-width="1.4" opacity="0.85"/>
     <circle cx="-44" cy="34" r="5" fill="var(--c-accent)"/>
     <circle cx="-26" cy="34" r="5" fill="var(--c-accent)" opacity="0.6"/>
-    <rect x="0" y="28" width="52" height="12" rx="6" fill="var(--c-accent-3)" opacity="0.7"/>
+    <rect x="0" y="28" width="52" height="12" rx="6" fill="var(--c-accent-3)" opacity="0.85"/>
 
     <!-- 포트 표시 (변 위의 작은 사각형) -->
     <g fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.4">
@@ -69,57 +69,57 @@
     <!-- 바깥 어댑터 6개 (모두 안쪽으로 화살표) -->
     <!-- 좌상 -->
     <g transform="translate(-260 -190) rotate(-6)">
-      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
-      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2.2"/>
-      <circle cx="-32" cy="10" r="3.5" fill="var(--c-accent-2)"/>
+      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="1.8"/>
+      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-bg)" stroke-width="2.2"/>
+      <circle cx="-32" cy="10" r="3.5" fill="var(--c-bg)" opacity="1"/>
     </g>
-    <line x1="-206" y1="-166" x2="-104" y2="-124" stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.6"/>
-    <polygon points="-104,-124 -114,-124 -110,-133" fill="var(--c-line)" opacity="0.7" transform="rotate(22 -104 -124)"/>
+    <line x1="-206" y1="-166" x2="-104" y2="-124" stroke="var(--c-accent)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.85"/>
+    <polygon points="-104,-124 -114,-124 -110,-133" fill="var(--c-accent)" opacity="0.85" transform="rotate(22 -104 -124)"/>
 
     <!-- 좌중 -->
     <g transform="translate(-330 0) rotate(4)">
-      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
-      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2.2"/>
+      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.8"/><rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-accent)" fill-opacity="0.18"/>
+      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-accent)" stroke-width="2.2"/>
       <circle cx="-32" cy="10" r="3.5" fill="var(--c-accent-2)"/>
     </g>
-    <line x1="-268" y1="0" x2="-148" y2="0" stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.6"/>
-    <polygon points="-148,0 -158,-5 -158,5" fill="var(--c-line)" opacity="0.7"/>
+    <line x1="-268" y1="0" x2="-148" y2="0" stroke="var(--c-accent)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.85"/>
+    <polygon points="-148,0 -158,-5 -158,5" fill="var(--c-accent)" opacity="0.85"/>
 
     <!-- 좌하 -->
     <g transform="translate(-260 190) rotate(7)">
-      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
-      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2.2"/>
+      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.8"/><rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-accent)" fill-opacity="0.18"/>
+      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-accent)" stroke-width="2.2"/>
       <circle cx="-32" cy="10" r="3.5" fill="var(--c-accent-2)"/>
     </g>
-    <line x1="-206" y1="166" x2="-104" y2="124" stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.6"/>
-    <polygon points="-104,124 -114,124 -110,133" fill="var(--c-line)" opacity="0.7" transform="rotate(-22 -104 124)"/>
+    <line x1="-206" y1="166" x2="-104" y2="124" stroke="var(--c-accent)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.85"/>
+    <polygon points="-104,124 -114,124 -110,133" fill="var(--c-accent)" opacity="0.85" transform="rotate(-22 -104 124)"/>
 
     <!-- 우상 -->
     <g transform="translate(260 -190) rotate(6)">
-      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
-      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2.2"/>
+      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.8"/><rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-accent)" fill-opacity="0.18"/>
+      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-accent)" stroke-width="2.2"/>
       <circle cx="-32" cy="10" r="3.5" fill="var(--c-accent-4)"/>
     </g>
-    <line x1="206" y1="-166" x2="104" y2="-124" stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.6"/>
-    <polygon points="104,-124 114,-124 110,-133" fill="var(--c-line)" opacity="0.7" transform="rotate(-22 104 -124)"/>
+    <line x1="206" y1="-166" x2="104" y2="-124" stroke="var(--c-accent)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.85"/>
+    <polygon points="104,-124 114,-124 110,-133" fill="var(--c-accent)" opacity="0.85" transform="rotate(-22 104 -124)"/>
 
     <!-- 우중 -->
     <g transform="translate(330 0) rotate(-5)">
-      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
-      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2.2"/>
+      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.8"/><rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-accent)" fill-opacity="0.18"/>
+      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-accent)" stroke-width="2.2"/>
       <circle cx="-32" cy="10" r="3.5" fill="var(--c-accent-4)"/>
     </g>
-    <line x1="268" y1="0" x2="148" y2="0" stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.6"/>
-    <polygon points="148,0 158,-5 158,5" fill="var(--c-line)" opacity="0.7"/>
+    <line x1="268" y1="0" x2="148" y2="0" stroke="var(--c-accent)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.85"/>
+    <polygon points="148,0 158,-5 158,5" fill="var(--c-accent)" opacity="0.85"/>
 
     <!-- 우하 -->
     <g transform="translate(260 190) rotate(-8)">
-      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="1.8"/>
-      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2.2"/>
+      <rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="1.8"/><rect x="-58" y="-26" width="116" height="52" rx="5" fill="var(--c-accent)" fill-opacity="0.18"/>
+      <line x1="-38" y1="-8" x2="30" y2="-8" stroke="var(--c-accent)" stroke-width="2.2"/>
       <circle cx="-32" cy="10" r="3.5" fill="var(--c-accent-4)"/>
     </g>
-    <line x1="206" y1="166" x2="104" y2="124" stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.6"/>
-    <polygon points="104,124 114,124 110,133" fill="var(--c-line)" opacity="0.7" transform="rotate(22 104 124)"/>
+    <line x1="206" y1="166" x2="104" y2="124" stroke="var(--c-accent)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.85"/>
+    <polygon points="104,124 114,124 110,133" fill="var(--c-accent)" opacity="0.85" transform="rotate(22 104 124)"/>
   </g>
 
   <!-- 디테일 -->
@@ -133,7 +133,7 @@
   </g>
   <g transform="translate(120 500)" opacity="0.6">
     <circle r="40" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5"/>
-    <circle r="22" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" opacity="0.6"/>
+    <circle r="22" fill="none" stroke="var(--c-accent-3)" stroke-width="1.5" opacity="0.85"/>
   </g>
 
   <text x="1130" y="575" class="num" text-anchor="end">02</text>

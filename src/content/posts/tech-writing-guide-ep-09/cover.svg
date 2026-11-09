@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="개발자를 위한 기술문서 입문 시리즈 ep.09 부록 커버">
   <style>
     svg {
-      --c-bg: #ECEEF6; --c-fg: #15182A; --c-muted: #5E627A;
-      --c-accent: #2C3D8E; --c-accent-2: #A88656; --c-accent-3: #9A3B3B;
-      --c-num: rgba(44, 61, 142, 0.14);
-      --c-dot: rgba(44, 61, 142, 0.30); --c-line: rgba(44, 61, 142, 0.22);
+      --c-bg: #ECEEF7; --c-fg: #15182A; --c-muted: #5E627A;
+      --c-accent: #28389B; --c-accent-2: #BA7F14; --c-accent-3: #9A3B3B;
+      --c-num: rgba(40, 56, 155, 0.14);
+      --c-dot: rgba(40, 56, 155, 0.10); --c-line: rgba(44, 61, 142, 0.22);
       --c-card: #FBF8F1;
     }
     @media (prefers-color-scheme: dark) {
       svg {
         --c-bg: #14162A; --c-fg: #ECEEF6; --c-muted: #9DA1B8;
-        --c-accent: #A0B0EC; --c-accent-2: #D6BA82; --c-accent-3: #D87878;
-        --c-num: rgba(160, 176, 236, 0.18);
-        --c-dot: rgba(160, 176, 236, 0.24); --c-line: rgba(160, 176, 236, 0.22);
+        --c-accent: #9AAEFF; --c-accent-2: #DCB970; --c-accent-3: #D87878;
+        --c-num: rgba(154, 174, 255, 0.22);
+        --c-dot: rgba(154, 174, 255, 0.10); --c-line: rgba(160, 176, 236, 0.22);
         --c-card: #232326;
       }
     }
@@ -23,11 +23,11 @@
       <circle cx="2" cy="2" r="1.2" fill="var(--c-dot)" opacity="0.10"/>
     </pattern>
     <radialGradient id="glowA09" cx="50%" cy="20%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.20"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.24"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="glowB09" cx="80%" cy="85%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.22"/>
+      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.26"/>
       <stop offset="100%" stop-color="var(--c-accent-2)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -63,7 +63,7 @@
       <rect x="51" y="246" width="8" height="14" rx="1"/>
     </g>
     <!-- 작은 아이콘 (사용자 원) -->
-    <circle cx="55" cy="60" r="14" fill="none" stroke="var(--c-bg)" stroke-width="2" opacity="0.85"/>
+    <circle cx="55" cy="60" r="14" fill="var(--c-bg)" stroke="var(--c-bg)" stroke-width="2" opacity="0.85"/>
     <circle cx="55" cy="55" r="5" fill="var(--c-bg)" opacity="0.85"/>
     <path d="M 42 70 Q 55 60 68 70 L 68 76 Q 55 80 42 76 Z" fill="var(--c-bg)" opacity="0.85"/>
   </g>
@@ -114,13 +114,13 @@
 
   <!-- 디테일: 시리즈를 가리키는 작은 책들 (회색, 배경) -->
   <g transform="translate(180 280) rotate(-10)" opacity="0.55">
-    <rect x="0" y="0" width="36" height="180" rx="2" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
-    <rect x="44" y="-10" width="36" height="190" rx="2" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
+    <rect x="0" y="0" width="36" height="180" rx="2" stroke="var(--c-accent)" stroke-width="1.5" fill="none"/>
+    <rect x="44" y="-10" width="36" height="190" rx="2" stroke="var(--c-accent)" stroke-width="1.5" fill="none"/>
   </g>
 
   <g transform="translate(940 290) rotate(8)" opacity="0.55">
-    <rect x="0" y="0" width="36" height="170" rx="2" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
-    <rect x="44" y="-12" width="36" height="184" rx="2" stroke="var(--c-line)" stroke-width="1.5" fill="none"/>
+    <rect x="0" y="0" width="36" height="170" rx="2" stroke="var(--c-accent)" stroke-width="1.5" fill="none"/>
+    <rect x="44" y="-12" width="36" height="184" rx="2" stroke="var(--c-accent)" stroke-width="1.5" fill="none"/>
   </g>
 
   <!-- 디테일: 점 무리 -->
@@ -138,16 +138,16 @@
 
   <!-- 라벨: APPENDIX (모자이크) -->
   <g transform="translate(540 74)">
-    <rect x="0" y="0" width="14" height="2" rx="1" fill="var(--c-muted)"/>
+    <rect x="0" y="0" width="14" height="2" rx="1" fill="var(--c-accent)"/>
     <g transform="translate(22 -2)">
-      <rect x="0" y="0" width="14" height="6" rx="1" fill="var(--c-muted)"/>
-      <rect x="18" y="0" width="6" height="6" rx="1" fill="var(--c-muted)"/>
-      <rect x="28" y="0" width="14" height="6" rx="1" fill="var(--c-muted)"/>
-      <rect x="46" y="0" width="6" height="6" rx="1" fill="var(--c-muted)"/>
-      <rect x="56" y="0" width="22" height="6" rx="1" fill="var(--c-muted)"/>
-      <rect x="82" y="0" width="14" height="6" rx="1" fill="var(--c-muted)"/>
+      <rect x="0" y="0" width="14" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="18" y="0" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="28" y="0" width="14" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="46" y="0" width="6" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="56" y="0" width="22" height="6" rx="1" fill="var(--c-accent)"/>
+      <rect x="82" y="0" width="14" height="6" rx="1" fill="var(--c-accent)"/>
     </g>
-    <rect x="124" y="0" width="14" height="2" rx="1" fill="var(--c-muted)"/>
+    <rect x="124" y="0" width="14" height="2" rx="1" fill="var(--c-accent)"/>
   </g>
 
   <!-- 시리즈 번호 -->

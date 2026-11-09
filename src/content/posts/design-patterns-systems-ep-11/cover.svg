@@ -3,15 +3,15 @@
   <defs>
     <style>
       :root {
-        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
-        --c-accent: #4A5FD9; --c-accent-2: #D97757; --c-accent-3: #8B7AB8; --c-accent-4: #3D8B7A;
-        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+        --c-bg: #F8FAFE; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-accent: #1D68D8; --c-accent-2: #D97757; --c-accent-3: #8C77C0; --c-accent-4: #01907A;
+        --c-num: rgba(29, 104, 216, 0.14); --c-dot: #1A1F2E; --c-line: #1A1F2E;
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
-          --c-accent: #8DA0FF; --c-accent-2: #E89376; --c-accent-3: #B0A0DA; --c-accent-4: #6FBFA8;
-          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+          --c-bg: #0C141C; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-accent: #77A7FE; --c-accent-2: #E89376; --c-accent-3: #B09FDD; --c-accent-4: #6CC0A8;
+          --c-num: rgba(119, 167, 254, 0.22); --c-dot: #E8E6E1; --c-line: #E8E6E1;
         }
       }
       .bg { fill: var(--c-bg); }
@@ -21,11 +21,11 @@
       <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
     </pattern>
     <radialGradient id="g1" cx="26%" cy="28%" r="50%">
-      <stop offset="0%" stop-color="var(--c-accent-4)" stop-opacity="0.32"/>
+      <stop offset="0%" stop-color="var(--c-accent-4)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent-4)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="g2" cx="78%" cy="76%" r="46%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.24"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.29"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -42,17 +42,17 @@
   <g transform="translate(600 315)">
     <!-- 좌: 하나의 큰 블록 -->
     <g transform="translate(-350 0) rotate(-4)">
-      <rect x="-110" y="-150" width="220" height="300" rx="8" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="3"/>
+      <rect x="-110" y="-150" width="220" height="300" rx="8" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/><rect x="-110" y="-150" width="220" height="300" rx="8" fill="var(--c-accent)" fill-opacity="0.08"/>
       <!-- 내부 구획들 (붙어 있음) -->
-      <line x1="-110" y1="-50" x2="110" y2="-50" stroke="var(--c-line)" stroke-width="1.4" opacity="0.35"/>
-      <line x1="-110" y1="50" x2="110" y2="50" stroke="var(--c-line)" stroke-width="1.4" opacity="0.35"/>
-      <rect x="-80" y="-120" width="70" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.6"/>
-      <rect x="-80" y="-20" width="90" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.45"/>
-      <rect x="-80" y="80" width="60" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.3"/>
+      <line x1="-110" y1="-50" x2="110" y2="-50" stroke="var(--c-accent)" stroke-width="1.4" opacity="0.85"/>
+      <line x1="-110" y1="50" x2="110" y2="50" stroke="var(--c-accent)" stroke-width="1.4" opacity="0.85"/>
+      <rect x="-80" y="-120" width="70" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.85"/>
+      <rect x="-80" y="-20" width="90" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.85"/>
+      <rect x="-80" y="80" width="60" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.85"/>
       <!-- 하나의 배포 화살표 -->
       <g transform="translate(0 190)">
-        <line x1="0" y1="-24" x2="0" y2="10" stroke="var(--c-line)" stroke-width="3"/>
-        <polygon points="0,10 -9,-2 9,-2" fill="var(--c-line)"/>
+        <line x1="0" y1="-24" x2="0" y2="10" stroke="var(--c-accent)" stroke-width="3"/>
+        <polygon points="0,10 -9,-2 9,-2" fill="var(--c-accent)"/>
       </g>
     </g>
 
@@ -65,11 +65,11 @@
     <!-- 우: 세 조각이 각자 궤도 -->
     <!-- 조각 1 -->
     <g transform="translate(60 -140) rotate(6)">
-      <rect x="-92" y="-52" width="184" height="104" rx="7" fill="var(--c-bg)" stroke="var(--c-accent-4)" stroke-width="2.8"/>
-      <rect x="-68" y="-30" width="70" height="10" rx="5" fill="var(--c-accent-4)" opacity="0.7"/>
-      <rect x="-68" y="-12" width="110" height="8" rx="4" fill="var(--c-line)" opacity="0.28"/>
-      <circle cx="-58" cy="22" r="5" fill="var(--c-accent-4)"/>
-      <circle cx="-42" cy="22" r="5" fill="var(--c-accent-4)" opacity="0.5"/>
+      <rect x="-92" y="-52" width="184" height="104" rx="7" fill="var(--c-accent-4)" stroke="var(--c-accent-4)" stroke-width="2.8"/>
+      <rect x="-68" y="-30" width="70" height="10" rx="5" fill="var(--c-bg)" opacity="1"/>
+      <rect x="-68" y="-12" width="110" height="8" rx="4" fill="var(--c-bg)" opacity="1"/>
+      <circle cx="-58" cy="22" r="5" fill="var(--c-bg)" opacity="1"/>
+      <circle cx="-42" cy="22" r="5" fill="var(--c-bg)" opacity="1"/>
       <!-- 개별 배포 화살표 -->
       <g transform="translate(110 0)">
         <line x1="0" y1="-16" x2="0" y2="16" stroke="var(--c-accent-4)" stroke-width="2.6"/>
@@ -79,10 +79,10 @@
 
     <!-- 조각 2 -->
     <g transform="translate(140 20) rotate(-5)">
-      <rect x="-92" y="-52" width="184" height="104" rx="7" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.8"/>
-      <rect x="-68" y="-30" width="86" height="10" rx="5" fill="var(--c-accent)" opacity="0.7"/>
-      <rect x="-68" y="-12" width="96" height="8" rx="4" fill="var(--c-line)" opacity="0.28"/>
-      <rect x="-68" y="14" width="52" height="8" rx="4" fill="var(--c-line)" opacity="0.18"/>
+      <rect x="-92" y="-52" width="184" height="104" rx="7" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="2.8"/>
+      <rect x="-68" y="-30" width="86" height="10" rx="5" fill="var(--c-bg)" opacity="1"/>
+      <rect x="-68" y="-12" width="96" height="8" rx="4" fill="var(--c-bg)" opacity="1"/>
+      <rect x="-68" y="14" width="52" height="8" rx="4" fill="var(--c-bg)" opacity="1"/>
       <g transform="translate(110 0)">
         <line x1="0" y1="-16" x2="0" y2="16" stroke="var(--c-accent)" stroke-width="2.6"/>
         <polygon points="0,16 -7,6 7,6" fill="var(--c-accent)"/>
@@ -91,10 +91,10 @@
 
     <!-- 조각 3 -->
     <g transform="translate(50 170) rotate(4)">
-      <rect x="-92" y="-52" width="184" height="104" rx="7" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.8"/>
-      <rect x="-68" y="-30" width="60" height="10" rx="5" fill="var(--c-accent-3)" opacity="0.7"/>
-      <rect x="-68" y="-12" width="120" height="8" rx="4" fill="var(--c-line)" opacity="0.28"/>
-      <polyline points="-64,22 -54,32 -34,10" fill="none" stroke="var(--c-accent-3)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="-92" y="-52" width="184" height="104" rx="7" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2.8"/>
+      <rect x="-68" y="-30" width="60" height="10" rx="5" fill="var(--c-bg)" opacity="1"/>
+      <rect x="-68" y="-12" width="120" height="8" rx="4" fill="var(--c-bg)" opacity="1"/>
+      <polyline points="-64,22 -54,32 -34,10" fill="none" stroke="var(--c-bg)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
       <g transform="translate(110 0)">
         <line x1="0" y1="-16" x2="0" y2="16" stroke="var(--c-accent-3)" stroke-width="2.6"/>
         <polygon points="0,16 -7,6 7,6" fill="var(--c-accent-3)"/>
@@ -103,15 +103,15 @@
 
     <!-- 조각 사이 계약선 (점선) -->
     <g stroke="var(--c-line)" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.5">
-      <line x1="80" y1="-86" x2="128" y2="-32"/>
-      <line x1="132" y1="72" x2="70" y2="118"/>
+      <line x1="80" y1="-86" x2="128" y2="-32" stroke="var(--c-accent)"/>
+      <line x1="132" y1="72" x2="70" y2="118" stroke="var(--c-accent)"/>
     </g>
-    <circle cx="104" cy="-59" r="7" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2.2"/>
-    <circle cx="101" cy="95" r="7" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2.2"/>
+    <circle cx="104" cy="-59" r="7" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.2"/>
+    <circle cx="101" cy="95" r="7" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.2"/>
 
     <!-- 우측 포커스 링 -->
-    <circle cx="330" cy="-40" r="56" fill="none" stroke="var(--c-accent-4)" stroke-width="1.4" stroke-dasharray="3 6" opacity="0.6"/>
-    <circle cx="330" cy="-40" r="32" fill="none" stroke="var(--c-accent-4)" stroke-width="1.6" opacity="0.5"/>
+    <circle cx="330" cy="-40" r="56" fill="none" stroke="var(--c-accent-4)" stroke-width="1.4" stroke-dasharray="3 6" opacity="0.85"/>
+    <circle cx="330" cy="-40" r="32" fill="none" stroke="var(--c-accent-4)" stroke-width="1.6" opacity="0.85"/>
   </g>
 
   <!-- 디테일 -->

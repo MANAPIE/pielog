@@ -4,11 +4,12 @@ description: "2026년 10월 21일 공개된 PHP2Shell(CVE-2026-109618, CVE-2026-
 summary: "PHP 코어의 메모리 관리와 오류 처리에서 나온 CVSS 9.2 취약점 두 건을 분석합니다. 어떤 구조의 결함인지, 어떤 실행 방식이 더 위험한지, 버전과 배포판별로 어떤 수정이 나왔는지를 구분합니다. 패치를 바로 올릴 수 없을 때의 임시 완화책과 패치 이후의 재시작·점검 항목도 담았습니다."
 date: 2026-10-22
 tags: [experience, develop, backend, infra, devops, security, php, cve, rce, php2shell]
-thumbnail: ./cover.jpg
+thumbnail: ./cover.svg
+ogImage: ./cover.jpg
 draft: false
 ---
 
-![](./cover-2x.jpg)
+![](./cover.svg)
 
 2026년 10월 21일, PHP 프로젝트가 PHP 8.5.12, 8.4.27, 8.3.36, 8.2.35를 긴급 배포했습니다.[^1]
 고친 건 PHP 엔진의 치명적 취약점 두 건(CVE-2026-109618, CVE-2026-109619)이고, 연구자들은 이 두 건을 묶어 PHP2Shell이라고 부릅니다.

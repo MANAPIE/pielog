@@ -3,15 +3,15 @@
   <defs>
     <style>
       :root {
-        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-bg: #FFF8FA; --c-fg: #1A1F2E; --c-muted: #6B7280;
         --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
-        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+        --c-num: rgba(192, 45, 110, 0.14); --c-dot: #1A1F2E; --c-line: #1A1F2E;
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-bg: #0C141C; --c-fg: #E8E6E1; --c-muted: #8B92A0;
           --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
-          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+          --c-num: rgba(236, 133, 181, 0.22); --c-dot: #E8E6E1; --c-line: #E8E6E1;
         }
       }
       .bg { fill: var(--c-bg); }
@@ -21,11 +21,11 @@
       <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
     </pattern>
     <radialGradient id="grad1" cx="18%" cy="40%" r="50%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="grad2" cx="82%" cy="60%" r="50%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.22"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -43,11 +43,11 @@
   <g transform="translate(600 315)">
     <!-- 외곽 -->
     <rect x="-180" y="-90" width="360" height="180" rx="9" fill="none" stroke="var(--c-line)" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.5"/>
-    <rect x="-170" y="-80" width="340" height="160" rx="6" fill="var(--c-bg)" stroke="var(--c-line)" stroke-width="2"/>
+    <rect x="-170" y="-80" width="340" height="160" rx="6" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/><rect x="-170" y="-80" width="340" height="160" rx="6" fill="var(--c-accent)" fill-opacity="0.08"/>
 
     <!-- Context 라벨 영역 -->
     <text x="-150" y="-50" font-family="Inter,system-ui" font-size="11" font-weight="700" fill="var(--c-muted)" letter-spacing="0.08em">CONTEXT</text>
-    <line x1="-150" y1="-38" x2="-30" y2="-38" stroke="var(--c-line)" stroke-width="2"/>
+    <line x1="-150" y1="-38" x2="-30" y2="-38" stroke="var(--c-accent)" stroke-width="2"/>
 
     <!-- 슬롯 (Strategy가 들어가는 자리) -->
     <rect x="-90" y="-15" width="180" height="80" rx="5" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-dasharray="5 4"/>
@@ -58,47 +58,47 @@
   <g transform="translate(600 315)">
     <rect x="-75" y="0" width="150" height="50" rx="5" fill="var(--c-accent-3)" opacity="0.95"/>
     <text x="0" y="22" font-family="Inter,system-ui" font-size="13" font-weight="700" fill="var(--c-bg)" text-anchor="middle">light</text>
-    <line x1="-50" y1="35" x2="50" y2="35" stroke="var(--c-bg)" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-50" y1="35" x2="50" y2="35" stroke="var(--c-bg)" stroke-width="1.5" opacity="0.85"/>
   </g>
 
   <!-- 좌측에 대기 중인 다른 Strategy들 -->
   <g transform="translate(200 270) rotate(-5)">
-    <rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/><rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-accent-3)" fill-opacity="0.18"/>
     <text x="0" y="6" font-family="Inter,system-ui" font-size="12" font-weight="700" fill="var(--c-fg)" text-anchor="middle">dark</text>
   </g>
 
   <g transform="translate(200 360) rotate(4)">
-    <rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/><rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-accent-3)" fill-opacity="0.18"/>
     <text x="0" y="6" font-family="Inter,system-ui" font-size="12" font-weight="700" fill="var(--c-fg)" text-anchor="middle">contrast</text>
   </g>
 
   <!-- 우측에 대기 중인 Strategy들 -->
   <g transform="translate(1000 290) rotate(5)">
-    <rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2"/>
     <text x="0" y="6" font-family="Inter,system-ui" font-size="12" font-weight="700" fill="var(--c-fg)" text-anchor="middle">sepia</text>
   </g>
 
   <g transform="translate(1000 380) rotate(-4)">
-    <rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/><rect x="-70" y="-22" width="140" height="44" rx="5" fill="var(--c-accent-3)" fill-opacity="0.18"/>
     <text x="0" y="6" font-family="Inter,system-ui" font-size="12" font-weight="700" fill="var(--c-fg)" text-anchor="middle">custom</text>
   </g>
 
   <!-- 갈아끼우는 화살표들 (양쪽에서 슬롯으로) -->
   <g opacity="0.6">
-    <path d="M 280 285 Q 380 310 500 325" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-dasharray="3 4"/>
-    <polygon points="500,325 492,322 492,330" fill="var(--c-line)"/>
-    <path d="M 280 360 Q 380 340 500 335" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-dasharray="3 4"/>
-    <polygon points="500,335 492,332 492,340" fill="var(--c-line)"/>
-    <path d="M 920 295 Q 820 315 700 335" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-dasharray="3 4"/>
-    <polygon points="700,335 708,332 708,340" fill="var(--c-line)"/>
-    <path d="M 920 375 Q 820 350 700 340" fill="none" stroke="var(--c-line)" stroke-width="1.5" stroke-dasharray="3 4"/>
-    <polygon points="700,340 708,337 708,345" fill="var(--c-line)"/>
+    <path d="M 280 285 Q 380 310 500 325" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <polygon points="500,325 492,322 492,330" fill="var(--c-accent)"/>
+    <path d="M 280 360 Q 380 340 500 335" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <polygon points="500,335 492,332 492,340" fill="var(--c-accent)"/>
+    <path d="M 920 295 Q 820 315 700 335" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <polygon points="700,335 708,332 708,340" fill="var(--c-accent)"/>
+    <path d="M 920 375 Q 820 350 700 340" fill="none" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <polygon points="700,340 708,337 708,345" fill="var(--c-accent)"/>
   </g>
 
   <!-- 우상단 동심원 -->
   <g transform="translate(1050 130)" opacity="0.7">
     <circle r="48" fill="none" stroke="var(--c-accent)" stroke-width="1.5"/>
-    <circle r="28" fill="none" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.6"/>
+    <circle r="28" fill="none" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
   </g>
 
   <!-- 좌상단 작은 점 무리 -->

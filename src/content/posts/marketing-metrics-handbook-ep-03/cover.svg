@@ -2,25 +2,25 @@
   <title id="title">ep.03 - 유입과 클릭</title>
   <style>
     :root {
-      --c-bg: #fafaf7;
+      --c-bg: #FEF9F5;
       --c-fg: #1a1a1a;
       --c-muted: #6b6b6b;
-      --c-accent: #c97f4a;
-      --c-accent-2: #2d4a3e;
-      --c-accent-3: #d9a47e;
-      --c-num: #c97f4a;
+      --c-accent: #DC7311;
+      --c-accent-2: #025039;
+      --c-accent-3: #E69E69;
+      --c-num: #DC7311;
       --c-dot: #1a1a1a;
       --c-line: #6b6b6b;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #0f0f0e;
+        --c-bg: #160D07;
         --c-fg: #ededea;
         --c-muted: #999996;
-        --c-accent: #e09a6a;
-        --c-accent-2: #7fb09a;
-        --c-accent-3: #d4a560;
-        --c-num: #e09a6a;
+        --c-accent: #E6975F;
+        --c-accent-2: #60B794;
+        --c-accent-3: #D4A560;
+        --c-num: #E6975F;
         --c-dot: #ededea;
         --c-line: #4a4a47;
       }
@@ -31,11 +31,11 @@
       <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
     </pattern>
     <radialGradient id="rg03a" cx="80%" cy="22%" r="60%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg03b" cx="18%" cy="82%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -53,40 +53,40 @@
   <g transform="translate(612, 442) scale(1.5)">
     <!-- 깔때기 (수직 단계, 점점 좁아짐) -->
     <!-- 단계 1: 노출 (넓은 사각형) -->
-    <rect x="-220" y="-200" width="440" height="60" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-fg)" stroke-width="1.5"/>
+    <rect x="-220" y="-200" width="440" height="60" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-accent)" stroke-width="1.5"/>
     
     <!-- 단계 2: 클릭 (중간) -->
-    <rect x="-140" y="-100" width="280" height="60" fill="var(--c-accent)" fill-opacity="0.7" stroke="var(--c-fg)" stroke-width="1.5"/>
+    <rect x="-140" y="-100" width="280" height="60" fill="var(--c-accent)" fill-opacity="0.7" stroke="var(--c-accent)" stroke-width="1.5"/>
     
     <!-- 단계 3: 전환 (가장 좁은) -->
-    <rect x="-70" y="0" width="140" height="60" fill="var(--c-accent-2)" stroke="var(--c-fg)" stroke-width="1.5"/>
+    <rect x="-70" y="0" width="140" height="60" fill="var(--c-accent-2)" stroke="var(--c-accent)" stroke-width="1.5"/>
 
     <!-- 연결 화살표 -->
-    <path d="M 0 -140 L 0 -110" stroke="var(--c-fg)" stroke-width="2" stroke-linecap="round"/>
-    <path d="M -6 -116 L 0 -106 L 6 -116" fill="none" stroke="var(--c-fg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 0 -140 L 0 -110" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M -6 -116 L 0 -106 L 6 -116" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
-    <path d="M 0 -40 L 0 -10" stroke="var(--c-fg)" stroke-width="2" stroke-linecap="round"/>
-    <path d="M -6 -16 L 0 -6 L 6 -16" fill="none" stroke="var(--c-fg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 0 -40 L 0 -10" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M -6 -16 L 0 -6 L 6 -16" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
     <!-- 떠나는 화살표들 (이탈) -->
     <!-- 1단계에서 빠지는 사용자 -->
     <g transform="translate(-220, -170)">
-      <path d="M 0 0 L -50 30" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
-      <path d="M -42 26 L -54 34 L -46 22 Z" fill="var(--c-muted)" opacity="0.6"/>
+      <path d="M 0 0 L -50 30" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M -42 26 L -54 34 L -46 22 Z" fill="var(--c-accent)" opacity="0.85"/>
     </g>
     <g transform="translate(220, -170)">
-      <path d="M 0 0 L 50 30" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
-      <path d="M 42 26 L 54 34 L 46 22 Z" fill="var(--c-muted)" opacity="0.6"/>
+      <path d="M 0 0 L 50 30" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M 42 26 L 54 34 L 46 22 Z" fill="var(--c-accent)" opacity="0.85"/>
     </g>
 
     <!-- 2단계에서 빠지는 사용자 -->
     <g transform="translate(-140, -70)">
-      <path d="M 0 0 L -40 25" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
-      <path d="M -32 22 L -44 30 L -36 18 Z" fill="var(--c-muted)" opacity="0.5"/>
+      <path d="M 0 0 L -40 25" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M -32 22 L -44 30 L -36 18 Z" fill="var(--c-accent)" opacity="0.85"/>
     </g>
     <g transform="translate(140, -70)">
-      <path d="M 0 0 L 40 25" stroke="var(--c-muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
-      <path d="M 32 22 L 44 30 L 36 18 Z" fill="var(--c-muted)" opacity="0.5"/>
+      <path d="M 0 0 L 40 25" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M 32 22 L 44 30 L 36 18 Z" fill="var(--c-accent)" opacity="0.85"/>
     </g>
 
     <!-- 도트 무리 (노출 표현, 첫 단계 위에) -->
