@@ -2,25 +2,25 @@
   <title id="title">ep.12 - 어트리뷰션과 도구 지도</title>
   <style>
     :root {
-      --c-bg: #fafaf7;
+      --c-bg: #FEF9F5;
       --c-fg: #1a1a1a;
       --c-muted: #6b6b6b;
-      --c-accent: #c97f4a;
-      --c-accent-2: #2d4a3e;
-      --c-accent-3: #d9a47e;
-      --c-num: #c97f4a;
+      --c-accent: #DC7311;
+      --c-accent-2: #025039;
+      --c-accent-3: #E69E69;
+      --c-num: #DC7311;
       --c-dot: #1a1a1a;
       --c-line: #6b6b6b;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #0f0f0e;
+        --c-bg: #160D07;
         --c-fg: #ededea;
         --c-muted: #999996;
-        --c-accent: #e09a6a;
-        --c-accent-2: #7fb09a;
-        --c-accent-3: #d4a560;
-        --c-num: #e09a6a;
+        --c-accent: #E6975F;
+        --c-accent-2: #60B794;
+        --c-accent-3: #D4A560;
+        --c-num: #E6975F;
         --c-dot: #ededea;
         --c-line: #4a4a47;
       }
@@ -31,11 +31,11 @@
       <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
     </pattern>
     <radialGradient id="rg12a" cx="78%" cy="22%" r="60%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.32"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg12b" cx="22%" cy="78%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -54,7 +54,7 @@
     <!-- 좌측: 광고 채널 3개 (시작점) -->
     <!-- 채널 1: 페이스북 (도트 무리) -->
     <g transform="translate(0, 40)">
-      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-accent)" stroke-width="2" rx="3"/>
       <g transform="translate(50, 30)" fill="var(--c-accent)">
         <circle cx="-18" cy="-8" r="3.5"/>
         <circle cx="-6" cy="-4" r="3.5"/>
@@ -68,7 +68,7 @@
 
     <!-- 채널 2: 구글 (미니 바) -->
     <g transform="translate(0, 180)">
-      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-accent)" stroke-width="2" rx="3"/>
       <g transform="translate(28, 18)" fill="var(--c-accent-2)">
         <rect x="0" y="14" width="6" height="20"/>
         <rect x="10" y="8" width="6" height="26"/>
@@ -80,7 +80,7 @@
 
     <!-- 채널 3: 인스타그램 (별) -->
     <g transform="translate(0, 320)">
-      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-accent)" stroke-width="2" rx="3"/>
       <g transform="translate(50, 30) scale(0.7)">
         <path d="M 0 -22 L 6 -8 L 22 -6 L 10 4 L 14 20 L 0 12 L -14 20 L -10 4 L -22 -6 L -6 -8 Z" fill="var(--c-accent-3)"/>
       </g>
@@ -100,7 +100,7 @@
         <path d="M 0 0 L 42 27 A 50 50 0 1 1 0 -50 Z" fill="var(--c-accent-3)" fill-opacity="0.7"/>
 
         <!-- 중심점 -->
-        <circle cx="0" cy="0" r="6" fill="var(--c-fg)"/>
+        <circle cx="0" cy="0" r="6" fill="var(--c-accent)"/>
       </g>
     </g>
 
@@ -115,11 +115,11 @@
     <!-- 화살표: 채널 → 어트리뷰션 노드 -->
     <g stroke="var(--c-fg)" stroke-width="1.5" stroke-opacity="0.6" fill="none">
       <!-- 채널 1 (페북) → 분배기 -->
-      <path d="M 100 70 L 320 180" stroke-dasharray="4 3"/>
+      <path d="M 100 70 L 320 180" stroke-dasharray="4 3" stroke="var(--c-accent)"/>
       <!-- 채널 2 (구글) → 분배기 -->
-      <path d="M 100 210 L 320 200" stroke-dasharray="4 3"/>
+      <path d="M 100 210 L 320 200" stroke-dasharray="4 3" stroke="var(--c-accent)"/>
       <!-- 채널 3 (인스타) → 분배기 -->
-      <path d="M 100 350 L 320 220" stroke-dasharray="4 3"/>
+      <path d="M 100 350 L 320 220" stroke-dasharray="4 3" stroke="var(--c-accent)"/>
     </g>
 
     <!-- 화살표: 분배기 → 사용자 -->

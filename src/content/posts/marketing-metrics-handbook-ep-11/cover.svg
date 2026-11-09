@@ -2,25 +2,25 @@
   <title id="title">ep.11 - 트래킹과 데이터 수집</title>
   <style>
     :root {
-      --c-bg: #fafaf7;
+      --c-bg: #FEF9F5;
       --c-fg: #1a1a1a;
       --c-muted: #6b6b6b;
-      --c-accent: #c97f4a;
-      --c-accent-2: #2d4a3e;
-      --c-accent-3: #d9a47e;
-      --c-num: #c97f4a;
+      --c-accent: #DC7311;
+      --c-accent-2: #025039;
+      --c-accent-3: #E69E69;
+      --c-num: #DC7311;
       --c-dot: #1a1a1a;
       --c-line: #6b6b6b;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #0f0f0e;
+        --c-bg: #160D07;
         --c-fg: #ededea;
         --c-muted: #999996;
-        --c-accent: #e09a6a;
-        --c-accent-2: #7fb09a;
-        --c-accent-3: #d4a560;
-        --c-num: #e09a6a;
+        --c-accent: #E6975F;
+        --c-accent-2: #60B794;
+        --c-accent-3: #D4A560;
+        --c-num: #E6975F;
         --c-dot: #ededea;
         --c-line: #4a4a47;
       }
@@ -31,11 +31,11 @@
       <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
     </pattern>
     <radialGradient id="rg11a" cx="20%" cy="20%" r="60%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg11b" cx="82%" cy="82%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -54,15 +54,15 @@
     <!-- 좌측: 클라이언트 노드 (디바이스) -->
     <g transform="translate(0, 130)">
       <!-- 디바이스 1 -->
-      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <rect x="0" y="0" width="100" height="60" fill="none" stroke="var(--c-accent)" stroke-width="2" rx="3"/>
       <circle cx="50" cy="30" r="14" fill="var(--c-accent-2)"/>
 
       <!-- 디바이스 2 -->
-      <rect x="0" y="80" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <rect x="0" y="80" width="100" height="60" fill="none" stroke="var(--c-accent)" stroke-width="2" rx="3"/>
       <circle cx="50" cy="110" r="14" fill="var(--c-accent-2)"/>
 
       <!-- 디바이스 3 -->
-      <rect x="0" y="160" width="100" height="60" fill="none" stroke="var(--c-fg)" stroke-width="2" rx="3"/>
+      <rect x="0" y="160" width="100" height="60" fill="none" stroke="var(--c-accent)" stroke-width="2" rx="3"/>
       <circle cx="50" cy="190" r="14" fill="var(--c-accent-2)"/>
     </g>
 
@@ -81,15 +81,15 @@
     <!-- 우측: 다양한 destination -->
     <g transform="translate(800, 80)">
       <!-- destination 1 (광고 매체) -->
-      <rect x="0" y="0" width="100" height="50" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-fg)" stroke-width="1.5" rx="3"/>
+      <rect x="0" y="0" width="100" height="50" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-accent)" stroke-width="1.5" rx="3"/>
       <g transform="translate(50, 25)" fill="var(--c-fg)">
-        <circle cx="-14" cy="0" r="3"/>
-        <circle cx="0" cy="0" r="3"/>
-        <circle cx="14" cy="0" r="3"/>
+        <circle cx="-14" cy="0" r="3" fill="var(--c-accent)"/>
+        <circle cx="0" cy="0" r="3" fill="var(--c-accent)"/>
+        <circle cx="14" cy="0" r="3" fill="var(--c-accent)"/>
       </g>
 
       <!-- destination 2 (분석 도구) -->
-      <rect x="0" y="80" width="100" height="50" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-fg)" stroke-width="1.5" rx="3"/>
+      <rect x="0" y="80" width="100" height="50" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-accent)" stroke-width="1.5" rx="3"/>
       <g transform="translate(20, 96)" fill="var(--c-accent-2)">
         <rect x="0" y="10" width="6" height="14"/>
         <rect x="10" y="4" width="6" height="20"/>
@@ -100,7 +100,7 @@
       </g>
 
       <!-- destination 3 (데이터 웨어하우스) -->
-      <rect x="0" y="160" width="100" height="50" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-fg)" stroke-width="1.5" rx="3"/>
+      <rect x="0" y="160" width="100" height="50" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-accent)" stroke-width="1.5" rx="3"/>
       <g transform="translate(40, 185)">
         <ellipse cx="10" cy="0" rx="20" ry="6" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
         <ellipse cx="10" cy="6" rx="20" ry="6" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
@@ -108,7 +108,7 @@
       </g>
 
       <!-- destination 4 (BI) -->
-      <rect x="0" y="240" width="100" height="50" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-fg)" stroke-width="1.5" rx="3"/>
+      <rect x="0" y="240" width="100" height="50" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-accent)" stroke-width="1.5" rx="3"/>
       <g transform="translate(50, 265)">
         <path d="M -20 8 L -10 0 L 0 4 L 10 -6 L 20 -10" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
       </g>
@@ -116,9 +116,9 @@
 
     <!-- 연결선 (클라이언트 → 서버) -->
     <g stroke="var(--c-fg)" stroke-width="1.5" stroke-opacity="0.5" fill="none">
-      <path d="M 100 160 L 360 220" stroke-dasharray="0"/>
-      <path d="M 100 240 L 360 260" stroke-dasharray="0"/>
-      <path d="M 100 320 L 360 290" stroke-dasharray="0"/>
+      <path d="M 100 160 L 360 220" stroke-dasharray="0" stroke="var(--c-accent)"/>
+      <path d="M 100 240 L 360 260" stroke-dasharray="0" stroke="var(--c-accent)"/>
+      <path d="M 100 320 L 360 290" stroke-dasharray="0" stroke="var(--c-accent)"/>
     </g>
 
     <!-- 연결선 (서버 → destination) -->

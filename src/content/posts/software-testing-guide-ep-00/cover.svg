@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="사용자 대상 소프트웨어 테스트 가이드 시리즈 커버 - 개요편">
   <style>
     :root {
-      --c-bg: #FAFAF7;
+      --c-bg: #F2FDF9;
       --c-fg: #1F2A37;
       --c-muted: #6B7280;
-      --c-accent: #5B8C7B;
-      --c-accent-2: #3D6B5B;
-      --c-accent-3: #B8CCC2;
-      --c-num: rgba(91, 140, 123, 0.16);
+      --c-accent: #04919C;
+      --c-accent-2: #057157;
+      --c-accent-3: #7DDDB4;
+      --c-num: rgba(4, 145, 156, 0.14);
       --c-dot: #5B8C7B;
       --c-line: #C9D1CC;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #15191F;
+        --c-bg: #131922;
         --c-fg: #E6E8EB;
         --c-muted: #94A3B8;
-        --c-accent: #7FB5A0;
-        --c-accent-2: #A8D0C0;
-        --c-accent-3: #4A6B5E;
-        --c-num: rgba(127, 181, 160, 0.18);
+        --c-accent: #20BDC8;
+        --c-accent-2: #7FDBBA;
+        --c-accent-3: #1D7359;
+        --c-num: rgba(32, 189, 200, 0.22);
         --c-dot: #7FB5A0;
         --c-line: #3D434D;
       }
@@ -39,11 +39,11 @@
       <circle cx="14" cy="14" r="1.1" class="dot" opacity="0.18"/>
     </pattern>
     <radialGradient id="rg-tl-00" cx="0" cy="0" r="0.55">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.28"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg-br-00" cx="1" cy="1" r="0.6">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.32"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -66,7 +66,7 @@
     <!-- Foreground: 동심원 (시작점, 원점 메타포) -->
     <g transform="translate(420 315)">
       <circle r="148" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 5" opacity="0.55"/>
-      <circle r="98" class="accent2-stroke" stroke-width="1.5" opacity="0.7"/>
+      <circle r="98" class="accent2-stroke" stroke-width="1.5" opacity="0.85"/>
       <circle r="52" class="accent-fill" opacity="0.18"/>
       <circle r="18" class="accent2-fill"/>
     </g>
@@ -79,7 +79,7 @@
       <rect x="630" y="143" width="22" height="22" class="accent2-fill" opacity="0.85" transform="rotate(12 641 154)"/>
       <line x1="525" y1="420" x2="660" y2="490" class="accent-stroke" stroke-width="1.5" stroke-dasharray="4 4"/>
       <circle cx="660" cy="490" r="7" class="accent2-fill"/>
-      <circle cx="660" cy="490" r="13" class="accent-stroke" stroke-width="1.2" opacity="0.7"/>
+      <circle cx="660" cy="490" r="13" class="accent-stroke" stroke-width="1.2" opacity="0.85"/>
       <line x1="315" y1="420" x2="200" y2="500" class="accent-stroke" stroke-width="1.5"/>
       <circle cx="200" cy="500" r="3" class="accent2-fill"/>
       <circle cx="188" cy="510" r="3" class="accent2-fill"/>
@@ -104,7 +104,7 @@
   </g>
 
   <!-- 회전된 사각형 (오른쪽 빈 공간, 살짝 잘리게) -->
-  <rect x="980" y="80" width="120" height="120" class="line" stroke-width="1.5" fill="none" transform="rotate(-8 1040 140)" opacity="0.6"/>
+  <rect x="980" y="80" width="120" height="120" class="line" stroke-width="1.5" fill="none" transform="rotate(-8 1040 140)" opacity="0.85" style="stroke: var(--c-accent)"/>
 
   <!-- 작은 점 무리 (상단 가운데) -->
   <g class="accent2-fill" opacity="0.7">

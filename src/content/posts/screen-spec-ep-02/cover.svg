@@ -1,23 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="화면설계서 가이드 ep.02 cover">
   <style>
   :root {
-    --c-bg: #f1f5f9;
-    --c-fg: #0f172a;
-    --c-muted: #64748b;
-    --c-accent: #059669; --c-accent-2: #34d399; --c-accent-3: #86efac;
-    --c-num: rgba(5, 150, 105, 0.14);
-    --c-dot: rgba(5, 150, 105, 0.10);
-    --c-line: rgba(5, 150, 105, 0.16);
+    --c-bg: #F3F8F1;
+    --c-fg: #14231A;
+    --c-muted: #5C7660;
+    --c-accent: #1F8F4E; --c-accent-2: #62B06A; --c-accent-3: #7FB9D0;
+    --c-num: rgba(31, 143, 78, 0.14);
+    --c-dot: rgba(31, 143, 78, 0.10);
+    --c-line: rgba(20, 35, 26, 0.14);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --c-bg: #0b1220;
-      --c-fg: #e2e8f0;
-      --c-muted: #94a3b8;
-      --c-accent: #34d399; --c-accent-2: #059669; --c-accent-3: #064e3b;
-      --c-num: rgba(52, 211, 153, 0.16);
-      --c-dot: rgba(52, 211, 153, 0.10);
-      --c-line: rgba(52, 211, 153, 0.20);
+      --c-bg: #0C1610;
+      --c-fg: #E4EFE5;
+      --c-muted: #90AB94;
+      --c-accent: #6FD196; --c-accent-2: #3F9E62; --c-accent-3: #3F7F96;
+      --c-num: rgba(111, 209, 150, 0.22);
+      --c-dot: rgba(111, 209, 150, 0.10);
+      --c-line: rgba(228, 239, 229, 0.16);
     }
   }
   .cover-bg { fill: var(--c-bg); }
@@ -43,69 +43,69 @@
   <circle cx="1100" cy="540" r="240" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
 
   <g transform="translate(80, 80) rotate(-4 200 260)">
-    <rect width="400" height="510" rx="20" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
-    <rect x="20" y="40" width="120" height="14" rx="4" fill="var(--c-accent)"/>
-    <rect x="20" y="70" width="200" height="32" rx="6" fill="var(--c-accent)"/>
-    <rect x="40" y="80" width="80" height="12" rx="4" fill="var(--c-bg)" fill-opacity="0.9"/>
+    <rect width="400" height="510" rx="20" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.1"/>
+    <rect x="20" y="43" width="120" height="8" rx="4" fill="var(--c-accent)" fill-opacity="0.75"/>
+    <rect x="20" y="70" width="200" height="32" rx="6" fill="var(--c-accent)" fill-opacity="0.12" stroke="var(--c-accent)" stroke-width="1.5" stroke-opacity="0.7"/>
+    <rect x="40" y="82.5" width="80" height="7" rx="3.5" fill="var(--c-accent)" fill-opacity="0.63"/>
 
-    <rect x="20" y="130" width="360" height="180" rx="14" fill="var(--c-accent-2)" fill-opacity="0.45"/>
-    <rect x="40" y="150" width="160" height="14" rx="4" fill="var(--c-bg)" fill-opacity="0.9"/>
-    <rect x="40" y="174" width="260" height="10" rx="4" fill="var(--c-bg)" fill-opacity="0.65"/>
-    <rect x="40" y="192" width="220" height="10" rx="4" fill="var(--c-bg)" fill-opacity="0.55"/>
-    <rect x="40" y="220" width="120" height="14" rx="4" fill="var(--c-bg)" fill-opacity="0.85"/>
-    <rect x="40" y="244" width="240" height="10" rx="4" fill="var(--c-bg)" fill-opacity="0.55"/>
-    <rect x="40" y="262" width="200" height="10" rx="4" fill="var(--c-bg)" fill-opacity="0.55"/>
-    <rect x="40" y="284" width="180" height="14" rx="4" fill="var(--c-bg)" fill-opacity="0.4"/>
+    <rect x="20" y="130" width="360" height="180" rx="14" fill="var(--c-accent-2)" fill-opacity="0.05" stroke="var(--c-accent-2)" stroke-width="1.5" stroke-opacity="0.7"/>
+    <rect x="40" y="153" width="160" height="8" rx="4" fill="var(--c-bg)" fill-opacity="0.9" stroke="var(--c-accent-2)" stroke-width="1.25" stroke-opacity="0.6"/>
+    <rect x="40" y="176" width="260" height="6" rx="3" fill="var(--c-bg)" fill-opacity="0.65" stroke="var(--c-accent-2)" stroke-width="1.25" stroke-opacity="0.6"/>
+    <rect x="40" y="194" width="220" height="6" rx="3" fill="var(--c-bg)" fill-opacity="0.55" stroke="var(--c-accent-2)" stroke-width="1.25" stroke-opacity="0.6"/>
+    <rect x="40" y="223" width="120" height="8" rx="4" fill="var(--c-bg)" fill-opacity="0.85" stroke="var(--c-accent-2)" stroke-width="1.25" stroke-opacity="0.6"/>
+    <rect x="40" y="246" width="240" height="6" rx="3" fill="var(--c-bg)" fill-opacity="0.55" stroke="var(--c-accent-2)" stroke-width="1.25" stroke-opacity="0.6"/>
+    <rect x="40" y="264" width="200" height="6" rx="3" fill="var(--c-bg)" fill-opacity="0.55" stroke="var(--c-accent-2)" stroke-width="1.25" stroke-opacity="0.6"/>
+    <rect x="40" y="287" width="180" height="8" rx="4" fill="var(--c-bg)" fill-opacity="0.4" stroke="var(--c-accent-2)" stroke-width="1.25" stroke-opacity="0.6"/>
 
     <g transform="translate(20, 340)">
-      <rect width="360" height="14" rx="3" fill="var(--c-accent)"/>
-      <rect width="100" height="14" rx="3" y="22" fill="var(--c-accent)" fill-opacity="0.55"/>
-      <rect width="120" x="116" height="14" rx="3" y="22" fill="var(--c-accent)" fill-opacity="0.55"/>
-      <rect width="100" x="252" height="14" rx="3" y="22" fill="var(--c-accent)" fill-opacity="0.55"/>
+      <rect width="360" height="8" rx="3" fill="var(--c-accent)" y="3" fill-opacity="0.75"/>
+      <rect width="100" height="8" rx="3" y="25" fill="var(--c-accent)" fill-opacity="0.55"/>
+      <rect width="120" x="116" height="8" rx="3" y="25" fill="var(--c-accent)" fill-opacity="0.55"/>
+      <rect width="100" x="252" height="8" rx="3" y="25" fill="var(--c-accent)" fill-opacity="0.55"/>
 
-      <rect y="46" width="100" height="14" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
-      <rect x="116" y="46" width="120" height="14" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
-      <rect x="252" y="46" width="100" height="14" rx="3" fill="var(--c-accent-2)" fill-opacity="0.7"/>
+      <rect y="49" width="100" height="8" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+      <rect x="116" y="49" width="120" height="8" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+      <rect x="252" y="49" width="100" height="8" rx="3" fill="var(--c-accent-2)" fill-opacity="0.7"/>
 
-      <rect y="70" width="100" height="14" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
-      <rect x="116" y="70" width="120" height="14" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
-      <rect x="252" y="70" width="100" height="14" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+      <rect y="73" width="100" height="8" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+      <rect x="116" y="73" width="120" height="8" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+      <rect x="252" y="73" width="100" height="8" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
 
-      <rect y="94" width="100" height="14" rx="3" fill="var(--c-accent-2)" fill-opacity="0.7"/>
-      <rect x="116" y="94" width="120" height="14" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
-      <rect x="252" y="94" width="100" height="14" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+      <rect y="97" width="100" height="8" rx="3" fill="var(--c-accent-2)" fill-opacity="0.7"/>
+      <rect x="116" y="97" width="120" height="8" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+      <rect x="252" y="97" width="100" height="8" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
 
       <line x1="0" y1="42" x2="360" y2="42" stroke="var(--c-accent)" stroke-width="1.5"/>
     </g>
   </g>
 
   <g transform="translate(540, 80)">
-    <rect width="600" height="510" rx="20" fill="var(--c-accent)" fill-opacity="0.06" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="10 6"/>
-    <rect x="24" y="24" width="120" height="14" rx="4" fill="var(--c-accent)"/>
+    <rect width="600" height="510" rx="20" fill="var(--c-accent)" fill-opacity="0.05" stroke="var(--c-accent)" stroke-width="1.5" stroke-dasharray="10 6"/>
+    <rect x="24" y="27" width="120" height="8" rx="4" fill="var(--c-accent)" fill-opacity="0.75"/>
 
     <g transform="translate(80, 80)">
       <rect width="120" height="60" rx="14" fill="var(--c-accent)"/>
-      <rect x="20" y="22" width="80" height="14" rx="4" fill="var(--c-bg)" fill-opacity="0.9"/>
+      <rect x="20" y="25" width="80" height="8" rx="4" fill="var(--c-bg)" fill-opacity="0.9"/>
 
-      <line x1="60" y1="60" x2="60" y2="100" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <line x1="60" y1="60" x2="60" y2="100" stroke="var(--c-accent)" stroke-width="1.5"/>
       <polygon points="56,96 64,96 60,104" fill="var(--c-accent)"/>
 
       <polygon points="60,100 130,140 60,180 -10,140" fill="var(--c-accent-2)"/>
-      <rect x="20" y="132" width="80" height="14" rx="4" fill="var(--c-bg)" fill-opacity="0.9"/>
+      <rect x="20" y="135" width="80" height="8" rx="4" fill="var(--c-bg)" fill-opacity="0.9"/>
 
-      <line x1="-10" y1="140" x2="-60" y2="240" stroke="var(--c-accent)" stroke-width="2"/>
-      <line x1="130" y1="140" x2="180" y2="240" stroke="var(--c-accent)" stroke-width="2"/>
+      <line x1="-10" y1="140" x2="-60" y2="240" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <line x1="130" y1="140" x2="180" y2="240" stroke="var(--c-accent)" stroke-width="1.5"/>
 
-      <rect x="-110" y="240" width="120" height="60" rx="14" fill="var(--c-accent)" fill-opacity="0.18" stroke="var(--c-accent)" stroke-width="2"/>
-      <rect x="-90" y="262" width="80" height="14" rx="4" fill="var(--c-accent)" fill-opacity="0.7"/>
+      <rect x="-110" y="240" width="120" height="60" rx="14" fill="var(--c-accent)" fill-opacity="0.18" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <rect x="-90" y="265" width="80" height="8" rx="4" fill="var(--c-accent)" fill-opacity="0.7"/>
 
-      <rect x="130" y="240" width="120" height="60" rx="14" fill="var(--c-accent)" fill-opacity="0.18" stroke="var(--c-accent)" stroke-width="2"/>
-      <rect x="150" y="262" width="80" height="14" rx="4" fill="var(--c-accent)" fill-opacity="0.7"/>
+      <rect x="130" y="240" width="120" height="60" rx="14" fill="var(--c-accent)" fill-opacity="0.18" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <rect x="150" y="265" width="80" height="8" rx="4" fill="var(--c-accent)" fill-opacity="0.7"/>
 
-      <line x1="-50" y1="300" x2="-50" y2="340" stroke="var(--c-accent)" stroke-width="2"/>
-      <line x1="190" y1="300" x2="190" y2="340" stroke="var(--c-accent)" stroke-width="2"/>
-      <line x1="-50" y1="340" x2="190" y2="340" stroke="var(--c-accent)" stroke-width="2"/>
-      <line x1="70" y1="340" x2="70" y2="380" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <line x1="-50" y1="300" x2="-50" y2="340" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <line x1="190" y1="300" x2="190" y2="340" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <line x1="-50" y1="340" x2="190" y2="340" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <line x1="70" y1="340" x2="70" y2="380" stroke="var(--c-accent)" stroke-width="1.5"/>
       <polygon points="66,376 74,376 70,384" fill="var(--c-accent)"/>
 
       <rect x="10" y="380" width="120" height="40" rx="20" fill="var(--c-accent)"/>
@@ -113,47 +113,47 @@
     </g>
 
     <g transform="translate(360, 60)">
-      <rect width="220" height="430" rx="14" fill="var(--c-accent-3)" fill-opacity="0.6"/>
-      <rect width="220" height="430" rx="14" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
-      <rect x="20" y="22" width="120" height="14" rx="4" fill="var(--c-accent)"/>
+      <rect width="220" height="430" rx="14" fill="var(--c-accent-3)" fill-opacity="0.05" stroke="var(--c-accent-3)" stroke-width="1.5" stroke-opacity="0.7"/>
+      <rect width="220" height="430" rx="14" fill="none" stroke="var(--c-accent)" stroke-width="1.5"/>
+      <rect x="20" y="25" width="120" height="8" rx="4" fill="var(--c-accent)" fill-opacity="0.75"/>
 
       <g transform="translate(20, 54)">
         <rect width="14" height="14" rx="3" fill="var(--c-accent)"/>
-        <path d="M 3 7 L 6 10 L 11 4" stroke="var(--c-bg)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <rect x="22" y="2" width="120" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.65"/>
-        <rect x="148" y="2" width="40" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
+        <path d="M 3 7 L 6 10 L 11 4" stroke="var(--c-bg)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="22" y="4" width="120" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.65"/>
+        <rect x="148" y="4" width="40" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
       </g>
       <g transform="translate(20, 80)">
         <rect width="14" height="14" rx="3" fill="var(--c-accent)"/>
-        <path d="M 3 7 L 6 10 L 11 4" stroke="var(--c-bg)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <rect x="22" y="2" width="100" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.65"/>
-        <rect x="128" y="2" width="40" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
+        <path d="M 3 7 L 6 10 L 11 4" stroke="var(--c-bg)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="22" y="4" width="100" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.65"/>
+        <rect x="128" y="4" width="40" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
       </g>
       <g transform="translate(20, 106)">
-        <rect width="14" height="14" rx="3" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
-        <rect x="22" y="2" width="140" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+        <rect width="14" height="14" rx="3" fill="var(--c-accent-3)" stroke="var(--c-accent)" stroke-width="1.5" fill-opacity="0.7"/>
+        <rect x="22" y="4" width="140" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
         <rect x="168" y="2" width="20" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
       </g>
       <g transform="translate(20, 132)">
-        <rect width="14" height="14" rx="3" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
-        <rect x="22" y="2" width="160" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
+        <rect width="14" height="14" rx="3" fill="var(--c-accent-3)" stroke="var(--c-accent)" stroke-width="1.5" fill-opacity="0.7"/>
+        <rect x="22" y="4" width="160" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.45"/>
       </g>
 
-      <rect x="20" y="170" width="180" height="14" rx="4" fill="var(--c-accent)" fill-opacity="0.6"/>
-      <rect x="20" y="194" width="140" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
-      <rect x="20" y="210" width="100" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
-      <rect x="20" y="226" width="160" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
+      <rect x="20" y="173" width="180" height="8" rx="4" fill="var(--c-accent)" fill-opacity="0.6"/>
+      <rect x="20" y="196" width="140" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
+      <rect x="20" y="212" width="100" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
+      <rect x="20" y="228" width="160" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
 
       <line x1="20" y1="256" x2="200" y2="256" stroke="var(--c-accent)" stroke-width="1.5" stroke-opacity="0.5"/>
 
-      <rect x="20" y="270" width="60" height="14" rx="4" fill="var(--c-accent-2)"/>
-      <rect x="20" y="294" width="180" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.55"/>
-      <rect x="20" y="310" width="140" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
+      <rect x="20" y="273" width="60" height="8" rx="4" fill="var(--c-accent-2)" fill-opacity="0.75"/>
+      <rect x="20" y="296" width="180" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.55"/>
+      <rect x="20" y="312" width="140" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
 
-      <rect x="20" y="340" width="60" height="14" rx="4" fill="var(--c-accent-2)"/>
-      <rect x="20" y="364" width="160" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.55"/>
-      <rect x="20" y="380" width="120" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
-      <rect x="20" y="396" width="180" height="10" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
+      <rect x="20" y="343" width="60" height="8" rx="4" fill="var(--c-accent-2)" fill-opacity="0.75"/>
+      <rect x="20" y="366" width="160" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.55"/>
+      <rect x="20" y="382" width="120" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
+      <rect x="20" y="398" width="180" height="6" rx="3" fill="var(--c-accent)" fill-opacity="0.4"/>
     </g>
   </g>
 

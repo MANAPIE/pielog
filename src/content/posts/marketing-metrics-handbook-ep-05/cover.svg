@@ -2,25 +2,25 @@
   <title id="title">ep.05 - 유지와 참여</title>
   <style>
     :root {
-      --c-bg: #fafaf7;
+      --c-bg: #FEF9F5;
       --c-fg: #1a1a1a;
       --c-muted: #6b6b6b;
-      --c-accent: #c97f4a;
-      --c-accent-2: #2d4a3e;
-      --c-accent-3: #d9a47e;
-      --c-num: #c97f4a;
+      --c-accent: #DC7311;
+      --c-accent-2: #025039;
+      --c-accent-3: #E69E69;
+      --c-num: #DC7311;
       --c-dot: #1a1a1a;
       --c-line: #6b6b6b;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #0f0f0e;
+        --c-bg: #160D07;
         --c-fg: #ededea;
         --c-muted: #999996;
-        --c-accent: #e09a6a;
-        --c-accent-2: #7fb09a;
-        --c-accent-3: #d4a560;
-        --c-num: #e09a6a;
+        --c-accent: #E6975F;
+        --c-accent-2: #60B794;
+        --c-accent-3: #D4A560;
+        --c-num: #E6975F;
         --c-dot: #ededea;
         --c-line: #4a4a47;
       }
@@ -31,11 +31,11 @@
       <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
     </pattern>
     <radialGradient id="rg05a" cx="78%" cy="22%" r="60%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg05b" cx="20%" cy="80%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -52,9 +52,9 @@
   <!-- 메인 메타포: 동심원 (MAU > WAU > DAU) -->
   <g transform="translate(600, 343) scale(1.16)">
     <!-- MAU 가장 큰 원 -->
-    <circle cx="0" cy="0" r="240" fill="var(--c-accent-3)" fill-opacity="0.18" stroke="var(--c-fg)" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="240" fill="var(--c-accent-3)" fill-opacity="0.18" stroke="var(--c-accent)" stroke-width="1.5"/>
     <!-- WAU 중간 원 -->
-    <circle cx="0" cy="0" r="160" fill="var(--c-accent)" fill-opacity="0.25" stroke="var(--c-fg)" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="160" fill="var(--c-accent)" fill-opacity="0.25" stroke="var(--c-accent)" stroke-width="1.5"/>
     <!-- DAU 가장 작은 원 -->
     <circle cx="0" cy="0" r="80" fill="var(--c-accent-2)" stroke="var(--c-accent-2)" stroke-width="2"/>
 
@@ -65,28 +65,28 @@
     <!-- 외곽에 도트 무리들 (이탈한 사용자들) -->
     <g fill="var(--c-fg)" opacity="0.4">
       <!-- 위쪽 -->
-      <circle cx="-30" cy="-260" r="3"/>
-      <circle cx="-12" cy="-268" r="3"/>
-      <circle cx="6" cy="-264" r="3"/>
-      <circle cx="24" cy="-270" r="3"/>
+      <circle cx="-30" cy="-260" r="3" fill="var(--c-accent)"/>
+      <circle cx="-12" cy="-268" r="3" fill="var(--c-accent)"/>
+      <circle cx="6" cy="-264" r="3" fill="var(--c-accent)"/>
+      <circle cx="24" cy="-270" r="3" fill="var(--c-accent)"/>
 
       <!-- 우상 -->
-      <circle cx="220" cy="-180" r="3"/>
-      <circle cx="234" cy="-168" r="3"/>
-      <circle cx="248" cy="-182" r="3"/>
+      <circle cx="220" cy="-180" r="3" fill="var(--c-accent)"/>
+      <circle cx="234" cy="-168" r="3" fill="var(--c-accent)"/>
+      <circle cx="248" cy="-182" r="3" fill="var(--c-accent)"/>
 
       <!-- 우하 -->
-      <circle cx="240" cy="180" r="3"/>
-      <circle cx="252" cy="194" r="3"/>
+      <circle cx="240" cy="180" r="3" fill="var(--c-accent)"/>
+      <circle cx="252" cy="194" r="3" fill="var(--c-accent)"/>
 
       <!-- 좌하 -->
-      <circle cx="-220" cy="200" r="3"/>
-      <circle cx="-234" cy="186" r="3"/>
-      <circle cx="-248" cy="208" r="3"/>
+      <circle cx="-220" cy="200" r="3" fill="var(--c-accent)"/>
+      <circle cx="-234" cy="186" r="3" fill="var(--c-accent)"/>
+      <circle cx="-248" cy="208" r="3" fill="var(--c-accent)"/>
 
       <!-- 좌상 -->
-      <circle cx="-230" cy="-180" r="3"/>
-      <circle cx="-216" cy="-198" r="3"/>
+      <circle cx="-230" cy="-180" r="3" fill="var(--c-accent)"/>
+      <circle cx="-216" cy="-198" r="3" fill="var(--c-accent)"/>
     </g>
 
     <!-- 포커스 링 (DAU 강조, 살짝 회전한 점선) -->

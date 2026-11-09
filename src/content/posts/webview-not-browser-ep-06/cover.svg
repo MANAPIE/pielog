@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="웹뷰는 브라우저가 아니다 ep.06 cover">
   <style>
   :root {
-    --c-bg: #EEF5F6;
+    --c-bg: #EBF5F9;
     --c-fg: #10202A;
     --c-muted: #5E7480;
-    --c-accent: #0E7490; --c-accent-2: #22B8CF; --c-accent-3: #C98A3B;
-    --c-num: rgba(14, 116, 144, 0.14);
-    --c-dot: rgba(14, 116, 144, 0.10);
+    --c-accent: #047491; --c-accent-2: #0AB9D1; --c-accent-3: #C98A3B;
+    --c-num: rgba(4, 116, 145, 0.14);
+    --c-dot: rgba(4, 116, 145, 0.10);
     --c-line: rgba(14, 116, 144, 0.16);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --c-bg: #0A161A;
+      --c-bg: #09161A;
       --c-fg: #DCE8EA;
       --c-muted: #8AA0A8;
-      --c-accent: #4DD4EC; --c-accent-2: #0E7490; --c-accent-3: #E0A860;
-      --c-num: rgba(77, 212, 236, 0.15);
-      --c-dot: rgba(77, 212, 236, 0.10);
+      --c-accent: #4BD4EC; --c-accent-2: #047491; --c-accent-3: #E0A860;
+      --c-num: rgba(75, 212, 236, 0.22);
+      --c-dot: rgba(75, 212, 236, 0.10);
       --c-line: rgba(77, 212, 236, 0.20);
     }
   }
@@ -34,11 +34,11 @@
       <line x1="0" y1="0" x2="0" y2="14" stroke="var(--c-accent-3)" stroke-width="1.3" stroke-opacity="0.3"/>
     </pattern>
     <radialGradient id="halo-wnb06a" cx="0.20" cy="0.80" r="0.58">
-      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.31"/>
       <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="halo-wnb06b" cx="0.80" cy="0.16" r="0.60">
-      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.36"/>
       <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
     <!-- 앱 레이어가 덮는 영역 -->
@@ -59,7 +59,7 @@
 
   <!-- 우리가 선언한 화면: 색이 온전히 살아 있는 상태 -->
   <g transform="translate(450 320) rotate(-5)">
-    <rect x="-235" y="-165" width="470" height="330" rx="18" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/>
+    <rect x="-235" y="-165" width="470" height="330" rx="18" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="3"/><rect x="-235" y="-165" width="470" height="330" rx="18" fill="var(--c-accent)" fill-opacity="0.08"/>
     <rect x="-223" y="-153" width="446" height="306" rx="12" fill="none" stroke="var(--c-accent)" stroke-width="1" stroke-opacity="0.35"/>
     <rect x="-196" y="-128" width="196" height="22" rx="11" fill="none" stroke="var(--c-accent)" stroke-width="2.2"/>
     <line x1="-196" y1="-85.5" x2="114" y2="-85.5" stroke="var(--c-accent)" stroke-width="4" stroke-linecap="round" stroke-opacity="0.5"/>
@@ -69,8 +69,8 @@
     <rect x="-44" y="-30" width="60" height="60" rx="12" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-opacity="0.72"/>
     <rect x="32" y="-30" width="60" height="60" rx="12" fill="var(--c-accent)" fill-opacity="0.22" stroke="var(--c-accent)" stroke-width="2" stroke-opacity="0.86"/>
     <rect x="108" y="-30" width="60" height="60" rx="12" fill="var(--c-accent)" fill-opacity="0.5" stroke="var(--c-accent)" stroke-width="2"/>
-    <rect x="-196" y="52" width="180" height="54" rx="27" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.5"/>
-    <rect x="-172" y="74" width="90" height="10" rx="5" fill="var(--c-accent)" fill-opacity="0.6"/>
+    <rect x="-196" y="52" width="180" height="54" rx="27" fill="var(--c-accent)" stroke="var(--c-accent)" stroke-width="2.5"/>
+    <rect x="-172" y="74" width="90" height="10" rx="5" fill="var(--c-bg)" fill-opacity="0.6" opacity="1"/>
     <rect x="0" y="52" width="168" height="54" rx="27" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="9 7"/>
   </g>
 
@@ -97,7 +97,7 @@
       <rect x="32" y="-30" width="60" height="60" rx="12" fill="var(--c-accent-3)" fill-opacity="0.22" stroke="var(--c-accent-3)" stroke-width="2" stroke-opacity="0.86"/>
       <rect x="108" y="-30" width="60" height="60" rx="12" fill="var(--c-accent-3)" fill-opacity="0.5" stroke="var(--c-accent-3)" stroke-width="2"/>
       <rect x="-196" y="52" width="180" height="54" rx="27" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/>
-      <rect x="-172" y="74" width="90" height="10" rx="5" fill="var(--c-accent-3)" fill-opacity="0.6"/>
+      <rect x="-172" y="74" width="90" height="10" rx="5" fill="var(--c-bg)" fill-opacity="0.6" opacity="1"/>
       <rect x="0" y="52" width="168" height="54" rx="27" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="9 7"/>
     </g>
   </g>
@@ -118,8 +118,8 @@
   <circle cx="468" cy="548" r="9" fill="var(--c-accent-3)"/>
   <circle cx="496" cy="570" r="6" fill="var(--c-accent)"/>
   <circle cx="452" cy="578" r="7" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
-  <rect x="76" y="468" width="58" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.6"/>
-  <rect x="104" y="490" width="34" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.8"/>
+  <rect x="76" y="468" width="58" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+  <rect x="104" y="490" width="34" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.85"/>
   <line x1="76" y1="514" x2="170" y2="514" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-dasharray="5 7" stroke-opacity="0.5"/>
 
   <text class="ep-number" x="1164" y="594" text-anchor="end">06</text>

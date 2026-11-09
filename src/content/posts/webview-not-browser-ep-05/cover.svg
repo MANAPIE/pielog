@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="웹뷰는 브라우저가 아니다 ep.05 cover">
   <style>
   :root {
-    --c-bg: #EEF5F6;
+    --c-bg: #EBF5F9;
     --c-fg: #10202A;
     --c-muted: #5E7480;
-    --c-accent: #0E7490; --c-accent-2: #22B8CF; --c-accent-3: #C98A3B;
-    --c-num: rgba(14, 116, 144, 0.14);
-    --c-dot: rgba(14, 116, 144, 0.10);
+    --c-accent: #047491; --c-accent-2: #0AB9D1; --c-accent-3: #C98A3B;
+    --c-num: rgba(4, 116, 145, 0.14);
+    --c-dot: rgba(4, 116, 145, 0.10);
     --c-line: rgba(14, 116, 144, 0.16);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --c-bg: #0A161A;
+      --c-bg: #09161A;
       --c-fg: #DCE8EA;
       --c-muted: #8AA0A8;
-      --c-accent: #4DD4EC; --c-accent-2: #0E7490; --c-accent-3: #E0A860;
-      --c-num: rgba(77, 212, 236, 0.15);
-      --c-dot: rgba(77, 212, 236, 0.10);
+      --c-accent: #4BD4EC; --c-accent-2: #047491; --c-accent-3: #E0A860;
+      --c-num: rgba(75, 212, 236, 0.22);
+      --c-dot: rgba(75, 212, 236, 0.10);
       --c-line: rgba(77, 212, 236, 0.20);
     }
   }
@@ -31,11 +31,11 @@
       <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
     </pattern>
     <radialGradient id="halo-wnb05a" cx="0.18" cy="0.82" r="0.60">
-      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.31"/>
       <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="halo-wnb05b" cx="0.82" cy="0.16" r="0.58">
-      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.30"/>
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.36"/>
       <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -65,17 +65,17 @@
     <rect x="-250" y="-220" width="500" height="440" rx="22" fill="none" stroke="var(--c-accent)" stroke-width="3.5"/>
 
     <!-- 위 겹: 실제로 보이는 상자. 어긋나 있고 아래는 잘려 있다 -->
-    <rect x="-286" y="-252" width="440" height="348" rx="20" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="3"/>
+    <rect x="-286" y="-252" width="440" height="348" rx="20" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="3"/><rect x="-286" y="-252" width="440" height="348" rx="20" fill="var(--c-accent-2)" fill-opacity="0.08"/>
     <rect x="-278" y="-244" width="424" height="332" rx="14" fill="none" stroke="var(--c-accent-2)" stroke-width="1.2" stroke-opacity="0.45"/>
-    <rect x="-96" y="-240" width="60" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.55"/>
+    <rect x="-96" y="-240" width="60" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.85"/>
     <rect x="-256" y="-208" width="180" height="14" rx="7" fill="none" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-opacity="0.7"/>
     <circle cx="76" cy="-201" r="5" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="1.6"/>
     <circle cx="100" cy="-201" r="5" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-opacity="0.7"/>
     <circle cx="124" cy="-201" r="5" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="1.6" stroke-opacity="0.45"/>
     <rect x="-256" y="-176" width="250" height="13" rx="6.5" fill="none" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-opacity="0.6"/>
-    <rect x="44" y="-176" width="90" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.4"/>
+    <rect x="44" y="-176" width="90" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.85"/>
     <rect x="-256" y="-152" width="196" height="13" rx="6.5" fill="none" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-dasharray="7 5" stroke-opacity="0.5"/>
-    <rect x="44" y="-152" width="72" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.26"/>
+    <rect x="44" y="-152" width="72" height="13" rx="6.5" fill="var(--c-accent-2)" fill-opacity="0.85"/>
     <rect x="-256" y="-118" width="190" height="86" rx="12" fill="none" stroke="var(--c-accent-2)" stroke-width="1.8" stroke-opacity="0.6"/>
     <rect x="-46" y="-70" width="13" height="38" rx="6.5" fill="var(--c-accent)" fill-opacity="0.5"/>
     <rect x="-24" y="-92" width="13" height="60" rx="6.5" fill="var(--c-accent)" fill-opacity="0.34"/>
@@ -87,7 +87,7 @@
     <circle cx="-250" cy="-220" r="5.5" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
 
     <!-- 밖에서 밀고 올라와 위 겹을 잘라내는 면 -->
-    <rect x="-560" y="96" width="832" height="140" rx="20" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.6"/>
+    <rect x="-560" y="96" width="832" height="140" rx="20" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.6"/><rect x="-560" y="96" width="832" height="140" rx="20" fill="var(--c-accent-3)" fill-opacity="0.08"/>
     <rect x="-260" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
     <rect x="-180" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
     <rect x="-100" y="120" width="64" height="18" rx="9" fill="var(--c-accent-3)" fill-opacity="0.32"/>
@@ -110,8 +110,8 @@
 
   <!-- 프레임 밖으로 빠져나가는 제스처 -->
   <circle cx="776" cy="296" r="30" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-dasharray="4 9"/>
-  <circle cx="776" cy="296" r="17" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/>
-  <circle cx="776" cy="296" r="7" fill="var(--c-accent-3)"/>
+  <circle cx="776" cy="296" r="17" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2.5"/>
+  <circle cx="776" cy="296" r="7" fill="var(--c-bg)" opacity="1"/>
   <path d="M 798 286 C 872 260 934 222 986 170 C 1040 116 1104 88 1178 80" fill="none" stroke="var(--c-accent-3)" stroke-width="3.5" stroke-dasharray="9 8" stroke-linecap="round"/>
   <polygon points="1216,82 1166,60 1170,104" fill="var(--c-accent-3)"/>
 
@@ -121,8 +121,8 @@
   <circle cx="128" cy="296" r="9" fill="var(--c-accent)"/>
   <circle cx="158" cy="316" r="6" fill="var(--c-accent-2)"/>
   <circle cx="112" cy="328" r="5" fill="var(--c-accent-3)"/>
-  <rect x="58" y="372" width="54" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.6"/>
-  <rect x="86" y="394" width="32" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.8"/>
+  <rect x="58" y="372" width="54" height="13" rx="5" fill="var(--c-accent-2)" fill-opacity="0.85"/>
+  <rect x="86" y="394" width="32" height="8" rx="4" fill="var(--c-accent-3)" fill-opacity="0.85"/>
   <polygon points="886,196 936,196 911,152" fill="none" stroke="var(--c-accent-3)" stroke-width="2.2"/>
   <g transform="translate(1006 316)" opacity="0.6">
     <circle r="46" fill="none" stroke="var(--c-accent)" stroke-width="1.6"/>

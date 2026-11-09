@@ -3,15 +3,15 @@
   <defs>
     <style>
       :root {
-        --c-bg: #FAFAF7; --c-fg: #1A1F2E; --c-muted: #6B7280;
+        --c-bg: #FFF8FA; --c-fg: #1A1F2E; --c-muted: #6B7280;
         --c-accent: #C02D6E; --c-accent-2: #D97757; --c-accent-3: #A65AA8;
-        --c-num: rgba(26,31,46,0.07); --c-dot: #1A1F2E; --c-line: #1A1F2E;
+        --c-num: rgba(192, 45, 110, 0.14); --c-dot: #1A1F2E; --c-line: #1A1F2E;
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --c-bg: #0F1419; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+          --c-bg: #0C141C; --c-fg: #E8E6E1; --c-muted: #8B92A0;
           --c-accent: #EC85B5; --c-accent-2: #E89376; --c-accent-3: #CE9DD2;
-          --c-num: rgba(232,230,225,0.07); --c-dot: #E8E6E1; --c-line: #E8E6E1;
+          --c-num: rgba(236, 133, 181, 0.22); --c-dot: #E8E6E1; --c-line: #E8E6E1;
         }
       }
       .bg { fill: var(--c-bg); }
@@ -21,11 +21,11 @@
       <circle cx="2" cy="2" r="1" fill="var(--c-dot)" opacity="0.10"/>
     </pattern>
     <radialGradient id="grad1" cx="50%" cy="20%" r="50%">
-      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.22"/>
+      <stop offset="0%" stop-color="var(--c-accent-2)" stop-opacity="0.26"/>
       <stop offset="100%" stop-color="var(--c-accent-2)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="grad2" cx="20%" cy="85%" r="40%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.20"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.24"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -43,72 +43,72 @@
   <g transform="translate(600 315)">
     <!-- root (큰 박스) -->
     <g transform="rotate(-2)">
-      <rect x="-60" y="-200" width="120" height="60" rx="5" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.5"/>
-      <line x1="-40" y1="-180" x2="40" y2="-180" stroke="var(--c-line)" stroke-width="2.5"/>
-      <circle cx="-30" cy="-160" r="3" fill="var(--c-accent-2)"/>
-      <circle cx="-15" cy="-160" r="3" fill="var(--c-accent-2)"/>
-      <circle cx="0" cy="-160" r="3" fill="var(--c-accent-2)"/>
+      <rect x="-60" y="-200" width="120" height="60" rx="5" fill="var(--c-accent-2)" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+      <line x1="-40" y1="-180" x2="40" y2="-180" stroke="var(--c-bg)" stroke-width="2.5"/>
+      <circle cx="-30" cy="-160" r="3" fill="var(--c-bg)" opacity="1"/>
+      <circle cx="-15" cy="-160" r="3" fill="var(--c-bg)" opacity="1"/>
+      <circle cx="0" cy="-160" r="3" fill="var(--c-bg)" opacity="1"/>
     </g>
 
     <!-- 가지 -->
-    <line x1="-40" y1="-140" x2="-180" y2="-70" stroke="var(--c-line)" stroke-width="1.5" opacity="0.6"/>
-    <line x1="0" y1="-140" x2="0" y2="-70" stroke="var(--c-line)" stroke-width="1.5" opacity="0.6"/>
-    <line x1="40" y1="-140" x2="180" y2="-70" stroke="var(--c-line)" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-40" y1="-140" x2="-180" y2="-70" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+    <line x1="0" y1="-140" x2="0" y2="-70" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+    <line x1="40" y1="-140" x2="180" y2="-70" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
 
     <!-- 중간 노드들 (composite) -->
     <g transform="translate(-180 -40) rotate(-3)">
-      <rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
-      <line x1="-30" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2"/>
+      <rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/><rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-accent)" fill-opacity="0.18"/>
+      <line x1="-30" y1="-8" x2="30" y2="-8" stroke="var(--c-accent)" stroke-width="2"/>
       <circle cx="-25" cy="10" r="2.5" fill="var(--c-accent)"/>
       <circle cx="-12" cy="10" r="2.5" fill="var(--c-accent)"/>
     </g>
 
     <g transform="translate(0 -40) rotate(2)">
-      <rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
-      <line x1="-30" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2"/>
+      <rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/><rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-accent)" fill-opacity="0.18"/>
+      <line x1="-30" y1="-8" x2="30" y2="-8" stroke="var(--c-accent)" stroke-width="2"/>
       <circle cx="-25" cy="10" r="2.5" fill="var(--c-accent)"/>
       <circle cx="-12" cy="10" r="2.5" fill="var(--c-accent)"/>
     </g>
 
     <g transform="translate(180 -40) rotate(-2)">
-      <rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
-      <line x1="-30" y1="-8" x2="30" y2="-8" stroke="var(--c-line)" stroke-width="2"/>
+      <rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/><rect x="-45" y="-25" width="90" height="50" rx="4" fill="var(--c-accent)" fill-opacity="0.18"/>
+      <line x1="-30" y1="-8" x2="30" y2="-8" stroke="var(--c-accent)" stroke-width="2"/>
       <circle cx="-25" cy="10" r="2.5" fill="var(--c-accent)"/>
       <circle cx="-12" cy="10" r="2.5" fill="var(--c-accent)"/>
     </g>
 
     <!-- 두 번째 가지 -->
-    <line x1="-180" y1="-15" x2="-220" y2="60" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
-    <line x1="-180" y1="-15" x2="-140" y2="60" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
-    <line x1="0" y1="-15" x2="-40" y2="60" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
-    <line x1="0" y1="-15" x2="40" y2="60" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
-    <line x1="180" y1="-15" x2="140" y2="60" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
-    <line x1="180" y1="-15" x2="220" y2="60" stroke="var(--c-line)" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-180" y1="-15" x2="-220" y2="60" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+    <line x1="-180" y1="-15" x2="-140" y2="60" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+    <line x1="0" y1="-15" x2="-40" y2="60" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+    <line x1="0" y1="-15" x2="40" y2="60" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+    <line x1="180" y1="-15" x2="140" y2="60" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
+    <line x1="180" y1="-15" x2="220" y2="60" stroke="var(--c-accent)" stroke-width="1.5" opacity="0.85"/>
 
     <!-- leaf 노드들 (작은 원, 동일한 크기로) -->
-    <circle cx="-220" cy="80" r="14" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
-    <circle cx="-220" cy="80" r="4" fill="var(--c-accent-3)"/>
+    <circle cx="-220" cy="80" r="14" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <circle cx="-220" cy="80" r="4" fill="var(--c-bg)" opacity="1"/>
 
-    <circle cx="-140" cy="80" r="14" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
-    <circle cx="-140" cy="80" r="4" fill="var(--c-accent-3)"/>
+    <circle cx="-140" cy="80" r="14" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <circle cx="-140" cy="80" r="4" fill="var(--c-bg)" opacity="1"/>
 
-    <circle cx="-40" cy="80" r="14" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
-    <circle cx="-40" cy="80" r="4" fill="var(--c-accent-3)"/>
+    <circle cx="-40" cy="80" r="14" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <circle cx="-40" cy="80" r="4" fill="var(--c-bg)" opacity="1"/>
 
-    <circle cx="40" cy="80" r="14" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
-    <circle cx="40" cy="80" r="4" fill="var(--c-accent-3)"/>
+    <circle cx="40" cy="80" r="14" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <circle cx="40" cy="80" r="4" fill="var(--c-bg)" opacity="1"/>
 
-    <circle cx="140" cy="80" r="14" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
-    <circle cx="140" cy="80" r="4" fill="var(--c-accent-3)"/>
+    <circle cx="140" cy="80" r="14" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <circle cx="140" cy="80" r="4" fill="var(--c-bg)" opacity="1"/>
 
-    <circle cx="220" cy="80" r="14" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
-    <circle cx="220" cy="80" r="4" fill="var(--c-accent-3)"/>
+    <circle cx="220" cy="80" r="14" fill="var(--c-accent-3)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <circle cx="220" cy="80" r="4" fill="var(--c-bg)" opacity="1"/>
   </g>
 
   <!-- 우상단 동심원 -->
   <g transform="translate(1050 130)" opacity="0.7">
     <circle r="50" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5"/>
-    <circle r="30" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.6"/>
+    <circle r="30" fill="none" stroke="var(--c-accent-2)" stroke-width="1.5" opacity="0.85"/>
   </g>
 
   <!-- 좌상단 작은 점 무리 -->

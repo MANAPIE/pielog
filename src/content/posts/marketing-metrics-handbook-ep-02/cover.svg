@@ -2,25 +2,25 @@
   <title id="title">ep.02 - 광고 효율</title>
   <style>
     :root {
-      --c-bg: #fafaf7;
+      --c-bg: #FEF9F5;
       --c-fg: #1a1a1a;
       --c-muted: #6b6b6b;
-      --c-accent: #c97f4a;
-      --c-accent-2: #2d4a3e;
-      --c-accent-3: #d9a47e;
-      --c-num: #c97f4a;
+      --c-accent: #DC7311;
+      --c-accent-2: #025039;
+      --c-accent-3: #E69E69;
+      --c-num: #DC7311;
       --c-dot: #1a1a1a;
       --c-line: #6b6b6b;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #0f0f0e;
+        --c-bg: #160D07;
         --c-fg: #ededea;
         --c-muted: #999996;
-        --c-accent: #e09a6a;
-        --c-accent-2: #7fb09a;
-        --c-accent-3: #d4a560;
-        --c-num: #e09a6a;
+        --c-accent: #E6975F;
+        --c-accent-2: #60B794;
+        --c-accent-3: #D4A560;
+        --c-num: #E6975F;
         --c-dot: #ededea;
         --c-line: #4a4a47;
       }
@@ -31,11 +31,11 @@
       <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
     </pattern>
     <radialGradient id="rg02a" cx="25%" cy="25%" r="60%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg02b" cx="88%" cy="78%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.26"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.31"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -67,12 +67,12 @@
 
     <!-- 막대 위 정점에 도트 -->
     <g fill="var(--c-fg)">
-      <circle cx="40" cy="220" r="4"/>
-      <circle cx="160" cy="180" r="4"/>
-      <circle cx="280" cy="140" r="4"/>
-      <circle cx="400" cy="100" r="4"/>
-      <circle cx="520" cy="60" r="4"/>
-      <circle cx="640" cy="40" r="4"/>
+      <circle cx="40" cy="220" r="4" fill="var(--c-accent)"/>
+      <circle cx="160" cy="180" r="4" fill="var(--c-accent)"/>
+      <circle cx="280" cy="140" r="4" fill="var(--c-accent)"/>
+      <circle cx="400" cy="100" r="4" fill="var(--c-accent)"/>
+      <circle cx="520" cy="60" r="4" fill="var(--c-accent)"/>
+      <circle cx="640" cy="40" r="4" fill="var(--c-accent)"/>
     </g>
 
     <!-- 정점을 잇는 점선 (효율 곡선) -->

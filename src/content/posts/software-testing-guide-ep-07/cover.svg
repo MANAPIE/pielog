@@ -1,23 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="성능 편 커버">
   <style>
     :root {
-      --c-bg: #FAFAF7;
+      --c-bg: #F2FDF9;
       --c-fg: #1F2A37;
-      --c-accent: #5B8C7B;
-      --c-accent-2: #3D6B5B;
-      --c-accent-3: #B8CCC2;
-      --c-num: rgba(91, 140, 123, 0.16);
+      --c-accent: #04919C;
+      --c-accent-2: #057157;
+      --c-accent-3: #7DDDB4;
+      --c-num: rgba(4, 145, 156, 0.14);
       --c-dot: #5B8C7B;
       --c-line: #C9D1CC;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #15191F;
+        --c-bg: #131922;
         --c-fg: #E6E8EB;
-        --c-accent: #7FB5A0;
-        --c-accent-2: #A8D0C0;
-        --c-accent-3: #4A6B5E;
-        --c-num: rgba(127, 181, 160, 0.18);
+        --c-accent: #20BDC8;
+        --c-accent-2: #7FDBBA;
+        --c-accent-3: #1D7359;
+        --c-num: rgba(32, 189, 200, 0.22);
         --c-dot: #7FB5A0;
         --c-line: #3D434D;
       }
@@ -37,11 +37,11 @@
       <circle cx="14" cy="14" r="1.1" class="dot" opacity="0.18"/>
     </pattern>
     <radialGradient id="rg-tl-07" cx="0" cy="0" r="0.55">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.31"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg-br-07" cx="1" cy="1" r="0.6">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.3"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -61,11 +61,11 @@
   <!-- 메인: 꺾은선 그래프 (성능 추이) -->
   <g transform="translate(200 260)">
     <!-- 축 -->
-    <line x1="0" y1="0" x2="0" y2="180" class="accent-stroke" stroke-width="1.2" opacity="0.55"/>
-    <line x1="0" y1="180" x2="450" y2="180" class="accent-stroke" stroke-width="1.2" opacity="0.55"/>
+    <line x1="0" y1="0" x2="0" y2="180" class="accent-stroke" stroke-width="1.2" opacity="0.85"/>
+    <line x1="0" y1="180" x2="450" y2="180" class="accent-stroke" stroke-width="1.2" opacity="0.85"/>
 
     <!-- 기준선 (목표) -->
-    <line x1="0" y1="60" x2="450" y2="60" class="accent-stroke" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+    <line x1="0" y1="60" x2="450" y2="60" class="accent-stroke" stroke-width="1" stroke-dasharray="4 4" opacity="0.85"/>
 
     <!-- 데이터 라인 (꺾은선) -->
     <polyline points="0,120 60,100 120,140 180,90 240,110 300,70 360,85 420,55"
@@ -84,25 +84,25 @@
     </g>
 
     <!-- 마지막 포인트 강조 -->
-    <circle cx="420" cy="55" r="14" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.6"/>
+    <circle cx="420" cy="55" r="14" class="accent-stroke" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.85"/>
   </g>
 
   <!-- 좌상단: 게이지 (Lighthouse 점수 메타포) -->
   <g transform="translate(180 170)">
-    <circle r="40" fill="none" stroke="var(--c-accent-3)" stroke-width="6" opacity="0.5"/>
+    <circle r="40" fill="none" stroke="var(--c-accent-3)" stroke-width="6" opacity="0.85"/>
     <!-- 점수 호 (약 90도) -->
     <path d="M 0 -40 A 40 40 0 1 1 -28 28" stroke="var(--c-accent)" stroke-width="6" fill="none" stroke-linecap="round"/>
   </g>
 
   <!-- 우상단: 작은 미니 바 묶음 (3개 지표) -->
   <g transform="translate(800 160)">
-    <rect x="0" y="0" width="40" height="8" rx="4" class="accent3-fill" opacity="0.6"/>
+    <rect x="0" y="0" width="40" height="8" rx="4" class="accent3-fill" opacity="0.85"/>
     <rect x="0" y="0" width="32" height="8" rx="4" class="accent-fill" opacity="0.9"/>
 
-    <rect x="0" y="20" width="40" height="8" rx="4" class="accent3-fill" opacity="0.6"/>
+    <rect x="0" y="20" width="40" height="8" rx="4" class="accent3-fill" opacity="0.85"/>
     <rect x="0" y="20" width="36" height="8" rx="4" class="accent2-fill" opacity="0.9"/>
 
-    <rect x="0" y="40" width="40" height="8" rx="4" class="accent3-fill" opacity="0.6"/>
+    <rect x="0" y="40" width="40" height="8" rx="4" class="accent3-fill" opacity="0.85"/>
     <rect x="0" y="40" width="24" height="8" rx="4" class="accent-fill" opacity="0.9"/>
   </g>
 
@@ -110,7 +110,7 @@
   <g transform="translate(900 350)">
     <line x1="0" y1="0" x2="60" y2="-30" class="accent-stroke" stroke-width="2.5" stroke-linecap="round"/>
     <polygon points="60,-30 48,-32 54,-22" class="accent2-fill"/>
-    <line x1="-10" y1="20" x2="50" y2="-10" class="accent3-fill" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+    <line x1="-10" y1="20" x2="50" y2="-10" class="accent3-fill" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
   </g>
   </g>
 
@@ -122,7 +122,7 @@
   </g>
 
   <!-- 우상단 회전 사각형 -->
-  <rect x="1000" y="80" width="100" height="100" class="line" stroke-width="1.5" fill="none" transform="rotate(-8 1050 130)" opacity="0.6"/>
+  <rect x="1000" y="80" width="100" height="100" class="line" stroke-width="1.5" fill="none" transform="rotate(-8 1050 130)" opacity="0.85" style="stroke: var(--c-accent)"/>
 
   <!-- 우하단 시리즈 번호 -->
   <text class="num-text" x="1164" y="594" text-anchor="end">07</text>

@@ -2,25 +2,25 @@
   <title id="title">ep.09 - 만족과 추천</title>
   <style>
     :root {
-      --c-bg: #fafaf7;
+      --c-bg: #FEF9F5;
       --c-fg: #1a1a1a;
       --c-muted: #6b6b6b;
-      --c-accent: #c97f4a;
-      --c-accent-2: #2d4a3e;
-      --c-accent-3: #d9a47e;
-      --c-num: #c97f4a;
+      --c-accent: #DC7311;
+      --c-accent-2: #025039;
+      --c-accent-3: #E69E69;
+      --c-num: #DC7311;
       --c-dot: #1a1a1a;
       --c-line: #6b6b6b;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --c-bg: #0f0f0e;
+        --c-bg: #160D07;
         --c-fg: #ededea;
         --c-muted: #999996;
-        --c-accent: #e09a6a;
-        --c-accent-2: #7fb09a;
-        --c-accent-3: #d4a560;
-        --c-num: #e09a6a;
+        --c-accent: #E6975F;
+        --c-accent-2: #60B794;
+        --c-accent-3: #D4A560;
+        --c-num: #E6975F;
         --c-dot: #ededea;
         --c-line: #4a4a47;
       }
@@ -31,11 +31,11 @@
       <circle cx="2" cy="2" r="1.1" fill="var(--c-dot)" fill-opacity="0.10"/>
     </pattern>
     <radialGradient id="rg09a" cx="22%" cy="78%" r="60%">
-      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.30"/>
+      <stop offset="0%" stop-color="var(--c-accent)" stop-opacity="0.36"/>
       <stop offset="100%" stop-color="var(--c-accent)" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rg09b" cx="80%" cy="22%" r="55%">
-      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="0%" stop-color="var(--c-accent-3)" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="var(--c-accent-3)" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -112,39 +112,39 @@
 
     <!-- 중심에서 외곽으로 연결선 -->
     <g stroke="var(--c-fg)" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="4 3" fill="none">
-      <line x1="0" y1="-42" x2="0" y2="-176"/>
-      <line x1="36" y1="-21" x2="149" y2="-87"/>
-      <line x1="36" y1="21" x2="149" y2="87"/>
-      <line x1="0" y1="42" x2="0" y2="176"/>
-      <line x1="-36" y1="21" x2="-149" y2="87"/>
-      <line x1="-36" y1="-21" x2="-149" y2="-87"/>
+      <line x1="0" y1="-42" x2="0" y2="-176" stroke="var(--c-accent)"/>
+      <line x1="36" y1="-21" x2="149" y2="-87" stroke="var(--c-accent)"/>
+      <line x1="36" y1="21" x2="149" y2="87" stroke="var(--c-accent)"/>
+      <line x1="0" y1="42" x2="0" y2="176" stroke="var(--c-accent)"/>
+      <line x1="-36" y1="21" x2="-149" y2="87" stroke="var(--c-accent)"/>
+      <line x1="-36" y1="-21" x2="-149" y2="-87" stroke="var(--c-accent)"/>
     </g>
 
     <!-- 2차 노드들 (외곽 노드가 다시 데려온 사용자, 작은 점) -->
     <g fill="var(--c-fg)" opacity="0.4">
       <!-- 1번 노드 외곽 -->
-      <circle cx="-26" cy="-264" r="4"/>
-      <circle cx="26" cy="-264" r="4"/>
+      <circle cx="-26" cy="-264" r="4" fill="var(--c-accent)"/>
+      <circle cx="26" cy="-264" r="4" fill="var(--c-accent)"/>
 
       <!-- 2번 노드 외곽 -->
-      <circle cx="220" cy="-160" r="4"/>
-      <circle cx="220" cy="-130" r="4"/>
+      <circle cx="220" cy="-160" r="4" fill="var(--c-accent)"/>
+      <circle cx="220" cy="-130" r="4" fill="var(--c-accent)"/>
 
       <!-- 3번 노드 외곽 -->
-      <circle cx="220" cy="160" r="4"/>
-      <circle cx="220" cy="130" r="4"/>
+      <circle cx="220" cy="160" r="4" fill="var(--c-accent)"/>
+      <circle cx="220" cy="130" r="4" fill="var(--c-accent)"/>
 
       <!-- 4번 노드 외곽 -->
-      <circle cx="-26" cy="264" r="4"/>
-      <circle cx="26" cy="264" r="4"/>
+      <circle cx="-26" cy="264" r="4" fill="var(--c-accent)"/>
+      <circle cx="26" cy="264" r="4" fill="var(--c-accent)"/>
 
       <!-- 5번 노드 외곽 -->
-      <circle cx="-220" cy="160" r="4"/>
-      <circle cx="-220" cy="130" r="4"/>
+      <circle cx="-220" cy="160" r="4" fill="var(--c-accent)"/>
+      <circle cx="-220" cy="130" r="4" fill="var(--c-accent)"/>
 
       <!-- 6번 노드 외곽 -->
-      <circle cx="-220" cy="-160" r="4"/>
-      <circle cx="-220" cy="-130" r="4"/>
+      <circle cx="-220" cy="-160" r="4" fill="var(--c-accent)"/>
+      <circle cx="-220" cy="-130" r="4" fill="var(--c-accent)"/>
     </g>
 
     <!-- 포커스 링 (중심 강조) -->
