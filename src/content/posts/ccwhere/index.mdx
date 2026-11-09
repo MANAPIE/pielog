@@ -4,8 +4,11 @@ description: "여러 Claude Code 세션을 한 화면에서 보려다, 프로세
 summary: "병렬로 띄운 Claude Code 세션을 한눈에 보는 도구를 찾다 기존 도구들이 VSCode 확장의 세션을 못 잡는 이유를 추적했습니다. 해법은 프로세스 추적이 아니라 세션 로그 파일을 직접 읽는 것이었습니다. jq의 16진수 미지원, command substitution 안에서 죽는 tput, 셸 변수 확장이 삼킨 jq 변수까지, 작은 셸 스크립트 하나에 박힌 함정들을 정리합니다."
 date: 2026-06-08
 tags: ["experience", "develop", "devops", "ai", "claude-code", "shell", "jq", "cli"]
+thumbnail: ./cover.jpg
 draft: false
 ---
+
+![](./cover-2x.jpg)
 
 Claude Code 세션을 서너 개씩 띄워놓고 일하는 날이 늘었습니다. 백엔드 리팩터링 하나, 테스트 보강 하나, 또 다른 저장소에서 마이그레이션 하나. 그러다 보면 어느 터미널에서 뭐가 돌고 있는지 금세 잃어버립니다. 입력을 기다리며 멈춰 있는 세션을 한참 뒤에 발견하는 일도 잦습니다. 한눈에 보는 도구를 찾다가, 결국 직접 만들었습니다.
 
