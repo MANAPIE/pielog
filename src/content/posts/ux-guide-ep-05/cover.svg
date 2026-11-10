@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="IT UX 가이드 ep.05 cover">
+  <style>
+  :root { --c-bg: #F8F3EE; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-accent: #B4502A; --c-accent-2: #C9A227; --c-accent-3: #6E3A78; --c-num: rgba(180,80,42, 0.14); --c-dot: rgba(180,80,42, 0.12); --c-line: rgba(26, 31, 46, 0.14); }
+  @media (prefers-color-scheme: dark) { :root { --c-bg: #17120F; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-accent: #F0956E; --c-accent-2: #E8C45A; --c-accent-3: #C08FE0; --c-num: rgba(240,149,110, 0.16); --c-dot: rgba(240,149,110, 0.12); --c-line: rgba(232, 230, 225, 0.16); } }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dots-ux05" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/></pattern>
+    <radialGradient id="halo-ux05a" cx="0.18" cy="0.2" r="0.6"><stop offset="0" stop-color="var(--c-accent-2)" stop-opacity="0.26"/><stop offset="1" stop-color="var(--c-accent-2)" stop-opacity="0"/></radialGradient>
+    <radialGradient id="halo-ux05b" cx="0.84" cy="0.82" r="0.55"><stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.24"/><stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-ux05)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux05a)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux05b)"/>
+  <circle cx="1100" cy="100" r="320" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <rect x="-160" y="380" width="560" height="440" rx="44" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(-9 120 600)"/>
+
+  <!-- 메타포: 빙산. 수면 위 지표 막대, 수면 아래 사용자 문제 -->
+  <g transform="translate(600 300)">
+    <line x1="-420" y1="0" x2="420" y2="0" stroke="var(--c-accent-3)" stroke-width="3" stroke-dasharray="14 12" opacity="0.8"/>
+    <g transform="rotate(-3)">
+      <polygon points="-90,-4 -40,-150 30,-190 110,-40 120,-4" fill="var(--c-accent)" fill-opacity="0.35" stroke="var(--c-accent)" stroke-width="2.5" stroke-linejoin="round"/>
+      <polygon points="-90,4 120,4 200,140 110,270 -30,300 -160,180 -180,90" fill="var(--c-accent-2)" fill-opacity="0.3" stroke="var(--c-accent-2)" stroke-width="2.5" stroke-linejoin="round"/>
+    </g>
+    <!-- 수면 위 미니 바 (지표) -->
+    <g transform="translate(-320 -150)"><rect width="14" height="90" rx="5" fill="var(--c-accent)" opacity="0.6"/><rect x="26" width="14" height="60" rx="5" fill="var(--c-accent)" opacity="0.8"/><rect x="52" width="14" height="110" rx="5" fill="var(--c-accent)"/></g>
+    <!-- 수면 아래 물음표 원 -->
+    <circle cx="-260" cy="140" r="46" fill="none" stroke="var(--c-accent-2)" stroke-width="3" stroke-dasharray="4 8"/>
+    <circle cx="-260" cy="140" r="24" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5" opacity="0.8"/><circle cx="-260" cy="140" r="9" fill="var(--c-accent-2)" opacity="0.8"/>
+  </g>
+
+  <g transform="translate(1000 480)"><circle r="54" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="4 8"/><circle r="32" fill="none" stroke="var(--c-accent-3)" stroke-width="2"/><circle r="12" fill="var(--c-accent-3)"/></g>
+  <g fill="var(--c-accent)"><circle cx="1010" cy="130" r="9"/><circle cx="1038" cy="146" r="6" opacity="0.7"/><circle cx="996" cy="160" r="5" opacity="0.5"/><circle cx="1030" cy="172" r="4" opacity="0.4"/></g>
+  <polygon points="220,110 266,190 174,190" fill="var(--c-accent-3)" fill-opacity="0.5"/><polygon points="220,110 266,190 174,190" fill="none" stroke="var(--c-accent-3)" stroke-width="2"/>
+  <rect x="120" y="470" width="90" height="90" rx="14" fill="none" stroke="var(--c-accent)" stroke-width="3" transform="rotate(12 165 515)"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">05</text>
+</svg>
