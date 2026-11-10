@@ -1,0 +1,79 @@
+<svg viewBox="0 0 500 298" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-hd">
+  <title id="t-hd">건강한 마찰과 파괴적 마찰</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-hd" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-hd-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+      <rect class="bg" width="500" height="298" />
+  <text x="24" y="36" class="ttl">건강한 마찰과 파괴적 마찰</text>
+  <rect x="24" y="56" width="218" height="134" rx="8" fill="var(--c-soft)" stroke="none" stroke-width="0" />
+  <text x="36" y="78" class="nm" style="fill:var(--c-accent)">건강한 마찰</text>
+  <text x="36" y="102" class="mid">문제를 향한다</text>
+  <text x="36" y="126" class="mid">근거가 있다</text>
+  <text x="36" y="150" class="mid">의견이 바뀐다</text>
+  <text x="36" y="174" class="mid">결정이 나면 따른다</text>
+  <rect x="258" y="56" width="218" height="134" rx="8" fill="var(--c-soft-2)" stroke="none" stroke-width="0" />
+  <text x="270" y="78" class="nm" style="fill:var(--c-accent-2)">파괴적 마찰</text>
+  <text x="270" y="102" class="mid">사람을 향한다</text>
+  <text x="270" y="126" class="mid">영역이나 직급이 근거다</text>
+  <text x="270" y="150" class="mid">같은 지점에서 반복된다</text>
+  <text x="270" y="174" class="mid">프로세스를 멈춘다</text>
+  <rect x="24" y="206" width="452" height="52" rx="8" fill="var(--c-soft-3)" stroke="none" stroke-width="0" />
+  <text x="36" y="228" class="nm" style="fill:var(--c-accent-3)">심리적 안전감</text>
+  <text x="36" y="246" class="cap" style="fill:var(--c-fg)">반대 의견을 말해도 불이익이 없다는 믿음 (Edmondson 1999)</text>
+  <text x="24" y="286" class="cap">심리적 안전감이 있어야 마찰이 건강해집니다.</text>
+</svg>
