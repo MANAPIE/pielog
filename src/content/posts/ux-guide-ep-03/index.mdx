@@ -1,9 +1,9 @@
 ---
 title: "인지 비용과 플로우 - IT UX 가이드 ep.03"
 description: "사용자의 뇌는 에너지를 아끼도록 만들어져 있고, 화면이 생각을 요구하는 순간마다 피로가 쌓입니다. 인지 부하의 세 종류, 인지 비용을 높이는 일곱 가지 패턴, 그리고 Hick과 Fitts의 법칙을 실제 숫자로 계산하며 정리합니다."
-summary: "Kahneman의 시스템 1과 2, Sweller의 인지 부하 세 종류를 UX에 옮기고, 선택 과부하부터 전문 용어까지 인지 비용을 높이는 일곱 가지 패턴을 근거와 함께 봅니다. 몰입을 만드는 플로우의 조건과 Hick·Fitts 법칙의 계산 예시로 어디에서 사용자가 지치는지 짚습니다."
+summary: "Kahneman의 시스템 1과 2, Sweller의 인지 부하 세 종류를 UX에 옮기고, 선택 과부하부터 전문 용어까지 인지 비용을 높이는 일곱 가지 패턴을 근거와 함께 봅니다. 몰입을 만드는 플로우의 조건, 행동이 일어나는 조건을 동기·능력·프롬프트로 나누는 Fogg 행동 모델, Hick·Fitts 법칙의 계산 예시로 어디에서 사용자가 지치는지 짚습니다."
 date: 2026-09-29
-tags: [series, design, ux, cognitiveload, flow, hickslaw, fittslaw, psychology]
+tags: [series, design, ux, cognitiveload, flow, hickslaw, fittslaw, psychology, behaviormodel]
 thumbnail: ./cover.svg
 draft: false
 ---
@@ -80,6 +80,24 @@ UX에서 플로우를 깨는 것들은 정해져 있습니다. 위험하지 않�
 
 ---
 
+## 행동이 일어나는 조건: Fogg 행동 모델
+
+인지 비용을 줄이면 사용자가 편해지는 데서 끝나지 않고, 사용자가 실제로 행동할 가능성도 올라갑니다. BJ Fogg가 정리한 **Fogg 행동 모델(Fogg Behavior Model)** 은 행동이 일어나는 조건을 B=MAP라는 식으로 나타냅니다. 동기(Motivation), 능력(Ability), 프롬프트(Prompt)가 같은 순간에 함께 있어야 행동(Behavior)이 일어나고, 행동이 일어나지 않았다면 셋 중 적어도 하나가 빠져 있다는 뜻입니다.
+
+**동기**: 그 행동을 하고 싶은 정도입니다.
+
+**능력**: 그 행동을 할 수 있는 정도입니다. Fogg는 능력이 그 순간 가장 부족한 자원에 따라 정해진다고 했습니다. 10분이 걸리는 행동은 5분밖에 없는 사람에게 쉬운 행동이 아닌 것입니다.
+
+**프롬프트**: 지금 행동하라고 알리는 계기로, 버튼, 알림, 안내 문구 등이 있습니다. Fogg는 이 요소를 원래 트리거(trigger)라고 불렀는데, 2017년 말에 프롬프트로 바꿨습니다.
+
+인지 비용은 이 가운데 능력에 해당합니다. 생각해야 할 것이 많은 화면은 시간이 넉넉한 사용자의 능력도 떨어뜨립니다. Fogg는 능력을 높이는 방법으로 훈련, 도구 제공, 행동 자체를 작게 줄이기 세 가지를 꼽았고, 훈련은 가장 어려운 방법이라 꼭 필요할 때만 택하라고 했습니다. 긴 튜토리얼로 사용법을 가르치는 것이 훈련에 해당하고, 주소를 직접 입력하게 하는 대신 우편번호 검색으로 고르게 하는 것이 행동을 작게 줄이는 쪽에 해당합니다.
+
+프롬프트는 동기와 능력이 갖춰진 순간에 와야 합니다. 앱을 처음 열자마자 알림 권한을 묻는 화면은 사용자가 알림을 받을 이유를 아직 모를 때 오는 프롬프트입니다. 같은 요청을 첫 주문을 마친 직후에 "배송 상태를 알림으로 받으시겠어요?"로 바꾸면, 알림을 받을 이유가 생긴 순간에 프롬프트가 오게 됩니다. 행동하지 않는 사용자를 보면 혜택을 붙여 동기부터 높이려 하기 쉽지만, 셋 중 무엇이 빠졌는지를 먼저 확인해야 합니다.
+
+![행동이 일어나는 세 조건을 위에서 아래로 쌓은 다이어그램. 상단에 B=MAP, 동기와 능력과 프롬프트가 같은 순간에 함께 있어야 행동이 일어난다고 적혀 있다. 그 아래 세 카드가 세로로 놓여 있다. 동기(Motivation) 카드는 그 행동을 하고 싶은 정도, 능력(Ability) 카드는 그 행동을 할 수 있는 정도이며 그 순간 가장 부족한 자원에 따라 정해진다는 설명, 프롬프트(Prompt) 카드는 지금 행동하라고 알리는 계기이며 버튼, 알림, 안내 문구 등이 있다는 설명이 적혀 있다. 세 카드에서 화살표가 아래의 행동(Behavior) 상자로 이어지고, 상자에는 행동이 일어나지 않았다면 셋 중 적어도 하나가 빠져 있다고 적혀 있다. 구분선 아래에는 '같은 알림 권한 요청, 다른 시점'이라는 제목으로 두 카드가 있다. 첫 카드는 주황색 테두리에 '피해야 할 시점'이라고 표시된 앱을 처음 열자마자 묻는 알림 권한으로, 알림을 받을 이유를 아직 모를 때 오는 프롬프트다. 둘째 카드는 초록색 테두리에 '적절한 시점'이라고 표시된 첫 주문을 마친 직후에 묻는 알림 권한으로, "배송 상태를 알림으로 받으시겠어요?"라는 문구와 함께 알림을 받을 이유가 생긴 순간에 온다고 적혀 있다. 하단 캡션은 Fogg의 Fogg Behavior Model을 알림 권한 예시와 함께 재구성했다고 밝힌다.](ux-03-04-fogg-behavior-model.svg)
+
+---
+
 ## Hick의 법칙과 Fitts의 법칙
 
 인지 비용을 다룰 때 자주 인용되는 두 법칙은 수식이 있고, 수식이 있으면 계산해 볼 수 있습니다.
@@ -102,7 +120,7 @@ Paul Fitts가 1954년 정리한 **Fitts의 법칙(Fitts's law)** 은 표적까�
 
 ## 기획자·디자이너·개발자가 각각 가져갈 것
 
-**기획자**: 기능을 추가할 때마다 사용자가 처리해야 할 선택지가 몇 개 늘어나는지 세어 봅니다. 기능 하나는 메뉴 항목 하나이고, 메뉴 항목 하나는 Hick의 법칙에서 n이 하나 늘어나는 일입니다. 기본값과 추천을 정하는 일은 디자인이 아니라 기획의 결정이고, 그 결정이 선택 과부하를 막습니다.
+**기획자**: 기능을 추가할 때마다 사용자가 처리해야 할 선택지가 몇 개 늘어나는지 세어 봅니다. 기능 하나는 메뉴 항목 하나이고, 메뉴 항목 하나는 Hick의 법칙에서 n이 하나 늘어나는 일입니다. 기본값과 추천을 정하는 일은 디자인이 아니라 기획의 결정이고, 그 결정이 선택 과부하를 막습니다. 행동 유도 버튼(CTA)이나 권한 요청의 시점을 정할 때는 그 순간 사용자에게 동기, 능력, 프롬프트가 함께 있는지 확인해야 합니다.
 
 **디자이너**: 시안에서 시스템 2를 요구하는 지점을 찾습니다. 사용자가 멈춰서 읽어야 하는 문장, 비교해야 하는 옵션, 기억했다가 다음 화면에서 써야 하는 정보가 그 지점입니다. 그리고 중요한 버튼의 크기와 위치를 Fitts의 법칙으로 한 번 계산해 보면 "조금 더 크게"가 감이 아니라 근거가 됩니다.
 
@@ -119,6 +137,8 @@ Paul Fitts가 1954년 정리한 **Fitts의 법칙(Fitts's law)** 은 표적까�
 - Miller, G. A. (1956). The Magical Number Seven, Plus or Minus Two. *Psychological Review*, 63(2), 81-97.
 - Cowan, N. (2001). The Magical Number 4 in Short-Term Memory: A Reconsideration of Mental Storage Capacity. *Behavioral and Brain Sciences*, 24(1), 87-114.
 - Csikszentmihalyi, M. (1990). *Flow: The Psychology of Optimal Experience*. Harper & Row.
+- Fogg, B. J. (2009). A Behavior Model for Persuasive Design. *Proceedings of the 4th International Conference on Persuasive Technology*, 1-7. https://doi.org/10.1145/1541948.1541999
+- Fogg, B. J. Fogg Behavior Model. https://www.behaviormodel.org/
 - Hick, W. E. (1952). On the Rate of Gain of Information. *Quarterly Journal of Experimental Psychology*, 4(1), 11-26.
 - Hyman, R. (1953). Stimulus Information as a Determinant of Reaction Time. *Journal of Experimental Psychology*, 45(3), 188-196.
 - Fitts, P. M. (1954). The Information Capacity of the Human Motor System in Controlling the Amplitude of Movement. *Journal of Experimental Psychology*, 47(6), 381-391.
