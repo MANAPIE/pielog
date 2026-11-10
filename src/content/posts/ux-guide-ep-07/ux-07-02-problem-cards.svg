@@ -1,0 +1,101 @@
+<svg viewBox="0 0 500 472" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-pcards">
+  <title id="t-pcards">문제 카드와 클러스터링</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-pcards" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-pcards-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="472" />
+  <g transform="translate(24 24)">
+    <rect width="150" height="196" rx="8" class="card" stroke="var(--c-fg)" />
+    <text x="14" y="24" class="th">문제 카드</text>
+    <line x1="14" y1="34" x2="136" y2="34" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="14" y="58" class="nm">문제</text>
+    <text x="14" y="76" class="cap">무엇이 잘못됐는가</text>
+    <text x="14" y="112" class="nm">근거</text>
+    <text x="14" y="130" class="cap">어떤 데이터나 관찰에서</text>
+    <text x="14" y="166" class="nm">영향</text>
+    <text x="14" y="184" class="cap">사용자에게 미치는 것</text>
+  </g>
+  <line x1="176" y1="122" x2="192" y2="122" stroke="var(--c-muted)" stroke-width="1.5" marker-end="url(#a-pcards)" />
+  <g transform="translate(200 24)">
+    <rect width="276" height="196" rx="8" fill="var(--c-muted-soft)" stroke="var(--c-muted)" stroke-width="1.2" stroke-dasharray="4 3" />
+    <text x="14" y="24" class="th">주문 완료 화면</text>
+    <rect x="14" y="38" width="248" height="40" rx="6" class="card" stroke="var(--c-accent)" />
+    <text x="26" y="63" class="lbl" style="fill:var(--c-accent)">기획</text>
+    <text x="70" y="63" class="td">예상 배달 시간 불분명</text>
+    <rect x="14" y="88" width="248" height="40" rx="6" class="card" stroke="var(--c-accent-3)" />
+    <text x="26" y="113" class="lbl" style="fill:var(--c-accent-3)">디자인</text>
+    <text x="70" y="113" class="td">완료 피드백 약함</text>
+    <rect x="14" y="138" width="248" height="40" rx="6" class="card" stroke="var(--c-accent-2)" />
+    <text x="26" y="163" class="lbl" style="fill:var(--c-accent-2)">개발</text>
+    <text x="70" y="163" class="td">예상 시간 API 불안정</text>
+  </g>
+  <g transform="translate(200 236)">
+    <rect width="276" height="196" rx="8" fill="var(--c-muted-soft)" stroke="var(--c-muted)" stroke-width="1.2" stroke-dasharray="4 3" />
+    <text x="14" y="24" class="th">결제 단계</text>
+    <rect x="14" y="38" width="248" height="40" rx="6" class="card" stroke="var(--c-accent)" />
+    <text x="26" y="63" class="lbl" style="fill:var(--c-accent)">기획</text>
+    <text x="70" y="63" class="td">쿠폰 시점이 결제 직전</text>
+    <rect x="14" y="88" width="248" height="40" rx="6" class="card" stroke="var(--c-accent-3)" />
+    <text x="26" y="113" class="lbl" style="fill:var(--c-accent-3)">디자인</text>
+    <text x="70" y="113" class="td">결제 버튼 가려짐</text>
+    <rect x="14" y="138" width="248" height="40" rx="6" class="card" stroke="var(--c-accent-2)" />
+    <text x="26" y="163" class="lbl" style="fill:var(--c-accent-2)">개발</text>
+    <text x="70" y="163" class="td">결제 500 에러 0.5%</text>
+  </g>
+  <text x="24" y="458" class="cap">따로 보면 다른 문제가, 묶어 놓으면 같은 원인에서 나온 문제로 읽힙니다.</text>
+</svg>
