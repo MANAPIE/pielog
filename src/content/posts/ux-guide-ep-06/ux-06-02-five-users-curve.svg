@@ -1,0 +1,97 @@
+<svg viewBox="0 0 500 372" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-fu">
+  <title id="t-fu">사용자 수에 따른 발견율</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-fu" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-fu-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="372" />
+  <line x1="64" y1="300" x2="64" y2="44" stroke="var(--c-fg)" stroke-width="1.5" marker-end="url(#a-fu-f)" />
+  <line x1="64" y1="300" x2="472" y2="300" stroke="var(--c-fg)" stroke-width="1.5" marker-end="url(#a-fu-f)" />
+  <text x="22" y="176" class="th" text-anchor="middle" transform="rotate(-90 22 176)">발견율</text>
+  <text x="262" y="336" class="th" text-anchor="middle">테스트 사용자 수</text>
+  <line x1="64" y1="238.0" x2="460" y2="238.0" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="58" y="242.0" class="cap" text-anchor="end">25%</text>
+  <line x1="64" y1="176.0" x2="460" y2="176.0" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="58" y="180.0" class="cap" text-anchor="end">50%</text>
+  <line x1="64" y1="114.0" x2="460" y2="114.0" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="58" y="118.0" class="cap" text-anchor="end">75%</text>
+  <line x1="64" y1="52.0" x2="460" y2="52.0" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="58" y="56.0" class="cap" text-anchor="end">100%</text>
+  <text x="64.0" y="316" class="cap" text-anchor="middle">1</text>
+  <text x="120.6" y="316" class="cap" text-anchor="middle">3</text>
+  <text x="177.1" y="316" class="cap" text-anchor="middle">5</text>
+  <text x="318.6" y="316" class="cap" text-anchor="middle">10</text>
+  <text x="460.0" y="316" class="cap" text-anchor="middle">15</text>
+  <path d="M 64.0,223.1 L 92.3,170.1 L 120.6,133.5 L 148.9,108.2 L 177.1,90.8 L 205.4,78.8 L 233.7,70.5 L 262.0,64.7 L 290.3,60.8 L 318.6,58.1 L 346.9,56.2 L 375.1,54.9 L 403.4,54.0 L 431.7,53.4 L 460.0,52.9" fill="none" stroke="var(--c-accent)" stroke-width="2.4" stroke-linejoin="round" />
+  <circle cx="64.0" cy="223.1" r="3.5" fill="var(--c-accent)" />
+  <circle cx="120.6" cy="133.5" r="3.5" fill="var(--c-accent)" />
+  <circle cx="177.1" cy="90.8" r="3.5" fill="var(--c-accent)" />
+  <circle cx="318.6" cy="58.1" r="3.5" fill="var(--c-accent)" />
+  <circle cx="460.0" cy="52.9" r="3.5" fill="var(--c-accent)" />
+  <line x1="177.1" y1="300" x2="177.1" y2="91.7" stroke="var(--c-accent-2)" stroke-width="1.4" stroke-dasharray="4 3" />
+  <text x="78.0" y="241.1" class="cap">1명 31%</text>
+  <text x="126.6" y="147.8" class="cap">3명 67%</text>
+  <text x="185.1" y="105.7" class="val" style="fill:var(--c-accent-2)">5명 84%</text>
+  <text x="318.6" y="73.0" class="cap" text-anchor="middle">10명 98%</text>
+  <text x="460.0" y="69.0" class="cap" text-anchor="end">15명 99.6%</text>
+  <g transform="translate(272 200)">
+    <rect width="188" height="58" rx="6" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.4" />
+    <text x="12" y="22" class="td">5명에서 약 85%에 이릅니다.</text>
+    <text x="12" y="42" class="td">이후 한 명당 증가폭이 급감합니다.</text>
+  </g>
+  <text x="24" y="360" class="cap">1 − (1 − L)ⁿ, L = 0.31. 출처: Nielsen &amp; Landauer(1993), Nielsen(2000).</text>
+</svg>

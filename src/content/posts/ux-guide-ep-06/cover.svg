@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="IT UX 가이드 ep.06 cover">
+  <style>
+  :root { --c-bg: #F8F3EE; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-accent: #B4502A; --c-accent-2: #C9A227; --c-accent-3: #6E3A78; --c-num: rgba(180,80,42, 0.14); --c-dot: rgba(180,80,42, 0.12); --c-line: rgba(26, 31, 46, 0.14); }
+  @media (prefers-color-scheme: dark) { :root { --c-bg: #17120F; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-accent: #F0956E; --c-accent-2: #E8C45A; --c-accent-3: #C08FE0; --c-num: rgba(240,149,110, 0.16); --c-dot: rgba(240,149,110, 0.12); --c-line: rgba(232, 230, 225, 0.16); } }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dots-ux06" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/></pattern>
+    <radialGradient id="halo-ux06a" cx="0.2" cy="0.82" r="0.6"><stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.26"/><stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/></radialGradient>
+    <radialGradient id="halo-ux06b" cx="0.84" cy="0.16" r="0.55"><stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.24"/><stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-ux06)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux06a)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux06b)"/>
+  <circle cx="1120" cy="560" r="320" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <rect x="-120" y="-120" width="520" height="420" rx="40" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(-12 140 90)"/>
+
+  <!-- 메타포: 두 축 지도 위의 네 사분면과 핀 -->
+  <g transform="translate(600 315) rotate(-5)">
+    <line x1="-260" y1="0" x2="260" y2="0" stroke="var(--c-fg)" stroke-width="3" opacity="0.6"/>
+    <line x1="0" y1="-210" x2="0" y2="210" stroke="var(--c-fg)" stroke-width="3" opacity="0.6"/>
+    <rect x="-240" y="-190" width="220" height="170" rx="18" fill="var(--c-accent-3)" fill-opacity="0.2" stroke="var(--c-accent-3)" stroke-width="3"/>
+    <rect x="20" y="-190" width="220" height="170" rx="18" fill="var(--c-accent)" fill-opacity="0.2" stroke="var(--c-accent)" stroke-width="3"/>
+    <rect x="-240" y="20" width="220" height="170" rx="18" fill="var(--c-accent-2)" fill-opacity="0.18" stroke="var(--c-accent-2)" stroke-width="3" stroke-dasharray="10 10"/>
+    <rect x="20" y="20" width="220" height="170" rx="18" fill="var(--c-accent-2)" fill-opacity="0.2" stroke="var(--c-accent-2)" stroke-width="3"/>
+    <g fill="var(--c-accent-3)"><circle cx="-150" cy="-110" r="14"/><circle cx="-90" cy="-70" r="10"/></g>
+    <g fill="var(--c-accent)"><circle cx="120" cy="-120" r="14"/><circle cx="170" cy="-60" r="10"/></g>
+    <g fill="var(--c-accent-2)"><circle cx="-120" cy="110" r="12"/><circle cx="140" cy="100" r="14"/><circle cx="90" cy="150" r="9"/></g>
+    <circle cx="120" cy="-120" r="30" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="4 8"/>
+  </g>
+
+  <g transform="translate(170 470)"><circle r="58" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="4 8"/><circle r="34" fill="none" stroke="var(--c-accent-3)" stroke-width="2"/><circle r="12" fill="var(--c-accent-3)"/></g>
+  <g transform="translate(940 130) rotate(8)"><rect width="140" height="12" rx="6" fill="var(--c-accent)" fill-opacity="0.7"/><rect y="24" width="90" height="12" rx="6" fill="var(--c-accent-2)" fill-opacity="0.7"/><rect y="48" width="110" height="12" rx="6" fill="var(--c-accent-3)" fill-opacity="0.7"/></g>
+  <polygon points="1010,470 1056,550 964,550" fill="var(--c-accent)" fill-opacity="0.5"/><polygon points="1010,470 1056,550 964,550" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
+  <line x1="120" y1="330" x2="300" y2="330" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 8" opacity="0.6"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">06</text>
+</svg>
