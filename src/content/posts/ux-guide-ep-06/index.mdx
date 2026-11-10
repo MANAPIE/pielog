@@ -1,9 +1,9 @@
 ---
 title: "리서치 방법의 지도 - IT UX 가이드 ep.06"
 description: "문제를 찾으려면 사용자를 봐야 하는데, 보는 방법이 너무 많습니다. 인터뷰·설문·사용성 테스트·현장 관찰·로그 분석·카드 소팅을 정성·정량과 태도·행동이라는 두 축 위에 놓고, 상황별로 무엇을 고를지 정리합니다."
-summary: "Rohrer의 두 축으로 여섯 가지 리서치 방법의 자리를 잡고, 각 방법을 언제 쓰고 몇 명이면 되는지(인터뷰 12명 포화, 사용성 테스트 5명 85%)를 근거와 계산 예시로 다룹니다. 상황별 선택 가이드와 확증 편향·대표성 착각 같은 네 가지 실수, 세 직무가 가져갈 것을 정리합니다."
+summary: "Rohrer의 두 축으로 여섯 가지 리서치 방법의 자리를 잡고, 각 방법을 언제 쓰고 몇 명이면 되는지(인터뷰 12명 포화, 사용성 테스트 5명 85%)를 근거와 계산 예시로 다룹니다. 무엇부터 확인할지를 고르는 Bland의 가정 매핑, 상황별 선택 가이드와 확증 편향·대표성 착각 같은 네 가지 실수, 세 직무가 가져갈 것을 정리합니다."
 date: 2026-10-01
-tags: [series, design, ux, research, usability, interview, survey, analytics]
+tags: [series, design, ux, research, usability, interview, survey, analytics, assumptionmapping]
 thumbnail: ./cover.svg
 draft: false
 ---
@@ -94,6 +94,28 @@ Nielsen Norman Group의 Christian Rohrer는 스무 가지 리서치 방법을 �
 
 ---
 
+## 무엇부터 확인할 것인가: 가정 매핑
+
+방법을 고르기 전에 무엇을 확인할지부터 정해야 합니다. 기획 초기의 요구사항에는 확인되지 않은 가정이 섞여 있는데, 리서치 일정 안에 전부 확인할 수는 없습니다.
+
+**가정 매핑(assumptions mapping)** 은 가정을 중요도와 근거라는 두 축 위에 놓고 먼저 확인할 가정을 고르는 방법입니다. David Bland가 Alexander Osterwalder와 함께 쓴 *Testing Business Ideas*에서 소개했습니다. 세로축은 그 가정이 틀렸을 때 아이디어가 실패하는지를 묻는 중요도이고, 가로축은 그 가정을 뒷받침하는 관찰 가능한 근거가 있는지를 묻는 근거입니다. 근거는 정성이어도 정량이어도 됩니다. Bland는 중요한데 근거가 없는 오른쪽 위 칸의 가정부터 실험하라고 했습니다.
+
+장보기 앱에 정기 배송을 넣는다면 가정은 이렇게 놓입니다.
+
+| 가정 | 중요도 | 근거 | 할 일 |
+|---|---|---|---|
+| 사용자는 매주 비슷한 품목을 산다 | 높음 | 있음(재구매 로그) | 로그 수치를 출처로 남기기 |
+| 배송 요일을 고정해도 불편하지 않다 | 높음 | 없음 | 인터뷰로 먼저 확인하기 |
+| 결제 수단을 미리 저장하는 데 거부감이 없다 | 높음 | 없음 | 사용성 테스트로 먼저 확인하기 |
+| 배송 전날 푸시 알림이면 충분하다 | 낮음 | 없음 | 출시 뒤 로그로 확인하기 |
+| 사용자는 주로 저녁 시간에 주문한다 | 낮음 | 있음(주문 로그) | 더 확인하지 않기 |
+
+![가정 매핑을 2×2 표로 그린 다이어그램. 가로축은 왼쪽이 근거 있음, 오른쪽이 근거 없음이고, 세로축은 위가 중요함, 아래가 중요하지 않음이다. 왼쪽 위 칸(중요하고 근거 있음)에는 '사용자는 매주 비슷한 품목을 산다'는 가정과 할 일 '로그 수치를 출처로 남기기'가 있다. 오른쪽 위 칸(중요하고 근거 없음)은 강조색으로 칠해져 '먼저 실험할 가정'이라고 적혀 있고, '배송 요일을 고정해도 불편하지 않다'는 가정에는 '인터뷰로 먼저 확인하기', '결제 수단을 미리 저장하는 데 거부감이 없다'는 가정에는 '사용성 테스트로 먼저 확인하기'가 붙어 있다. 오른쪽 아래 칸(중요하지 않고 근거 없음)에는 '배송 전날 푸시 알림이면 충분하다'는 가정과 '출시 뒤 로그로 확인하기'가 있다. 왼쪽 아래 칸(중요하지 않고 근거 있음)에는 '사용자는 주로 저녁 시간에 주문한다'는 가정과 '더 확인하지 않기'가 있다. 하단 캡션은 Bland(2020)와 Bland & Osterwalder(2019)를 장보기 앱의 정기 배송 예시로 재구성했다고 밝힌다.](ux-06-03-assumptions-map.svg)
+
+중요한데 근거가 없는 가정이라도 확인 방법은 가정마다 다릅니다. 배송 요일 가정은 왜 불편한지를 알아야 하므로 인터뷰가 맞고, 결제 수단 가정은 말보다 실제로 멈추는 지점을 봐야 하므로 사용성 테스트가 맞습니다. Bland는 가정을 사용자가 원하는가(desirability), 만들 수 있는가(feasibility), 수익을 낼 수 있는가(viability) 같은 종류로 나누기도 합니다. 리서치로 확인하는 것은 주로 첫째 종류이고, 나머지는 개발자나 사업 담당자와 함께 확인해야 합니다.
+
+---
+
 ## 상황별 선택 가이드
 
 리서치 방법을 선택할 때는 알고 싶은 것으로부터 고민합니다.
@@ -125,7 +147,7 @@ Nielsen Norman Group의 Christian Rohrer는 스무 가지 리서치 방법을 �
 
 ## 기획자·디자이너·개발자가 각각 가져갈 것
 
-**기획자**: 요구사항마다 어느 방법으로 확인했는지를 적습니다. "인터뷰 8명 중 6명이 언급"과 "로그에서 결제 3단계 이탈 40%"처럼 출처가 붙은 요구사항은 우선순위 회의에서 더 강하게 어필할 수 있습니다. 출처가 없는 요구사항은 가정으로 표시해 두어야 합니다.
+**기획자**: 요구사항마다 어느 방법으로 확인했는지를 적습니다. "인터뷰 8명 중 6명이 언급"과 "로그에서 결제 3단계 이탈 40%"처럼 출처가 붙은 요구사항은 우선순위 회의에서 더 강하게 어필할 수 있습니다. 출처가 없는 요구사항은 가정으로 표시해 두어야 합니다. 그리고 가정은 중요도와 근거로 배치해 중요한데 근거가 없는 가정부터 확인해야 합니다.
 
 **디자이너**: 사용성 테스트는 디자이너가 직접 진행할 수 있는 가장 빠른 리서치입니다. 프로토타입이 나올 때마다 5명에게 과업을 주고 소리 내어 생각하기로 관찰하는 습관을 만들면, 리서치 전담 인력이 없어도 큰 문제는 거를 수 있습니다.
 
@@ -141,6 +163,8 @@ Nielsen Norman Group의 Christian Rohrer는 스무 가지 리서치 방법을 �
 - Guest, G., Bunce, A., & Johnson, L. (2006). How Many Interviews Are Enough? An Experiment with Data Saturation and Variability. *Field Methods*, 18(1), 59-82.
 - Ericsson, K. A., & Simon, H. A. (1984). *Protocol Analysis: Verbal Reports as Data*. MIT Press.
 - Beyer, H., & Holtzblatt, K. (1998). *Contextual Design: Defining Customer-Centered Systems*. Morgan Kaufmann.
+- Bland, D. J. (2020). How Assumptions Mapping Can Focus Your Teams on Running Experiments That Matter. Strategyzer. https://strategyzer.com/library/how-assumptions-mapping-can-focus-your-teams-on-running-experiments-that-matter
+- Bland, D. J., & Osterwalder, A. (2019). *Testing Business Ideas: A Field Guide for Rapid Experimentation*. Wiley.
 
 ---
 

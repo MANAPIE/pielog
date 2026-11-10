@@ -1,9 +1,9 @@
 ---
 title: "세 시선: 디자인-개발 핸드오프에서 깨지는 것들 - IT UX 가이드 ep.18"
 description: "디자이너는 '내가 만든 디자인이 아니다'라고 하고, 개발자는 '이걸 어떻게 구현하라는 건지'라고 하고, 기획자는 '내 의도가 어디로 갔는지'를 묻습니다. 시안이 코드가 되는 사이에 무엇이 빠지는지, 세 직무가 그 간극을 어떻게 막는지를 정리합니다."
-summary: "세 직무가 핸드오프에서 겪는 좌절을 증상·원인·대응으로 나란히 놓고, Patton의 '공유된 문서는 공유된 이해가 아니다'와 NN/g의 디자인 명세·공동 소유 지침으로 원인을 짚습니다. 토큰의 코드화, Figma Dev Mode, 컴포넌트 단위 합의, 중간 구현 리뷰로 핸드오프를 한 번의 전달에서 대화로 바꾸는 방법과 전달 전 체크리스트를 정리합니다."
+summary: "세 직무가 핸드오프에서 겪는 좌절을 증상·원인·대응으로 나란히 놓고, Patton의 '공유된 문서는 공유된 이해가 아니다'와 NN/g의 디자인 명세·공동 소유 지침으로 원인을 짚습니다. 토큰의 코드화, Figma Dev Mode, 컴포넌트 단위 합의, 중간 구현 리뷰로 핸드오프를 한 번의 전달에서 대화로 바꾸는 방법과, 파일 구조와 이름까지 확인하는 전달 전 체크리스트 여덟 가지를 정리합니다."
 date: 2026-10-22
-tags: [series, design, develop, frontend, ux, handoff, designspec, devmode, collaboration]
+tags: [series, design, develop, frontend, ux, handoff, designspec, devmode, collaboration, figma]
 thumbnail: ./cover.svg
 draft: false
 ---
@@ -79,7 +79,7 @@ Nielsen Norman Group의 Kelley Gordon은 2025년에 디자인 명세를 "개발�
 
 ## 전달 전 체크리스트
 
-디자이너가 개발자에게 시안을 넘기기 전에 다음 여섯 가지가 있는지 확인합니다. 빠진 항목은 개발자가 즉석에서 정하게 되고, 그 결정은 출시 뒤에 "내가 만든 디자인이 아니다"로 돌아오는 경우가 많습니다.
+디자이너가 개발자에게 시안을 넘기기 전에 다음 여덟 가지가 있는지 확인합니다. 빠진 항목은 개발자가 즉석에서 정하게 되고, 그 결정은 출시 뒤에 "내가 만든 디자인이 아니다"로 돌아오는 경우가 많습니다.
 
 | 항목 | 확인할 것 |
 |---|---|
@@ -89,6 +89,12 @@ Nielsen Norman Group의 Kelley Gordon은 2025년에 디자인 명세를 "개발�
 | 토큰 참조 | 색·간격·글자가 토큰 이름으로 지정되어 있는가 |
 | 엣지 케이스 데이터 | 가장 긴 텍스트, 가장 많은 항목, 이미지 없음으로 시안을 확인했는가 |
 | 접근성 명세 | 포커스 순서, 대체 텍스트, 이름이 필요한 아이콘 버튼이 적혀 있는가 |
+| 파일 구조 | 전달할 화면이 작업 중 시안, 탈락한 시안과 다른 페이지로 나뉘고 개발 준비 완료(Ready for dev)로 표시되어 있는가 |
+| 이름 | 프레임 이름이 화면설계서의 화면 ID와 같고, 레이어가 card, avatar처럼 역할을 나타내는 이름으로 되어 있는가 |
+
+개발자가 파일을 처음 열면 어느 프레임이 최종인지부터 찾아야 합니다. 작업 중 시안, 고객 리뷰에서 탈락한 시안, 확정 시안이 한 페이지에 섞여 있으면 개발자는 가장 최근에 수정된 프레임을 최종으로 추측하게 됩니다. 그래서 페이지를 작업 중, 개발 전달, 보관으로 나누고, 전달할 화면은 섹션으로 묶어 개발 준비 완료로 표시해야 합니다. Figma는 개발 준비 완료나 완료(Completed)로 표시한 디자인이 나중에 수정되면 변경됨(Changed) 상태를 자동으로 붙이므로, 개발자는 전달 뒤에 바뀐 화면을 따로 찾을 수 있습니다.
+
+이름을 정리하면 같은 문제를 줄일 수 있습니다. Figma의 Thomas Lowry는 레이어에 기본 이름 대신 card, avatar처럼 역할을 나타내는 이름을 붙이고, 목록과 행에는 오토 레이아웃을 적용하고, 레이아웃이 크게 바뀌는 브레이크포인트마다 프레임을 따로 만들라고 권합니다. 그리고 파일이 명확할수록 코드 생성 도구도 디자인을 정확한 코드로 옮길 수 있다고 했습니다. 프레임 이름을 [화면설계서 가이드](/screen-spec-ep-00/)의 화면 ID와 맞춰 두면 설계서와 시안을 오가며 같은 화면을 찾는 시간도 줄일 수 있습니다.
 
 ---
 
@@ -96,7 +102,7 @@ Nielsen Norman Group의 Kelley Gordon은 2025년에 디자인 명세를 "개발�
 
 **기획자**: 화면마다 목적과 달성 조건을 디자인 파일에 적어야 합니다. 그 한 줄이 있으면 디자이너와 개발자가 흐름을 바꾸기 전에 읽을 수 있고, 없으면 의도는 두 사람의 기억에만 남습니다. 핸드오프 회의에는 참석해서 바뀐 흐름이 시나리오를 깨지 않는지를 확인해야 합니다.
 
-**디자이너**: 시안을 넘기기 전에 체크리스트 여섯 가지를 확인하고, 엣지 케이스 데이터를 넣어 시안이 버티는지 직접 봐야 합니다. 구현 중간에 실제 화면을 보는 시간을 일정에 넣어야 합니다. 구현이 끝난 뒤에 차이가 나는 항목을 목록으로 정리하고 받아서 고치는 것보다 중간에 30분 미팅하고 짧게 고치는 게 훨씬 낫습니다.
+**디자이너**: 시안을 넘기기 전에 체크리스트 여덟 가지를 확인하고, 엣지 케이스 데이터를 넣어 시안이 버티는지 직접 봐야 합니다. 구현 중간에 실제 화면을 보는 시간을 일정에 넣어야 합니다. 구현이 끝난 뒤에 차이가 나는 항목을 목록으로 정리하고 받아서 고치는 것보다 중간에 30분 미팅하고 짧게 고치는 게 훨씬 낫습니다.
 
 **개발자**: 시안에 없는 것을 추측해서 만들지 말고 질문해야 합니다. 질문은 품질에 대한 관심이고, 추측은 출시 뒤의 재작업을 초래합니다. 디자인 리뷰에 일찍 들어가서 구현이 불가능한 레이아웃과 실제 데이터의 괴리를 먼저 알려야 하고, 토큰 변수를 코드의 단일 출처로 두어 "어떤 값"에 대한 논쟁을 없애야 합니다.
 
@@ -109,6 +115,8 @@ Nielsen Norman Group의 Kelley Gordon은 2025년에 디자인 명세를 "개발�
 - Gordon, K. (2025). From Confrontation to Collaboration: The Developer-Designer Relationship. Nielsen Norman Group. https://www.nngroup.com/articles/developer-designer-relationship/
 - McKenzie, P. (2010). Falsehoods Programmers Believe About Names. Kalzumeus Software. https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
 - Figma. Guide to Dev Mode in Figma. Figma Learn. https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode
+- Figma. Dev Mode statuses and notifications. Figma Learn. https://help.figma.com/hc/en-us/articles/26781702258583-Dev-Mode-statuses-and-notifications
+- Lowry, T. (2025). Why You Should Care About Design Context. Figma Blog. https://www.figma.com/blog/why-you-should-care-about-design-context
 - Gothelf, J., & Seiden, J. (2013). *Lean UX: Applying Lean Principles to Improve User Experience*. O'Reilly Media.
 
 ---

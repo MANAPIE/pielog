@@ -1,9 +1,9 @@
 ---
 title: "전략 종합: 무엇부터 어디까지 - 사용자 대상 소프트웨어 테스트 가이드 ep.09"
 description: "시리즈 본편에서 다룬 모든 테스트를 한 자리에 모아, 우리 팀이 무엇부터 도입하고 어디까지 가져갈지 결정하는 의사결정 가이드입니다."
-summary: "시리즈의 마지막 편입니다. 지금까지 다룬 모든 종류의 테스트를 정리하고, 팀 규모와 코드베이스 성숙도에 따라 무엇부터 도입할지를 결정합니다. 테스트 전략 매트릭스 양식과 흔히 빠지는 함정, 그리고 내일부터 할 수 있는 세 가지 실행 항목으로 시리즈를 닫습니다."
+summary: "시리즈의 마지막 편입니다. 지금까지 다룬 모든 종류의 테스트를 정리하고, 팀 규모와 코드베이스 성숙도에 따라 무엇부터 도입할지를 결정합니다. 테스트 전략 매트릭스 양식과 PR을 올리기 전의 셀프 검수 항목, 흔히 빠지는 함정, 그리고 내일부터 할 수 있는 세 가지 실행 항목으로 시리즈를 닫습니다."
 date: 2026-05-23
-tags: ["series", "develop", "design", "frontend", "testing", "strategy", "qa"]
+tags: ["series", "develop", "design", "frontend", "testing", "strategy", "qa", "self-review"]
 thumbnail: ./cover.svg
 draft: false
 ---
@@ -111,6 +111,35 @@ draft: false
 
 ---
 
+## PR을 올리기 전의 셀프 검수
+
+자동화가 못 잡는 영역 중 일부는 만든 사람이 PR을 올리기 전에 직접 확인할 수 있습니다. 리뷰어와 QA는 그 화면을 처음 보는 사람이라 만든 사람만 아는 엣지 케이스를 놓치기 쉽습니다. 그리고 리뷰에서 발견한 문제는 고치고 다시 리뷰받는 왕복이 한 번 더 생깁니다. 다음 여섯 가지는 만든 사람이 먼저 확인해야 합니다.
+
+| 확인할 것 | 방법 |
+|---|---|
+| 키보드 | 마우스 없이 Tab, Shift+Tab, Enter, Space로 주요 흐름을 끝까지 진행하고, 포커스 표시가 보이는지와 이동 순서가 화면 배치와 같은지 봅니다 |
+| 글자 확대 | 브라우저나 기기 설정에서 글자를 200%로 키우고 잘리거나 겹치는 곳을 찾습니다 |
+| 데이터 범위 | 0건, 1건, 가장 긴 이름, 가장 많은 항목으로 화면을 띄웁니다 |
+| 느린 네트워크 | Chrome DevTools의 Network 패널에서 Slow 4G나 3G로 제한하고 로딩 상태를 봅니다 |
+| 오류 응답 | 4xx, 5xx, 타임아웃 응답을 목(mock)으로 돌려주고 에러 화면과 재시도를 확인합니다 |
+| 실제 기기 | 작은 화면, 큰 글씨 설정, 앱 안의 웹뷰에서 한 번씩 열어 봅니다 |
+
+The A11Y Project의 체크리스트도 키보드 포커스 순서가 화면 배치와 맞는지 확인하는 것과 글자를 200%로 키워 보는 것을 항목으로 두고 있습니다. 접근성 수동 확인 전반은 [ep.06 접근성 자동 검사와 수동 확인](/software-testing-guide-ep-06/)에서 다뤘습니다. 데이터 범위는 [IT UX 가이드 ep.12 와이어프레임과 상태 설계: 빈·로딩·에러·부분·과다](/ux-guide-ep-12/)의 여섯 상태에 대응하고, 앱 안에서만 깨지는 화면은 [웹뷰는 브라우저가 아니다 ep.00 브라우저에서는 되는데요](/webview-not-browser-ep-00/)에서 원인을 찾을 수 있습니다.
+
+확인한 항목은 PR 설명에 체크리스트로 남깁니다. 리뷰어는 무엇이 이미 확인되었는지 알 수 있고, 빠진 항목은 리뷰에서 바로 물어볼 수 있습니다.
+
+```markdown
+## 셀프 검수
+- [ ] 키보드만으로 주요 흐름 완료
+- [ ] 글자 200% 확대
+- [ ] 0건, 1건, 가장 긴 데이터
+- [ ] Slow 4G에서 로딩 상태
+- [ ] 4xx, 5xx, 타임아웃 화면
+- [ ] 실제 기기 또는 웹뷰 (해당할 때)
+```
+
+---
+
 ## 테스트 전략 문서 만들기
 
 지금까지 정리한 것을 팀의 약속으로 만드는 게 다음 단계입니다. 거창할 필요 없습니다. 한 페이지 문서면 충분합니다.
@@ -186,3 +215,5 @@ draft: false
 - Kent C. Dodds. "The Testing Trophy and Testing Classifications", https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications
 - Google SRE Books. https://sre.google/books/
 - Lisa Crispin & Janet Gregory. (2014). *More Agile Testing*. Addison-Wesley.
+- The A11Y Project. "Checklist", https://www.a11yproject.com/checklist/
+- Chrome for Developers. "Network features reference", https://developer.chrome.com/docs/devtools/network/reference

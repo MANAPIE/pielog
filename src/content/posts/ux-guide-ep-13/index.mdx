@@ -1,9 +1,9 @@
 ---
 title: "인터랙션 디자인의 원칙: 피드백·되돌리기·마이크로인터랙션 - IT UX 가이드 ep.13"
 description: "버튼을 눌렀는데 아무 일도 일어나지 않는 0.5초 동안 사용자는 프로덕트를 다시 평가합니다. 직접 조작, 즉각적 피드백, 되돌리기, 일관성, 제약이라는 다섯 원칙과 마이크로인터랙션의 구조, 목적 있는 모션을 근거와 함께 정리합니다."
-summary: "Norman의 실행·평가의 간극으로 인터랙션 디자인이 다루는 범위를 잡고, Shneiderman의 직접 조작, Nielsen의 0.1초·1초·10초와 Doherty의 400ms, 확인 대화상자보다 되돌리기, 내부·외부 일관성과 약한 시그니파이어의 22% 비용, Norman의 네 가지 제약을 다룹니다. Saffer의 트리거·규칙·피드백·루프와 모드로 좋아요 버튼을 해부하고, 100ms에서 500ms 사이의 모션과 prefers-reduced-motion까지 정리합니다."
+summary: "Norman의 실행·평가의 간극으로 인터랙션 디자인이 다루는 범위를 잡고, Shneiderman의 직접 조작, Nielsen의 0.1초·1초·10초와 Doherty의 400ms, 확인 대화상자보다 되돌리기, 내부·외부 일관성과 약한 시그니파이어의 22% 비용, Norman의 네 가지 제약을 다룹니다. Saffer의 트리거·규칙·피드백·루프와 모드로 좋아요 버튼을 해부하고, 100ms에서 500ms 사이의 모션과 prefers-reduced-motion, 개발자에게 넘기는 모션 명세의 일곱 항목까지 정리합니다."
 date: 2026-10-17
-tags: [series, design, ux, interaction, feedback, undo, microinteraction, motion]
+tags: [series, design, ux, interaction, feedback, undo, microinteraction, motion, motionspec]
 thumbnail: ./cover.svg
 draft: false
 ---
@@ -120,13 +120,27 @@ Saffer는 이런 마이크로인터랙션 하나가 브랜드를 대표하는 �
 
 추가적으로 이런 움직임은 사용자가 끌 수 있어야 합니다. 전정 기관 장애가 있는 사람에게 시차 스크롤이나 큰 화면 전환은 어지럼과 구역을 일으킬 수 있습니다. 그래서 WCAG 2.1의 성공 기준 2.3.3은 상호작용으로 시작되는 모션 애니메이션을 끌 수 있어야 한다고 정합니다. 운영체제의 "동작 줄이기" 설정을 CSS의 `prefers-reduced-motion` 미디어 쿼리로 읽어서, 날아오는 모달을 서서히 나타나는 모달로 바꾸는 식으로 대응합니다. 접근성 전반은 [접근성 가이드](/a11y-guide-ep-00/)에서 다룹니다.
 
+모션을 개발자에게 넘길 때는 영상이나 프로토타입만 보내지 말고 수치로 된 명세를 함께 적어야 합니다. 영상으로는 느낌이 전달되지만, 길이가 200ms인지 300ms인지, 어느 속성이 바뀌는지는 개발자가 프레임을 세어 추측해야 합니다. 명세에는 일곱 가지를 적습니다.
+
+| 항목 | 적을 것 | 예: 저장 완료 토스트 |
+|---|---|---|
+| 대상 | 움직이는 요소 | 화면 하단 토스트 |
+| 트리거 | 모션이 시작되는 조건 | 저장 요청이 성공 응답을 받은 순간 |
+| 속성 | 바뀌는 속성과 시작값, 끝값 | 위치는 아래로 16px에서 0으로, 투명도는 0에서 1로 |
+| 길이 | 디자인 시스템의 길이 토큰 | `duration-moderate-02`(240ms) |
+| 이징 | 가속과 감속의 곡선 | 새로 나타나는 요소용 entrance 이징 |
+| 순서 | 여러 요소가 함께 움직일 때의 지연과 순서 | 단독 |
+| 동작 줄이기 | 동작 줄이기 설정에서 대신 보여줄 모습 | 위치 이동 없이 투명도만 0에서 1로 |
+
+길이와 이징은 디자인 시스템의 토큰 이름으로 적어야 합니다. IBM의 Carbon 디자인 시스템은 길이를 70ms인 `duration-fast-01`부터 700ms인 `duration-slow-02`까지 여섯 단계 토큰으로 두고, 이징은 화면에 계속 있는 요소의 standard, 새로 나타나는 요소의 entrance, 사라지는 요소의 exit로 나눕니다. 토큰 이름으로 적으면 개발자는 같은 이름의 변수를 사용하면 되고, 비슷한 전환이 화면마다 다른 길이로 구현되는 일을 막을 수 있습니다. Carbon은 화면 상태가 바뀌는 전환에는 항상 대안을 두라고도 합니다. 그래서 동작 줄이기 설정에서 보여줄 모습도 명세에 함께 적어야 합니다.
+
 ---
 
 ## 기획자·디자이너·개발자가 각각 가져갈 것
 
 **기획자**: 요구사항에 "삭제 기능"이라고만 적지 말고 되돌리기 방식과 보관 기간을 함께 적어야 합니다. 되돌리기가 요구사항에 없으면 구현은 확인 대화상자로 끝나기 쉽고, 그 대화상자는 Nielsen이 말한 대로 보호 효과가 없을 수 있습니다.
 
-**디자이너**: 모든 인터랙션 요소에 기본, 눌림, 비활성, 로딩, 실패의 상태를 그려야 합니다. 비활성 버튼에는 왜 비활성인지를 보여줄 자리를 두고, 모션은 길이와 목적을 명세에 적어서 "적당히 부드럽게"라는 말이 개발자에게 넘어가지 않게 해야 합니다.
+**디자이너**: 모든 인터랙션 요소에 기본, 눌림, 비활성, 로딩, 실패의 상태를 그려야 합니다. 비활성 버튼에는 왜 비활성인지를 보여줄 자리를 두고, 모션은 목적과 함께 대상, 트리거, 속성, 길이, 이징, 순서, 동작 줄이기 대안을 명세에 적어서 "적당히 부드럽게"라는 말이 개발자에게 넘어가지 않게 해야 합니다.
 
 **개발자**: 서버 응답을 기다리지 않고 0.1초 안에 화면이 반응하게 만드는 것은 개발자의 손에 있습니다. 낙관적 UI와 실패 시 롤백을 기본 패턴으로 두고, 애니메이션은 `prefers-reduced-motion`을 존중하게 구현해야 합니다. 되돌리기를 지원하려면 삭제를 즉시 실행하지 않고 일정 시간 보류하거나 소프트 삭제로 두는 설계가 필요하므로, 설계 단계에서 그 비용을 말해야 합니다.
 
@@ -147,6 +161,7 @@ Saffer는 이런 마이크로인터랙션 하나가 브랜드를 대표하는 �
 - Harley, A. (2014). Animation for Attention and Comprehension. Nielsen Norman Group. https://www.nngroup.com/articles/animation-usability/
 - Nielsen Norman Group. Executing UX Animations: Duration and Motion Characteristics. https://www.nngroup.com/articles/animation-duration/
 - Google. Easing and duration. Material Design 3. https://m3.material.io/styles/motion/easing-and-duration/tokens-specs
+- IBM. Motion. Carbon Design System. https://carbondesignsystem.com/elements/motion/overview/
 - W3C. (2018). Understanding Success Criterion 2.3.3: Animation from Interactions. *Web Content Accessibility Guidelines 2.1*. https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions
 
 ---
