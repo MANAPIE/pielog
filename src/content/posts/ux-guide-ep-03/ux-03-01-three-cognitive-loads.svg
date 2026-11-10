@@ -1,0 +1,85 @@
+<svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-cl">
+  <title id="t-cl">인지 부하의 세 종류</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-cl" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-cl-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="420" />
+  <text x="24" y="34" class="th">작업 기억의 한계</text>
+  <rect x="24" y="44" width="452" height="248" rx="10" fill="none" stroke="var(--c-fg)" stroke-width="2" />
+  <g transform="translate(36 208)">
+    <rect width="428" height="72" rx="6" fill="var(--c-muted-soft)" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="24" class="nm">내재적 부하 (intrinsic)</text>
+    <text x="16" y="44" class="cap">과제 자체의 어려움입니다. 세금 신고는 원래 복잡합니다.</text>
+    <text x="16" y="62" class="cap">줄일 수는 없고 나눌 수만 있습니다.</text>
+  </g>
+  <g transform="translate(36 128)">
+    <rect width="428" height="72" rx="6" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.6" />
+    <text x="16" y="24" class="nm">외재적 부하 (extraneous)</text>
+    <text x="16" y="44" class="cap">인터페이스가 만드는 불필요한 부하입니다. 장식, 찾기 어려운 메뉴, 일관성 없는 용어입니다.</text>
+    <text x="16" y="62" class="val" fill="var(--c-accent-2)">UX가 줄여야 할 대상입니다.</text>
+  </g>
+  <g transform="translate(36 56)">
+    <rect width="428" height="64" rx="6" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.6" />
+    <text x="16" y="24" class="nm">본유적 부하 (germane)</text>
+    <text x="16" y="44" class="cap">이해와 학습에 필요한 부하입니다. 온보딩의 핵심 개념 설명이 그 예입니다. 적절히 유지합니다.</text>
+  </g>
+  <line x1="24" y1="316" x2="476" y2="316" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="24" y="340" class="td">세 부하의 합이 한계를 넘으면 시스템 2가 강제되고, 피로와 이탈로 이어집니다.</text>
+  <text x="24" y="360" class="cap">외재적 부하를 줄이는 만큼 내재적 부하가 큰 과제에도 여유가 생깁니다.</text>
+  <text x="24" y="404" class="cap">출처: Sweller, J. (1988). Cognitive Load During Problem Solving.</text>
+</svg>
