@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="IT UX 가이드 ep.00 cover">
+  <style>
+  :root {
+    --c-bg: #F8F3EE;
+    --c-fg: #1A1F2E;
+    --c-muted: #6B7280;
+    --c-accent: #B4502A; --c-accent-2: #C9A227; --c-accent-3: #6E3A78;
+    --c-num: rgba(180,80,42, 0.14);
+    --c-dot: rgba(180,80,42, 0.12);
+    --c-line: rgba(26, 31, 46, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #17120F;
+      --c-fg: #E8E6E1;
+      --c-muted: #8B92A0;
+      --c-accent: #F0956E; --c-accent-2: #E8C45A; --c-accent-3: #C08FE0;
+      --c-num: rgba(240,149,110, 0.16);
+      --c-dot: rgba(240,149,110, 0.12);
+      --c-line: rgba(232, 230, 225, 0.16);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots-ux00" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="halo-ux00a" cx="0.84" cy="0.16" r="0.6">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo-ux00b" cx="0.12" cy="0.86" r="0.55">
+      <stop offset="0" stop-color="var(--c-accent-2)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent-2)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-ux00)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux00a)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux00b)"/>
+
+  <!-- 배경 무채색 스트로크 도형 (화면 밖으로) -->
+  <rect x="820" y="-160" width="560" height="560" rx="48" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(12 1100 120)"/>
+  <circle cx="60" cy="600" r="300" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="60" cy="600" r="220" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- 메타포: 세 직무의 원이 겹치는 자리에 경험 -->
+  <g transform="translate(470 300)">
+    <circle cx="-110" cy="-60" r="170" fill="var(--c-accent)" fill-opacity="0.22"/>
+    <circle cx="110" cy="-60" r="170" fill="var(--c-accent-3)" fill-opacity="0.22"/>
+    <circle cx="0" cy="110" r="170" fill="var(--c-accent-2)" fill-opacity="0.22"/>
+    <circle cx="-110" cy="-60" r="170" fill="none" stroke="var(--c-accent)" stroke-width="3"/>
+    <circle cx="110" cy="-60" r="170" fill="none" stroke="var(--c-accent-3)" stroke-width="3"/>
+    <circle cx="0" cy="110" r="170" fill="none" stroke="var(--c-accent-2)" stroke-width="3"/>
+    <!-- 교집합의 포커스 링 -->
+    <circle cx="0" cy="0" r="46" fill="var(--c-bg)"/>
+    <circle cx="0" cy="0" r="30" fill="var(--c-accent)"/>
+    <circle cx="0" cy="0" r="12" fill="var(--c-bg)"/>
+    <circle cx="0" cy="0" r="62" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="4 8"/>
+  </g>
+
+  <!-- 디테일 어휘 -->
+  <g transform="translate(870 150) rotate(-8)">
+    <rect width="150" height="12" rx="6" fill="var(--c-accent-3)" fill-opacity="0.7"/>
+    <rect y="24" width="96" height="12" rx="6" fill="var(--c-accent)" fill-opacity="0.7"/>
+    <rect y="48" width="120" height="12" rx="6" fill="var(--c-accent-2)" fill-opacity="0.7"/>
+  </g>
+
+  <g transform="translate(1010 310)">
+    <circle r="54" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+    <circle r="34" fill="none" stroke="var(--c-accent-2)" stroke-width="2" opacity="0.6"/>
+    <circle r="14" fill="var(--c-accent-2)"/>
+  </g>
+
+  <g transform="translate(150 120) rotate(10)">
+    <rect x="-40" y="-40" width="80" height="80" rx="12" fill="none" stroke="var(--c-accent-3)" stroke-width="3"/>
+    <polyline points="-20,2 -6,16 22,-14" fill="none" stroke="var(--c-accent-3)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g fill="var(--c-accent)">
+    <circle cx="236" cy="470" r="9"/>
+    <circle cx="264" cy="486" r="6" opacity="0.7"/>
+    <circle cx="222" cy="500" r="5" opacity="0.5"/>
+    <circle cx="256" cy="512" r="4" opacity="0.4"/>
+  </g>
+
+  <polygon points="760,60 806,140 714,140" fill="var(--c-accent-3)" fill-opacity="0.55"/>
+  <polygon points="760,60 806,140 714,140" fill="none" stroke="var(--c-accent-3)" stroke-width="2"/>
+
+  <line x1="640" y1="560" x2="900" y2="560" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 8" opacity="0.6"/>
+  <line x1="120" y1="330" x2="290" y2="330" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 8" opacity="0.6"/>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">00</text>
+</svg>

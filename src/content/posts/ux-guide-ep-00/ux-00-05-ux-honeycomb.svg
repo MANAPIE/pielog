@@ -1,0 +1,103 @@
+<svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-hc">
+  <title id="t-hc">Morville의 UX 허니콤</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .nm-inv { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-bg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .cap-inv { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-bg); opacity: 0.85; }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .tag { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 9.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .leader { stroke: var(--c-muted); stroke-width: 1; stroke-dasharray: 2 3; fill: none; }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-hc" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-hc-d" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="420" />
+  <polygon points="305.4,168.0 305.4,232.0 250.0,264.0 194.6,232.0 194.6,168.0 250.0,136.0" fill="var(--c-fg)" stroke="var(--c-fg)" stroke-width="1.6" />
+  <text x="250.0" y="180.0" class="nm-inv" text-anchor="middle">가치</text>
+  <text x="250.0" y="196.0" class="cap-inv mono" text-anchor="middle">Valuable</text>
+  <text x="250.0" y="216.0" class="cap-inv" text-anchor="middle">사용자와 비즈니스</text>
+  <text x="250.0" y="234.0" class="cap-inv" text-anchor="middle">모두에 가치를 주는가</text>
+  <polygon points="416.3,168.0 416.3,232.0 360.9,264.0 305.4,232.0 305.4,168.0 360.9,136.0" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.6" />
+  <text x="360.9" y="180.0" class="nm" text-anchor="middle">유용성</text>
+  <text x="360.9" y="196.0" class="cap mono" text-anchor="middle">Useful</text>
+  <text x="360.9" y="216.0" class="cap" text-anchor="middle">실제 문제를</text>
+  <text x="360.9" y="234.0" class="cap" text-anchor="middle">해결하는가</text>
+  <polygon points="360.9,264.0 360.9,328.0 305.4,360.0 250.0,328.0 250.0,264.0 305.4,232.0" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1.6" />
+  <text x="305.4" y="276.0" class="nm" text-anchor="middle">사용성</text>
+  <text x="305.4" y="292.0" class="cap mono" text-anchor="middle">Usable</text>
+  <text x="305.4" y="312.0" class="cap" text-anchor="middle">쉽고 효율적으로</text>
+  <text x="305.4" y="330.0" class="cap" text-anchor="middle">쓸 수 있는가</text>
+  <polygon points="250.0,264.0 250.0,328.0 194.6,360.0 139.1,328.0 139.1,264.0 194.6,232.0" fill="var(--c-soft-4)" stroke="var(--c-accent-4)" stroke-width="1.6" />
+  <text x="194.6" y="276.0" class="nm" text-anchor="middle">매력성</text>
+  <text x="194.6" y="292.0" class="cap mono" text-anchor="middle">Desirable</text>
+  <text x="194.6" y="312.0" class="cap" text-anchor="middle">쓰고 싶은</text>
+  <text x="194.6" y="330.0" class="cap" text-anchor="middle">마음이 드는가</text>
+  <polygon points="194.6,168.0 194.6,232.0 139.1,264.0 83.7,232.0 83.7,168.0 139.1,136.0" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.6" />
+  <text x="139.1" y="180.0" class="nm" text-anchor="middle">발견성</text>
+  <text x="139.1" y="196.0" class="cap mono" text-anchor="middle">Findable</text>
+  <text x="139.1" y="216.0" class="cap" text-anchor="middle">원하는 것을</text>
+  <text x="139.1" y="234.0" class="cap" text-anchor="middle">찾을 수 있는가</text>
+  <polygon points="250.0,72.0 250.0,136.0 194.6,168.0 139.1,136.0 139.1,72.0 194.6,40.0" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1.6" />
+  <text x="194.6" y="84.0" class="nm" text-anchor="middle">접근성</text>
+  <text x="194.6" y="100.0" class="cap mono" text-anchor="middle">Accessible</text>
+  <text x="194.6" y="120.0" class="cap" text-anchor="middle">모든 사용자가</text>
+  <text x="194.6" y="138.0" class="cap" text-anchor="middle">쓸 수 있는가</text>
+  <polygon points="360.9,72.0 360.9,136.0 305.4,168.0 250.0,136.0 250.0,72.0 305.4,40.0" fill="var(--c-soft-4)" stroke="var(--c-accent-4)" stroke-width="1.6" />
+  <text x="305.4" y="84.0" class="nm" text-anchor="middle">신뢰성</text>
+  <text x="305.4" y="100.0" class="cap mono" text-anchor="middle">Credible</text>
+  <text x="305.4" y="120.0" class="cap" text-anchor="middle">믿을 수</text>
+  <text x="305.4" y="138.0" class="cap" text-anchor="middle">있는가</text>
+  <text x="24" y="390" class="cap">출처: Morville, P. (2004). User Experience Design.</text>
+  <text x="24" y="408" class="cap">사용성은 필요 조건일 뿐, 일곱 요소가 함께 가치를 만듭니다.</text>
+</svg>
