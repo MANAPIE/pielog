@@ -1,0 +1,91 @@
+<svg viewBox="0 0 500 416" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-am">
+  <title id="t-am">가정 매핑: 먼저 확인할 가정 고르기</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="500" height="416" />
+  <text x="24" y="34" class="ttl">가정 매핑: 먼저 확인할 가정 고르기</text>
+  <text x="153" y="60" class="th" text-anchor="middle">근거 있음</text>
+  <text x="371" y="60" class="th" text-anchor="middle">근거 없음</text>
+  <text x="36" y="162" class="th" text-anchor="middle" transform="rotate(-90 36 162)">중요함</text>
+  <text x="36" y="319" class="th" text-anchor="middle" transform="rotate(-90 36 319)">중요하지 않음</text>
+  <rect x="48" y="68" width="210" height="188" rx="8" fill="var(--c-muted-soft)" stroke="var(--c-muted)" stroke-width="1.2" />
+  <rect x="266" y="68" width="210" height="188" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.6" />
+  <rect x="48" y="264" width="210" height="110" rx="8" fill="var(--c-muted-soft)" stroke="var(--c-muted)" stroke-width="1.2" />
+  <rect x="266" y="264" width="210" height="110" rx="8" fill="var(--c-muted-soft)" stroke="var(--c-muted)" stroke-width="1.2" />
+  <text x="278" y="88" class="lbl" style="fill:var(--c-accent)">먼저 실험할 가정</text>
+  <rect x="56" y="98" width="194" height="70" rx="6" class="card" stroke="var(--c-muted)" />
+  <text x="68" y="118" class="td">사용자는 매주</text>
+  <text x="68" y="134" class="td">비슷한 품목을 산다</text>
+  <text x="68" y="155" class="cap">로그 수치를 출처로 남기기</text>
+  <rect x="274" y="98" width="194" height="70" rx="6" class="card" stroke="var(--c-accent)" />
+  <text x="286" y="118" class="td">배송 요일을 고정해도</text>
+  <text x="286" y="134" class="td">불편하지 않다</text>
+  <text x="286" y="155" class="cap">인터뷰로 먼저 확인하기</text>
+  <rect x="274" y="176" width="194" height="70" rx="6" class="card" stroke="var(--c-accent)" />
+  <text x="286" y="196" class="td">결제 수단을 미리 저장하는 데</text>
+  <text x="286" y="212" class="td">거부감이 없다</text>
+  <text x="286" y="233" class="cap">사용성 테스트로 먼저 확인하기</text>
+  <rect x="274" y="294" width="194" height="70" rx="6" class="card" stroke="var(--c-muted)" />
+  <text x="286" y="314" class="td">배송 전날 푸시 알림이면</text>
+  <text x="286" y="330" class="td">충분하다</text>
+  <text x="286" y="351" class="cap">출시 뒤 로그로 확인하기</text>
+  <rect x="56" y="294" width="194" height="70" rx="6" class="card" stroke="var(--c-muted)" />
+  <text x="68" y="314" class="td">사용자는 주로</text>
+  <text x="68" y="330" class="td">저녁 시간에 주문한다</text>
+  <text x="68" y="351" class="cap">더 확인하지 않기</text>
+  <text x="24" y="400" class="cap">출처: Bland(2020), Bland &amp; Osterwalder(2019). 장보기 앱의 정기 배송 예시로 재구성.</text>
+</svg>
