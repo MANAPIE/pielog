@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="IT UX 가이드 ep.09 cover">
+  <style>
+  :root { --c-bg: #F8F3EE; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-accent: #B4502A; --c-accent-2: #C9A227; --c-accent-3: #6E3A78; --c-num: rgba(180,80,42, 0.14); --c-dot: rgba(180,80,42, 0.12); --c-line: rgba(26, 31, 46, 0.14); }
+  @media (prefers-color-scheme: dark) { :root { --c-bg: #17120F; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-accent: #F0956E; --c-accent-2: #E8C45A; --c-accent-3: #C08FE0; --c-num: rgba(240,149,110, 0.16); --c-dot: rgba(240,149,110, 0.12); --c-line: rgba(232, 230, 225, 0.16); } }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dots-ux09" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/></pattern>
+    <radialGradient id="halo-ux09a" cx="0.8" cy="0.2" r="0.6"><stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/><stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/></radialGradient>
+    <radialGradient id="halo-ux09b" cx="0.15" cy="0.85" r="0.55"><stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.24"/><stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-ux09)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux09a)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux09b)"/>
+  <circle cx="1060" cy="600" r="300" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <rect x="-120" y="-180" width="480" height="480" rx="48" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(14 120 60)"/>
+
+  <!-- 메타포: 시간 축 위의 감정 곡선이 가시선 아래로 내려간다 -->
+  <g transform="translate(0 0)">
+    <line x1="120" y1="330" x2="1080" y2="330" stroke="var(--c-fg)" stroke-width="3" stroke-dasharray="14 12" opacity="0.7"/>
+    <path d="M 150 250 C 260 180, 330 200, 420 280 S 560 470, 650 420 S 800 150, 900 210 S 1010 330, 1060 300" fill="none" stroke="var(--c-accent)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="150" cy="250" r="16" fill="var(--c-accent)"/>
+    <circle cx="420" cy="280" r="16" fill="var(--c-accent)"/>
+    <circle cx="650" cy="420" r="22" fill="var(--c-accent-2)"/>
+    <circle cx="650" cy="420" r="38" fill="none" stroke="var(--c-accent-2)" stroke-width="3" stroke-dasharray="5 7"/>
+    <circle cx="900" cy="210" r="16" fill="var(--c-accent)"/>
+    <circle cx="1060" cy="300" r="16" fill="var(--c-accent-2)"/>
+    <g stroke="var(--c-accent-3)" stroke-width="3" opacity="0.8">
+      <line x1="650" y1="458" x2="650" y2="560"/>
+      <line x1="610" y1="560" x2="690" y2="560"/>
+      <line x1="590" y1="590" x2="710" y2="590" stroke-dasharray="6 8"/>
+    </g>
+  </g>
+
+  <g transform="translate(880 120) rotate(-8)"><rect width="150" height="12" rx="6" fill="var(--c-accent-3)" fill-opacity="0.7"/><rect y="24" width="96" height="12" rx="6" fill="var(--c-accent)" fill-opacity="0.7"/><rect y="48" width="120" height="12" rx="6" fill="var(--c-accent-2)" fill-opacity="0.7"/></g>
+  <g fill="var(--c-accent-3)"><circle cx="240" cy="470" r="9"/><circle cx="270" cy="486" r="6" opacity="0.7"/><circle cx="228" cy="502" r="5" opacity="0.5"/><circle cx="260" cy="514" r="4" opacity="0.4"/></g>
+  <rect x="300" y="90" width="90" height="90" rx="14" fill="none" stroke="var(--c-accent-2)" stroke-width="3" transform="rotate(12 345 135)"/>
+  <polygon points="1120,60 1166,140 1074,140" fill="var(--c-accent)" fill-opacity="0.5"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">09</text>
+</svg>
