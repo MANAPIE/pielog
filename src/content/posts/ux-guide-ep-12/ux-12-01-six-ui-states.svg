@@ -1,0 +1,124 @@
+<svg viewBox="0 0 500 424" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-st">
+  <title id="t-st">한 화면의 여섯 상태</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-st" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-st-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="424" />
+  <text x="24" y="36" class="ttl">한 화면의 여섯 상태</text>
+  <rect x="24" y="52" width="218" height="96" rx="8" class="card" stroke="var(--c-divider)" />
+  <rect x="38" y="66" width="72" height="60" rx="4" fill="var(--c-muted-soft)" />
+  <rect x="38" y="66" width="72" height="10" rx="4" fill="var(--c-divider)" />
+  <rect x="44" y="82" width="60" height="7" rx="2" fill="var(--c-accent)" opacity="0.7" />
+  <rect x="44" y="93" width="60" height="7" rx="2" fill="var(--c-accent)" opacity="0.7" />
+  <rect x="44" y="104" width="60" height="7" rx="2" fill="var(--c-accent)" opacity="0.7" />
+  <rect x="44" y="115" width="60" height="7" rx="2" fill="var(--c-accent)" opacity="0.7" />
+  <text x="124" y="84" class="nm">정상 상태</text>
+  <text x="124" y="106" class="cap">시안에 그려지는</text>
+  <text x="124" y="123" class="cap">유일한 상태입니다.</text>
+  <rect x="258" y="52" width="218" height="96" rx="8" class="card" stroke="var(--c-divider)" />
+  <rect x="272" y="66" width="72" height="60" rx="4" fill="var(--c-muted-soft)" />
+  <rect x="272" y="66" width="72" height="10" rx="4" fill="var(--c-divider)" />
+  <rect x="288.0" y="88" width="40" height="6" rx="2" fill="var(--c-divider)" />
+  <rect x="292.0" y="102" width="32" height="12" rx="3" fill="var(--c-accent-3)" />
+  <text x="358" y="84" class="nm">빈 상태</text>
+  <text x="358" y="106" class="cap">첫 사용자가</text>
+  <text x="358" y="123" class="cap">가장 먼저 봅니다.</text>
+  <rect x="24" y="164" width="218" height="96" rx="8" class="card" stroke="var(--c-divider)" />
+  <rect x="38" y="178" width="72" height="60" rx="4" fill="var(--c-muted-soft)" />
+  <rect x="38" y="178" width="72" height="10" rx="4" fill="var(--c-divider)" />
+  <rect x="44" y="196" width="54" height="8" rx="3" fill="var(--c-divider)" />
+  <rect x="44" y="209" width="36" height="8" rx="3" fill="var(--c-divider)" />
+  <rect x="44" y="222" width="48" height="8" rx="3" fill="var(--c-divider)" />
+  <text x="124" y="196" class="nm">로딩 상태</text>
+  <text x="124" y="218" class="cap">기다리는 동안</text>
+  <text x="124" y="235" class="cap">무엇을 보여줄지.</text>
+  <rect x="258" y="164" width="218" height="96" rx="8" class="card" stroke="var(--c-divider)" />
+  <rect x="272" y="178" width="72" height="60" rx="4" fill="var(--c-muted-soft)" />
+  <rect x="272" y="178" width="72" height="10" rx="4" fill="var(--c-divider)" />
+  <circle cx="308.0" cy="206" r="8" fill="none" stroke="var(--c-accent-2)" stroke-width="2" />
+  <line x1="308.0" y1="201" x2="308.0" y2="208" stroke="var(--c-accent-2)" stroke-width="2" />
+  <circle cx="308.0" cy="211" r="1.2" fill="var(--c-accent-2)" />
+  <rect x="290.0" y="220" width="36" height="10" rx="3" fill="var(--c-accent-2)" />
+  <text x="358" y="196" class="nm">에러 상태</text>
+  <text x="358" y="218" class="cap">원인과 다음 행동을</text>
+  <text x="358" y="235" class="cap">알려줄지.</text>
+  <rect x="24" y="276" width="218" height="96" rx="8" class="card" stroke="var(--c-divider)" />
+  <rect x="38" y="290" width="72" height="60" rx="4" fill="var(--c-muted-soft)" />
+  <rect x="38" y="290" width="72" height="10" rx="4" fill="var(--c-divider)" />
+  <rect x="44" y="306" width="60" height="7" rx="2" fill="var(--c-accent-3)" opacity="0.7" />
+  <rect x="44" y="317" width="60" height="7" rx="2" fill="none" stroke="var(--c-divider)" stroke-dasharray="3 2" />
+  <rect x="44" y="328" width="60" height="7" rx="2" fill="none" stroke="var(--c-divider)" stroke-dasharray="3 2" />
+  <rect x="44" y="339" width="60" height="7" rx="2" fill="none" stroke="var(--c-divider)" stroke-dasharray="3 2" />
+  <text x="124" y="308" class="nm">부분 상태</text>
+  <text x="124" y="330" class="cap">채워 가도록</text>
+  <text x="124" y="347" class="cap">이끌지.</text>
+  <rect x="258" y="276" width="218" height="96" rx="8" class="card" stroke="var(--c-divider)" />
+  <rect x="272" y="290" width="72" height="60" rx="4" fill="var(--c-muted-soft)" />
+  <rect x="272" y="290" width="72" height="10" rx="4" fill="var(--c-divider)" />
+  <rect x="278" y="304" width="60" height="6" rx="2" fill="var(--c-accent-2)" opacity="0.7" />
+  <rect x="278" y="313" width="60" height="6" rx="2" fill="var(--c-accent-2)" opacity="0.7" />
+  <rect x="278" y="322" width="60" height="6" rx="2" fill="var(--c-accent-2)" opacity="0.7" />
+  <rect x="278" y="331" width="60" height="6" rx="2" fill="var(--c-accent-2)" opacity="0.7" />
+  <rect x="278" y="340" width="60" height="6" rx="2" fill="var(--c-accent-2)" opacity="0.3" />
+  <rect x="278" y="349" width="60" height="6" rx="2" fill="var(--c-accent-2)" opacity="0.3" />
+  <rect x="272" y="338" width="72" height="12" fill="var(--c-bg)" opacity="0.55" />
+  <text x="358" y="308" class="nm">과다 상태</text>
+  <text x="358" y="330" class="cap">넘치는 항목을</text>
+  <text x="358" y="347" class="cap">어떻게 담을지.</text>
+  <text x="24" y="400" class="cap">정상만 그리면 다섯 상태는 구현 중에 개발자가 혼자 정하게 됩니다.</text>
+</svg>
