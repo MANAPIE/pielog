@@ -1,0 +1,84 @@
+<svg viewBox="0 0 500 464" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-ft">
+  <title id="t-ft">데이터 기반 의사결정의 다섯 가지 함정</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-ft" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-ft-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+      <rect class="bg" width="500" height="464" />
+  <text x="24" y="36" class="ttl">데이터 기반 의사결정의 다섯 가지 함정</text>
+  <rect x="24" y="56" width="452" height="64" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="38" y="78" class="nm">모든 것을 테스트</text>
+  <text x="38" y="96" class="cap">증상: 파란색 41가지, 테두리 3·4·5px</text>
+  <text x="38" y="112" class="cap" style="fill:var(--c-accent)">대응: 방향은 판단으로, 세부는 실험으로</text>
+  <rect x="24" y="130" width="452" height="64" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="38" y="152" class="nm">단기 지표 최적화</text>
+  <text x="38" y="170" class="cap">증상: 수집률은 오르고 재방문율은 하락</text>
+  <text x="38" y="186" class="cap" style="fill:var(--c-accent)">대응: 가드레일 지표를 같이 추적</text>
+  <rect x="24" y="204" width="452" height="64" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="38" y="226" class="nm">데이터 과신</text>
+  <text x="38" y="244" class="cap">증상: 체류 시간 증가의 두 가지 해석</text>
+  <text x="38" y="260" class="cap" style="fill:var(--c-accent)">대응: 리플레이와 테스트로 왜를 확인</text>
+  <rect x="24" y="278" width="452" height="64" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="38" y="300" class="nm">지역 최적화</text>
+  <text x="38" y="318" class="cap">증상: 작은 언덕의 꼭대기</text>
+  <text x="38" y="334" class="cap" style="fill:var(--c-accent)">대응: 분기마다 큰 질문 던지기</text>
+  <rect x="24" y="352" width="452" height="64" rx="8" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="38" y="374" class="nm">윤리적 경계</text>
+  <text x="38" y="392" class="cap">증상: 동의 없는 실험, 다크 패턴</text>
+  <text x="38" y="408" class="cap" style="fill:var(--c-accent)">대응: 사용자가 알면 화낼 일인가</text>
+  <text x="24" y="440" class="cap">데이터는 결정의 재료이고, 결정은 사람이 합니다.</text>
+</svg>
