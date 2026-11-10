@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="IT UX 가이드 ep.01 cover">
+  <style>
+  :root {
+    --c-bg: #F8F3EE; --c-fg: #1A1F2E; --c-muted: #6B7280;
+    --c-accent: #B4502A; --c-accent-2: #C9A227; --c-accent-3: #6E3A78;
+    --c-num: rgba(180,80,42, 0.14); --c-dot: rgba(180,80,42, 0.12); --c-line: rgba(26, 31, 46, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #17120F; --c-fg: #E8E6E1; --c-muted: #8B92A0;
+      --c-accent: #F0956E; --c-accent-2: #E8C45A; --c-accent-3: #C08FE0;
+      --c-num: rgba(240,149,110, 0.16); --c-dot: rgba(240,149,110, 0.12); --c-line: rgba(232, 230, 225, 0.16);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dots-ux01" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/></pattern>
+    <radialGradient id="halo-ux01a" cx="0.16" cy="0.18" r="0.6"><stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.24"/><stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/></radialGradient>
+    <radialGradient id="halo-ux01b" cx="0.86" cy="0.84" r="0.55"><stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.26"/><stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-ux01)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux01a)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux01b)"/>
+
+  <circle cx="1120" cy="80" r="320" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <rect x="-120" y="380" width="520" height="420" rx="40" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(-10 140 590)"/>
+
+  <!-- 메타포: 가정 카드 묶음, 검증되어 체크 또는 기각 -->
+  <g transform="translate(560 320)">
+    <g transform="rotate(-9)">
+      <rect x="-230" y="-150" width="360" height="110" rx="14" fill="var(--c-bg)" stroke="var(--c-accent-2)" stroke-width="2.5"/>
+      <rect x="-200" y="-118" width="180" height="14" rx="7" fill="var(--c-accent-2)" opacity="0.8"/>
+      <rect x="-200" y="-90" width="120" height="10" rx="5" fill="var(--c-line)"/>
+      <line x1="66" y1="-122" x2="102" y2="-86" stroke="var(--c-accent-2)" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="102" y1="-122" x2="66" y2="-86" stroke="var(--c-accent-2)" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+    <g transform="rotate(4)">
+      <rect x="-200" y="-30" width="360" height="110" rx="14" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2.5"/>
+      <rect x="-170" y="2" width="150" height="14" rx="7" fill="var(--c-accent)" opacity="0.8"/>
+      <rect x="-170" y="30" width="200" height="10" rx="5" fill="var(--c-line)"/>
+      <polyline points="86,10 106,32 142,-8" fill="none" stroke="var(--c-accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g transform="rotate(-3)">
+      <rect x="-250" y="96" width="360" height="110" rx="14" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="10 10"/>
+      <rect x="-220" y="128" width="130" height="14" rx="7" fill="var(--c-accent-3)" opacity="0.6"/>
+      <rect x="-220" y="156" width="170" height="10" rx="5" fill="var(--c-line)"/>
+      <circle cx="76" cy="150" r="26" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="4 8" opacity="0.8"/><circle cx="76" cy="150" r="8" fill="var(--c-accent-3)" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- 디테일 -->
+  <g transform="translate(150 150)">
+    <circle r="58" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="4 8"/>
+    <circle r="34" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
+    <circle r="12" fill="var(--c-accent)"/>
+  </g>
+  <g fill="var(--c-accent-3)">
+    <circle cx="1010" cy="470" r="9"/><circle cx="1038" cy="486" r="6" opacity="0.7"/><circle cx="996" cy="500" r="5" opacity="0.5"/><circle cx="1030" cy="512" r="4" opacity="0.4"/>
+  </g>
+  <g transform="translate(960 180) rotate(12)">
+    <rect width="140" height="12" rx="6" fill="var(--c-accent)" fill-opacity="0.7"/>
+    <rect y="24" width="90" height="12" rx="6" fill="var(--c-accent-3)" fill-opacity="0.7"/>
+    <rect y="48" width="110" height="12" rx="6" fill="var(--c-accent-2)" fill-opacity="0.7"/>
+  </g>
+  <polygon points="220,470 266,550 174,550" fill="var(--c-accent-2)" fill-opacity="0.5"/>
+  <polygon points="220,470 266,550 174,550" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/>
+  <line x1="120" y1="330" x2="330" y2="330" stroke="var(--c-accent-3)" stroke-width="2" stroke-dasharray="6 8" opacity="0.6"/>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">01</text>
+</svg>
