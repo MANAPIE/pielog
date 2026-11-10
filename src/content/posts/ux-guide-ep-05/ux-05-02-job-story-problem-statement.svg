@@ -1,0 +1,83 @@
+<svg viewBox="0 0 500 436" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-js">
+  <title id="t-js">잡 스토리와 문제 진술문</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-js" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-js-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="436" />
+  <g transform="translate(24 24)">
+    <rect width="452" height="178" rx="8" class="card" stroke="var(--c-accent-3)" />
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-3)">잡 스토리</text>
+    <text x="16" y="50" class="td"><tspan style="fill:var(--c-accent-3)" font-weight="700">[상황]</tspan>일 때, <tspan style="fill:var(--c-accent-4)" font-weight="700">[동기]</tspan>를 원한다, 그래서 <tspan style="fill:var(--c-accent)" font-weight="700">[기대 결과]</tspan>할 수 있다</text>
+    <line x1="16" y1="66" x2="436" y2="66" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="92" class="td"><tspan style="fill:var(--c-accent-3)">퇴근 후 지하철에서 오늘 하루를 정리하고 싶을 때,</tspan></text>
+    <text x="16" y="112" class="td"><tspan style="fill:var(--c-accent-4)">한 손으로 빠르게 일기를 쓸 수 있기를 원한다,</tspan></text>
+    <text x="16" y="132" class="td">그래서 <tspan style="fill:var(--c-accent)">집에 도착하기 전에 정리를 끝낼 수 있다.</tspan></text>
+    <text x="16" y="154" class="cap">발견 단계에서 동기를 잡습니다. 인구통계 대신 상황을 앞에 둡니다.</text>
+  </g>
+  <g transform="translate(24 218)">
+    <rect width="452" height="178" rx="8" class="card" stroke="var(--c-accent-2)" />
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-2)">문제 진술문</text>
+    <text x="16" y="50" class="td"><tspan style="fill:var(--c-accent-3)" font-weight="700">[사용자 유형]</tspan>은 <tspan style="fill:var(--c-accent-4)" font-weight="700">[상황]</tspan>에서 <tspan style="fill:var(--c-accent-2)" font-weight="700">[장애물]</tspan> 때문에 <tspan style="fill:var(--c-accent)" font-weight="700">[목표]</tspan>를 달성하지 못한다</text>
+    <line x1="16" y1="66" x2="436" y2="66" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="92" class="td"><tspan style="fill:var(--c-accent-3)">초보 투자자</tspan>는 <tspan style="fill:var(--c-accent-4)">처음 주식을 매수할 때,</tspan></text>
+    <text x="16" y="112" class="td"><tspan style="fill:var(--c-accent-2)">시장가와 지정가의 차이를 이해하지 못해서</tspan></text>
+    <text x="16" y="132" class="td"><tspan style="fill:var(--c-accent)">주문을 완료하지 못한다.</tspan></text>
+    <text x="16" y="154" class="cap">정의 단계에서 장애물을 잡습니다. 장애물이 적혀야 해결책을 논의할 수 있습니다.</text>
+  </g>
+  <text x="24" y="420" class="cap">출처: Klement, A. (2013) 잡 스토리 형식. 문제 진술문은 디자인 씽킹에서 통용되는 공식입니다.</text>
+</svg>

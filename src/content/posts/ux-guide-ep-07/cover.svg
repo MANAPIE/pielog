@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="IT UX 가이드 ep.07 cover">
+  <style>
+  :root { --c-bg: #F8F3EE; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-accent: #B4502A; --c-accent-2: #C9A227; --c-accent-3: #6E3A78; --c-num: rgba(180,80,42, 0.14); --c-dot: rgba(180,80,42, 0.12); --c-line: rgba(26, 31, 46, 0.14); }
+  @media (prefers-color-scheme: dark) { :root { --c-bg: #17120F; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-accent: #F0956E; --c-accent-2: #E8C45A; --c-accent-3: #C08FE0; --c-num: rgba(240,149,110, 0.16); --c-dot: rgba(240,149,110, 0.12); --c-line: rgba(232, 230, 225, 0.16); } }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dots-ux07" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/></pattern>
+    <radialGradient id="halo-ux07a" cx="0.82" cy="0.8" r="0.6"><stop offset="0" stop-color="var(--c-accent-2)" stop-opacity="0.26"/><stop offset="1" stop-color="var(--c-accent-2)" stop-opacity="0"/></radialGradient>
+    <radialGradient id="halo-ux07b" cx="0.16" cy="0.18" r="0.55"><stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.24"/><stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-ux07)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux07a)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux07b)"/>
+  <circle cx="1100" cy="80" r="300" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <rect x="-140" y="360" width="540" height="440" rx="44" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(10 130 580)"/>
+
+  <!-- 메타포: 하나의 대상을 세 렌즈가 각도를 달리해 봄 -->
+  <g transform="translate(600 330)">
+    <rect x="-70" y="-70" width="140" height="140" rx="20" fill="var(--c-fg)" opacity="0.85" transform="rotate(12)"/>
+    <g transform="rotate(-150)"><line x1="90" y1="0" x2="230" y2="0" stroke="var(--c-accent)" stroke-width="2.5" stroke-dasharray="10 10"/><circle cx="270" cy="0" r="44" fill="none" stroke="var(--c-accent)" stroke-width="2.5"/><circle cx="270" cy="0" r="24" fill="var(--c-accent)" fill-opacity="0.35"/><line x1="303" y1="30" x2="340" y2="64" stroke="var(--c-accent)" stroke-width="3.5" stroke-linecap="round"/></g>
+    <g transform="rotate(-30)"><line x1="90" y1="0" x2="230" y2="0" stroke="var(--c-accent-3)" stroke-width="2.5" stroke-dasharray="10 10"/><circle cx="270" cy="0" r="44" fill="none" stroke="var(--c-accent-3)" stroke-width="2.5"/><circle cx="270" cy="0" r="24" fill="var(--c-accent-3)" fill-opacity="0.35"/><line x1="303" y1="30" x2="340" y2="64" stroke="var(--c-accent-3)" stroke-width="3.5" stroke-linecap="round"/></g>
+    <g transform="rotate(90)"><line x1="90" y1="0" x2="230" y2="0" stroke="var(--c-accent-2)" stroke-width="2.5" stroke-dasharray="10 10"/><circle cx="270" cy="0" r="44" fill="none" stroke="var(--c-accent-2)" stroke-width="2.5"/><circle cx="270" cy="0" r="24" fill="var(--c-accent-2)" fill-opacity="0.35"/><line x1="303" y1="30" x2="340" y2="64" stroke="var(--c-accent-2)" stroke-width="3.5" stroke-linecap="round"/></g>
+    <circle r="110" fill="none" stroke="var(--c-fg)" stroke-width="2" stroke-dasharray="4 10" opacity="0.5"/>
+  </g>
+
+  <g fill="var(--c-accent-3)"><circle cx="1000" cy="470" r="9"/><circle cx="1028" cy="486" r="6" opacity="0.7"/><circle cx="986" cy="500" r="5" opacity="0.5"/><circle cx="1020" cy="512" r="4" opacity="0.4"/></g>
+  <g transform="translate(140 150) rotate(-8)"><rect width="140" height="12" rx="6" fill="var(--c-accent)" fill-opacity="0.7"/><rect y="24" width="90" height="12" rx="6" fill="var(--c-accent-3)" fill-opacity="0.7"/><rect y="48" width="110" height="12" rx="6" fill="var(--c-accent-2)" fill-opacity="0.7"/></g>
+  <polygon points="1040,150 1086,230 994,230" fill="var(--c-accent)" fill-opacity="0.5"/><polygon points="1040,150 1086,230 994,230" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
+  <rect x="130" y="450" width="90" height="90" rx="14" fill="none" stroke="var(--c-accent-2)" stroke-width="3" transform="rotate(-10 175 495)"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">07</text>
+</svg>

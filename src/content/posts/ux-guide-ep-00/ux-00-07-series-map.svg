@@ -1,0 +1,126 @@
+<svg viewBox="0 0 500 788" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-map">
+  <title id="t-map">IT UX 가이드 시리즈 지도</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .nm-inv { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-bg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .cap-inv { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-bg); opacity: 0.85; }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .tag { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 9.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .leader { stroke: var(--c-muted); stroke-width: 1; stroke-dasharray: 2 3; fill: none; }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-map" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-map-d" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="788" />
+  <g transform="translate(24 24)">
+    <rect width="452" height="66" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.6" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent)">I. 공통 언어</text>
+    <text x="110" y="24" class="nm">세 직무가 공유해야 할 기본</text>
+    <text x="16" y="48" class="cap"><tspan class="ep">ep.01</tspan> 사용자 중심<tspan class="ep" dx="16">ep.02</tspan> 맥락<tspan class="ep" dx="16">ep.03</tspan> 인지 비용<tspan class="ep" dx="16">ep.04</tspan> 좋은 UX의 원칙</text>
+  </g>
+  <g transform="translate(24 122)">
+    <rect width="420" height="66" rx="8" class="card" stroke="var(--c-accent-3)" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-3)">II. DISCOVER</text>
+    <text x="126" y="24" class="nm">문제를 발견한다</text>
+    <text x="16" y="48" class="cap"><tspan class="ep">ep.05</tspan> 문제 찾기<tspan class="ep" dx="16">ep.06</tspan> 리서치 지도<tspan class="ep" dx="16">ep.07</tspan> <tspan class="tag">세 시선</tspan></text>
+  </g>
+  <line x1="234" y1="189" x2="234" y2="212" stroke="var(--c-muted)" stroke-width="1.5" marker-end="url(#a-map)" />
+  <g transform="translate(24 220)">
+    <rect width="420" height="66" rx="8" class="card" stroke="var(--c-accent-3)" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-3)">III. DEFINE</text>
+    <text x="126" y="24" class="nm">문제를 정의한다</text>
+    <text x="16" y="48" class="cap"><tspan class="ep">ep.08</tspan> 페르소나<tspan class="ep" dx="16">ep.09</tspan> 여정 지도<tspan class="ep" dx="16">ep.10</tspan> 정보 구조<tspan class="ep" dx="16">ep.11</tspan> <tspan class="tag">세 시선</tspan></text>
+  </g>
+  <line x1="234" y1="287" x2="234" y2="310" stroke="var(--c-muted)" stroke-width="1.5" marker-end="url(#a-map)" />
+  <g transform="translate(24 318)">
+    <rect width="420" height="66" rx="8" class="card" stroke="var(--c-accent-4)" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-4)">IV. DESIGN</text>
+    <text x="126" y="24" class="nm">해법을 설계한다</text>
+    <text x="16" y="48" class="cap"><tspan class="ep">ep.12</tspan> 상태 설계<tspan class="ep" dx="16">ep.13</tspan> 인터랙션<tspan class="ep" dx="16">ep.14</tspan> 디자인 시스템<tspan class="ep" dx="16">ep.15</tspan> <tspan class="tag">세 시선</tspan></text>
+  </g>
+  <line x1="234" y1="385" x2="234" y2="408" stroke="var(--c-muted)" stroke-width="1.5" marker-end="url(#a-map)" />
+  <g transform="translate(24 416)">
+    <rect width="420" height="66" rx="8" class="card" stroke="var(--c-accent-2)" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-2)">V. DEVELOP</text>
+    <text x="126" y="24" class="nm">경험을 구현한다</text>
+    <text x="16" y="48" class="cap"><tspan class="ep">ep.16</tspan> 프론트엔드<tspan class="ep" dx="16">ep.17</tspan> 접근성·포용<tspan class="ep" dx="16">ep.18</tspan> <tspan class="tag">세 시선</tspan></text>
+  </g>
+  <line x1="234" y1="483" x2="234" y2="506" stroke="var(--c-muted)" stroke-width="1.5" marker-end="url(#a-map)" />
+  <g transform="translate(24 514)">
+    <rect width="420" height="66" rx="8" class="card" stroke="var(--c-accent)" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent)">VI. DELIVER</text>
+    <text x="126" y="24" class="nm">출시 뒤에 배운다</text>
+    <text x="16" y="48" class="cap"><tspan class="ep">ep.19</tspan> 사용성 테스트<tspan class="ep" dx="16">ep.20</tspan> 애널리틱스<tspan class="ep" dx="16">ep.21</tspan> A/B 테스트</text>
+  </g>
+  <path d="M444 547 H462 V155 H452" fill="none" stroke="var(--c-accent)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#a-map-d)" />
+  <text x="472" y="351" class="lbl" fill="var(--c-accent)" text-anchor="middle" transform="rotate(90 472 351)">반복</text>
+  <text x="24" y="604" class="cap" fill="var(--c-accent)">반복: 출시 뒤 배운 것이 다음 발견의 재료가 됩니다</text>
+  <g transform="translate(24 620)">
+    <rect width="218" height="84" rx="8" fill="var(--c-soft-4)" stroke="var(--c-accent-4)" stroke-width="1.6" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-4)">VII. 확장</text>
+    <text x="16" y="44" class="nm">UX의 새로운 지형</text>
+    <text x="16" y="66" class="cap"><tspan class="ep">ep.22</tspan> AI 시대의 UX<tspan class="ep" dx="16">ep.23</tspan> 멀티 모달</text>
+  </g>
+  <g transform="translate(258 620)">
+    <rect width="218" height="84" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.6" />
+    <text x="16" y="24" class="lbl" fill="var(--c-accent-2)">VIII. 조직</text>
+    <text x="16" y="44" class="nm">팀과 문화</text>
+    <text x="16" y="66" class="cap"><tspan class="ep">ep.24</tspan> UX 성숙도<tspan class="ep" dx="16">ep.25</tspan> 마찰과 크리틱</text>
+  </g>
+  <g transform="translate(24 720)">
+    <rect width="452" height="44" rx="8" fill="var(--c-muted-soft)" stroke="var(--c-muted)" stroke-width="1.2" stroke-dasharray="4 3" />
+    <text x="16" y="27" class="lbl" fill="var(--c-muted)">정리</text>
+    <text x="70" y="27" class="cap"><tspan class="ep">ep.26</tspan> UX는 계속 배우는 일이다: 직무별 학습 로드맵</text>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="IT UX 가이드 ep.23 cover">
+  <style>
+  :root { --c-bg: #F8F3EE; --c-fg: #1A1F2E; --c-muted: #6B7280; --c-accent: #B4502A; --c-accent-2: #C9A227; --c-accent-3: #6E3A78; --c-num: rgba(180,80,42, 0.14); --c-dot: rgba(180,80,42, 0.12); --c-line: rgba(26, 31, 46, 0.14); }
+  @media (prefers-color-scheme: dark) { :root { --c-bg: #17120F; --c-fg: #E8E6E1; --c-muted: #8B92A0; --c-accent: #F0956E; --c-accent-2: #E8C45A; --c-accent-3: #C08FE0; --c-num: rgba(240,149,110, 0.16); --c-dot: rgba(240,149,110, 0.12); --c-line: rgba(232, 230, 225, 0.16); } }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number { font: 900 240px ui-monospace, "SF Mono", Menlo, monospace; fill: var(--c-num); letter-spacing: -0.04em; }
+  </style>
+  <defs>
+    <pattern id="dots-ux23" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/></pattern>
+    <radialGradient id="halo-ux23a" cx="0.15" cy="0.8" r="0.6"><stop offset="0" stop-color="var(--c-accent-2)" stop-opacity="0.26"/><stop offset="1" stop-color="var(--c-accent-2)" stop-opacity="0"/></radialGradient>
+    <radialGradient id="halo-ux23b" cx="0.85" cy="0.2" r="0.55"><stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.24"/><stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-ux23)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux23a)"/>
+  <rect width="1200" height="630" fill="url(#halo-ux23b)"/>
+  <circle cx="120" cy="100" r="320" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <rect x="820" y="320" width="520" height="520" rx="48" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(12 1080 580)"/>
+  <!-- 메타포: 휴대폰, 음성 파형, 공간 헤드셋을 잇는 점선 -->
+  <g transform="translate(600 320)">
+    <path d="M -300 60 C -200 -120 -60 -120 40 -40 C 140 40 240 20 320 -90" fill="none" stroke="var(--c-fg)" stroke-width="2.5" stroke-dasharray="10 12" opacity="0.6"/>
+    <g transform="translate(-320 70) rotate(-8)"><rect x="-70" y="-120" width="140" height="240" rx="26" fill="none" stroke="var(--c-accent-3)" stroke-width="4"/><rect x="-40" y="-70" width="80" height="12" rx="6" fill="var(--c-accent-3)" fill-opacity="0.7"/><rect x="-40" y="-40" width="56" height="12" rx="6" fill="var(--c-accent-3)" fill-opacity="0.5"/><circle cy="90" r="9" fill="var(--c-accent-3)"/></g>
+    <g transform="translate(40 -30)" stroke="var(--c-accent)" stroke-width="6" stroke-linecap="round"><line x1="-100" y1="-30" x2="-100" y2="30"/><line x1="-60" y1="-70" x2="-60" y2="70"/><line x1="-20" y1="-40" x2="-20" y2="40"/><line x1="20" y1="-100" x2="20" y2="100"/><line x1="60" y1="-50" x2="60" y2="50"/><line x1="100" y1="-20" x2="100" y2="20"/></g>
+    <g transform="translate(330 -90) rotate(8)"><path d="M -130 20 C -130 -60 130 -60 130 20 C 130 70 90 90 50 70 C 20 55 -20 55 -50 70 C -90 90 -130 70 -130 20 Z" fill="none" stroke="var(--c-accent-2)" stroke-width="4"/><circle cx="-60" cy="10" r="16" fill="var(--c-accent-2)" fill-opacity="0.8"/><circle cx="60" cy="10" r="16" fill="var(--c-accent-2)" fill-opacity="0.8"/></g>
+  </g>
+  <g transform="translate(150 480) rotate(-8)"><rect width="150" height="12" rx="6" fill="var(--c-accent)" fill-opacity="0.7"/><rect y="24" width="96" height="12" rx="6" fill="var(--c-accent-2)" fill-opacity="0.7"/><rect y="48" width="120" height="12" rx="6" fill="var(--c-accent-3)" fill-opacity="0.7"/></g>
+  <g fill="var(--c-accent)"><circle cx="1010" cy="140" r="9"/><circle cx="1040" cy="156" r="6" opacity="0.7"/><circle cx="998" cy="172" r="5" opacity="0.5"/><circle cx="1030" cy="184" r="4" opacity="0.4"/></g>
+  <polygon points="820,560 866,640 774,640" fill="var(--c-accent-3)" fill-opacity="0.5"/>
+  <circle cx="1000" cy="470" r="40" fill="none" stroke="var(--c-accent-2)" stroke-width="3" stroke-dasharray="6 8"/>
+  <text class="ep-number" x="1164" y="594" text-anchor="end">23</text>
+</svg>

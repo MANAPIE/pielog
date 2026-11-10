@@ -1,0 +1,89 @@
+<svg viewBox="0 0 500 452" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-lay">
+  <title id="t-lay">맥락의 네 층</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-lay" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-lay-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="452" />
+  <g transform="translate(24 24)">
+    <rect width="452" height="84" rx="8" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1.6" />
+    <text x="16" y="24" class="nm">물리적 맥락</text>
+    <text x="16" y="46" class="cap">어디서, 어떤 기기로, 어떤 조건에서 쓰는가</text>
+    <text x="16" y="68" class="td">지하철에서 한 손 엄지 조작(관찰의 49%), 야외 햇빛 아래 화면</text>
+  </g>
+  <g transform="translate(24 116)">
+    <rect width="452" height="84" rx="8" fill="var(--c-soft-4)" stroke="var(--c-accent-4)" stroke-width="1.6" />
+    <text x="16" y="24" class="nm">시간적 맥락</text>
+    <text x="16" y="46" class="cap">얼마나 급한가, 얼마나 자주 쓰는가, 처음인가 익숙한가</text>
+    <text x="16" y="68" class="td">매일 쓰는 송금, 1년에 한 번 하는 연말정산</text>
+  </g>
+  <g transform="translate(24 208)">
+    <rect width="452" height="84" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.6" />
+    <text x="16" y="24" class="nm">사회적 맥락</text>
+    <text x="16" y="46" class="cap">누가 옆에 있는가, 어떤 역할로 쓰는가, 어떤 문화의 기대치인가</text>
+    <text x="16" y="68" class="td">지하철에서 여는 자산 화면, 고객 앞에서 쓰는 업무 도구</text>
+  </g>
+  <g transform="translate(24 300)">
+    <rect width="452" height="84" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.6" />
+    <text x="16" y="24" class="nm">심리적 맥락</text>
+    <text x="16" y="46" class="cap">어떤 감정과 동기인가, 머리가 얼마나 차 있는가</text>
+    <text x="16" y="68" class="td">세금 신고의 불안, 게임의 기대</text>
+  </g>
+  <line x1="24" y1="398" x2="476" y2="398" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="24" y="420" class="cap">네 층을 합치면, 지금 이 사용자가 어떤 상태로 무엇을 하려고 어떤 환경에서 화면을 보는가가 됩니다.</text>
+  <text x="24" y="438" class="cap">Dey(2001)의 맥락 정의와 ISO 9241-11의 사용 맥락 구성을 실무용으로 나눈 것입니다.</text>
+</svg>

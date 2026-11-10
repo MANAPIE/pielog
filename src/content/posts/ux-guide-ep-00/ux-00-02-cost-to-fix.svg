@@ -1,0 +1,107 @@
+<svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-cost">
+  <title id="t-cost">단계별 결함 수정 비용의 상대 배율</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .nm-inv { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-bg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .cap-inv { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-bg); opacity: 0.85; }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .tag { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 9.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .leader { stroke: var(--c-muted); stroke-width: 1; stroke-dasharray: 2 3; fill: none; }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-cost" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-cost-d" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="300" />
+  <g transform="translate(24 24)">
+    <rect width="101" height="40" rx="6" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.6" />
+    <text x="50.5" y="25" class="nm" text-anchor="middle">요구사항·설계</text>
+  </g>
+  <line x1="126" y1="44" x2="132" y2="44" stroke="var(--c-muted)" stroke-width="1.5" marker-end="url(#a-cost)" />
+  <g transform="translate(141 24)">
+    <rect width="101" height="40" rx="6" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="50.5" y="25" class="nm" text-anchor="middle">구현</text>
+  </g>
+  <line x1="243" y1="44" x2="249" y2="44" stroke="var(--c-muted)" stroke-width="1.5" marker-end="url(#a-cost)" />
+  <g transform="translate(258 24)">
+    <rect width="101" height="40" rx="6" fill="var(--c-card)" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="50.5" y="25" class="nm" text-anchor="middle">테스트</text>
+  </g>
+  <line x1="360" y1="44" x2="366" y2="44" stroke="var(--c-muted)" stroke-width="1.5" marker-end="url(#a-cost)" />
+  <g transform="translate(375 24)">
+    <rect width="101" height="40" rx="6" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.6" />
+    <text x="50.5" y="25" class="nm" text-anchor="middle">배포 후</text>
+  </g>
+  <path d="M24 72 V78 H125 V72" fill="none" stroke="var(--c-accent)" stroke-width="1.2" stroke-dasharray="3 3" />
+  <text x="24" y="96" class="cap">UX 리서치와 프로토타입이 개입하는 지점입니다.</text>
+  <text x="24" y="114" class="cap">여기서 발견하면 와이어프레임의 선을 다시 긋는 것으로 끝납니다.</text>
+  <line x1="24" y1="134" x2="476" y2="134" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="24" y="154" class="th">상대 수정 비용</text>
+  <text x="476" y="154" class="cap" text-anchor="end">요구사항·설계 단계를 1로 둔 배율</text>
+  <g transform="translate(24 168)">
+    <text x="0" y="16" class="td">요구사항·설계</text>
+    <rect x="130" y="4" width="5" height="18" rx="2" fill="var(--c-accent)" />
+    <text x="143" y="17" class="val" fill="var(--c-accent)">1배</text>
+  </g>
+  <g transform="translate(24 204)">
+    <text x="0" y="16" class="td">배포 후 · 소규모</text>
+    <rect x="130" y="4" width="16" height="18" rx="2" fill="var(--c-accent-2)" opacity="0.55" />
+    <text x="154" y="17" class="val" fill="var(--c-accent-2)">약 5배</text>
+  </g>
+  <g transform="translate(24 240)">
+    <text x="0" y="16" class="td">배포 후 · 대형</text>
+    <rect x="130" y="4" width="322" height="18" rx="2" fill="var(--c-accent-2)" />
+    <text x="444" y="17" class="val" fill="var(--c-card)" text-anchor="end">최대 100배</text>
+  </g>
+  <text x="24" y="288" class="cap">출처: Boehm &amp; Basili (2001). Software Defect Reduction Top 10 List.</text>
+</svg>

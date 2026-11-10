@@ -1,0 +1,108 @@
+<svg viewBox="0 0 500 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-bv">
+  <title id="t-bv">UX가 비즈니스 지표에 닿는 세 경로</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .nm-inv { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-bg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .cap-inv { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-bg); opacity: 0.85; }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .tag { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 9.5px; font-weight: 700; fill: var(--c-accent-2); }
+      .leader { stroke: var(--c-muted); stroke-width: 1; stroke-dasharray: 2 3; fill: none; }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-bv" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-bv-d" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-accent)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="512" />
+  <g transform="translate(24 24)">
+    <rect width="452" height="144" rx="8" class="card" stroke="var(--c-accent-3)" />
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-3)">전환율</text>
+    <text x="20" y="62" class="met">70.22%</text>
+    <text x="20" y="84" class="cap">온라인 장바구니 평균 이탈률</text>
+    <text x="20" y="102" class="cap"></text>
+    <rect x="20" y="116" width="28" height="3" rx="1.5" fill="var(--c-accent-3)" />
+    <text x="196" y="26" class="cap">결제 이탈 사유 중 UX 결정에 해당하는 것</text>
+    <text x="196" y="46" class="td">계정 생성 강요 18%</text>
+    <text x="196" y="64" class="td">복잡한 결제 과정 17%</text>
+    <text x="196" y="82" class="td">총액을 미리 알 수 없음 12%</text>
+    <text x="196" y="104" class="cap">결제 개선만으로 전환율 35.26% 상승</text>
+    <text x="196" y="126" class="cap" fill="var(--c-accent-3)">출처: Baymard Institute 2025</text>
+  </g>
+  <g transform="translate(24 184)">
+    <rect width="452" height="144" rx="8" class="card" stroke="var(--c-accent-2)" />
+    <text x="20" y="26" class="lbl" fill="var(--c-accent-2)">수정 비용</text>
+    <text x="20" y="62" class="met">최대 100배</text>
+    <text x="20" y="84" class="cap">배포 후 수정 비용,</text>
+    <text x="20" y="102" class="cap">요구사항 단계 대비</text>
+    <rect x="20" y="116" width="28" height="3" rx="1.5" fill="var(--c-accent-2)" />
+    <text x="196" y="26" class="cap">대형 시스템 기준의 배율</text>
+    <text x="196" y="46" class="td">소규모 시스템은 약 5배</text>
+    <text x="196" y="64" class="td">단계가 뒤로 갈수록 비용 상승</text>
+    <text x="196" y="82" class="td">배율은 달라도 방향은 같음</text>
+    <text x="196" y="104" class="cap">리서치·프로토타입이 뒤에 낼 비용을 앞당김</text>
+    <text x="196" y="126" class="cap" fill="var(--c-accent-2)">출처: Boehm &amp; Basili 2001</text>
+  </g>
+  <g transform="translate(24 344)">
+    <rect width="452" height="144" rx="8" class="card" stroke="var(--c-accent)" />
+    <text x="20" y="26" class="lbl" fill="var(--c-accent)">성장</text>
+    <text x="20" y="62" class="met">+32%p</text>
+    <text x="20" y="84" class="cap">디자인 지수 상위 25% 기업의</text>
+    <text x="20" y="102" class="cap">5년 매출 성장률 차이</text>
+    <rect x="20" y="116" width="28" height="3" rx="1.5" fill="var(--c-accent)" />
+    <text x="196" y="26" class="cap">같은 업종 다른 기업과 비교</text>
+    <text x="196" y="46" class="td">주주 총수익률 +56%p</text>
+    <text x="196" y="64" class="td">300개 기업, 5년 재무 데이터</text>
+    <text x="196" y="82" class="td">의료기기 · 소비재 · 리테일 뱅킹</text>
+    <text x="196" y="104" class="cap">세 업종 모두에서 같은 결과</text>
+    <text x="196" y="126" class="cap" fill="var(--c-accent)">출처: McKinsey 2018</text>
+  </g>
+</svg>

@@ -1,0 +1,134 @@
+<svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-sb">
+  <title id="t-sb">배달 대기 구간의 서비스 블루프린트</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-sb" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-accent-2)" /></marker>
+    <marker id="a-sb-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="380" />
+  <text x="24" y="36" class="ttl">배달 대기 구간의 서비스 블루프린트</text>
+  <text x="162.5" y="68" class="th" text-anchor="middle">주문 완료</text>
+  <text x="251.5" y="68" class="th" text-anchor="middle">배차</text>
+  <text x="340.5" y="68" class="th" text-anchor="middle">이동</text>
+  <text x="429.5" y="68" class="th" text-anchor="middle">도착</text>
+  <text x="24" y="110.0" class="th">사용자 행동</text>
+  <rect x="120" y="84" width="85" height="44" rx="5" fill="var(--c-muted-soft)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="162.5" y="103.0" class="mid" text-anchor="middle">완료 화면</text>
+  <text x="162.5" y="117.0" class="mid" text-anchor="middle">확인</text>
+  <rect x="209" y="84" width="85" height="44" rx="5" fill="var(--c-muted-soft)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="251.5" y="103.0" class="mid" text-anchor="middle">예상 시간</text>
+  <text x="251.5" y="117.0" class="mid" text-anchor="middle">확인</text>
+  <rect x="298" y="84" width="85" height="44" rx="5" fill="var(--c-muted-soft)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="340.5" y="103.0" class="mid" text-anchor="middle">추적 화면</text>
+  <text x="340.5" y="117.0" class="mid" text-anchor="middle">보기</text>
+  <rect x="387" y="84" width="85" height="44" rx="5" fill="var(--c-muted-soft)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="429.5" y="103.0" class="mid" text-anchor="middle">문 앞</text>
+  <text x="429.5" y="117.0" class="mid" text-anchor="middle">수령</text>
+  <line x1="24" y1="138" x2="476" y2="138" stroke="var(--c-muted)" stroke-width="1" stroke-dasharray="4 3" />
+  <rect x="24" y="131" width="60.5" height="14" fill="var(--c-bg)" />
+  <text x="28" y="142" class="cap">상호작용선</text>
+  <text x="24" y="167.0" class="th">프론트</text>
+  <text x="24" y="181.0" class="th">스테이지</text>
+  <rect x="120" y="148" width="85" height="44" rx="5" fill="var(--c-soft-3)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="162.5" y="167.0" class="mid" text-anchor="middle">주문 완료</text>
+  <text x="162.5" y="181.0" class="mid" text-anchor="middle">화면</text>
+  <rect x="209" y="148" width="85" height="44" rx="5" fill="var(--c-soft-3)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="251.5" y="167.0" class="mid" text-anchor="middle">예상 시간</text>
+  <text x="251.5" y="181.0" class="mid" text-anchor="middle">표시</text>
+  <rect x="298" y="148" width="85" height="44" rx="5" fill="var(--c-soft-3)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="340.5" y="167.0" class="mid" text-anchor="middle">지도 위</text>
+  <text x="340.5" y="181.0" class="mid" text-anchor="middle">기사 위치</text>
+  <rect x="387" y="148" width="85" height="44" rx="5" fill="var(--c-soft-3)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="429.5" y="174.0" class="mid" text-anchor="middle">도착 알림</text>
+  <line x1="24" y1="202" x2="476" y2="202" stroke="var(--c-fg)" stroke-width="1.6" />
+  <rect x="24" y="195" width="39.5" height="14" fill="var(--c-bg)" />
+  <text x="28" y="206" class="cap" style="fill:var(--c-fg)">가시선</text>
+  <text x="24" y="238.0" class="th">백스테이지</text>
+  <rect x="120" y="212" width="85" height="44" rx="5" fill="var(--c-soft)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="162.5" y="238.0" class="mid" text-anchor="middle">주문 접수</text>
+  <rect x="209" y="212" width="85" height="44" rx="5" fill="var(--c-soft)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="251.5" y="231.0" class="mid" text-anchor="middle">배차</text>
+  <text x="251.5" y="245.0" class="mid" text-anchor="middle">알고리즘</text>
+  <rect x="298" y="212" width="85" height="44" rx="5" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="2" />
+  <text x="340.5" y="231.0" class="val" text-anchor="middle" style="fill:var(--c-accent-2)">기사 앱</text>
+  <text x="340.5" y="245.0" class="val" text-anchor="middle" style="fill:var(--c-accent-2)">GPS 전송</text>
+  <rect x="387" y="212" width="85" height="44" rx="5" fill="var(--c-soft)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="429.5" y="231.0" class="mid" text-anchor="middle">기사 완료</text>
+  <text x="429.5" y="245.0" class="mid" text-anchor="middle">처리</text>
+  <line x1="24" y1="266" x2="476" y2="266" stroke="var(--c-muted)" stroke-width="1" stroke-dasharray="4 3" />
+  <rect x="24" y="259" width="92.0" height="14" fill="var(--c-bg)" />
+  <text x="28" y="270" class="cap">내부 상호작용선</text>
+  <text x="24" y="295.0" class="th">지원</text>
+  <text x="24" y="309.0" class="th">프로세스</text>
+  <rect x="120" y="276" width="85" height="44" rx="5" fill="var(--c-soft-4)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="162.5" y="302.0" class="mid" text-anchor="middle">주문 DB</text>
+  <rect x="209" y="276" width="85" height="44" rx="5" fill="var(--c-soft-4)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="251.5" y="302.0" class="mid" text-anchor="middle">배차 서버</text>
+  <rect x="298" y="276" width="85" height="44" rx="5" fill="var(--c-soft-4)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="340.5" y="295.0" class="mid" text-anchor="middle">위치 수집</text>
+  <text x="340.5" y="309.0" class="mid" text-anchor="middle">파이프라인</text>
+  <rect x="387" y="276" width="85" height="44" rx="5" fill="var(--c-soft-4)" stroke="var(--c-divider)" stroke-width="1" />
+  <text x="429.5" y="302.0" class="mid" text-anchor="middle">알림 서버</text>
+  <rect x="300.2" y="195" width="77.5" height="14" fill="var(--c-bg)" />
+  <rect x="300.2" y="131" width="46.0" height="14" fill="var(--c-bg)" />
+  <rect x="311.2" y="259" width="58.5" height="14" fill="var(--c-bg)" />
+  <line x1="309.2" y1="212" x2="309.2" y2="194" stroke="var(--c-accent-2)" stroke-width="1.6" marker-end="url(#a-sb)" />
+  <line x1="309.2" y1="148" x2="309.2" y2="130" stroke="var(--c-accent-2)" stroke-width="1.6" marker-end="url(#a-sb)" />
+  <text x="319.2" y="206" class="cap" style="fill:var(--c-accent-2)">위치 멈춤</text>
+  <text x="319.2" y="142" class="cap" style="fill:var(--c-accent-2)">불안</text>
+  <text x="340.5" y="270" class="cap" text-anchor="middle" style="fill:var(--c-accent-2)">실패 지점</text>
+  <text x="24" y="356" class="cap">화면의 증상은 가시선 두 층 아래에서 시작됩니다.</text>
+</svg>

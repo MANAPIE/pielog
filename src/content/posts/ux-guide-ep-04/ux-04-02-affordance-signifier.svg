@@ -1,0 +1,113 @@
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-aff">
+  <title id="t-aff">어포던스와 시그니파이어</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-aff" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-aff-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="400" />
+  <text x="24" y="34" class="th">어포던스</text>
+  <text x="24" y="52" class="cap">가능한 행동</text>
+  <text x="258" y="34" class="th">시그니파이어</text>
+  <text x="258" y="52" class="cap">그 행동을 알리는 신호</text>
+  <line x1="24" y1="62" x2="476" y2="62" stroke="var(--c-divider)" stroke-width="1" />
+
+  <!-- 문: 손잡이 / 평판 -->
+  <g transform="translate(24 78)">
+    <rect width="218" height="124" rx="8" class="card" stroke="var(--c-divider)" stroke-width="1" />
+    <rect x="20" y="16" width="52" height="78" rx="3" fill="var(--c-muted-soft)" stroke="var(--c-fg)" stroke-width="1.2" />
+    <rect x="58" y="42" width="6" height="26" rx="3" fill="var(--c-fg)" />
+    <text x="20" y="108" class="cap">손잡이: 당기기</text>
+    <rect x="20" y="16" width="0" height="0" />
+    <rect x="130" y="16" width="52" height="78" rx="3" fill="var(--c-muted-soft)" stroke="var(--c-fg)" stroke-width="1.2" />
+    <rect x="150" y="48" width="18" height="14" rx="2" fill="none" stroke="var(--c-fg)" stroke-width="1.2" />
+    <text x="130" y="108" class="cap">평판: 밀기</text>
+  </g>
+  <g transform="translate(258 78)">
+    <rect width="218" height="124" rx="8" class="card" stroke="var(--c-divider)" stroke-width="1" />
+    <rect x="20" y="16" width="52" height="78" rx="3" fill="var(--c-muted-soft)" stroke="var(--c-fg)" stroke-width="1.2" />
+    <rect x="24" y="30" width="44" height="16" rx="2" fill="var(--c-accent-2)" />
+    <text x="46" y="42" class="lbl" fill="var(--c-card)" text-anchor="middle">당기시오</text>
+    <rect x="130" y="16" width="52" height="78" rx="3" fill="var(--c-muted-soft)" stroke="var(--c-fg)" stroke-width="1.2" />
+    <rect x="134" y="30" width="44" height="16" rx="2" fill="var(--c-accent-2)" />
+    <text x="156" y="42" class="lbl" fill="var(--c-card)" text-anchor="middle">미시오</text>
+    <text x="20" y="108" class="cap">표지가 행동을 알립니다</text>
+  </g>
+
+  <!-- 화면 -->
+  <g transform="translate(24 218)">
+    <rect width="218" height="124" rx="8" class="card" stroke="var(--c-divider)" stroke-width="1" />
+    <rect x="20" y="20" width="84" height="28" rx="6" fill="var(--c-accent)" />
+    <rect x="20" y="24" width="84" height="28" rx="6" fill="var(--c-accent)" opacity="0.35" />
+    <text x="62" y="39" class="lbl" fill="var(--c-card)" text-anchor="middle">확인</text>
+    <text x="118" y="38" class="td">입체감: 누르기</text>
+    <text x="20" y="80" class="td" fill="var(--c-accent-3)" style="fill:var(--c-accent-3)">이용약관 보기</text>
+    <line x1="20" y1="84" x2="96" y2="84" stroke="var(--c-accent-3)" stroke-width="1.2" />
+    <text x="118" y="80" class="td">밑줄: 클릭</text>
+  </g>
+  <g transform="translate(258 218)">
+    <rect width="218" height="124" rx="8" class="card" stroke="var(--c-divider)" stroke-width="1" />
+    <rect x="20" y="16" width="84" height="60" rx="4" fill="var(--c-muted-soft)" />
+    <rect x="20" y="52" width="84" height="24" rx="0" fill="var(--c-card)" opacity="0.85" />
+    <text x="118" y="38" class="td">끝이 흐려짐:</text>
+    <text x="118" y="56" class="td">더 있음</text>
+    <rect x="20" y="86" width="84" height="16" rx="4" fill="var(--c-muted-soft)" />
+    <g fill="var(--c-muted)"><circle cx="28" cy="91" r="1.4"/><circle cx="33" cy="91" r="1.4"/><circle cx="28" cy="97" r="1.4"/><circle cx="33" cy="97" r="1.4"/></g>
+    <text x="118" y="98" class="td">손잡이: 드래그</text>
+  </g>
+  <text x="24" y="368" class="cap">어포던스가 있어도 시그니파이어가 없으면 사용자는 가능한 줄 모릅니다.</text>
+  <text x="24" y="386" class="cap">출처: Norman, D. (2013). The Design of Everyday Things.</text>
+</svg>

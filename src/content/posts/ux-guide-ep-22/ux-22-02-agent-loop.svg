@@ -1,0 +1,89 @@
+<svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-al">
+  <title id="t-al">에이전트 UX의 네 단계 루프</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-al" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-al-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+      <rect class="bg" width="500" height="320" />
+  <text x="24" y="36" class="ttl">에이전트 UX의 네 단계 루프</text>
+  <text x="24" y="76" class="th">사용자</text>
+  <text x="24" y="170" class="th">에이전트</text>
+  <rect x="24" y="86" width="100" height="60" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.4" />
+  <text x="74.0" y="108" class="nm" text-anchor="middle">지시</text>
+  <text x="74.0" y="126" class="cap" text-anchor="middle">자연어·폼·예시</text>
+  <text x="74.0" y="140" class="cap" text-anchor="middle">모호하면 되묻기</text>
+  <rect x="134" y="180" width="100" height="60" rx="8" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1.4" />
+  <text x="184.0" y="202" class="nm" text-anchor="middle">진행</text>
+  <text x="184.0" y="220" class="cap" text-anchor="middle">단계 표시</text>
+  <text x="184.0" y="234" class="cap" text-anchor="middle">중간 결과 미리 보기</text>
+  <rect x="244" y="86" width="100" height="60" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.4" />
+  <text x="294.0" y="108" class="nm" text-anchor="middle">검토</text>
+  <text x="294.0" y="126" class="cap" text-anchor="middle">부분마다 수용·</text>
+  <text x="294.0" y="140" class="cap" text-anchor="middle">수정·재생성</text>
+  <rect x="366" y="86" width="110" height="154" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.4" />
+  <text x="421.0" y="149.0" class="nm" text-anchor="middle">피드백</text>
+  <text x="421.0" y="167.0" class="cap" text-anchor="middle">틀림과 취향 구분</text>
+  <text x="421.0" y="181.0" class="cap" text-anchor="middle">반영 범위 알리기</text>
+  <line x1="126" y1="116" x2="134" y2="196" stroke="var(--c-muted)" stroke-width="1.4" marker-end="url(#a-al)" />
+  <line x1="236" y1="210" x2="244" y2="130" stroke="var(--c-muted)" stroke-width="1.4" marker-end="url(#a-al)" />
+  <line x1="346" y1="116" x2="362" y2="116" stroke="var(--c-muted)" stroke-width="1.4" marker-end="url(#a-al)" />
+  <line x1="421" y1="240" x2="421" y2="262" stroke="var(--c-muted)" stroke-width="1.4" />
+  <line x1="421" y1="262" x2="79" y2="262" stroke="var(--c-muted)" stroke-width="1.4" />
+  <line x1="79" y1="262" x2="79" y2="148" stroke="var(--c-muted)" stroke-width="1.4" marker-end="url(#a-al)" />
+  <text x="250" y="276" class="cap" text-anchor="middle">다음 지시로</text>
+  <text x="24" y="296" class="cap">직접 조작과 달리 실행 주체가 AI이므로 검토와 피드백이 설계의 중심이 됩니다.</text>
+</svg>

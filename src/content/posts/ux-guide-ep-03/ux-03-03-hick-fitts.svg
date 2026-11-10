@@ -1,0 +1,99 @@
+<svg viewBox="0 0 500 392" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-hf">
+  <title id="t-hf">Hick의 법칙과 Fitts의 법칙 계산 예시</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-hf" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-hf-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="392" />
+  <g transform="translate(24 24)">
+    <rect width="218" height="316" rx="8" class="card" stroke="var(--c-accent-3)" />
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-3)">HICK</text>
+    <text x="16" y="48" class="nm">선택지와 결정 시간</text>
+    <text x="16" y="72" class="td mono">RT = a + b·log₂(n+1)</text>
+    <line x1="16" y1="88" x2="202" y2="88" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="108" class="th">선택지 n</text>
+    <text x="202" y="108" class="th" text-anchor="end">정보량</text>
+    <text x="16" y="130" class="td">3개</text><text x="202" y="130" class="td mono" text-anchor="end">log₂(4) = 2비트</text>
+    <text x="16" y="150" class="td">7개</text><text x="202" y="150" class="td mono" text-anchor="end">log₂(8) = 3비트</text>
+    <text x="16" y="170" class="td">15개</text><text x="202" y="170" class="td mono" text-anchor="end">log₂(16) = 4비트</text>
+    <line x1="16" y1="186" x2="202" y2="186" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="208" class="cap">선택지를 두 배로 늘려도</text>
+    <text x="16" y="226" class="cap">결정 시간은 b만큼만 늡니다.</text>
+    <text x="16" y="252" class="cap">그래서 개수보다 구분이 어려운</text>
+    <text x="16" y="270" class="cap">선택지가 더 큰 비용입니다.</text>
+    <text x="16" y="296" class="cap">Hick(1952), Hyman(1953)</text>
+  </g>
+  <g transform="translate(258 24)">
+    <rect width="218" height="316" rx="8" class="card" stroke="var(--c-accent-2)" />
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-2)">FITTS</text>
+    <text x="16" y="48" class="nm">표적의 크기와 거리</text>
+    <text x="16" y="72" class="td mono">MT = a + b·log₂(2D/W)</text>
+    <line x1="16" y1="88" x2="202" y2="88" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="108" class="th">거리 200px 기준</text>
+    <text x="202" y="108" class="th" text-anchor="end">난이도</text>
+    <text x="16" y="130" class="td">너비 20</text><text x="202" y="130" class="td mono" text-anchor="end">log₂(20) ≈ 4.3비트</text>
+    <text x="16" y="150" class="td">너비 40</text><text x="202" y="150" class="td mono" text-anchor="end">log₂(10) ≈ 3.3비트</text>
+    <text x="16" y="170" class="td">거리 100, 너비 20</text><text x="202" y="170" class="td mono" text-anchor="end">≈ 3.3비트</text>
+    <line x1="16" y1="186" x2="202" y2="186" stroke="var(--c-divider)" stroke-width="1" />
+    <text x="16" y="208" class="cap">버튼을 두 배로 키우면 1비트,</text>
+    <text x="16" y="226" class="cap">거리를 절반으로 줄여도 1비트가 줍니다.</text>
+    <text x="16" y="252" class="cap">중요한 버튼은 크게, 자주 쓰는</text>
+    <text x="16" y="270" class="cap">버튼은 손이 닿는 곳에 둡니다.</text>
+    <text x="16" y="296" class="cap">Fitts(1954)</text>
+  </g>
+  <text x="24" y="376" class="cap">a는 기본 처리 시간, b는 1비트당 드는 시간입니다. 실제 값은 사람과 기기에 따라 다릅니다.</text>
+</svg>
