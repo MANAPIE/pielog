@@ -1,0 +1,105 @@
+<svg viewBox="0 0 500 658" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-heu">
+  <title id="t-heu">Nielsen의 10가지 사용성 휴리스틱</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #4E7D10;
+        --c-accent-2: #A85A14;
+        --c-accent-3: #3E6FB0;
+        --c-accent-4: #8A4FA8;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(78, 125, 16, 0.10);
+        --c-soft-2: rgba(168, 90, 20, 0.10);
+        --c-soft-3: rgba(62, 111, 176, 0.10);
+        --c-soft-4: rgba(138, 79, 168, 0.10);
+        --c-muted-soft: rgba(107, 114, 128, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #A9D65A;
+          --c-accent-2: #F0A85A;
+          --c-accent-3: #86AEE6;
+          --c-accent-4: #C08FE0;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(169, 214, 90, 0.14);
+          --c-soft-2: rgba(240, 168, 90, 0.14);
+          --c-soft-3: rgba(134, 174, 230, 0.14);
+          --c-soft-4: rgba(192, 143, 224, 0.14);
+          --c-muted-soft: rgba(139, 146, 160, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke-width: 1.6; }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .cap { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-muted); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .td { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .val { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; }
+      .met { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: var(--c-fg); letter-spacing: -0.02em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    </style>
+    <marker id="a-heu" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+    <marker id="a-heu-f" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-fg)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="658" />
+  <g transform="translate(24 24)">
+    <rect width="452" height="210" rx="8" fill="var(--c-soft-3)" stroke="var(--c-accent-3)" stroke-width="1.6" />
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-3)">알린다</text>
+    <text x="16" y="60" class="ep" style="fill:var(--c-accent-3)">1</text>
+    <text x="40" y="60" class="nm">시스템 상태의 가시성</text>
+    <text x="40" y="76" class="cap">업로드 진행률, 저장됨 표시</text>
+    <text x="16" y="98" class="ep" style="fill:var(--c-accent-3)">2</text>
+    <text x="40" y="98" class="nm">시스템과 실제 세계의 일치</text>
+    <text x="40" y="114" class="cap">트랜잭션 롤백 대신 결제 취소</text>
+    <text x="16" y="136" class="ep" style="fill:var(--c-accent-3)">4</text>
+    <text x="40" y="136" class="nm">일관성과 표준</text>
+    <text x="40" y="152" class="cap">같은 동작은 같은 방식, 플랫폼 관습</text>
+    <text x="16" y="174" class="ep" style="fill:var(--c-accent-3)">8</text>
+    <text x="40" y="174" class="nm">미학적이고 미니멀한 디자인</text>
+    <text x="40" y="190" class="cap">불필요한 정보 제거</text>
+  </g>
+  <g transform="translate(24 250)">
+    <rect width="452" height="172" rx="8" fill="var(--c-soft-4)" stroke="var(--c-accent-4)" stroke-width="1.6" />
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-4)">맡긴다</text>
+    <text x="16" y="60" class="ep" style="fill:var(--c-accent-4)">3</text>
+    <text x="40" y="60" class="nm">사용자 통제와 자유</text>
+    <text x="40" y="76" class="cap">실행 취소, 닫기 버튼</text>
+    <text x="16" y="98" class="ep" style="fill:var(--c-accent-4)">6</text>
+    <text x="40" y="98" class="nm">기억보다 인식</text>
+    <text x="40" y="114" class="cap">최근 검색어, 자동완성</text>
+    <text x="16" y="136" class="ep" style="fill:var(--c-accent-4)">7</text>
+    <text x="40" y="136" class="nm">유연성과 효율성</text>
+    <text x="40" y="152" class="cap">단축키와 기본값</text>
+  </g>
+  <g transform="translate(24 438)">
+    <rect width="452" height="172" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.6" />
+    <text x="16" y="26" class="lbl" fill="var(--c-accent-2)">막고 돕는다</text>
+    <text x="16" y="60" class="ep" style="fill:var(--c-accent-2)">5</text>
+    <text x="40" y="60" class="nm">오류 방지</text>
+    <text x="40" y="76" class="cap">삭제 전 확인, 실시간 검증</text>
+    <text x="16" y="98" class="ep" style="fill:var(--c-accent-2)">9</text>
+    <text x="40" y="98" class="nm">오류의 인식·진단·복구</text>
+    <text x="40" y="114" class="cap">평문 메시지와 해결 방법</text>
+    <text x="16" y="136" class="ep" style="fill:var(--c-accent-2)">10</text>
+    <text x="40" y="136" class="nm">도움말과 문서</text>
+    <text x="40" y="152" class="cap">상황별 도움말</text>
+  </g>
+  <text x="24" y="646" class="cap">출처: Nielsen, J. (1994, 2020). 10 Usability Heuristics for User Interface Design. NN/g.</text>
+</svg>
