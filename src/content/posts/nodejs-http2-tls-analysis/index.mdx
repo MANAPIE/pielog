@@ -1,0 +1,516 @@
+---
+title: "Node.js가 HTTP/2와 TLS를 직접 받으면 생기는 일: 2026년 11월 보안 릴리스 분석"
+description: "2026년 11월 11일 Node.js 보안 릴리스에서 고친 16건 중 12건이 HTTP/2와 TLS에서 나왔습니다. 결함의 원인과 배포 구조별 노출 범위, 올해 같은 영역이 반복해서 고쳐진 흐름을 정리합니다."
+summary: "11월 보안 릴리스의 HTTP/2·TLS 결함을 재진입, 수명 불일치, 정책 혼동 세 갈래로 나눠 원인을 설명합니다. Node.js가 TLS와 HTTP/2를 직접 받는지에 따라 영향받는 결함이 크게 달라지므로 배포 구조별 우선순위와 완화·사후 점검 방법을 정리하고, 올해 같은 영역이 거듭 고쳐진 계보와 AI가 찾은 결함이 늘어난 배경도 함께 다룹니다."
+date: 2026-11-16
+tags: ["experience", "develop", "backend", "infra", "security", "nodejs", "http2", "tls", "cve"]
+thumbnail: ./cover.svg
+ogImage: ./cover.jpg
+draft: false
+---
+
+![](./cover.svg)
+
+Node.js의 2026년 여섯 번째 보안 릴리스에서는 결함 16건 중 12건이 HTTP/2와 TLS에서 나왔고, 공지에서는 3건이 이전 수정이 놓친 경로라고 스스로 밝혔다.
+
+[2026년 웹 서비스 보안 사고를 정리한 글](/security-incidents-2026/)에서 다룬 Node2Shell(CVE-2026-111497) [패치](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases)가 10월 21일에 나왔습니다. 그로부터 3주 만인 11월 11일, Node.js가 다시 보안 릴리스를 냈습니다. 이번에는 원격 코드 실행을 야기하는 결함은 없었습니다. 대신 HTTPS 서버가 다른 연결의 메모리를 요청 본문에 섞어 넣는 결함과 인증 없는 클라이언트가 HTTP/2 서버를 멈출 수 있는 결함이 high 등급으로 나타났습니다. 호스트별 클라이언트 인증서 정책을 건너뛰는 결함도 high입니다. [Node.js의 공지](https://nodejs.org/en/blog/vulnerability/november-2026-security-releases)에서는 HTTPS 결함으로 읽을 수 있는 다른 연결의 메모리에 TLS 개인 키와 다른 사용자의 요청이 포함된다고 적었습니다.
+
+10월 패치를 이미 올렸어도 다시 올려야 합니다. 그런데 이번 결함은 애플리케이션 코드보다 배포 구조에 따라 갈립니다. Node.js가 TLS와 HTTP/2를 직접 받는 서버와, 앞단 프록시가 TLS를 끝내고 Node.js에는 평문 HTTP/1.1만 넘기는 서버는 같은 버전을 사용해도, 직접 받는 서버는 서버 쪽 HTTP/2·TLS 결함 11건에 영향을 받지만 평문만 받는 서버에는 영향이 없습니다.
+
+---
+
+## 11월 11일 릴리스는 무엇을 수정했나
+
+수정 버전은 [22.23.5](https://nodejs.org/en/blog/release/v22.23.5/), [24.22.3](https://nodejs.org/en/blog/release/v24.22.3/), [26.13.1](https://nodejs.org/en/blog/release/v26.13.1/)입니다. 26.x는 10월 28일에 나온 26.13.0부터 LTS로 전환되어, 지원 중인 22.x, 24.x, 26.x가 모두 LTS가 되었습니다. 공지에서는 22.x, 24.x, 26.x 모두 최고 심각도를 high로 적었습니다.
+
+공지에는 CVSS 점수가 없지만 같은 날 공개된 [CVE 기록](https://cna.openjsf.org/security-advisories.html)에는 점수가 들어 있습니다. 이번 릴리스의 신규 15건은 OpenJS 재단이 **CNA(CVE Numbering Authority)** 자격으로 CVE를 발급했습니다. CNA는 CVE 번호를 직접 발급하도록 지정된 기관입니다. 앞선 [6월](https://nodejs.org/en/blog/vulnerability/june-2026-security-releases), [7월](https://nodejs.org/en/blog/vulnerability/july-2026-security-releases), [10월](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) 릴리스에서는 Node.js 자체 결함의 CVE를 HackerOne이 발급했습니다.
+
+| 라인 | 수정 버전 | 해당 결함 | 비고 |
+| --- | --- | --- | --- |
+| 26.x (LTS 'Lithium') | 26.13.1 | 16건 | CVE-2026-106071은 10월의 26.12.1에서 이미 수정 |
+| 24.x (LTS 'Krypton') | 24.22.3 | 16건 | - |
+| 22.x (LTS 'Jod') | 22.23.5 | 11건 | 123863, 126051, 123874, 123828, 123868은 공지상 해당 없음 |
+| 지원 종료 라인 (20.x 이하, 21.x, 23.x, 25.x) | 없음 | - | 공지상 항상 영향을 받음 |
+
+CVE 기록의 설명은 일부 결함의 범위를 공지보다 좁게 잡았습니다. CVE-2026-123863과 CVE-2026-123874는 24.22.0 이후의 24.x와 26.9.0 이후의 26.x에 해당한다고 되어 있습니다. CVE-2026-123866을 원격 피어만으로 유발할 수 있는 것도 같은 버전부터입니다. 24.22.0은 10월 14일, 26.9.0은 9월 16일에 나왔습니다. 다만 공지와 CVE 기록의 버전 범위 필드는 24.x와 26.x 전체를 영향 범위로 두고 있어서 어느 쪽을 따르든 수정 버전으로 올려야 합니다.
+
+16건을 등급과 영역별로 나누면 다음과 같습니다. 등급과 영향 라인은 공지를, CVSS 점수는 CVE 기록을 따랐습니다.[^notes]
+
+| CVE | 등급 | CVSS | 영역 | 영향 라인 | 내용 | 성립 조건 |
+| --- | --- | --- | --- | --- | --- | --- |
+| CVE-2026-123863 | high | 8.2 | HTTP/2 | 24, 26 | 세션 종료 시 어서션 실패로 프로세스 중단 | 요청 본문이 끝나기 전에 응답하는 기본 HTTP/2 서버. TLS·평문 모두 |
+| CVE-2026-123864 | high | 8.1 | HTTPS | 22, 24, 26 | 파서 재진입으로 다른 연결의 힙 메모리가 요청 본문에 복사됨 | 본문이 끝나기 전 `res.flushHeaders()`, 이후 비어 있지 않은 `res.end()`. 평문 `node:http`는 해당 없음 |
+| CVE-2026-123865 | high | 7.5 | HTTP/2 | 22, 24, 26 | 종료 중 프로토콜 오류로 세션이 정리되지 않아 메모리·FD 누수 | 기본 HTTP/2 서버 |
+| CVE-2026-123866 | high | 7.5 | HTTP/2 | 22, 24, 26 | 해제된 응답 버퍼를 계속 사용해 다른 메모리를 피어에게 전송 | 쓰기가 밀린 상태에서 스트림 종료 |
+| CVE-2026-123874 | high | 7.5 | HTTP/2 | 24, 26 | 쓰기 대기 중 해제된 `Http2Stream` 사용 | `respondWithFile()`, `respondWithFD()`. TLS·평문 모두 |
+| CVE-2026-126051 | high | 7.5 | TLS | 24, 26 | 지연된 핸드셰이크 콜백에서 처리되지 않은 예외로 프로세스 종료 | `SNICallback`, `OCSPRequest`, `newSession`, `resumeSession`, `server.addContext()` |
+| CVE-2026-123872 | high | 8.1 | TLS | 22, 24, 26 | TLS 1.2 재협상으로 SNI를 바꿔 클라이언트 인증서 정책 우회 | 호스트마다 클라이언트 인증서 정책이 다른 서버 |
+| CVE-2026-123828 | medium | 5.9 | HTTP/2 | 24, 26 | `altsvc()`에서 1바이트 힙 오버플로 | 요청의 `:authority` 같은 값을 `altsvc()`에 전달 |
+| CVE-2026-123868 | medium | 5.9 | HTTP/2 | 24, 26 | 읽지 않은 인바운드 데이터가 `maxSessionMemory`에 잡히지 않음 | 요청 본문을 읽지 않고 두는 스트림이 있는 HTTP/2 서버 |
+| CVE-2026-123875 | medium | 5.9 | HTTP/2 | 22, 24, 26 | 다운로드 취소 시 NULL 역참조로 프로세스 중단 | `respondWithFile()`, `respondWithFD()`. TLS·평문 모두 |
+| CVE-2026-123867 | medium | 4.2 | TLS | 22, 24, 26 | CA만 지정한 SNI 컨텍스트가 기본 CA로 대체되어 mTLS 인가 우회 | 서버 인증서 없이 `addContext(host, { ca })` |
+| CVE-2026-123877 | medium | 6.8 | HTTPS 클라이언트 | 22, 24, 26 | `https.Agent`가 CA 정책이 다른 요청에 TLS 세션 재사용 | `ca`를 생략한 요청과 `ca: []` 요청이 같은 Agent 사용 |
+| CVE-2026-123871 | medium | 6.2 | 프록시 | 22, 24, 26 | 오류 메시지에 프록시 자격 증명 노출 | 자격 증명이 든 프록시 URL이 `ERR_PROXY_INVALID_CONFIG` 오류를 낼 때 |
+| CVE-2026-123829 | low | 2.5 | Permission Model | 22, 24, 26 | 재귀 `fs.watch`가 거부된 하위 항목의 이름 노출 | macOS·Windows, `--permission` |
+| CVE-2026-123862 | low | 2.9 | zlib | 22, 24, 26 | `params()` 대기 중 `destroy()`에서 잡을 수 없는 예외 | 스트리밍 중 `deflate.params()` 호출 |
+| CVE-2026-106071 | low | 3.6 | Permission Model | 22, 24, 26 | 와일드카드 허용 규칙이 더 짧은 경로까지 허용 | 권한 트리 루트 바로 아래의 와일드카드 규칙 |
+
+공지에 따르면 의존성 중 llhttp(22.x, 24.x, 26.x), undici(24.x, 26.x), sqlite(22.x, 24.x)도 함께 갱신되었습니다. 릴리스 노트 기준으로 llhttp는 9.4.4, sqlite는 3.54.1, undici는 24.x에서 7.30.2, 26.x에서 8.12.4입니다. 26.13.1의 릴리스 노트에는 공지에는 적혀 있지 않은 sqlite 3.54.1 갱신도 들어 있습니다.
+
+---
+
+## 결함의 원인은 어떻게 되는가
+
+HTTP/2·TLS 결함 12건 중 10건은 원인을 기준으로 세 갈래로 나뉩니다. 메모리가 노출되거나 손상되는 결함은 재진입과 수명 불일치에서, 인증 정책을 우회하는 결함은 정책 혼동에서 나왔습니다. 나머지 두 건은 HTTP/2의 메모리 예산 계산과 버퍼 크기 계산에서 생긴 실수입니다.
+
+### 재진입: 파싱이 끝나기 전에 다음 파싱이 시작될 때
+
+**재진입(re-entrancy)** 은 어떤 함수가 실행을 마치기 전에 같은 함수가 다시 호출되는 상황입니다. 한 번에 하나의 호출만 내부 상태를 다룬다고 가정하고 만든 함수라면, 두 번째 호출이 첫 번째 호출이 사용하던 버퍼와 위치 정보를 바꿔 놓게 됩니다.
+
+CVE-2026-123864는 Node.js의 HTTP 파서인 llhttp에서 재진입이 일어난 경우입니다. HTTPS 서버에 요청 본문이 도착하면 다음 순서로 결함이 일어납니다.
+
+1. llhttp가 복호화된 본문 조각을 읽다가 `on_body` 콜백을 호출하고 이 콜백 안에서 애플리케이션의 JavaScript 코드가 실행됩니다.
+2. 그 JavaScript 코드에서 0바이트 쓰기가 일어나면 TLS 계층의 `TLSWrap::DoWrite()`가 `ClearOut()`을 곧바로 호출합니다.
+3. `ClearOut()`은 다음 TLS 레코드를 복호화하고 그 내용을 처리하려고 `llhttp_execute()`를 다시 호출합니다. 첫 번째 파싱은 아직 본문 한가운데에 있습니다.
+4. 두 번째 파싱이 첫 번째 파싱의 상태를 건드리면서 **해제 후 사용(use-after-free)** 과 힙 범위 밖 읽기가 생깁니다. 그 결과 서버는 해제됐거나 무관한 힙 메모리를 요청 본문에 복사합니다.
+
+해제 후 사용은 이미 반환한 메모리를 가리키는 포인터로 계속 읽거나 쓰는 결함입니다. 반환된 메모리에는 그사이 다른 연결의 데이터가 들어올 수 있습니다.
+
+![CVE-2026-123864의 파서 재진입 흐름을 네 단계로 나타낸 순서도입니다. 제목은 'CVE-2026-123864의 파서 재진입 흐름'입니다. 맨 위 '1. llhttp_execute()가 본문 조각 1을 파싱' 상자에서 아래로 화살표가 '2. on_body 콜백에서 JavaScript 핸들러 실행' 상자로 이어지고, 다시 아래로 '3. 0바이트 쓰기 → TLSWrap::DoWrite() → ClearOut()' 상자로 이어집니다. 3번 상자에서 '다음 TLS 레코드 복호화' 라벨이 붙은 화살표가 테두리를 강조한 '4. llhttp_execute()가 본문 조각 2를 파싱' 상자로 이어지고, 4번 상자 안에는 '첫 번째 파싱이 아직 끝나지 않음'이 적혀 있습니다. 4번 상자의 오른쪽에서 1번 상자의 오른쪽으로 점선 화살표가 돌아갑니다. 4번 상자 아래로 화살표가 이어진 '결과' 상자에는 '해제 후 사용, 힙 범위 밖 읽기'와 '다른 연결의 메모리가 요청 본문으로 복사'가 적혀 있고, 맨 아래 각주에 '평문 node:http는 해당 없음'이 적혀 있습니다.](nht-01-parser-reentry.svg)
+
+공지에서 제시된 성립 조건은 두 가지입니다. 핸들러가 요청 본문이 끝나기 전에 `res.flushHeaders()`를 호출하고 나중에 비어 있지 않은 청크로 `res.end()`를 호출해야 합니다. 새어 나온 메모리를 공격자가 읽으려면 요청 본문을 그대로 돌려주거나 저장하는 평범한 라우트가 하나 있으면 됩니다. 평문 `node:http` 서버는 해당하지 않습니다.
+
+아래는 이 조건에 맞는 핸들러 형태입니다. [수정 커밋](https://github.com/nodejs/node/commits/v24.22.3)과 함께 들어간 회귀 테스트의 서버 핸들러도 같은 형태입니다. 헤더를 먼저 보내 연결을 유지하면서 업로드를 받는 서버라면 비슷한 코드가 있을 수 있습니다.
+
+```js
+import https from 'node:https';
+
+https.createServer({ key, cert }, (req, res) => {
+  res.flushHeaders(); // 조건 1: 본문이 끝나기 전에 헤더 전송
+  const chunks = [];
+  req.on('data', (chunk) => chunks.push(chunk));
+  req.on('end', () => {
+    res.end(Buffer.concat(chunks)); // 조건 2: 비어 있지 않은 청크로 응답 종료
+  });
+}).listen(443);
+```
+
+수정은 두 군데에서 이루어졌습니다. TLS 계층은 읽기 처리가 진행 중일 때 들어온 빈 쓰기에서는 다음 레코드를 읽지 않게 되었습니다. HTTP 파서는 중첩 실행이 끝나면 바깥 호출의 버퍼 정보를 복원하게 되었습니다. 또 실행 중인 버퍼 밖을 가리키는 데이터 콜백은 `HPE_REENTRANT_EXECUTE` 오류로 처리합니다. CVE 기록은 이 결함을 CVSS 8.1로 매기면서 공격 복잡도를 높음(AC:H)으로 평가했습니다.
+
+재진입 결함은 7월 릴리스에도 있었습니다. CVE-2026-56848은 HTTP/2 수신 처리 도중 송신 함수가 다시 호출되어 해제 후 사용이 생기는 결함이었습니다.
+
+Node.js가 TLS를 직접 끝내는 서버는 TLS 개인 키를 같은 프로세스 메모리에 들고 있습니다. 2014년 OpenSSL의 [**하트블리드(Heartbleed)**](https://heartbleed.com/)도 서버 메모리를 원격에서 읽는 결함이었고 패치 후 인증서를 재발급하고 개인 키를 바꾸라는 권고가 함께 나왔습니다. 하트블리드는 TLS 하트비트 응답이 요청한 길이만큼 서버 메모리를 그대로 돌려주던 결함입니다. 원인은 다르지만 결과가 비슷하므로 이번 공지는 키 교체를 언급하지 않았어도 판단은 따로 해야 합니다. 판단 기준은 [패치한 뒤에는 무엇을 확인해야 하는가](#패치한-뒤에는-무엇을-확인해야-하는가)에 정리했습니다.
+
+### 수명 불일치: 객체가 먼저 사라지거나 너무 오래 남을 때
+
+HTTP/2는 연결 하나에 요청과 응답 여러 개를 동시에 싣습니다. 이때 연결 단위의 상태를 **세션(session)**, 그 안에서 오가는 요청과 응답 한 쌍을 **스트림(stream)** 이라고 부릅니다. Node.js의 `node:http2`는 프로토콜 처리를 C 라이브러리인 nghttp2에 맡기고 그 위에 C++ 바인딩과 JavaScript API를 얹은 구조입니다.
+
+그래서 스트림 하나에 딸린 메모리가 세 곳에 나뉘어 있습니다. nghttp2가 할당한 헤더 버퍼, C++ 쪽 `Http2Stream` 객체, JavaScript 쪽 스트림 객체가 각자 다른 시점에 만들어지고 해제됩니다. 공지와 수정 커밋의 설명을 종합하면, 이번 릴리스의 HTTP/2 high 결함 네 건은 모두 객체나 버퍼의 수명이 서로 맞지 않아 생겼습니다.
+
+- **스트림이 세션보다 오래 남는 경우(CVE-2026-123863)**: 클라이언트는 nghttp2가 할당한 헤더 버퍼를 쥔 스트림을 세션이 끝난 뒤까지 남겨 둘 수 있습니다. 이 스트림은 세션의 스트림 목록에서는 빠지지만 분리 처리는 되지 않습니다. 그래서 세션 소멸자 `~Http2Session()`이 메모리 계산이 0인지 확인하는 `CHECK_EQ(current_nghttp2_memory_, 0)`에서 실패하고 프로세스가 종료됩니다. 요청 본문이 끝나기 전에 응답하는 기본 HTTP/2 서버에서 재현됩니다. 공지에서는 이 동작을 흔한 경우(typical)로 분류했습니다. CVE 기록의 설명은 영향 범위를 24.22.0 이후의 24.x와 26.9.0 이후의 26.x로 한정하고 있습니다.
+- **해제된 응답 버퍼를 계속 사용하는 경우(CVE-2026-123866)**: 쓰기가 **배압(backpressure)** 으로 밀려 있는 동안 스트림이 끝나면 생기는 결함입니다. 배압은 받는 쪽이 따라오지 못해 보내는 쪽의 쓰기가 대기열에 쌓이는 상태를 말합니다. 이때 스트림이 끝나면 응답 버퍼는 해제되지만 그 버퍼를 가리키는 참조는 계속 사용되어, 해제됐거나 무관한 힙 메모리가 원래 응답 대신 소켓으로 나갑니다. 피어의 `RST_STREAM`이나 서버의 스트림별 타임아웃이 스트림을 끝낼 수 있습니다. 24.x와 26.x에서는 24.22.0과 26.9.0에 들어간 윈도우 크기 변경 이후 원격 피어만으로 유발할 수 있습니다. **윈도우 크기(window size)** 는 HTTP/2 흐름 제어에서 받는 쪽이 상대에게 더 보내도 된다고 허용한 데이터 양입니다. 공지에서는 어느 변경인지 밝히지 않았지만, 두 버전의 변경 내역에서 윈도우 크기를 언급한 HTTP/2 항목은 [`http2: fix write deadlock exposed by larger window sizes`(#65440)](https://github.com/nodejs/node/pull/65440) 하나입니다. 이 커밋은 세션이 프레임을 쓰는 동안 소켓 읽기를 멈추던 보호 장치를 없앴습니다. 그래서 쓰기가 밀려 있는 동안에도 피어가 보낸 `RST_STREAM`을 읽어 스트림을 끝낼 수 있게 된 것으로 보입니다. 그 밖의 지원 버전에서도 스트림별 유휴 타임아웃처럼 애플리케이션이 스트림을 끝내는 경로로 같은 결함을 유발할 수 있습니다.
+- **쓰기 대기 중 스트림이 해제되는 경우(CVE-2026-123874)**: `respondWithFile()`이나 `respondWithFD()`로 파일을 보내는 서버에서, 클라이언트는 소켓에 쓰기 요청이 남아 있는 상태로 `Http2Stream`이 해제되게 만들 수 있습니다. 쓰기가 끝나면 코드가 해제된 객체로 가상 함수를 호출하게 되어 메모리가 손상됩니다. 나머지 설정은 기본값이어도 성립합니다. CVE 기록의 설명에는 이 결함도 24.22.0 이후의 24.x와 26.9.0 이후의 26.x에 해당한다고 되어 있습니다.
+- **다운로드 취소에서 NULL을 따라가는 경우(CVE-2026-123875)**: 같은 두 API로 파일을 보내는 중에 클라이언트가 요청을 취소하면, 전송에 사용하던 `StreamPipe`가 잘못된 순서로 정리됩니다. 그 결과 NULL 포인터를 역참조해 프로세스가 중단됩니다. 공지에서는 조작된 프레임 없이 취소 요청 몇 번이면 충분하다고 적었습니다.
+- **정리되지 않은 세션이 남는 경우(CVE-2026-123865)**: 세션이 이미 종료 중일 때 클라이언트가 프로토콜 오류를 일으키면, nghttp2는 내부에서 세션을 정리하지만 Node.js는 이를 알아채지 못합니다. 이런 프로토콜 오류로는 크기가 너무 큰 프레임 헤더 등이 있습니다. 소켓은 `CLOSE_WAIT`에 머물고 그 연결의 HTTP/2 상태는 메모리에 계속 남습니다. 종료는 클라이언트가 `GOAWAY(NO_ERROR)`를 보내 시작할 수 있어서 기본 HTTP/2 서버에서 안정적으로 재현됩니다.
+- **TLS 핸드셰이크 콜백이 소켓보다 늦게 실행되는 경우(CVE-2026-126051)**: TLS 서버가 `SNICallback`, `OCSPRequest`, `newSession`, `resumeSession` 훅이나 `server.addContext()`를 사용하면 해당 OpenSSL 콜백은 뒤로 미뤄 실행됩니다. 공격자가 클라이언트 헬로와 연결 종료를 같은 틱에 도착하게 만들면 콜백이 실행되기 전에 소켓이 파괴됩니다. 이때 프로세스는 `'error'` 이벤트를 내보내지 않고 처리되지 않은 예외로 종료됩니다.
+
+HTTP/2 결함을 고친 커밋 제목에서도 수명을 맞추는 방향을 확인할 수 있습니다.
+
+| CVE | 수정 커밋 제목 | 바뀐 동작 |
+| --- | --- | --- |
+| CVE-2026-123863 | `http2: release headers when a stream is removed` | 스트림이 빠질 때 헤더 버퍼를 놓음 |
+| CVE-2026-123866 | `http2: retain buffers until socket writes finish` | 소켓 쓰기가 끝날 때까지 응답 버퍼를 유지 |
+| CVE-2026-123874 | `http2: retain streams during pending writes` | 쓰기가 대기 중이면 스트림을 유지 |
+| CVE-2026-123875 | `http2: guard against null write request on cancelled stream` | 취소된 스트림의 빈 쓰기 요청을 확인 |
+| CVE-2026-123865 | `http2: detect streams abandoned by nghttp2` | nghttp2가 버린 스트림을 감지 |
+
+### 그 밖의 HTTP/2 결함 두 건
+
+- **`maxSessionMemory` 예산에 잡히지 않는 데이터(CVE-2026-123868)**: 인바운드 DATA 프레임이 올 때마다 스트림의 읽기 대기열에 Buffer가 하나씩 쌓이지만 이 대기열은 세션 메모리 계산에 들어가지 않습니다. 공지에 따르면 1바이트 DATA 프레임 하나에 공격자는 약 10바이트를 보내고 서버에는 약 114바이트가 남습니다. 보낸 양의 약 11배가 서버에 남는 셈이라 연결 하나의 스트림 하나로 수십 MB를 보내 수백 MB를 점유할 수 있습니다. `maxSessionMemory`는 이 증가를 막지도, 새 스트림을 거부하지도 못합니다.
+- **`altsvc()`의 1바이트 오버플로(CVE-2026-123828)**: 애플리케이션이 요청의 `:authority` 헤더 같은 외부 값을 `Http2Session.altsvc()`에 넘기면, origin 길이에 맞춰 할당한 버퍼 뒤에 널 종결 문자 1바이트가 더 써집니다. 문법상 올바른 `:authority`를 담은 긴 요청 하나로 프로세스가 중단될 수 있습니다. 공지에서는 이 결함이 원격에서 힙을 손상시키는 수단이 된다고도 적었습니다.
+
+### 정책 혼동: 한 번 받은 인증이 다른 호스트로 넘어갈 때
+
+**SNI(Server Name Indication)** 는 TLS 핸드셰이크에서 클라이언트가 접속하려는 호스트 이름을 서버에 알려 주는 확장입니다. 서버는 이 값을 보고 호스트마다 다른 인증서와 정책을 고릅니다. **mTLS(mutual TLS)** 는 서버뿐 아니라 클라이언트도 인증서를 제시해 서로 인증하는 방식입니다. Node.js에서는 `requestCert`와 `ca` 옵션으로 클라이언트 인증서를 요구합니다.
+
+- **재협상으로 SNI를 바꾸는 경우(CVE-2026-123872)**: **재협상(renegotiation)** 은 TLS 1.2에서 이미 맺은 연결 위에서 핸드셰이크를 다시 하는 기능입니다. 관리자 호스트에는 엄격한 클라이언트 인증서 정책을, 일반 호스트에는 보통 정책을 둔 서버를 생각해 볼 수 있습니다. 일반 호스트로 인증받은 클라이언트가 재협상하면서 servername을 관리자 호스트로 바꾸면 기존 인증이 그대로 넘어갑니다. 수정 커밋은 재협상뿐 아니라 TLS 1.3의 HelloRetryRequest와 **세션 재개(session resumption)** 로도 SNI를 바꿀 수 없게 막았습니다. HelloRetryRequest는 TLS 1.3에서 서버가 클라이언트에게 핸드셰이크 정보를 다시 보내 달라고 요청하는 메시지입니다. 세션 재개는 이전에 맺은 TLS 세션 정보를 다시 사용해 전체 핸드셰이크를 생략하는 기능입니다. 수정 후에는 연결의 서버 이름이 첫 ClientHello에서 고정되고 세션은 인증받은 서버 이름으로만 재개됩니다.
+- **CA만 지정한 SNI 컨텍스트(CVE-2026-123867)**: `server.addContext(host, { ca: protectedCA })`처럼 서버 인증서 없이 CA만 지정하면, 그 호스트용 클라이언트 CA가 설치되지 않고 핸드셰이크는 기본 클라이언트 CA로 진행됩니다. 그래서 기본 CA가 신뢰하는 인증서만 가진 클라이언트도 `requestCert`와 `rejectUnauthorized`를 켠 보호 호스트에 mTLS로 접속해 응답을 읽을 수 있습니다. 반대로 보호용 CA가 발급한 인증서를 가진 클라이언트는 거부됩니다.
+- **CA 정책이 다른 요청 사이의 세션 재사용(CVE-2026-123877)**: Node.js가 클라이언트로 동작할 때의 결함입니다. `https.Agent.prototype.getName()`은 `ca`를 생략한 요청과 `ca: []`를 넘긴 요청에 같은 세션 캐시 키를 줍니다. 생략한 값은 키에 아무것도 덧붙이지 않고 빈 배열은 빈 문자열로 바뀌기 때문입니다. 그런데 `ca`를 생략하면 기본 신뢰 저장소를 사용하고 `ca`를 넘기면 그 값으로 저장소를 대체하므로 두 요청의 정책은 다릅니다. 결국 기본 저장소로 인증된 TLS 세션이 더 엄격한 `ca: []` 요청에 넘어가고 TLS 1.3 세션 재개가 이전 인증을 이어받아 `authorized === true`가 됩니다.
+
+CVE-2026-123872와 CVE-2026-123877에서는 한 조건에서 내린 인증 결정이 조건이 바뀐 뒤에도 그대로 이어졌습니다. CVE-2026-123867에서는 호스트별 정책이 아예 적용되지 않았습니다. 세 결함 모두 어느 호스트의 어떤 정책으로 인증했는지가 실제 요청과 맞지 않게 된 경우입니다.
+
+### 나머지 네 건
+
+- **CVE-2026-123871 (medium)**: 6월의 CVE-2026-48615 수정은 `ProxyConfig.href`에서 사용자 이름과 비밀번호를 가렸습니다. 하지만 같은 서브시스템의 오류 경로 네 곳은 원래 프록시 URL을 `ERR_PROXY_INVALID_CONFIG` 메시지에 그대로 넣었습니다. 자격 증명이 stderr, 컨테이너 로그, 로그 수집 서비스, 크래시 리포트로 나갈 수 있습니다.
+- **CVE-2026-123862 (low)**: 스트리밍 중 `deflate.params()`를 호출한 상태에서 피어가 끊겨 스트림이 파괴되면 스트림 내부에서 `ERR_INTERNAL_ASSERTION`이 발생합니다. 이 예외는 스트림의 error 이벤트, `params()` 콜백, `pipeline()` 콜백을 모두 우회해 프로세스를 끝냅니다. 공지에서는 이 API를 그렇게 사용하는 경우가 흔하지 않다고 적었습니다.
+- **CVE-2026-123829 (low)**: macOS와 Windows에서 Permission Model 아래의 재귀 `fs.watch()`는 감시하는 루트에서만 읽기 권한을 확인합니다. 그래서 읽기가 거부된 하위 경로의 이름과 변경 시점이 노출됩니다. 파일 내용은 노출되지 않습니다.
+- **CVE-2026-106071 (low)**: `--allow-fs-read=/etc/passwd.*` 같은 와일드카드 규칙이 접두사보다 짧은 `/etc/passwd`까지 허용합니다. 10월 공지에서는 같은 번호를 26.x에만 해당한다고 적었는데 11월 공지에서는 22.x, 24.x, 26.x 모두에 해당한다고 다시 실었습니다. 커밋 목록을 보면 26.x는 10월의 26.12.1에서 수정되었고 11월에는 22.x와 24.x에 같은 수정이 들어갔습니다. CVE 기록의 영향 범위는 11월 16일 기준으로도 26.x만 포함하고 있어서 CVE 기록만 보는 점검 도구는 22.x와 24.x를 놓칠 수 있습니다.
+
+---
+
+## 내 서버는 어떤 결함에 영향을 받는가
+
+같은 버전을 사용해도 Node.js 앞에 무엇이 있느냐에 따라 영향받는 결함이 크게 달라집니다. HTTP/2와 TLS 서버 결함은 Node.js가 HTTP/2 프레임이나 TLS 레코드를 직접 해석할 때만 일어나기 때문입니다.
+
+배포 구조별 노출 범위 가운데 공지에서 직접 밝힌 내용은 세 가지입니다.
+
+- CVE-2026-123864는 평문 `node:http`에는 해당하지 않습니다.
+- CVE-2026-123863, 123874, 123875는 TLS와 평문 모두에서 성립합니다.
+- CVE-2026-123875는 조작된 프레임 없이 요청 취소만으로 성립합니다.
+
+나머지는 결함이 있는 코드가 어떤 연결을 거치는지를 기준으로 했습니다.
+
+![배포 구조 다섯 가지에서 클라이언트 요청이 Node.js에 전달되는 경로와 영향 있는 결함을 카드 다섯 장으로 비교한 다이어그램입니다. 제목은 '배포 구조별 요청 경로와 영향 있는 결함'입니다. 카드마다 왼쪽의 '클라이언트' 상자에서 오른쪽의 'Node.js' 상자로 화살표가 이어지고, 오른쪽 위에 우선순위가 적혀 있습니다. 첫 번째 카드 'Node.js가 HTTPS·HTTP/2를 직접 받음'은 우선순위 '최우선'이고, 클라이언트에서 Node.js로 'TLS·HTTP/2' 화살표가 바로 이어지며 '영향 있는 결함: 123864, HTTP/2 7건, TLS 서버 3건'이 적혀 있습니다. 두 번째 카드 'TLS 패스스루 로드 밸런서 뒤'는 우선순위 '최우선'이고, 클라이언트에서 '로드 밸런서' 상자로 'TLS·HTTP/2', 로드 밸런서에서 Node.js로 'TCP 그대로' 화살표가 이어지며 '영향 있는 결함: 직접 받는 경우와 같음'이 적혀 있습니다. 세 번째부터 다섯 번째 카드는 클라이언트에서 '프록시' 상자로 'TLS·HTTP/2' 화살표가 이어집니다. 세 번째 카드 '프록시가 TLS를 끝낸 뒤 HTTPS로 다시 연결'은 우선순위 '높음'이고, 프록시에서 Node.js로 '새 TLS 연결' 화살표가 이어지며 '영향 있는 결함: 공지에서 다루지 않음', '직접 받는 경우로 보고 처리'가 적혀 있습니다. 네 번째 카드 '프록시가 TLS를 끝내고 HTTP/2로 전달'은 우선순위 '높음'이고, 프록시에서 Node.js로 'HTTP/2' 화살표가 이어지며 '영향 있는 결함: HTTP/2 결함. 조작된 프레임은 프록시가 걸러낼 수 있음', '123875는 요청 취소만으로 성립'이 적혀 있습니다. 다섯 번째 카드 '프록시가 TLS를 끝내고 HTTP/1.1 평문으로 전달'은 우선순위 '낮음'이고, 프록시에서 Node.js로 'HTTP/1.1 평문' 화살표가 이어지며 '영향 있는 결함: 서버 쪽 HTTP/2·TLS 결함은 해당 없음', '123864도 평문 node:http는 해당 없음'이 적혀 있습니다. 맨 아래 '배포 구조와 관계없이 확인' 상자에는 'Node.js가 외부로 요청할 때'에 '123877(https.Agent), 123871(프록시 설정)', '런타임 기능을 사용할 때'에 '123862(zlib), 123829·106071(Permission Model)'이 적혀 있습니다.](nht-02-exposure-by-deployment.svg)
+
+| 배포 구조 | Node.js가 받는 것 | 영향받는 결함 | 우선순위 |
+| --- | --- | --- | --- |
+| Node.js가 HTTPS·HTTP/2를 직접 받음 (`https.createServer`, `http2.createSecureServer`, `tls.createServer`) | TLS 레코드, HTTP/2 프레임 | 123864, HTTP/2 7건, TLS 서버 3건 | 최우선 |
+| TLS 패스스루 로드 밸런서 뒤 (TCP를 그대로 전달) | TLS 레코드, HTTP/2 프레임 | 직접 받는 경우와 같음 | 최우선 |
+| 프록시가 TLS를 끝낸 뒤 Node.js에 HTTPS로 다시 연결 | 프록시가 만든 TLS 레코드 | 공지에서 다루지 않음. 직접 받는 경우로 보고 처리 | 높음 |
+| 프록시가 TLS를 끝내고 Node.js에는 HTTP/2로 전달 (h2c 등) | 프록시가 다시 만든 HTTP/2 프레임 | HTTP/2 결함. 프레임을 조작해야 하는 경우는 프록시가 걸러낼 수 있지만, 123875는 조작된 프레임 없이 요청 취소만으로 성립 | 높음 |
+| 프록시가 TLS를 끝내고 HTTP/1.1 평문으로 전달 | HTTP/1.1 평문 | 서버 쪽 HTTP/2·TLS 결함은 해당 없음. 123864도 평문 `node:http`는 해당 없음 | 낮음 |
+| 공통: Node.js가 외부로 요청 | - | 123877(`https.Agent`), 123871(프록시 설정) | 해당하면 |
+| 공통: 런타임 기능 사용 | - | 123862(zlib), 123829·106071(Permission Model) | 해당하면 |
+
+프록시가 TLS를 끝낸 뒤 Node.js에 HTTPS나 HTTP/2로 다시 연결하는 구성에서는 프록시가 TLS 레코드와 HTTP/2 프레임을 새로 만듭니다. 그래서 공격자가 보낸 프레임이 그대로 전달되지는 않지만 요청 취소나 본문 전송 같은 동작은 전달됩니다. 어디까지 걸러지는지 확인하기 전에는 직접 받는 경우와 같은 우선순위로 올리는 편이 안전합니다.
+
+서버리스나 PaaS처럼 플랫폼이 런타임을 관리하는 환경이라면, 플랫폼이 언제 새 런타임을 적용하는지 공지를 확인해야 합니다.
+
+배포 구조를 확인했다면 코드에서 공지에서 성립 조건으로 든 API를 찾아봐야 합니다.
+
+```bash
+# 공지에서 성립 조건으로 든 서버 API 사용 위치 찾기
+grep -rnE "http2\.create(Secure)?Server|createSecureServer\(|['\"](node:)?http2['\"]|flushHeaders\(|respondWith(File|FD)\(|\.altsvc\(|SNICallback|OCSPRequest|newSession|resumeSession|addContext\(" \
+  --include='*.js' --include='*.mjs' --include='*.cjs' --include='*.ts' src/
+
+# zlib params()와 https.Agent의 ca 옵션은 따로 확인
+grep -rnE "\.params\(|new https\.Agent|ca: \[\]" \
+  --include='*.js' --include='*.mjs' --include='*.cjs' --include='*.ts' src/
+```
+
+애플리케이션 코드에 없어도 프레임워크나 라이브러리가 대신 호출할 수 있습니다. 11월 13일 기준 npm 최신 버전의 서버 관련 패키지 36개를 내려받아, 테스트 코드와 타입 선언을 뺀 소스에서 같은 패턴을 찾아본 결과는 다음과 같습니다.
+
+| 패키지 | 찾은 호출 |
+| --- | --- |
+| `@grpc/grpc-js` 1.14.7 | `http2.createSecureServer()`, `http2.createServer()`로 서버 생성 |
+| `fastify` 5.12.8 | HTTP/2 옵션을 켜면 `http2.createSecureServer()`, `http2.createServer()`로 서버 생성 |
+| `restify` 12.1.0 | HTTP/2 옵션을 켜면 `http2.createSecureServer()`로 서버 생성 |
+| `srvx` 1.0.8 | TLS 인증서를 주면 `createSecureServer()`로 HTTP/2 서버 생성. `node.http2: false`로 끌 수 있음 |
+| `vite` 8.3.8 | HTTPS 옵션을 켜면 `createSecureServer()`로 개발 서버와 프리뷰 서버 생성 |
+| `webpack-dev-server` 6.1.0 | 서버 타입이 `http2`이면 `createSecureServer()`로 개발 서버 생성 |
+| `next` 16.4.6 | 스트리밍 응답을 시작할 때 `res.flushHeaders()` |
+| `@hono/node-server` 2.1.8 | 응답 헤더를 먼저 보내는 경로에서 `flushHeaders()` |
+| `koa` 3.3.0 | `ctx.flushHeaders()` 제공. 애플리케이션이 호출할 때만 실행 |
+
+`express` 5.3.0, `@hapi/hapi` 21.4.13 등 나머지 패키지에서는 HTTP/2 서버를 만드는 호출과 `flushHeaders()` 호출을 찾지 못했습니다. `h3` 2.0.8은 자체 호출이 없지만 Node.js 서버를 `srvx`로 띄웁니다. `next`와 `vite`가 번들한 프록시 라이브러리(`httpxy`, `http-proxy-3`)에도 `createSecureServer()` 호출이 있는데 프록시 라이브러리의 `listen()`을 호출할 때만 실행되는 코드입니다. `respondWithFile()`, `respondWithFD()`, `altsvc()`, `SNICallback`, `addContext()`는 36개 어디에서도 찾지 못했습니다.
+
+gRPC 서버는 따로 확인해야 합니다. `@grpc/grpc-js`는 `node:http2` 서버를 직접 만들기 때문에, Node.js로 만든 gRPC 서버는 웹 프레임워크와 관계없이 HTTP/2 결함의 대상입니다.
+
+이 검색은 문자열을 찾은 것일 뿐이라 호출이 있다고 해서 성립 조건을 충족한다는 뜻은 아닙니다. 반대로 이름을 바꿔 가져오거나 동적으로 불러오는 호출은 이 패턴에 잡히지 않습니다. 실제로 사용하는 버전의 `node_modules`에서 같은 패턴으로 직접 확인해야 합니다.
+
+---
+
+## 같은 영역에서 왜 계속 결함이 나오는가
+
+11월 릴리스만 놓고 보면 HTTP/2와 TLS에 결함이 몰린 한 번의 사건처럼 보입니다. 하지만 올해 나온 보안 릴리스 공지 여섯 개를 나란히 놓으면 같은 영역이 거듭 고쳐진 흐름을 확인할 수 있습니다.
+
+| 공지일 | 항목 수 | HTTP/2 | TLS·HTTPS | high |
+| --- | --- | --- | --- | --- |
+| [1월 13일](https://nodejs.org/en/blog/vulnerability/december-2025-security-releases) | 8 | 1 | 2 | 3 |
+| [3월 24일](https://nodejs.org/en/blog/vulnerability/march-2026-security-releases) | 9 | 1 | 1 | 2 |
+| [6월 18일](https://nodejs.org/en/blog/vulnerability/june-2026-security-releases) | 12 | 2 | 3 | 2 |
+| [7월 29일](https://nodejs.org/en/blog/vulnerability/july-2026-security-releases) | 11 | 2 | 2 | 3 |
+| [10월 21일](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) | 10 | 0 | 3 | 4 |
+| [11월 11일](https://nodejs.org/en/blog/vulnerability/november-2026-security-releases) | 16 | 7 | 5 | 7 |
+| 합계 | 66 | 13 | 16 | 21 |
+
+여섯 공지 모두에 HTTP/2나 TLS 항목이 있었습니다.[^count] 1월부터 10월까지 다섯 공지에 실린 HTTP/2·TLS 항목은 17개였는데 11월 한 번에 12개가 실렸습니다.
+
+11월 결함 중 여럿은 이전 결함과 직접 이어집니다. 공지에서 밝히지 않았지만 기능이나 원인 계열이 같거나 증상이 비슷한 경우도 있습니다.
+
+| 11월 결함 | 이어지는 이전 결함 | 연결 근거 |
+| --- | --- | --- |
+| CVE-2026-123863 (HTTP/2 세션 종료 어서션) | CVE-2024-27983 ([2024년 4월](https://nodejs.org/en/blog/vulnerability/april-2024-security-releases), 같은 어서션) | 공지: 이전 수정이 다루지 않은 변종 |
+| CVE-2026-123865 (HTTP/2 세션 정리) | CVE-2026-48937 (6월) | 공지: 불완전한 수정 |
+| CVE-2026-123871 (프록시 자격 증명) | CVE-2026-48615 (6월) | 공지: 같은 서브시스템의 오류 경로 네 곳 누락 |
+| CVE-2026-126051 (TLS 콜백 예외) | CVE-2026-21637 (1월 PSK·ALPN 콜백, 3월 `SNICallback`) | 비슷한 증상: 핸드셰이크 콜백 경로의 처리되지 않은 예외로 프로세스 종료. 원인은 다름 |
+| CVE-2026-123864 (HTTPS 파서 재진입) | CVE-2026-56848 (7월, HTTP/2 송신 재진입) | 같은 원인 계열: 재진입으로 생긴 해제 후 사용 |
+| CVE-2026-123877 (`https.Agent` 세션 재사용) | CVE-2026-48934 (6월), CVE-2026-58040·56850 (7월) | 같은 기능. 58040은 공지에서 48934의 불완전한 수정이라고 밝힘 |
+| CVE-2026-123867, 123872 (호스트별 mTLS) | CVE-2026-48928 (6월, 대소문자 SNI 매칭) | 같은 문제: 호스트별 mTLS 정책 우회 |
+| CVE-2026-123868 (`maxSessionMemory`) | CVE-2026-56846 (7월, 헤더 블록) | 같은 예산을 다른 경로로 우회 |
+| CVE-2026-106071 (와일드카드) | 같은 번호 (10월, 26.x) | 같은 수정을 22.x와 24.x에 추가 |
+
+![11월 결함 아홉 묶음을 이전 결함과 화살표로 연결한 다이어그램입니다. 제목은 '11월 결함과 이전 결함의 연결'입니다. 왼쪽 열 '이전 결함'의 상자에서 오른쪽 열 '11월 결함'의 상자로 화살표가 이어지고, 화살표 위에 연결 근거가 적혀 있습니다. 아래 범례에 실선은 '공지나 같은 CVE 번호로 확인되는 연결', 점선은 '필자가 묶은 연결'이라고 적혀 있습니다. 'HTTP/2' 구역에는 세 줄이 있습니다. '2024년 4월 CVE-2024-27983, 같은 어서션'에서 'CVE-2026-123863, HTTP/2 세션 종료 어서션'으로 실선 '변종', '6월 CVE-2026-48937, GOAWAY 뒤 세션 미정리'에서 'CVE-2026-123865, HTTP/2 세션 정리'로 실선 '불완전한 수정', '7월 CVE-2026-56846, 헤더 블록'에서 'CVE-2026-123868, maxSessionMemory'로 점선 '같은 예산'이 이어집니다. 'TLS' 구역에는 두 줄이 있습니다. '1월, 3월 CVE-2026-21637, PSK·ALPN 콜백, SNICallback, 3월은 1월의 불완전한 수정'에서 'CVE-2026-126051, TLS 콜백 예외'로 점선 '비슷한 증상', '6월 CVE-2026-48928, 대소문자 SNI 매칭'에서 'CVE-2026-123867, CVE-2026-123872, 호스트별 mTLS'로 점선 '같은 문제'가 이어집니다. 'HTTPS·기타' 구역에는 네 줄이 있습니다. '6월 CVE-2026-48934, 7월 CVE-2026-58040, 56850, 58040은 48934의 불완전한 수정'에서 'CVE-2026-123877, https.Agent 세션 재사용'으로 점선 '같은 기능', '7월 CVE-2026-56848, HTTP/2 송신 재진입'에서 'CVE-2026-123864, HTTPS 파서 재진입'으로 점선 '재진입', '6월 CVE-2026-48615, ERR_PROXY_TUNNEL 메시지'에서 'CVE-2026-123871, 프록시 자격 증명'으로 실선 '오류 경로 누락', '10월 CVE-2026-106071, 26.x에 수정'에서 'CVE-2026-106071, 22.x, 24.x에 같은 수정'으로 실선 '같은 수정 추가'가 이어집니다.](nht-03-fix-lineage.svg)
+
+공지에서 연결고리를 직접 밝힌 세 건은 이전 수정이 무엇을 놓쳤는지도 설명합니다. CVE-2024-27983의 수정은 세션이 아직 추적하던 스트림만 분리했습니다. CVE-2026-48937의 수정은 종료 중이 아닐 때 보낸 `GOAWAY`만 감시했습니다. CVE-2026-48615의 수정은 `ProxyConfig.href`에서 사용자 이름과 비밀번호를 가렸지만 같은 하위 시스템의 오류 경로 네 곳을 놓쳤습니다. 세 경우 모두 이전 수정은 보고된 경로를 막았지만 같은 상태에 이르는 다른 경로는 남아 있었습니다.
+
+이런 반복에는 두 가지 배경을 생각해 볼 수 있습니다. 먼저 HTTP/2와 TLS의 프로토콜 처리는 Node.js에서 대부분 C/C++ 계층(nghttp2, OpenSSL과 그 바인딩)이 맡습니다. 그래서 가비지 컬렉터가 관리하는 JavaScript 객체와 직접 해제하는 C/C++ 메모리 사이의 수명을 코드로 맞춰야 합니다. 이런 구조에서는 경로 하나를 고쳐도 같은 상태에 이르는 다른 경로가 남기 쉽습니다. 그리고 기능이 바뀌면서 결함에 이르는 새 경로가 생기기도 합니다. CVE-2026-123866은 24.22.0과 26.9.0에 들어간 윈도우 크기 변경 이후 원격 피어만으로 유발할 수 있게 되었습니다. CVE 기록의 설명에 따르면 CVE-2026-123863과 CVE-2026-123874도 두 버전 이후에만 해당합니다. high 7건 중 3건이 나온 지 두 달이 안 된 버전과 이어져 있는 셈입니다.
+
+운영하는 쪽에서는 한 번 패치하면 끝이라는 가정을 버리고 런타임 업데이트를 배포 파이프라인의 정기 작업으로 만들어야 합니다. 그리고 Node.js가 인터넷에서 오는 TLS와 HTTP/2를 직접 해석하는 범위를 줄이면, 다음 릴리스에 같은 영역의 결함이 또 나와도 영향 범위를 좁힐 수 있습니다. 다만 프록시도 TLS와 HTTP/2를 해석하므로 위험이 사라지지는 않고 프록시의 결함을 고쳐야 하는 일이 남습니다.
+
+---
+
+## AI는 이번 릴리스에서 어떤 역할을 했는가
+
+11월 공지에서는 16건 중 5건의 보고자를 'Chris Rohlf in collaboration with Claude and Anthropic Research'로 적었습니다. CVE-2026-123863, CVE-2026-123864, CVE-2026-123874(이상 high), CVE-2026-123875(medium), CVE-2026-123862(low)가 여기에 해당합니다. Permission Model 결함인 CVE-2026-123829의 보고자는 'Trail of Bits (OpenAI)'입니다. 10월의 Node2Shell 공지도 OpenAI Codex Security 소속 연구자 두 명을 보고자로 밝혔으니, 두 달 연속으로 AI 연구 조직의 이름이 Node.js 보안 공지에 올랐습니다.
+
+공지에서는 AI가 어느 단계에서 무엇을 했는지 설명하지 않습니다. 발견, 재현, 분석 중 어디에 사용했는지, 사람이 어떤 검증을 거쳤는지는 감사 문구만으로 알 수 없습니다. 다만 AI를 사용한 연구로 표시된 보고가 high 7건 중 3건이라는 것은 공지에서 확인할 수 있습니다.
+
+수정에도 AI가 사용되었습니다. 24.22.3에 들어간 수정 커밋 가운데 CVE 6건(CVE-2026-123828, 123862, 123866, 123874, 123875, 123877)의 커밋 메시지에는 `Assisted-by: Codex`, `Assisted-by: pi` 같은 표시가 붙어 있습니다. 여섯 커밋의 작성자는 모두 Matteo Collina입니다.
+
+보고의 양도 크게 늘었습니다. OpenJS 재단은 [2026년 2월에 낸 글](https://openjsf.org/blog/ai-is-stress-testing-open-source)에서 Node.js가 보통 한 달에 6\~7건의 취약점 보고를 받는데 2025년 12월 15일부터 한 달 동안은 30건 넘게 받았다고 밝혔습니다. 재단의 [2분기 보안 보고](https://openjsf.org/blog/openjs-security-update-q2-2026)는 AI 에이전트 기반 스캔 도구가 등장한 뒤 2026년 2월 한 달에 보고가 4.6배로 급증했고 3월 한 달에만 65건이 들어왔다고 적었습니다. 4.6배가 무엇과 비교한 수치인지는 보고에 나와 있지 않습니다.
+
+반면 수정은 소수의 메인테이너에게 몰려 있습니다. 11월 공지의 16건 중 12건은 Matteo Collina가 고쳤습니다. Collina는 [8월에 쓴 글](https://adventures.nodeland.dev/archive/triaging-the-ai-horde/)에서 매주 20\~40건의 보고를 분류한다고 적었습니다. 어느 프로젝트의 보고인지는 밝히지 않았지만 거의 전부 AI가 작성한 보고였다고 합니다. 그리고 같은 보고가 보통 3\~5건씩 중복으로 들어오고, 실제 취약점으로 확인되는 경우는 드물다고 했습니다.
+
+Node.js는 분류 과정을 바꾸고 있습니다. HackerOne 보고자에게 [신뢰 점수(Signal) 기준](https://nodejs.org/en/blog/announcements/hackerone-signal-requirement)을 두었습니다. 2분기 보고 기준으로 사람이 보기 전에 보고의 신뢰도를 평가하는 분류기도 만들고 있습니다. 보안 보고를 비공개 절차 대신 공개 절차로 처리하자는 [제안](https://github.com/nodejs/TSC/issues/1826)도 보안 작업 그룹의 안건에 올랐습니다. 공개를 미뤄야 하는 드문 경우만 따로 다루자는 내용입니다. 이 제안은 [10월 29일 보안 작업 그룹 회의 안건](https://github.com/nodejs/security-wg/issues/1592)에도 올랐지만, 11월 16일 기준으로 TSC 이슈는 열려 있고 정책 변경은 발표되지 않았습니다.
+
+AI가 찾은 취약점이 더 자주 악용된다는 근거는 아직 없습니다. 취약점 정보 업체 VulnCheck은 [2026년 상반기 보고서](https://www.vulncheck.com/blog/state-of-exploitation-1h-2026)에서 AI의 도움으로 발견했다고 공개된 취약점 1,061건 중 14건(1.3%)에서 실제 악용이 확인되었다고 집계했습니다. 이 비율은 상반기 전체 취약점의 악용 비율과 비슷하다고도 적었습니다. 같은 업체가 [11월 9일에 낸 집계](https://www.vulncheck.com/blog/anthropic-glasswing-november-update)에서는 Anthropic이 발견한 것으로 분류한 CVE 442건 중 2건에서 악용이 확인되었습니다.
+
+운영하는 쪽에서는 런타임 보안 릴리스가 더 잦아질 수 있다고 보고 준비해야 합니다. 올해 Node.js 보안 릴리스는 이미 여섯 번 있었고 그중 11월 공지의 항목 수가 가장 많았습니다. AI가 찾은 결함이라고 해서 따로 다룰 이유는 없고 등급과 성립 조건으로 판단하면 됩니다.
+
+---
+
+## 지금 악용되고 있는가
+
+11월 16일 기준으로 공지에서는 실제 악용을 보고하지 않았습니다. 같은 날 확인한 CVE 기록 15건에도 악용이나 공개 **개념 증명(Proof of Concept, PoC)** 코드에 관한 정보는 없었습니다. 미국 CISA의 [**KEV(Known Exploited Vulnerabilities)** 목록](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)에도 11월 13일판 기준으로 16건은 올라 있지 않습니다. 릴리스 당일과 이튿날의 [보도](https://www.cyberkendra.com/2026/11/nodejs-november-2026-security-update-16-cves.html)도 악용 보고와 공개된 개념 증명 코드가 없다고 전했습니다. 개념 증명 코드는 결함이 실제로 동작함을 보이는 재현 코드입니다. KEV는 CISA가 실제 악용이 확인된 취약점을 모아 둔 목록입니다.
+
+보안 업체 [Phoenix Security](https://phoenix.security/node-js-vulnerabilities-cve-2026-123864-tls-key-leak-http2-crash/)는 CVE-2026-123864와 CVE-2026-123863에 'NodeLeak', 'NodeCrash'라는 이름을 붙였지만 Node.js가 붙인 공식 이름은 아닙니다.
+
+악용 보고가 없다고 안전한 것은 아닙니다. CVE-2026-123863은 요청 본문이 끝나기 전에 응답하는 기본 HTTP/2 서버만 있으면 성립하고 CVE-2026-123875도 다운로드 취소 몇 번이면 된다고 공지는 적었습니다.
+
+재현에 필요한 정보도 공개되어 있습니다. 수정 커밋에는 결함을 재현하는 회귀 테스트가 함께 들어 있습니다. 일부 수정은 공지보다 먼저 공개 저장소에 올라왔습니다. CVE-2026-123865의 수정은 10월 10일에 열린 [공개 PR(#66641)](https://github.com/nodejs/node/pull/66641)로 진행되어 10월 24일에 main 브랜치에 병합되었으므로 공지보다 18일 먼저 공개 저장소에 들어갔습니다. CVE-2026-123875의 수정은 11월 4일에 열린 [26.x용 공개 백포트 PR(#67252)](https://github.com/nodejs/node/pull/67252)로 진행되었습니다. 10월의 Node2Shell은 패치 다음 날 [Imperva](https://www.imperva.com/blog/node2shell-from-brotli-data-to-remote-code-execution/)가 공식 Node.js 이미지에서 코드를 실행한 시연 결과를 공개했습니다. 그리고 10월 27일에는 CISA의 KEV 목록에 올랐습니다. 이번에도 공지일을 기준으로 여유를 계산하기는 어렵습니다.
+
+---
+
+## 어떤 버전으로 올려야 하는가
+
+22.x는 22.23.5, 24.x는 24.22.3, 26.x는 26.13.1로 올려야 합니다. 올리기 전에 실제로 실행 중인 프로세스의 버전부터 확인해야 합니다. 개발 PC의 `node -v`와 서버나 컨테이너에서 실행 중인 버전이 다를 수 있습니다.
+
+```bash
+# 실행 중인 Node.js 프로세스 찾기
+ps -eo pid,args | grep -E "[n]ode "
+
+# 프로세스 제목을 바꾼 서버까지 찾기 (Linux, 실행 파일 기준)
+for p in /proc/[0-9]*; do
+  exe=$(readlink "$p/exe" 2>/dev/null) || continue
+  case "$exe" in
+    */node|*/nodejs|*/node\ \(deleted\)|*/nodejs\ \(deleted\)) echo "${p#/proc/} $exe" ;;
+  esac
+done
+
+# 컨테이너의 PATH에 있는 node 버전 확인
+docker exec <컨테이너> node -p process.version
+```
+
+Next.js처럼 프로세스 제목을 `next-server`로 바꾸는 서버는 `ps` 출력에서 `node`라는 이름으로 찾을 수 없으므로 Linux에서는 `/proc`의 실행 파일 경로로도 찾아야 합니다. 경로 뒤에 `(deleted)`가 붙은 프로세스는 바이너리가 교체된 뒤에도 이전 바이너리로 실행 중입니다. 다른 사용자의 프로세스까지 보려면 root 권한으로 실행해야 합니다.
+
+- **nvm**: `nvm install 24.22.3`처럼 버전을 지정해 설치하고 프로세스 관리자가 새 바이너리를 가리키는지 확인해야 합니다.
+- **배포판 패키지**: Debian과 Ubuntu는 주로 싣고 있는 버전에 패치를 백포트하는 방식이라 수정 후에도 `node -v`의 버전 번호가 그대로일 수 있습니다. 다만 백포트만 하는 것은 아니어서, Debian bookworm은 [보안 업데이트](https://sources.debian.org/src/nodejs/18.20.4+dfsg-1~deb12u2/debian/changelog/)로 같은 18.x의 새 버전인 18.20.4를 싣기도 했습니다. 그러니 버전 번호만으로 판단하지 말고 배포판의 보안 트래커에서 CVE별 상태를 확인해야 합니다. [NodeSource 저장소](https://github.com/nodesource/distributions)처럼 Node.js 공식 버전을 그대로 싣는 저장소를 사용한다면 `node -v`가 수정 버전인지 확인하면 됩니다.
+- **컨테이너**: 베이스 이미지 태그가 수정 버전을 가리키는지 확인하고 이미지를 다시 빌드해야 합니다. `node:24`처럼 메이저 태그만 지정해도 캐시된 베이스 이미지를 그대로 사용하면 이전 버전이 남으므로 `docker build --pull`로 새로 받아야 합니다.
+- **재시작**: 바이너리를 바꿔도 이미 실행 중인 프로세스는 이전 버전으로 돕니다. PM2, systemd, 쿠버네티스 롤아웃 등 실행 방식에 맞게 모든 프로세스를 다시 띄워야 합니다.
+- **지원 종료 라인**: 20.x는 [2026년 4월 30일](https://github.com/nodejs/Release#release-schedule)에, 25.x는 [6월 1일](https://github.com/nodejs/Release#release-schedule)에 지원이 끝나 수정 버전이 나오지 않습니다. 그 밖의 지원 종료 라인도 마찬가지입니다. 공지에서는 지원 종료 버전이 보안 릴리스 때마다 항상 영향을 받는다고 적었습니다. 22.x 이상의 LTS로 옮기거나, Node.js 사이트가 안내하는 OpenJS 생태계 지속 가능성 프로그램 파트너의 상용 지원을 검토해야 합니다.
+
+주요 배포 채널의 반영 상태는 11월 16일 기준으로 다음과 같습니다. 각 프로젝트 저장소의 버전 정의를 확인한 결과입니다.
+
+| 채널 | 26.x | 24.x | 22.x |
+| --- | --- | --- | --- |
+| [Docker 공식 이미지 `node`](https://github.com/nodejs/docker-node/blob/main/versions.json) | 26.13.1 | 24.22.3 | 22.23.5 |
+| [GitHub Actions `setup-node` 버전 목록](https://github.com/actions/node-versions/blob/main/versions-manifest.json) | 26.13.1 | 24.22.3 | 22.23.5 |
+| [Homebrew](https://github.com/Homebrew/homebrew-core) `node`, `node@24`, `node@22` | 26.13.1 | 24.22.3 | 22.23.5 |
+| [Alpine 안정 브랜치의 패키지 정의](https://pkgs.alpinelinux.org/packages?name=nodejs*) | 3.24 `nodejs-current` 26.13.1 | 3.23, 3.24 `nodejs` 24.22.3 | 3.22 `nodejs` 22.23.5 |
+
+Alpine은 LTS 버전을 담는 `nodejs` 패키지와 최신 안정 버전을 담는 `nodejs-current` 패키지를 따로 둡니다. 3.23에서는 `nodejs`가 수정 버전인 24.22.3이지만 `nodejs-current`는 수정 전인 24.15.0에 머물러 있습니다. 그래서 3.23에서 `nodejs-current`를 설치했다면 아직 수정 전 버전입니다. [Debian 보안 트래커](https://security-tracker.debian.org/tracker/CVE-2026-123864)는 CVE-2026-123864에 대해 bookworm(18.20.4), trixie(20.19.2), sid(24.22.2)의 `nodejs` 패키지를 모두 취약 상태로 표시하고 있습니다. [Ubuntu 보안 트래커](https://ubuntu.com/security/CVE-2026-123864)는 모든 릴리스를 평가 필요(Needs evaluation) 상태로 표시하고 있습니다.
+
+채널마다 반영 시점도 다릅니다. [CyberNative](https://cybernative.ai/guides/node-security-release-november-2026-is-my-node-patched/)는 10월 21일 릴리스에서 nodejs.org에 파일이 올라온 시각과 각 채널에 수정 버전이 기록된 시각의 차이를 다음과 같이 집계했습니다.
+
+- **`setup-node`**: actions/node-versions 릴리스 게시까지 약 4시간
+- **Homebrew**: formula 커밋까지 약 15시간
+- **Alpine 3.24와 3.23의 `nodejs` 패키지**: 패키지 빌드 날짜까지 최대 9일
+
+그러므로 빌드 로그에서 실제로 설치된 버전을 확인해야 합니다.
+
+Node.js가 TLS나 HTTP/2를 직접 받는 서버부터 올려야 합니다. 특히 24.22.0 이후의 24.x나 26.9.0 이후의 26.x에서 HTTP/2를 직접 받는 서버는 원격 피어만으로 CVE-2026-123866을 유발할 수 있으므로 먼저 올려야 합니다.
+
+### 올린 뒤 달라지는 동작
+
+수정 버전에서는 몇 가지 동작이 달라집니다. 변경 내역과 수정 커밋에서 확인한 내용입니다.
+
+- **HTTP/2 `maxSessionMemory`(24.x, 26.x)**: 스트림이 읽지 않고 쌓아 둔 인바운드 DATA도 한도에 포함됩니다. 한도(기본 10MB)를 넘으면 애플리케이션이 쌓인 데이터를 읽을 때까지 세션이 소켓 읽기를 멈춥니다. 요청 본문을 읽지 않고 두는 HTTP/2 핸들러가 있다면 해당 연결이 멈춘 것처럼 보일 수 있습니다.
+- **TLS 서버 이름 고정**: 연결의 서버 이름이 첫 ClientHello에서 고정됩니다. 재협상이나 HelloRetryRequest에서 다른 서버 이름을 요청하면 핸드셰이크가 실패합니다. 다른 서버 이름으로 세션을 재개하려 하면 전체 핸드셰이크로 처리됩니다.
+- **세션 재개가 꺼지는 경우**: 세션 ID 컨텍스트가 없으면서 클라이언트 인증서를 검증하는 서버는 세션을 재개하지 않습니다. `tls.createServer()`는 세션 ID 컨텍스트를 기본으로 만들기 때문에, `TLSSocket`을 직접 만들어 서버로 사용하는 코드가 여기에 해당합니다.
+- **`https.Agent` 연결 키**: `ca`, `cert`, `key`, `pfx`, `crl` 값을 종류와 길이까지 넣어 키를 만듭니다. `secureContext`, `ALPNProtocols`, `session` 등의 옵션도 키에 포함합니다. 이전에는 같은 키로 묶이던 요청이 서로 다른 연결과 세션을 사용할 수 있습니다.
+- **HTTP 파서**: 파서가 중첩 실행되는 중에 현재 버퍼 밖의 데이터가 콜백으로 넘어오면 `HPE_REENTRANT_EXECUTE` 오류로 처리합니다.
+
+---
+
+## 바로 올릴 수 없을 땐 어떻게 하나
+
+공지에서는 별도의 완화 방법을 안내하지 않았습니다. 아래 조치는 모두 일부 경로만 줄이므로 업데이트 전까지 노출을 줄이는 용도로만 사용해야 합니다.
+
+| 조치 | 줄어드는 결함 | 남는 결함·한계 |
+| --- | --- | --- |
+| 앞단 프록시에서 TLS와 HTTP/2를 끝내고 Node.js에는 HTTP/1.1 평문으로 전달 | 서버 쪽 HTTP/2·TLS 결함, 123864 | Node.js가 클라이언트인 결함(123877, 123871), zlib, Permission Model. 프록시 자체의 결함 |
+| HTTP/2가 필요 없으면 `http2` 서버 대신 `https` 서버 사용 | HTTP/2 7건 | 123864와 TLS 서버 결함 |
+| 요청 본문을 다 읽은 뒤에 `res.flushHeaders()` 호출 | 123864 | 공지에 기재된 성립 조건에 근거한 우회. 공식 완화책이 아니며 동작을 검증하지 않음. 프레임워크·미들웨어 내부 호출은 따로 확인 필요 |
+| `respondWithFile()`, `respondWithFD()` 대신 다른 전송 방식 사용 | 123874, 123875 | 다른 HTTP/2 결함. 공지는 바꾼 경로가 안전한지 다루지 않음 |
+| `altsvc()`에 요청 헤더 값을 넘기지 않음 | 123828 | - |
+| TLS 1.2 재협상 끄기(`secureOptions`) | 123872의 재협상 경로 | 수정 커밋이 함께 막은 HelloRetryRequest와 세션 재개 경로는 남음 |
+| SNI 컨텍스트에 CA만 넣지 않고 서버 인증서도 함께 지정 | 123867 | 공지 설명과 수정 커밋 제목에 근거한 우회. 공식 완화책이 아니며 동작을 검증하지 않음 |
+| CA 정책이 다른 요청은 `https.Agent`를 나눠 사용 | 123877 | 연결 풀과 세션 캐시가 Agent마다 따로인 구현에 근거한 우회. 공식 완화책이 아니며 동작을 검증하지 않음 |
+| 프록시 URL에 자격 증명을 넣지 않음 | 123871 | 이미 남은 로그는 따로 정리 |
+
+`maxSessionMemory`를 낮춰도 CVE-2026-123868은 막지 못합니다. 공지에서는 이 결함으로 쌓이는 데이터가 그 예산에 잡히지 않아 증가를 막지도, 새 스트림을 거부하지도 못한다고 적었습니다.
+
+아래는 프록시에서 TLS와 HTTP/2를 끝내는 nginx 설정 예입니다. Node.js는 `http.createServer()`로 평문 HTTP/1.1만 받게 됩니다.
+
+```nginx
+server {
+    listen 443 ssl;
+    http2 on; # nginx 1.25.1 이상
+    server_name example.com;
+
+    ssl_certificate     /etc/ssl/example.com.crt;
+    ssl_certificate_key /etc/ssl/example.com.key;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000; # Node.js에는 평문 HTTP/1.1로 전달
+        proxy_http_version 1.1;
+    }
+}
+```
+
+Node.js가 TLS를 직접 끝내야 한다면 TLS 옵션으로 일부 경로를 줄일 수 있습니다.
+
+```js
+import { constants } from 'node:crypto';
+import https from 'node:https';
+
+const server = https.createServer({
+  key,
+  cert,
+  secureOptions: constants.SSL_OP_NO_RENEGOTIATION, // TLS 1.2 재협상 비활성화
+}, handler);
+
+// 호스트별 클라이언트 CA를 둘 때는 서버 인증서도 함께 지정
+server.addContext('admin.example.com', { key: adminKey, cert: adminCert, ca: [adminCA] });
+```
+
+수정 전 버전인 22.23.4에서 기본 설정의 서버는 TLS 1.2 클라이언트의 재협상을 받아들였지만 이 옵션을 준 서버는 거부했습니다.
+
+---
+
+## 패치한 뒤에는 무엇을 확인해야 하는가
+
+### 모든 프로세스가 새 버전인지 확인
+
+시작 로그에 `process.version`을 남기거나 `docker exec`로 실행 중인 버전을 다시 확인해야 합니다. 롤링 배포 중 일부 인스턴스가 이전 이미지로 남는 경우도 있습니다.
+
+### TLS 개인 키 교체 판단
+
+공지에서는 CVE-2026-123864로 읽을 수 있는 메모리에 TLS 개인 키가 포함된다고 적었지만 패치 후 키나 다른 비밀값을 바꿔야 하는지는 말하지 않았습니다. 아래 세 가지에 모두 해당했다면 노출 가능성을 배제하기 어렵습니다.
+
+1. Node.js가 HTTPS를 직접 끝내는 서버
+2. 요청 본문이 끝나기 전에 `res.flushHeaders()`를 호출하고 나중에 비어 있지 않은 청크로 `res.end()`를 호출하는 핸들러
+3. 요청 본문을 되돌려주거나 저장하는 라우트
+
+세 조건에 해당하면 인증서를 재발급하고 개인 키를 바꾸는 편이 안전합니다. 같은 프로세스 메모리에 있던 API 키, 데이터베이스 비밀번호, 세션 서명 키 같은 값도 같은 기준으로 판단해야 합니다. [TLS 세션 티켓 키](https://nodejs.org/docs/latest-v24.x/api/tls.html)를 직접 지정하지 않았다면 Node.js가 서버를 만들 때 새로 생성하므로 재시작으로 바뀝니다. 다만 `node:cluster`는 티켓 키를 워커끼리 공유하므로 워커를 하나씩 교체하지 말고 프라이머리 프로세스까지 재시작해야 합니다.
+
+### 로그와 소켓에 남은 흔적
+
+```bash
+# 크래시·예외·자격 증명 노출 흔적 찾기
+grep -nE "current_nghttp2_memory_|ERR_INTERNAL_ASSERTION|ERR_PROXY_INVALID_CONFIG" /var/log/<앱>/*.log
+
+# CLOSE_WAIT 상태로 남은 소켓 수 확인
+ss -Htn state close-wait | wc -l
+```
+
+`current_nghttp2_memory_`는 CVE-2026-123863의 어서션 메시지에, `ERR_INTERNAL_ASSERTION`은 CVE-2026-123862의 예외에 들어가는 문자열입니다. `ERR_INTERNAL_ASSERTION`은 다른 내부 오류에서도 나오므로 스택에 zlib가 있는지 함께 봐야 합니다. 노출 기간에 이 문자열과 함께 프로세스가 재시작된 기록이 있다면 공격 시도였는지 확인해 봐야 합니다. `ERR_PROXY_INVALID_CONFIG`가 로그에 있다면 자격 증명이 함께 찍혔는지 봐야 합니다. 찍혔다면 프록시 자격 증명을 바꾸고 로그 보관 정책에 맞게 정리해야 합니다.
+
+CVE-2026-123865로 정리되지 않은 세션은 소켓이 `CLOSE_WAIT`에 머뭅니다. 패치 전에 이 수가 계속 늘어났다면 재시작 후 줄어드는지 비교해 볼 수 있습니다.
+
+### 호스트별 mTLS 접근 기록
+
+호스트마다 클라이언트 인증서 정책을 다르게 둔 서버라면 접근 로그를 확인해야 합니다. 로그에 클라이언트 인증서 정보를 남겼다면, 보호 호스트에 그 호스트의 CA가 발급하지 않은 인증서로 접근한 기록이 있는지 찾아봐야 합니다. CVE-2026-123872와 CVE-2026-123867은 모두 이 정책을 우회한 결함입니다.
+
+---
+
+## 마무리
+
+1. 실행 중인 모든 Node.js 프로세스를 22.23.5, 24.22.3, 26.13.1 이상으로 올리고 재시작합니다. 컨테이너는 `--pull`로 다시 빌드합니다.
+2. Node.js가 TLS나 HTTP/2를 직접 받는지 확인하고 직접 받는 서버부터 처리합니다.
+3. `flushHeaders`, `respondWithFile`, `altsvc`, TLS 콜백 훅, `addContext`, `https.Agent`의 `ca` 옵션을 사용하는 코드를 찾습니다.
+4. CVE-2026-123864의 세 조건에 해당했던 서버는 TLS 개인 키와 메모리에 있던 비밀값의 교체를 검토합니다.
+5. 프록시 자격 증명이 로그에 남았는지 확인합니다.
+6. 지원이 끝난 라인(20.x 이하, 21.x, 23.x, 25.x)이라면 22.x 이상의 LTS로 옮길 일정을 잡습니다.
+
+올해 Node.js 보안 릴리스 공지 여섯 개에는 모두 HTTP/2나 TLS 항목이 있었습니다. 다음 공지에도 같은 영역이 나올 수 있습니다. 그러니 런타임 업데이트를 정기 작업으로 만들고 Node.js가 외부 프로토콜을 직접 해석하는 범위를 줄여 두는 편이 낫습니다.
+
+---
+
+## 약자 모음
+
+- **CNA**: CVE Numbering Authority. CVE 번호를 직접 발급하도록 지정된 기관
+- **CVE**: Common Vulnerabilities and Exposures. 공개된 취약점에 붙이는 식별 번호
+- **CVSS**: Common Vulnerability Scoring System. 취약점의 심각도를 0에서 10 사이 점수로 나타내는 체계
+- **FD**: File Descriptor. 운영체제가 열린 파일과 소켓에 붙이는 번호
+- **KEV**: Known Exploited Vulnerabilities. 미국 CISA가 관리하는 악용 확인 취약점 목록
+- **mTLS**: mutual TLS. 서버와 클라이언트가 서로 인증서로 인증하는 TLS
+- **PoC**: Proof of Concept. 결함이 실제로 동작함을 보이는 재현 코드
+- **SNI**: Server Name Indication. TLS 핸드셰이크에서 접속할 호스트 이름을 알리는 확장
+
+---
+
+## 참고 자료
+
+- Node.js. (2026). *Wednesday, November 11, 2026 Security Releases*. https://nodejs.org/en/blog/vulnerability/november-2026-security-releases
+- Node.js. (2026). *Node.js 22.23.5 (LTS)*. https://nodejs.org/en/blog/release/v22.23.5/
+- Node.js. (2026). *Node.js 24.22.3 (LTS)*. https://nodejs.org/en/blog/release/v24.22.3/
+- Node.js. (2026). *Node.js 26.13.1 (LTS)*. https://nodejs.org/en/blog/release/v26.13.1/
+- Node.js. (2026). *Tuesday, January 13, 2026 Security Releases*. https://nodejs.org/en/blog/vulnerability/december-2025-security-releases
+- Node.js. (2026). *Tuesday, March 24, 2026 Security Releases*. https://nodejs.org/en/blog/vulnerability/march-2026-security-releases
+- Node.js. (2026). *Thursday, June 18, 2026 Security Releases*. https://nodejs.org/en/blog/vulnerability/june-2026-security-releases
+- Node.js. (2026). *Wednesday, July 29, 2026 Security Releases*. https://nodejs.org/en/blog/vulnerability/july-2026-security-releases
+- Node.js. (2026). *Wednesday, October 21, 2026 Security Releases*. https://nodejs.org/en/blog/vulnerability/october-2026-security-releases
+- Node.js. (2024). *Wednesday, April 3, 2024 Security Releases*. https://nodejs.org/en/blog/vulnerability/april-2024-security-releases
+- CVE Program. (2026). *CVE-2026-123864 (CVE Record)*. https://www.cve.org/CVERecord?id=CVE-2026-123864
+- OpenJS Foundation CNA. (2026). *Security Advisories*. https://cna.openjsf.org/security-advisories.html
+- CISA. (2026). *Known Exploited Vulnerabilities Catalog*. https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+- Node.js. (2026). *nodejs/node v24.22.3 (커밋 내역과 회귀 테스트)*. https://github.com/nodejs/node/commits/v24.22.3
+- Tim Perry. (2026). *http2: fix write deadlock exposed by larger window sizes (PR #65440)*. https://github.com/nodejs/node/pull/65440
+- Matteo Collina. (2026). *http2: don't suppress internal termination detection on a peer GOAWAY (PR #66641)*. https://github.com/nodejs/node/pull/66641
+- Matteo Collina. (2026). *[v26.x] http2: guard against null write request on cancelled stream (PR #67252)*. https://github.com/nodejs/node/pull/67252
+- Node.js. (2026). *Release schedule*. https://github.com/nodejs/Release#release-schedule
+- Node.js. (2026). *TLS (SSL)* (세션 재개와 티켓 키). https://nodejs.org/docs/latest-v24.x/api/tls.html
+- nginx. *Module ngx_http_v2_module* (http2 지시어). https://nginx.org/en/docs/http/ngx_http_v2_module.html
+- OpenJS Foundation. (2026). *OpenJS Foundation Security Update: Q2 2026*. https://openjsf.org/blog/openjs-security-update-q2-2026
+- OpenJS Foundation. (2026). *AI is stress-testing open source security. It's time to step up.* https://openjsf.org/blog/ai-is-stress-testing-open-source
+- Matteo Collina. (2026). *Triaging the AI Horde*. Adventures in Nodeland. https://adventures.nodeland.dev/archive/triaging-the-ai-horde/
+- Socket. (2026). *Node.js Considers Public Workflow for Security Reports Amid AI-Driven Surge*. https://socket.dev/blog/nodejs-considers-public-workflow-for-security-reports
+- Node.js TSC. (2026). *Proposal: Moving security reports to a public workflow (Issue #1826)*. https://github.com/nodejs/TSC/issues/1826
+- Node.js Security WG. (2026). *Node.js Security team Meeting 2026-10-29 (Issue #1592)*. https://github.com/nodejs/security-wg/issues/1592
+- Node.js. (2026). *New HackerOne Signal Requirement for Vulnerability Reports*. https://nodejs.org/en/blog/announcements/hackerone-signal-requirement
+- The Hacker News. (2026). *Node.js Fixes 16 Flaws, Including HTTP/2 Bugs That Crash Servers and Leak Other Connections' Data*. https://thehackernews.com/2026/11/nodejs-fixes-16-flaws-including-http2.html
+- HOL. (2026). *Node.js CVE-2026-123864 and Nov 2026 security release: how to fix*. https://hol.org/blog/cve-2026-123864-nodejs-november-2026-security-release
+- Phoenix Security. (2026). *NodeLeak and NodeCrash (CVE-2026-123864, CVE-2026-123863): TLS Key Disclosure and Unauthenticated HTTP/2 Crash in Node.js*. https://phoenix.security/node-js-vulnerabilities-cve-2026-123864-tls-key-leak-http2-crash/
+- Cyber Kendra. (2026). *Node.js Security Update Fixes 16 Flaws, 7 High-Severity*. https://www.cyberkendra.com/2026/11/nodejs-november-2026-security-update-16-cves.html
+- Ron Masas. (2026). *Node2Shell: From Brotli Data to Remote Code Execution*. Imperva. https://www.imperva.com/blog/node2shell-from-brotli-data-to-remote-code-execution/
+- The Hacker News. (2026). *Researchers Demonstrate Node2Shell RCE Exploit on Node.js Build Using Crafted Brotli Data*. https://thehackernews.com/2026/10/researchers-demonstrate-node2shell-rce.html
+- VulnCheck. (2026). *VulnCheck State of Exploitation 1H-2026*. https://www.vulncheck.com/blog/state-of-exploitation-1h-2026
+- VulnCheck. (2026). *After 7-months, Glasswing Overwelms Maintainers with Underwhelming Findings*. https://www.vulncheck.com/blog/anthropic-glasswing-november-update
+- Debian. (2026). *Security Tracker (CVE-2026-123864)*. https://security-tracker.debian.org/tracker/CVE-2026-123864
+- Ubuntu. (2026). *CVE-2026-123864*. https://ubuntu.com/security/CVE-2026-123864
+- Debian. (2026). *nodejs 18.20.4+dfsg-1\~deb12u2 (debian/changelog)*. https://sources.debian.org/src/nodejs/18.20.4+dfsg-1~deb12u2/debian/changelog/
+- NodeSource. *NodeSource Node.js Binary Distributions*. https://github.com/nodesource/distributions
+- Node.js Docker Team. *docker-node (versions.json)*. https://github.com/nodejs/docker-node/blob/main/versions.json
+- GitHub. *actions/node-versions (versions-manifest.json)*. https://github.com/actions/node-versions/blob/main/versions-manifest.json
+- Homebrew. *homebrew-core*. https://github.com/Homebrew/homebrew-core
+- Alpine Linux. *Alpine Linux packages (nodejs, nodejs-current)*. https://pkgs.alpinelinux.org/packages?name=nodejs*
+- CyberNative. (2026). *Node.js 26.13.1, 24.22.3 and 22.23.5: is the Node you actually run patched?*. https://cybernative.ai/guides/node-security-release-november-2026-is-my-node-patched/
+- Codenomicon. (2014). *The Heartbleed Bug*. https://heartbleed.com/
+
+이 글은 2026년 11월 16일 기준으로 작성했습니다. 악용 현황, CVE 기록, 배포 채널의 반영 상태는 이후 바뀔 수 있습니다.
+
+[^notes]: 세 라인의 릴리스 노트 Notable Changes에는 공지에 없는 CVE-2026-123873(힙 스냅숏 저장 위치 검사, low)이 적혀 있습니다. 그런데 세 릴리스의 커밋 목록에는 이 항목의 커밋이 없고 11월 16일 기준 CVE 목록에도 이 번호의 공개 기록이 없어서 16건으로 셌습니다. 22.23.5의 Notable Changes에는 CVE-2026-123863, 123874, 123828, 123868도 적혀 있지만 커밋 목록에 실제로 들어 있는 것은 123863의 수정 커밋뿐입니다. 공지에서는 123863이 22.x에 해당하지 않는다고 적었습니다. 24.22.3과 26.13.1에는 brotli 1.2.1 갱신도 들어 있습니다. CVE-2026-106071의 CVSS 점수는 10월에 HackerOne이 발급한 기록의 값입니다.
+
+[^count]: 영역은 각 공지의 결함 제목을 기준으로 나눴고 `https.Agent`처럼 Node.js가 클라이언트인 TLS 결함도 TLS·HTTPS에 넣었습니다. 1월 공지에서는 CVE-2025 번호를 포함합니다. 같은 CVE 번호가 두 공지에 실린 경우(CVE-2026-21637, CVE-2026-106071)는 각각 셌으므로 중복을 빼면 64건입니다.

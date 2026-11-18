@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 796" width="500" height="796" role="img" aria-labelledby="t1">
+  <title id="t1">11월 결함과 이전 결함의 연결</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #B4532A;
+        --c-accent-2: #2A6F97;
+        --c-line: #C9CBD1;
+        --c-card: #FFFFFF;
+        --c-soft: #F3E9E3;
+        --c-soft-2: #E6EEF4;
+        --c-divider: #E3E4E8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #E08A5A;
+          --c-accent-2: #6FB1DA;
+          --c-line: #3A4150;
+          --c-card: #161B22;
+          --c-soft: #2A1F18;
+          --c-soft-2: #182430;
+          --c-divider: #2A303B;
+        }
+      }
+      text { font-family: -apple-system, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .card-hot { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.5; }
+      .card-nov { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .soft { fill: var(--c-soft); }
+      .soft2 { fill: var(--c-soft-2); }
+      .ttl { font-size: 13px; font-weight: 700; }
+      .ttlline { stroke: var(--c-divider); stroke-width: 1; }
+      .grp { font-size: 12px; font-weight: 700; fill: var(--c-accent-2); }
+      .grpline { stroke: var(--c-divider); stroke-width: 1; }
+      .hd { font-size: 12px; font-weight: 700; }
+      .hot { font-size: 12px; font-weight: 700; fill: var(--c-accent); }
+      .num { font-size: 12px; font-weight: 700; fill: var(--c-card); }
+      .numbg { fill: var(--c-accent); }
+      .txt { font-size: 12px; }
+      .sm { font-size: 11px; }
+      .note { font-size: 11px; fill: var(--c-muted); }
+      .noteh { font-size: 11px; fill: var(--c-accent); }
+      .col { font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+      .box { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 1; }
+      .boxn { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .arrow { stroke: var(--c-muted); stroke-width: 1.2; fill: none; }
+      .arrowhead { fill: var(--c-muted); }
+      .link { stroke: var(--c-fg); stroke-width: 1.4; fill: none; }
+      .linkhead { fill: var(--c-fg); }
+      .dash { stroke: var(--c-muted); stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; }
+      .dashhead { fill: var(--c-muted); }
+      .back { stroke: var(--c-accent); stroke-width: 1.3; fill: none; stroke-dasharray: 5 3; }
+      .backhead { fill: var(--c-accent); }
+      .p1 { fill: var(--c-accent); }
+      .p1t { font-size: 11px; font-weight: 700; fill: var(--c-card); }
+      .p2 { fill: none; stroke: var(--c-accent); stroke-width: 1.2; }
+      .p2t { font-size: 11px; font-weight: 700; fill: var(--c-accent); }
+      .p3 { fill: none; stroke: var(--c-muted); stroke-width: 1.2; }
+      .p3t { font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="796"/>
+  <text class="ttl" x="24" y="38">11월 결함과 이전 결함의 연결</text>
+  <line class="ttlline" x1="24" y1="48" x2="476" y2="48"/>
+  <text class="col" x="24" y="68">이전 결함</text>
+  <text class="col" x="316" y="68">11월 결함</text>
+  <text class="grp" x="24" y="102">HTTP/2</text>
+  <line class="grpline" x1="24" y1="108" x2="476" y2="108"/>
+  <g>
+    <rect class="card" x="24" y="118" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="142">2024년 4월  CVE-2024-27983</text>
+    <text class="note" x="36" y="159">같은 어서션</text>
+    <rect class="card-nov" x="316" y="118" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="142">CVE-2026-123863</text>
+    <text class="note" x="328" y="159">HTTP/2 세션 종료 어서션</text>
+    <line class="link" x1="214" y1="146" x2="310" y2="146"/><polygon class="linkhead" points="309,142 309,150 315,146"/>
+    <text class="note" x="264" y="139" text-anchor="middle">변종</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="182" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="206">6월  CVE-2026-48937</text>
+    <text class="note" x="36" y="223">GOAWAY 뒤 세션 미정리</text>
+    <rect class="card-nov" x="316" y="182" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="206">CVE-2026-123865</text>
+    <text class="note" x="328" y="223">HTTP/2 세션 정리</text>
+    <line class="link" x1="214" y1="210" x2="310" y2="210"/><polygon class="linkhead" points="309,206 309,214 315,210"/>
+    <text class="note" x="264" y="203" text-anchor="middle">불완전한 수정</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="246" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="270">7월  CVE-2026-56846</text>
+    <text class="note" x="36" y="287">헤더 블록</text>
+    <rect class="card-nov" x="316" y="246" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="270">CVE-2026-123868</text>
+    <text class="note" x="328" y="287">maxSessionMemory</text>
+    <line class="dash" x1="214" y1="274" x2="310" y2="274"/><polygon class="dashhead" points="309,270 309,278 315,274"/>
+    <text class="note" x="264" y="267" text-anchor="middle">같은 예산</text>
+  </g>
+  <text class="grp" x="24" y="324">TLS</text>
+  <line class="grpline" x1="24" y1="330" x2="476" y2="330"/>
+  <g>
+    <rect class="card" x="24" y="340" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="357">1월, 3월  CVE-2026-21637</text>
+    <text class="note" x="36" y="373">PSK·ALPN 콜백, SNICallback</text>
+    <text class="note" x="36" y="388">3월은 1월의 불완전한 수정</text>
+    <rect class="card-nov" x="316" y="340" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="364">CVE-2026-126051</text>
+    <text class="note" x="328" y="381">TLS 콜백 예외</text>
+    <line class="dash" x1="214" y1="368" x2="310" y2="368"/><polygon class="dashhead" points="309,364 309,372 315,368"/>
+    <text class="note" x="264" y="361" text-anchor="middle">비슷한 증상</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="404" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="428">6월  CVE-2026-48928</text>
+    <text class="note" x="36" y="445">대소문자 SNI 매칭</text>
+    <rect class="card-nov" x="316" y="404" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="421">CVE-2026-123867</text>
+    <text class="txt" x="328" y="437">CVE-2026-123872</text>
+    <text class="note" x="328" y="452">호스트별 mTLS</text>
+    <line class="dash" x1="214" y1="432" x2="310" y2="432"/><polygon class="dashhead" points="309,428 309,436 315,432"/>
+    <text class="note" x="264" y="425" text-anchor="middle">같은 문제</text>
+  </g>
+  <text class="grp" x="24" y="482">HTTPS·기타</text>
+  <line class="grpline" x1="24" y1="488" x2="476" y2="488"/>
+  <g>
+    <rect class="card" x="24" y="498" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="515">6월  CVE-2026-48934</text>
+    <text class="txt" x="36" y="531">7월  CVE-2026-58040, 56850</text>
+    <text class="note" x="36" y="546">58040은 48934의 불완전한 수정</text>
+    <rect class="card-nov" x="316" y="498" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="522">CVE-2026-123877</text>
+    <text class="note" x="328" y="539">https.Agent 세션 재사용</text>
+    <line class="dash" x1="214" y1="526" x2="310" y2="526"/><polygon class="dashhead" points="309,522 309,530 315,526"/>
+    <text class="note" x="264" y="519" text-anchor="middle">같은 기능</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="562" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="586">7월  CVE-2026-56848</text>
+    <text class="note" x="36" y="603">HTTP/2 송신 재진입</text>
+    <rect class="card-nov" x="316" y="562" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="586">CVE-2026-123864</text>
+    <text class="note" x="328" y="603">HTTPS 파서 재진입</text>
+    <line class="dash" x1="214" y1="590" x2="310" y2="590"/><polygon class="dashhead" points="309,586 309,594 315,590"/>
+    <text class="note" x="264" y="583" text-anchor="middle">재진입</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="626" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="650">6월  CVE-2026-48615</text>
+    <text class="note" x="36" y="667">ERR_PROXY_TUNNEL 메시지</text>
+    <rect class="card-nov" x="316" y="626" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="650">CVE-2026-123871</text>
+    <text class="note" x="328" y="667">프록시 자격 증명</text>
+    <line class="link" x1="214" y1="654" x2="310" y2="654"/><polygon class="linkhead" points="309,650 309,658 315,654"/>
+    <text class="note" x="264" y="647" text-anchor="middle">오류 경로 누락</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="690" width="190" height="56" rx="6"/>
+    <text class="txt" x="36" y="714">10월  CVE-2026-106071</text>
+    <text class="note" x="36" y="731">26.x에 수정</text>
+    <rect class="card-nov" x="316" y="690" width="160" height="56" rx="6"/>
+    <text class="txt" x="328" y="714">CVE-2026-106071</text>
+    <text class="note" x="328" y="731">22.x, 24.x에 같은 수정</text>
+    <line class="link" x1="214" y1="718" x2="310" y2="718"/><polygon class="linkhead" points="309,714 309,722 315,718"/>
+    <text class="note" x="264" y="711" text-anchor="middle">같은 수정 추가</text>
+  </g>
+  <line class="link" x1="24" y1="768" x2="54" y2="768"/>
+  <text class="note" x="62" y="772">공지나 같은 CVE 번호로 확인되는 연결</text>
+  <line class="dash" x1="300" y1="768" x2="330" y2="768"/>
+  <text class="note" x="338" y="772">필자가 묶은 연결</text>
+</svg>

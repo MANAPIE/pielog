@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 456" width="500" height="456" role="img" aria-labelledby="t1">
+  <title id="t1">CVE-2026-123864의 파서 재진입 흐름</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #B4532A;
+        --c-accent-2: #2A6F97;
+        --c-line: #C9CBD1;
+        --c-card: #FFFFFF;
+        --c-soft: #F3E9E3;
+        --c-soft-2: #E6EEF4;
+        --c-divider: #E3E4E8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #E08A5A;
+          --c-accent-2: #6FB1DA;
+          --c-line: #3A4150;
+          --c-card: #161B22;
+          --c-soft: #2A1F18;
+          --c-soft-2: #182430;
+          --c-divider: #2A303B;
+        }
+      }
+      text { font-family: -apple-system, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .card-hot { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.5; }
+      .card-nov { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .soft { fill: var(--c-soft); }
+      .soft2 { fill: var(--c-soft-2); }
+      .ttl { font-size: 13px; font-weight: 700; }
+      .ttlline { stroke: var(--c-divider); stroke-width: 1; }
+      .grp { font-size: 12px; font-weight: 700; fill: var(--c-accent-2); }
+      .grpline { stroke: var(--c-divider); stroke-width: 1; }
+      .hd { font-size: 12px; font-weight: 700; }
+      .hot { font-size: 12px; font-weight: 700; fill: var(--c-accent); }
+      .num { font-size: 12px; font-weight: 700; fill: var(--c-card); }
+      .numbg { fill: var(--c-accent); }
+      .txt { font-size: 12px; }
+      .sm { font-size: 11px; }
+      .note { font-size: 11px; fill: var(--c-muted); }
+      .noteh { font-size: 11px; fill: var(--c-accent); }
+      .col { font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+      .box { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 1; }
+      .boxn { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .arrow { stroke: var(--c-muted); stroke-width: 1.2; fill: none; }
+      .arrowhead { fill: var(--c-muted); }
+      .link { stroke: var(--c-fg); stroke-width: 1.4; fill: none; }
+      .linkhead { fill: var(--c-fg); }
+      .dash { stroke: var(--c-muted); stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; }
+      .dashhead { fill: var(--c-muted); }
+      .back { stroke: var(--c-accent); stroke-width: 1.3; fill: none; stroke-dasharray: 5 3; }
+      .backhead { fill: var(--c-accent); }
+      .p1 { fill: var(--c-accent); }
+      .p1t { font-size: 11px; font-weight: 700; fill: var(--c-card); }
+      .p2 { fill: none; stroke: var(--c-accent); stroke-width: 1.2; }
+      .p2t { font-size: 11px; font-weight: 700; fill: var(--c-accent); }
+      .p3 { fill: none; stroke: var(--c-muted); stroke-width: 1.2; }
+      .p3t { font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="456"/>
+  <text class="ttl" x="24" y="38">CVE-2026-123864의 파서 재진입 흐름</text>
+  <line class="ttlline" x1="24" y1="48" x2="476" y2="48"/>
+  <g>
+    <rect class="card" x="24" y="58" width="396" height="44" rx="6"/>
+    <circle class="numbg" cx="46" cy="80" r="11"/>
+    <text class="num" x="46" y="84" text-anchor="middle">1</text>
+    <text class="txt" x="68" y="84">llhttp_execute()가 본문 조각 1을 파싱</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="124" width="396" height="44" rx="6"/>
+    <circle class="numbg" cx="46" cy="146" r="11"/>
+    <text class="num" x="46" y="150" text-anchor="middle">2</text>
+    <text class="txt" x="68" y="150">on_body 콜백에서 JavaScript 핸들러 실행</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="190" width="396" height="44" rx="6"/>
+    <circle class="numbg" cx="46" cy="212" r="11"/>
+    <text class="num" x="46" y="216" text-anchor="middle">3</text>
+    <text class="txt" x="68" y="216">0바이트 쓰기 → TLSWrap::DoWrite() → ClearOut()</text>
+  </g>
+  <g>
+    <rect class="card-hot" x="24" y="256" width="396" height="60" rx="6"/>
+    <circle class="numbg" cx="46" cy="278" r="11"/>
+    <text class="num" x="46" y="282" text-anchor="middle">4</text>
+    <text class="txt" x="68" y="282">llhttp_execute()가 본문 조각 2를 파싱</text>
+    <text class="noteh" x="68" y="300">첫 번째 파싱이 아직 끝나지 않음</text>
+  </g>
+  <line class="arrow" x1="222" y1="102" x2="222" y2="118"/><polygon class="arrowhead" points="218,117 226,117 222,123"/>
+  <line class="arrow" x1="222" y1="168" x2="222" y2="184"/><polygon class="arrowhead" points="218,183 226,183 222,189"/>
+  <line class="arrow" x1="222" y1="234" x2="222" y2="250"/><polygon class="arrowhead" points="218,249 226,249 222,255"/>
+  <text class="note" x="234" y="249">다음 TLS 레코드 복호화</text>
+  <path class="back" d="M420 286 H448 V80 H427"/><polygon class="backhead" points="428,76 428,84 421,80"/>
+  <line class="arrow" x1="222" y1="316" x2="222" y2="332"/><polygon class="arrowhead" points="218,331 226,331 222,337"/>
+  <g>
+    <rect class="soft" x="24" y="338" width="452" height="72" rx="6"/>
+    <text class="hd" x="40" y="360">결과</text>
+    <text class="txt" x="40" y="380">해제 후 사용, 힙 범위 밖 읽기</text>
+    <text class="txt" x="40" y="398">다른 연결의 메모리가 요청 본문으로 복사</text>
+  </g>
+  <text class="note" x="24" y="434">평문 node:http는 해당 없음</text>
+</svg>

@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 802" width="500" height="802" role="img" aria-labelledby="t1">
+  <title id="t1">배포 구조별 요청 경로와 영향 있는 결함</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #B4532A;
+        --c-accent-2: #2A6F97;
+        --c-line: #C9CBD1;
+        --c-card: #FFFFFF;
+        --c-soft: #F3E9E3;
+        --c-soft-2: #E6EEF4;
+        --c-divider: #E3E4E8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #E08A5A;
+          --c-accent-2: #6FB1DA;
+          --c-line: #3A4150;
+          --c-card: #161B22;
+          --c-soft: #2A1F18;
+          --c-soft-2: #182430;
+          --c-divider: #2A303B;
+        }
+      }
+      text { font-family: -apple-system, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; fill: var(--c-fg); }
+      .bg { fill: var(--c-bg); }
+      .card { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1; }
+      .card-hot { fill: var(--c-card); stroke: var(--c-accent); stroke-width: 1.5; }
+      .card-nov { fill: var(--c-card); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .soft { fill: var(--c-soft); }
+      .soft2 { fill: var(--c-soft-2); }
+      .ttl { font-size: 13px; font-weight: 700; }
+      .ttlline { stroke: var(--c-divider); stroke-width: 1; }
+      .grp { font-size: 12px; font-weight: 700; fill: var(--c-accent-2); }
+      .grpline { stroke: var(--c-divider); stroke-width: 1; }
+      .hd { font-size: 12px; font-weight: 700; }
+      .hot { font-size: 12px; font-weight: 700; fill: var(--c-accent); }
+      .num { font-size: 12px; font-weight: 700; fill: var(--c-card); }
+      .numbg { fill: var(--c-accent); }
+      .txt { font-size: 12px; }
+      .sm { font-size: 11px; }
+      .note { font-size: 11px; fill: var(--c-muted); }
+      .noteh { font-size: 11px; fill: var(--c-accent); }
+      .col { font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+      .box { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 1; }
+      .boxn { fill: var(--c-soft-2); stroke: var(--c-accent-2); stroke-width: 1.2; }
+      .arrow { stroke: var(--c-muted); stroke-width: 1.2; fill: none; }
+      .arrowhead { fill: var(--c-muted); }
+      .link { stroke: var(--c-fg); stroke-width: 1.4; fill: none; }
+      .linkhead { fill: var(--c-fg); }
+      .dash { stroke: var(--c-muted); stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; }
+      .dashhead { fill: var(--c-muted); }
+      .back { stroke: var(--c-accent); stroke-width: 1.3; fill: none; stroke-dasharray: 5 3; }
+      .backhead { fill: var(--c-accent); }
+      .p1 { fill: var(--c-accent); }
+      .p1t { font-size: 11px; font-weight: 700; fill: var(--c-card); }
+      .p2 { fill: none; stroke: var(--c-accent); stroke-width: 1.2; }
+      .p2t { font-size: 11px; font-weight: 700; fill: var(--c-accent); }
+      .p3 { fill: none; stroke: var(--c-muted); stroke-width: 1.2; }
+      .p3t { font-size: 11px; font-weight: 700; fill: var(--c-muted); }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="500" height="802"/>
+  <text class="ttl" x="24" y="38">배포 구조별 요청 경로와 영향 있는 결함</text>
+  <line class="ttlline" x1="24" y1="48" x2="476" y2="48"/>
+  <g>
+    <rect class="card" x="24" y="58" width="452" height="112" rx="6"/>
+    <text class="hd" x="40" y="81">Node.js가 HTTPS·HTTP/2를 직접 받음</text>
+    <rect class="p1" x="402" y="67" width="62" height="20" rx="10"/>
+    <text class="p1t" x="433" y="81" text-anchor="middle">최우선</text>
+    <rect class="box" x="40" y="98" width="84" height="28" rx="4"/>
+    <text class="sm" x="82" y="116" text-anchor="middle">클라이언트</text>
+    <rect class="boxn" x="376" y="98" width="84" height="28" rx="4"/>
+    <text class="sm" x="418" y="116" text-anchor="middle">Node.js</text>
+    <line class="arrow" x1="124" y1="112" x2="370" y2="112"/><polygon class="arrowhead" points="369,108 369,116 375,112"/>
+    <text class="note" x="250" y="106" text-anchor="middle">TLS·HTTP/2</text>
+    <text class="sm" x="40" y="152">영향 있는 결함: 123864, HTTP/2 7건, TLS 서버 3건</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="180" width="452" height="112" rx="6"/>
+    <text class="hd" x="40" y="203">TLS 패스스루 로드 밸런서 뒤</text>
+    <rect class="p1" x="402" y="189" width="62" height="20" rx="10"/>
+    <text class="p1t" x="433" y="203" text-anchor="middle">최우선</text>
+    <rect class="box" x="40" y="220" width="84" height="28" rx="4"/>
+    <text class="sm" x="82" y="238" text-anchor="middle">클라이언트</text>
+    <rect class="boxn" x="376" y="220" width="84" height="28" rx="4"/>
+    <text class="sm" x="418" y="238" text-anchor="middle">Node.js</text>
+    <rect class="box" x="208" y="220" width="84" height="28" rx="4"/>
+    <text class="sm" x="250" y="238" text-anchor="middle">로드 밸런서</text>
+    <line class="arrow" x1="124" y1="234" x2="202" y2="234"/><polygon class="arrowhead" points="201,230 201,238 207,234"/>
+    <line class="arrow" x1="292" y1="234" x2="370" y2="234"/><polygon class="arrowhead" points="369,230 369,238 375,234"/>
+    <text class="note" x="166" y="228" text-anchor="middle">TLS·HTTP/2</text>
+    <text class="note" x="334" y="228" text-anchor="middle">TCP 그대로</text>
+    <text class="sm" x="40" y="274">영향 있는 결함: 직접 받는 경우와 같음</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="302" width="452" height="112" rx="6"/>
+    <text class="hd" x="40" y="325">프록시가 TLS를 끝낸 뒤 HTTPS로 다시 연결</text>
+    <rect class="p2" x="424" y="311" width="40" height="20" rx="10"/>
+    <text class="p2t" x="444" y="325" text-anchor="middle">높음</text>
+    <rect class="box" x="40" y="342" width="84" height="28" rx="4"/>
+    <text class="sm" x="82" y="360" text-anchor="middle">클라이언트</text>
+    <rect class="boxn" x="376" y="342" width="84" height="28" rx="4"/>
+    <text class="sm" x="418" y="360" text-anchor="middle">Node.js</text>
+    <rect class="box" x="208" y="342" width="84" height="28" rx="4"/>
+    <text class="sm" x="250" y="360" text-anchor="middle">프록시</text>
+    <line class="arrow" x1="124" y1="356" x2="202" y2="356"/><polygon class="arrowhead" points="201,352 201,360 207,356"/>
+    <line class="arrow" x1="292" y1="356" x2="370" y2="356"/><polygon class="arrowhead" points="369,352 369,360 375,356"/>
+    <text class="note" x="166" y="350" text-anchor="middle">TLS·HTTP/2</text>
+    <text class="note" x="334" y="350" text-anchor="middle">새 TLS 연결</text>
+    <text class="sm" x="40" y="388">영향 있는 결함: 공지에서 다루지 않음</text>
+    <text class="sm" x="40" y="404">직접 받는 경우로 보고 처리</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="424" width="452" height="112" rx="6"/>
+    <text class="hd" x="40" y="447">프록시가 TLS를 끝내고 HTTP/2로 전달</text>
+    <rect class="p2" x="424" y="433" width="40" height="20" rx="10"/>
+    <text class="p2t" x="444" y="447" text-anchor="middle">높음</text>
+    <rect class="box" x="40" y="464" width="84" height="28" rx="4"/>
+    <text class="sm" x="82" y="482" text-anchor="middle">클라이언트</text>
+    <rect class="boxn" x="376" y="464" width="84" height="28" rx="4"/>
+    <text class="sm" x="418" y="482" text-anchor="middle">Node.js</text>
+    <rect class="box" x="208" y="464" width="84" height="28" rx="4"/>
+    <text class="sm" x="250" y="482" text-anchor="middle">프록시</text>
+    <line class="arrow" x1="124" y1="478" x2="202" y2="478"/><polygon class="arrowhead" points="201,474 201,482 207,478"/>
+    <line class="arrow" x1="292" y1="478" x2="370" y2="478"/><polygon class="arrowhead" points="369,474 369,482 375,478"/>
+    <text class="note" x="166" y="472" text-anchor="middle">TLS·HTTP/2</text>
+    <text class="note" x="334" y="472" text-anchor="middle">HTTP/2</text>
+    <text class="sm" x="40" y="510">영향 있는 결함: HTTP/2 결함. 조작된 프레임은 프록시가 걸러낼 수 있음</text>
+    <text class="sm" x="40" y="526">123875는 요청 취소만으로 성립</text>
+  </g>
+  <g>
+    <rect class="card" x="24" y="546" width="452" height="112" rx="6"/>
+    <text class="hd" x="40" y="569">프록시가 TLS를 끝내고 HTTP/1.1 평문으로 전달</text>
+    <rect class="p3" x="424" y="555" width="40" height="20" rx="10"/>
+    <text class="p3t" x="444" y="569" text-anchor="middle">낮음</text>
+    <rect class="box" x="40" y="586" width="84" height="28" rx="4"/>
+    <text class="sm" x="82" y="604" text-anchor="middle">클라이언트</text>
+    <rect class="boxn" x="376" y="586" width="84" height="28" rx="4"/>
+    <text class="sm" x="418" y="604" text-anchor="middle">Node.js</text>
+    <rect class="box" x="208" y="586" width="84" height="28" rx="4"/>
+    <text class="sm" x="250" y="604" text-anchor="middle">프록시</text>
+    <line class="arrow" x1="124" y1="600" x2="202" y2="600"/><polygon class="arrowhead" points="201,596 201,604 207,600"/>
+    <line class="arrow" x1="292" y1="600" x2="370" y2="600"/><polygon class="arrowhead" points="369,596 369,604 375,600"/>
+    <text class="note" x="166" y="594" text-anchor="middle">TLS·HTTP/2</text>
+    <text class="note" x="334" y="594" text-anchor="middle">HTTP/1.1 평문</text>
+    <text class="sm" x="40" y="632">영향 있는 결함: 서버 쪽 HTTP/2·TLS 결함은 해당 없음</text>
+    <text class="sm" x="40" y="648">123864도 평문 node:http는 해당 없음</text>
+  </g>
+  <g>
+    <rect class="soft2" x="24" y="670" width="452" height="108" rx="6"/>
+    <text class="grp" x="40" y="693">배포 구조와 관계없이 확인</text>
+    <text class="sm" x="40" y="714">Node.js가 외부로 요청할 때</text>
+    <text class="txt" x="40" y="730">123877(https.Agent), 123871(프록시 설정)</text>
+    <text class="sm" x="40" y="750">런타임 기능을 사용할 때</text>
+    <text class="txt" x="40" y="766">123862(zlib), 123829·106071(Permission Model)</text>
+  </g>
+</svg>
