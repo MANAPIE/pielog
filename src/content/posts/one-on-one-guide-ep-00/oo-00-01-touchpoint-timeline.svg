@@ -1,0 +1,88 @@
+<svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t-tt">
+  <title id="t-tt">합류부터 떠날 때까지의 다섯 접점</title>
+  <defs>
+    <style>
+      :root {
+        --c-bg: #FAFAF7;
+        --c-fg: #1A1F2E;
+        --c-muted: #6B7280;
+        --c-accent: #8F1F3F;
+        --c-accent-2: #2F6B74;
+        --c-line: #1A1F2E;
+        --c-card: #FFFFFF;
+        --c-soft: rgba(143, 31, 63, 0.10);
+        --c-soft-2: rgba(47, 107, 116, 0.10);
+        --c-divider: rgba(26, 31, 46, 0.15);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --c-bg: #0F1419;
+          --c-fg: #E8E6E1;
+          --c-muted: #8B92A0;
+          --c-accent: #FF8FA3;
+          --c-accent-2: #7CC0C9;
+          --c-line: #E8E6E1;
+          --c-card: #161B22;
+          --c-soft: rgba(255, 143, 163, 0.14);
+          --c-soft-2: rgba(124, 192, 201, 0.14);
+          --c-divider: rgba(232, 230, 225, 0.18);
+        }
+      }
+
+      .bg { fill: var(--c-bg); }
+      .ttl { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 13.5px; font-weight: 700; fill: var(--c-fg); }
+      .nm { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: var(--c-fg); }
+      .mid { font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; fill: var(--c-fg); }
+      .th { font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; font-size: 10.5px; font-weight: 700; fill: var(--c-muted); letter-spacing: 0.08em; }
+      .ep { font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 10.5px; font-weight: 700; fill: var(--c-fg); }
+    </style>
+    <marker id="a-tt" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0,0 9,4.5 0,9" fill="var(--c-muted)" /></marker>
+  </defs>
+
+  <rect class="bg" width="500" height="420" />
+  <text x="24" y="36" class="ttl">합류부터 떠날 때까지의 다섯 접점</text>
+
+  <text x="40" y="62" class="th" text-anchor="middle">합류</text>
+  <line x1="40" y1="70" x2="40" y2="382" stroke="var(--c-muted)" stroke-width="1.4" marker-end="url(#a-tt)" />
+  <text x="40" y="398" class="th" text-anchor="middle">떠남</text>
+
+  <line x1="40" y1="96" x2="64" y2="96" stroke="var(--c-muted)" stroke-width="1.4" />
+  <circle cx="40" cy="96" r="5" fill="var(--c-accent)" stroke="var(--c-bg)" stroke-width="2" />
+  <rect x="64" y="70" width="340" height="52" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.4" />
+  <text x="78" y="92" class="nm">첫 1:1</text>
+  <text x="78" y="110" class="mid">합류 첫 주</text>
+  <text x="392" y="100" class="ep" text-anchor="end">ep.01</text>
+
+  <line x1="40" y1="158" x2="64" y2="158" stroke="var(--c-muted)" stroke-width="1.4" />
+  <circle cx="40" cy="158" r="5" fill="var(--c-accent)" stroke="var(--c-bg)" stroke-width="2" />
+  <rect x="64" y="132" width="340" height="52" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.4" />
+  <text x="78" y="154" class="nm">정기 1:1</text>
+  <text x="78" y="172" class="mid">매주 또는 격주로 반복</text>
+  <text x="392" y="162" class="ep" text-anchor="end">ep.01 · 02 · 03</text>
+
+  <line x1="40" y1="220" x2="64" y2="220" stroke="var(--c-muted)" stroke-width="1.4" />
+  <circle cx="40" cy="220" r="5" fill="var(--c-accent)" stroke="var(--c-bg)" stroke-width="2" />
+  <rect x="64" y="194" width="340" height="52" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.4" />
+  <text x="78" y="216" class="nm">성장 대화</text>
+  <text x="78" y="234" class="mid">정기 1:1 가운데 몇 번에 한 번 따로</text>
+  <text x="392" y="224" class="ep" text-anchor="end">ep.07</text>
+
+  <line x1="40" y1="282" x2="64" y2="282" stroke="var(--c-muted)" stroke-width="1.4" />
+  <circle cx="40" cy="282" r="5" fill="var(--c-accent)" stroke="var(--c-bg)" stroke-width="2" />
+  <rect x="64" y="256" width="340" height="52" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.4" />
+  <text x="78" y="278" class="nm">평가와 연봉 면담</text>
+  <text x="78" y="296" class="mid">평가 주기마다</text>
+  <text x="392" y="286" class="ep" text-anchor="end">ep.04 · 05</text>
+
+  <line x1="40" y1="344" x2="64" y2="344" stroke="var(--c-muted)" stroke-width="1.4" />
+  <circle cx="40" cy="344" r="5" fill="var(--c-accent)" stroke="var(--c-bg)" stroke-width="2" />
+  <rect x="64" y="318" width="340" height="52" rx="8" fill="var(--c-soft)" stroke="var(--c-accent)" stroke-width="1.4" />
+  <text x="78" y="340" class="nm">종료 면담</text>
+  <text x="78" y="358" class="mid">계약이나 프로젝트가 끝날 때, 퇴사할 때</text>
+  <text x="392" y="348" class="ep" text-anchor="end">ep.05 · 06</text>
+
+  <rect x="416" y="70" width="60" height="300" rx="8" fill="var(--c-soft-2)" stroke="var(--c-accent-2)" stroke-width="1.4" />
+  <text x="446" y="216" class="nm" text-anchor="middle">기록</text>
+  <text x="446" y="234" class="ep" text-anchor="middle">ep.08</text>
+</svg>
