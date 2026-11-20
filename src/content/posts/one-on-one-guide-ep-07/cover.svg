@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="리더를 위한 1:1 가이드 ep.07 cover">
+  <style>
+  :root {
+    --c-bg: #FBF1F3;
+    --c-fg: #24141A;
+    --c-muted: #7A6268;
+    --c-accent: #8F1F3F; --c-accent-2: #B5791F; --c-accent-3: #2F6B74;
+    --c-num: rgba(143, 31, 63, 0.14);
+    --c-dot: rgba(143, 31, 63, 0.12);
+    --c-line: rgba(36, 20, 26, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #190D11;
+      --c-fg: #EFE4E6;
+      --c-muted: #A8929A;
+      --c-accent: #FF8FA3; --c-accent-2: #E6B866; --c-accent-3: #7CC0C9;
+      --c-num: rgba(255, 143, 163, 0.22);
+      --c-dot: rgba(255, 143, 163, 0.12);
+      --c-line: rgba(239, 228, 230, 0.16);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots-oo07" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="halo-oo07a" cx="0.16" cy="0.8" r="0.6">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo-oo07b" cx="0.86" cy="0.18" r="0.55">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-oo07)"/>
+  <rect width="1200" height="630" fill="url(#halo-oo07a)"/>
+  <rect width="1200" height="630" fill="url(#halo-oo07b)"/>
+
+  <!-- 배경 무채색 스트로크 도형 (화면 밖으로) -->
+  <rect x="780" y="-230" width="560" height="560" rx="48" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(10 1060 50)"/>
+  <circle cx="70" cy="620" r="280" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="70" cy="620" r="190" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- 메타포: 머무는 자리와 두 갈래의 성장 -->
+  <g>
+    <line x1="120" y1="540" x2="860" y2="540" stroke="var(--c-line)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M250 430 C420 420 560 300 720 120" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M250 430 C460 430 640 400 850 360" fill="none" stroke="var(--c-accent-3)" stroke-width="2" stroke-linecap="round" stroke-dasharray="10 8"/>
+    <circle cx="434" cy="384" r="11" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
+    <circle cx="560" cy="284" r="11" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
+    <circle cx="648" cy="198" r="11" fill="var(--c-bg)" stroke="var(--c-accent)" stroke-width="2"/>
+    <circle cx="470" cy="420" r="11" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <circle cx="640" cy="398" r="11" fill="var(--c-bg)" stroke="var(--c-accent-3)" stroke-width="2"/>
+    <path d="M0 -13 L 24 0 L 0 13 Z" fill="var(--c-accent)" fill-opacity="0.85" transform="translate(722 116) rotate(-58) scale(1.0)"/>
+    <rect x="-20" y="-20" width="40" height="40" rx="6" fill="none" stroke="var(--c-accent-3)" stroke-width="2" transform="translate(872 356) rotate(34)"/>
+    <circle cx="250" cy="430" r="106" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="4 9"/>
+    <circle cx="250" cy="430" r="80" fill="var(--c-accent)"/>
+    <g transform="translate(250 430) rotate(-6)"><line x1="0" y1="44" x2="0" y2="-6" stroke="var(--c-bg)" stroke-width="5" stroke-linecap="round"/><path d="M0 -4 C-8 -40 -44 -44 -50 -22 C-30 -4 -10 -2 0 -4 Z" fill="var(--c-bg)"/><path d="M0 8 C10 -22 42 -26 48 -8 C30 10 10 12 0 8 Z" fill="var(--c-bg)" fill-opacity="0.8"/></g>
+  </g>
+  <!-- 디테일 어휘 -->
+  <g>
+    <circle cx="960" cy="150" r="52" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/><circle cx="960" cy="150" r="32" fill="none" stroke="var(--c-accent-2)" stroke-width="2" opacity="0.6"/><circle cx="960" cy="150" r="12" fill="var(--c-accent-2)"/>
+    <circle cx="130" cy="130" r="9" fill="var(--c-accent-3)" opacity="1"/><circle cx="158" cy="146" r="6" fill="var(--c-accent-3)" opacity="0.7"/><circle cx="116" cy="160" r="5" fill="var(--c-accent-3)" opacity="0.5"/><circle cx="150" cy="172" r="4" fill="var(--c-accent-3)" opacity="0.4"/>
+    <g transform="translate(360 120) rotate(-8)"><rect x="0" y="0" width="140" height="10" rx="5" fill="var(--c-accent-2)" fill-opacity="0.7"/><rect x="0" y="22" width="92" height="10" rx="5" fill="var(--c-accent)" fill-opacity="0.7"/><rect x="0" y="44" width="116" height="10" rx="5" fill="var(--c-accent-3)" fill-opacity="0.7"/></g>
+    <rect x="-27" y="-27" width="54" height="54" rx="8" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 7" transform="translate(560 480) rotate(12)"/>
+    <polyline points="-11,1 -3,9 12,-8" fill="none" stroke="var(--c-accent-2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(560 480) scale(1.0)"/>
+    <line x1="900" y1="300" x2="1080" y2="300" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">07</text>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="리더를 위한 1:1 가이드 ep.00 cover">
+  <style>
+  :root {
+    --c-bg: #FBF1F3;
+    --c-fg: #24141A;
+    --c-muted: #7A6268;
+    --c-accent: #8F1F3F; --c-accent-2: #B5791F; --c-accent-3: #2F6B74;
+    --c-num: rgba(143, 31, 63, 0.14);
+    --c-dot: rgba(143, 31, 63, 0.12);
+    --c-line: rgba(36, 20, 26, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #190D11;
+      --c-fg: #EFE4E6;
+      --c-muted: #A8929A;
+      --c-accent: #FF8FA3; --c-accent-2: #E6B866; --c-accent-3: #7CC0C9;
+      --c-num: rgba(255, 143, 163, 0.22);
+      --c-dot: rgba(255, 143, 163, 0.12);
+      --c-line: rgba(239, 228, 230, 0.16);
+    }
+  }
+  .cover-bg { fill: var(--c-bg); }
+  .ep-number {
+    font: 900 240px ui-monospace, "SF Mono", Menlo, monospace;
+    fill: var(--c-num); letter-spacing: -0.04em;
+  }
+</style>
+  <defs>
+    <pattern id="dots-oo00" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.4" fill="var(--c-dot)"/>
+    </pattern>
+    <radialGradient id="halo-oo00a" cx="0.84" cy="0.16" r="0.6">
+      <stop offset="0" stop-color="var(--c-accent)" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="var(--c-accent)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo-oo00b" cx="0.12" cy="0.86" r="0.55">
+      <stop offset="0" stop-color="var(--c-accent-3)" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="var(--c-accent-3)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect class="cover-bg" width="1200" height="630"/>
+  <rect width="1200" height="630" fill="url(#dots-oo00)"/>
+  <rect width="1200" height="630" fill="url(#halo-oo00a)"/>
+  <rect width="1200" height="630" fill="url(#halo-oo00b)"/>
+
+  <!-- 배경 무채색 스트로크 도형 (화면 밖으로) -->
+  <rect x="820" y="-180" width="560" height="560" rx="48" fill="none" stroke="var(--c-line)" stroke-width="1.5" transform="rotate(12 1100 100)"/>
+  <circle cx="60" cy="610" r="300" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+  <circle cx="60" cy="610" r="220" fill="none" stroke="var(--c-line)" stroke-width="1.5"/>
+
+  <!-- 메타포: 일정한 간격의 1:1과 맨 끝에 오는 면담 -->
+  <g>
+    <path d="M80 470 Q540 330 1010 300" fill="none" stroke="var(--c-accent)" stroke-width="2"/>
+    <circle cx="153.7" cy="448.3" r="26" fill="var(--c-bg)"/><circle cx="153.7" cy="448.3" r="26" fill="var(--c-accent-3)" fill-opacity="0.14" stroke="var(--c-accent-3)" stroke-width="2"/><circle cx="153.7" cy="448.3" r="7" fill="var(--c-accent-3)"/>
+    <line x1="153.7" y1="488.3" x2="153.7" y2="526.3" stroke="var(--c-line)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="301.4" cy="409.1" r="26" fill="var(--c-bg)"/><circle cx="301.4" cy="409.1" r="26" fill="var(--c-accent-2)" fill-opacity="0.14" stroke="var(--c-accent-2)" stroke-width="2"/><circle cx="301.4" cy="409.1" r="7" fill="var(--c-accent-2)"/>
+    <line x1="301.4" y1="449.1" x2="301.4" y2="487.1" stroke="var(--c-line)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="449.6" cy="375.6" r="26" fill="var(--c-bg)"/><circle cx="449.6" cy="375.6" r="26" fill="var(--c-accent-3)" fill-opacity="0.14" stroke="var(--c-accent-3)" stroke-width="2"/><circle cx="449.6" cy="375.6" r="7" fill="var(--c-accent-3)"/>
+    <line x1="449.6" y1="415.6" x2="449.6" y2="453.6" stroke="var(--c-line)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="747.6" cy="325.4" r="26" fill="var(--c-bg)"/><circle cx="747.6" cy="325.4" r="26" fill="var(--c-accent-2)" fill-opacity="0.14" stroke="var(--c-accent-2)" stroke-width="2"/><circle cx="747.6" cy="325.4" r="7" fill="var(--c-accent-2)"/>
+    <line x1="747.6" y1="365.4" x2="747.6" y2="403.4" stroke="var(--c-line)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="888" cy="309.7" r="26" fill="var(--c-bg)"/><circle cx="888" cy="309.7" r="26" fill="var(--c-accent-3)" fill-opacity="0.14" stroke="var(--c-accent-3)" stroke-width="2"/><circle cx="888" cy="309.7" r="7" fill="var(--c-accent-3)"/>
+    <line x1="888" y1="349.7" x2="888" y2="387.7" stroke="var(--c-line)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="598.3" cy="347.7" r="104" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="4 9"/>
+    <circle cx="598.3" cy="347.7" r="78" fill="var(--c-accent)"/>
+    <g transform="translate(598.3 347.7) rotate(-6)"><path d="M-52 -34 H-4 Q6 -34 6 -24 V0 Q6 10 -4 10 H-30 L-44 26 L-42 10 H-52 Q-62 10 -62 0 V-24 Q-62 -34 -52 -34 Z" fill="var(--c-bg)"/><path d="M10 -6 H52 Q62 -6 62 4 V26 Q62 36 52 36 H44 L46 50 L30 36 H10 Q0 36 0 26 V4 Q0 -6 10 -6 Z" fill="none" stroke="var(--c-bg)" stroke-width="4" stroke-linejoin="round"/></g>
+    <rect x="-42" y="-42" width="84" height="84" rx="12" fill="none" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="5 7" transform="translate(1062 294) rotate(45)"/>
+    <circle cx="1062" cy="294" r="9" fill="var(--c-accent-2)"/>
+  </g>
+  <!-- 디테일 어휘 -->
+  <g>
+    <g transform="translate(150 150) rotate(-8)"><rect x="0" y="0" width="150" height="10" rx="5" fill="var(--c-accent-3)" fill-opacity="0.7"/><rect x="0" y="22" width="96" height="10" rx="5" fill="var(--c-accent)" fill-opacity="0.7"/><rect x="0" y="44" width="120" height="10" rx="5" fill="var(--c-accent-2)" fill-opacity="0.7"/></g>
+    <circle cx="930" cy="130" r="50" fill="none" stroke="var(--c-accent-2)" stroke-width="2"/><circle cx="930" cy="130" r="31" fill="none" stroke="var(--c-accent-2)" stroke-width="2" opacity="0.6"/><circle cx="930" cy="130" r="12" fill="var(--c-accent-2)"/>
+    <circle cx="330" cy="520" r="9" fill="var(--c-accent)" opacity="1"/><circle cx="358" cy="536" r="6" fill="var(--c-accent)" opacity="0.7"/><circle cx="316" cy="550" r="5" fill="var(--c-accent)" opacity="0.5"/><circle cx="350" cy="562" r="4" fill="var(--c-accent)" opacity="0.4"/>
+    <path d="M0 -13 L 24 0 L 0 13 Z" fill="var(--c-accent-3)" fill-opacity="0.85" transform="translate(760 250) rotate(-12) scale(1.0)"/>
+    <line x1="120" y1="580" x2="380" y2="580" stroke="var(--c-accent-2)" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round" opacity="0.6"/>
+    <line x1="560" y1="96" x2="800" y2="96" stroke="var(--c-accent)" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <text class="ep-number" x="1164" y="594" text-anchor="end">00</text>
+</svg>
